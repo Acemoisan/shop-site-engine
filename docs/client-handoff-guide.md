@@ -28,20 +28,24 @@ You will have up to **three** logins. Keep them in a password manager. You'll us
 
 ## 2. Editing your content (Storyblok)
 
-> ⚠️ **Status:** Storyblok connection is being set up. Once it's live, these steps will work and you should test each one. Until then, content lives in a file we edit for you.
+> ✅ **Status (barber demo):** connected. The "Ironside Barber Co." site pulls its content from Storyblok. Editing the story there and rebuilding the site updates the page (verified end-to-end on 2026-06-15). The café demo is not yet connected.
 
-Storyblok is a **visual editor** — you click on the part of your site you want to change and type. No code.
+Storyblok is your **content editor**. You edit your shop's fields, publish, and the change flows to your site.
 
 **To make a change:**
 1. Go to **app.storyblok.com** and log in.
-2. Open your space (your shop), then click **Visual Editor**. You'll see your live site with editable areas.
-3. Click the thing you want to change:
-   - **Text** (headline, tagline, descriptions) — click and type.
-   - **Hours** — update the open/close times or mark a day closed.
-   - **Prices / menu / services** — edit the name, price, or description; add or remove items.
-   - **Photos** — click an image, then upload/replace from the **Asset Manager** (you can crop there too).
-   - **Phone / address** — update the contact fields.
-4. Click **Save**, then **Publish**. Your change goes live in about a minute.
+2. In the left sidebar click **Content**, then open the **Ironside Barber Co.** story.
+3. Edit any field:
+   - **Headline / tagline / descriptions** — type in the text fields.
+   - **Hours** — edit the open/close times or tick "closed" for a day (each day is a row you can add/remove).
+   - **Prices / services / menu** — edit name, price, description; add or remove items.
+   - **Phone / address / booking link** — update the contact fields.
+   - **Photos** — upload/replace via the **Assets** manager (crop there too). *(Image fields are added during the design phase.)*
+4. Click **Save**, then **Publish**.
+
+**When does it go live?** Today the site is rebuilt to pick up changes. Once we connect your hosting to auto-rebuild (git-connected deploy — see `deployment.md`), hitting **Publish** will redeploy your site automatically in ~1 minute, no involvement from us.
+
+> **Coming with the design phase:** in-page *visual* editing (click directly on the live site preview inside Storyblok). That needs the site deployed + a small "bridge" added — a polish step we'll do when we elevate the design.
 
 **What you can safely edit:** all the words, numbers, photos, hours, prices, and your phone/address.
 **What to leave alone:** the overall layout and section order (that's the design — ask us if you want it changed).

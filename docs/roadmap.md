@@ -94,7 +94,9 @@ See [decisions.md](decisions.md) and the [editability & handoff verification](re
 ---
 
 ## Progress log
-- **2026-06-15:** Phase 0 engine built and verified — pnpm monorepo, Astro + Tailwind v4 + OKLCH token theming, 7 shared section components + LocalBusiness JSON-LD. **Two demos live & screenshotted** (barber, café) proving new shop = `theme.css` + `content.ts` only. CLAUDE.md + client handoff guide written. Fixed a Tailwind v4 monorepo `@source` bug. **Pending owner accounts:** live deploy + Storyblok self-edit wiring.
+- **2026-06-15:** Phase 0 engine built and verified — pnpm monorepo, Astro + Tailwind v4 + OKLCH token theming, 7 shared section components + LocalBusiness JSON-LD. **Two demos live & screenshotted** (barber, café) proving new shop = `theme.css` + `content.ts` only. CLAUDE.md + client handoff guide written. Fixed a Tailwind v4 monorepo `@source` bug.
+- **2026-06-15:** ✅ **Storyblok wired (barber).** Created `shop`/`shop_hours`/`shop_service` content types via Management API, pre-filled the barber story, connected the site to fetch from Storyblok CDN (read token in `.env`, local fallback). **Edit→publish→rebuild loop verified** (changed tagline in Storyblok → appeared in build). Client self-edit requirement proven. In-iframe visual editing deferred to the design phase (needs deploy + bridge).
+- **2026-06-15 pending:** live deploy (needs owner hosting login / Netlify Drop).
 - **Owner feedback:** demos are too plain/basic — **design elevation is the next priority** (see below). Booking-link → client-account flow now documented in the handoff guide.
 
 ## ⭐ Next focus (roadmap revisit): make sites genuinely impressive
