@@ -29,6 +29,21 @@ importers:
         specifier: ^4.0.0
         version: 4.3.1
 
+  sites/demo-cafe:
+    dependencies:
+      '@studio0rbit/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(jiti@2.7.0)(lightningcss@1.32.0))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
 packages:
 
   '@astrojs/compiler@2.13.1':
