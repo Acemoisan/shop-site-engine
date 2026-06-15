@@ -23,6 +23,10 @@ function resolveSeomatorBin(): string {
 
 const SEOMATOR_BIN = resolveSeomatorBin()
 
+// Monotonic counter so concurrent audits (even of the same URL) never share a
+// temp output filename and clobber each other's results.
+let seq = 0
+
 interface ParsedSeomator { score: number; grade: Grade; categories: Record<string, number> }
 
 /**
@@ -75,7 +79,7 @@ export async function runSeomatorProbe(
   // Playwright-based CWV pass is its biggest time sink. Heavy SPAs can still
   // exceed the timeout (link-checking scales with page size) — that's handled
   // gracefully (status:"error") and is uncommon for small local-shop sites.
-  const out = `seomator-${Buffer.from(url).toString("hex").slice(0, 12)}.json`
+  const out = `seomator-${process.pid}-${seq++}-${Buffer.from(url).toString("hex").slice(0, 8)}.json`
   try {
     await exec(
       process.execPath,
