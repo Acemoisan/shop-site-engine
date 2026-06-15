@@ -1,0 +1,13 @@
+:root {
+  --background: oklch(0.98 0.005 90);
+  --foreground: oklch(0.18 0.01 60);
+  --primary: oklch(0.45 0.08 40);          /* warm barber brown */
+  --primary-foreground: oklch(0.98 0.005 90);
+  --muted: oklch(0.94 0.008 80);
+  --muted-foreground: oklch(0.45 0.01 60);
+  --accent: oklch(0.7 0.12 70);
+  --border: oklch(0.88 0.008 80);
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Inter", system-ui, sans-serif;
+  --radius: 0.5rem;
+}
