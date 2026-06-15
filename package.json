@@ -6,5 +6,8 @@
     "dev:barber": "pnpm --filter demo-barber dev",
     "dev:cafe": "pnpm --filter demo-cafe dev",
     "build": "pnpm -r build"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "sharp"]
   }
 }
