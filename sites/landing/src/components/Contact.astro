@@ -19,9 +19,15 @@ const f = site.finalCta;
         </a>
       </div>
 
-      <!-- TODO: wire `action` to a form endpoint (e.g. Formspree) before go-live.
-           The mailto link above is the working fallback in the meantime. -->
-      <form class="rounded-2xl border border-background/15 bg-background/5 p-6 backdrop-blur-sm sm:p-8" action={`mailto:${site.email}`} method="post" enctype="text/plain">
+      <!-- TEMPORARY: wired to FormSubmit.co (free form→email relay) routing to
+           site.formEmail for testing. FIRST submission triggers a one-time
+           activation email to that inbox — click it once to enable delivery.
+           Swap to a hashed FormSubmit endpoint or a proper provider before go-live. -->
+      <form class="rounded-2xl border border-background/15 bg-background/5 p-6 backdrop-blur-sm sm:p-8" action={`https://formsubmit.co/${site.formEmail}`} method="POST">
+        <input type="hidden" name="_subject" value="New Studio0rbit audit request" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <h3 class="font-display text-lg font-semibold">{c.heading}</h3>
         <p class="mt-1 text-sm text-background/70">{c.body}</p>
         <div class="mt-5 grid gap-4">

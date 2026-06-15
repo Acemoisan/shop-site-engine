@@ -20,6 +20,7 @@ export const site = {
   brand: "Studio0rbit",
   city: "Calgary",
   email: "hello@studio0rbit.ca", // TODO: confirm real contact before go-live
+  formEmail: "aidan.c.moisan@gmail.com", // TEMPORARY — routes the contact form to owner's inbox for testing; revert/replace before go-live
   nav: [
     { label: "What you get", href: "#benefits" },
     { label: "How it works", href: "#how" },
