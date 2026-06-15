@@ -1,0 +1,299 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "OxOne." [ref=e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e5]:
+        - link "Blog" [ref=e6] [cursor=pointer]:
+          - /url: /blog
+        - link "Home" [ref=e7] [cursor=pointer]:
+          - /url: /
+  - article [ref=e8]:
+    - generic [ref=e10]:
+      - generic [ref=e11]: Websites
+      - 'heading "Small Website Design Calgary Price Guide 2026: What Local Businesses Actually Pay" [level=1] [ref=e12]'
+      - paragraph [ref=e13]: Updated March 2026 • 8 min read
+    - generic [ref=e15]:
+      - generic [ref=e17]:
+        - figure [ref=e18]:
+          - 'img "Small Website Design Calgary Price Guide 2026: What Local Businesses Actually Pay" [ref=e19]'
+        - 'heading "Calgary Web Design Pricing: The Complete Breakdown" [level=2] [ref=e20]'
+        - paragraph [ref=e21]: "If you're a Calgary small business owner Googling \"how much does a website cost\" right now, you've probably already noticed the problem: the answers are all over the map. One agency quotes $800. Another says $12,000. A freelancer on Kijiji offers $300. And somehow, they all claim to build \"professional websites.\""
+        - paragraph [ref=e22]: Let's cut through the noise. I've put together this guide based on real pricing data from Calgary web design projects in 2026—not vague national averages or outdated numbers from 2020. Whether you're a plumber in the deep southeast, a consultant working from a home office in Kensington, or running a nonprofit near the Bow River, this is what you'll actually pay.
+        - heading "Average Website Design Costs in Calgary (2026 Data)" [level=3] [ref=e23]
+        - generic [ref=e24]:
+          - generic [ref=e25]: $2,500–$5,000
+          - paragraph [ref=e26]: What most Calgary small businesses pay for a professional, template-based website with 5-10 pages, responsive design, and basic SEO setup.
+        - paragraph [ref=e27]: "That's the sweet spot. But averages only tell part of the story. Here's the full spectrum:"
+        - list [ref=e28]:
+          - listitem [ref=e29]:
+            - strong [ref=e30]: "DIY website builders:"
+            - text: $500–$1,500 (your time not included)
+          - listitem [ref=e31]:
+            - strong [ref=e32]: "Template-based professional sites:"
+            - text: $1,500–$5,000
+          - listitem [ref=e33]:
+            - strong [ref=e34]: "Custom-designed websites:"
+            - text: $5,000–$15,000+
+          - listitem [ref=e35]:
+            - strong [ref=e36]: "E-commerce or complex web apps:"
+            - text: $10,000–$25,000+
+        - heading "What Impacts Your Website Price the Most" [level=3] [ref=e37]
+        - paragraph [ref=e38]: "Nine times out of ten, when I see a massive price difference between two quotes, it comes down to these factors:"
+        - list [ref=e39]:
+          - listitem [ref=e40]:
+            - strong [ref=e41]: Number of pages and content complexity.
+            - text: A five-page brochure site is fundamentally different from a 30-page resource hub.
+          - listitem [ref=e42]:
+            - strong [ref=e43]: Custom design vs. template customization.
+            - text: A pixel-perfect custom design takes 3-5x longer than adapting a pre-built template.
+          - listitem [ref=e44]:
+            - strong [ref=e45]: Functionality requirements.
+            - text: Online booking, e-commerce, client portals, and membership areas all add development time.
+          - listitem [ref=e46]:
+            - strong [ref=e47]: Content creation.
+            - text: Do you have professional photos and polished copy, or does the designer need to create everything from scratch?
+          - listitem [ref=e48]:
+            - strong [ref=e49]: The designer's experience and overhead.
+            - text: A solo freelancer working from Bridgeland charges differently than an agency in the Beltline with twelve employees.
+        - 'heading "Calgary vs National Pricing: Are You Paying More?" [level=3] [ref=e50]'
+        - paragraph [ref=e51]: "Good news: Calgary web design pricing is competitive. You'll typically pay 10-20% less than Toronto or Vancouver agencies for comparable work, roughly on par with Edmonton and Winnipeg, and 20-30% more than offshore outsourcing (though that gap closes fast when you factor in communication issues, revision cycles, and timezone headaches)."
+        - paragraph [ref=e53]:
+          - strong [ref=e54]: "Local advantage:"
+          - text: Calgary-based designers understand the local market. They know that your roofing company needs to rank in Airdrie and Okotoks, not just "Calgary." They understand the seasonal patterns of Alberta businesses. And they're available for a coffee meeting when you need to hash out your project in person. That local knowledge has real value.
+        - heading "Small Business Website Pricing Tiers Explained" [level=2] [ref=e55]
+        - 'heading "DIY Websites ($500–$1,500): Best for Solopreneurs" [level=3] [ref=e56]'
+        - paragraph [ref=e57]: Platforms like Wix, Squarespace, and WordPress.com have gotten remarkably good. If you're a solopreneur with a tight budget and some patience, you can build a respectable site for under $1,500—including a year of hosting, a custom domain, and maybe a premium template.
+        - paragraph [ref=e58]:
+          - strong [ref=e59]: "This works well if:"
+        - list [ref=e60]:
+          - listitem [ref=e61]: You have 5-10 hours to dedicate to learning the platform
+          - listitem [ref=e62]: Your business model is straightforward (freelancer, consultant, single-service provider)
+          - listitem [ref=e63]: You don't need online booking, e-commerce, or complex integrations
+          - listitem [ref=e64]: You're comfortable handling your own updates long-term
+        - paragraph [ref=e65]:
+          - strong [ref=e66]: "The hidden cost:"
+          - text: your time. If you bill $100/hour and spend 40 hours fighting with a website builder, you've "spent" $4,000—enough for a professionally built site that would've been done in two weeks while you focused on clients.
+        - 'heading "Template-Based Sites ($1,500–$5,000): The Sweet Spot for Most Small Businesses" [level=3] [ref=e67]'
+        - paragraph [ref=e68]: This is where the majority of Calgary small businesses land, and for good reason. A skilled designer takes a proven template framework and customizes it with your branding, content, and specific business needs. You get professional results without the premium of fully custom design.
+        - paragraph [ref=e69]: "At this tier, you should expect:"
+        - list [ref=e70]:
+          - listitem [ref=e71]: 5-10 professionally designed pages
+          - listitem [ref=e72]: Mobile-responsive design (non-negotiable in 2026)
+          - listitem [ref=e73]: Basic SEO setup and Google Analytics integration
+          - listitem [ref=e74]: Contact forms and Google Maps integration
+          - listitem [ref=e75]: 3-6 months of post-launch support
+          - listitem [ref=e76]: A site that loads fast and looks like you take your business seriously
+        - paragraph [ref=e78]:
+          - strong [ref=e79]: This is the tier where businesses like Oxone operate for most clients.
+          - text: We focus on delivering maximum value in this range—professional design, local SEO foundations, and smart automation that makes your website work harder without inflating your budget.
+        - 'heading "Custom Builds ($5,000–$15,000+): When You Need Advanced Features" [level=3] [ref=e80]'
+        - paragraph [ref=e81]: "Custom builds make sense when your business has requirements that templates can't accommodate: complex e-commerce with hundreds of products, client portals, custom calculators, membership areas, multi-location management, or API integrations with your existing software stack."
+        - paragraph [ref=e82]: If a designer is quoting you $10,000+ for a basic brochure site, ask why. Sometimes the answer is legitimate (extensive content strategy, professional photography, advanced SEO). Other times, you're paying for overhead that doesn't benefit your project.
+        - heading "What's Included in Calgary Web Design Packages" [level=2] [ref=e83]
+        - heading "Essential Features Every Small Business Website Needs" [level=3] [ref=e84]
+        - paragraph [ref=e85]: "Regardless of your budget, your website must include these in 2026:"
+        - list [ref=e86]:
+          - listitem [ref=e87]:
+            - strong [ref=e88]: Mobile-first responsive design
+            - text: — over 60% of your visitors are on phones
+          - listitem [ref=e89]:
+            - strong [ref=e90]: SSL certificate
+            - text: (the padlock icon) — Google penalizes sites without it
+          - listitem [ref=e91]:
+            - strong [ref=e92]: Fast load times
+            - text: — under 3 seconds, ideally under 2
+          - listitem [ref=e93]:
+            - strong [ref=e94]: Clear calls to action
+            - text: — phone number, contact form, booking link
+          - listitem [ref=e95]:
+            - strong [ref=e96]: Basic on-page SEO
+            - text: — title tags, meta descriptions, header structure
+          - listitem [ref=e97]:
+            - strong [ref=e98]: Google Business Profile integration
+            - text: — critical for local Calgary searches
+          - listitem [ref=e99]:
+            - strong [ref=e100]: Accessibility basics
+            - text: — alt text, proper contrast, keyboard navigation
+        - heading "Add-Ons That Increase Your Price (And Whether You Need Them)" [level=3] [ref=e101]
+        - paragraph [ref=e102]: "Here's where pricing gets fuzzy. Common add-ons and their typical Calgary pricing:"
+        - list [ref=e103]:
+          - listitem [ref=e104]:
+            - strong [ref=e105]: "E-commerce functionality:"
+            - text: +$1,000–$5,000 (need it if you sell products; skip it if you don't)
+          - listitem [ref=e106]:
+            - strong [ref=e107]: "Online booking/scheduling:"
+            - text: +$300–$1,000 (worth every penny for service businesses)
+          - listitem [ref=e108]:
+            - strong [ref=e109]: "Blog setup and content strategy:"
+            - text: +$500–$2,000 (important for SEO, but only if you'll actually post)
+          - listitem [ref=e110]:
+            - strong [ref=e111]: "Professional copywriting:"
+            - text: +$500–$2,500 (dramatically underrated—great copy converts visitors into customers)
+          - listitem [ref=e112]:
+            - strong [ref=e113]: "Professional photography:"
+            - text: +$500–$2,000 (stock photos are obvious; real photos build trust)
+          - listitem [ref=e114]:
+            - strong [ref=e115]: "Advanced SEO package:"
+            - text: +$1,000–$3,000 (essential if you're competing in crowded Calgary markets)
+        - 'heading "Ongoing Costs: Hosting, Maintenance & Updates" [level=3] [ref=e116]'
+        - paragraph [ref=e117]: "Your website isn't a one-time purchase. Budget for these annual costs:"
+        - generic [ref=e118]:
+          - generic [ref=e119]: $300–$1,200/year
+          - paragraph [ref=e120]: Minimum ongoing costs for hosting, domain renewal, SSL, and basic plugin/platform updates.
+        - paragraph [ref=e121]: If you want professional maintenance—security monitoring, regular backups, content updates, performance optimization—add $100–$500 per month. It sounds like a lot until you experience a hacked website at 2 AM on a Friday and have no one to call.
+        - heading "Industry-Specific Website Pricing in Calgary" [level=2] [ref=e122]
+        - 'heading "Contractor Website Costs: What Trades Need to Budget" [level=3] [ref=e123]'
+        - paragraph [ref=e124]: Calgary's trades industry is booming, and contractors who invest in professional websites consistently outperform those relying on word-of-mouth alone. Expect to pay $2,000–$4,500 for a contractor website that includes project galleries, service area pages (crucial for ranking in surrounding communities like Cochrane, Chestermere, and Airdrie), quote request forms, and mobile optimization for people searching from job sites.
+        - paragraph [ref=e125]: Adding online booking, customer review integration, or a customer portal can push costs to $6,000–$8,000—but the ROI on a single landed contract usually covers the entire investment.
+        - heading "Small Nonprofit Website Pricing in Canada" [level=3] [ref=e126]
+        - paragraph [ref=e127]: "Nonprofits have unique needs: donation processing, volunteer signup, event promotion, and grant-related credibility. Small nonprofit websites in Canada typically range from $1,500–$4,000. Many Calgary web designers—Oxone included—offer 10-20% discounts for registered charities. Look for designers who understand donation platform integration (CanadaHelps, PayPal Giving Fund) and the specific compliance needs of Canadian nonprofits."
+        - 'heading "Service-Based Business Websites: From Consultants to Salons" [level=3] [ref=e128]'
+        - paragraph [ref=e129]: Whether you're a YYC-based management consultant, a salon in Inglewood, or a physiotherapy clinic on Macleod Trail, service businesses typically invest $2,500–$5,000. The key features driving cost here are online booking systems, service menus with pricing, staff bios, and before/after galleries. If you're in a competitive field, investing in local SEO at launch can dramatically accelerate your return on investment.
+        - heading "How to Evaluate Calgary Web Designers Without Overpaying" [level=2] [ref=e130]
+        - 'heading "Red Flags: When \"Cheap\" Becomes Expensive" [level=3] [ref=e131]'
+        - paragraph [ref=e133]:
+          - strong [ref=e134]: "Warning signs to watch for:"
+          - text: • No portfolio or only showing template demos they didn't build
+          - text: • Pricing that seems suspiciously low (under $800 for a "custom" business site)
+          - text: • Requiring full payment upfront with no milestones
+          - text: • No clear contract outlining deliverables, timelines, and revisions
+          - text: • They can't explain their process in plain language
+          - text: • No mention of mobile optimization or SEO (it's 2026—these are baseline)
+          - text: • They disappear for days between communications during the sales process
+        - paragraph [ref=e135]: The cheapest quote is rarely the cheapest outcome. I've seen dozens of Calgary businesses pay $1,500 for a site that never launched, then pay $4,000 to have it rebuilt properly. Budget for quality the first time.
+        - heading "Questions to Ask Before Hiring a Calgary Web Designer" [level=3] [ref=e136]
+        - generic [ref=e137]:
+          - heading "1 \"Can I see 3 live sites you've built for businesses like mine?\"" [level=3] [ref=e138]:
+            - generic [ref=e139]: "1"
+            - text: "\"Can I see 3 live sites you've built for businesses like mine?\""
+          - paragraph [ref=e140]: Not screenshots—live URLs you can click through. Check them on your phone. See how they load. Read the content. This tells you more than any sales pitch.
+        - generic [ref=e141]:
+          - heading "2 \"What happens after launch?\"" [level=3] [ref=e142]:
+            - generic [ref=e143]: "2"
+            - text: "\"What happens after launch?\""
+          - paragraph [ref=e144]: Do they disappear? Offer a support period? Have monthly maintenance plans? Your site needs ongoing care, and your designer should have a clear answer here.
+        - generic [ref=e145]:
+          - heading "3 \"Who owns the website when we're done?\"" [level=3] [ref=e146]:
+            - generic [ref=e147]: "3"
+            - text: "\"Who owns the website when we're done?\""
+          - paragraph [ref=e148]: This is critical. Some designers retain ownership or lock you into proprietary platforms. You should own your domain, your content, and your design files. Period.
+        - generic [ref=e149]:
+          - heading "4 \"How do you handle SEO?\"" [level=3] [ref=e150]:
+            - generic [ref=e151]: "4"
+            - text: "\"How do you handle SEO?\""
+          - paragraph [ref=e152]: If the answer is "we'll add some keywords," keep looking. In 2026, SEO is technical performance, structured data, content strategy, and local optimization. It should be baked into the build, not sprinkled on top.
+        - 'heading "Portfolio Review: What Separates $2K from $10K Work" [level=3] [ref=e153]'
+        - paragraph [ref=e154]: "When comparing portfolios, look beyond aesthetics. A $10K site should demonstrate: strategic page hierarchy that guides visitors toward conversion, custom illustrations or photography (not stock), sophisticated animations and interactions that enhance usability, integrated business systems (CRM, booking, inventory), and measurable results the designer can reference."
+        - paragraph [ref=e155]: A $2K-$3K site should still look clean, load fast, work perfectly on mobile, and clearly communicate what you do and how to hire you. If it doesn't achieve those basics, the price doesn't matter.
+        - 'heading "Getting More Value: SEO, Automation & AI Integration" [level=2] [ref=e156]'
+        - 'heading "Local SEO Pricing: Ranking in Calgary Search Results" [level=3] [ref=e157]'
+        - paragraph [ref=e158]: A beautiful website that nobody finds is an expensive business card. Local SEO—the work that gets you showing up when someone Googles "best plumber in Calgary" or "accountant near me"—typically costs $500–$2,000 for initial setup and $300–$1,500 per month for ongoing optimization.
+        - paragraph [ref=e159]: For most Calgary small businesses, starting with solid on-page SEO at launch and a fully optimized Google Business Profile gets you 80% of the way there. You can layer on advanced strategies as revenue grows.
+        - heading "Business Automation That Saves You Time & Money" [level=3] [ref=e160]
+        - paragraph [ref=e161]: This is where smart Calgary businesses are gaining a serious edge in 2026. Instead of manually sending follow-up emails, chasing invoices, or responding to the same inquiry questions 50 times a month, automation handles it.
+        - paragraph [ref=e162]: "At Oxone, we build automation directly into websites: lead capture forms that trigger personalized email sequences, appointment reminders that reduce no-shows, and intake workflows that qualify leads before they ever reach your phone. The setup cost typically adds $500–$2,000 to your project, but the time savings compound every single month."
+        - 'heading "AI-Powered Marketing: The 2026 Competitive Edge" [level=3] [ref=e163]'
+        - paragraph [ref=e164]: AI isn't a buzzword anymore—it's a practical tool. Calgary small businesses are using AI-powered chatbots to handle after-hours inquiries, AI content assistants to keep their blogs active, and AI analytics to understand which marketing channels actually drive revenue. The businesses investing in these tools now are building advantages that will be very hard for competitors to close later.
+        - generic [ref=e165]:
+          - heading "Want to see what AI-powered automation could do for your Calgary business?" [level=3] [ref=e166]
+          - paragraph [ref=e167]: We'll show you specific tools and workflows during a free discovery call—no obligation, no pressure. Just practical advice for your situation.
+          - link "Book Free Call" [ref=e168] [cursor=pointer]:
+            - /url: https://cal.com/chenyuan/discovery
+        - 'heading "Your Next Steps: Getting an Accurate Quote for Your Calgary Website" [level=2] [ref=e169]'
+        - 'heading "Website Cost Calculator: Estimate Your Project" [level=3] [ref=e170]'
+        - paragraph [ref=e171]: "Here's a quick way to ballpark your budget before talking to any designer:"
+        - list [ref=e172]:
+          - listitem [ref=e173]:
+            - strong [ref=e174]: Start at $2,000
+            - text: for a basic professional 5-page site
+          - listitem [ref=e175]:
+            - strong [ref=e176]: Add $200–$400 per additional page
+            - text: beyond five
+          - listitem [ref=e177]:
+            - strong [ref=e178]: Add $500–$1,500
+            - text: if you need professional copywriting
+          - listitem [ref=e179]:
+            - strong [ref=e180]: Add $500–$2,000
+            - text: for booking, e-commerce, or portal features
+          - listitem [ref=e181]:
+            - strong [ref=e182]: Add $500–$1,500
+            - text: for comprehensive SEO setup
+          - listitem [ref=e183]:
+            - strong [ref=e184]: Add $500–$2,000
+            - text: for automation and AI integrations
+        - paragraph [ref=e185]: That gives you a realistic range to bring into conversations with designers.
+        - heading "What Information Calgary Web Designers Need from You" [level=3] [ref=e186]
+        - paragraph [ref=e187]: "Want an accurate quote fast? Come prepared with:"
+        - list [ref=e188]:
+          - listitem [ref=e189]: A rough page count and list of features you need
+          - listitem [ref=e190]: 2-3 competitor or aspirational websites you admire
+          - listitem [ref=e191]: Your existing branding assets (logo, colours, fonts) or whether you need them created
+          - listitem [ref=e192]: Whether you have written content and photos ready, or need help creating them
+          - listitem [ref=e193]: Your ideal timeline and budget range (being upfront saves everyone time)
+          - listitem [ref=e194]: Your primary business goal for the website (leads? bookings? sales? credibility?)
+        - 'heading "Timeline Expectations: From Quote to Launch" [level=3] [ref=e195]'
+        - generic [ref=e196]:
+          - generic [ref=e197]: 4–8 weeks
+          - paragraph [ref=e198]: Typical timeline for a professional small business website in Calgary, from signed contract to live launch. Complex projects may take 10-14 weeks.
+        - paragraph [ref=e199]: The biggest delays almost always come from content. Designers can build your site structure in days, but waiting six weeks for you to send headshots, approve copy, or finalize your service descriptions pushes every project behind schedule. Having your content ready (or hiring your designer to create it) is the single best thing you can do to stay on timeline.
+        - generic [ref=e200]:
+          - heading "Ready for transparent, no-nonsense pricing?" [level=3] [ref=e201]
+          - paragraph [ref=e202]: Tell us about your Calgary business, and we'll send you a detailed breakdown of costs, timelines, and exactly what's included—within 24 hours. Plus, we'll show you how automation and local SEO can make your website your hardest-working employee.
+          - link "Get Your Free Quote" [ref=e203] [cursor=pointer]:
+            - /url: https://cal.com/chenyuan/discovery
+        - heading "Frequently Asked Questions" [level=2] [ref=e204]
+        - heading "What is the average cost of web design in Calgary?" [level=3] [ref=e205]
+        - paragraph [ref=e206]: Calgary web design prices typically range from $1,500–$5,000 for small business template-based sites, $5,000–$15,000 for custom designs, and $500–$1,500 for DIY options. Prices vary based on features, functionality, and designer experience. The most common investment we see from Calgary small businesses is in the $2,500–$5,000 range.
+        - heading "How much should a small business pay for a website in 2026?" [level=3] [ref=e207]
+        - paragraph [ref=e208]: Most Calgary small businesses should budget $2,500–$5,000 for a professional website that includes responsive design, basic SEO, contact forms, and 5-10 pages. This price point offers the best balance of quality and affordability, and it's enough to get a site that genuinely drives business results rather than just existing on the internet.
+        - heading "What's included in Calgary web design pricing?" [level=3] [ref=e209]
+        - paragraph [ref=e210]: Standard packages include responsive design, mobile optimization, basic SEO setup, contact forms, Google Analytics integration, and 3-12 months of support. Custom features like e-commerce, booking systems, and ongoing maintenance cost extra. Always ask for an itemized quote so you know exactly what you're paying for.
+        - heading "Are Calgary web designers more expensive than other cities?" [level=3] [ref=e211]
+        - paragraph [ref=e212]: Calgary web design pricing is comparable to other major Canadian cities like Edmonton and Winnipeg, typically 10-20% lower than Toronto or Vancouver, but 20-30% higher than outsourcing internationally. You're paying for local support, timezone alignment, and market knowledge—advantages that matter significantly when your website needs to perform in the Calgary market.
+        - heading "How much does a contractor website cost in Calgary?" [level=3] [ref=e213]
+        - paragraph [ref=e214]: Contractor websites in Calgary typically cost $2,000–$4,500, including project galleries, service pages, quote request forms, and mobile optimization. Adding features like online booking, customer portals, or advanced SEO can push costs to $6,000–$8,000. Given that a single contract in the trades can be worth thousands, the ROI math tends to work out quickly.
+        - heading "What's the pricing for nonprofit websites in Canada?" [level=3] [ref=e215]
+        - paragraph [ref=e216]: Small nonprofit websites in Canada range from $1,500–$4,000, with many Calgary web designers offering 10-20% discounts for registered charities. Features typically include donation integration through platforms like CanadaHelps, volunteer signup forms, and event calendars.
+        - heading "Should I hire a Calgary web designer or use a DIY platform?" [level=3] [ref=e217]
+        - paragraph [ref=e218]: Choose DIY platforms ($500–$1,500) if you have time and basic tech skills. Hire a Calgary web designer ($2,500+) if you need custom functionality, professional branding, local SEO optimization, or want to focus on running your business instead of building websites. The opportunity cost of your time is often the deciding factor.
+        - heading "What ongoing costs should I budget for my website?" [level=3] [ref=e219]
+        - paragraph [ref=e220]: Budget $300–$1,200 annually for hosting, domain renewal, SSL certificates, and basic updates. Add $100–$500/month if you want ongoing SEO, content updates, security monitoring, or professional maintenance from your Calgary web designer. Think of it like vehicle maintenance—regular small investments prevent expensive breakdowns.
+      - complementary [ref=e221]:
+        - generic [ref=e222]:
+          - generic [ref=e223]:
+            - generic [ref=e224]: ⚡ The Site Rescue
+            - generic [ref=e225]: $497
+            - generic [ref=e226]: one-time • 7-day turnaround
+            - list [ref=e227]:
+              - listitem [ref=e228]: ✓ Full rebuild from your existing site
+              - listitem [ref=e229]: ✓ Lightning-fast HTML (no Wix/WordPress)
+              - listitem [ref=e230]: ✓ Mobile-optimized + SEO-ready
+              - listitem [ref=e231]: ✓ You own the code outright
+              - listitem [ref=e232]: ✓ First month of care included free
+            - link "See Full Details →" [ref=e233] [cursor=pointer]:
+              - /url: /site-rescue
+            - link "Book a Free Call" [ref=e234] [cursor=pointer]:
+              - /url: "#"
+            - paragraph [ref=e235]: Pay $250 to start · $247 when you’re happy
+          - separator [ref=e236]
+          - generic [ref=e237]:
+            - paragraph [ref=e238]: Or start fresh with a custom build from $997.
+            - link "See Pricing →" [ref=e239] [cursor=pointer]:
+              - /url: /pricing.html#estimate
+          - generic [ref=e240]:
+            - generic [ref=e241]: 📚 Related Articles
+            - 'link "AI Tools for Small Business 2026: What Actually Works →" [ref=e243] [cursor=pointer]':
+              - /url: /blog/ai-tools-for-small-business-2026
+              - generic [ref=e244]: "AI Tools for Small Business 2026: What Actually Works"
+              - generic [ref=e245]: →
+            - 'link "Web Design Calgary: Complete 2026 Guide →" [ref=e247] [cursor=pointer]':
+              - /url: /blog/web-design-calgary
+              - generic [ref=e248]: "Web Design Calgary: Complete 2026 Guide"
+              - generic [ref=e249]: →
+            - link "Is HTML Better Than WordPress or Wix for SEO? →" [ref=e251] [cursor=pointer]:
+              - /url: /blog/html-vs-wordpress-wix-seo
+              - generic [ref=e252]: Is HTML Better Than WordPress or Wix for SEO?
+              - generic [ref=e253]: →
+    - link "← Back to all articles" [ref=e256] [cursor=pointer]:
+      - /url: /blog

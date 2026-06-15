@@ -1,0 +1,10 @@
+{
+  "name": "studio0rbit-websites",
+  "private": true,
+  "packageManager": "pnpm@11.7.0",
+  "scripts": {
+    "dev:barber": "pnpm --filter demo-barber dev",
+    "dev:cafe": "pnpm --filter demo-cafe dev",
+    "build": "pnpm -r build"
+  }
+}
