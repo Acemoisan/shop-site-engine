@@ -1,6 +1,6 @@
 export type Grade = "A" | "B" | "C" | "D" | "F"
 export type ProbeStatus = "ok" | "error"
-export type Tier = "new-build" | "rebuild" | "tune-up" | "care-or-decline"
+export type Tier = "new-build" | "rebuild" | "tune-up" | "care-or-decline" | "blocked-unknown"
 
 export interface ScoreSet {
   performance: number
@@ -55,6 +55,10 @@ export interface AuditData {
   url: string
   fetchedAt: string
   reachable: boolean
+  /** True when the server responded but not with a usable 2xx page (e.g. a 403
+   *  bot-challenge or 5xx). The site exists, but we could NOT inspect the real
+   *  page — its grade/inventory are not trustworthy; tier is "blocked-unknown". */
+  blocked: boolean
   vertical?: string
   psi: PsiProbe
   seomator: SeomatorProbe

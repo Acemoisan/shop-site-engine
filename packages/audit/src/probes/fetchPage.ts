@@ -8,6 +8,8 @@ export interface PageResult {
   finalUrl: string
   html: string
   error?: string
+  /** Number of fetch attempts made (1 = succeeded first try). */
+  attempts?: number
 }
 
 // Realistic desktop-Chrome UA. The previous custom UA tripped bot protection
@@ -15,24 +17,59 @@ export interface PageResult {
 const BROWSER_UA =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
 
-export async function fetchHtml(url: string, timeoutMs = 15000): Promise<PageResult> {
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), timeoutMs)
-  try {
-    const res = await fetch(url, {
-      signal: controller.signal,
-      redirect: "follow",
-      headers: { "user-agent": BROWSER_UA, accept: "text/html,application/xhtml+xml" },
-    })
-    const html = await res.text()
-    // We received a response, so the site exists — reachable is true even for a
-    // 403/blocked or 5xx page. `ok` distinguishes a usable 2xx page. This keeps a
-    // blocked-but-real business from being misclassified as "no website".
-    return { reachable: true, ok: res.ok, status: res.status, finalUrl: res.url || url, html }
-  } catch (e) {
-    // No response at all (DNS failure, connection refused, timeout) → truly unreachable.
-    return { reachable: false, ok: false, status: null, finalUrl: url, html: "", error: (e as Error).message }
-  } finally {
-    clearTimeout(timer)
+export interface FetchOpts {
+  /** Total attempts before giving up. Default 3. */
+  attempts?: number
+  /** Delay between attempts, ms. Default 400. */
+  retryDelayMs?: number
+  /** Injectable fetch (for tests). Defaults to global fetch. */
+  fetchImpl?: typeof fetch
+  /** Injectable sleep (for tests). */
+  sleep?: (ms: number) => Promise<void>
+}
+
+const defaultSleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
+
+/**
+ * Fetch a page's HTML with reachability semantics and transient-failure retry.
+ *
+ * A RECEIVED HTTP response (even 403/5xx) is a real, terminal state — the site
+ * exists, so we return immediately without retrying. We only retry when fetch
+ * THROWS (no response at all): cold-connection resets and transient DNS/network
+ * blips. Observed in the wild: some CDNs (e.g. gymshark) reset the very first
+ * undici handshake (~70ms "fetch failed") then serve 200 on the next attempt.
+ * Without a retry, a healthy site is misclassified as "no website" (new-build).
+ */
+export async function fetchHtml(url: string, timeoutMs = 15000, opts: FetchOpts = {}): Promise<PageResult> {
+  const attempts = Math.max(1, opts.attempts ?? 3)
+  const retryDelayMs = opts.retryDelayMs ?? 400
+  const doFetch = opts.fetchImpl ?? fetch
+  const sleep = opts.sleep ?? defaultSleep
+
+  let lastError = "fetch failed"
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), timeoutMs)
+    try {
+      const res = await doFetch(url, {
+        signal: controller.signal,
+        redirect: "follow",
+        headers: { "user-agent": BROWSER_UA, accept: "text/html,application/xhtml+xml" },
+      })
+      const html = await res.text()
+      // We received a response, so the site exists — reachable is true even for a
+      // 403/blocked or 5xx page. `ok` distinguishes a usable 2xx page. This keeps a
+      // blocked-but-real business from being misclassified as "no website".
+      return { reachable: true, ok: res.ok, status: res.status, finalUrl: res.url || url, html, attempts: attempt }
+    } catch (e) {
+      // No response at all (DNS failure, connection refused, reset, timeout).
+      // Could be transient — retry the remaining attempts before giving up.
+      lastError = (e as Error).message
+      if (attempt < attempts) await sleep(retryDelayMs)
+    } finally {
+      clearTimeout(timer)
+    }
   }
+  // Exhausted all attempts with no response → truly unreachable.
+  return { reachable: false, ok: false, status: null, finalUrl: url, html: "", error: lastError, attempts }
 }

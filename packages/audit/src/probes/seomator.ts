@@ -72,13 +72,16 @@ export function parseSeomator(json: any): ParsedSeomator {
 
 export async function runSeomatorProbe(
   url: string,
-  timeoutMs = 90000,
+  timeoutMs = 45000,
 ): Promise<SeomatorProbe> {
   // Single-page audit (no --crawl): right scope for triage and far faster.
   // --no-cwv: we measure Core Web Vitals via the PSI probe, and SEOmator's
   // Playwright-based CWV pass is its biggest time sink. Heavy SPAs can still
   // exceed the timeout (link-checking scales with page size) — that's handled
   // gracefully (status:"error") and is uncommon for small local-shop sites.
+  // The timeout is deliberately short (45s): SEOmator is a secondary signal,
+  // and for prospecting triage we'd rather degrade to inventory/PSI than hang
+  // ~90s+ per blocked or heavyweight site.
   const out = `seomator-${process.pid}-${seq++}-${Buffer.from(url).toString("hex").slice(0, 8)}.json`
   try {
     await exec(
@@ -89,8 +92,19 @@ export async function runSeomatorProbe(
     const parsed = parseSeomator(JSON.parse(await readFile(out, "utf8")))
     return { status: "ok", ...parsed }
   } catch (e) {
-    return { status: "error", error: (e as Error).message }
+    return { status: "error", error: seomatorErrorMessage(e, timeoutMs) }
   } finally {
     await unlink(out).catch(() => {})
   }
+}
+
+/**
+ * execFile reports a timeout-kill via `killed: true` + a SIGTERM signal (and
+ * no exit code) rather than a descriptive message. Surface that distinctly so
+ * a slow/hanging site reads as "timed out" rather than an opaque failure.
+ */
+export function seomatorErrorMessage(e: unknown, timeoutMs: number): string {
+  const err = e as { killed?: boolean; signal?: string; code?: string; message?: string }
+  if (err?.killed || err?.signal === "SIGTERM") return `seomator timeout after ${timeoutMs}ms`
+  return err?.message ?? String(e)
 }

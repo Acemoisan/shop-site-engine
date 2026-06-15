@@ -19,20 +19,27 @@ async function main() {
   const fetchedAt = new Date().toISOString()
 
   const page = await fetchHtml(url)
-  const inventory: Record<FeatureKey, boolean | "error"> = page.reachable
+  // blocked = the server responded but not with a usable 2xx page (e.g. a 403
+  // bot-challenge). The site exists, but the HTML we got is not the real page,
+  // so inspecting/grading it would be misleading — treat as un-inspectable.
+  const blocked = page.reachable && !page.ok
+  const inspectable = page.reachable && page.ok
+  const unavailable = blocked ? `blocked (HTTP ${page.status})` : page.error ?? "unreachable"
+
+  const inventory: Record<FeatureKey, boolean | "error"> = inspectable
     ? inventoryFromHtml(page.html, page.finalUrl)
     : (Object.fromEntries((["mobileViewport","clickToCall","bookingLink","hours","addressOrMap","reviews","localBusinessJsonLd","menuSchema","https","ogTags","contactForm","favicon"] as FeatureKey[]).map(k => [k, "error"])) as Record<FeatureKey, boolean | "error">)
 
-  const stack: StackProbe = page.reachable
+  const stack: StackProbe = inspectable
     ? { status: "ok", ...detectStack(page.html) }
-    : { status: "error", error: page.error }
+    : { status: "error", error: unavailable }
 
   const [psi, seomator] = await Promise.all([
-    page.reachable && key ? runPsiProbe(url, key) : Promise.resolve({ status: "error" as const, error: key ? "unreachable" : "no PSI_API_KEY" }),
-    page.reachable ? runSeomatorProbe(url) : Promise.resolve({ status: "error" as const, error: "unreachable" }),
+    inspectable && key ? runPsiProbe(url, key) : Promise.resolve({ status: "error" as const, error: inspectable ? "no PSI_API_KEY" : unavailable }),
+    inspectable ? runSeomatorProbe(url) : Promise.resolve({ status: "error" as const, error: unavailable }),
   ])
 
-  const data = assembleAudit({ url, fetchedAt, reachable: page.reachable, vertical, psi, seomator, inventory, stack })
+  const data = assembleAudit({ url, fetchedAt, reachable: page.reachable, blocked, vertical, psi, seomator, inventory, stack })
 
   const outFile = `audit-${new URL(url).hostname}.json`
   await writeFile(outFile, JSON.stringify(data, null, 2))

@@ -5,6 +5,9 @@ export interface AssembleInput {
   url: string
   fetchedAt: string
   reachable: boolean
+  /** Reachable but not a usable 2xx page (403 challenge / 5xx). Optional for
+   *  back-compat; defaults to false. */
+  blocked?: boolean
   vertical?: string
   psi: PsiProbe
   seomator: SeomatorProbe
@@ -49,14 +52,16 @@ export function assembleAudit(input: AssembleInput): AuditData {
     structuralFlags,
   }
 
+  const blocked = input.blocked ?? false
   const grade = computeGrade(gradeInputs)
   const structural = structuralFlags.notMobile || structuralFlags.deadPlatform || structuralFlags.brokenIa
-  const tier = mapTier(grade, input.reachable, structural)
+  const tier = mapTier(grade, input.reachable, structural, blocked)
 
   return {
     url: input.url,
     fetchedAt: input.fetchedAt,
     reachable: input.reachable,
+    blocked,
     vertical: input.vertical,
     psi: input.psi,
     seomator: input.seomator,

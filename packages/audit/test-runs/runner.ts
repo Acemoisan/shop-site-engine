@@ -31,22 +31,25 @@ async function auditOne(site: Site) {
   const fetchedAt = new Date().toISOString()
   const key = process.env.PSI_API_KEY ?? "" // empty → keyless PSI attempt
   const page = await fetchHtml(site.url)
+  const blocked = page.reachable && !page.ok
+  const inspectable = page.reachable && page.ok
+  const unavailable = blocked ? `blocked (HTTP ${page.status})` : page.error ?? "unreachable"
 
-  const inventory: Record<FeatureKey, boolean | "error"> = page.reachable
+  const inventory: Record<FeatureKey, boolean | "error"> = inspectable
     ? inventoryFromHtml(page.html, page.finalUrl)
     : (Object.fromEntries(ALL_FEATURES.map((k) => [k, "error"])) as Record<FeatureKey, boolean | "error">)
 
-  const stack: StackProbe = page.reachable
+  const stack: StackProbe = inspectable
     ? { status: "ok", ...detectStack(page.html) }
-    : { status: "error", error: page.error }
+    : { status: "error", error: unavailable }
 
   const [psi, seomator] = await Promise.all([
-    page.reachable ? runPsiProbe(site.url, key) : Promise.resolve({ status: "error" as const, error: "unreachable" }),
-    page.reachable ? runSeomatorProbe(site.url) : Promise.resolve({ status: "error" as const, error: "unreachable" }),
+    inspectable ? runPsiProbe(site.url, key) : Promise.resolve({ status: "error" as const, error: unavailable }),
+    inspectable ? runSeomatorProbe(site.url) : Promise.resolve({ status: "error" as const, error: unavailable }),
   ])
 
   const data = assembleAudit({
-    url: site.url, fetchedAt, reachable: page.reachable, vertical: site.vertical, psi, seomator, inventory, stack,
+    url: site.url, fetchedAt, reachable: page.reachable, blocked, vertical: site.vertical, psi, seomator, inventory, stack,
   })
 
   const present = Object.values(data.inventory).filter((v) => v === true).length
@@ -61,6 +64,7 @@ function record(site: Site, r: Awaited<ReturnType<typeof auditOne>>) {
     vertical: site.vertical ?? null,
     note: site.note ?? null,
     reachable: d.reachable,
+    blocked: d.blocked,
     grade: d.grade.overall,
     confidence: d.grade.confidence,
     tier: d.tier,
@@ -87,6 +91,7 @@ function line(rec: ReturnType<typeof record>): string {
     String(rec.grade).padEnd(1),
     rec.confidence.padEnd(7),
     String(rec.tier).padEnd(16),
+    (rec.blocked ? "BLOCKED" : "").padEnd(7),
     `sxo=${rec.seomatorStatus}/${rec.seomatorScore ?? "-"}`.padEnd(16),
     `psi=${rec.psiStatus}/${rec.psiPerfMobile ?? "-"}`.padEnd(16),
     `stack=${rec.stack ?? "-"}${rec.legacy ? "(legacy)" : ""}`.padEnd(20),

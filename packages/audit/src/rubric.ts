@@ -53,8 +53,11 @@ export function computeGrade(inp: GradeInputs): GradeResult {
   return { overall, byCategory, confidence }
 }
 
-export function mapTier(grade: GradeResult, reachable: boolean, structural: boolean): Tier {
+export function mapTier(grade: GradeResult, reachable: boolean, structural: boolean, blocked = false): Tier {
   if (!reachable) return "new-build"
+  // Reachable but no usable page (403 bot-challenge / 5xx): the site exists but
+  // we couldn't inspect it, so we can't honestly grade it — flag for manual review.
+  if (blocked) return "blocked-unknown"
   if (structural) return "rebuild"
   switch (grade.overall) {
     case "A": return "care-or-decline"
