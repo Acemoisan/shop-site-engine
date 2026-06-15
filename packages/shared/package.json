@@ -1,0 +1,13 @@
+{
+  "name": "@studio0rbit/shared",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./components/*": "./src/components/*",
+    "./seo/*": "./src/seo/*",
+    "./styles/base.css": "./src/styles/base.css",
+    "./types/shop": "./src/types/shop.ts"
+  },
+  "peerDependencies": { "astro": "^5.0.0" }
+}
