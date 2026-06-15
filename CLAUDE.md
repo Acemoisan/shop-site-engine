@@ -55,6 +55,8 @@ Content shape is the `ShopContent` type in `packages/shared/src/types/shop.ts`.
 
 The v0 components are intentionally minimal scaffolding. Real client builds must clear a higher bar — this is the differentiator:
 
+> **Use the `frontend-design` skill (Anthropic plugin) when designing or reshaping any shop's look.** It is the process layer for this section: brainstorm a token system → critique it against generic AI defaults (it names the clichés to avoid) → build → self-critique with screenshots. Whatever palette/type/layout it proposes still ships through *our* token system (`theme.css`) and shared components — the skill informs the tokens; it never restyles components per shop.
+
 - **Visual interest:** hero imagery/photography, real type pairing (display + body fonts), generous whitespace, depth (shadows/borders), and brand-appropriate color — not default system fonts on flat blocks.
 - **Per-vertical feeling:** a barber should feel different from a café from a law office — driven by tokens (color, radius, font) AND imagery, not just text.
 - **Motion & polish:** subtle transitions, hover states, sticky nav where appropriate.
@@ -64,5 +66,12 @@ The v0 components are intentionally minimal scaffolding. Real client builds must
 When elevating design, extend the token set (add imagery slots, more semantic tokens) and the component library — keep the "one engine, themed per shop" rule intact.
 
 ## Verification discipline
-- Always `build` and **look at a screenshot** — the build can pass while the page renders unstyled (see the Tailwind gotcha above).
+- Always `build` and **look at a screenshot** — the build can pass while the page renders unstyled (see the Tailwind gotcha above). Use the **Playwright** plugin to drive a built site (`pnpm --filter <slug> preview`) and capture screenshots at mobile + desktop widths.
 - Confirm JSON-LD and click-to-call render in the output HTML.
+
+## Tooling / plugins for this pipeline
+The AI build pipeline is: **design → build → screenshot-verify → deploy.** Plugins that back each stage:
+- **`frontend-design`** (Anthropic) — design stage; clears the design-quality bar above. *Install:* `/plugin install frontend-design@claude-plugins-official`.
+- **`playwright`** (installed) — verify stage; screenshots + responsive checks per the discipline below.
+- **`context7`** (installed) — pull current Astro / Tailwind v4 docs (v4 is recent; training data lags the `@theme`/`@source` API this repo depends on).
+- **`cloudflare`** — deploy stage; manages Cloudflare Pages (our recommended host, see `docs/deployment.md`). *Optional:* `/plugin install cloudflare@claude-plugins-official`.

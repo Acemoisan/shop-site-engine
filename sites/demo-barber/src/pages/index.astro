@@ -1,7 +1,8 @@
 ---
 import "@studio0rbit/shared/styles/base.css";
 import "../theme.css";
-import { shop } from "../content/shop";
+import { shop as fallback } from "../content/shop";
+import type { ShopContent } from "@studio0rbit/shared";
 import Hero from "@studio0rbit/shared/components/Hero.astro";
 import ContactNAP from "@studio0rbit/shared/components/ContactNAP.astro";
 import Hours from "@studio0rbit/shared/components/Hours.astro";
@@ -10,6 +11,43 @@ import Reviews from "@studio0rbit/shared/components/Reviews.astro";
 import CTA from "@studio0rbit/shared/components/CTA.astro";
 import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
 import LocalBusinessJsonLd from "@studio0rbit/shared/seo/LocalBusinessJsonLd.astro";
+
+// Content comes from Storyblok (client-editable). Falls back to the local
+// file if the token is missing or the fetch fails, so the build never breaks.
+const token = import.meta.env.STORYBLOK_TOKEN;
+const slug = import.meta.env.STORYBLOK_STORY ?? "ironside-barber";
+let shop: ShopContent = fallback;
+let source = "fallback (local file)";
+if (token) {
+  try {
+    const res = await fetch(
+      `https://api.storyblok.com/v2/cdn/stories/${slug}?token=${token}&version=published`,
+    );
+    if (res.ok) {
+      const { story } = await res.json();
+      const c = story.content;
+      shop = {
+        name: c.name,
+        tagline: c.tagline,
+        vertical: "salon",
+        phone: c.phone,
+        address: c.address,
+        mapUrl: c.map_url,
+        serviceArea: c.service_area,
+        bookingUrl: c.booking_url,
+        hours: (c.hours ?? []).map((h: any) => ({ day: h.day, open: h.open, close: h.close, closed: h.closed })),
+        services: (c.services ?? []).map((s: any) => ({ name: s.name, price: s.price, description: s.description })),
+        reviewsBlurb: c.reviews_blurb,
+        rating: typeof c.rating === "string" ? parseFloat(c.rating) : c.rating,
+        url: fallback.url,
+      };
+      source = "Storyblok";
+    }
+  } catch {
+    // keep fallback
+  }
+}
+console.log(`[demo-barber] content source: ${source}`);
 ---
 <html lang="en">
   <head>
