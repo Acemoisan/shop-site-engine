@@ -93,6 +93,17 @@ See [decisions.md](decisions.md) and the [editability & handoff verification](re
 
 ---
 
+## Progress log
+- **2026-06-15:** Phase 0 engine built and verified — pnpm monorepo, Astro + Tailwind v4 + OKLCH token theming, 7 shared section components + LocalBusiness JSON-LD. **Two demos live & screenshotted** (barber, café) proving new shop = `theme.css` + `content.ts` only. CLAUDE.md + client handoff guide written. Fixed a Tailwind v4 monorepo `@source` bug. **Pending owner accounts:** live deploy + Storyblok self-edit wiring.
+- **Owner feedback:** demos are too plain/basic — **design elevation is the next priority** (see below). Booking-link → client-account flow now documented in the handoff guide.
+
+## ⭐ Next focus (roadmap revisit): make sites genuinely impressive
+The v0 components prove the engine but look plain. The design system is *the* differentiator (anti–"AI slop"). Before/alongside go-to-market, elevate to client-grade design:
+- Real type pairing (display + body fonts), hero imagery/photography slots, depth, whitespace, motion/hover, sticky nav.
+- Per-vertical visual identity driven by tokens + imagery (barber ≠ café ≠ trades).
+- Extend the token set + component library while keeping "one engine, themed per shop."
+- **To revisit together:** how we generate exciting designs fast (Figma + Figma MCP, design references, component variants).
+
 ## Open items to resolve along the way
 - 🧭 Final price points within mid-market (Phase 2).
 - ⚠️ Reconfirm: Figma MCP seat rules, Outscraper/Targetron pricing, Calgary build-price anchors.
