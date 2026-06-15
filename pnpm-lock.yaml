@@ -117,6 +117,726 @@ importers:
         specifier: ^4.0.0
         version: 4.3.1
 
+  sites/tmpl-agency-brutalist:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-agency-playful:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-agency-sleek:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-architecture-dramatic:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-architecture-swiss:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-architecture-warm:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-auto-premium:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-auto-retro:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-auto-rugged:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-barber-modern:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-barber-street:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-barber-vintage:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-brewery-craft:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-brewery-hazy:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-brewery-industrial:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-coffee-artisan:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-coffee-editorial:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-coffee-nordic:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-dental-friendly:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-dental-modern:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-dental-premium:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-dining-contemporary:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-dining-luxe:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-dining-rustic:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-fashion-luxe:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-fashion-minimal:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-fashion-streetwear:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-fitness-boutique:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-fitness-hardcore:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-fitness-performance:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-hotel-coastal:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-hotel-lodge:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-hotel-urban:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-jewelry-artisan:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-jewelry-elegant:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-jewelry-modernlux:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-law-boutique:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-law-classic:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-law-modern:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-medspa-clinical:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-medspa-editorial:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-medspa-glow:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-music-electric:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-music-indie:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-music-poster:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-photography-cinematic:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-photography-folio:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-photography-gallery:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-realestate-agent:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-realestate-bright:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-realestate-luxury:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-saas-clean:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-saas-dark:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-saas-gradient:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-tattoo-fineline:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-tattoo-ornate:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-tattoo-traditional:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-yoga-earthy:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-yoga-serene:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
+  sites/tmpl-yoga-spirit:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@types/node@22.19.21)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
+
 packages:
 
   '@astrojs/compiler@2.13.1':

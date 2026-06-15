@@ -1,0 +1,482 @@
+[
+  {
+    "slug": "tmpl-barber-vintage",
+    "category": "barber",
+    "categoryTitle": "Barbershop",
+    "industry": "men's grooming & barbershop",
+    "variant": "vintage",
+    "direction": "Vintage industrial — dark walnut & brass, Americana heritage, leather textures"
+  },
+  {
+    "slug": "tmpl-barber-modern",
+    "category": "barber",
+    "categoryTitle": "Barbershop",
+    "industry": "men's grooming & barbershop",
+    "variant": "modern",
+    "direction": "Modern minimal — light editorial, generous whitespace, refined sans"
+  },
+  {
+    "slug": "tmpl-barber-street",
+    "category": "barber",
+    "categoryTitle": "Barbershop",
+    "industry": "men's grooming & barbershop",
+    "variant": "street",
+    "direction": "Bold retro-streetwear — high-contrast graphic, halftone, energetic"
+  },
+  {
+    "slug": "tmpl-coffee-artisan",
+    "category": "coffee",
+    "categoryTitle": "Specialty Coffee & Cafe",
+    "industry": "specialty coffee roaster / cafe",
+    "variant": "artisan",
+    "direction": "Warm artisanal — kraft & earth tones, hand-drawn marks, tactile"
+  },
+  {
+    "slug": "tmpl-coffee-editorial",
+    "category": "coffee",
+    "categoryTitle": "Specialty Coffee & Cafe",
+    "industry": "specialty coffee roaster / cafe",
+    "variant": "editorial",
+    "direction": "Editorial magazine — big serif headlines, large imagery, columns"
+  },
+  {
+    "slug": "tmpl-coffee-nordic",
+    "category": "coffee",
+    "categoryTitle": "Specialty Coffee & Cafe",
+    "industry": "specialty coffee roaster / cafe",
+    "variant": "nordic",
+    "direction": "Nordic minimal — pastel, airy, soft grid, calm"
+  },
+  {
+    "slug": "tmpl-dining-luxe",
+    "category": "dining",
+    "categoryTitle": "Fine-Dining Restaurant",
+    "industry": "fine-dining restaurant",
+    "variant": "luxe",
+    "direction": "Dark luxe — gold on charcoal, elegant serif, moody plated photography"
+  },
+  {
+    "slug": "tmpl-dining-rustic",
+    "category": "dining",
+    "categoryTitle": "Fine-Dining Restaurant",
+    "industry": "fine-dining restaurant",
+    "variant": "rustic",
+    "direction": "Rustic farm-to-table — textured earthy palette, warm, handcrafted"
+  },
+  {
+    "slug": "tmpl-dining-contemporary",
+    "category": "dining",
+    "categoryTitle": "Fine-Dining Restaurant",
+    "industry": "fine-dining restaurant",
+    "variant": "contemporary",
+    "direction": "Contemporary chic — light, refined asymmetric grid, minimal"
+  },
+  {
+    "slug": "tmpl-fitness-hardcore",
+    "category": "fitness",
+    "categoryTitle": "Fitness & Gym",
+    "industry": "fitness gym / strength studio",
+    "variant": "hardcore",
+    "direction": "Dark high-energy — neon accent, oversized condensed type, aggressive"
+  },
+  {
+    "slug": "tmpl-fitness-boutique",
+    "category": "fitness",
+    "categoryTitle": "Fitness & Gym",
+    "industry": "fitness gym / strength studio",
+    "variant": "boutique",
+    "direction": "Boutique studio — bright, friendly, rounded shapes, welcoming"
+  },
+  {
+    "slug": "tmpl-fitness-performance",
+    "category": "fitness",
+    "categoryTitle": "Fitness & Gym",
+    "industry": "fitness gym / strength studio",
+    "variant": "performance",
+    "direction": "Athletic performance-tech — sleek data-driven, sharp, modern"
+  },
+  {
+    "slug": "tmpl-yoga-serene",
+    "category": "yoga",
+    "categoryTitle": "Yoga & Wellness Studio",
+    "industry": "yoga & wellness studio",
+    "variant": "serene",
+    "direction": "Serene minimal — soft neutrals, organic blob shapes, breathing space"
+  },
+  {
+    "slug": "tmpl-yoga-earthy",
+    "category": "yoga",
+    "categoryTitle": "Yoga & Wellness Studio",
+    "industry": "yoga & wellness studio",
+    "variant": "earthy",
+    "direction": "Earthy botanical — terracotta & sage, natural textures"
+  },
+  {
+    "slug": "tmpl-yoga-spirit",
+    "category": "yoga",
+    "categoryTitle": "Yoga & Wellness Studio",
+    "industry": "yoga & wellness studio",
+    "variant": "spirit",
+    "direction": "Modern spiritual — gentle gradients, calm motion, ethereal"
+  },
+  {
+    "slug": "tmpl-medspa-clinical",
+    "category": "medspa",
+    "categoryTitle": "Med Spa & Beauty",
+    "industry": "med spa / aesthetic beauty clinic",
+    "variant": "clinical",
+    "direction": "Luxe clinical — blush & cream, elegant serif, trustworthy"
+  },
+  {
+    "slug": "tmpl-medspa-glow",
+    "category": "medspa",
+    "categoryTitle": "Med Spa & Beauty",
+    "industry": "med spa / aesthetic beauty clinic",
+    "variant": "glow",
+    "direction": "Glowy gradient — dewy pastel, soft glassy cards, radiant"
+  },
+  {
+    "slug": "tmpl-medspa-editorial",
+    "category": "medspa",
+    "categoryTitle": "Med Spa & Beauty",
+    "industry": "med spa / aesthetic beauty clinic",
+    "variant": "editorial",
+    "direction": "Editorial beauty — high-fashion black & white, bold"
+  },
+  {
+    "slug": "tmpl-dental-friendly",
+    "category": "dental",
+    "categoryTitle": "Dental & Medical Clinic",
+    "industry": "dental / medical clinic",
+    "variant": "friendly",
+    "direction": "Friendly clean — bright teal/blue, rounded, reassuring trust signals"
+  },
+  {
+    "slug": "tmpl-dental-premium",
+    "category": "dental",
+    "categoryTitle": "Dental & Medical Clinic",
+    "industry": "dental / medical clinic",
+    "variant": "premium",
+    "direction": "Premium calm — muted sage, spacious, refined"
+  },
+  {
+    "slug": "tmpl-dental-modern",
+    "category": "dental",
+    "categoryTitle": "Dental & Medical Clinic",
+    "industry": "dental / medical clinic",
+    "variant": "modern",
+    "direction": "Modern care — fresh, light illustration, approachable"
+  },
+  {
+    "slug": "tmpl-law-classic",
+    "category": "law",
+    "categoryTitle": "Law Firm",
+    "industry": "law firm / attorneys",
+    "variant": "classic",
+    "direction": "Classic authoritative — navy & gold, serif, gravitas"
+  },
+  {
+    "slug": "tmpl-law-modern",
+    "category": "law",
+    "categoryTitle": "Law Firm",
+    "industry": "law firm / attorneys",
+    "variant": "modern",
+    "direction": "Modern firm — slate & sans, confident, structured"
+  },
+  {
+    "slug": "tmpl-law-boutique",
+    "category": "law",
+    "categoryTitle": "Law Firm",
+    "industry": "law firm / attorneys",
+    "variant": "boutique",
+    "direction": "Boutique legal — warm, human, approachable"
+  },
+  {
+    "slug": "tmpl-realestate-luxury",
+    "category": "realestate",
+    "categoryTitle": "Real Estate & Property",
+    "industry": "luxury real estate agency",
+    "variant": "luxury",
+    "direction": "Luxury property — dark & gold, full-bleed architectural photography"
+  },
+  {
+    "slug": "tmpl-realestate-bright",
+    "category": "realestate",
+    "categoryTitle": "Real Estate & Property",
+    "industry": "luxury real estate agency",
+    "variant": "bright",
+    "direction": "Bright modern — clean listings grid, light, crisp"
+  },
+  {
+    "slug": "tmpl-realestate-agent",
+    "category": "realestate",
+    "categoryTitle": "Real Estate & Property",
+    "industry": "luxury real estate agency",
+    "variant": "agent",
+    "direction": "Boutique personal-brand agent — editorial, story-led"
+  },
+  {
+    "slug": "tmpl-auto-rugged",
+    "category": "auto",
+    "categoryTitle": "Auto Detailing & Garage",
+    "industry": "auto detailing / performance garage",
+    "variant": "rugged",
+    "direction": "Rugged industrial — carbon & safety-orange, aggressive angles"
+  },
+  {
+    "slug": "tmpl-auto-premium",
+    "category": "auto",
+    "categoryTitle": "Auto Detailing & Garage",
+    "industry": "auto detailing / performance garage",
+    "variant": "premium",
+    "direction": "Premium detailing — black & chrome, sleek, glossy"
+  },
+  {
+    "slug": "tmpl-auto-retro",
+    "category": "auto",
+    "categoryTitle": "Auto Detailing & Garage",
+    "industry": "auto detailing / performance garage",
+    "variant": "retro",
+    "direction": "Retro garage — vintage signage, warm, route-66 nostalgia"
+  },
+  {
+    "slug": "tmpl-saas-gradient",
+    "category": "saas",
+    "categoryTitle": "SaaS / Tech Product",
+    "industry": "B2B SaaS software product",
+    "variant": "gradient",
+    "direction": "Modern gradient — glassmorphism, floating product UI mockups"
+  },
+  {
+    "slug": "tmpl-saas-dark",
+    "category": "saas",
+    "categoryTitle": "SaaS / Tech Product",
+    "industry": "B2B SaaS software product",
+    "variant": "dark",
+    "direction": "Dark developer tool — mono accents, terminal/code motifs"
+  },
+  {
+    "slug": "tmpl-saas-clean",
+    "category": "saas",
+    "categoryTitle": "SaaS / Tech Product",
+    "industry": "B2B SaaS software product",
+    "variant": "clean",
+    "direction": "Clean startup — bright, friendly spot illustration, simple"
+  },
+  {
+    "slug": "tmpl-agency-brutalist",
+    "category": "agency",
+    "categoryTitle": "Creative Agency",
+    "industry": "creative / branding agency",
+    "variant": "brutalist",
+    "direction": "Brutalist bold — oversized raw type, hard borders, marquee"
+  },
+  {
+    "slug": "tmpl-agency-sleek",
+    "category": "agency",
+    "categoryTitle": "Creative Agency",
+    "industry": "creative / branding agency",
+    "variant": "sleek",
+    "direction": "Sleek studio — refined, motion-forward, sophisticated"
+  },
+  {
+    "slug": "tmpl-agency-playful",
+    "category": "agency",
+    "categoryTitle": "Creative Agency",
+    "industry": "creative / branding agency",
+    "variant": "playful",
+    "direction": "Playful colorful — experimental grid, sticker shapes, fun"
+  },
+  {
+    "slug": "tmpl-photography-gallery",
+    "category": "photography",
+    "categoryTitle": "Photographer Portfolio",
+    "industry": "professional photographer portfolio",
+    "variant": "gallery",
+    "direction": "Minimal gallery — image-first, tiny type, masonry"
+  },
+  {
+    "slug": "tmpl-photography-folio",
+    "category": "photography",
+    "categoryTitle": "Photographer Portfolio",
+    "industry": "professional photographer portfolio",
+    "variant": "folio",
+    "direction": "Editorial folio — serif, storytelling, large captions"
+  },
+  {
+    "slug": "tmpl-photography-cinematic",
+    "category": "photography",
+    "categoryTitle": "Photographer Portfolio",
+    "industry": "professional photographer portfolio",
+    "variant": "cinematic",
+    "direction": "Dark cinematic — full-screen imagery, dramatic, moody"
+  },
+  {
+    "slug": "tmpl-architecture-swiss",
+    "category": "architecture",
+    "categoryTitle": "Architecture & Interiors",
+    "industry": "architecture / interior-design studio",
+    "variant": "swiss",
+    "direction": "Monochrome Swiss grid — precise, restrained, typographic"
+  },
+  {
+    "slug": "tmpl-architecture-warm",
+    "category": "architecture",
+    "categoryTitle": "Architecture & Interiors",
+    "industry": "architecture / interior-design studio",
+    "variant": "warm",
+    "direction": "Warm interior — editorial, tactile materials, inviting"
+  },
+  {
+    "slug": "tmpl-architecture-dramatic",
+    "category": "architecture",
+    "categoryTitle": "Architecture & Interiors",
+    "industry": "architecture / interior-design studio",
+    "variant": "dramatic",
+    "direction": "Bold architectural — dramatic scale, full-bleed structure"
+  },
+  {
+    "slug": "tmpl-tattoo-ornate",
+    "category": "tattoo",
+    "categoryTitle": "Tattoo Studio",
+    "industry": "tattoo studio",
+    "variant": "ornate",
+    "direction": "Dark ornamental — gothic, gold filigree, engraved"
+  },
+  {
+    "slug": "tmpl-tattoo-traditional",
+    "category": "tattoo",
+    "categoryTitle": "Tattoo Studio",
+    "industry": "tattoo studio",
+    "variant": "traditional",
+    "direction": "American traditional — bold red/black, flash sheets"
+  },
+  {
+    "slug": "tmpl-tattoo-fineline",
+    "category": "tattoo",
+    "categoryTitle": "Tattoo Studio",
+    "industry": "tattoo studio",
+    "variant": "fineline",
+    "direction": "Fine-line minimal — light, delicate, airy"
+  },
+  {
+    "slug": "tmpl-brewery-craft",
+    "category": "brewery",
+    "categoryTitle": "Craft Brewery & Taproom",
+    "industry": "craft brewery / taproom",
+    "variant": "craft",
+    "direction": "Craft bold — badge logos, kraft texture, hand-lettering"
+  },
+  {
+    "slug": "tmpl-brewery-industrial",
+    "category": "brewery",
+    "categoryTitle": "Craft Brewery & Taproom",
+    "industry": "craft brewery / taproom",
+    "variant": "industrial",
+    "direction": "Industrial taproom — dark, copper, raw concrete"
+  },
+  {
+    "slug": "tmpl-brewery-hazy",
+    "category": "brewery",
+    "categoryTitle": "Craft Brewery & Taproom",
+    "industry": "craft brewery / taproom",
+    "variant": "hazy",
+    "direction": "Hazy modern IPA — vibrant gradient, playful, juicy"
+  },
+  {
+    "slug": "tmpl-fashion-luxe",
+    "category": "fashion",
+    "categoryTitle": "Fashion & Apparel",
+    "industry": "fashion / apparel e-commerce",
+    "variant": "luxe",
+    "direction": "Luxe fashion — editorial black & white, oversized imagery"
+  },
+  {
+    "slug": "tmpl-fashion-streetwear",
+    "category": "fashion",
+    "categoryTitle": "Fashion & Apparel",
+    "industry": "fashion / apparel e-commerce",
+    "variant": "streetwear",
+    "direction": "Streetwear drop — bold, energetic, countdown hype"
+  },
+  {
+    "slug": "tmpl-fashion-minimal",
+    "category": "fashion",
+    "categoryTitle": "Fashion & Apparel",
+    "industry": "fashion / apparel e-commerce",
+    "variant": "minimal",
+    "direction": "Minimal store — clean neutral product grid, quiet"
+  },
+  {
+    "slug": "tmpl-jewelry-elegant",
+    "category": "jewelry",
+    "categoryTitle": "Jewelry Brand",
+    "industry": "fine jewelry brand",
+    "variant": "elegant",
+    "direction": "Elegant timeless — cream & gold, delicate serif"
+  },
+  {
+    "slug": "tmpl-jewelry-modernlux",
+    "category": "jewelry",
+    "categoryTitle": "Jewelry Brand",
+    "industry": "fine jewelry brand",
+    "variant": "modernlux",
+    "direction": "Modern lux — dark, sparkling highlights, refined"
+  },
+  {
+    "slug": "tmpl-jewelry-artisan",
+    "category": "jewelry",
+    "categoryTitle": "Jewelry Brand",
+    "industry": "fine jewelry brand",
+    "variant": "artisan",
+    "direction": "Artisan handcrafted — warm, organic, maker story"
+  },
+  {
+    "slug": "tmpl-hotel-coastal",
+    "category": "hotel",
+    "categoryTitle": "Boutique Hotel & Resort",
+    "industry": "boutique hotel / resort",
+    "variant": "coastal",
+    "direction": "Coastal serene — sand & sea-blue, airy, breezy"
+  },
+  {
+    "slug": "tmpl-hotel-urban",
+    "category": "hotel",
+    "categoryTitle": "Boutique Hotel & Resort",
+    "industry": "boutique hotel / resort",
+    "variant": "urban",
+    "direction": "Urban luxe — dark, sophisticated, city sophistication"
+  },
+  {
+    "slug": "tmpl-hotel-lodge",
+    "category": "hotel",
+    "categoryTitle": "Boutique Hotel & Resort",
+    "industry": "boutique hotel / resort",
+    "variant": "lodge",
+    "direction": "Mountain lodge — rustic warm wood, cozy, fireside"
+  },
+  {
+    "slug": "tmpl-music-electric",
+    "category": "music",
+    "categoryTitle": "Music Artist & Band",
+    "industry": "music artist / band",
+    "variant": "electric",
+    "direction": "Dark electric — neon, kinetic, high-energy"
+  },
+  {
+    "slug": "tmpl-music-indie",
+    "category": "music",
+    "categoryTitle": "Music Artist & Band",
+    "industry": "music artist / band",
+    "variant": "indie",
+    "direction": "Indie warm — vintage film grain, analog, intimate"
+  },
+  {
+    "slug": "tmpl-music-poster",
+    "category": "music",
+    "categoryTitle": "Music Artist & Band",
+    "industry": "music artist / band",
+    "variant": "poster",
+    "direction": "Bold gig-poster — oversized type, graphic, riso-print"
+  }
+]
