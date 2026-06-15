@@ -1,0 +1,17 @@
+{
+  "lighthouseResult": {
+    "categories": {
+      "performance": { "score": 0.45 },
+      "seo": { "score": 0.82 },
+      "accessibility": { "score": 0.76 },
+      "best-practices": { "score": 0.67 }
+    },
+    "audits": {
+      "largest-contentful-paint": { "title": "Largest Contentful Paint", "score": 0.3, "numericValue": 4200 },
+      "interaction-to-next-paint": { "title": "Interaction to Next Paint", "score": 0.6, "numericValue": 260 },
+      "cumulative-layout-shift": { "title": "Cumulative Layout Shift", "score": 0.5, "numericValue": 0.21 },
+      "uses-responsive-images": { "title": "Properly size images", "score": 0.0 },
+      "unminified-css": { "title": "Minify CSS", "score": 1.0 }
+    }
+  }
+}
