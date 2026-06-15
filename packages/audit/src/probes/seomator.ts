@@ -68,14 +68,18 @@ export function parseSeomator(json: any): ParsedSeomator {
 
 export async function runSeomatorProbe(
   url: string,
-  maxPages = 25,
-  timeoutMs = 120000,
+  timeoutMs = 90000,
 ): Promise<SeomatorProbe> {
+  // Single-page audit (no --crawl): right scope for triage and far faster.
+  // --no-cwv: we measure Core Web Vitals via the PSI probe, and SEOmator's
+  // Playwright-based CWV pass is its biggest time sink. Heavy SPAs can still
+  // exceed the timeout (link-checking scales with page size) — that's handled
+  // gracefully (status:"error") and is uncommon for small local-shop sites.
   const out = `seomator-${Buffer.from(url).toString("hex").slice(0, 12)}.json`
   try {
     await exec(
       process.execPath,
-      [SEOMATOR_BIN, "audit", url, "--crawl", "-m", String(maxPages), "--format", "json", "-o", out],
+      [SEOMATOR_BIN, "audit", url, "--no-cwv", "--format", "json", "-o", out],
       { timeout: timeoutMs },
     )
     const parsed = parseSeomator(JSON.parse(await readFile(out, "utf8")))

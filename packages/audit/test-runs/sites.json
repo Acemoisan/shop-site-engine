@@ -1,10 +1,10 @@
 [
-  { "url": "https://stripe.com", "vertical": "saas", "note": "modern custom — expect high grade" },
-  { "url": "https://techcrunch.com", "vertical": "media", "note": "WordPress — legacy/bloat detection" },
-  { "url": "https://www.gymshark.com", "vertical": "retail", "note": "Shopify — e-commerce" },
-  { "url": "https://www.squarespace.com", "vertical": "saas", "note": "Squarespace platform detection" },
-  { "url": "https://www.wix.com", "vertical": "saas", "note": "Wix platform detection" },
-  { "url": "https://www.smashingmagazine.com", "vertical": "media", "note": "JAMstack / custom" },
-  { "url": "https://example.com", "vertical": "none", "note": "bare placeholder — low grade" },
+  { "url": "https://example.com", "vertical": "none", "note": "baseline tiny — SEOmator fast" },
+  { "url": "https://www.berkshirehathaway.com", "vertical": "office", "note": "real business, minimal old-school light site" },
+  { "url": "https://info.cern.ch", "vertical": "none", "note": "tiny static page" },
+  { "url": "https://motherfuckingwebsite.com", "vertical": "none", "note": "tiny single-page" },
+  { "url": "https://neverssl.com", "vertical": "none", "note": "HTTP-only — tests https=false detection" },
+  { "url": "https://techcrunch.com", "vertical": "media", "note": "heavy WordPress — SEOmator-timeout edge + legacy/stack detection" },
+  { "url": "https://www.gymshark.com", "vertical": "retail", "note": "bot-protection — tests UA + blocked-not-newbuild fix" },
   { "url": "https://this-domain-does-not-exist-xyz123abc.example", "vertical": "none", "note": "dead — new-build path" }
 ]
