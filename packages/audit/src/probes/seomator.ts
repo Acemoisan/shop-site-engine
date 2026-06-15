@@ -1,10 +1,27 @@
 import { execFile } from "node:child_process"
 import { readFile, unlink } from "node:fs/promises"
+import { readFileSync } from "node:fs"
+import { resolve, dirname } from "node:path"
 import { promisify } from "node:util"
 import type { Grade, SeomatorProbe } from "../types.js"
 import { scoreToGrade } from "../rubric.js"
 
 const exec = promisify(execFile)
+
+/**
+ * Resolve the seomator CLI JS entry point from the local node_modules.
+ * Using process.execPath + the resolved .js bin avoids npx and shell entirely,
+ * which is the only cross-platform approach that:
+ *   (a) works on Windows (execFile cannot spawn .cmd files without shell:true), AND
+ *   (b) is safe against URLs containing & and other shell metacharacters.
+ */
+function resolveSeomatorBin(): string {
+  const pkgJsonPath = resolve(process.cwd(), "node_modules/@seomator/seo-audit/package.json")
+  const pkg = JSON.parse(readFileSync(pkgJsonPath, "utf8")) as { bin: Record<string, string> }
+  return resolve(dirname(pkgJsonPath), pkg.bin["seomator"])
+}
+
+const SEOMATOR_BIN = resolveSeomatorBin()
 
 interface ParsedSeomator { score: number; grade: Grade; categories: Record<string, number> }
 
@@ -57,8 +74,8 @@ export async function runSeomatorProbe(
   const out = `seomator-${Buffer.from(url).toString("hex").slice(0, 12)}.json`
   try {
     await exec(
-      "npx",
-      ["@seomator/seo-audit", "audit", url, "--crawl", "-m", String(maxPages), "--format", "json", "-o", out],
+      process.execPath,
+      [SEOMATOR_BIN, "audit", url, "--crawl", "-m", String(maxPages), "--format", "json", "-o", out],
       { timeout: timeoutMs },
     )
     const parsed = parseSeomator(JSON.parse(await readFile(out, "utf8")))
