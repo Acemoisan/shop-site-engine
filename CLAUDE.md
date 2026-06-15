@@ -1,0 +1,68 @@
+# CLAUDE.md — Studio0rbit Shop-Site Engine
+
+This file is the design-system + build guardrail for the Calgary local-shop website service. Read it before generating or editing any shop site. Its job is to keep every build **fast, consistent, and genuinely well-designed** — the design system is our defense against generic "AI slop", and it's what makes each new shop a quick tweak instead of a rebuild.
+
+## What this repo is
+
+A pnpm-workspace monorepo that produces custom shop sites from one shared engine:
+- `packages/shared` — the reusable engine: section components, design tokens, content types, SEO.
+- `sites/<slug>` — one thin Astro app per shop. It supplies a **theme** (`src/theme.css`) and **content** (`src/content/shop.ts`), and composes shared components in `src/pages/index.astro`.
+
+**Business model context:** one-time fee, NO maintenance contract. The client owns all accounts and self-edits content. Build accordingly — nothing that requires us long-term. See `docs/roadmap.md` and `docs/decisions.md`.
+
+## The token system (how theming works)
+
+Each shop's brand lives entirely in `sites/<slug>/src/theme.css` as CSS custom properties in **OKLCH**:
+
+```
+--background, --foreground, --primary, --primary-foreground,
+--muted, --muted-foreground, --accent, --border,
+--font-sans, --font-display, --radius
+```
+
+`packages/shared/src/styles/base.css` maps those to Tailwind utilities via `@theme inline` (e.g. `--color-primary: var(--primary)` → `bg-primary`, `text-primary`). **A new shop = a new `theme.css` + content. Never restyle components per shop.**
+
+### Hard rule: components use ONLY semantic token utilities
+Components must use `bg-primary`, `text-foreground`, `border-border`, `bg-muted`, etc. — **never** hardcoded colors (`bg-blue-500`, `#fff`) or arbitrary hex. This is what lets one token file re-theme everything. Spacing/typography Tailwind utilities (`px-6`, `text-5xl`) are fine.
+
+### ⚠️ Tailwind v4 + monorepo gotcha (already handled)
+Tailwind v4 auto-scans only the importing site's directory. Classes used **only inside `packages/shared` components** won't be generated unless declared. `base.css` therefore has `@source "../components"` and `@source "../seo"`. **If you add a new shared component directory, add an `@source` for it** or its utilities silently won't render.
+
+## Component catalogue (`packages/shared/src/components`)
+
+| Component | Props | Purpose |
+|---|---|---|
+| `Hero.astro` | `name, tagline, bookingUrl?` | Primary-colored masthead + booking CTA |
+| `Services.astro` | `services, heading?` | Service/menu list with prices (heading "Menu" for cafe/restaurant) |
+| `Hours.astro` | `hours` | Opening hours table on muted bg |
+| `Reviews.astro` | `blurb?, rating?` | Star rating + social proof |
+| `ContactNAP.astro` | `name, phone, address, mapUrl, serviceArea?` | NAP, click-to-call, map link |
+| `CTA.astro` | `phone, bookingUrl?` | Closing call/book CTA |
+| `SiteFooter.astro` | `name, address, phone` | Footer |
+| `seo/LocalBusinessJsonLd.astro` | `shop` | `LocalBusiness` JSON-LD (name+address required) |
+
+Content shape is the `ShopContent` type in `packages/shared/src/types/shop.ts`.
+
+## New-shop checklist
+
+1. Create `sites/<slug>/` with `package.json` (name = slug, deps: astro, @tailwindcss/vite, tailwindcss, `@studio0rbit/shared`: workspace:*), `astro.config.mjs` (Tailwind Vite plugin), `tsconfig.json`.
+2. Write `src/theme.css` — the shop's OKLCH palette + fonts + radius.
+3. Write `src/content/shop.ts` — typed `ShopContent`.
+4. Write `src/pages/index.astro` — import `base.css` then `theme.css`, compose sections, set Services heading.
+5. `pnpm install` then `pnpm --filter <slug> build`; **view a screenshot** before declaring done.
+
+## Design-quality bar (do NOT ship "plain")
+
+The v0 components are intentionally minimal scaffolding. Real client builds must clear a higher bar — this is the differentiator:
+
+- **Visual interest:** hero imagery/photography, real type pairing (display + body fonts), generous whitespace, depth (shadows/borders), and brand-appropriate color — not default system fonts on flat blocks.
+- **Per-vertical feeling:** a barber should feel different from a café from a law office — driven by tokens (color, radius, font) AND imagery, not just text.
+- **Motion & polish:** subtle transitions, hover states, sticky nav where appropriate.
+- **Mobile-first & accessible:** WCAG AA contrast, tap targets, responsive layout. Static output for Core Web Vitals (LCP<2.5s/INP<200ms/CLS<0.1).
+- **Conversion-complete:** every site ships NAP, click-to-call, hours, map, reviews, a booking/order CTA, and `LocalBusiness` JSON-LD.
+
+When elevating design, extend the token set (add imagery slots, more semantic tokens) and the component library — keep the "one engine, themed per shop" rule intact.
+
+## Verification discipline
+- Always `build` and **look at a screenshot** — the build can pass while the page renders unstyled (see the Tailwind gotcha above).
+- Confirm JSON-LD and click-to-call render in the output HTML.
