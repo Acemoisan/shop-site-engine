@@ -30,8 +30,13 @@ The first test list (stripe, techcrunch, gymshark, squarespace, wix) was **not r
 - **Representative test list:** light real sites (berkshirehathaway, info.cern.ch, motherfuckingwebsite, neverssl) where SEOmator succeeds → meaningful full grades; kept techcrunch (heavy-site timeout edge + legacy detection), gymshark (bot-block fix test), and the dead URL.
 - Unit suite still 23/23 green after the changes.
 
-### Validation of the fixes
-_(in progress — results appended on next pass; expected: berkshirehathaway SEOmator `ok` with a real grade; neverssl `https:false`; gymshark now `reachable:true` rather than new-build)_
+### Validation of the fixes — all confirmed (commit `261d573`)
+- **berkshirehathaway.com** → SEOmator now `ok/92` in **12.4s** (was timing out). The single-page + `--no-cwv` config makes SEOmator usable on real light sites. Graded **D / rebuild** — *correct*: the site has no mobile viewport, so the foundation-strength override fires (no-mobile = structural → rebuild). Rubric working as designed.
+- **gymshark.com** → now `reachable:true`, stack correctly = **shopify**, 7/12 features (was a false **new-build**). The browser-UA + blocked≠newbuild fix works. SEOmator still times out (heavy SPA, documented edge) but the site is no longer misclassified.
+- **neverssl.com** → `https:false` correctly detected (HTTP-only). Its SEOmator `error` at 8.8s was the **temp-file concurrency collision** (my manual validation overlapped the loop's batch on the same URL) — see fix below.
+
+### Round 2 fix — commit `7527a9c`
+- **SEOmator temp filename made unique** (`seomator-<pid>-<seq>-<hash>.json`). Two concurrent audits of the same URL previously shared a temp file and clobbered each other. Now concurrency-safe (matters for future batch runs). Unit suite still 23/23.
 
 ### Open items (for the user, not blocking)
 - **Add `PSI_API_KEY`** for full performance/CWV grades + "high" confidence. The runner reads it from the environment automatically.
