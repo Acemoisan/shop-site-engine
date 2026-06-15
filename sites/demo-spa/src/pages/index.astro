@@ -1,0 +1,77 @@
+---
+import "@studio0rbit/shared/styles/base.css";
+import "../theme.css";
+import type { ShopContent } from "@studio0rbit/shared";
+import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
+import Features from "@studio0rbit/shared/components/Features.astro";
+import Services from "@studio0rbit/shared/components/Services.astro";
+import Hours from "@studio0rbit/shared/components/Hours.astro";
+import Testimonials from "@studio0rbit/shared/components/Testimonials.astro";
+import CTA from "@studio0rbit/shared/components/CTA.astro";
+import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
+import LocalBusinessJsonLd from "@studio0rbit/shared/seo/LocalBusinessJsonLd.astro";
+
+const shop: ShopContent = {
+  name: "Stillwater Spa",
+  tagline: "A quiet place to slow down.",
+  vertical: "salon",
+  phone: "+1-403-555-0155",
+  address: "318 9 Ave SE, Inglewood, Calgary, AB",
+  mapUrl: "https://maps.google.com/?q=318+9+Ave+SE+Calgary",
+  serviceArea: "Inglewood",
+  bookingUrl: "#book",
+  hours: [
+    { day: "Tue–Fri", open: "10:00", close: "20:00" },
+    { day: "Sat–Sun", open: "9:00", close: "18:00" },
+    { day: "Mon", open: "", close: "", closed: true },
+  ],
+  services: [
+    { name: "Swedish Massage — 60 min", price: "$130" },
+    { name: "Deep Tissue — 90 min", price: "$185" },
+    { name: "Signature Facial", price: "$145" },
+    { name: "Nordic Sauna Session", price: "$45" },
+    { name: "Couples Retreat (2 hr)", price: "$390" },
+  ],
+  url: "https://stillwater.example.com",
+};
+const features = [
+  { icon: "leaf", title: "Natural & organic", body: "Plant-based products, ethically sourced, never tested on animals." },
+  { icon: "sparkles", title: "Expert therapists", body: "Registered massage therapists and licensed estheticians." },
+  { icon: "heart", title: "Calm by design", body: "A serene space built for genuine rest, away from the noise." },
+];
+const testimonials = [
+  { quote: "The most relaxed I've felt in years. The sauna alone is worth the visit.", name: "Elise M." },
+  { quote: "Booking was effortless and the massage was incredible. My new ritual.", name: "Jordan P." },
+  { quote: "A true escape in the middle of the city. Beautiful, quiet, restorative.", name: "Sam K." },
+];
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{shop.name} — Massage, facials & sauna in Inglewood, Calgary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+    <LocalBusinessJsonLd shop={shop} />
+  </head>
+  <body id="top" class="bg-background text-foreground font-sans">
+    <SiteNav name={shop.name} bookingUrl={shop.bookingUrl} bookLabel="Book" links={[{ label: "Treatments", href: "#services" }, { label: "Hours", href: "#hours" }, { label: "Visit", href: "#visit" }]} />
+
+    <section class="relative overflow-hidden bg-muted px-6 py-32 text-center sm:py-40">
+      <div class="mx-auto max-w-2xl">
+        <p class="text-sm uppercase tracking-[0.35em] text-primary">Calgary · Inglewood</p>
+        <h1 class="mt-6 font-display text-5xl font-medium leading-[1.05] text-foreground sm:text-7xl">{shop.tagline}</h1>
+        <p class="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">Massage, facials, and a Nordic sauna in the heart of the city. Unhurried care, thoughtfully delivered.</p>
+        <a href="#book" class="mt-10 inline-block rounded-[var(--radius)] bg-primary px-9 py-4 font-medium text-primary-foreground transition hover:opacity-90">Book a treatment</a>
+      </div>
+    </section>
+
+    <Features label="Why Stillwater" heading="Rest, the way it should feel" items={features} />
+    <Services services={shop.services} heading="Treatments" />
+    <Hours hours={shop.hours} />
+    <Testimonials label="Guests" heading="Quietly loved in Calgary" items={testimonials} />
+    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} heading="Your escape is waiting" />
+    <SiteFooter name={shop.name} address={shop.address} phone={shop.phone} />
+  </body>
+</html>

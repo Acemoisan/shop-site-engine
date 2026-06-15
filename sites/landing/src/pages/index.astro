@@ -1,0 +1,61 @@
+---
+import "../styles/base.css";
+import "../theme.css";
+import { site } from "../content/site";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Problem from "../components/Problem.astro";
+import Benefits from "../components/Benefits.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import Pricing from "../components/Pricing.astro";
+import WhyUs from "../components/WhyUs.astro";
+import Work from "../components/Work.astro";
+import Faq from "../components/Faq.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+
+const title = `${site.brand} — Websites for ${site.city} shops, built fast & owned by you`;
+const description = site.hero.sub;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: site.brand,
+  description,
+  areaServed: { "@type": "City", name: site.city },
+  email: site.email,
+  serviceType: "Web design for local businesses",
+  url: "https://studio0rbit.ca",
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#5b4fe6" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body id="top" class="bg-background font-sans text-foreground antialiased">
+    <Nav />
+    <main>
+      <Hero />
+      <Problem />
+      <Benefits />
+      <HowItWorks />
+      <Pricing />
+      <WhyUs />
+      <Work />
+      <Faq />
+      <Contact />
+    </main>
+    <Footer />
+  </body>
+</html>

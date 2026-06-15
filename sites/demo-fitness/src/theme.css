@@ -1,0 +1,17 @@
+/* Forge Athletic Club — Bold / Editorial. DARK theme + electric lime accent.
+   Demonstrates the engine on a dark palette (same components, inverted tokens). */
+:root {
+  --background: oklch(0.17 0.012 250);       /* near-black */
+  --foreground: oklch(0.96 0.01 250);        /* light text */
+  --card: oklch(0.22 0.015 250);
+  --primary: oklch(0.85 0.21 130);           /* electric lime */
+  --primary-foreground: oklch(0.18 0.05 130);
+  --muted: oklch(0.215 0.014 250);
+  --muted-foreground: oklch(0.72 0.02 250);
+  --accent: oklch(0.85 0.21 130);
+  --accent-foreground: oklch(0.18 0.05 130);
+  --border: oklch(0.30 0.015 250);
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Archivo", "Inter", system-ui, sans-serif;
+  --radius: 0.4rem;
+}

@@ -1,0 +1,93 @@
+---
+import "@studio0rbit/shared/styles/base.css";
+import "../theme.css";
+import type { ShopContent } from "@studio0rbit/shared";
+import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
+import Stats from "@studio0rbit/shared/components/Stats.astro";
+import Features from "@studio0rbit/shared/components/Features.astro";
+import Services from "@studio0rbit/shared/components/Services.astro";
+import Testimonials from "@studio0rbit/shared/components/Testimonials.astro";
+import Faq from "@studio0rbit/shared/components/Faq.astro";
+import CTA from "@studio0rbit/shared/components/CTA.astro";
+import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
+import LocalBusinessJsonLd from "@studio0rbit/shared/seo/LocalBusinessJsonLd.astro";
+
+const shop: ShopContent = {
+  name: "Voltline Electric",
+  tagline: "Power you can count on.",
+  vertical: "trades",
+  phone: "+1-403-555-0170",
+  address: "Unit 4, 1220 9 Ave SE, Calgary, AB",
+  mapUrl: "https://maps.google.com/?q=1220+9+Ave+SE+Calgary",
+  serviceArea: "Calgary & surrounding area",
+  bookingUrl: "#book",
+  hours: [],
+  services: [
+    { name: "Panel upgrades & replacements", price: "from $1,800" },
+    { name: "EV charger installation", price: "from $650" },
+    { name: "Lighting & pot-light retrofits", price: "from $120/fixture" },
+    { name: "Troubleshooting & repairs", price: "$140/hr" },
+    { name: "Emergency callout (24/7)", price: "from $190" },
+  ],
+  url: "https://voltline.example.com",
+};
+const stats = [
+  { value: "15+ yrs", label: "Serving Calgary" },
+  { value: "4.9★", label: "300+ Google reviews" },
+  { value: "24/7", label: "Emergency callout" },
+];
+const features = [
+  { icon: "shield", title: "Licensed & insured", body: "Master-electrician certified and fully insured — every job to Alberta code." },
+  { icon: "target", title: "Upfront pricing", body: "Clear written quotes before we start. No surprises on the invoice." },
+  { icon: "clock", title: "On time, every time", body: "We show up in the window we promise — and clean up after ourselves." },
+  { icon: "bolt", title: "Done right once", body: "Permits pulled, inspections passed, work that lasts." },
+  { icon: "award", title: "Workmanship warranty", body: "Two-year warranty on labour for total peace of mind." },
+  { icon: "phone", title: "Real people answer", body: "Call and reach a Calgary electrician, not a call centre." },
+];
+const testimonials = [
+  { quote: "Upgraded our panel and added an EV charger in a day. Spotless work and a fair price.", name: "Dana R. — Mahogany" },
+  { quote: "Came out the same night when our power tripped. Lifesavers.", name: "Marcus T. — Bridgeland" },
+  { quote: "Finally an electrician who calls back. Quote was exactly what we paid.", name: "Priya S. — Altadore" },
+];
+const faqs = [
+  { q: "Are you licensed and insured?", a: "Yes — master-electrician certified and fully insured, with permits pulled on every job that needs one." },
+  { q: "Do you give free quotes?", a: "Yes. We provide a clear written quote before any work begins." },
+  { q: "Do you offer emergency service?", a: "We offer 24/7 emergency callout across Calgary and surrounding communities." },
+  { q: "What areas do you serve?", a: "Calgary and surrounding area, including Airdrie, Cochrane, and Okotoks." },
+];
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{shop.name} — Calgary electrician you can count on</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <LocalBusinessJsonLd shop={shop} />
+  </head>
+  <body id="top" class="bg-background text-foreground font-sans">
+    <SiteNav name={shop.name} bookingUrl={shop.bookingUrl} bookLabel="Get a quote" links={[{ label: "Services", href: "#services" }, { label: "Why us", href: "#features" }, { label: "FAQ", href: "#faq" }]} />
+
+    <section class="relative isolate overflow-hidden bg-foreground px-6 py-28 text-background sm:py-36">
+      <div class="absolute inset-0 -z-10 bg-gradient-to-br from-primary/40 via-transparent to-transparent"></div>
+      <div class="mx-auto max-w-3xl text-center">
+        <span class="inline-flex items-center gap-2 rounded-full border border-background/20 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.15em] text-background/80">Licensed & insured · Calgary</span>
+        <h1 class="mt-6 font-display text-5xl font-bold tracking-tight sm:text-6xl">{shop.tagline}</h1>
+        <p class="mx-auto mt-5 max-w-xl text-lg text-background/70">Residential & commercial electrical — fast, code-perfect, and upfront on price.</p>
+        <div class="mt-9 flex flex-wrap justify-center gap-4">
+          <a href={`tel:${shop.phone}`} class="rounded-[var(--radius)] bg-primary px-7 py-3.5 font-semibold text-primary-foreground shadow-lg transition hover:opacity-90">Call {shop.phone}</a>
+          <a href="#book" class="rounded-[var(--radius)] border border-background/30 px-7 py-3.5 font-semibold text-background transition hover:bg-background/10">Request a quote</a>
+        </div>
+      </div>
+    </section>
+
+    <Stats items={stats} />
+    <Features label="Why Voltline" heading="Electrical work you don't have to think about" items={features} />
+    <Services services={shop.services} heading="What we do" />
+    <Testimonials label="Reviews" heading="Calgary homeowners trust us" items={testimonials} />
+    <Faq items={faqs} />
+    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} heading="Get a free quote today" />
+    <SiteFooter name={shop.name} address={shop.address} phone={shop.phone} />
+  </body>
+</html>

@@ -1,0 +1,44 @@
+---
+import { site } from "../content/site";
+import Icon from "./Icon.astro";
+const h = site.hero;
+---
+<section class="relative overflow-hidden bg-foreground text-background">
+  <!-- orbit glow backdrop -->
+  <div class="pointer-events-none absolute inset-0">
+    <div class="absolute left-1/2 top-[-20%] h-[60rem] w-[60rem] -translate-x-1/2 rounded-full opacity-30 blur-3xl"
+         style="background: radial-gradient(closest-side, var(--primary), transparent 70%);"></div>
+    <div class="absolute right-[-10%] top-[30%] h-[28rem] w-[28rem] rounded-full opacity-20 blur-3xl"
+         style="background: radial-gradient(closest-side, var(--accent), transparent 70%);"></div>
+    <div class="absolute inset-0 opacity-[0.07]"
+         style="background-image: radial-gradient(currentColor 1px, transparent 1px); background-size: 26px 26px;"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-4xl px-6 py-28 text-center sm:py-36">
+    <span class="inline-flex items-center gap-2 rounded-full border border-background/20 bg-background/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-background/70">
+      {h.eyebrow}
+    </span>
+    <h1 class="mt-7 font-display text-5xl font-bold leading-[0.98] tracking-tight sm:text-7xl">
+      {h.headline}
+    </h1>
+    <p class="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-background/75 sm:text-xl">
+      {h.sub}
+    </p>
+    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a href={h.ctaPrimary.href} class="group inline-flex items-center gap-2 rounded-[var(--radius)] bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-lg transition hover:scale-[1.02] hover:opacity-95">
+        {h.ctaPrimary.label}
+        <Icon name="arrow" class="h-4 w-4 transition group-hover:translate-x-0.5" />
+      </a>
+      <a href={h.ctaSecondary.href} class="inline-flex items-center gap-2 rounded-[var(--radius)] border border-background/25 px-7 py-4 text-sm font-semibold text-background transition hover:bg-background/10">
+        {h.ctaSecondary.label}
+      </a>
+    </div>
+    <ul class="mx-auto mt-12 flex max-w-2xl flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm text-background/65">
+      {h.trust.map((t) => (
+        <li class="inline-flex items-center gap-2">
+          <Icon name="check" class="h-4 w-4 text-accent" />{t}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

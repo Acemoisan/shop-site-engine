@@ -1,0 +1,39 @@
+---
+import { site } from "../content/site";
+import Icon from "./Icon.astro";
+const c = site.contact;
+const f = site.finalCta;
+---
+<section id="contact" class="scroll-mt-20 bg-foreground text-background">
+  <div class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0">
+      <div class="absolute left-[10%] top-[-30%] h-[40rem] w-[40rem] rounded-full opacity-25 blur-3xl"
+           style="background: radial-gradient(closest-side, var(--primary), transparent 70%);"></div>
+    </div>
+    <div class="relative mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:py-28 lg:grid-cols-2 lg:items-center">
+      <div>
+        <h2 class="font-display text-3xl font-bold tracking-tight sm:text-4xl">{f.heading}</h2>
+        <p class="mt-4 max-w-md text-lg text-background/75">{f.body}</p>
+        <a href={`mailto:${site.email}?subject=Free%20website%20audit`} class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent transition hover:opacity-80">
+          <Icon name="arrow" class="h-4 w-4" /> Or email us directly at {site.email}
+        </a>
+      </div>
+
+      <!-- TODO: wire `action` to a form endpoint (e.g. Formspree) before go-live.
+           The mailto link above is the working fallback in the meantime. -->
+      <form class="rounded-2xl border border-background/15 bg-background/5 p-6 backdrop-blur-sm sm:p-8" action={`mailto:${site.email}`} method="post" enctype="text/plain">
+        <h3 class="font-display text-lg font-semibold">{c.heading}</h3>
+        <p class="mt-1 text-sm text-background/70">{c.body}</p>
+        <div class="mt-5 grid gap-4">
+          <input name="name" required placeholder="Your name" class="rounded-[var(--radius)] border border-background/20 bg-background/10 px-4 py-3 text-sm text-background placeholder:text-background/50 focus:border-accent focus:outline-none" />
+          <input name="business" required placeholder="Shop / business name" class="rounded-[var(--radius)] border border-background/20 bg-background/10 px-4 py-3 text-sm text-background placeholder:text-background/50 focus:border-accent focus:outline-none" />
+          <input name="email" type="email" required placeholder="Email" class="rounded-[var(--radius)] border border-background/20 bg-background/10 px-4 py-3 text-sm text-background placeholder:text-background/50 focus:border-accent focus:outline-none" />
+          <input name="website" placeholder="Current website (if any)" class="rounded-[var(--radius)] border border-background/20 bg-background/10 px-4 py-3 text-sm text-background placeholder:text-background/50 focus:border-accent focus:outline-none" />
+          <textarea name="message" rows="3" placeholder="What do you need? (a new site, bookings, online ordering...)" class="rounded-[var(--radius)] border border-background/20 bg-background/10 px-4 py-3 text-sm text-background placeholder:text-background/50 focus:border-accent focus:outline-none"></textarea>
+          <button type="submit" class="rounded-[var(--radius)] bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90">{f.cta.label}</button>
+          <p class="text-xs leading-relaxed text-background/55">{c.pipaNote}</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

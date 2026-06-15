@@ -1,0 +1,17 @@
+/* Studio0rbit brand tokens (OKLCH) — the agency/service site palette.
+   Deep-space ink + electric-indigo "orbit" primary + bright cyan accent. */
+:root {
+  --background: oklch(0.99 0.004 280);
+  --foreground: oklch(0.20 0.03 280);
+  --card: oklch(1 0 0);
+  --primary: oklch(0.55 0.22 277);            /* electric indigo */
+  --primary-foreground: oklch(0.99 0.01 280);
+  --muted: oklch(0.965 0.008 280);
+  --muted-foreground: oklch(0.50 0.025 280);
+  --accent: oklch(0.80 0.15 200);             /* bright orbit cyan */
+  --accent-foreground: oklch(0.22 0.04 240);
+  --border: oklch(0.91 0.008 280);
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --radius: 0.9rem;
+}

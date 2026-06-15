@@ -1,11 +1,10 @@
 @import "tailwindcss";
 
-/* Scan the shared package's components so their utility classes are generated.
-   Paths are relative to this file (packages/shared/src/styles/base.css).
-   Without this, Tailwind v4 only scans the importing site and misses classes
-   used solely inside shared components (e.g. text-5xl, px-6). */
+/* Standalone landing app — scan our own components + pages so every utility
+   class is generated (we deliberately don't depend on @studio0rbit/shared to
+   stay decoupled from the engine package). Paths relative to this file. */
 @source "../components";
-@source "../seo";
+@source "../pages";
 
 @theme inline {
   --color-background: var(--background);

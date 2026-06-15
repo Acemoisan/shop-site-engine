@@ -1,0 +1,20 @@
+---
+import { site } from "../content/site";
+const p = site.problem;
+---
+<section class="border-b border-border bg-background">
+  <div class="mx-auto max-w-5xl px-6 py-20 sm:py-24">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{p.heading}</h2>
+      <p class="mt-5 text-lg leading-relaxed text-muted-foreground">{p.body}</p>
+    </div>
+    <dl class="mt-14 grid gap-6 sm:grid-cols-3">
+      {p.stats.map((s) => (
+        <div class="rounded-[var(--radius)] border border-border bg-card p-7 text-center shadow-sm">
+          <dt class="font-display text-4xl font-bold text-primary">{s.value}</dt>
+          <dd class="mt-2 text-sm leading-snug text-muted-foreground">{s.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>

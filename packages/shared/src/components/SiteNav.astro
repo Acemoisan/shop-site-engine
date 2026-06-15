@@ -1,16 +1,26 @@
 ---
-interface Props { name: string; bookingUrl?: string }
-const { name, bookingUrl } = Astro.props;
+interface Link { label: string; href: string }
+interface Props { name: string; bookingUrl?: string; links?: Link[]; bookLabel?: string }
+const {
+  name,
+  bookingUrl,
+  bookLabel = "Book",
+  links = [
+    { label: "Services", href: "#services" },
+    { label: "Hours", href: "#hours" },
+    { label: "Visit", href: "#visit" },
+  ],
+} = Astro.props;
 ---
 <header class="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md">
-  <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
     <a href="#top" class="font-display text-xl font-bold uppercase tracking-wide text-foreground">{name}</a>
     <div class="flex items-center gap-7 text-sm font-medium">
-      <a href="#services" class="hidden tracking-wide text-muted-foreground transition hover:text-primary sm:inline">Services</a>
-      <a href="#hours" class="hidden tracking-wide text-muted-foreground transition hover:text-primary sm:inline">Hours</a>
-      <a href="#visit" class="hidden tracking-wide text-muted-foreground transition hover:text-primary sm:inline">Visit</a>
+      {links.map((l) => (
+        <a href={l.href} class="hidden tracking-wide text-muted-foreground transition hover:text-primary sm:inline">{l.label}</a>
+      ))}
       {bookingUrl && (
-        <a href={bookingUrl} class="rounded-[var(--radius)] bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">Book</a>
+        <a href={bookingUrl} class="rounded-[var(--radius)] bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">{bookLabel}</a>
       )}
     </div>
   </nav>
