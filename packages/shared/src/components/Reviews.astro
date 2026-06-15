@@ -1,0 +1,10 @@
+---
+interface Props { blurb?: string; rating?: number }
+const { blurb, rating } = Astro.props;
+---
+{blurb && (
+  <section class="bg-muted px-6 py-12 text-center">
+    {rating && <p class="text-3xl text-accent">{"★".repeat(Math.round(rating))}</p>}
+    <p class="mt-2 text-muted-foreground">{blurb}</p>
+  </section>
+)}

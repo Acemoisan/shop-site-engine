@@ -1,0 +1,15 @@
+---
+import type { ShopContent } from "../types/shop";
+interface Props { shop: ShopContent }
+const { shop } = Astro.props;
+const data = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: shop.name,
+  address: shop.address,
+  telephone: shop.phone,
+  url: shop.url,
+  ...(shop.geo && { geo: { "@type": "GeoCoordinates", latitude: shop.geo.lat, longitude: shop.geo.lng } }),
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

@@ -1,0 +1,9 @@
+---
+interface Props { name: string; tagline: string; bookingUrl?: string }
+const { name, tagline, bookingUrl } = Astro.props;
+---
+<section class="bg-primary text-primary-foreground px-6 py-20 text-center">
+  <h1 class="font-display text-5xl font-bold">{name}</h1>
+  <p class="mt-4 text-lg opacity-90">{tagline}</p>
+  {bookingUrl && <a href={bookingUrl} class="mt-8 inline-block rounded-[var(--radius)] bg-accent px-6 py-3 font-semibold text-foreground">Book now</a>}
+</section>
