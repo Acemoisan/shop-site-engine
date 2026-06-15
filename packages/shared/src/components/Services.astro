@@ -3,10 +3,10 @@ import type { ShopService } from "../types/shop";
 interface Props { services: ShopService[]; heading?: string }
 const { services, heading = "Services" } = Astro.props;
 ---
-<section class="px-6 py-12">
+<section id="services" class="px-6 py-20">
   <div class="mx-auto max-w-3xl">
-    <h2 class="font-display text-2xl text-primary">{heading}</h2>
-    <ul class="mt-4 space-y-3">
+    <h2 class="font-display text-3xl font-semibold uppercase tracking-wide text-primary">{heading}</h2>
+    <ul class="mt-8 space-y-4 text-lg">
       {services.map((s) => (
         <li class="flex justify-between border-b border-border pb-2">
           <span>{s.name}{s.description && <span class="block text-sm text-muted-foreground">{s.description}</span>}</span>

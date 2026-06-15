@@ -3,6 +3,7 @@ export const shop: ShopContent = {
   name: "Maple & Steam Café",
   tagline: "Calgary's neighbourhood roastery.",
   vertical: "cafe",
+  heroImage: "https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=1600&q=70&auto=format&fit=crop",
   phone: "+1-403-555-0188",
   address: "455 Kensington Rd NW, Calgary, AB",
   mapUrl: "https://maps.google.com/?q=455+Kensington+Rd+NW+Calgary",

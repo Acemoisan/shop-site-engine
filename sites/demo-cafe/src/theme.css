@@ -8,6 +8,6 @@
   --accent: oklch(0.75 0.13 70);            /* warm crema */
   --border: oklch(0.89 0.01 120);
   --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Inter", system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
   --radius: 0.75rem;
 }

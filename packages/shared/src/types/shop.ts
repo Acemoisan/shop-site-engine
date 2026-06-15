@@ -4,6 +4,7 @@ export interface ShopContent {
   name: string;
   tagline: string;
   vertical: "salon" | "cafe" | "trades" | "retail";
+  heroImage?: string;      // full-bleed hero background image URL
   phone: string;
   address: string;
   mapUrl: string;          // Google Maps link

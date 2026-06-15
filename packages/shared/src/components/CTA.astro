@@ -2,8 +2,8 @@
 interface Props { phone: string; bookingUrl?: string }
 const { phone, bookingUrl } = Astro.props;
 ---
-<section class="bg-primary text-primary-foreground px-6 py-16 text-center">
-  <h2 class="font-display text-3xl">Ready when you are.</h2>
+<section class="bg-primary text-primary-foreground px-6 py-20 text-center">
+  <h2 class="font-display text-4xl font-semibold uppercase tracking-wide">Ready when you are.</h2>
   <div class="mt-6 flex justify-center gap-4">
     <a href={`tel:${phone}`} class="rounded-[var(--radius)] bg-accent px-6 py-3 font-semibold text-foreground">Call</a>
     {bookingUrl && <a href={bookingUrl} class="rounded-[var(--radius)] border border-primary-foreground px-6 py-3 font-semibold">Book online</a>}

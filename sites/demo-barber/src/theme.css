@@ -8,6 +8,6 @@
   --accent: oklch(0.7 0.12 70);
   --border: oklch(0.88 0.008 80);
   --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Inter", system-ui, sans-serif;
-  --radius: 0.5rem;
+  --font-display: "Oswald", system-ui, sans-serif;
+  --radius: 0.375rem;
 }

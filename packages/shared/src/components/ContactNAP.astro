@@ -2,9 +2,9 @@
 interface Props { name: string; phone: string; address: string; mapUrl: string; serviceArea?: string }
 const { name, phone, address, mapUrl, serviceArea } = Astro.props;
 ---
-<section class="px-6 py-12">
-  <div class="mx-auto max-w-3xl space-y-2">
-    <h2 class="font-display text-2xl text-primary">Visit {name}</h2>
+<section id="visit" class="px-6 py-20">
+  <div class="mx-auto max-w-3xl space-y-3 text-lg">
+    <h2 class="font-display text-3xl font-semibold uppercase tracking-wide text-primary">Visit {name}</h2>
     <p><a href={`tel:${phone}`} class="font-semibold underline">{phone}</a></p>
     <p><a href={mapUrl} class="underline">{address}</a></p>
     {serviceArea && <p class="text-muted-foreground">Serving {serviceArea}</p>}

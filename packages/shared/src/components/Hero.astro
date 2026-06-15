@@ -1,9 +1,20 @@
 ---
-interface Props { name: string; tagline: string; bookingUrl?: string }
-const { name, tagline, bookingUrl } = Astro.props;
+interface Props { name: string; tagline: string; bookingUrl?: string; heroImage?: string }
+const { name, tagline, bookingUrl, heroImage } = Astro.props;
 ---
-<section class="bg-primary text-primary-foreground px-6 py-20 text-center">
-  <h1 class="font-display text-5xl font-bold">{name}</h1>
-  <p class="mt-4 text-lg opacity-90">{tagline}</p>
-  {bookingUrl && <a href={bookingUrl} class="mt-8 inline-block rounded-[var(--radius)] bg-accent px-6 py-3 font-semibold text-foreground">Book now</a>}
+<section class="relative flex min-h-[82vh] items-center justify-center overflow-hidden">
+  {heroImage && (
+    <img src={heroImage} alt="" loading="eager" class="absolute inset-0 h-full w-full object-cover" />
+  )}
+  <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/55 to-black/75"></div>
+  <div class="relative z-10 mx-auto max-w-3xl px-6 py-28 text-center text-white">
+    <h1 class="font-display text-6xl font-bold uppercase leading-[0.92] tracking-tight drop-shadow-sm sm:text-8xl">{name}</h1>
+    <p class="mx-auto mt-6 max-w-xl text-lg font-light tracking-wide text-white/90 sm:text-xl">{tagline}</p>
+    {bookingUrl && (
+      <a
+        href={bookingUrl}
+        class="mt-10 inline-block rounded-[var(--radius)] bg-primary px-9 py-4 text-sm font-semibold uppercase tracking-[0.15em] text-primary-foreground shadow-lg transition hover:scale-[1.03] hover:opacity-95"
+      >Book now</a>
+    )}
+  </div>
 </section>

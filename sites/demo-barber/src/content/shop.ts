@@ -3,6 +3,7 @@ export const shop: ShopContent = {
   name: "Ironside Barber Co.",
   tagline: "Classic cuts, Calgary craft.",
   vertical: "salon",
+  heroImage: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1600&q=70&auto=format&fit=crop",
   phone: "+1-403-555-0142",
   address: "112 17th Ave SW, Calgary, AB",
   mapUrl: "https://maps.google.com/?q=112+17th+Ave+SW+Calgary",

@@ -3,6 +3,7 @@ import "@studio0rbit/shared/styles/base.css";
 import "../theme.css";
 import { shop as fallback } from "../content/shop";
 import type { ShopContent } from "@studio0rbit/shared";
+import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
 import Hero from "@studio0rbit/shared/components/Hero.astro";
 import ContactNAP from "@studio0rbit/shared/components/ContactNAP.astro";
 import Hours from "@studio0rbit/shared/components/Hours.astro";
@@ -30,6 +31,7 @@ if (token) {
         name: c.name,
         tagline: c.tagline,
         vertical: "salon",
+        heroImage: c.hero_image || fallback.heroImage,
         phone: c.phone,
         address: c.address,
         mapUrl: c.map_url,
@@ -54,10 +56,14 @@ console.log(`[demo-barber] content source: ${source}`);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{shop.name} — {shop.tagline}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <LocalBusinessJsonLd shop={shop} />
   </head>
-  <body class="bg-background text-foreground font-sans">
-    <Hero name={shop.name} tagline={shop.tagline} bookingUrl={shop.bookingUrl} />
+  <body id="top" class="bg-background text-foreground font-sans">
+    <SiteNav name={shop.name} bookingUrl={shop.bookingUrl} />
+    <Hero name={shop.name} tagline={shop.tagline} bookingUrl={shop.bookingUrl} heroImage={shop.heroImage} />
     <Services services={shop.services} heading="Services" />
     <Hours hours={shop.hours} />
     <Reviews blurb={shop.reviewsBlurb} rating={shop.rating} />

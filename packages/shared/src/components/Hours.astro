@@ -3,10 +3,10 @@ import type { ShopHours } from "../types/shop";
 interface Props { hours: ShopHours[] }
 const { hours } = Astro.props;
 ---
-<section class="bg-muted px-6 py-12">
+<section id="hours" class="bg-muted px-6 py-20">
   <div class="mx-auto max-w-3xl">
-    <h2 class="font-display text-2xl text-primary">Hours</h2>
-    <ul class="mt-4 divide-y divide-border">
+    <h2 class="font-display text-3xl font-semibold uppercase tracking-wide text-primary">Hours</h2>
+    <ul class="mt-8 divide-y divide-border text-lg">
       {hours.map((h) => (
         <li class="flex justify-between py-2">
           <span>{h.day}</span>
