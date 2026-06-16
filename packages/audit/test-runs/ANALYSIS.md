@@ -69,3 +69,13 @@ Repeat audits of the same site with stable probe inputs gave **identical grades/
 
 ### Verdict
 Core mechanics are sound and consistent. The grade is deterministic; observed variance was entirely network/concurrency flakiness, both addressed. No new failure modes (no crashes across 26 trials). PSI still needs a key (psi:error expected). Task 11 (skill + HTML report) remains the only unbuilt piece.
+
+---
+
+## 2026-06-16 ~00:58Z — Round 4: oversight wound down (user returned)
+
+**Off-ramp triggered — all conditions met:** the user explicitly said "stop the loop"; active hands-on work resumed; heavy recent commits. Oversight is ending — no further wakes scheduled.
+
+**Honest correction on the stop:** the earlier `TaskStop`/`pkill` only dropped harness tracking — it did NOT kill the detached bash loops. Two `loop.sh` processes had survived (pid 20899 = original launch, pid 22059 = round-3 relaunch) and kept firing batches (last at 00:57:38). Both were force-killed at the OS level this round (`kill -9` on the bash parents + their `sleep` children); `ps -ef` now shows no loop/sleep/runner processes. The loop is genuinely stopped.
+
+**Final state:** Collector mechanics complete + reviewed. **Task 11 (branded HTML report) built** — `fc64fd4`; every audit now writes `audit-<host>.json` + a self-contained `audit-<host>.html`. Unit suite **35/35 green** (8 files). Rubric confirmed deterministic in round 3. Outstanding for the user: add a `PSI_API_KEY` for full-confidence grades; merge branch `worktree-site-audit-build` into main work when ready.
