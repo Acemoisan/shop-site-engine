@@ -7,3 +7,7 @@ dist/
 .vercel/
 .netlify/
 .playwright-mcp/
+
+# Template gallery build artifacts (regenerable via scripts/build-gallery.mjs)
+gallery/
+gallery-shots/
