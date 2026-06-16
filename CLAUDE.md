@@ -15,7 +15,11 @@ A pnpm-workspace monorepo that produces custom shop sites from one shared engine
 This project is a **production capability**, not a pile of one-off sites. The pipeline itself is the product, so **codify every repeatable workflow as a skill** in `.claude/skills/` rather than re-deriving it each build. When you solve something non-obvious (a CMS wiring, an API quirk, a per-vertical pattern, a deploy recipe), the default reflex is: *should this be a skill?* If we'd do it again for the next shop, yes — write or update one.
 
 - **Prefer skills + scripts over manual steps.** A skill with a runnable script (see `storyblok-shop-cms/setup-shop.mjs`) turns a 30-minute manual setup into one command.
-- **Existing skills:** `storyblok-shop-cms` — wiring Storyblok into a shop site, content model, Management API recipes, and the client editing/upload/publish model. Use it before hand-rolling CMS work.
+- **Existing skills:**
+  - `storyblok-shop-cms` — wiring Storyblok into a shop site, content model, Management API recipes, and the client editing/upload/publish model. Use it before hand-rolling CMS work.
+  - `shop-templates` — how templates are structured, the shared section-component library + props, the token theming system, the shared-vs-custom hero patterns, and how to add a new vertical.
+  - `create-shop-site` — end-to-end runbook to build a new client shop from scratch (scaffold → theme tokens → content → Storyblok wiring → verify).
+  - `deploy-shop-site` — the auto-deploy runbook (per-client standalone repo + host build hook + Storyblok publish webhook; clients need no GitHub).
 - Keep skills grounded in verified, working implementations (point at the real files), and update them when the pattern evolves.
 
 ## The token system (how theming works)
@@ -40,16 +44,25 @@ Tailwind v4 auto-scans only the importing site's directory. Classes used **only 
 
 | Component | Props | Purpose |
 |---|---|---|
-| `Hero.astro` | `name, tagline, bookingUrl?` | Primary-colored masthead + booking CTA |
+| `SiteNav.astro` | `name, bookingUrl?, links?, bookLabel?` | Sticky blurred nav + booking CTA |
+| `Hero.astro` | `name, tagline, bookingUrl?, heroImage?` | Full-bleed image masthead + booking CTA |
+| `Stats.astro` | `items[{value,label}]` | 3-up stat band on muted bg |
+| `Features.astro` | `label?, heading, items[{icon,title,body}]` | Icon feature cards (icon = `Icon.astro` name) |
 | `Services.astro` | `services, heading?` | Service/menu list with prices (heading "Menu" for cafe/restaurant) |
 | `Hours.astro` | `hours` | Opening hours table on muted bg |
 | `Reviews.astro` | `blurb?, rating?` | Star rating + social proof |
+| `Testimonials.astro` | `label?, heading?, items[{quote,name}]` | Quote cards |
+| `Faq.astro` | `heading?, items[{q,a}]` | `<details>` accordion |
 | `ContactNAP.astro` | `name, phone, address, mapUrl, serviceArea?` | NAP, click-to-call, map link |
-| `CTA.astro` | `phone, bookingUrl?` | Closing call/book CTA |
+| `CTA.astro` | `phone, bookingUrl?, heading?` | Closing call/book CTA |
 | `SiteFooter.astro` | `name, address, phone` | Footer |
+| `Icon.astro` | `name, class?` | Inline-SVG icon set (no dependency) |
 | `seo/LocalBusinessJsonLd.astro` | `shop` | `LocalBusiness` JSON-LD (name+address required) |
 
-Content shape is the `ShopContent` type in `packages/shared/src/types/shop.ts`.
+Content shape is the `ShopContent` type in `packages/shared/src/types/shop.ts`. Full props + usage live in the `shop-templates` skill.
+
+### CMS-driven content layer (every demo)
+Each `sites/<slug>/src/pages/index.astro` declares **local fallbacks** (the `shop` object from `src/content/shop.ts`, plus inline `let` arrays for stats/features/testimonials/faqs and an `h` headings object), then **fetches the published Storyblok story at build time and overrides field-by-field only when present** (`if (c.x?.length) …`, `c.field || h.field`). The build never breaks if Storyblok is down. A site's `.env` (gitignored) holds `STORYBLOK_TOKEN` (delivery/read) + `STORYBLOK_STORY` (the shop's story slug). One shared space, one story per shop. Custom (non-`Hero`) heroes keep their text editable via `hero_kicker`, `hero_subcopy`, `hero_cta_label` fields. See `storyblok-shop-cms`.
 
 ## New-shop checklist
 

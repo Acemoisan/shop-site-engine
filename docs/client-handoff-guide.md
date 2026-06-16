@@ -30,7 +30,7 @@ You will have up to **three** logins. Keep them in a password manager. You'll us
 
 Storyblok is your **content editor** — the dashboard where you change everything on your site: words, numbers, photos, hours, prices, reviews, FAQs. No code, ever. This section covers everything you can do.
 
-> ✅ **Status (barber demo):** fully connected. *Every* section of the Ironside Barber site — hero, stats, "Why us" cards, services, hours, testimonials, FAQs, contact, and headings — is editable in Storyblok (verified end-to-end on 2026-06-15). Other demos are wired the same way as they go live.
+> ✅ **Status (all demos connected):** fully connected and verified end-to-end. The barber (Ironside) plus the café (Maple & Steam), spa (Stillwater), electrician (Voltline), and fitness (Forge) demos all read *every* section — hero text, stats, "Why us"/feature cards, services/menu/treatments, hours, testimonials, FAQs, contact, and section headings — from Storyblok, with a local fallback so a site never breaks if the CMS is briefly unavailable. Each shop is its own **story** in one shared Storyblok space; the client edits only their own story. (Verified 2026-06-15.)
 
 ### 2.1 — Logging in & opening your site
 1. Go to **app.storyblok.com** and log in with your account.
@@ -44,7 +44,7 @@ The screen has two parts:
 - **Right = the fields panel.** This is where you make every change. Everything below happens here.
 
 ### 2.3 — Editing plain text & numbers
-Most fields are simple boxes: **Name, Tagline, Phone, Address, Map URL, Service area, Booking URL, Reviews blurb, Rating,** and the **section headings** ("Why us" label/heading, Testimonials heading, FAQ heading, CTA heading).
+Most fields are simple boxes: **Name, Tagline, Phone, Address, Map URL, Service area, Booking URL, Reviews blurb, Rating,** and the **section headings** ("Why us" label/heading, Testimonials heading, FAQ heading, CTA heading). Sites with a custom banner (spa, electrician, gym styles) also expose the **hero kicker** (the small line above the headline), **hero subcopy** (the sentence under it), and the **hero button label** — all editable text boxes.
 - Click the box and type. That's it.
 - **Rating** takes a number like `4.9`.
 - **Map URL / Booking URL** take a web link (paste the full `https://…`).
