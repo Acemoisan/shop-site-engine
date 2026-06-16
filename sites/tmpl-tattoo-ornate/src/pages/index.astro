@@ -1,0 +1,632 @@
+---
+const nav = [
+  { label: "Work", href: "#gallery" },
+  { label: "Artists", href: "#artists" },
+  { label: "Rates", href: "#rates" },
+  { label: "Visit", href: "#visit" },
+];
+
+const services = [
+  { name: "Custom Tattoo Design", price: "from $180/hr", note: "Shop minimum $120" },
+  { name: "Flash of the Day", price: "$150 flat", note: "Pre-drawn, claim same day" },
+  { name: "Fine-Line & Micro", price: "from $140", note: "Single-needle work" },
+  { name: "Cover-Up & Rework", price: "from $200/hr", note: "Free consultation" },
+  { name: "Touch-Up", price: "complimentary", note: "Ironwood work, within 90 days" },
+  { name: "Ear & Body Piercing", price: "from $45", note: "Plus jewellery" },
+];
+
+const artists = [
+  { name: "Marlo Vance", specialty: "Blackwork · Ornamental", seed: "marlo-portrait" },
+  { name: "Priya Anand", specialty: "Fine-Line · Botanical", seed: "priya-portrait" },
+  { name: "Cole Terrick", specialty: "Traditional · Flash", seed: "cole-portrait" },
+];
+
+const gallery = [
+  { seed: "ink-dagger", tag: "Blackwork", w: 600, h: 800 },
+  { seed: "ink-rose", tag: "Fine-Line", w: 600, h: 600 },
+  { seed: "ink-snake", tag: "Traditional", w: 600, h: 760 },
+  { seed: "ink-moth", tag: "Ornamental", w: 600, h: 560 },
+  { seed: "ink-anchor", tag: "Lettering", w: 600, h: 720 },
+  { seed: "ink-skull", tag: "Blackwork", w: 600, h: 640 },
+];
+
+const testimonials = [
+  { quote: "Marlo took my rough idea and turned it into the cleanest piece I own. The studio is spotless and the whole thing felt easy.", who: "Devon R." },
+  { quote: "Booked for a fine-line floral and left obsessed. Healed perfectly, lines still razor sharp months later.", who: "Priya K." },
+  { quote: "Walked in for flash, walked out with a tattoo I'll brag about forever. Real old-school energy.", who: "Cole T." },
+];
+
+const hours = [
+  { d: "Tue – Fri", t: "11am – 8pm" },
+  { d: "Saturday", t: "11am – 6pm" },
+  { d: "Sunday", t: "12pm – 5pm" },
+  { d: "Monday", t: "Closed · by request" },
+];
+
+const faqs = [
+  { q: "Do I need ID?", a: "Yes — you must be 18+ with valid government photo ID. No exceptions, every visit." },
+  { q: "How do deposits work?", a: "An $80 non-refundable deposit holds your slot and comes off your final price. 48-hour reschedule notice required." },
+  { q: "What about touch-ups?", a: "We provide an aftercare sheet and offer complimentary touch-ups on our own work within 90 days." },
+  { q: "Walk-ins or appointment?", a: "Both. Custom work is by appointment; flash and small pieces welcome walk-ins when an artist is free." },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ironwood Tattoo Co. — Permanent Art, Made to Last · Inglewood, Calgary</title>
+    <meta
+      name="description"
+      content="Ironwood Tattoo Co. — custom tattooing in the heart of Calgary's Inglewood. Ornamental, fine-line and traditional work by appointment and walk-in."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#gallery">Skip to work</a>
+
+    <header class="bar" id="top">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="#top" aria-label="Ironwood Tattoo Co. home">
+          <span class="brand-mark" aria-hidden="true">&#10070;</span>
+          <span class="brand-name">Ironwood</span>
+        </a>
+        <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="links" id="menu">
+          {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+          <li><a class="btn-book" href="#book">Book</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-h">
+        <div class="hero-img" aria-hidden="true"></div>
+        <div class="hero-frame">
+          <p class="eyebrow">Est. Inglewood · Calgary</p>
+          <h1 id="hero-h">Permanent Art,<br /><em>Made to Last.</em></h1>
+          <p class="lede">
+            Custom tattooing in the heart of Calgary's Inglewood — ornamental, fine-line and
+            traditional work, by appointment and walk-in.
+          </p>
+          <div class="hero-cta">
+            <a class="btn primary" href="#book">Book a Consultation</a>
+            <a class="btn ghost" href="tel:+14035550148">(403) 555-0148</a>
+          </div>
+          <ul class="hero-stats">
+            <li><b>12</b><span>years inking</span></li>
+            <li><b>3</b><span>resident artists</span></li>
+            <li><b>4.9&#9733;</b><span>over 600 reviews</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Ornamental &#10070; Fine-Line &#10070; Blackwork &#10070; Traditional &#10070; Cover-Ups &#10070; Lettering &#10070; Piercing &#10070;</span>
+          <span>Ornamental &#10070; Fine-Line &#10070; Blackwork &#10070; Traditional &#10070; Cover-Ups &#10070; Lettering &#10070; Piercing &#10070;</span>
+        </div>
+      </div>
+
+      <!-- GALLERY -->
+      <section class="section" id="gallery" aria-labelledby="gal-h">
+        <div class="head reveal">
+          <p class="kicker">The Work</p>
+          <h2 id="gal-h">A Gallery of Healed Ink</h2>
+        </div>
+        <div class="masonry">
+          {gallery.map((g) => (
+            <figure class="plate reveal">
+              <img
+                src={`https://picsum.photos/seed/${g.seed}/${g.w}/${g.h}`}
+                alt={`Healed ${g.tag.toLowerCase()} tattoo by an Ironwood artist`}
+                loading="lazy"
+                width={g.w}
+                height={g.h}
+              />
+              <figcaption>{g.tag}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- ARTISTS -->
+      <section class="section muted" id="artists" aria-labelledby="art-h">
+        <div class="head reveal">
+          <p class="kicker">The Hands</p>
+          <h2 id="art-h">Resident Roster</h2>
+        </div>
+        <div class="roster">
+          {artists.map((a) => (
+            <article class="artist reveal">
+              <div class="artist-photo">
+                <img
+                  src={`https://picsum.photos/seed/${a.seed}/500/620?grayscale`}
+                  alt={`Portrait of ${a.name}`}
+                  loading="lazy"
+                  width="500"
+                  height="620"
+                />
+              </div>
+              <div class="artist-body">
+                <h3>{a.name}</h3>
+                <p class="spec">{a.specialty}</p>
+                <a class="artist-link" href="#book">Book with {a.name.split(" ")[0]} &#8594;</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- RATES -->
+      <section class="section" id="rates" aria-labelledby="rate-h">
+        <div class="head reveal">
+          <p class="kicker">The Rates</p>
+          <h2 id="rate-h">Services &amp; Pricing</h2>
+        </div>
+        <ul class="rates">
+          {services.map((s) => (
+            <li class="rate reveal">
+              <span class="rate-name">{s.name}</span>
+              <span class="rate-dots" aria-hidden="true"></span>
+              <span class="rate-price">{s.price}</span>
+              <span class="rate-note">{s.note}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="deposit-line">
+          Deposit: <b>$80</b> non-refundable, applied to your session. 48-hour reschedule notice required.
+        </p>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section muted" id="proof" aria-labelledby="proof-h">
+        <div class="head reveal">
+          <p class="kicker">The Word</p>
+          <h2 id="proof-h">Marked &amp; Pleased</h2>
+        </div>
+        <div class="quotes">
+          {testimonials.map((t) => (
+            <blockquote class="quote reveal">
+              <span class="qmark" aria-hidden="true">&#8220;</span>
+              <p>{t.quote}</p>
+              <cite>— {t.who}</cite>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section" id="faq" aria-labelledby="faq-h">
+        <div class="head reveal">
+          <p class="kicker">Before You Sit</p>
+          <h2 id="faq-h">Policies &amp; Aftercare</h2>
+        </div>
+        <div class="accordion">
+          {faqs.map((f, i) => (
+            <details class="reveal" open={i === 0}>
+              <summary>{f.q}<span class="chev" aria-hidden="true">+</span></summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- VISIT / BOOK -->
+      <section class="section visit" id="visit" aria-labelledby="visit-h">
+        <div class="visit-grid">
+          <div class="reveal" id="book">
+            <p class="kicker">Visit &amp; Book</p>
+            <h2 id="visit-h">The Studio</h2>
+            <address class="nap">
+              <strong>Ironwood Tattoo Co.</strong><br />
+              1242 9th Avenue SE, Inglewood<br />
+              Calgary, AB T2G 0T2
+            </address>
+            <p class="contact-row">
+              <a href="tel:+14035550148">(403) 555-0148</a>
+              <a href="mailto:ink@ironwoodtattoo.ca">ink@ironwoodtattoo.ca</a>
+            </p>
+            <a class="map-link" href="https://maps.google.com/?q=1242+9th+Avenue+SE+Calgary" target="_blank" rel="noopener">Open in Maps &#8594;</a>
+            <a class="btn primary big" href="tel:+14035550148">Call to Book a Consultation</a>
+          </div>
+          <div class="hours-card reveal">
+            <h3>Hours</h3>
+            <ul>
+              {hours.map((h) => (
+                <li><span>{h.d}</span><span>{h.t}</span></li>
+              ))}
+            </ul>
+            <p class="ig">@ironwoodtattooyyc</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p class="foot-brand"><span aria-hidden="true">&#10070;</span> Ironwood Tattoo Co.</p>
+      <p>1242 9th Avenue SE, Inglewood, Calgary · (403) 555-0148</p>
+      <p class="fine">Must be 18+ with valid government photo ID. No exceptions.</p>
+    </footer>
+
+    <!-- STICKY BOOKING BAR -->
+    <div class="dock" aria-label="Quick booking">
+      <span class="dock-text">Ready for permanent art?</span>
+      <a class="btn primary" href="#book">Book Now</a>
+    </div>
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      }
+    </style>
+
+    <style>
+      :root {
+        --bg: #0d0b0c;
+        --fg: #ece4d4;
+        --primary: #c9a24b;
+        --primary-fg: #0d0b0c;
+        --accent: #7c1f2b;
+        --muted: #1c1819;
+        --border: #3a3230;
+        --display: "UnifrakturCook", serif;
+        --body: "EB Garamond", Georgia, serif;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--body);
+        font-size: 1.075rem;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .skip {
+        position: absolute; left: -999px; top: 0; z-index: 200;
+        background: var(--primary); color: var(--primary-fg);
+        padding: .6rem 1rem; border-radius: 0 0 6px 0;
+      }
+      .skip:focus { left: 0; }
+
+      a { color: inherit; }
+      :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+      /* ---- NAV ---- */
+      .bar {
+        position: sticky; top: 0; z-index: 100;
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav {
+        max-width: 1180px; margin: 0 auto; padding: .85rem 1.25rem;
+        display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      }
+      .brand { display: flex; align-items: center; gap: .55rem; text-decoration: none; }
+      .brand-mark { color: var(--primary); font-size: 1.4rem; }
+      .brand-name {
+        font-family: var(--display); font-size: 1.75rem; line-height: 1;
+        color: var(--fg); letter-spacing: .5px;
+      }
+      .links {
+        list-style: none; display: flex; align-items: center; gap: 1.6rem;
+        margin: 0; padding: 0;
+      }
+      .links a {
+        text-decoration: none; font-size: 1rem; letter-spacing: .06em;
+        text-transform: uppercase; color: var(--fg); opacity: .85;
+        transition: opacity .2s, color .2s;
+      }
+      .links a:hover { opacity: 1; color: var(--primary); }
+      .btn-book {
+        border: 1px solid var(--primary); color: var(--primary) !important;
+        padding: .5rem 1.1rem; border-radius: 2px; opacity: 1 !important;
+      }
+      .btn-book:hover { background: var(--primary); color: var(--primary-fg) !important; }
+      .burger {
+        display: none; background: none; border: 0; cursor: pointer;
+        width: 44px; height: 44px; padding: 10px;
+      }
+      .burger span {
+        display: block; height: 2px; background: var(--fg);
+        margin: 4px 0; transition: transform .25s, opacity .25s;
+      }
+
+      /* ---- BUTTONS ---- */
+      .btn {
+        display: inline-block; text-decoration: none; cursor: pointer;
+        padding: .85rem 1.6rem; border-radius: 2px; font-size: 1rem;
+        letter-spacing: .07em; text-transform: uppercase;
+        min-height: 44px; transition: transform .2s, background .2s, color .2s, box-shadow .2s;
+      }
+      .btn.primary {
+        background: var(--primary); color: var(--primary-fg);
+        border: 1px solid var(--primary);
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 40%, transparent);
+      }
+      .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 26px -8px var(--primary); }
+      .btn.ghost { border: 1px solid var(--border); color: var(--fg); }
+      .btn.ghost:hover { border-color: var(--primary); color: var(--primary); }
+      .btn.big { display: block; text-align: center; margin-top: 1.4rem; }
+
+      /* ---- HERO ---- */
+      .hero { position: relative; overflow: hidden; isolation: isolate; }
+      .hero-img {
+        position: absolute; inset: 0; z-index: -2;
+        background-image: url("https://picsum.photos/seed/ironwood-hero/1600/1100");
+        background-size: cover; background-position: center;
+        filter: grayscale(1) contrast(1.1) brightness(.5) sepia(.4);
+      }
+      .hero::after {
+        content: ""; position: absolute; inset: 0; z-index: -1;
+        background:
+          radial-gradient(120% 90% at 70% 10%, transparent, var(--bg) 78%),
+          linear-gradient(180deg, color-mix(in srgb, var(--accent) 30%, transparent), transparent 40%);
+      }
+      .hero-frame {
+        max-width: 1180px; margin: 0 auto;
+        padding: clamp(4rem, 12vw, 8rem) 1.25rem clamp(3rem, 8vw, 5rem);
+      }
+      .eyebrow {
+        font-style: italic; letter-spacing: .12em; color: var(--primary);
+        margin: 0 0 .75rem; font-size: 1.05rem;
+      }
+      h1 {
+        font-family: var(--display); font-weight: 700;
+        font-size: clamp(3.2rem, 11vw, 7rem); line-height: .95;
+        margin: 0 0 1.2rem; letter-spacing: 1px;
+      }
+      h1 em { color: var(--primary); font-style: normal; }
+      .lede { max-width: 38ch; font-size: 1.2rem; margin: 0 0 2rem; color: color-mix(in srgb, var(--fg) 88%, transparent); }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: .9rem; }
+      .hero-stats {
+        list-style: none; margin: 2.8rem 0 0; padding: 1.6rem 0 0;
+        border-top: 1px solid var(--border);
+        display: flex; flex-wrap: wrap; gap: clamp(1.6rem, 6vw, 3.5rem);
+      }
+      .hero-stats b {
+        display: block; font-family: var(--display); font-size: 2.3rem;
+        color: var(--primary); line-height: 1;
+      }
+      .hero-stats span { font-size: .95rem; letter-spacing: .04em; opacity: .8; }
+
+      /* ---- MARQUEE ---- */
+      .marquee {
+        overflow: hidden; border-block: 1px solid var(--border);
+        background: var(--accent); color: var(--fg);
+      }
+      .marquee-track { display: flex; width: max-content; animation: slide 26s linear infinite; }
+      .marquee-track span {
+        font-family: var(--display); font-size: 1.6rem; padding: .6rem 1rem;
+        white-space: nowrap; letter-spacing: 1px;
+      }
+      @keyframes slide { to { transform: translateX(-50%); } }
+
+      /* ---- SECTION SHELL ---- */
+      .section {
+        max-width: 1180px; margin: 0 auto;
+        padding: clamp(3.5rem, 9vw, 6rem) 1.25rem;
+      }
+      .section.muted {
+        max-width: none; background: var(--muted);
+        border-block: 1px solid var(--border);
+      }
+      .section.muted > * { max-width: 1180px; margin-inline: auto; }
+      .head { margin-bottom: 2.5rem; }
+      .kicker {
+        text-transform: uppercase; letter-spacing: .22em; font-size: .8rem;
+        color: var(--primary); margin: 0 0 .5rem;
+      }
+      h2 {
+        font-family: var(--display); font-weight: 700;
+        font-size: clamp(2.3rem, 6vw, 3.6rem); line-height: 1;
+        margin: 0; letter-spacing: .5px;
+      }
+      h3 { font-family: var(--display); font-weight: 700; margin: 0; }
+
+      /* ---- GALLERY MASONRY ---- */
+      .masonry { columns: 3 220px; column-gap: 1rem; }
+      .plate {
+        break-inside: avoid; margin: 0 0 1rem; position: relative;
+        border: 1px solid var(--border); padding: .55rem; background: var(--muted);
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 14%, transparent) inset;
+      }
+      .plate img {
+        width: 100%; height: auto; filter: saturate(1.04);
+        transition: filter .35s, transform .45s;
+      }
+      .plate:hover img { transform: scale(1.03); filter: saturate(1.15) contrast(1.05); }
+      .plate figcaption {
+        position: absolute; left: 1.1rem; bottom: 1.1rem;
+        background: color-mix(in srgb, var(--bg) 75%, transparent);
+        color: var(--primary); font-size: .8rem; letter-spacing: .14em;
+        text-transform: uppercase; padding: .3rem .7rem; border: 1px solid var(--primary);
+      }
+
+      /* ---- ARTISTS ---- */
+      .roster { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+      .artist {
+        border: 1px solid var(--border); background: var(--bg);
+        overflow: hidden; transition: border-color .3s, transform .3s;
+      }
+      .artist:hover { border-color: var(--primary); transform: translateY(-4px); }
+      .artist-photo { position: relative; aspect-ratio: 5 / 6; overflow: hidden; }
+      .artist-photo img {
+        width: 100%; height: 100%; object-fit: cover;
+        filter: grayscale(1) contrast(1.05) brightness(.8) sepia(.25);
+        transition: filter .4s, transform .5s;
+      }
+      .artist:hover .artist-photo img { filter: grayscale(.2) sepia(.1); transform: scale(1.04); }
+      .artist-body { padding: 1.2rem 1.3rem 1.5rem; }
+      .artist-body h3 { font-size: 1.9rem; }
+      .spec { color: var(--primary); margin: .3rem 0 1rem; font-style: italic; }
+      .artist-link {
+        text-decoration: none; text-transform: uppercase; letter-spacing: .08em;
+        font-size: .85rem; color: var(--fg); border-bottom: 1px solid var(--border);
+        padding-bottom: 2px; transition: color .2s, border-color .2s;
+      }
+      .artist-link:hover { color: var(--primary); border-color: var(--primary); }
+
+      /* ---- RATES ---- */
+      .rates { list-style: none; margin: 0; padding: 0; }
+      .rate {
+        display: grid; grid-template-columns: auto 1fr auto;
+        grid-template-areas: "name dots price" "note note note";
+        align-items: baseline; gap: .3rem .8rem;
+        padding: 1.1rem 0; border-bottom: 1px solid var(--border);
+      }
+      .rate-name { grid-area: name; font-size: 1.35rem; }
+      .rate-dots { grid-area: dots; border-bottom: 1px dotted var(--border); transform: translateY(-4px); }
+      .rate-price { grid-area: price; font-family: var(--display); color: var(--primary); font-size: 1.4rem; }
+      .rate-note { grid-area: note; font-style: italic; opacity: .7; font-size: .98rem; }
+      .deposit-line {
+        margin-top: 1.8rem; padding: 1.1rem 1.3rem; border: 1px solid var(--accent);
+        background: color-mix(in srgb, var(--accent) 18%, transparent); border-radius: 2px;
+      }
+      .deposit-line b { color: var(--primary); }
+
+      /* ---- QUOTES ---- */
+      .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+      .quote {
+        position: relative; margin: 0; padding: 2.4rem 1.6rem 1.6rem;
+        border: 1px solid var(--border); background: var(--bg);
+      }
+      .qmark {
+        position: absolute; top: -.4rem; left: .9rem;
+        font-family: var(--display); font-size: 4rem; color: var(--primary); line-height: 1;
+      }
+      .quote p { margin: 0 0 1rem; font-size: 1.1rem; font-style: italic; }
+      .quote cite { color: var(--primary); font-style: normal; letter-spacing: .05em; }
+
+      /* ---- ACCORDION ---- */
+      .accordion { max-width: 760px; }
+      details { border-bottom: 1px solid var(--border); }
+      summary {
+        cursor: pointer; list-style: none; padding: 1.2rem 0;
+        font-size: 1.3rem; font-family: var(--display);
+        display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      }
+      summary::-webkit-details-marker { display: none; }
+      .chev { color: var(--primary); font-size: 1.6rem; transition: transform .25s; }
+      details[open] .chev { transform: rotate(45deg); }
+      details p { margin: 0 0 1.3rem; opacity: .85; max-width: 60ch; }
+
+      /* ---- VISIT ---- */
+      .visit { position: relative; }
+      .visit-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2.5rem; }
+      .nap { font-style: normal; font-size: 1.2rem; margin: 1.4rem 0; line-height: 1.7; }
+      .nap strong { font-family: var(--display); font-size: 1.6rem; color: var(--primary); }
+      .contact-row { display: flex; flex-wrap: wrap; gap: 1.2rem; margin: 0 0 .8rem; }
+      .contact-row a { color: var(--primary); text-decoration: none; border-bottom: 1px solid var(--border); }
+      .map-link { color: var(--fg); text-decoration: none; opacity: .85; }
+      .map-link:hover { color: var(--primary); }
+      .hours-card {
+        border: 1px solid var(--border); background: var(--muted);
+        padding: 1.8rem; border-radius: 2px;
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 12%, transparent) inset;
+      }
+      .hours-card h3 { font-size: 1.9rem; color: var(--primary); margin-bottom: 1rem; }
+      .hours-card ul { list-style: none; margin: 0; padding: 0; }
+      .hours-card li {
+        display: flex; justify-content: space-between; gap: 1rem;
+        padding: .6rem 0; border-bottom: 1px dotted var(--border);
+      }
+      .hours-card li span:last-child { color: var(--primary); }
+      .ig { margin: 1.2rem 0 0; font-style: italic; opacity: .75; }
+
+      /* ---- FOOTER ---- */
+      .foot {
+        text-align: center; padding: 3rem 1.25rem 6rem;
+        border-top: 1px solid var(--border); background: var(--muted);
+      }
+      .foot-brand { font-family: var(--display); font-size: 1.8rem; color: var(--primary); margin: 0 0 .4rem; }
+      .foot p { margin: .25rem 0; opacity: .85; }
+      .fine { font-size: .9rem; opacity: .6; margin-top: 1rem; }
+
+      /* ---- STICKY DOCK ---- */
+      .dock {
+        position: fixed; left: 50%; bottom: 1rem; transform: translateX(-50%);
+        z-index: 90; display: flex; align-items: center; gap: 1rem;
+        background: color-mix(in srgb, var(--muted) 94%, transparent);
+        border: 1px solid var(--primary); border-radius: 999px;
+        padding: .5rem .5rem .5rem 1.4rem;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 12px 40px -12px #000;
+        max-width: calc(100% - 1.5rem);
+      }
+      .dock-text { font-style: italic; font-size: 1rem; }
+      .dock .btn { padding: .65rem 1.3rem; }
+
+      /* ---- REVEAL ---- */
+      .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* ---- RESPONSIVE ---- */
+      @media (max-width: 900px) {
+        .roster, .quotes { grid-template-columns: 1fr 1fr; }
+        .visit-grid { grid-template-columns: 1fr; }
+        .masonry { columns: 2 160px; }
+      }
+      @media (max-width: 720px) {
+        .burger { display: block; }
+        .links {
+          position: absolute; top: 100%; left: 0; right: 0;
+          flex-direction: column; align-items: stretch; gap: 0;
+          background: var(--bg); border-bottom: 1px solid var(--border);
+          padding: .5rem 1.25rem 1.25rem;
+          max-height: 0; overflow: hidden; transition: max-height .3s ease;
+        }
+        .links.open { max-height: 420px; }
+        .links li { padding: .35rem 0; }
+        .btn-book { text-align: center; margin-top: .5rem; }
+      }
+      @media (max-width: 620px) {
+        .roster, .quotes { grid-template-columns: 1fr; }
+        .dock-text { display: none; }
+      }
+    </style>
+
+    <script>
+      // mobile nav
+      const burger = document.querySelector(".burger");
+      const menu = document.getElementById("menu");
+      burger?.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        burger.setAttribute("aria-expanded", String(open));
+      });
+      menu?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          menu.classList.remove("open");
+          burger?.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      // scroll reveal
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,606 @@
+---
+const nav = [
+  { label: "Practice", href: "#classes" },
+  { label: "Teachers", href: "#teachers" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Visit", href: "#visit" },
+];
+
+const classes = [
+  { name: "Vinyasa Flow", note: "Breath-led movement, all levels", glow: "55% 35%" },
+  { name: "Slow & Restore", note: "Yin & deep stillness", glow: "30% 60%" },
+  { name: "Power Hour", note: "Strong, warming, focused", glow: "70% 55%" },
+  { name: "Candlelit Flow", note: "Friday evening reset", glow: "45% 70%" },
+  { name: "Prenatal", note: "Gentle support for two", glow: "60% 30%" },
+  { name: "Beginner's Foundations", note: "Start exactly where you are", glow: "35% 45%" },
+];
+
+const pricing = [
+  { name: "Single Drop-In", price: "$24", per: "one class", feat: ["Any class on the schedule", "No commitment", "Mat included"], featured: false },
+  { name: "Intro Week Unlimited", price: "$39", per: "new students", feat: ["7 days, unlimited classes", "Best first step", "Your first mat is on us"], featured: true },
+  { name: "Monthly Unlimited", price: "$145", per: "per month", feat: ["Every class, every day", "Workshop discounts", "Cancel anytime"], featured: false },
+];
+
+const extras = [
+  { name: "10-Class Pack", price: "$200" },
+  { name: "Private 1:1 Session · 60 min", price: "$110" },
+  { name: "Restorative & Yin Workshop · 90 min", price: "$35" },
+];
+
+const teachers = [
+  { name: "Anika Rao", role: "Vinyasa · Founder", seed: "lumenana", tags: ["Flow", "Breathwork"] },
+  { name: "Theo Marsh", role: "Yin · Restore", seed: "lumentheo", tags: ["Yin", "Sound"] },
+  { name: "Sol Devereux", role: "Power · Prenatal", seed: "lumensol", tags: ["Strength", "Prenatal"] },
+];
+
+const testimonials = [
+  { quote: "I walked in anxious and walked out lighter than I'd felt in months. The teachers actually see you.", who: "Maya R.", seed: "maya" },
+  { quote: "The most welcoming studio I've ever practiced in. No ego, just breath and good people.", who: "David T.", seed: "david" },
+  { quote: "Their Candlelit Flow on Friday nights has become my whole reset ritual.", who: "Priya S.", seed: "priya" },
+];
+
+const hours = [
+  { d: "Mon – Fri", t: "6:00am – 9:00pm" },
+  { d: "Saturday", t: "7:00am – 6:00pm" },
+  { d: "Sunday", t: "8:00am – 4:00pm" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lumen & Lotus Yoga — Come home to your breath · Inglewood, Calgary</title>
+    <meta name="description" content="A light-filled yoga studio in Calgary's Inglewood. Vinyasa, Yin, Candlelit Flow and more. Claim your free intro week — your first mat is on us." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav" id="top">
+      <div class="wrap nav-inner">
+        <a class="mark" href="#top" aria-label="Lumen and Lotus home">
+          <span class="mark-glyph" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="34" height="34">
+              <circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.5"></circle>
+              <path d="M20 8 C13 16 13 24 20 32 C27 24 27 16 20 8 Z" fill="currentColor" opacity="0.85"></path>
+              <circle cx="20" cy="20" r="3" fill="var(--bg)"></circle>
+            </svg>
+          </span>
+          <span class="mark-name">Lumen <em>&amp;</em> Lotus</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="btn btn-sm" href="#pricing">Free intro week</a>
+        <button class="burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+      </div>
+      <div class="mobile-menu" hidden>
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="btn" href="#pricing">Free intro week</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-orb orb-a" aria-hidden="true"></div>
+        <div class="hero-orb orb-b" aria-hidden="true"></div>
+        <div class="hero-photo" aria-hidden="true">
+          <img src="https://picsum.photos/seed/lumenhero/1200/1500" alt="" loading="eager" />
+        </div>
+        <div class="wrap hero-inner">
+          <p class="eyebrow reveal">Inglewood · Calgary</p>
+          <h1 class="reveal">Come home to<br /><span class="ital">your breath.</span></h1>
+          <p class="lede reveal">Move slow. Breathe deep. Begin again. A warm, unhurried space where modern movement meets ancient practice.</p>
+          <div class="hero-cta reveal">
+            <a class="btn" href="#pricing">Claim your free week</a>
+            <a class="btn btn-ghost" href="#classes">See the schedule</a>
+          </div>
+          <p class="hero-foot reveal">Your first mat is on us — book online or just walk in.</p>
+        </div>
+        <div class="wave" aria-hidden="true">
+          <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 60 C 320 0 520 90 760 50 C 1010 8 1240 80 1440 40 L1440 90 L0 90 Z"></path></svg>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          {Array(2).fill(0).map(() => (
+            <span>Vinyasa Flow <i>✺</i> Slow &amp; Restore <i>✺</i> Power Hour <i>✺</i> Candlelit Flow <i>✺</i> Prenatal <i>✺</i> Beginner's Foundations <i>✺</i></span>
+          ))}
+        </div>
+      </div>
+
+      <!-- PHILOSOPHY -->
+      <section class="philosophy wrap" id="story">
+        <div class="phil-text reveal">
+          <p class="eyebrow">The studio</p>
+          <h2>A practice for every body, every day.</h2>
+          <p>Lumen &amp; Lotus is a light-filled studio in Calgary's Inglewood district where modern movement meets ancient practice. Whether it's your first sun salutation or your thousandth, you'll find a warm, unhurried space to reconnect with your body and quiet the noise.</p>
+          <div class="phil-stats">
+            <div><strong>12</strong><span>classes daily</span></div>
+            <div><strong>9</strong><span>teachers</span></div>
+            <div><strong>4.9★</strong><span>from 600+ students</span></div>
+          </div>
+        </div>
+        <div class="phil-img reveal">
+          <img src="https://picsum.photos/seed/lumenphil/700/860" alt="A sunlit studio with rolled mats and a single figure seated in stillness." loading="lazy" />
+          <div class="phil-badge">est. 2019 · Inglewood</div>
+        </div>
+      </section>
+
+      <!-- CLASSES -->
+      <section class="classes" id="classes">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">Find your flow</p>
+            <h2>Classes for wherever you are today</h2>
+          </div>
+          <div class="class-grid">
+            {classes.map((c) => (
+              <article class="class-card reveal" style={`--g:${c.glow}`}>
+                <span class="class-aura" aria-hidden="true"></span>
+                <h3>{c.name}</h3>
+                <p>{c.note}</p>
+                <a href="#pricing" class="class-link">Book <span aria-hidden="true">→</span></a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- TEACHERS -->
+      <section class="teachers wrap" id="teachers">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Meet the teachers</p>
+          <h2>You'll choose us for who's on the mat beside you</h2>
+        </div>
+        <div class="teacher-grid">
+          {teachers.map((t) => (
+            <article class="teacher-card reveal">
+              <div class="teacher-portrait">
+                <img src={`https://picsum.photos/seed/${t.seed}/360/440`} alt={`Portrait of ${t.name}, ${t.role}`} loading="lazy" />
+              </div>
+              <h3>{t.name}</h3>
+              <p class="teacher-role">{t.role}</p>
+              <div class="tags">{t.tags.map((tag) => <span>{tag}</span>)}</div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS SLIDER -->
+      <section class="quotes" id="love">
+        <div class="quote-orb" aria-hidden="true"></div>
+        <div class="wrap">
+          <p class="eyebrow center reveal">Student voices</p>
+          <div class="quote-stage reveal">
+            {testimonials.map((t, i) => (
+              <figure class={`quote-slide${i === 0 ? " on" : ""}`} data-i={i}>
+                <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote>{t.quote}</blockquote>
+                <figcaption>
+                  <img src={`https://picsum.photos/seed/${t.seed}/80/80`} alt="" loading="lazy" />
+                  <span>{t.who}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <div class="quote-dots" role="tablist" aria-label="Choose testimonial">
+            {testimonials.map((_, i) => (
+              <button class={`dot${i === 0 ? " on" : ""}`} data-go={i} role="tab" aria-label={`Testimonial ${i + 1}`}></button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section class="pricing wrap" id="pricing">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Begin again</p>
+          <h2>Find the rhythm that fits</h2>
+        </div>
+        <div class="price-grid">
+          {pricing.map((p) => (
+            <article class={`price-card reveal${p.featured ? " feat" : ""}`}>
+              {p.featured && <span class="ribbon">New students</span>}
+              <h3>{p.name}</h3>
+              <div class="price"><span class="amt">{p.price}</span><span class="per">{p.per}</span></div>
+              <ul>{p.feat.map((f) => <li>{f}</li>)}</ul>
+              <a class={`btn ${p.featured ? "" : "btn-ghost"}`} href="#visit">{p.featured ? "Start free week" : "Choose"}</a>
+            </article>
+          ))}
+        </div>
+        <div class="extras reveal">
+          {extras.map((e) => (
+            <div class="extra-row"><span>{e.name}</span><span class="extra-price">{e.price}</span></div>
+          ))}
+        </div>
+      </section>
+
+      <!-- VISIT / NAP -->
+      <section class="visit" id="visit">
+        <div class="wrap visit-inner">
+          <div class="visit-info reveal">
+            <p class="eyebrow">Come as you are</p>
+            <h2>Find your stillness in the heart of the city</h2>
+            <address class="nap">
+              <p><strong>Lumen &amp; Lotus Yoga</strong><br />1322 9th Avenue SE<br />Inglewood, Calgary, AB T2G 0T3</p>
+              <p><a href="tel:+14035550184" class="big-link">(403) 555-0184</a></p>
+              <p><a href="mailto:hello@lumenandlotus.ca" class="big-link">hello@lumenandlotus.ca</a></p>
+            </address>
+            <ul class="hours">
+              {hours.map((h) => <li><span>{h.d}</span><span>{h.t}</span></li>)}
+            </ul>
+            <a class="btn" href="tel:+14035550184">Call the studio</a>
+          </div>
+          <div class="visit-map reveal">
+            <img src="https://picsum.photos/seed/lumenmap/640/720" alt="Map showing Lumen and Lotus on 9th Avenue SE in Inglewood." loading="lazy" />
+            <span class="pin" aria-hidden="true"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEWSLETTER CTA -->
+      <section class="signup">
+        <div class="wrap signup-inner reveal">
+          <h2>Stay in the breath</h2>
+          <p>Workshops, retreats and seasonal series — gentle notes, never noise.</p>
+          <form class="signup-form" onsubmit="return false">
+            <label class="sr" for="email">Email address</label>
+            <input id="email" type="email" placeholder="you@inglewood.ca" required />
+            <button class="btn" type="submit">Join the community</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap foot-inner">
+        <div class="foot-brand">
+          <span class="mark-name big">Lumen <em>&amp;</em> Lotus</span>
+          <p>Move slow. Breathe deep. Begin again.</p>
+        </div>
+        <div class="foot-cols">
+          <div><h4>Practice</h4>{nav.map((n) => <a href={n.href}>{n.label}</a>)}</div>
+          <div><h4>Visit</h4><a href="tel:+14035550184">(403) 555-0184</a><a href="mailto:hello@lumenandlotus.ca">hello@lumenandlotus.ca</a><span>1322 9th Ave SE, Calgary</span></div>
+        </div>
+      </div>
+      <div class="wrap foot-base">© 2026 Lumen &amp; Lotus Yoga · Inglewood, Calgary · Made with breath.</div>
+    </footer>
+
+    <!-- STICKY BOOKING BAR -->
+    <div class="book-bar" id="bookBar">
+      <span class="book-text">First week free for new students</span>
+      <a class="btn btn-sm" href="#pricing">Book a class</a>
+    </div>
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+      }
+    </style>
+
+    <style>
+      :root {
+        --bg: #F7F4FA;
+        --fg: #322B3E;
+        --primary: #9B7FC4;
+        --primary-fg: #FBFAFE;
+        --accent: #E7A98E;
+        --muted: #ECE6F3;
+        --border: #DCD3E6;
+        --serif: "Cormorant Garamond", Georgia, serif;
+        --sans: "Jost", system-ui, sans-serif;
+        --radius: 22px;
+        --shadow: 0 24px 60px -30px rgba(70, 50, 100, .45);
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--sans);
+        font-weight: 300;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      .wrap { width: min(1160px, 100% - 2.6rem); margin-inline: auto; }
+      h1, h2, h3, h4 { font-family: var(--serif); font-weight: 500; line-height: 1.06; margin: 0; letter-spacing: .2px; }
+      h2 { font-size: clamp(2rem, 4.5vw, 3.4rem); }
+      .ital { font-style: italic; font-weight: 400; color: var(--primary); }
+      p { margin: 0 0 1rem; }
+      a { color: inherit; text-decoration: none; }
+      .sr, .skip { position: absolute; left: -9999px; }
+      .skip:focus { left: 1rem; top: 1rem; z-index: 100; background: var(--primary); color: var(--primary-fg); padding: .6rem 1rem; border-radius: 10px; }
+      :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+      .eyebrow {
+        font-family: var(--sans); font-weight: 500; font-size: .72rem;
+        letter-spacing: .28em; text-transform: uppercase; color: var(--primary);
+        margin: 0 0 1rem;
+      }
+      .eyebrow.center { text-align: center; }
+      .sec-head { max-width: 640px; margin-bottom: clamp(2rem, 4vw, 3.2rem); }
+
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 48px; padding: 0 1.6rem;
+        background: var(--primary); color: var(--primary-fg);
+        font-family: var(--sans); font-weight: 500; font-size: .92rem;
+        letter-spacing: .04em; border: 1px solid var(--primary);
+        border-radius: 100px; cursor: pointer;
+        transition: transform .35s cubic-bezier(.2,.7,.3,1), box-shadow .35s, background .35s;
+        box-shadow: 0 12px 30px -14px rgba(120, 90, 170, .7);
+      }
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 18px 36px -14px rgba(120, 90, 170, .85); }
+      .btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); box-shadow: none; }
+      .btn-ghost:hover { background: var(--muted); }
+      .btn-sm { min-height: 42px; padding: 0 1.15rem; font-size: .82rem; }
+
+      /* NAV */
+      .nav {
+        position: sticky; top: 0; z-index: 50;
+        background: color-mix(in srgb, var(--bg) 82%, transparent);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-inner { display: flex; align-items: center; gap: 1.4rem; height: 72px; }
+      .mark { display: flex; align-items: center; gap: .6rem; color: var(--primary); }
+      .mark-glyph { display: grid; place-items: center; }
+      .mark-name { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--fg); letter-spacing: .3px; }
+      .mark-name em { font-style: italic; color: var(--primary); font-weight: 400; }
+      .mark-name.big { font-size: 2rem; }
+      .nav-links { margin-left: auto; display: flex; gap: 1.6rem; }
+      .nav-links a { font-size: .86rem; letter-spacing: .04em; position: relative; padding: .3rem 0; }
+      .nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 1px; background: var(--primary); transition: width .3s; }
+      .nav-links a:hover::after { width: 100%; }
+      .nav .btn-sm { flex-shrink: 0; }
+      .burger { display: none; background: none; border: 0; width: 44px; height: 44px; cursor: pointer; flex-direction: column; gap: 5px; align-items: center; justify-content: center; }
+      .burger span { width: 22px; height: 1.6px; background: var(--fg); transition: .3s; }
+      .burger[aria-expanded="true"] span:first-child { transform: translateY(3.3px) rotate(45deg); }
+      .burger[aria-expanded="true"] span:last-child { transform: translateY(-3.3px) rotate(-45deg); }
+      .mobile-menu { display: flex; flex-direction: column; gap: .4rem; padding: 1rem 1.3rem 1.6rem; border-bottom: 1px solid var(--border); }
+      .mobile-menu a:not(.btn) { padding: .7rem .2rem; font-size: 1rem; border-bottom: 1px solid var(--border); }
+      .mobile-menu .btn { margin-top: .8rem; }
+
+      /* HERO */
+      .hero { position: relative; padding: clamp(3rem, 9vw, 7rem) 0 clamp(5rem, 10vw, 8rem); overflow: hidden; }
+      .hero-orb { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .55; z-index: 0; animation: float 14s ease-in-out infinite; }
+      .orb-a { width: 460px; height: 460px; top: -120px; left: -100px; background: radial-gradient(circle, var(--primary), transparent 70%); }
+      .orb-b { width: 380px; height: 380px; bottom: -80px; right: 6%; background: radial-gradient(circle, var(--accent), transparent 70%); animation-delay: -5s; }
+      @keyframes float { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-26px) scale(1.05); } }
+      .hero-photo {
+        position: absolute; top: 0; right: 0; width: 44%; height: 100%; z-index: 1;
+        clip-path: path("M40 80 C 0 220 0 380 40 540 C 120 760 360 760 460 600 C 540 460 540 200 460 60 C 360 -60 120 -60 40 80 Z");
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%);
+        mask-image: linear-gradient(90deg, transparent, #000 30%);
+      }
+      .hero-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.85) contrast(.95); mix-blend-mode: luminosity; opacity: .9; }
+      .hero-inner { position: relative; z-index: 2; max-width: 660px; }
+      .hero h1 { font-size: clamp(3rem, 9vw, 6rem); margin-bottom: 1.4rem; }
+      .lede { font-size: clamp(1.05rem, 1.8vw, 1.3rem); max-width: 38ch; color: color-mix(in srgb, var(--fg) 82%, transparent); }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: .9rem; margin: 1.8rem 0 1.2rem; }
+      .hero-foot { font-size: .9rem; color: var(--primary); font-weight: 400; }
+      .wave { position: absolute; bottom: -1px; left: 0; width: 100%; z-index: 1; line-height: 0; }
+      .wave svg { width: 100%; height: clamp(50px, 7vw, 90px); }
+      .wave path { fill: var(--muted); }
+
+      /* MARQUEE */
+      .marquee { background: var(--muted); overflow: hidden; padding: .9rem 0; border-bottom: 1px solid var(--border); }
+      .marquee-track { display: flex; white-space: nowrap; width: max-content; animation: scroll 34s linear infinite; }
+      .marquee-track span { font-family: var(--serif); font-size: 1.5rem; font-style: italic; color: var(--fg); padding-right: 1rem; }
+      .marquee-track i { color: var(--accent); font-style: normal; margin: 0 .6rem; }
+      @keyframes scroll { to { transform: translateX(-50%); } }
+      .marquee:hover .marquee-track { animation-play-state: paused; }
+
+      /* PHILOSOPHY */
+      .philosophy { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; padding: clamp(4rem, 9vw, 7rem) 0; }
+      .phil-text p { max-width: 46ch; color: color-mix(in srgb, var(--fg) 85%, transparent); }
+      .phil-text h2 { margin-bottom: 1.3rem; }
+      .phil-stats { display: flex; gap: 2rem; margin-top: 2.2rem; flex-wrap: wrap; }
+      .phil-stats div { display: flex; flex-direction: column; }
+      .phil-stats strong { font-family: var(--serif); font-size: 2.4rem; font-weight: 500; color: var(--primary); line-height: 1; }
+      .phil-stats span { font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; color: color-mix(in srgb, var(--fg) 60%, transparent); margin-top: .4rem; }
+      .phil-img { position: relative; }
+      .phil-img img { width: 100%; border-radius: 180px 180px var(--radius) var(--radius); box-shadow: var(--shadow); aspect-ratio: 7/9; object-fit: cover; }
+      .phil-badge { position: absolute; bottom: 1.4rem; left: -1rem; background: var(--bg); border: 1px solid var(--border); padding: .6rem 1.1rem; border-radius: 100px; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--primary); box-shadow: var(--shadow); }
+
+      /* CLASSES */
+      .classes { padding: clamp(3rem, 7vw, 6rem) 0; background: linear-gradient(180deg, var(--muted), var(--bg)); }
+      .class-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+      .class-card {
+        position: relative; overflow: hidden; padding: 2rem 1.8rem 1.6rem;
+        background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+        transition: transform .4s cubic-bezier(.2,.7,.3,1), box-shadow .4s;
+      }
+      .class-aura { position: absolute; inset: 0; background: radial-gradient(circle at var(--g), color-mix(in srgb, var(--primary) 22%, transparent), transparent 60%); opacity: 0; transition: opacity .4s; pointer-events: none; }
+      .class-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+      .class-card:hover .class-aura { opacity: 1; }
+      .class-card h3 { font-size: 1.7rem; margin-bottom: .3rem; position: relative; }
+      .class-card p { font-size: .9rem; color: color-mix(in srgb, var(--fg) 65%, transparent); margin-bottom: 1.2rem; position: relative; }
+      .class-link { position: relative; font-size: .85rem; font-weight: 500; letter-spacing: .05em; color: var(--primary); }
+      .class-link span { display: inline-block; transition: transform .3s; }
+      .class-card:hover .class-link span { transform: translateX(5px); }
+
+      /* TEACHERS */
+      .teachers { padding: clamp(4rem, 8vw, 7rem) 0; }
+      .teacher-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.6rem; }
+      .teacher-card { text-align: center; }
+      .teacher-portrait { position: relative; width: 100%; max-width: 280px; margin: 0 auto 1.2rem; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
+      .teacher-portrait::after { content: ""; position: absolute; inset: 0; background: linear-gradient(150deg, color-mix(in srgb, var(--primary) 30%, transparent), color-mix(in srgb, var(--accent) 25%, transparent)); mix-blend-mode: soft-light; }
+      .teacher-portrait img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.9); transition: transform .6s; }
+      .teacher-card:hover .teacher-portrait img { transform: scale(1.06); }
+      .teacher-card h3 { font-size: 1.6rem; }
+      .teacher-role { font-size: .85rem; color: color-mix(in srgb, var(--fg) 62%, transparent); margin-bottom: .7rem; }
+      .tags { display: flex; gap: .5rem; justify-content: center; flex-wrap: wrap; }
+      .tags span { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; padding: .35rem .8rem; border: 1px solid var(--border); border-radius: 100px; color: var(--primary); }
+
+      /* QUOTES */
+      .quotes { position: relative; padding: clamp(4rem, 9vw, 7rem) 0; background: var(--fg); color: var(--primary-fg); overflow: hidden; }
+      .quotes .eyebrow { color: var(--accent); }
+      .quote-orb { position: absolute; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, var(--primary), transparent 70%); filter: blur(70px); opacity: .45; top: -160px; right: -120px; }
+      .quote-stage { position: relative; max-width: 720px; margin: 1.6rem auto 0; min-height: 260px; }
+      .quote-slide { position: absolute; inset: 0; opacity: 0; transform: translateY(14px); transition: opacity .7s, transform .7s; pointer-events: none; text-align: center; }
+      .quote-slide.on { opacity: 1; transform: none; pointer-events: auto; position: relative; }
+      .stars { color: var(--accent); letter-spacing: .25em; margin-bottom: 1.2rem; font-size: 1.05rem; }
+      .quote-slide blockquote { font-family: var(--serif); font-size: clamp(1.5rem, 3.4vw, 2.4rem); font-style: italic; line-height: 1.3; margin: 0 0 1.6rem; font-weight: 400; }
+      .quote-slide figcaption { display: flex; align-items: center; justify-content: center; gap: .8rem; font-size: .9rem; letter-spacing: .04em; }
+      .quote-slide figcaption img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 1px solid color-mix(in srgb, var(--primary-fg) 30%, transparent); }
+      .quote-dots { display: flex; gap: .6rem; justify-content: center; margin-top: 2.4rem; }
+      .dot { width: 11px; height: 11px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--primary-fg) 50%, transparent); background: transparent; cursor: pointer; padding: 0; min-width: 44px; min-height: 44px; position: relative; }
+      .dot::after { content: ""; position: absolute; inset: 50%; width: 11px; height: 11px; border-radius: 50%; transform: translate(-50%, -50%); border: 1px solid color-mix(in srgb, var(--primary-fg) 50%, transparent); transition: background .3s, border-color .3s; }
+      .dot { border: 0; }
+      .dot.on::after { background: var(--accent); border-color: var(--accent); }
+
+      /* PRICING */
+      .pricing { padding: clamp(4rem, 9vw, 7rem) 0; }
+      .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; align-items: stretch; }
+      .price-card { position: relative; display: flex; flex-direction: column; padding: 2.4rem 2rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); transition: transform .4s; }
+      .price-card:hover { transform: translateY(-5px); }
+      .price-card.feat { background: linear-gradient(165deg, color-mix(in srgb, var(--primary) 14%, var(--bg)), var(--bg)); border-color: var(--primary); box-shadow: var(--shadow); }
+      .ribbon { position: absolute; top: -13px; left: 2rem; background: var(--accent); color: var(--fg); font-size: .68rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; padding: .4rem .9rem; border-radius: 100px; }
+      .price-card h3 { font-size: 1.7rem; margin-bottom: 1rem; }
+      .price { display: flex; align-items: baseline; gap: .5rem; margin-bottom: 1.4rem; }
+      .price .amt { font-family: var(--serif); font-size: 3rem; font-weight: 500; color: var(--primary); line-height: 1; }
+      .price .per { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: color-mix(in srgb, var(--fg) 60%, transparent); }
+      .price-card ul { list-style: none; padding: 0; margin: 0 0 1.8rem; display: flex; flex-direction: column; gap: .7rem; flex: 1; }
+      .price-card li { font-size: .9rem; padding-left: 1.5rem; position: relative; }
+      .price-card li::before { content: "✺"; position: absolute; left: 0; color: var(--accent); }
+      .extras { margin-top: 2rem; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+      .extra-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.6rem; border-bottom: 1px solid var(--border); background: var(--muted); }
+      .extra-row:last-child { border-bottom: 0; }
+      .extra-row span { font-size: .95rem; }
+      .extra-price { font-family: var(--serif); font-size: 1.3rem; color: var(--primary); font-weight: 500; }
+
+      /* VISIT */
+      .visit { padding: clamp(4rem, 9vw, 7rem) 0; background: linear-gradient(180deg, var(--bg), var(--muted)); }
+      .visit-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+      .nap { font-style: normal; margin: 1.4rem 0; }
+      .nap p { margin-bottom: .7rem; }
+      .big-link { font-family: var(--serif); font-size: 1.5rem; color: var(--primary); transition: color .3s; }
+      .big-link:hover { color: var(--accent); }
+      .hours { list-style: none; padding: 0; margin: 1.6rem 0; border-top: 1px solid var(--border); }
+      .hours li { display: flex; justify-content: space-between; padding: .8rem 0; border-bottom: 1px solid var(--border); font-size: .95rem; }
+      .hours span:first-child { color: color-mix(in srgb, var(--fg) 65%, transparent); }
+      .visit-map { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+      .visit-map img { width: 100%; aspect-ratio: 8/9; object-fit: cover; filter: saturate(.7) contrast(1.05); }
+      .visit-map::after { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, color-mix(in srgb, var(--primary) 28%, transparent), color-mix(in srgb, var(--accent) 18%, transparent)); mix-blend-mode: multiply; }
+      .pin { position: absolute; top: 46%; left: 50%; width: 22px; height: 22px; transform: translate(-50%, -50%); background: var(--accent); border: 3px solid var(--bg); border-radius: 50% 50% 50% 0; rotate: 45deg; box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 30%, transparent); animation: pulse 2.4s ease-in-out infinite; }
+      @keyframes pulse { 0%,100% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 30%, transparent); } 50% { box-shadow: 0 0 0 14px color-mix(in srgb, var(--accent) 0%, transparent); } }
+
+      /* SIGNUP */
+      .signup { padding: clamp(4rem, 9vw, 6rem) 0; text-align: center; }
+      .signup-inner { max-width: 560px; }
+      .signup h2 { margin-bottom: .6rem; }
+      .signup p { color: color-mix(in srgb, var(--fg) 70%, transparent); }
+      .signup-form { display: flex; gap: .7rem; margin-top: 1.6rem; flex-wrap: wrap; justify-content: center; }
+      .signup-form input { flex: 1; min-width: 200px; min-height: 48px; padding: 0 1.2rem; border: 1px solid var(--border); border-radius: 100px; background: var(--bg); font-family: var(--sans); font-size: .95rem; color: var(--fg); }
+      .signup-form input::placeholder { color: color-mix(in srgb, var(--fg) 45%, transparent); }
+
+      /* FOOTER */
+      .foot { background: var(--fg); color: color-mix(in srgb, var(--primary-fg) 80%, transparent); padding: clamp(3rem, 6vw, 4.5rem) 0 2rem; }
+      .foot-inner { display: flex; justify-content: space-between; gap: 2.5rem; flex-wrap: wrap; }
+      .foot-brand .mark-name { color: var(--primary-fg); }
+      .foot-brand p { font-family: var(--serif); font-style: italic; font-size: 1.2rem; margin-top: .6rem; opacity: .8; }
+      .foot-cols { display: flex; gap: 3.5rem; flex-wrap: wrap; }
+      .foot-cols h4 { font-family: var(--sans); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; font-weight: 500; }
+      .foot-cols a, .foot-cols span { display: block; font-size: .9rem; margin-bottom: .55rem; opacity: .8; transition: opacity .3s; }
+      .foot-cols a:hover { opacity: 1; color: var(--accent); }
+      .foot-base { margin-top: 2.6rem; padding-top: 1.6rem; border-top: 1px solid color-mix(in srgb, var(--primary-fg) 15%, transparent); font-size: .8rem; opacity: .6; }
+
+      /* STICKY BOOK BAR */
+      .book-bar {
+        position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%) translateY(150%);
+        z-index: 60; display: flex; align-items: center; gap: 1.1rem;
+        background: color-mix(in srgb, var(--fg) 94%, transparent); color: var(--primary-fg);
+        padding: .6rem .6rem .6rem 1.4rem; border-radius: 100px;
+        box-shadow: 0 20px 50px -18px rgba(40, 25, 70, .6);
+        backdrop-filter: blur(10px); transition: transform .5s cubic-bezier(.2,.7,.3,1);
+        width: min(560px, calc(100% - 2rem));
+      }
+      .book-bar.show { transform: translateX(-50%) translateY(0); }
+      .book-text { font-size: .86rem; flex: 1; }
+
+      /* REVEAL */
+      .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.3,1); }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* RESPONSIVE */
+      @media (max-width: 880px) {
+        .nav-links, .nav .btn-sm { display: none; }
+        .burger { display: flex; margin-left: auto; }
+        .hero-photo { display: none; }
+        .philosophy, .visit-inner { grid-template-columns: 1fr; }
+        .phil-img img { aspect-ratio: 16/11; border-radius: var(--radius); }
+        .visit-map { order: -1; }
+        .book-text { font-size: .8rem; }
+      }
+      @media (min-width: 881px) { .mobile-menu { display: none !important; } }
+      @media (max-width: 440px) {
+        .hero h1 { font-size: clamp(2.6rem, 13vw, 3.4rem); }
+        .book-bar { padding-left: 1.1rem; }
+        .marquee-track span { font-size: 1.2rem; }
+      }
+    </style>
+
+    <script>
+      // Mobile menu
+      const burger = document.querySelector(".burger");
+      const menu = document.querySelector(".mobile-menu");
+      burger?.addEventListener("click", () => {
+        const open = burger.getAttribute("aria-expanded") === "true";
+        burger.setAttribute("aria-expanded", String(!open));
+        if (menu) menu.hidden = open;
+      });
+      menu?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          burger?.setAttribute("aria-expanded", "false");
+          if (menu) menu.hidden = true;
+        })
+      );
+
+      // Scroll reveal
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+        { threshold: 0.14 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // Testimonial slider
+      const slides = Array.from(document.querySelectorAll(".quote-slide"));
+      const dots = Array.from(document.querySelectorAll(".dot"));
+      let qi = 0;
+      let qTimer;
+      function showQuote(n) {
+        qi = (n + slides.length) % slides.length;
+        slides.forEach((s, i) => s.classList.toggle("on", i === qi));
+        dots.forEach((d, i) => d.classList.toggle("on", i === qi));
+      }
+      function startQuotes() { qTimer = setInterval(() => showQuote(qi + 1), 5500); }
+      dots.forEach((d) => d.addEventListener("click", () => { clearInterval(qTimer); showQuote(Number(d.dataset.go)); startQuotes(); }));
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && slides.length) startQuotes();
+
+      // Sticky book bar after hero
+      const bar = document.getElementById("bookBar");
+      const hero = document.querySelector(".hero");
+      if (bar && hero) {
+        const barIO = new IntersectionObserver(
+          (entries) => entries.forEach((e) => bar.classList.toggle("show", !e.isIntersecting)),
+          { threshold: 0 }
+        );
+        barIO.observe(hero);
+      }
+    </script>
+  </body>
+</html>

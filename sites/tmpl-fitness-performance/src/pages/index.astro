@@ -1,0 +1,606 @@
+---
+const nav = [
+  { label: "Programs", href: "#programs" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Coaches", href: "#coaches" },
+  { label: "Schedule", href: "#schedule" },
+  { label: "Visit", href: "#visit" },
+];
+
+const metrics = [
+  { val: 2400, suffix: "+", label: "Athletes trained" },
+  { val: 92, suffix: "/wk", label: "Coached sessions" },
+  { val: 18, suffix: "%", label: "Avg. strength gain / 12wk" },
+  { val: 4.9, suffix: "★", label: "Member rating", decimals: 1 },
+];
+
+const programs = [
+  { code: "STR", title: "Strength", desc: "Periodized barbell programming — squat, press, pull. Built around your numbers, not a template.", seed: "irongrid-str", load: "92" },
+  { code: "HIT", title: "Conditioning", desc: "Engine work that actually transfers. Intervals tracked, scaled, and measured every round.", seed: "irongrid-hit", load: "78" },
+  { code: "FND", title: "Foundations", desc: "8-week on-ramp for first-timers. Learn the lifts, build the base, lose the gym anxiety.", seed: "irongrid-fnd", load: "54" },
+  { code: "OPN", title: "Open Gym", desc: "Full rack access, coach on the floor. Run your own session with eyes on your bar path.", seed: "irongrid-opn", load: "66" },
+];
+
+const pricing = [
+  { name: "Drop-In", price: "25", unit: "/ class", features: ["Single coached class", "No commitment", "All equipment included"], featured: false },
+  { name: "Unlimited", price: "169", unit: "/ month", features: ["Unlimited coached classes", "Open gym access", "Performance tracking app", "Free monthly assessment"], featured: true },
+  { name: "Intro Pack", price: "59", unit: "/ 3 classes", features: ["3 coached classes", "Movement assessment", "Best way to start"], featured: false },
+  { name: "1-on-1", price: "90", unit: "/ session", features: ["Private coaching", "Bespoke programming", "Video form review"], featured: false },
+];
+
+const coaches = [
+  { name: "Marcus Vey", spec: "Head Coach · Strength", cred: "CSCS · 11 yrs · ex-national PL", seed: "coach-marcus" },
+  { name: "Priya Anand", spec: "Conditioning Lead", cred: "CF-L3 · Sports Sci. MSc", seed: "coach-priya" },
+  { name: "Dev Okonkwo", spec: "Foundations", cred: "NASM-CPT · Movement specialist", seed: "coach-dev" },
+];
+
+const testimonials = [
+  { quote: "Down 22 lbs and deadlifting double my bodyweight. The coaches actually program for YOU.", name: "Megan R.", tag: "Member · 14 months" },
+  { quote: "I was terrified of a 'real' gym. Six months later it's the best part of my day.", name: "Devon T.", tag: "Member · 6 months" },
+  { quote: "Small classes, real coaching, zero ego. Worth every dollar.", name: "Priya S.", tag: "Member · 2 years" },
+];
+
+const schedule = [
+  { time: "05:30", mon: "STR", tue: "HIT", wed: "STR", thu: "HIT", fri: "STR" },
+  { time: "12:00", mon: "OPN", tue: "STR", wed: "OPN", thu: "STR", fri: "OPN" },
+  { time: "17:30", mon: "HIT", tue: "FND", wed: "HIT", thu: "FND", fri: "HIT" },
+  { time: "19:00", mon: "STR", tue: "OPN", wed: "STR", thu: "OPN", fri: "—" },
+];
+const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+
+const hours = [
+  { d: "Mon – Fri", h: "5:00 AM – 9:00 PM" },
+  { d: "Saturday", h: "7:00 AM – 4:00 PM" },
+  { d: "Sunday", h: "8:00 AM – 2:00 PM" },
+];
+
+const phone = "(403) 555-0184";
+const phoneHref = "tel:+14035550184";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  name: "IRONGRID Performance Lab",
+  image: "https://picsum.photos/seed/irongrid-hero/1200/800",
+  telephone: "+14035550184",
+  address: { "@type": "PostalAddress", streetAddress: "1142 11 Avenue SW", addressLocality: "Calgary", addressRegion: "AB", postalCode: "T2R 0G6", addressCountry: "CA" },
+  openingHours: ["Mo-Fr 05:00-21:00", "Sa 07:00-16:00", "Su 08:00-14:00"],
+  priceRange: "$$",
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IRONGRID / Performance Lab — Coached Strength Training in Calgary</title>
+    <meta name="description" content="IRONGRID Performance Lab — data-driven coached strength training in Calgary SW. Periodized programming, conditioning, foundations & 1-on-1 coaching. Book a free intro class." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <set:html value={`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`} />
+  </head>
+  <body>
+    <a class="skip" href="#programs">Skip to content</a>
+
+    <header class="nav" id="top">
+      <div class="wrap nav-inner">
+        <a class="brand" href="#top" aria-label="IRONGRID Performance Lab home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-txt">IRONGRID<em>/ Performance Lab</em></span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="btn btn-sm" href="#cta">Book a Free Class</a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+      </div>
+      <nav class="nav-drawer" aria-label="Mobile">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="btn" href="#cta">Book a Free Class</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-h">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="wrap hero-inner">
+          <p class="eyebrow reveal"><span class="dot"></span>Calgary SW · Strength Performance Lab</p>
+          <h1 id="hero-h" class="reveal">TRAIN LIKE<br/>IT <span class="accent">MATTERS.</span></h1>
+          <p class="lede reveal">Coached strength training for every body — no egos, just progress. Measured, programmed, and built around your numbers.</p>
+          <div class="hero-cta reveal">
+            <a class="btn btn-lg" href="#cta">Book a Free Intro Class</a>
+            <a class="btn btn-ghost btn-lg" href={phoneHref}>{phone}</a>
+          </div>
+          <div class="hero-readout reveal" role="group" aria-label="Live readout">
+            <span><b>92</b> sessions / wk</span>
+            <span><b>1142</b> 11 Ave SW</span>
+            <span><b>4.9★</b> member rated</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- METRICS -->
+      <section class="metrics" aria-label="Performance metrics">
+        <div class="wrap metrics-grid">
+          {metrics.map((m) => (
+            <div class="metric">
+              <span class="metric-val" data-target={m.val} data-suffix={m.suffix} data-decimals={m.decimals ?? 0}>0{m.suffix}</span>
+              <span class="metric-label">{m.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- PROGRAMS -->
+      <section class="section" id="programs" aria-labelledby="prog-h">
+        <div class="wrap">
+          <div class="sec-head">
+            <p class="kicker">01 / Training Tracks</p>
+            <h2 id="prog-h">Pick your <span class="accent">track</span>.</h2>
+          </div>
+          <div class="prog-grid">
+            {programs.map((p) => (
+              <article class="prog reveal">
+                <div class="prog-media" style={`--seed:url(https://picsum.photos/seed/${p.seed}/640/480)`} aria-hidden="true"></div>
+                <div class="prog-body">
+                  <div class="prog-top"><span class="prog-code">{p.code}</span><h3>{p.title}</h3></div>
+                  <p>{p.desc}</p>
+                  <div class="prog-load" aria-label={`Typical intensity ${p.load} percent`}>
+                    <span class="prog-load-bar" style={`--w:${p.load}%`}></span>
+                    <span class="prog-load-txt">INTENSITY {p.load}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section class="section band" id="pricing" aria-labelledby="price-h">
+        <div class="wrap">
+          <div class="sec-head">
+            <p class="kicker">02 / Membership</p>
+            <h2 id="price-h">No contracts. <span class="accent">Just results.</span></h2>
+          </div>
+          <div class="price-grid">
+            {pricing.map((p) => (
+              <article class={`price ${p.featured ? "price-featured" : ""}`}>
+                {p.featured && <span class="badge">Most popular</span>}
+                <h3>{p.name}</h3>
+                <p class="price-amt"><span class="cur">$</span>{p.price}<span class="unit">{p.unit}</span></p>
+                <ul>
+                  {p.features.map((f) => <li>{f}</li>)}
+                </ul>
+                <a class={`btn ${p.featured ? "" : "btn-ghost"} btn-full`} href="#cta">Get started</a>
+              </article>
+            ))}
+          </div>
+          <p class="price-note">Also offered: Strength Foundations 8-week program — <b>$299</b> · Open Gym Membership — <b>$89 / month</b>.</p>
+        </div>
+      </section>
+
+      <!-- COACHES -->
+      <section class="section" id="coaches" aria-labelledby="coach-h">
+        <div class="wrap">
+          <div class="sec-head">
+            <p class="kicker">03 / The Floor Team</p>
+            <h2 id="coach-h">Coaches who <span class="accent">program for you</span>.</h2>
+          </div>
+          <div class="coach-grid">
+            {coaches.map((c) => (
+              <article class="coach reveal">
+                <div class="coach-media">
+                  <img src={`https://picsum.photos/seed/${c.seed}/520/640?grayscale`} alt={`Coach ${c.name}`} loading="lazy" width="520" height="640" />
+                  <span class="coach-tag">{c.spec}</span>
+                </div>
+                <h3>{c.name}</h3>
+                <p class="coach-cred">{c.cred}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section band" aria-labelledby="results-h">
+        <div class="wrap">
+          <div class="sec-head">
+            <p class="kicker">04 / Results</p>
+            <h2 id="results-h">Real members. <span class="accent">Real numbers.</span></h2>
+          </div>
+          <div class="slider" data-slider>
+            <div class="slides" data-track>
+              {testimonials.map((t) => (
+                <figure class="slide">
+                  <blockquote>“{t.quote}”</blockquote>
+                  <figcaption><b>{t.name}</b><span>{t.tag}</span></figcaption>
+                </figure>
+              ))}
+            </div>
+            <div class="slider-dots" role="tablist" aria-label="Testimonials">
+              {testimonials.map((_, i) => (
+                <button class={`s-dot ${i === 0 ? "on" : ""}`} data-go={i} role="tab" aria-label={`Testimonial ${i + 1}`}></button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCHEDULE -->
+      <section class="section" id="schedule" aria-labelledby="sched-h">
+        <div class="wrap">
+          <div class="sec-head">
+            <p class="kicker">05 / This Week</p>
+            <h2 id="sched-h">Find your <span class="accent">slot</span>.</h2>
+          </div>
+          <div class="table-scroll">
+            <table class="sched">
+              <thead>
+                <tr><th scope="col">Time</th>{days.map((d) => <th scope="col">{d}</th>)}</tr>
+              </thead>
+              <tbody>
+                {schedule.map((row) => (
+                  <tr>
+                    <th scope="row">{row.time}</th>
+                    {[row.mon, row.tue, row.wed, row.thu, row.fri].map((cell) => (
+                      <td class={cell === "—" ? "empty" : ""}>
+                        {cell === "—" ? <span>—</span> : <a href="#cta" class={`cls cls-${cell}`}>{cell}<small>Reserve</small></a>}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div class="legend" aria-hidden="true">
+            <span class="cls-STR">STR Strength</span><span class="cls-HIT">HIT Conditioning</span><span class="cls-FND">FND Foundations</span><span class="cls-OPN">OPN Open Gym</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta" id="cta" aria-labelledby="cta-h">
+        <div class="wrap cta-inner">
+          <p class="kicker">Free Intro Class</p>
+          <h2 id="cta-h">Stronger starts <span class="accent">here.</span></h2>
+          <p class="lede">Your first coached class is on us. Movement assessment included — see exactly where you stand.</p>
+          <div class="hero-cta">
+            <a class="btn btn-lg" href="#cta">Book a Free Intro Class</a>
+            <a class="btn btn-ghost btn-lg" href={phoneHref}>Call {phone}</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISIT / NAP -->
+      <section class="section" id="visit" aria-labelledby="visit-h">
+        <div class="wrap visit-grid">
+          <div>
+            <p class="kicker">06 / Visit</p>
+            <h2 id="visit-h">Find the <span class="accent">Lab</span>.</h2>
+            <address class="nap">
+              <p class="nap-addr">1142 11 Avenue SW<br/>Calgary, AB T2R 0G6</p>
+              <a class="nap-phone" href={phoneHref}>{phone}</a>
+              <a class="nap-map" href="https://maps.google.com/?q=1142+11+Avenue+SW+Calgary+AB" target="_blank" rel="noopener">Open in Maps →</a>
+            </address>
+            <ul class="hours">
+              {hours.map((h) => <li><span>{h.d}</span><b>{h.h}</b></li>)}
+            </ul>
+          </div>
+          <div class="map-card">
+            <img src="https://picsum.photos/seed/irongrid-map/720/720?grayscale" alt="Aerial view near the IRONGRID studio in Calgary SW" loading="lazy" width="720" height="720" />
+            <span class="map-pin" aria-hidden="true"></span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <span class="brand-txt">IRONGRID<em>/ Performance Lab</em></span>
+        <p>1142 11 Avenue SW, Calgary AB · <a href={phoneHref}>{phone}</a></p>
+        <p class="muted">© 2026 IRONGRID Strength Co. — Coached strength for every body.</p>
+      </div>
+    </footer>
+
+    <!-- STICKY MOBILE BOOKING BAR -->
+    <div class="book-bar" aria-hidden="false">
+      <a class="btn btn-full" href="#cta">Book a Free Class</a>
+      <a class="btn btn-ghost book-call" href={phoneHref} aria-label="Call the studio">Call</a>
+    </div>
+
+    <style is:global>
+      :root {
+        --bg: #0E1217; --fg: #E8ECF1; --primary: #3B82F6; --primary-fg: #FFFFFF;
+        --accent: #22D3A8; --muted: #7C8694; --border: #1E2630;
+        --panel: #131922; --panel-2: #171F2A;
+        --font-display: "Archivo", system-ui, sans-serif;
+        --font-body: "IBM Plex Sans", system-ui, sans-serif;
+        --r: 4px;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg); color: var(--fg); font-family: var(--font-body);
+        line-height: 1.6; -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; text-decoration: none; }
+      h1, h2, h3 { font-family: var(--font-display); font-weight: 900; line-height: 0.98; letter-spacing: -0.02em; }
+      ::selection { background: var(--accent); color: #04110c; }
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      }
+    </style>
+
+    <style>
+      .wrap { width: min(1200px, 92vw); margin-inline: auto; }
+      .accent { color: var(--accent); }
+      .muted { color: var(--muted); }
+      .skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: #04110c; padding: .6rem 1rem; z-index: 200; border-radius: var(--r); }
+      .skip:focus { left: 1rem; top: 1rem; }
+      :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+        background: var(--primary); color: var(--primary-fg); font-family: var(--font-display);
+        font-weight: 800; letter-spacing: .04em; text-transform: uppercase; font-size: .82rem;
+        padding: .85rem 1.4rem; border-radius: var(--r); border: 1px solid transparent;
+        min-height: 44px; cursor: pointer; transition: transform .15s, box-shadow .15s, background .15s;
+      }
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -10px var(--primary); }
+      .btn-sm { padding: .6rem 1rem; font-size: .74rem; }
+      .btn-lg { padding: 1rem 1.7rem; font-size: .9rem; }
+      .btn-full { width: 100%; }
+      .btn-ghost { background: transparent; border-color: var(--border); color: var(--fg); }
+      .btn-ghost:hover { border-color: var(--accent); color: var(--accent); box-shadow: none; }
+
+      .kicker { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: .22em; font-size: .72rem; color: var(--accent); margin-bottom: .9rem; }
+      .eyebrow { display: inline-flex; align-items: center; gap: .55rem; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: .18em; font-size: .74rem; color: var(--muted); }
+      .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); animation: pulse 2s infinite; }
+      @keyframes pulse { 50% { box-shadow: 0 0 0 9px transparent; } }
+
+      /* NAV */
+      .nav { position: sticky; top: 0; z-index: 100; background: color-mix(in srgb, var(--bg) 80%, transparent); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+      .nav-inner { display: flex; align-items: center; gap: 1.5rem; padding: .85rem 0; }
+      .brand { display: flex; align-items: center; gap: .6rem; }
+      .brand-mark { width: 26px; height: 26px; border-radius: 3px; background: conic-gradient(from 45deg, var(--primary), var(--accent), var(--primary)); position: relative; }
+      .brand-mark::after { content: ""; position: absolute; inset: 6px; background: var(--bg); border-radius: 1px; }
+      .brand-txt { font-family: var(--font-display); font-weight: 900; letter-spacing: -0.01em; font-size: 1.02rem; }
+      .brand-txt em { font-style: normal; color: var(--muted); font-weight: 600; letter-spacing: .02em; }
+      .nav-links { display: flex; gap: 1.5rem; margin-left: auto; }
+      .nav-links a { font-size: .86rem; color: var(--muted); font-weight: 500; transition: color .15s; }
+      .nav-links a:hover { color: var(--fg); }
+      .nav .btn-sm { margin-left: .25rem; }
+      .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: 0; padding: 10px; cursor: pointer; }
+      .nav-toggle span { width: 24px; height: 2px; background: var(--fg); transition: .2s; }
+      .nav-drawer { display: none; flex-direction: column; gap: .25rem; padding: 1rem 4vw 1.5rem; border-bottom: 1px solid var(--border); }
+      .nav-drawer a { padding: .8rem 0; color: var(--fg); font-weight: 500; border-bottom: 1px solid var(--border); }
+      .nav-drawer .btn { margin-top: .8rem; }
+      .nav-drawer.open { display: flex; }
+
+      /* HERO */
+      .hero { position: relative; padding: clamp(4rem, 12vh, 9rem) 0 clamp(3.5rem, 9vh, 7rem); overflow: hidden; }
+      .hero-media { position: absolute; inset: 0; background: url(https://picsum.photos/seed/irongrid-hero/1600/1100?grayscale) center/cover; filter: contrast(1.1) brightness(.42); }
+      .hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, var(--bg) 18%, color-mix(in srgb, var(--bg) 55%, transparent) 60%, color-mix(in srgb, var(--primary) 30%, transparent)); }
+      .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 64px 64px; opacity: .35; mask-image: radial-gradient(120% 80% at 70% 30%, #000, transparent 75%); }
+      .hero-inner { position: relative; max-width: 760px; }
+      .hero h1 { font-size: clamp(3.2rem, 11vw, 7rem); margin: 1.1rem 0 1.3rem; }
+      .lede { color: color-mix(in srgb, var(--fg) 82%, var(--muted)); font-size: clamp(1.02rem, 2.4vw, 1.22rem); max-width: 52ch; }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }
+      .hero-readout { display: flex; flex-wrap: wrap; gap: 1.6rem; margin-top: 2.4rem; font-size: .82rem; color: var(--muted); font-family: var(--font-display); letter-spacing: .04em; }
+      .hero-readout b { color: var(--accent); font-weight: 800; }
+
+      /* METRICS */
+      .metrics { border-block: 1px solid var(--border); background: var(--panel); }
+      .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+      .metric { padding: 2rem 1.2rem; text-align: center; border-left: 1px solid var(--border); }
+      .metric:first-child { border-left: 0; }
+      .metric-val { display: block; font-family: var(--font-display); font-weight: 900; font-size: clamp(1.9rem, 5vw, 2.9rem); color: var(--fg); line-height: 1; letter-spacing: -0.02em; }
+      .metric-label { display: block; margin-top: .5rem; font-size: .76rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+
+      /* SECTION */
+      .section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; }
+      .band { background: var(--panel); border-block: 1px solid var(--border); }
+      .sec-head { margin-bottom: 2.8rem; }
+      .sec-head h2 { font-size: clamp(2rem, 6vw, 3.4rem); }
+
+      /* PROGRAMS */
+      .prog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.1rem; }
+      .prog { background: var(--panel); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; transition: border-color .2s, transform .2s; }
+      .prog:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); transform: translateY(-4px); }
+      .prog-media { height: 150px; background: var(--seed) center/cover; filter: grayscale(1) contrast(1.05) brightness(.7); position: relative; }
+      .prog-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent, var(--panel)); mix-blend-mode: multiply; }
+      .prog-body { padding: 1.3rem 1.3rem 1.5rem; }
+      .prog-top { display: flex; align-items: baseline; gap: .7rem; margin-bottom: .6rem; }
+      .prog-code { font-family: var(--font-display); font-weight: 800; font-size: .72rem; letter-spacing: .12em; color: var(--accent); border: 1px solid var(--border); padding: .15rem .45rem; border-radius: 3px; }
+      .prog-top h3 { font-size: 1.35rem; }
+      .prog-body p { color: var(--muted); font-size: .9rem; }
+      .prog-load { margin-top: 1.1rem; }
+      .prog-load-bar { display: block; height: 5px; border-radius: 3px; background: var(--border); position: relative; overflow: hidden; }
+      .prog-load-bar::after { content: ""; position: absolute; inset: 0; width: var(--w); background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 3px; }
+      .prog-load-txt { display: block; margin-top: .4rem; font-family: var(--font-display); font-size: .66rem; letter-spacing: .14em; color: var(--muted); }
+
+      /* PRICING */
+      .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.1rem; align-items: start; }
+      .price { position: relative; background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 1.8rem 1.4rem; transition: transform .2s, border-color .2s; }
+      .price:hover { transform: translateY(-4px); }
+      .price-featured { border-color: var(--accent); background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 9%, var(--bg)), var(--bg)); box-shadow: 0 24px 50px -28px var(--accent); }
+      .badge { position: absolute; top: -12px; left: 1.4rem; background: var(--accent); color: #04110c; font-family: var(--font-display); font-weight: 800; font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .7rem; border-radius: 3px; }
+      .price h3 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+      .price-amt { font-family: var(--font-display); font-weight: 900; font-size: 2.7rem; margin: .5rem 0 1.1rem; line-height: 1; }
+      .price-amt .cur { font-size: 1.3rem; color: var(--muted); vertical-align: super; }
+      .price-amt .unit { font-size: .82rem; color: var(--muted); font-weight: 600; letter-spacing: .02em; }
+      .price ul { list-style: none; margin: 0 0 1.5rem; display: grid; gap: .6rem; }
+      .price li { font-size: .88rem; color: color-mix(in srgb, var(--fg) 85%, var(--muted)); padding-left: 1.4rem; position: relative; }
+      .price li::before { content: ""; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(45deg) translateY(-2px); }
+      .price-note { margin-top: 1.6rem; text-align: center; color: var(--muted); font-size: .9rem; }
+      .price-note b { color: var(--fg); }
+
+      /* COACHES */
+      .coach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.3rem; }
+      .coach-media { position: relative; border-radius: var(--r); overflow: hidden; border: 1px solid var(--border); }
+      .coach-media img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: grayscale(1) contrast(1.08); transition: filter .3s, transform .4s; }
+      .coach:hover .coach-media img { filter: grayscale(0) contrast(1.05); transform: scale(1.04); }
+      .coach-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, color-mix(in srgb, var(--primary) 40%, transparent)); mix-blend-mode: screen; opacity: .5; }
+      .coach-tag { position: absolute; bottom: .8rem; left: .8rem; z-index: 2; background: color-mix(in srgb, var(--bg) 78%, transparent); backdrop-filter: blur(6px); border: 1px solid var(--border); font-family: var(--font-display); font-weight: 700; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); padding: .3rem .6rem; border-radius: 3px; }
+      .coach h3 { font-size: 1.35rem; margin: 1rem 0 .25rem; }
+      .coach-cred { color: var(--muted); font-size: .82rem; font-family: var(--font-display); letter-spacing: .03em; }
+
+      /* SLIDER */
+      .slider { max-width: 820px; }
+      .slides { display: flex; overflow: hidden; }
+      .slide { min-width: 100%; padding: .5rem 0; }
+      .slide blockquote { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.4rem, 4vw, 2.2rem); line-height: 1.18; letter-spacing: -0.01em; }
+      .slide figcaption { margin-top: 1.4rem; display: flex; flex-direction: column; gap: .15rem; }
+      .slide figcaption b { color: var(--accent); font-family: var(--font-display); }
+      .slide figcaption span { color: var(--muted); font-size: .85rem; }
+      .slider-dots { display: flex; gap: .55rem; margin-top: 1.8rem; }
+      .s-dot { width: 30px; height: 5px; border-radius: 3px; background: var(--border); border: 0; cursor: pointer; padding: 0; transition: background .2s; }
+      .s-dot.on { background: var(--accent); }
+
+      /* SCHEDULE */
+      .table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--r); }
+      .sched { width: 100%; border-collapse: collapse; min-width: 560px; }
+      .sched th, .sched td { padding: .55rem; text-align: center; border: 1px solid var(--border); }
+      .sched thead th { background: var(--panel); font-family: var(--font-display); font-weight: 800; text-transform: uppercase; letter-spacing: .08em; font-size: .76rem; color: var(--muted); }
+      .sched tbody th { background: var(--panel); font-family: var(--font-display); font-weight: 800; font-size: .85rem; }
+      .sched td.empty { color: var(--muted); }
+      .cls { display: flex; flex-direction: column; align-items: center; gap: 1px; font-family: var(--font-display); font-weight: 800; font-size: .82rem; padding: .45rem; border-radius: 3px; transition: transform .15s; }
+      .cls:hover { transform: scale(1.06); }
+      .cls small { font-size: .58rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+      .cls-STR { background: color-mix(in srgb, var(--primary) 22%, transparent); color: #93b8ff; }
+      .cls-HIT { background: color-mix(in srgb, var(--accent) 20%, transparent); color: var(--accent); }
+      .cls-FND { background: color-mix(in srgb, #f59e0b 18%, transparent); color: #fbbf24; }
+      .cls-OPN { background: color-mix(in srgb, var(--muted) 24%, transparent); color: #c2cad6; }
+      .legend { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+      .legend span { font-family: var(--font-display); font-weight: 700; font-size: .68rem; letter-spacing: .05em; padding: .3rem .6rem; border-radius: 3px; }
+
+      /* CTA */
+      .cta { position: relative; padding: clamp(4rem, 10vw, 7rem) 0; text-align: center; background: radial-gradient(120% 120% at 50% 0%, color-mix(in srgb, var(--primary) 24%, var(--bg)), var(--bg) 70%); border-block: 1px solid var(--border); overflow: hidden; }
+      .cta::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 48px 48px; opacity: .25; mask-image: radial-gradient(60% 60% at 50% 50%, #000, transparent); }
+      .cta-inner { position: relative; max-width: 640px; margin-inline: auto; }
+      .cta h2 { font-size: clamp(2.4rem, 8vw, 4.4rem); margin: .6rem 0 1rem; }
+      .cta .hero-cta { justify-content: center; }
+
+      /* VISIT */
+      .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+      .visit-grid h2 { font-size: clamp(2rem, 6vw, 3.4rem); }
+      .nap { font-style: normal; margin: 1.4rem 0; }
+      .nap-addr { font-size: 1.1rem; line-height: 1.5; }
+      .nap-phone { display: inline-block; margin: 1rem 0 .3rem; font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: var(--accent); }
+      .nap-map { display: block; color: var(--muted); font-weight: 600; transition: color .15s; }
+      .nap-map:hover { color: var(--fg); }
+      .hours { list-style: none; margin-top: 1.4rem; border-top: 1px solid var(--border); }
+      .hours li { display: flex; justify-content: space-between; padding: .7rem 0; border-bottom: 1px solid var(--border); font-size: .92rem; }
+      .hours span { color: var(--muted); }
+      .hours b { font-family: var(--font-display); }
+      .map-card { position: relative; border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+      .map-card img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: grayscale(1) brightness(.55) contrast(1.1); }
+      .map-pin { position: absolute; top: 46%; left: 52%; width: 18px; height: 18px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 30%, transparent); animation: pulse 2s infinite; }
+
+      /* FOOTER */
+      .footer { border-top: 1px solid var(--border); padding: 2.5rem 0 6rem; }
+      .footer-inner { display: flex; flex-direction: column; gap: .5rem; }
+      .footer-inner .brand-txt { font-size: 1.3rem; }
+      .footer-inner p { color: var(--muted); font-size: .88rem; }
+      .footer-inner a { color: var(--accent); }
+
+      /* STICKY BOOK BAR */
+      .book-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; display: none; gap: .6rem; padding: .7rem 4vw calc(.7rem + env(safe-area-inset-bottom)); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(14px); border-top: 1px solid var(--border); }
+      .book-call { flex: 0 0 30%; }
+
+      /* REVEAL */
+      .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* RESPONSIVE */
+      @media (max-width: 880px) {
+        .nav-links, .nav .btn-sm { display: none; }
+        .nav-toggle { display: flex; margin-left: auto; }
+        .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+        .metric:nth-child(odd) { border-left: 0; }
+        .metric:nth-child(n+3) { border-top: 1px solid var(--border); }
+        .visit-grid { grid-template-columns: 1fr; }
+        .book-bar { display: flex; }
+        .footer { padding-bottom: 6.5rem; }
+      }
+      @media (max-width: 440px) {
+        .metrics-grid { grid-template-columns: 1fr 1fr; }
+        .hero-readout { gap: 1rem; }
+      }
+    </style>
+
+    <script>
+      // Nav toggle
+      const toggle = document.querySelector(".nav-toggle");
+      const drawer = document.querySelector(".nav-drawer");
+      toggle?.addEventListener("click", () => {
+        const open = drawer?.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(!!open));
+      });
+      drawer?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          drawer.classList.remove("open");
+          toggle?.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      // Scroll reveal
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // Animated counters
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const fmt = (n, d) => d > 0 ? n.toFixed(d) : Math.round(n).toLocaleString();
+      const counters = document.querySelectorAll(".metric-val");
+      const cio = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const target = parseFloat(el.dataset.target);
+          const suffix = el.dataset.suffix || "";
+          const dec = parseInt(el.dataset.decimals || "0", 10);
+          if (reduce) { el.textContent = fmt(target, dec) + suffix; cio.unobserve(el); return; }
+          let start = null;
+          const dur = 1400;
+          const step = (t) => {
+            if (start === null) start = t;
+            const p = Math.min((t - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = fmt(target * eased, dec) + suffix;
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+          cio.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      counters.forEach((c) => cio.observe(c));
+
+      // Testimonial slider
+      const slider = document.querySelector("[data-slider]");
+      if (slider) {
+        const track = slider.querySelector("[data-track]");
+        const dots = slider.querySelectorAll(".s-dot");
+        let idx = 0;
+        const total = dots.length;
+        const go = (i) => {
+          idx = (i + total) % total;
+          track.style.transform = `translateX(-${idx * 100}%)`;
+          dots.forEach((d, j) => d.classList.toggle("on", j === idx));
+        };
+        track.querySelectorAll(".slide").forEach((s) => { s.style.transition = "transform .5s ease"; });
+        track.style.transition = "transform .5s ease";
+        dots.forEach((d) => d.addEventListener("click", () => go(parseInt(d.dataset.go, 10))));
+        if (!reduce) setInterval(() => go(idx + 1), 5500);
+      }
+    </script>
+  </body>
+</html>

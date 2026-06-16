@@ -1,0 +1,579 @@
+---
+const nav = [
+  { label: "Care", href: "#services" },
+  { label: "Your Dentist", href: "#team" },
+  { label: "Stories", href: "#reviews" },
+  { label: "First Visit", href: "#first" },
+  { label: "Visit Us", href: "#visit" },
+];
+
+const services = [
+  { name: "New Patient Exam, X-rays & Cleaning", price: "$189", note: "Free for kids under 6", seed: "bwexam" },
+  { name: "Professional Teeth Whitening", price: "from $349", note: "One-visit brightening", seed: "bwwhite" },
+  { name: "Invisalign Clear Aligners", price: "from $4,500", note: "Free consultation", seed: "bwalign" },
+  { name: "Dental Implants", price: "from $3,200", note: "Per tooth, all-inclusive", seed: "bwimplant" },
+  { name: "Emergency / Same-Day Visit", price: "from $120", note: "Seen the same week", seed: "bwemerg" },
+  { name: "Brightwater Membership Plan", price: "$39/mo", note: "No insurance? No problem.", seed: "bwmember" },
+];
+
+const testimonials = [
+  { quote: "I used to dread the dentist. The team here is so calm and gentle — I actually look forward to my cleanings now.", name: "Priya S.", city: "Calgary" },
+  { quote: "Booked online Sunday night, seen Monday for a chipped tooth. Painless and friendly the whole way.", name: "Marcus L.", city: "Calgary" },
+  { quote: "They explained everything without the jargon and never pushed extra treatments. Honest, kind care.", name: "Dana R.", city: "Calgary" },
+];
+
+const steps = [
+  { n: "01", t: "A warm welcome", d: "Arrive to tea, calm music, and a team that learns your name before your chart." },
+  { n: "02", t: "An unhurried exam", d: "A gentle assessment with digital X-rays and plain-language findings — no jargon." },
+  { n: "03", t: "A plan you choose", d: "Transparent options and pricing. We only ever recommend what you actually need." },
+];
+
+const hours = [
+  { d: "Monday – Thursday", h: "8:00am – 6:00pm" },
+  { d: "Friday", h: "8:00am – 4:00pm" },
+  { d: "Saturday", h: "9:00am – 2:00pm · alternating" },
+  { d: "Sunday", h: "Closed" },
+];
+
+const trust = ["4.9 ★ · 380+ Google reviews", "Most insurance accepted", "Direct billing available", "New patients welcome", "Free parking"];
+
+const ldJson = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  name: "Brightwater Dental & Wellness",
+  description: "Gentle, modern dentistry in Calgary. Same-week appointments, judgment-free care.",
+  telephone: "+1-403-555-0142",
+  address: { "@type": "PostalAddress", streetAddress: "1420 8th Street SW, Suite 210", addressLocality: "Calgary", addressRegion: "AB", postalCode: "T2R 1J5", addressCountry: "CA" },
+  aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "380" },
+  openingHours: ["Mo-Th 08:00-18:00", "Fr 08:00-16:00", "Sa 09:00-14:00"],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brightwater Dental &amp; Wellness — Calm, modern dentistry in Calgary</title>
+    <meta name="description" content="Dentistry that puts you at ease. Gentle, judgment-free care, same-week appointments, and transparent pricing in Calgary. Rated 4.9 from 380+ reviews." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(ldJson)} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="bar" id="top">
+      <div class="bar__in">
+        <a class="brand" href="#top" aria-label="Brightwater Dental and Wellness home">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="34" height="34"><path d="M20 4c-6 0-9 4-9 4s-3-4-9-4c0 9 3 14 6 22 2 6 4 10 6 10s2-4 3-9c0-2 1-3 3-3s3 1 3 3c1 5 1 9 3 9s4-4 6-10c3-8 6-13 6-22-6 0-9 4-9 4s-3-4-9-4Z" fill="currentColor"/></svg>
+          </span>
+          <span class="brand__txt">Brightwater<em>Dental &amp; Wellness</em></span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          {nav.map((i) => <a href={i.href}>{i.label}</a>)}
+        </nav>
+        <div class="bar__cta">
+          <a class="tel" href="tel:+14035550142" aria-label="Call (403) 555-0142">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.3 1l-2.1 2.3Z" fill="currentColor"/></svg>
+            <span>(403) 555-0142</span>
+          </a>
+          <a class="btn btn--solid" href="#visit">Book a visit</a>
+        </div>
+        <button class="burger" aria-label="Toggle menu" aria-expanded="false" id="burger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="drawer" id="drawer" aria-label="Mobile">
+        {nav.map((i) => <a href={i.href}>{i.label}</a>)}
+        <a class="btn btn--solid" href="#visit">Book a visit</a>
+        <a class="tel" href="tel:+14035550142">(403) 555-0142</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero__copy reveal">
+          <p class="eyebrow">Calgary · Dentistry that puts you at ease</p>
+          <h1>Gentle, modern dentistry your whole family will <em>smile</em> about.</h1>
+          <p class="lede">Relaxed, judgment-free care with same-week appointments and pricing you can see before you sit down.</p>
+          <div class="hero__cta">
+            <a class="btn btn--solid btn--lg" href="#visit">Request an appointment</a>
+            <a class="btn btn--ghost btn--lg" href="tel:+14035550142">Call (403) 555-0142</a>
+          </div>
+          <p class="hero__trust"><span class="stars" aria-hidden="true">★★★★★</span> Rated 4.9 from 380+ Google reviews · <strong>Accepting new patients</strong></p>
+        </div>
+        <div class="hero__media reveal">
+          <div class="hero__photo">
+            <img src="https://picsum.photos/seed/bwhero7/900/1100" alt="A relaxed patient smiling in a bright, modern dental studio" loading="eager" />
+          </div>
+          <div class="hero__chip">
+            <span class="hero__chip-num">Same week</span>
+            <span class="hero__chip-lbl">appointments</span>
+          </div>
+          <div class="blob" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- TRUST MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          {[...trust, ...trust].map((t) => <span class="marquee__item">{t}<i>✦</i></span>)}
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <section id="services" class="services">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Care, clearly priced</p>
+          <h2>Everything your smile needs, nothing it doesn't.</h2>
+        </div>
+        <ul class="svc-grid">
+          {services.map((s) => (
+            <li class="svc reveal">
+              <div class="svc__top">
+                <h3>{s.name}</h3>
+                <span class="svc__price">{s.price}</span>
+              </div>
+              <p class="svc__note">{s.note}</p>
+              <span class="svc__line" aria-hidden="true"></span>
+              <a class="svc__link" href="#visit">Book this <span aria-hidden="true">→</span></a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- BEFORE / AFTER -->
+      <section class="ba" aria-label="Before and after smile">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Outcomes, not promises</p>
+          <h2>A brighter result, gently achieved.</h2>
+        </div>
+        <div class="ba__stage reveal" id="baStage">
+          <img class="ba__img ba__after" src="https://picsum.photos/seed/bwafter3/1200/800?grayscale" alt="Smile after professional whitening, brighter and even" />
+          <div class="ba__before" id="baBefore">
+            <img class="ba__img" src="https://picsum.photos/seed/bwbefore3/1200/800" alt="Smile before treatment" />
+            <span class="ba__tag ba__tag--b">Before</span>
+          </div>
+          <span class="ba__tag ba__tag--a">After</span>
+          <div class="ba__handle" id="baHandle" role="slider" tabindex="0" aria-label="Reveal before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <span></span>
+          </div>
+          <input class="ba__range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Before and after comparison slider" />
+        </div>
+      </section>
+
+      <!-- MEET YOUR DENTIST -->
+      <section id="team" class="team">
+        <div class="team__photo reveal">
+          <img src="https://picsum.photos/seed/bwdoc9/800/900" alt="Dr. Elena Brightwater, lead dentist, smiling in the clinic" loading="lazy" />
+          <div class="team__cred">
+            <span>DDS · Invisalign Provider</span>
+            <span>15 years gentle care</span>
+          </div>
+        </div>
+        <div class="team__copy reveal">
+          <p class="eyebrow">Meet your dentist</p>
+          <h2>Dr. Elena Brightwater</h2>
+          <p>I founded Brightwater because dental care should feel like an exhale, not a held breath. Every visit here is unhurried, honest, and built entirely around your comfort.</p>
+          <p>My team and I take the time to explain what we see, lay out your options plainly, and never push treatment you don't need. That's the whole philosophy.</p>
+          <ul class="team__list">
+            <li>Anxiety-aware, judgment-free appointments</li>
+            <li>Digital, low-radiation imaging</li>
+            <li>Direct insurance billing on every visit</li>
+          </ul>
+          <a class="btn btn--solid" href="#visit">Meet the team in person</a>
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section id="reviews" class="reviews">
+        <div class="sec-head sec-head--center reveal">
+          <p class="eyebrow">In their words</p>
+          <h2>Calm visits, remembered fondly.</h2>
+        </div>
+        <div class="rev-grid">
+          {testimonials.map((t) => (
+            <figure class="rev reveal">
+              <div class="rev__stars" aria-label="Five star rating">★★★★★</div>
+              <blockquote>{t.quote}</blockquote>
+              <figcaption>{t.name} · <span>{t.city}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- FIRST VISIT -->
+      <section id="first" class="first">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Your first visit</p>
+          <h2>What to expect when you arrive.</h2>
+        </div>
+        <ol class="steps">
+          {steps.map((s) => (
+            <li class="step reveal">
+              <span class="step__n">{s.n}</span>
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+            </li>
+          ))}
+        </ol>
+        <div class="offer reveal">
+          <div>
+            <p class="offer__k">New here?</p>
+            <p class="offer__t">Your exam, X-rays &amp; cleaning is <strong>$189</strong> — and free for kids under 6.</p>
+          </div>
+          <a class="btn btn--solid btn--lg" href="#visit">Claim your first visit</a>
+        </div>
+      </section>
+
+      <!-- VISIT / NAP -->
+      <section id="visit" class="visit">
+        <div class="visit__copy reveal">
+          <p class="eyebrow">Visit us</p>
+          <h2>Request an appointment.</h2>
+          <p class="visit__sub">Tell us when works and we'll confirm by the next business hour. Most insurance accepted, direct billing available.</p>
+          <form class="form" onsubmit="event.preventDefault(); this.reset(); document.getElementById('formOk').hidden=false;">
+            <div class="field"><label for="fn">Full name</label><input id="fn" name="name" required autocomplete="name" placeholder="Priya Sharma" /></div>
+            <div class="field"><label for="ph">Phone</label><input id="ph" name="phone" type="tel" required autocomplete="tel" placeholder="(403) 555-0142" /></div>
+            <div class="field"><label for="pt">Preferred time</label>
+              <select id="pt" name="time">
+                <option>Weekday morning</option>
+                <option>Weekday afternoon</option>
+                <option>Saturday</option>
+                <option>As soon as possible</option>
+              </select>
+            </div>
+            <div class="field field--full"><label for="ms">Anything we should know? (optional)</label><textarea id="ms" name="message" rows="2" placeholder="New patient, slight tooth sensitivity…"></textarea></div>
+            <button class="btn btn--solid btn--lg" type="submit">Send request</button>
+            <p class="form__ok" id="formOk" hidden role="status">Thank you — we'll be in touch within the hour. ✦</p>
+          </form>
+        </div>
+        <aside class="visit__nap reveal">
+          <div class="map">
+            <img src="https://picsum.photos/seed/bwmap5/700/500?grayscale" alt="Map of the clinic location in downtown Calgary" loading="lazy" />
+            <span class="map__pin" aria-hidden="true"></span>
+          </div>
+          <div class="nap">
+            <p class="nap__name">Brightwater Dental &amp; Wellness</p>
+            <a href="https://maps.google.com/?q=1420+8th+Street+SW+Calgary" class="nap__row">1420 8th Street SW, Suite 210<br />Calgary, AB T2R 1J5</a>
+            <a href="tel:+14035550142" class="nap__row nap__tel">(403) 555-0142</a>
+          </div>
+          <table class="hours">
+            <caption class="vh">Opening hours</caption>
+            <tbody>
+              {hours.map((h) => (
+                <tr><th scope="row">{h.d}</th><td>{h.h}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="foot__in">
+        <div class="foot__brand">
+          <span class="brand__txt">Brightwater<em>Dental &amp; Wellness</em></span>
+          <p>Dentistry that puts you at ease. Calgary, Alberta.</p>
+        </div>
+        <nav class="foot__nav" aria-label="Footer">
+          {nav.map((i) => <a href={i.href}>{i.label}</a>)}
+        </nav>
+        <div class="foot__call">
+          <a class="btn btn--solid" href="tel:+14035550142">Call (403) 555-0142</a>
+          <span>1420 8th Street SW · Free parking</span>
+        </div>
+      </div>
+      <p class="foot__fine">© 2026 Brightwater Dental &amp; Wellness · New patients always welcome · Most insurance accepted</p>
+    </footer>
+
+    <a class="dock" href="#visit" aria-label="Book a visit">Book a visit</a>
+
+    <script is:inline>
+      // Mobile drawer
+      const burger = document.getElementById("burger");
+      const drawer = document.getElementById("drawer");
+      burger.addEventListener("click", () => {
+        const open = drawer.classList.toggle("open");
+        burger.setAttribute("aria-expanded", String(open));
+      });
+      drawer.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          drawer.classList.remove("open");
+          burger.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      // Scroll reveal
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const io = new IntersectionObserver((es) => {
+          es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      }
+
+      // Before/after slider
+      const range = document.getElementById("baRange");
+      const before = document.getElementById("baBefore");
+      const handle = document.getElementById("baHandle");
+      function setBA(v) {
+        before.style.width = v + "%";
+        handle.style.left = v + "%";
+        handle.setAttribute("aria-valuenow", String(Math.round(v)));
+      }
+      range.addEventListener("input", (e) => setBA(e.target.value));
+      handle.addEventListener("keydown", (e) => {
+        let v = Number(range.value);
+        if (e.key === "ArrowLeft") v = Math.max(0, v - 4);
+        else if (e.key === "ArrowRight") v = Math.min(100, v + 4);
+        else return;
+        range.value = v; setBA(v); e.preventDefault();
+      });
+      setBA(50);
+    </script>
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+      body { margin: 0; }
+      img { max-width: 100%; display: block; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    </style>
+
+    <style>
+      :root {
+        --bg: #f6f5ef;
+        --fg: #28302a;
+        --primary: #6f8b73;
+        --primary-deep: #566e5a;
+        --primary-fg: #fbfbf7;
+        --accent: #a8927a;
+        --muted: #e7e6dc;
+        --border: #d6d5c7;
+        --card: #fcfbf6;
+        --display: "Fraunces", Georgia, serif;
+        --body: "Inter", system-ui, sans-serif;
+        --r: 22px;
+        --shadow: 0 24px 60px -32px rgba(40, 48, 42, .35);
+        --mx: clamp(1.25rem, 5vw, 5.5rem);
+      }
+      body {
+        font-family: var(--body);
+        background: var(--bg);
+        color: var(--fg);
+        line-height: 1.6;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.08; letter-spacing: -.01em; margin: 0; }
+      h1 em, h2 em { font-style: italic; color: var(--primary); }
+      p { margin: 0; }
+      a { color: inherit; text-decoration: none; }
+      :focus-visible { outline: 2.5px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+
+      .skip { position: absolute; left: -999px; top: 8px; background: var(--primary); color: var(--primary-fg); padding: .6rem 1rem; border-radius: 8px; z-index: 200; }
+      .skip:focus { left: 8px; }
+
+      .eyebrow { font-family: var(--body); text-transform: uppercase; letter-spacing: .18em; font-size: .72rem; font-weight: 600; color: var(--accent); margin-bottom: 1rem; }
+
+      .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; font-family: var(--body); font-weight: 600; font-size: .94rem; padding: .8rem 1.4rem; border-radius: 999px; border: 1.5px solid transparent; cursor: pointer; transition: transform .25s, background .25s, color .25s, box-shadow .25s; min-height: 44px; }
+      .btn--solid { background: var(--primary); color: var(--primary-fg); box-shadow: 0 10px 24px -12px rgba(86,110,90,.7); }
+      .btn--solid:hover { background: var(--primary-deep); transform: translateY(-2px); }
+      .btn--ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+      .btn--ghost:hover { border-color: var(--primary); color: var(--primary-deep); transform: translateY(-2px); }
+      .btn--lg { padding: 1rem 1.7rem; font-size: 1rem; }
+
+      /* HEADER */
+      .bar { position: sticky; top: 0; z-index: 100; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+      .bar__in { display: flex; align-items: center; gap: 1.5rem; padding: .85rem var(--mx); max-width: 1340px; margin: 0 auto; }
+      .brand { display: flex; align-items: center; gap: .65rem; color: var(--primary-deep); }
+      .brand__mark { display: grid; place-items: center; }
+      .brand__txt { font-family: var(--display); font-weight: 600; font-size: 1.18rem; line-height: 1; display: flex; flex-direction: column; color: var(--fg); }
+      .brand__txt em { font-style: normal; font-family: var(--body); font-weight: 500; font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-top: 3px; }
+      .nav { display: flex; gap: 1.6rem; margin-left: auto; font-weight: 500; font-size: .92rem; }
+      .nav a { position: relative; padding: .25rem 0; color: color-mix(in srgb, var(--fg) 78%, transparent); }
+      .nav a::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: var(--primary); transition: width .25s; }
+      .nav a:hover { color: var(--fg); } .nav a:hover::after { width: 100%; }
+      .bar__cta { display: flex; align-items: center; gap: 1rem; }
+      .tel { display: inline-flex; align-items: center; gap: .45rem; font-weight: 600; font-size: .9rem; color: var(--primary-deep); }
+      .burger { display: none; background: none; border: 0; flex-direction: column; gap: 5px; padding: 10px; cursor: pointer; margin-left: auto; }
+      .burger span { width: 24px; height: 2px; background: var(--fg); border-radius: 2px; transition: .3s; }
+      .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .drawer { display: none; flex-direction: column; gap: .3rem; padding: 0 var(--mx); max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+      .drawer.open { max-height: 360px; padding-bottom: 1.2rem; }
+      .drawer a { padding: .7rem 0; font-weight: 500; border-bottom: 1px solid var(--border); }
+      .drawer a.btn { border: 0; margin-top: .6rem; justify-content: center; }
+
+      /* HERO */
+      .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; padding: clamp(3rem, 7vw, 6rem) var(--mx) clamp(2.5rem, 5vw, 4rem); max-width: 1340px; margin: 0 auto; }
+      .hero h1 { font-size: clamp(2.5rem, 6vw, 4.4rem); margin: .3rem 0 1.2rem; }
+      .lede { font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: color-mix(in srgb, var(--fg) 80%, transparent); max-width: 30ch; }
+      .hero__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin: 1.8rem 0 1.6rem; }
+      .hero__trust { font-size: .92rem; color: color-mix(in srgb, var(--fg) 75%, transparent); }
+      .stars { color: var(--accent); letter-spacing: 1px; }
+      .hero__media { position: relative; }
+      .hero__photo { position: relative; z-index: 2; border-radius: 46% 54% 48% 52% / 58% 46% 54% 42%; overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 4/5; }
+      .hero__photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.92) contrast(1.02); mix-blend-mode: multiply; }
+      .hero__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(150deg, transparent 40%, color-mix(in srgb, var(--primary) 30%, transparent)); }
+      .hero__chip { position: absolute; bottom: 6%; left: -4%; z-index: 3; background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: .8rem 1.1rem; box-shadow: var(--shadow); display: flex; flex-direction: column; line-height: 1.1; }
+      .hero__chip-num { font-family: var(--display); font-size: 1.3rem; color: var(--primary-deep); }
+      .hero__chip-lbl { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+      .blob { position: absolute; inset: -8% -10% -4% 6%; z-index: 1; background: radial-gradient(circle at 40% 30%, color-mix(in srgb, var(--primary) 32%, transparent), transparent 65%), radial-gradient(circle at 70% 80%, color-mix(in srgb, var(--accent) 28%, transparent), transparent 60%); border-radius: 50%; filter: blur(6px); }
+
+      /* MARQUEE */
+      .marquee { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--muted); }
+      .marquee__track { display: flex; width: max-content; gap: 2.5rem; padding: .9rem 0; animation: slide 28s linear infinite; }
+      .marquee__item { display: inline-flex; align-items: center; gap: 2.5rem; font-weight: 500; font-size: .9rem; color: var(--primary-deep); white-space: nowrap; }
+      .marquee__item i { color: var(--accent); font-style: normal; }
+      @keyframes slide { to { transform: translateX(-50%); } }
+      @media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } }
+
+      /* SECTION HEADS */
+      .sec-head { max-width: 1340px; margin: 0 auto clamp(2rem, 4vw, 3rem); }
+      .sec-head h2 { font-size: clamp(2rem, 4vw, 3.1rem); max-width: 18ch; }
+      .sec-head--center { text-align: center; }
+      .sec-head--center h2 { margin: 0 auto; }
+
+      /* SERVICES */
+      .services { padding: clamp(3.5rem, 7vw, 6rem) var(--mx); }
+      .svc-grid { list-style: none; margin: 0; padding: 0; max-width: 1340px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+      .svc { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 1.7rem; display: flex; flex-direction: column; transition: transform .3s, box-shadow .3s, border-color .3s; }
+      .svc:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--primary) 45%, var(--border)); }
+      .svc__top { display: flex; justify-content: space-between; gap: 1rem; align-items: start; }
+      .svc__top h3 { font-size: 1.18rem; max-width: 16ch; }
+      .svc__price { font-family: var(--display); font-weight: 600; color: var(--primary-deep); white-space: nowrap; font-size: 1.05rem; }
+      .svc__note { color: color-mix(in srgb, var(--fg) 70%, transparent); font-size: .92rem; margin-top: .5rem; }
+      .svc__line { height: 1px; background: var(--border); margin: 1.3rem 0 1rem; }
+      .svc__link { margin-top: auto; font-weight: 600; font-size: .9rem; color: var(--accent); display: inline-flex; gap: .4rem; }
+      .svc__link span { transition: transform .25s; }
+      .svc:hover .svc__link span { transform: translateX(5px); }
+
+      /* BEFORE / AFTER */
+      .ba { padding: clamp(2rem, 5vw, 4rem) var(--mx) clamp(3.5rem, 7vw, 6rem); }
+      .ba__stage { position: relative; max-width: 920px; margin: 0 auto; aspect-ratio: 3/2; border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--border); user-select: none; }
+      .ba__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .ba__after { filter: brightness(1.06) saturate(1.05); }
+      .ba__before { position: absolute; inset: 0; width: 50%; overflow: hidden; }
+      .ba__before .ba__img { width: 920px; max-width: none; filter: sepia(.25) saturate(.9); }
+      .ba__tag { position: absolute; top: 14px; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: .35rem .7rem; border-radius: 999px; font-weight: 600; backdrop-filter: blur(4px); }
+      .ba__tag--b { left: 14px; background: color-mix(in srgb, var(--fg) 70%, transparent); color: var(--bg); }
+      .ba__tag--a { right: 14px; background: color-mix(in srgb, var(--primary) 88%, transparent); color: var(--primary-fg); }
+      .ba__handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--primary-fg); transform: translateX(-50%); }
+      .ba__handle span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: var(--primary-fg); border: 2px solid var(--primary); box-shadow: var(--shadow); display: grid; place-items: center; }
+      .ba__handle span::before { content: "⇄"; color: var(--primary-deep); font-size: 1.1rem; }
+      .ba__range { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+
+      /* TEAM */
+      .team { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; padding: clamp(3rem, 6vw, 5.5rem) var(--mx); max-width: 1340px; margin: 0 auto; }
+      .team__photo { position: relative; }
+      .team__photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 32px 32px 90px 32px; box-shadow: var(--shadow); filter: saturate(.95); }
+      .team__cred { position: absolute; bottom: -18px; right: -10px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: .85rem 1.1rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: .15rem; font-size: .82rem; font-weight: 600; color: var(--primary-deep); }
+      .team__copy h2 { font-size: clamp(2rem, 3.6vw, 2.9rem); margin: .3rem 0 1.1rem; }
+      .team__copy p { color: color-mix(in srgb, var(--fg) 82%, transparent); margin-bottom: 1rem; max-width: 46ch; }
+      .team__list { list-style: none; padding: 0; margin: 1.4rem 0 1.8rem; display: grid; gap: .55rem; }
+      .team__list li { padding-left: 1.7rem; position: relative; font-weight: 500; }
+      .team__list li::before { content: "✦"; position: absolute; left: 0; color: var(--accent); }
+
+      /* REVIEWS */
+      .reviews { background: var(--muted); padding: clamp(3.5rem, 7vw, 6rem) var(--mx); }
+      .rev-grid { max-width: 1340px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+      .rev { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 1.8rem; margin: 0; display: flex; flex-direction: column; }
+      .rev__stars { color: var(--accent); letter-spacing: 2px; margin-bottom: 1rem; }
+      .rev blockquote { font-family: var(--display); font-size: 1.18rem; line-height: 1.4; margin: 0 0 1.3rem; font-weight: 400; }
+      .rev figcaption { margin-top: auto; font-weight: 600; font-size: .92rem; }
+      .rev figcaption span { color: var(--accent); font-weight: 500; }
+
+      /* FIRST VISIT */
+      .first { padding: clamp(3.5rem, 7vw, 6rem) var(--mx); }
+      .steps { list-style: none; padding: 0; margin: 0 auto; max-width: 1340px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; counter-reset: s; }
+      .step { padding: 1.8rem; border-radius: var(--r); border: 1px solid var(--border); background: var(--card); position: relative; }
+      .step__n { font-family: var(--display); font-size: 2.6rem; color: color-mix(in srgb, var(--primary) 55%, var(--bg)); display: block; margin-bottom: .6rem; }
+      .step h3 { font-size: 1.25rem; margin-bottom: .5rem; }
+      .step p { color: color-mix(in srgb, var(--fg) 75%, transparent); }
+      .offer { max-width: 1340px; margin: 2.4rem auto 0; background: var(--primary); color: var(--primary-fg); border-radius: var(--r); padding: clamp(1.6rem, 3vw, 2.4rem); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; box-shadow: var(--shadow); }
+      .offer__k { text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; font-weight: 600; opacity: .85; margin-bottom: .4rem; }
+      .offer__t { font-family: var(--display); font-size: clamp(1.3rem, 2.4vw, 1.8rem); max-width: 26ch; }
+      .offer .btn--solid { background: var(--primary-fg); color: var(--primary-deep); }
+      .offer .btn--solid:hover { background: var(--bg); }
+
+      /* VISIT */
+      .visit { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 5vw, 4rem); padding: clamp(3.5rem, 7vw, 6rem) var(--mx); max-width: 1340px; margin: 0 auto; align-items: start; }
+      .visit__copy h2 { font-size: clamp(2rem, 3.8vw, 3rem); margin: .3rem 0 .8rem; }
+      .visit__sub { color: color-mix(in srgb, var(--fg) 80%, transparent); max-width: 42ch; margin-bottom: 1.8rem; }
+      .form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .field { display: flex; flex-direction: column; gap: .35rem; }
+      .field--full { grid-column: 1 / -1; }
+      .field label { font-size: .82rem; font-weight: 600; }
+      .field input, .field select, .field textarea { font-family: var(--body); font-size: .95rem; padding: .8rem .9rem; border-radius: 12px; border: 1.5px solid var(--border); background: var(--card); color: var(--fg); transition: border-color .2s; }
+      .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--primary); outline: none; }
+      .form button { grid-column: 1 / -1; justify-self: start; }
+      .form__ok { grid-column: 1 / -1; color: var(--primary-deep); font-weight: 600; }
+      .visit__nap { display: grid; gap: 1.2rem; }
+      .map { position: relative; border-radius: var(--r); overflow: hidden; border: 1px solid var(--border); aspect-ratio: 7/5; box-shadow: var(--shadow); }
+      .map img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.8) brightness(1.02); }
+      .map::after { content: ""; position: absolute; inset: 0; background: color-mix(in srgb, var(--primary) 18%, transparent); mix-blend-mode: multiply; }
+      .map__pin { position: absolute; top: 44%; left: 50%; width: 20px; height: 20px; transform: translate(-50%, -50%); background: var(--primary); border: 3px solid var(--primary-fg); border-radius: 50% 50% 50% 0; rotate: 45deg; box-shadow: 0 6px 16px -4px rgba(0,0,0,.5); z-index: 2; }
+      .nap { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 1.4rem 1.6rem; }
+      .nap__name { font-family: var(--display); font-size: 1.2rem; margin-bottom: .6rem; }
+      .nap__row { display: block; color: color-mix(in srgb, var(--fg) 80%, transparent); margin-bottom: .5rem; }
+      .nap__row:hover { color: var(--primary-deep); }
+      .nap__tel { font-weight: 600; color: var(--primary-deep); font-size: 1.05rem; }
+      .hours { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+      .hours th, .hours td { text-align: left; padding: .8rem 1.6rem; border-bottom: 1px solid var(--border); font-size: .92rem; }
+      .hours th { font-weight: 500; color: color-mix(in srgb, var(--fg) 82%, transparent); }
+      .hours td { text-align: right; font-weight: 600; color: var(--primary-deep); }
+      .hours tr:last-child th, .hours tr:last-child td { border-bottom: 0; }
+      .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+      /* FOOTER */
+      .foot { background: var(--fg); color: var(--bg); padding: clamp(3rem, 5vw, 4.5rem) var(--mx) 2rem; }
+      .foot__in { max-width: 1340px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2rem; align-items: start; }
+      .foot__brand .brand__txt { color: var(--bg); }
+      .foot__brand .brand__txt em { color: var(--accent); }
+      .foot__brand p { margin-top: .8rem; color: color-mix(in srgb, var(--bg) 70%, transparent); max-width: 30ch; }
+      .foot__nav { display: grid; gap: .6rem; }
+      .foot__nav a { color: color-mix(in srgb, var(--bg) 78%, transparent); font-weight: 500; }
+      .foot__nav a:hover { color: var(--bg); }
+      .foot__call { display: grid; gap: .8rem; justify-items: start; }
+      .foot__call span { font-size: .85rem; color: color-mix(in srgb, var(--bg) 65%, transparent); }
+      .foot__fine { max-width: 1340px; margin: 2.5rem auto 0; padding-top: 1.6rem; border-top: 1px solid color-mix(in srgb, var(--bg) 18%, transparent); font-size: .82rem; color: color-mix(in srgb, var(--bg) 60%, transparent); }
+
+      /* DOCK (mobile sticky book) */
+      .dock { display: none; position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 90; background: var(--primary); color: var(--primary-fg); font-weight: 600; padding: .85rem 2rem; border-radius: 999px; box-shadow: var(--shadow); min-height: 44px; align-items: center; }
+
+      /* REVEAL */
+      .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+      /* RESPONSIVE */
+      @media (max-width: 1000px) {
+        .nav, .bar__cta { display: none; }
+        .burger { display: flex; }
+        .drawer { display: flex; }
+        .hero { grid-template-columns: 1fr; }
+        .hero__media { max-width: 460px; margin: 0 auto; }
+        .team { grid-template-columns: 1fr; }
+        .team__photo { max-width: 460px; }
+        .visit { grid-template-columns: 1fr; }
+        .svc-grid, .rev-grid, .steps { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 640px) {
+        .svc-grid, .rev-grid, .steps, .form { grid-template-columns: 1fr; }
+        .foot__in { grid-template-columns: 1fr; }
+        .dock { display: inline-flex; }
+        main { padding-bottom: 70px; }
+        .offer { flex-direction: column; align-items: flex-start; }
+        .ba__handle span { width: 40px; height: 40px; }
+      }
+    </style>
+  </body>
+</html>

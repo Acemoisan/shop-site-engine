@@ -1,0 +1,645 @@
+---
+const nav = [
+  { label: "Flash", href: "#flash" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Artists", href: "#artists" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Visit", href: "#visit" },
+];
+
+const flash = [
+  { seed: "ironflash01", name: "Sailor's Rose", price: "$150", tag: "Rose" },
+  { seed: "ironflash02", name: "Anchor & Banner", price: "$150", tag: "Anchor" },
+  { seed: "ironflash03", name: "Dagger Heart", price: "$170", tag: "Dagger" },
+  { seed: "ironflash04", name: "Coiled Serpent", price: "$180", tag: "Snake" },
+  { seed: "ironflash05", name: "Swallow Pair", price: "$140", tag: "Swallow" },
+  { seed: "ironflash06", name: "Eagle Crest", price: "$190", tag: "Eagle" },
+];
+
+const services = [
+  { name: "Custom Tattoo Design", price: "from $180/hr", note: "Shop minimum $120" },
+  { name: "Flash of the Day", price: "$150 flat", note: "Pick from the board" },
+  { name: "Fine-Line & Micro", price: "from $140", note: "Single-needle work" },
+  { name: "Cover-Up & Rework", price: "from $200/hr", note: "Free consultation" },
+  { name: "Touch-Up (our work)", price: "Complimentary", note: "Within 90 days" },
+  { name: "Ear & Body Piercing", price: "from $45", note: "+ jewellery" },
+];
+
+const gallery = [
+  { seed: "ironwork11", style: "Traditional", span: 2 },
+  { seed: "ironwork12", style: "Color", span: 1 },
+  { seed: "ironwork13", style: "Lettering", span: 1 },
+  { seed: "ironwork14", style: "Blackwork", span: 1 },
+  { seed: "ironwork15", style: "Traditional", span: 1 },
+  { seed: "ironwork16", style: "Color", span: 2 },
+  { seed: "ironwork17", style: "Snake", span: 1 },
+  { seed: "ironwork18", style: "Rose", span: 1 },
+];
+
+const artists = [
+  { seed: "artistmarlo", name: "Marlo Vance", specialty: "Bold Traditional · Color", handle: "@marlo.ink" },
+  { seed: "artistcole", name: "Cole Trent", specialty: "Lettering · Blackwork", handle: "@coletrent" },
+  { seed: "artistpriya", name: "Priya Kaur", specialty: "Fine-Line · Micro", handle: "@priya.lines" },
+];
+
+const testimonials = [
+  { quote: "Marlo took my rough idea and turned it into the cleanest piece I own. The studio is spotless and the whole thing felt easy.", name: "Devon R." },
+  { quote: "Booked for a fine-line floral and left obsessed. Healed perfectly, lines still razor sharp months later.", name: "Priya K." },
+  { quote: "Walked in for flash, walked out with a tattoo I'll brag about forever. Real old-school energy.", name: "Cole T." },
+];
+
+const hours = [
+  { day: "Tue – Fri", time: "11am – 8pm" },
+  { day: "Saturday", time: "11am – 6pm" },
+  { day: "Sunday", time: "12pm – 5pm" },
+  { day: "Monday", time: "Closed · by request" },
+];
+
+const faqs = [
+  { q: "How old do I need to be?", a: "Must be 18+ with valid government photo ID. No exceptions, no exceptions for parents either." },
+  { q: "How do deposits work?", a: "An $80 non-refundable deposit holds your slot and comes off your final price. 48-hour reschedule notice required." },
+  { q: "Do you do touch-ups?", a: "Free touch-ups on our work within 90 days. We provide a full aftercare sheet at the end of every session." },
+  { q: "Do you take walk-ins?", a: "Yes — grab a flash off the board any open day. Custom pieces are by appointment so we can draw it right." },
+];
+
+const marquee = ["Bold Lines", "No Regrets", "Walk-Ins Welcome", "Est. Inglewood", "Custom & Flash", "Permanent Art"];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ironwood Tattoo Co. — Bold Lines, No Regrets | Inglewood, Calgary</title>
+    <meta
+      name="description"
+      content="Ironwood Tattoo Co. — American traditional and custom tattooing in the heart of Calgary's Inglewood. By appointment and walk-in. Flash of the day, cover-ups, fine-line and piercing."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rye&family=Oswald:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav" id="top">
+      <div class="nav__inner">
+        <a class="brand" href="#top" aria-label="Ironwood Tattoo Co. home">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="34" height="34">
+              <path d="M24 3 L30 18 L45 18 L33 28 L38 44 L24 34 L10 44 L15 28 L3 18 L18 18 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <circle cx="24" cy="24" r="5" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="brand__text">Ironwood<small>Tattoo Co.</small></span>
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="btn btn--sm" href="#book">Book</a>
+        <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" id="navToggle">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="nav__mobile" id="navMobile" aria-label="Mobile">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="btn" href="#book">Book a Consultation</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" id="book">
+        <div class="hero__bg" aria-hidden="true"></div>
+        <div class="hero__grain" aria-hidden="true"></div>
+        <div class="hero__content">
+          <p class="kicker">Est. · Inglewood · Calgary</p>
+          <h1 class="hero__title">Bold Lines.<br /><span>No Regrets.</span></h1>
+          <p class="hero__lead">
+            Custom tattooing in the heart of Calgary's Inglewood — by appointment
+            and walk-in. American traditional, done right and built to last.
+          </p>
+          <div class="hero__cta">
+            <a class="btn" href="#flash">Claim Today's Flash</a>
+            <a class="btn btn--ghost" href="tel:+14035550148">Call (403) 555-0148</a>
+          </div>
+          <ul class="hero__stats">
+            <li><b>14yrs</b><span>Inking Inglewood</span></li>
+            <li><b>3</b><span>Resident artists</span></li>
+            <li><b>90d</b><span>Free touch-ups</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          {[...marquee, ...marquee].map((m) => (
+            <span class="marquee__item">{m}<i class="marquee__star">★</i></span>
+          ))}
+        </div>
+      </div>
+
+      <!-- FLASH BOARD -->
+      <section class="section flash" id="flash">
+        <div class="section__head">
+          <p class="kicker kicker--red">The Board</p>
+          <h2 class="section__title">Flash of the Day</h2>
+          <p class="section__sub">Pre-drawn, ready to go. Claim one off the board and walk out with a classic.</p>
+        </div>
+        <div class="flash__grid">
+          {flash.map((f) => (
+            <article class="flash__card">
+              <div class="flash__img">
+                <img src={`https://picsum.photos/seed/${f.seed}/500/500`} alt={`${f.name} flash design`} loading="lazy" width="500" height="500" />
+                <span class="flash__tag">{f.tag}</span>
+              </div>
+              <div class="flash__meta">
+                <h3>{f.name}</h3>
+                <span class="flash__price">{f.price}</span>
+              </div>
+              <a class="flash__claim" href="#book">Claim this flash →</a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="section section--dark gallery" id="gallery">
+        <div class="section__head">
+          <p class="kicker kicker--bone">Healed & Real</p>
+          <h2 class="section__title">The Work</h2>
+          <p class="section__sub">Every piece below is healed work from our chairs. The ink reads honest.</p>
+        </div>
+        <div class="gallery__grid">
+          {gallery.map((g) => (
+            <figure class={`gallery__item ${g.span === 2 ? "gallery__item--wide" : ""}`}>
+              <img src={`https://picsum.photos/seed/${g.seed}/640/640`} alt={`${g.style} tattoo work`} loading="lazy" width="640" height="640" />
+              <figcaption>{g.style}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- ARTISTS -->
+      <section class="section artists" id="artists">
+        <div class="section__head">
+          <p class="kicker kicker--red">The Crew</p>
+          <h2 class="section__title">Resident Artists</h2>
+          <p class="section__sub">Pick your artist, then we'll match you to a date.</p>
+        </div>
+        <div class="artists__grid">
+          {artists.map((a) => (
+            <article class="artist">
+              <div class="artist__img">
+                <img src={`https://picsum.photos/seed/${a.seed}/480/560`} alt={`Portrait of ${a.name}`} loading="lazy" width="480" height="560" />
+              </div>
+              <div class="artist__body">
+                <h3>{a.name}</h3>
+                <p class="artist__spec">{a.specialty}</p>
+                <p class="artist__handle">{a.handle}</p>
+                <a class="artist__book" href="#book">Book with {a.name.split(" ")[0]}</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section class="section section--muted pricing" id="pricing">
+        <div class="section__head">
+          <p class="kicker kicker--red">Straight Talk</p>
+          <h2 class="section__title">Services & Rates</h2>
+          <p class="section__sub">$80 non-refundable deposit holds your slot and comes off the final price.</p>
+        </div>
+        <div class="pricing__list">
+          {services.map((s) => (
+            <div class="price-row">
+              <div class="price-row__name">
+                <h3>{s.name}</h3>
+                <span>{s.note}</span>
+              </div>
+              <span class="price-row__dots" aria-hidden="true"></span>
+              <span class="price-row__price">{s.price}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section section--dark proof">
+        <div class="section__head">
+          <p class="kicker kicker--bone">Word of Mouth</p>
+          <h2 class="section__title">No Regrets</h2>
+        </div>
+        <div class="proof__grid">
+          {testimonials.map((t) => (
+            <figure class="quote">
+              <div class="quote__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <blockquote>"{t.quote}"</blockquote>
+              <figcaption>— {t.name}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section faq">
+        <div class="section__head">
+          <p class="kicker kicker--red">Before You Sit</p>
+          <h2 class="section__title">House Rules & FAQ</h2>
+        </div>
+        <div class="faq__list">
+          {faqs.map((f, i) => (
+            <details class="faq__item" open={i === 0}>
+              <summary>{f.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- VISIT / NAP -->
+      <section class="section section--muted visit" id="visit">
+        <div class="visit__grid">
+          <div class="visit__info">
+            <p class="kicker kicker--red">Find Us</p>
+            <h2 class="section__title">Visit the Shop</h2>
+            <address class="nap">
+              <p class="nap__name">Ironwood Tattoo Co.</p>
+              <p>1242 9th Avenue SE<br />Inglewood, Calgary, AB T2G 0T2</p>
+              <p>
+                <a href="tel:+14035550148">(403) 555-0148</a><br />
+                <a href="mailto:ink@ironwoodtattoo.ca">ink@ironwoodtattoo.ca</a>
+              </p>
+            </address>
+            <a class="btn" href="https://maps.google.com/?q=1242+9th+Avenue+SE+Calgary+AB" target="_blank" rel="noopener">Get Directions</a>
+          </div>
+          <div class="visit__hours">
+            <h3 class="hours__title">Hours</h3>
+            <ul class="hours">
+              {hours.map((h) => (
+                <li><span>{h.day}</span><span>{h.time}</span></li>
+              ))}
+            </ul>
+            <p class="visit__note">Walk-ins for flash any open day. Custom work by appointment.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLOSING CTA -->
+      <section class="section closer">
+        <div class="closer__inner">
+          <h2 class="closer__title">Ready to get inked?</h2>
+          <p>Drop us your idea and grab a consultation. 18+, photo ID, $80 deposit.</p>
+          <div class="hero__cta">
+            <a class="btn btn--bone" href="#book">Book a Consultation</a>
+            <a class="btn btn--ghost btn--ghost-bone" href="tel:+14035550148">Call the Shop</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="30" height="30">
+              <path d="M24 3 L30 18 L45 18 L33 28 L38 44 L24 34 L10 44 L15 28 L3 18 L18 18 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <circle cx="24" cy="24" r="5" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="brand__text">Ironwood<small>Tattoo Co.</small></span>
+        </div>
+        <p>1242 9th Avenue SE, Inglewood, Calgary · (403) 555-0148</p>
+        <p class="footer__fine">@ironwoodtattooyyc · © 2026 Ironwood Tattoo Co. All work permanent.</p>
+      </div>
+    </footer>
+
+    <!-- STICKY BOOKING BAR -->
+    <div class="bookbar" id="bookbar">
+      <span class="bookbar__text">Walk-ins welcome · Flash $150 flat</span>
+      <div class="bookbar__actions">
+        <a class="btn btn--sm" href="#book">Book</a>
+        <a class="btn btn--sm btn--ghost" href="tel:+14035550148">Call</a>
+      </div>
+    </div>
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      }
+    </style>
+
+    <style>
+      :root {
+        --bg: #f4ead6;
+        --fg: #1a1614;
+        --primary: #b22222;
+        --primary-fg: #f4ead6;
+        --accent: #1f4e3d;
+        --muted: #e6d6ba;
+        --border: #1a1614;
+        --font-display: "Rye", serif;
+        --font-body: "Oswald", sans-serif;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--font-body);
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: 0.01em;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .skip {
+        position: absolute; left: -999px; top: 0; z-index: 200;
+        background: var(--fg); color: var(--bg); padding: 12px 18px; font-weight: 600;
+      }
+      .skip:focus { left: 12px; top: 12px; }
+
+      a { color: inherit; }
+      :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+
+      /* BUTTONS */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 48px; padding: 0 26px;
+        background: var(--primary); color: var(--primary-fg);
+        font-family: var(--font-body); font-weight: 600; font-size: 0.95rem;
+        text-transform: uppercase; letter-spacing: 0.12em; text-decoration: none;
+        border: 2.5px solid var(--border); border-radius: 2px;
+        box-shadow: 4px 4px 0 var(--border);
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        cursor: pointer;
+      }
+      .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--border); }
+      .btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--border); }
+      .btn--sm { min-height: 44px; padding: 0 18px; font-size: 0.8rem; box-shadow: 3px 3px 0 var(--border); }
+      .btn--ghost { background: transparent; color: var(--fg); }
+      .btn--bone { background: var(--bg); color: var(--fg); }
+      .btn--ghost-bone { color: var(--bg); border-color: var(--bg); box-shadow: 4px 4px 0 var(--primary); }
+
+      .kicker {
+        font-weight: 600; text-transform: uppercase; letter-spacing: 0.28em;
+        font-size: 0.78rem; margin: 0 0 0.6rem;
+      }
+      .kicker--red { color: var(--primary); }
+      .kicker--bone { color: var(--muted); }
+
+      /* NAV */
+      .nav {
+        position: sticky; top: 0; z-index: 100;
+        background: var(--bg);
+        border-bottom: 3px solid var(--border);
+      }
+      .nav__inner {
+        max-width: 1200px; margin: 0 auto; padding: 0.7rem 1.25rem;
+        display: flex; align-items: center; gap: 1.5rem;
+      }
+      .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--fg); margin-right: auto; }
+      .brand__mark { color: var(--primary); display: grid; place-items: center; }
+      .brand__text {
+        font-family: var(--font-display); font-size: 1.45rem; line-height: 0.85;
+        display: flex; flex-direction: column;
+      }
+      .brand__text small { font-family: var(--font-body); font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600; }
+      .nav__links { display: none; gap: 1.6rem; }
+      .nav__links a { text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; font-size: 0.85rem; position: relative; padding: 4px 0; }
+      .nav__links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.2s ease; }
+      .nav__links a:hover::after { width: 100%; }
+
+      .nav__toggle { display: inline-flex; flex-direction: column; gap: 5px; width: 44px; height: 44px; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; }
+      .nav__toggle span { width: 26px; height: 3px; background: var(--fg); transition: transform 0.2s ease, opacity 0.2s ease; }
+      .nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+      .nav__mobile { display: none; flex-direction: column; gap: 0.25rem; padding: 1rem 1.25rem 1.5rem; border-top: 2px solid var(--border); }
+      .nav__mobile.open { display: flex; }
+      .nav__mobile a:not(.btn) { text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; padding: 0.7rem 0; border-bottom: 1px solid rgba(26,22,20,0.15); }
+      .nav__mobile .btn { margin-top: 0.75rem; }
+
+      @media (min-width: 880px) {
+        .nav__links { display: flex; }
+        .nav__toggle { display: none; }
+      }
+
+      /* HERO */
+      .hero { position: relative; overflow: hidden; border-bottom: 3px solid var(--border); }
+      .hero__bg {
+        position: absolute; inset: 0;
+        background-image: linear-gradient(115deg, rgba(178,34,34,0.86), rgba(26,22,20,0.92)),
+          url("https://picsum.photos/seed/ironhero99/1600/1000");
+        background-size: cover; background-position: center;
+        mix-blend-mode: normal;
+      }
+      .hero__grain {
+        position: absolute; inset: 0; opacity: 0.5; pointer-events: none;
+        background-image: radial-gradient(rgba(244,234,214,0.10) 1px, transparent 1px);
+        background-size: 4px 4px;
+      }
+      .hero__content {
+        position: relative; max-width: 1200px; margin: 0 auto;
+        padding: clamp(4rem, 12vw, 8rem) 1.25rem clamp(3rem, 8vw, 5rem);
+        color: var(--bg);
+      }
+      .hero .kicker { color: var(--bg); opacity: 0.9; }
+      .hero__title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 13vw, 7.5rem); line-height: 0.92; margin: 0 0 1.25rem;
+        text-shadow: 5px 5px 0 var(--border);
+      }
+      .hero__title span { color: var(--bg); -webkit-text-stroke: 2px var(--bg); }
+      .hero__lead { max-width: 34rem; font-size: clamp(1rem, 2.4vw, 1.2rem); margin: 0 0 2rem; }
+      .hero__cta { display: flex; flex-wrap: wrap; gap: 1rem; }
+      .hero__stats { list-style: none; display: flex; flex-wrap: wrap; gap: clamp(1.5rem, 5vw, 3.5rem); margin: 2.75rem 0 0; padding: 0; }
+      .hero__stats li { display: flex; flex-direction: column; }
+      .hero__stats b { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1; }
+      .hero__stats span { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.72rem; opacity: 0.85; margin-top: 0.35rem; }
+
+      /* MARQUEE */
+      .marquee { background: var(--fg); color: var(--bg); overflow: hidden; border-bottom: 3px solid var(--border); padding: 0.75rem 0; }
+      .marquee__track { display: flex; gap: 0; width: max-content; animation: scroll 28s linear infinite; }
+      .marquee__item { display: inline-flex; align-items: center; font-family: var(--font-display); font-size: 1.35rem; padding: 0 1.5rem; white-space: nowrap; }
+      .marquee__star { color: var(--primary); margin-left: 1.5rem; font-style: normal; }
+      @keyframes scroll { to { transform: translateX(-50%); } }
+
+      /* SECTIONS */
+      .section { padding: clamp(3.5rem, 9vw, 6.5rem) 1.25rem; max-width: 1200px; margin: 0 auto; }
+      .section--dark { max-width: none; background: var(--fg); color: var(--bg); }
+      .section--dark .section { max-width: 1200px; }
+      .section--muted { max-width: none; background: var(--muted); border-block: 3px solid var(--border); }
+      .section--dark > *, .section--muted > * { max-width: 1200px; margin-inline: auto; }
+      .section__head { max-width: 44rem; margin-bottom: 2.75rem; }
+      .section__title { font-family: var(--font-display); font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1; margin: 0 0 0.75rem; }
+      .section__sub { font-size: 1.05rem; margin: 0; opacity: 0.85; }
+
+      /* reveal */
+      .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* FLASH */
+      .flash__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 1.5rem; }
+      .flash__card { border: 3px solid var(--border); background: var(--bg); box-shadow: 6px 6px 0 var(--border); transition: transform 0.18s ease, box-shadow 0.18s ease; }
+      .flash__card:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--primary); }
+      .flash__img { position: relative; border-bottom: 3px solid var(--border); }
+      .flash__img img { aspect-ratio: 1; object-fit: cover; filter: contrast(1.08) saturate(0.92); width: 100%; }
+      .flash__tag { position: absolute; top: 0.75rem; left: 0.75rem; background: var(--primary); color: var(--primary-fg); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 10px; border: 2px solid var(--border); }
+      .flash__meta { display: flex; align-items: baseline; justify-content: space-between; padding: 1rem 1.1rem 0.4rem; gap: 0.5rem; }
+      .flash__meta h3 { font-family: var(--font-display); font-size: 1.25rem; margin: 0; }
+      .flash__price { font-weight: 700; color: var(--primary); font-size: 1.1rem; white-space: nowrap; }
+      .flash__claim { display: block; padding: 0.6rem 1.1rem 1rem; text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.82rem; color: var(--accent); }
+      .flash__claim:hover { color: var(--primary); }
+
+      /* GALLERY */
+      .gallery__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+      .gallery__item { position: relative; margin: 0; overflow: hidden; border: 2px solid var(--bg); }
+      .gallery__item img { width: 100%; height: 100%; aspect-ratio: 1; object-fit: cover; transition: transform 0.5s ease; }
+      .gallery__item:hover img { transform: scale(1.07); }
+      .gallery__item figcaption { position: absolute; bottom: 0; left: 0; background: var(--primary); color: var(--primary-fg); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; padding: 5px 11px; }
+      @media (min-width: 720px) {
+        .gallery__grid { grid-template-columns: repeat(4, 1fr); }
+        .gallery__item--wide { grid-column: span 2; }
+        .gallery__item--wide img { aspect-ratio: 2 / 1; }
+      }
+
+      /* ARTISTS */
+      .artists__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1.75rem; }
+      .artist { border: 3px solid var(--border); background: var(--bg); overflow: hidden; }
+      .artist__img { overflow: hidden; border-bottom: 3px solid var(--border); }
+      .artist__img img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(0.35) contrast(1.05); transition: transform 0.45s ease, filter 0.45s ease; }
+      .artist:hover .artist__img img { transform: scale(1.05); filter: grayscale(0) contrast(1.08); }
+      .artist__body { padding: 1.25rem 1.4rem 1.5rem; }
+      .artist__body h3 { font-family: var(--font-display); font-size: 1.5rem; margin: 0 0 0.3rem; }
+      .artist__spec { margin: 0 0 0.2rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.82rem; }
+      .artist__handle { margin: 0 0 1rem; opacity: 0.7; font-size: 0.85rem; }
+      .artist__book { display: inline-block; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.82rem; color: var(--primary); text-decoration: none; border-bottom: 2px solid var(--primary); padding-bottom: 2px; }
+      .artist__book:hover { color: var(--fg); border-color: var(--fg); }
+
+      /* PRICING */
+      .pricing__list { display: flex; flex-direction: column; gap: 0; }
+      .price-row { display: flex; align-items: baseline; gap: 1rem; padding: 1.2rem 0; border-bottom: 2px dashed rgba(26,22,20,0.4); }
+      .price-row:first-child { border-top: 3px solid var(--border); }
+      .price-row__name h3 { font-family: var(--font-display); font-size: 1.4rem; margin: 0; line-height: 1.1; }
+      .price-row__name span { font-size: 0.82rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.08em; }
+      .price-row__dots { flex: 1; border-bottom: 2px dotted rgba(26,22,20,0.4); transform: translateY(-4px); min-width: 1rem; }
+      .price-row__price { font-weight: 700; color: var(--primary); font-size: 1.15rem; white-space: nowrap; }
+
+      /* PROOF */
+      .proof__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1.5rem; }
+      .quote { margin: 0; padding: 1.75rem; border: 2px solid var(--muted); background: rgba(244,234,214,0.04); }
+      .quote__stars { color: var(--primary); letter-spacing: 0.15em; margin-bottom: 0.9rem; font-size: 1.1rem; }
+      .quote blockquote { margin: 0 0 1rem; font-size: 1.05rem; line-height: 1.55; }
+      .quote figcaption { font-family: var(--font-display); font-size: 1.15rem; color: var(--muted); }
+
+      /* FAQ */
+      .faq__list { display: flex; flex-direction: column; border-top: 3px solid var(--border); }
+      .faq__item { border-bottom: 2px solid var(--border); }
+      .faq__item summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.3rem 0.25rem; font-family: var(--font-display); font-size: clamp(1.15rem, 3vw, 1.5rem); }
+      .faq__item summary::-webkit-details-marker { display: none; }
+      .faq__icon { position: relative; width: 22px; height: 22px; flex-shrink: 0; }
+      .faq__icon::before, .faq__icon::after { content: ""; position: absolute; background: var(--primary); transition: transform 0.2s ease; }
+      .faq__icon::before { top: 10px; left: 0; width: 22px; height: 3px; }
+      .faq__icon::after { left: 10px; top: 0; width: 3px; height: 22px; }
+      .faq__item[open] .faq__icon::after { transform: scaleY(0); }
+      .faq__item p { margin: 0 0 1.4rem; max-width: 50rem; opacity: 0.88; }
+
+      /* VISIT */
+      .visit__grid { display: grid; gap: 2.5rem; }
+      .nap { font-style: normal; margin: 1rem 0 1.75rem; line-height: 1.7; }
+      .nap__name { font-family: var(--font-display); font-size: 1.5rem; margin: 0 0 0.5rem; }
+      .nap a { color: var(--primary); font-weight: 600; text-decoration: none; }
+      .nap a:hover { text-decoration: underline; }
+      .visit__hours { background: var(--bg); border: 3px solid var(--border); box-shadow: 7px 7px 0 var(--border); padding: 1.75rem; align-self: start; }
+      .hours__title { font-family: var(--font-display); font-size: 1.6rem; margin: 0 0 1rem; }
+      .hours { list-style: none; margin: 0; padding: 0; }
+      .hours li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid rgba(26,22,20,0.2); font-size: 0.95rem; }
+      .hours li:last-child { border-bottom: none; }
+      .hours li span:first-child { font-weight: 600; }
+      .visit__note { margin: 1.25rem 0 0; font-size: 0.85rem; opacity: 0.75; }
+      @media (min-width: 820px) { .visit__grid { grid-template-columns: 1.3fr 1fr; align-items: start; } }
+
+      /* CLOSER */
+      .closer { text-align: center; }
+      .closer__inner { background: var(--primary); color: var(--primary-fg); border: 3px solid var(--border); box-shadow: 10px 10px 0 var(--border); padding: clamp(2.5rem, 7vw, 4.5rem) 1.5rem; }
+      .closer__title { font-family: var(--font-display); font-size: clamp(2rem, 7vw, 3.6rem); margin: 0 0 0.75rem; line-height: 1; text-shadow: 4px 4px 0 var(--border); }
+      .closer__inner p { margin: 0 auto 2rem; max-width: 32rem; }
+      .closer .hero__cta { justify-content: center; }
+
+      /* FOOTER */
+      .footer { background: var(--fg); color: var(--bg); padding: 3rem 1.25rem; text-align: center; }
+      .footer__inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+      .brand--footer { margin: 0; }
+      .brand--footer .brand__mark { color: var(--primary); }
+      .footer p { margin: 0; font-size: 0.9rem; }
+      .footer__fine { opacity: 0.6; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; }
+
+      /* BOOK BAR */
+      .bookbar {
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+        display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        background: var(--fg); color: var(--bg);
+        padding: 0.7rem 1rem; border-top: 3px solid var(--primary);
+        transform: translateY(110%); transition: transform 0.3s ease;
+      }
+      .bookbar.show { transform: translateY(0); }
+      .bookbar__text { font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; }
+      .bookbar__actions { display: flex; gap: 0.6rem; flex-shrink: 0; }
+      .bookbar .btn--ghost { color: var(--bg); border-color: var(--bg); box-shadow: 3px 3px 0 var(--primary); }
+      @media (min-width: 880px) { .bookbar__text { font-size: 0.9rem; } }
+    </style>
+
+    <script>
+      const toggle = document.getElementById("navToggle");
+      const mobile = document.getElementById("navMobile");
+      toggle?.addEventListener("click", () => {
+        const open = mobile?.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      mobile?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          mobile.classList.remove("open");
+          toggle?.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      // sticky book bar after hero
+      const bar = document.getElementById("bookbar");
+      const hero = document.querySelector(".hero");
+      if (bar && hero && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          ([e]) => bar.classList.toggle("show", !e.isIntersecting),
+          { rootMargin: "-120px 0px 0px 0px" }
+        );
+        io.observe(hero);
+      }
+
+      // scroll reveal
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const heads = document.querySelectorAll(".section__head");
+      if (!reduce && "IntersectionObserver" in window) {
+        heads.forEach((h) => h.classList.add("reveal"));
+        const ro = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((en) => {
+              if (en.isIntersecting) { en.target.classList.add("in"); obs.unobserve(en.target); }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        heads.forEach((h) => ro.observe(h));
+      }
+    </script>
+  </body>
+</html>

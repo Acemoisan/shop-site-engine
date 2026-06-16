@@ -1,0 +1,581 @@
+---
+// Lumière Aesthetics — "glow" variant. Self-contained showcase template.
+const nav = [
+  { label: "Treatments", href: "#treatments" },
+  { label: "Results", href: "#results" },
+  { label: "Our Team", href: "#team" },
+  { label: "Membership", href: "#membership" },
+  { label: "Visit", href: "#visit" },
+];
+
+const treatments = [
+  { name: "Wrinkle Relaxers", note: "Botox / Dysport", price: "from $11/unit", dur: "30 min", seed: "glowtx1" },
+  { name: "Dermal Filler", note: "Sculpt & restore volume", price: "from $650/syringe", dur: "45 min", seed: "glowtx2" },
+  { name: "HydraFacial MD", note: "Deep-cleanse & hydrate", price: "$225", dur: "60 min", seed: "glowtx3" },
+  { name: "Microneedling + PRP", note: "Collagen renewal", price: "$450", dur: "75 min", seed: "glowtx4" },
+  { name: "Laser Resurfacing", note: "Smooth tone & texture", price: "from $375/session", dur: "60 min", seed: "glowtx5" },
+  { name: "Medical-Grade Peel", note: "Brighten & refine", price: "$185", dur: "45 min", seed: "glowtx6" },
+];
+
+const team = [
+  { name: "Dr. Aurélie Chen", role: "Medical Director · MD", spec: "Injectables · Facial Harmony", seed: "glowdr1" },
+  { name: "Naomi Okafor", role: "Nurse Injector · RN", spec: "Dermal Filler · Lip Artistry", seed: "glowdr2" },
+  { name: "Hana Lindqvist", role: "Medical Aesthetician", spec: "Laser · Skin Therapies", seed: "glowdr3" },
+];
+
+const testimonials = [
+  { quote: "I finally look as rested as I feel. Dr. Aurélie is meticulous and never overdoes it.", who: "Priya N." },
+  { quote: "The most relaxing clinic I've been to — and my skin has never looked better.", who: "Megan R." },
+  { quote: "Honest advice, beautiful results, zero pressure. I send all my friends here.", who: "Sofia L." },
+];
+
+const faqs = [
+  { q: "Is there downtime?", a: "Most treatments have little to none — we'll review exactly what to expect at your free consultation." },
+  { q: "Who performs the treatments?", a: "All injectables are performed by our licensed medical team under physician oversight." },
+  { q: "How do I get started?", a: "Book a complimentary consultation. We assess your skin, listen to your goals, and design a tailored plan." },
+];
+
+const hours = [
+  { d: "Monday – Friday", h: "9:00am – 6:00pm" },
+  { d: "Saturday", h: "10:00am – 4:00pm" },
+  { d: "Sunday", h: "Closed" },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumière Aesthetics — Med Spa & Aesthetic Clinic in Mission, Calgary</title>
+  <meta name="description" content="Your glow, restored. Physician-led injectables, advanced skin therapies and laser treatments in a calm, private Mission studio in Calgary. Licensed, discreet, and tailored to you." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+<style is:global>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  }
+</style>
+
+<style>
+  :root {
+    --bg: #FDF4F8;
+    --fg: #3A2E40;
+    --primary: #E59AAC;
+    --primary-fg: #3A2E40;
+    --accent: #9FD8E0;
+    --muted: #F4E6F2;
+    --border: #EAD4E6;
+    --glass: rgba(255,255,255,.55);
+    --shadow: 0 18px 50px -22px rgba(120, 70, 110, .45);
+    --display: "Fraunces", Georgia, serif;
+    --body: "Poppins", system-ui, sans-serif;
+    --radius: 22px;
+    --max: 1180px;
+  }
+  body {
+    font-family: var(--body);
+    color: var(--fg);
+    background:
+      radial-gradient(1100px 700px at 12% -8%, rgba(159,216,224,.45), transparent 60%),
+      radial-gradient(900px 700px at 92% 4%, rgba(229,154,172,.42), transparent 58%),
+      linear-gradient(180deg, var(--bg), #fff 40%, var(--bg));
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.04; margin: 0; letter-spacing: -.01em; }
+  p { margin: 0; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 22px; }
+  .eyebrow {
+    font-family: var(--body); font-weight: 600; font-size: .74rem;
+    letter-spacing: .26em; text-transform: uppercase; color: #a76489;
+    display: inline-flex; align-items: center; gap: .55em;
+  }
+  .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--primary); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5em;
+    min-height: 48px; padding: 0 26px; border-radius: 999px;
+    font-weight: 600; font-size: .95rem; text-decoration: none; cursor: pointer;
+    border: 1px solid transparent; transition: transform .25s, box-shadow .25s, background .25s;
+  }
+  .btn-primary { background: linear-gradient(120deg, var(--primary), #f3b6c8); color: var(--primary-fg); box-shadow: var(--shadow); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 22px 44px -16px rgba(120,70,110,.5); }
+  .btn-ghost { background: var(--glass); border-color: var(--border); color: var(--fg); backdrop-filter: blur(8px); }
+  .btn-ghost:hover { background: #fff; transform: translateY(-2px); }
+
+  /* Nav */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(253,244,248,.72);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 70px; }
+  .brand { font-family: var(--display); font-size: 1.5rem; font-weight: 600; text-decoration: none; letter-spacing: -.02em; display: flex; align-items: center; gap: .5rem; }
+  .brand .dot { width: 12px; height: 12px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #fff, var(--primary)); box-shadow: 0 0 0 4px var(--muted); }
+  .nav-links { display: none; gap: 1.6rem; align-items: center; }
+  .nav-links a { text-decoration: none; font-size: .92rem; font-weight: 500; color: #6a5670; transition: color .2s; }
+  .nav-links a:hover { color: var(--fg); }
+  .nav-cta { display: none; }
+  .burger { display: inline-flex; flex-direction: column; gap: 5px; background: var(--glass); border: 1px solid var(--border); border-radius: 12px; width: 48px; height: 48px; align-items: center; justify-content: center; cursor: pointer; }
+  .burger span { width: 20px; height: 2px; background: var(--fg); border-radius: 2px; }
+  #menu { display: none; flex-direction: column; gap: .25rem; padding: .5rem 0 1.2rem; }
+  #menu.open { display: flex; }
+  #menu a { text-decoration: none; padding: .7rem 4px; font-weight: 500; border-bottom: 1px solid var(--border); color: #6a5670; }
+  @media (min-width: 900px) {
+    .nav-links, .nav-cta { display: flex; }
+    .burger { display: none; }
+    #menu { display: none !important; }
+  }
+
+  /* Hero */
+  .hero { padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(3rem, 6vw, 5rem); }
+  .hero-grid { display: grid; gap: 2.4rem; align-items: center; }
+  @media (min-width: 940px) { .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 3rem; } }
+  .hero h1 { font-size: clamp(2.7rem, 7vw, 4.7rem); }
+  .hero h1 em { font-style: italic; color: #c46f8e; }
+  .hero .lede { margin-top: 1.3rem; max-width: 38ch; color: #6a5670; font-size: 1.06rem; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }
+  .trustrow { display: flex; align-items: center; gap: .8rem; margin-top: 1.8rem; flex-wrap: wrap; color: #6a5670; font-size: .86rem; }
+  .stars { color: #d98aa6; letter-spacing: 2px; font-size: 1rem; }
+
+  .hero-media { position: relative; }
+  .hero-photo {
+    border-radius: 30px; overflow: hidden; box-shadow: var(--shadow);
+    aspect-ratio: 4/5; position: relative;
+  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(150deg, rgba(159,216,224,.32), rgba(229,154,172,.36)); mix-blend-mode: soft-light; }
+  .float-card {
+    position: absolute; backdrop-filter: blur(12px); background: var(--glass);
+    border: 1px solid rgba(255,255,255,.7); border-radius: 18px; padding: .9rem 1.1rem;
+    box-shadow: var(--shadow);
+  }
+  .fc-1 { left: -10px; bottom: 26px; }
+  .fc-2 { right: -8px; top: 30px; }
+  .float-card .k { font-family: var(--display); font-size: 1.5rem; line-height: 1; }
+  .float-card .s { font-size: .72rem; color: #6a5670; letter-spacing: .04em; }
+
+  /* Logo / press strip */
+  .press { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(255,255,255,.4); }
+  .press-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.4rem 2.6rem; padding: 1.3rem 0; }
+  .press span { font-family: var(--display); font-style: italic; color: #a07e98; font-size: 1.05rem; opacity: .85; }
+  .press .lbl { font-family: var(--body); font-style: normal; font-size: .68rem; letter-spacing: .26em; text-transform: uppercase; color: #b094ab; }
+
+  /* Section frame */
+  section { padding: clamp(3.2rem, 7vw, 5.5rem) 0; }
+  .sec-head { max-width: 56ch; margin-bottom: 2.4rem; }
+  .sec-head h2 { font-size: clamp(2rem, 4.6vw, 3rem); margin-top: .7rem; }
+  .sec-head p { margin-top: .9rem; color: #6a5670; }
+
+  /* Treatments grid */
+  .tx-grid { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .tx-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1000px) { .tx-grid { grid-template-columns: 1fr 1fr 1fr; } }
+  .tx-card {
+    position: relative; border-radius: var(--radius); overflow: hidden;
+    background: var(--glass); border: 1px solid rgba(255,255,255,.65);
+    backdrop-filter: blur(10px); box-shadow: 0 14px 36px -24px rgba(120,70,110,.55);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .tx-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+  .tx-thumb { aspect-ratio: 16/10; position: relative; }
+  .tx-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .tx-thumb::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(229,154,172,.12), rgba(159,216,224,.28)); mix-blend-mode: soft-light; }
+  .tx-body { padding: 1.1rem 1.2rem 1.3rem; }
+  .tx-body h3 { font-size: 1.25rem; }
+  .tx-meta { display: flex; gap: .5rem; align-items: center; margin: .35rem 0 .7rem; font-size: .78rem; color: #8a7390; }
+  .tx-meta .pill { background: var(--muted); border-radius: 999px; padding: .15rem .6rem; }
+  .tx-foot { display: flex; align-items: center; justify-content: space-between; margin-top: .8rem; }
+  .tx-price { font-family: var(--display); font-size: 1.05rem; color: #c46f8e; }
+  .tx-book { font-size: .82rem; font-weight: 600; text-decoration: none; color: var(--fg); border-bottom: 1.5px solid var(--primary); padding-bottom: 2px; }
+
+  /* Before/after slider */
+  .ba-wrap { display: grid; gap: 2.2rem; align-items: center; }
+  @media (min-width: 900px) { .ba-wrap { grid-template-columns: 1fr 1fr; } }
+  .ba {
+    position: relative; aspect-ratio: 5/4; border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow); user-select: none; touch-action: none;
+  }
+  .ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ba .after { clip-path: inset(0 0 0 var(--pos, 50%)); }
+  .ba .tag { position: absolute; bottom: 12px; padding: .25rem .7rem; border-radius: 999px; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; background: var(--glass); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.6); }
+  .ba .tag.b { left: 12px; }
+  .ba .tag.a { right: 12px; }
+  .ba .handle { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 2px; background: #fff; box-shadow: 0 0 14px rgba(0,0,0,.25); transform: translateX(-1px); }
+  .ba .grip { position: absolute; top: 50%; left: var(--pos, 50%); transform: translate(-50%,-50%); width: 44px; height: 44px; border-radius: 50%; background: #fff; box-shadow: var(--shadow); display: grid; place-items: center; cursor: ew-resize; color: #c46f8e; font-size: 1rem; }
+  .ba input[type=range] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+
+  /* Team */
+  .team-grid { display: grid; gap: 1.4rem; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
+  .team-card { background: var(--glass); border: 1px solid rgba(255,255,255,.65); border-radius: var(--radius); overflow: hidden; backdrop-filter: blur(8px); box-shadow: 0 14px 36px -26px rgba(120,70,110,.55); transition: transform .3s; }
+  .team-card:hover { transform: translateY(-4px); }
+  .team-photo { aspect-ratio: 1; position: relative; }
+  .team-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .team-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(229,154,172,.28)); }
+  .team-body { padding: 1.1rem 1.2rem 1.4rem; }
+  .team-body h3 { font-size: 1.2rem; }
+  .team-body .role { color: #c46f8e; font-weight: 600; font-size: .82rem; margin-top: .25rem; }
+  .team-body .spec { color: #6a5670; font-size: .85rem; margin-top: .5rem; }
+
+  /* Testimonials slider */
+  .ts-track { display: flex; gap: 1.2rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; scrollbar-width: none; }
+  .ts-track::-webkit-scrollbar { display: none; }
+  .ts-card { scroll-snap-align: center; min-width: min(90%, 460px); background: var(--glass); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.65); border-radius: var(--radius); padding: 1.8rem 1.8rem 1.6rem; box-shadow: var(--shadow); }
+  .ts-card .q { font-family: var(--display); font-size: 1.25rem; line-height: 1.35; }
+  .ts-card .who { margin-top: 1.1rem; font-weight: 600; font-size: .9rem; color: #c46f8e; }
+
+  /* Membership */
+  .membership { background: linear-gradient(140deg, rgba(159,216,224,.3), rgba(229,154,172,.32)); border-radius: 32px; border: 1px solid rgba(255,255,255,.6); padding: clamp(2rem,5vw,3.4rem); display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 880px) { .membership { grid-template-columns: 1fr 1fr; } }
+  .price-tier { background: rgba(255,255,255,.78); backdrop-filter: blur(8px); border-radius: 24px; padding: 1.8rem; box-shadow: var(--shadow); }
+  .price-tier .amt { font-family: var(--display); font-size: 3rem; line-height: 1; color: #c46f8e; }
+  .price-tier .amt small { font-size: 1rem; color: #6a5670; font-family: var(--body); }
+  .perks { list-style: none; padding: 0; margin: 1.3rem 0 0; display: grid; gap: .7rem; }
+  .perks li { display: flex; gap: .6rem; align-items: flex-start; font-size: .92rem; }
+  .perks svg { flex: none; margin-top: 3px; color: #c46f8e; }
+
+  /* FAQ */
+  .faq { display: grid; gap: .8rem; max-width: 760px; }
+  details { background: var(--glass); border: 1px solid var(--border); border-radius: 16px; padding: .3rem 1.2rem; backdrop-filter: blur(6px); }
+  details summary { cursor: pointer; list-style: none; padding: 1rem 0; font-weight: 600; font-family: var(--display); font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: "+"; font-size: 1.5rem; color: #c46f8e; transition: transform .25s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { padding: 0 0 1rem; color: #6a5670; }
+
+  /* Visit / contact */
+  .visit-grid { display: grid; gap: 1.6rem; }
+  @media (min-width: 880px) { .visit-grid { grid-template-columns: 1.1fr .9fr; } }
+  .visit-card { background: var(--glass); border: 1px solid rgba(255,255,255,.65); border-radius: var(--radius); padding: 1.8rem; backdrop-filter: blur(8px); box-shadow: 0 14px 36px -26px rgba(120,70,110,.55); }
+  .nap { display: grid; gap: 1.1rem; }
+  .nap a { text-decoration: none; }
+  .nap .row { display: flex; gap: .8rem; align-items: flex-start; }
+  .nap .row svg { flex: none; margin-top: 2px; color: #c46f8e; }
+  .nap .big { font-family: var(--display); font-size: 1.5rem; color: #c46f8e; }
+  .hours-tbl { width: 100%; border-collapse: collapse; margin-top: .4rem; }
+  .hours-tbl td { padding: .55rem 0; border-bottom: 1px solid var(--border); font-size: .92rem; }
+  .hours-tbl td:last-child { text-align: right; color: #6a5670; }
+  .map-card { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); position: relative; min-height: 280px; }
+  .map-card img { width: 100%; height: 100%; object-fit: cover; min-height: 280px; }
+  .map-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(159,216,224,.34), rgba(229,154,172,.34)); mix-blend-mode: soft-light; }
+  .map-pin { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-100%); background: #fff; color: #c46f8e; border-radius: 999px; padding: .4rem .9rem; font-size: .78rem; font-weight: 600; box-shadow: var(--shadow); }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); background: rgba(255,255,255,.5); padding: 2.4rem 0; }
+  .foot-inner { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; color: #6a5670; font-size: .85rem; }
+
+  /* Sticky mobile booking bar */
+  .bookbar {
+    position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60;
+    background: rgba(255,255,255,.85); backdrop-filter: blur(14px);
+    border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow);
+    display: flex; align-items: center; justify-content: space-between; gap: .8rem; padding: .65rem .7rem .65rem 1.1rem;
+  }
+  .bookbar .bb-txt { font-size: .82rem; line-height: 1.2; }
+  .bookbar .bb-txt b { font-family: var(--display); }
+  @media (min-width: 900px) { .bookbar { display: none; } }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>lumière</a>
+      <nav class="nav-links" aria-label="Primary">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      </nav>
+      <a class="btn btn-primary nav-cta" href="https://lumiereaesthetics.ca/book">Book consultation</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="wrap"><div id="menu">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      <a href="https://lumiereaesthetics.ca/book" style="color:#c46f8e;font-weight:600;">Book a consultation →</a>
+    </div></div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Medical aesthetics · Mission, Calgary</span>
+          <h1 style="margin-top:1rem;">Your glow,<br><em>restored.</em></h1>
+          <p class="lede">Physician-led injectables, advanced skin therapies and laser treatments in a calm, private studio. Licensed, discreet, and tailored to you.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="https://lumiereaesthetics.ca/book">Book a consultation</a>
+            <a class="btn btn-ghost" href="tel:+14035550192">Call (403) 555-0192</a>
+          </div>
+          <div class="trustrow">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span>4.9 from 280+ Calgary clients · physician-overseen</span>
+          </div>
+        </div>
+        <div class="hero-media">
+          <div class="hero-photo">
+            <img src="https://picsum.photos/seed/glowhero/900/1120" alt="Softly lit close-up of healthy, dewy skin in a serene treatment studio" loading="eager" />
+          </div>
+          <div class="float-card fc-1">
+            <div class="k">15 min</div>
+            <div class="s">Average wrinkle-relaxer visit</div>
+          </div>
+          <div class="float-card fc-2">
+            <div class="k">100%</div>
+            <div class="s">Licensed medical team</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRESS -->
+    <div class="press">
+      <div class="wrap press-inner">
+        <span class="lbl">As seen in</span>
+        <span>Avenue&nbsp;Calgary</span>
+        <span>The&nbsp;Skin&nbsp;Edit</span>
+        <span>Glow&nbsp;Journal</span>
+        <span>Western&nbsp;Living</span>
+        <span>Modern&nbsp;Aesthetics</span>
+      </div>
+    </div>
+
+    <!-- TREATMENTS -->
+    <section id="treatments">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">The menu</span>
+          <h2>Signature treatments, transparently priced.</h2>
+          <p>Every plan starts with a complimentary consultation — so you only book what's right for your skin and your goals.</p>
+        </div>
+        <div class="tx-grid">
+          {treatments.map((t) => (
+            <article class="tx-card reveal">
+              <div class="tx-thumb">
+                <img src={`https://picsum.photos/seed/${t.seed}/640/400`} alt={`${t.name} treatment at Lumière Aesthetics`} loading="lazy" />
+              </div>
+              <div class="tx-body">
+                <h3>{t.name}</h3>
+                <div class="tx-meta">
+                  <span class="pill">{t.dur}</span>
+                  <span>{t.note}</span>
+                </div>
+                <div class="tx-foot">
+                  <span class="tx-price">{t.price}</span>
+                  <a class="tx-book" href="https://lumiereaesthetics.ca/book">Book →</a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p style="margin-top:1.4rem;color:#6a5670;font-size:.9rem;">Also available: IV Wellness Drip from $160 · Membership pricing on injectables.</p>
+      </div>
+    </section>
+
+    <!-- BEFORE / AFTER -->
+    <section id="results" style="background:rgba(255,255,255,.4);border-block:1px solid var(--border);">
+      <div class="wrap ba-wrap">
+        <div class="reveal">
+          <span class="eyebrow">Real results</span>
+          <h2 style="font-size:clamp(2rem,4.6vw,3rem);margin-top:.7rem;">See the difference. Drag to reveal.</h2>
+          <p style="margin-top:.9rem;color:#6a5670;max-width:42ch;">Natural, never overdone. Our before-and-after gallery shows the subtle, radiant outcomes our clients return for — full results filterable by treatment in-studio.</p>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.4rem;">
+            <span class="pill" style="background:var(--muted);border-radius:999px;padding:.35rem .8rem;font-size:.8rem;">Filler</span>
+            <span class="pill" style="background:var(--muted);border-radius:999px;padding:.35rem .8rem;font-size:.8rem;">Skin resurfacing</span>
+            <span class="pill" style="background:var(--muted);border-radius:999px;padding:.35rem .8rem;font-size:.8rem;">HydraFacial</span>
+          </div>
+        </div>
+        <div class="ba reveal" id="ba">
+          <img class="before" src="https://picsum.photos/seed/glowbefore/800/640?grayscale" alt="Skin before treatment" loading="lazy" />
+          <img class="after" src="https://picsum.photos/seed/glowafter/800/640" alt="Radiant skin after treatment" loading="lazy" />
+          <span class="tag b">Before</span>
+          <span class="tag a">After</span>
+          <span class="handle" aria-hidden="true"></span>
+          <span class="grip" aria-hidden="true">⇆</span>
+          <input type="range" min="0" max="100" value="50" id="baRange" aria-label="Reveal before and after — drag to compare" />
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Your providers</span>
+          <h2>Care led by licensed professionals.</h2>
+          <p>What separates a med spa from a salon: a physician-led team you can trust with your face.</p>
+        </div>
+        <div class="team-grid">
+          {team.map((m) => (
+            <article class="team-card reveal">
+              <div class="team-photo">
+                <img src={`https://picsum.photos/seed/${m.seed}/500/500`} alt={`Portrait of ${m.name}, ${m.role}`} loading="lazy" />
+              </div>
+              <div class="team-body">
+                <h3>{m.name}</h3>
+                <div class="role">{m.role}</div>
+                <div class="spec">{m.spec}</div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section style="background:rgba(255,255,255,.4);border-block:1px solid var(--border);">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Loved by Calgary</span>
+          <h2>Honest advice. Beautiful results.</h2>
+        </div>
+        <div class="ts-track reveal">
+          {testimonials.map((t) => (
+            <figure class="ts-card">
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <blockquote class="q" style="margin:.6rem 0 0;">“{t.quote}”</blockquote>
+              <figcaption class="who">— {t.who}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMBERSHIP -->
+    <section id="membership">
+      <div class="wrap">
+        <div class="membership reveal">
+          <div>
+            <span class="eyebrow">Members glow more</span>
+            <h2 style="font-size:clamp(2rem,4.6vw,2.8rem);margin-top:.7rem;">The Lumière Membership.</h2>
+            <p style="margin-top:.9rem;color:#6a5670;max-width:40ch;">Self-care as a ritual, not a splurge. One simple monthly plan keeps your glow on schedule — and saves you on every visit.</p>
+          </div>
+          <div class="price-tier">
+            <span class="eyebrow">Most popular</span>
+            <div class="amt" style="margin-top:.6rem;">$99<small> / month</small></div>
+            <ul class="perks">
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Monthly facial credit</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 15% off all injectables</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Priority booking</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Member-only events</li>
+            </ul>
+            <a class="btn btn-primary" style="margin-top:1.4rem;width:100%;" href="https://lumiereaesthetics.ca/book">Become a member</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Good to know</span>
+          <h2>Questions, answered.</h2>
+        </div>
+        <div class="faq reveal">
+          {faqs.map((f, i) => (
+            <details open={i === 0}>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT / CONTACT -->
+    <section id="visit" style="background:rgba(255,255,255,.4);border-top:1px solid var(--border);">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Visit the studio</span>
+          <h2>Come glow with us.</h2>
+          <p>Calgary's medical aesthetics studio — results you can see, care you can trust.</p>
+        </div>
+        <div class="visit-grid">
+          <div class="visit-card reveal">
+            <div class="nap">
+              <div class="row">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <div><strong>Lumière Aesthetics</strong><br>#210, 2207 4th Street SW<br>Calgary, AB T2S 1X1</div>
+              </div>
+              <div class="row">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+                <a href="tel:+14035550192" class="big">(403) 555-0192</a>
+              </div>
+              <div class="row">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+                <a href="mailto:hello@lumiereaesthetics.ca">hello@lumiereaesthetics.ca</a>
+              </div>
+              <table class="hours-tbl">
+                {hours.map((h) => (<tr><td>{h.d}</td><td>{h.h}</td></tr>))}
+              </table>
+              <a class="btn btn-primary" href="https://lumiereaesthetics.ca/book">Book online</a>
+            </div>
+          </div>
+          <a class="map-card reveal" href="https://maps.google.com/?q=2207+4th+Street+SW+Calgary" aria-label="Open Lumière Aesthetics location in Google Maps">
+            <img src="https://picsum.photos/seed/glowmap/700/600?grayscale" alt="Map showing the Mission, Calgary studio location" loading="lazy" />
+            <span class="map-pin">📍 Mission, Calgary</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot-inner">
+      <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>lumière</a>
+      <p>© 2026 Lumière Aesthetics · #210, 2207 4th Street SW, Calgary · (403) 555-0192</p>
+      <p style="font-style:italic;font-family:var(--display);">Results you can see, care you can trust.</p>
+    </div>
+  </footer>
+
+  <!-- Sticky mobile booking bar -->
+  <div class="bookbar">
+    <div class="bb-txt"><b>Free consultation</b><br>No pressure, ever.</div>
+    <a class="btn btn-primary" href="https://lumiereaesthetics.ca/book">Book now</a>
+  </div>
+
+  <script>
+    // Mobile nav
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+    burger?.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+    menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }));
+
+    // Before/after slider
+    const range = document.getElementById('baRange');
+    const ba = document.getElementById('ba');
+    range?.addEventListener('input', () => {
+      ba.style.setProperty('--pos', range.value + '%');
+    });
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

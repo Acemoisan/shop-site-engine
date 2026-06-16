@@ -1,0 +1,544 @@
+---
+// Lumière Aesthetics — Editorial variant (high-fashion black & white, bold)
+const nav = [
+  { label: "Index", href: "#hero" },
+  { label: "Treatments", href: "#treatments" },
+  { label: "Results", href: "#results" },
+  { label: "Studio", href: "#studio" },
+  { label: "Contact", href: "#contact" },
+];
+
+const treatments = [
+  { no: "01", name: "Wrinkle Relaxers", note: "Botox / Dysport", price: "from $11", unit: "/ unit" },
+  { no: "02", name: "Dermal Filler", note: "Restorative volume", price: "from $650", unit: "/ syringe" },
+  { no: "03", name: "HydraFacial MD", note: "60 minutes", price: "$225", unit: "" },
+  { no: "04", name: "Microneedling + PRP", note: "75 minutes", price: "$450", unit: "" },
+  { no: "05", name: "Laser Resurfacing", note: "Per session", price: "from $375", unit: "" },
+  { no: "06", name: "Medical-Grade Peel", note: "45 minutes", price: "$185", unit: "" },
+  { no: "07", name: "IV Wellness Drip", note: "Hydration + glow", price: "from $160", unit: "" },
+];
+
+const press = ["VOGUE", "ELLE", "BAZAAR", "AVENUE", "FLARE", "W"];
+
+const testimonials = [
+  { quote: "I finally look as rested as I feel. Dr. Aurélie is meticulous and never overdoes it.", who: "Priya N.", tag: "Injectables" },
+  { quote: "The most relaxing clinic I've been to — and my skin has never looked better.", who: "Megan R.", tag: "HydraFacial" },
+  { quote: "Honest advice, beautiful results, zero pressure. I send all my friends here.", who: "Sofia L.", tag: "Membership" },
+];
+
+const faqs = [
+  { q: "Is there downtime?", a: "Most treatments have little to none — we'll review exactly what to expect at your complimentary consultation." },
+  { q: "Who performs the treatments?", a: "All injectables are performed by our licensed medical team under physician oversight." },
+  { q: "How do I book?", a: "Book online any time, or call the studio. Every plan starts with a free, no-pressure consultation." },
+];
+
+const hours = [
+  { d: "Monday — Friday", h: "9:00 — 18:00" },
+  { d: "Saturday", h: "10:00 — 16:00" },
+  { d: "Sunday", h: "Closed" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lumière Aesthetics — Beauty, On The Record | Calgary Med Spa</title>
+    <meta name="description" content="Lumière Aesthetics — Calgary's medical aesthetics studio. Physician-led injectables, advanced skin therapies and laser, in a private Mission studio. Results you can see, care you can trust." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#hero">Skip to content</a>
+
+    <!-- NAV -->
+    <header class="nav" id="top">
+      <div class="nav__inner">
+        <a class="wordmark" href="#hero" aria-label="Lumière Aesthetics home">
+          LUMIÈRE<span class="wordmark__sub">AESTHETICS</span>
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="nav__cta" href="#contact">Book Consultation</a>
+        <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" id="menuBtn">
+          <span></span><span></span>
+        </button>
+      </div>
+      <div class="nav__drawer" id="drawer" hidden>
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="nav__drawer-cta" href="#contact">Book Consultation</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div class="hero__meta">
+          <span>Issue 07</span><span>Mission · Calgary</span><span>Est. MMXVI</span>
+        </div>
+        <div class="hero__grid">
+          <div class="hero__type reveal">
+            <p class="kicker">Medical Aesthetics Studio</p>
+            <h1>Beauty,<br /><em>on the</em><br />record.</h1>
+            <p class="hero__lede">
+              Physician-led injectables, advanced skin therapies and laser treatments
+              in a calm, private Mission studio. Licensed, discreet, and tailored to you.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--solid" href="#contact">Book a Consultation</a>
+              <a class="btn btn--ghost" href="#treatments">View the Menu</a>
+            </div>
+          </div>
+          <figure class="hero__figure reveal">
+            <img
+              src="https://picsum.photos/seed/lumiere-hero-editorial/900/1200?grayscale"
+              alt="Black and white editorial portrait of a model with luminous, healthy skin"
+              loading="eager"
+            />
+            <figcaption>Results you can see — care you can trust.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- PRESS MARQUEE -->
+      <section class="press" aria-label="As seen in">
+        <div class="press__track">
+          {[...press, ...press].map((p) => <span>{p}</span>)}
+        </div>
+      </section>
+
+      <!-- TREATMENTS -->
+      <section class="treatments" id="treatments">
+        <div class="section-head">
+          <p class="kicker">The Menu</p>
+          <h2>Signature<br /><em>treatments</em></h2>
+          <p class="section-head__note">
+            Transparent starting prices. Every visit begins with a consultation.
+          </p>
+        </div>
+        <ul class="menu">
+          {treatments.map((t) => (
+            <li class="menu__row">
+              <span class="menu__no">{t.no}</span>
+              <span class="menu__name">{t.name}</span>
+              <span class="menu__note">{t.note}</span>
+              <span class="menu__lead" aria-hidden="true"></span>
+              <span class="menu__price">{t.price}<small>{t.unit}</small></span>
+              <a class="menu__book" href="#contact" aria-label={`Book ${t.name}`}>Book</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- BEFORE / AFTER -->
+      <section class="results" id="results">
+        <div class="section-head section-head--center">
+          <p class="kicker">Evidence</p>
+          <h2>Before <span class="amp">&amp;</span> after</h2>
+          <p class="section-head__note">Drag to reveal. Real outcomes, naturally refined.</p>
+        </div>
+        <div class="ba" id="ba">
+          <img class="ba__img ba__after" src="https://picsum.photos/seed/lumiere-after/1200/800?grayscale" alt="Skin after treatment, smooth and even" />
+          <div class="ba__before" id="baBefore">
+            <img class="ba__img" src="https://picsum.photos/seed/lumiere-before/1200/800" alt="Skin before treatment" />
+            <span class="ba__label">Before</span>
+          </div>
+          <span class="ba__label ba__label--after">After</span>
+          <input class="ba__range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Reveal before and after" />
+          <span class="ba__handle" id="baHandle" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <!-- STUDIO / PROVIDER -->
+      <section class="studio" id="studio">
+        <figure class="studio__figure reveal">
+          <img src="https://picsum.photos/seed/lumiere-director/800/1000?grayscale" alt="Portrait of the medical director in clean clinical attire" />
+          <figcaption>Dr. Aurélie Vasseur, MD · Medical Director</figcaption>
+        </figure>
+        <div class="studio__body reveal">
+          <p class="kicker">The Studio</p>
+          <h2>A physician-led practice in <em>Mission.</em></h2>
+          <p>
+            Lumière is built on a simple belief: aesthetic results should look like you,
+            only more rested. Every plan is led by a licensed medical team, every
+            injectable performed under physician oversight, every visit private.
+          </p>
+          <ul class="creds">
+            <li><strong>MD</strong> Physician oversight on all injectables</li>
+            <li><strong>10+ yrs</strong> Advanced aesthetic experience</li>
+            <li><strong>100%</strong> Personalised, no-pressure consults</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="voices" aria-label="Client testimonials">
+        <div class="section-head">
+          <p class="kicker">On The Record</p>
+          <h2>Client <em>voices</em></h2>
+        </div>
+        <div class="voices__grid">
+          {testimonials.map((t, i) => (
+            <figure class="voice reveal" style={`--i:${i}`}>
+              <div class="voice__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <blockquote>“{t.quote}”</blockquote>
+              <figcaption><span>{t.who}</span><em>{t.tag}</em></figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- MEMBERSHIP -->
+      <section class="member">
+        <div class="member__card reveal">
+          <div class="member__left">
+            <p class="kicker kicker--invert">Membership</p>
+            <h2>The Lumière<br /><em>Membership</em></h2>
+          </div>
+          <div class="member__right">
+            <p class="member__price">$99<small>/ month</small></p>
+            <ul class="member__list">
+              <li>Monthly facial credit</li>
+              <li>15% off all injectables</li>
+              <li>Priority booking</li>
+              <li>Member-only events</li>
+            </ul>
+            <a class="btn btn--invert" href="#contact">Become a Member</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq" aria-label="Frequently asked questions">
+        <div class="section-head">
+          <p class="kicker">Questions</p>
+          <h2>Good to <em>know</em></h2>
+        </div>
+        <div class="faq__list">
+          {faqs.map((f, i) => (
+            <details class="faq__item" open={i === 0}>
+              <summary>{f.q}<span class="faq__mark" aria-hidden="true"></span></summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact" id="contact">
+        <div class="contact__grid">
+          <div class="contact__info reveal">
+            <p class="kicker">Visit</p>
+            <h2>Book your <em>consultation.</em></h2>
+            <address class="nap">
+              <p class="nap__name">Lumière Aesthetics</p>
+              <p>#210, 2207 4th Street SW<br />Calgary, AB T2S 1X1</p>
+              <p>
+                <a href="tel:+14035550192">(403) 555-0192</a><br />
+                <a href="mailto:hello@lumiereaesthetics.ca">hello@lumiereaesthetics.ca</a>
+              </p>
+            </address>
+            <div class="hours">
+              {hours.map((h) => (
+                <div class="hours__row"><span>{h.d}</span><span>{h.h}</span></div>
+              ))}
+            </div>
+            <div class="contact__actions">
+              <a class="btn btn--solid" href="https://lumiereaesthetics.ca/book">Book Online</a>
+              <a class="btn btn--ghost" href="tel:+14035550192">Call the Studio</a>
+            </div>
+          </div>
+          <a class="contact__map reveal" href="https://maps.google.com/?q=2207+4th+Street+SW+Calgary" aria-label="Open map to Lumière Aesthetics">
+            <img src="https://picsum.photos/seed/lumiere-map/900/1100?grayscale" alt="Aerial map view of the Mission studio location" />
+            <span class="contact__pin">Mission · 4th St SW</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer__big">LUMIÈRE</div>
+      <div class="footer__rows">
+        <span>Lumière Aesthetics · Mission, Calgary</span>
+        <span>© 2026 — Beauty, on the record.</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+
+    <!-- STICKY BOOKING BAR (mobile) -->
+    <a class="dock" href="#contact">Book a Consultation</a>
+
+    <style is:global>
+      *,*::before,*::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+      @media (prefers-reduced-motion: reduce) {
+        *,*::before,*::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      }
+    </style>
+
+    <style>
+      :root {
+        --bg: #f4f2ee;
+        --fg: #111111;
+        --primary: #111111;
+        --primary-fg: #f4f2ee;
+        --accent: #b08d57;
+        --muted: #e5e1da;
+        --border: #1b1b1b;
+        --serif: "Bodoni Moda", Georgia, serif;
+        --sans: "Inter", system-ui, sans-serif;
+        --pad: clamp(1.25rem, 5vw, 6rem);
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--sans);
+        font-weight: 300;
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .skip {
+        position: absolute; left: -999px; top: 0; z-index: 200;
+        background: var(--fg); color: var(--bg); padding: 0.75rem 1rem;
+      }
+      .skip:focus { left: 0; }
+
+      h1, h2 { font-family: var(--serif); font-weight: 600; line-height: 0.95; margin: 0; letter-spacing: -0.01em; }
+      h1 em, h2 em { font-style: italic; font-weight: 500; }
+      a { color: inherit; }
+      :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+      .kicker {
+        font-family: var(--sans); font-size: 0.7rem; font-weight: 600;
+        letter-spacing: 0.32em; text-transform: uppercase; margin: 0 0 1.4rem;
+        color: var(--fg);
+      }
+      .kicker::before { content: "— "; color: var(--accent); }
+      .kicker--invert { color: var(--primary-fg); }
+
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 48px; padding: 0 1.6rem; text-decoration: none;
+        font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+        border: 1px solid var(--border); transition: transform .25s ease, background .25s ease, color .25s ease;
+      }
+      .btn--solid { background: var(--primary); color: var(--primary-fg); }
+      .btn--solid:hover { background: var(--accent); border-color: var(--accent); color: #111; transform: translateY(-2px); }
+      .btn--ghost { background: transparent; color: var(--fg); }
+      .btn--ghost:hover { background: var(--fg); color: var(--bg); transform: translateY(-2px); }
+      .btn--invert { background: var(--primary-fg); color: var(--primary); border-color: var(--primary-fg); }
+      .btn--invert:hover { background: var(--accent); border-color: var(--accent); color: #111; transform: translateY(-2px); }
+
+      /* NAV */
+      .nav { position: sticky; top: 0; z-index: 100; background: color-mix(in oklab, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+      .nav__inner { display: flex; align-items: center; gap: 1.5rem; padding: 0.9rem var(--pad); }
+      .wordmark { font-family: var(--serif); font-weight: 700; font-size: 1.15rem; letter-spacing: 0.18em; text-decoration: none; display: flex; flex-direction: column; line-height: 1; }
+      .wordmark__sub { font-family: var(--sans); font-size: 0.5rem; letter-spacing: 0.5em; font-weight: 500; color: var(--accent); margin-top: 3px; }
+      .nav__links { display: none; gap: 1.8rem; margin-left: auto; }
+      .nav__links a { text-decoration: none; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; position: relative; padding: 4px 0; }
+      .nav__links a::after { content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--accent); transition: width .3s ease; }
+      .nav__links a:hover::after { width: 100%; }
+      .nav__cta { display: none; }
+      .nav__toggle { margin-left: auto; width: 48px; height: 48px; background: none; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 5px; align-items: center; justify-content: center; cursor: pointer; }
+      .nav__toggle span { width: 20px; height: 1.5px; background: var(--fg); transition: .3s; }
+      .nav__toggle[aria-expanded="true"] span:first-child { transform: translateY(3.25px) rotate(45deg); }
+      .nav__toggle[aria-expanded="true"] span:last-child { transform: translateY(-3.25px) rotate(-45deg); }
+      .nav__drawer { display: flex; flex-direction: column; padding: 1rem var(--pad) 2rem; gap: 0.2rem; border-bottom: 1px solid var(--border); }
+      .nav__drawer a { text-decoration: none; padding: 0.85rem 0; border-bottom: 1px solid var(--muted); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.8rem; }
+      .nav__drawer-cta { margin-top: 1rem; background: var(--primary); color: var(--primary-fg); text-align: center; padding: 1rem !important; border: none; }
+
+      @media (min-width: 880px) {
+        .nav__links { display: flex; margin-left: auto; }
+        .nav__cta { display: inline-flex; align-items: center; min-height: 44px; padding: 0 1.3rem; background: var(--primary); color: var(--primary-fg); text-decoration: none; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; transition: background .25s; }
+        .nav__cta:hover { background: var(--accent); color: #111; }
+        .nav__toggle, .nav__drawer { display: none !important; }
+      }
+
+      /* HERO */
+      .hero { padding: clamp(1.5rem, 4vw, 3rem) var(--pad) 0; }
+      .hero__meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; border-bottom: 1px solid var(--border); padding-bottom: 1rem; color: color-mix(in oklab, var(--fg) 60%, transparent); }
+      .hero__grid { display: grid; gap: 2rem; padding: clamp(2rem, 6vw, 4.5rem) 0 clamp(2.5rem,6vw,5rem); }
+      h1 { font-size: clamp(3.4rem, 17vw, 11rem); letter-spacing: -0.02em; }
+      .hero__lede { max-width: 38ch; font-size: 1.02rem; margin: 1.8rem 0 2.2rem; color: color-mix(in oklab, var(--fg) 78%, transparent); }
+      .hero__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+      .hero__figure { margin: 0; position: relative; overflow: hidden; }
+      .hero__figure img { width: 100%; aspect-ratio: 3/4; object-fit: cover; filter: contrast(1.08) grayscale(1); }
+      .hero__figure figcaption { position: absolute; bottom: 0; left: 0; right: 0; background: var(--primary); color: var(--primary-fg); font-family: var(--serif); font-style: italic; font-size: 0.95rem; padding: 0.8rem 1.1rem; }
+
+      @media (min-width: 880px) {
+        .hero__grid { grid-template-columns: 1.15fr 0.85fr; align-items: end; gap: clamp(2rem,5vw,5rem); }
+        .hero__figure img { aspect-ratio: 4/5; }
+      }
+
+      /* PRESS */
+      .press { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--primary); color: var(--primary-fg); overflow: hidden; }
+      .press__track { display: flex; gap: 4rem; padding: 1.1rem 0; width: max-content; animation: marquee 26s linear infinite; }
+      .press__track span { font-family: var(--serif); font-size: 1.3rem; letter-spacing: 0.25em; font-weight: 500; opacity: 0.85; }
+      @keyframes marquee { to { transform: translateX(-50%); } }
+
+      /* SECTION HEADS */
+      .section-head { padding: clamp(3rem,7vw,6rem) var(--pad) clamp(1.5rem,4vw,3rem); }
+      .section-head h2 { font-size: clamp(2.6rem, 9vw, 6rem); }
+      .section-head__note { max-width: 40ch; margin: 1.4rem 0 0; color: color-mix(in oklab, var(--fg) 70%, transparent); }
+      .section-head--center { text-align: center; }
+      .section-head--center .section-head__note { margin-inline: auto; }
+      .section-head--center .kicker::before { content: ""; }
+      .amp { color: var(--accent); font-style: italic; }
+
+      /* TREATMENTS MENU */
+      .menu { list-style: none; margin: 0; padding: 0 var(--pad) clamp(2rem,5vw,4rem); border-top: 1px solid var(--border); }
+      .menu__row { display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "no name book" "note note price"; gap: 0.2rem 1rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--muted); transition: padding-left .3s ease; }
+      .menu__row:hover { padding-left: 0.6rem; }
+      .menu__no { grid-area: no; font-size: 0.7rem; letter-spacing: 0.15em; color: var(--accent); font-weight: 600; align-self: center; }
+      .menu__name { grid-area: name; font-family: var(--serif); font-size: clamp(1.4rem,4.5vw,2.1rem); font-weight: 500; }
+      .menu__note { grid-area: note; font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; color: color-mix(in oklab, var(--fg) 60%, transparent); }
+      .menu__lead { display: none; }
+      .menu__price { grid-area: price; justify-self: end; font-family: var(--serif); font-size: 1.15rem; white-space: nowrap; }
+      .menu__price small { font-family: var(--sans); font-size: 0.7rem; color: color-mix(in oklab, var(--fg) 55%, transparent); letter-spacing: 0.04em; }
+      .menu__book { grid-area: book; justify-self: end; align-self: center; text-decoration: none; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; padding: 0.55rem 0.9rem; border: 1px solid var(--border); min-height: 36px; display: inline-flex; align-items: center; transition: .25s; }
+      .menu__book:hover { background: var(--fg); color: var(--bg); }
+
+      @media (min-width: 760px) {
+        .menu__row { grid-template-columns: auto minmax(0,1fr) auto auto auto; grid-template-areas: "no name lead price book"; align-items: center; gap: 1.4rem; }
+        .menu__note { display: none; }
+        .menu__lead { display: block; grid-area: lead; border-bottom: 1px dotted color-mix(in oklab, var(--fg) 40%, transparent); align-self: center; height: 1px; }
+        .menu__name::after { content: attr(data-note); }
+      }
+
+      /* BEFORE / AFTER */
+      .ba { position: relative; margin: 0 var(--pad) clamp(3rem,7vw,6rem); aspect-ratio: 3/2; overflow: hidden; border: 1px solid var(--border); user-select: none; max-width: 1000px; margin-inline: auto; }
+      .ba__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .ba__after { filter: grayscale(1) contrast(1.05); }
+      .ba__before { position: absolute; inset: 0; width: 50%; overflow: hidden; border-right: 2px solid var(--bg); }
+      .ba__before .ba__img { width: 100vw; max-width: 1000px; filter: contrast(1.05) saturate(1.1); }
+      .ba__label { position: absolute; top: 1rem; left: 1rem; background: var(--primary); color: var(--primary-fg); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 0.4rem 0.7rem; z-index: 3; }
+      .ba__label--after { left: auto; right: 1rem; background: var(--accent); color: #111; }
+      .ba__range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; z-index: 5; }
+      .ba__handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--bg); transform: translateX(-1px); z-index: 4; pointer-events: none; }
+      .ba__handle::after { content: "↔"; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 44px; height: 44px; border-radius: 50%; background: var(--bg); color: var(--fg); border: 1px solid var(--border); display: grid; place-items: center; font-size: 1rem; }
+
+      /* STUDIO */
+      .studio { display: grid; gap: 2rem; padding: clamp(2rem,5vw,4rem) var(--pad) clamp(3rem,7vw,6rem); border-top: 1px solid var(--border); }
+      .studio__figure { margin: 0; position: relative; }
+      .studio__figure img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: grayscale(1) contrast(1.06); }
+      .studio__figure figcaption { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 0.9rem; color: color-mix(in oklab, var(--fg) 65%, transparent); }
+      .studio__body h2 { font-size: clamp(2.2rem,6vw,4rem); margin-bottom: 1.4rem; }
+      .studio__body p { max-width: 46ch; color: color-mix(in oklab, var(--fg) 80%, transparent); }
+      .creds { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--border); }
+      .creds li { padding: 1rem 0; border-bottom: 1px solid var(--muted); font-size: 0.9rem; display: flex; gap: 1rem; align-items: baseline; }
+      .creds strong { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; min-width: 5rem; color: var(--accent); }
+      @media (min-width: 880px) { .studio { grid-template-columns: 0.85fr 1.15fr; align-items: center; gap: clamp(2rem,5vw,5rem); } }
+
+      /* VOICES */
+      .voices { padding-bottom: clamp(3rem,7vw,6rem); }
+      .voices__grid { display: grid; gap: 1px; background: var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+      .voice { margin: 0; background: var(--bg); padding: clamp(1.8rem,4vw,3rem) var(--pad); }
+      .voice__stars { color: var(--accent); letter-spacing: 0.25em; font-size: 0.85rem; margin-bottom: 1.2rem; }
+      .voice blockquote { margin: 0; font-family: var(--serif); font-size: clamp(1.2rem,2.5vw,1.7rem); font-weight: 500; line-height: 1.3; }
+      .voice figcaption { margin-top: 1.6rem; display: flex; justify-content: space-between; align-items: baseline; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; }
+      .voice figcaption em { color: var(--accent); font-style: normal; }
+      @media (min-width: 880px) { .voices__grid { grid-template-columns: repeat(3,1fr); } }
+
+      /* MEMBERSHIP */
+      .member { padding: 0 var(--pad) clamp(3rem,7vw,6rem); }
+      .member__card { background: var(--primary); color: var(--primary-fg); padding: clamp(2rem,5vw,4rem); display: grid; gap: 2.5rem; border: 1px solid var(--border); }
+      .member__left h2 { font-size: clamp(2.4rem,7vw,4.5rem); }
+      .member__price { font-family: var(--serif); font-size: clamp(3rem,9vw,5rem); margin: 0 0 1.5rem; }
+      .member__price small { font-family: var(--sans); font-size: 0.9rem; letter-spacing: 0.1em; opacity: 0.7; }
+      .member__list { list-style: none; margin: 0 0 2rem; padding: 0; }
+      .member__list li { padding: 0.8rem 0; border-bottom: 1px solid color-mix(in oklab, var(--primary-fg) 22%, transparent); font-size: 0.95rem; }
+      .member__list li::before { content: "✕ "; color: var(--accent); font-weight: 600; }
+      @media (min-width: 820px) { .member__card { grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(2rem,6vw,6rem); } }
+
+      /* FAQ */
+      .faq { padding-bottom: clamp(3rem,7vw,6rem); }
+      .faq__list { padding: 0 var(--pad); border-top: 1px solid var(--border); }
+      .faq__item { border-bottom: 1px solid var(--muted); padding: 0.4rem 0; }
+      .faq__item summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.3rem 0; font-family: var(--serif); font-size: clamp(1.2rem,3vw,1.7rem); font-weight: 500; }
+      .faq__item summary::-webkit-details-marker { display: none; }
+      .faq__mark { position: relative; width: 18px; height: 18px; flex: none; }
+      .faq__mark::before, .faq__mark::after { content: ""; position: absolute; background: var(--accent); transition: transform .3s ease; }
+      .faq__mark::before { top: 8px; left: 0; width: 18px; height: 2px; }
+      .faq__mark::after { left: 8px; top: 0; width: 2px; height: 18px; }
+      .faq__item[open] .faq__mark::after { transform: scaleY(0); }
+      .faq__item p { margin: 0 0 1.4rem; max-width: 60ch; color: color-mix(in oklab, var(--fg) 78%, transparent); }
+
+      /* CONTACT */
+      .contact { padding: 0 var(--pad) clamp(3rem,7vw,5rem); }
+      .contact__grid { display: grid; gap: 2rem; border-top: 1px solid var(--border); padding-top: clamp(2.5rem,6vw,4.5rem); }
+      .contact__info h2 { font-size: clamp(2.4rem,7vw,4.5rem); margin-bottom: 2rem; }
+      .nap { font-style: normal; line-height: 1.8; }
+      .nap__name { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; }
+      .nap a { text-decoration: none; border-bottom: 1px solid var(--accent); }
+      .hours { margin: 2rem 0; border-top: 1px solid var(--border); }
+      .hours__row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--muted); font-size: 0.85rem; letter-spacing: 0.05em; }
+      .hours__row span:first-child { text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.14em; }
+      .contact__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+      .contact__map { position: relative; display: block; overflow: hidden; border: 1px solid var(--border); min-height: 320px; }
+      .contact__map img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1); transition: transform .6s ease; }
+      .contact__map:hover img { transform: scale(1.04); }
+      .contact__pin { position: absolute; bottom: 1rem; left: 1rem; background: var(--accent); color: #111; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.5rem 0.8rem; font-weight: 600; }
+      @media (min-width: 880px) { .contact__grid { grid-template-columns: 1fr 1fr; gap: clamp(2rem,5vw,5rem); align-items: stretch; } }
+
+      /* FOOTER */
+      .footer { background: var(--primary); color: var(--primary-fg); padding: clamp(2.5rem,6vw,4.5rem) var(--pad) 6rem; }
+      .footer__big { font-family: var(--serif); font-weight: 700; font-size: clamp(3rem,18vw,13rem); line-height: 0.85; letter-spacing: 0.02em; border-bottom: 1px solid color-mix(in oklab, var(--primary-fg) 25%, transparent); padding-bottom: 1.5rem; }
+      .footer__rows { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; }
+      .footer__rows a { text-decoration: none; color: var(--accent); }
+
+      /* DOCK */
+      .dock { position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 90; background: var(--primary); color: var(--primary-fg); text-align: center; text-decoration: none; padding: 1.05rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; border: 1px solid var(--accent); box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
+      @media (min-width: 880px) { .dock { display: none; } .footer { padding-bottom: clamp(2.5rem,6vw,4.5rem); } }
+
+      /* REVEAL */
+      .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+    </style>
+
+    <script>
+      // Mobile menu
+      const btn = document.getElementById("menuBtn");
+      const drawer = document.getElementById("drawer");
+      btn?.addEventListener("click", () => {
+        const open = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!open));
+        if (drawer) drawer.hidden = open;
+      });
+      drawer?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          btn?.setAttribute("aria-expanded", "false");
+          if (drawer) drawer.hidden = true;
+        })
+      );
+
+      // Scroll reveal
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+        { threshold: 0.14 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // Before/after slider
+      const range = document.getElementById("baRange");
+      const before = document.getElementById("baBefore");
+      const handle = document.getElementById("baHandle");
+      range?.addEventListener("input", () => {
+        const v = range.value + "%";
+        if (before) before.style.width = v;
+        if (handle) handle.style.left = v;
+      });
+    </script>
+  </body>
+</html>

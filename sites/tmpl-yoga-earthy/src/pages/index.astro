@@ -1,0 +1,596 @@
+---
+const nav = [
+  { label: "Classes", href: "#classes" },
+  { label: "Schedule", href: "#schedule" },
+  { label: "Teachers", href: "#teachers" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Visit", href: "#visit" },
+];
+
+const services = [
+  { name: "Single Drop-In Class", price: "$24", note: "One mat, one breath." },
+  { name: "Intro Week Unlimited", price: "$39", note: "New students only — your first week, on us." },
+  { name: "10-Class Pack", price: "$200", note: "Practice at your own pace." },
+  { name: "Monthly Unlimited", price: "$145", unit: "/mo", note: "Come as often as the day allows.", featured: true },
+  { name: "Private 1:1 Session", price: "$110", note: "60 minutes, fully your own." },
+  { name: "Restorative & Yin Workshop", price: "$35", note: "90 minutes of deep release." },
+];
+
+const classTypes = ["Vinyasa Flow", "Slow & Restore (Yin)", "Power Hour", "Candlelit Flow", "Prenatal", "Beginner's Foundations"];
+
+const schedule = [
+  { day: "Mon", time: "6:00 AM", name: "Beginner's Foundations", teacher: "Maya", level: "All levels" },
+  { day: "Tue", time: "12:15 PM", name: "Power Hour", teacher: "David", level: "Intermediate" },
+  { day: "Wed", time: "7:00 PM", name: "Slow & Restore (Yin)", teacher: "Priya", level: "All levels" },
+  { day: "Thu", time: "6:30 AM", name: "Vinyasa Flow", teacher: "Maya", level: "Open" },
+  { day: "Fri", time: "8:00 PM", name: "Candlelit Flow", teacher: "Priya", level: "All levels" },
+  { day: "Sat", time: "9:00 AM", name: "Prenatal", teacher: "David", level: "Gentle" },
+];
+
+const teachers = [
+  { name: "Maya Reyes", role: "Founder · Vinyasa & Breath", seed: "yogamaya", tags: ["Vinyasa", "Pranayama"] },
+  { name: "David Tran", role: "Power & Prenatal", seed: "yogadavid", tags: ["Power", "Prenatal"] },
+  { name: "Priya Shah", role: "Yin & Restorative", seed: "yogapriya", tags: ["Yin", "Candlelit"] },
+];
+
+const testimonials = [
+  { quote: "I walked in anxious and walked out lighter than I'd felt in months. The teachers actually see you.", name: "Maya R.", seed: "studentmaya" },
+  { quote: "The most welcoming studio I've ever practiced in. No ego, just breath and good people.", name: "David T.", seed: "studentdavid" },
+  { quote: "Their Candlelit Flow on Friday nights has become my whole reset ritual.", name: "Priya S.", seed: "studentpriya" },
+];
+
+const hours = [
+  { day: "Mon – Fri", time: "6:00 AM – 9:00 PM" },
+  { day: "Saturday", time: "7:00 AM – 6:00 PM" },
+  { day: "Sunday", time: "8:00 AM – 4:00 PM" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lumen & Lotus Yoga — Inglewood, Calgary</title>
+    <meta name="description" content="A light-filled yoga studio in Calgary's Inglewood. Move slow, breathe deep, begin again. Claim your free intro week." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- Intro-offer ribbon -->
+    <div class="ribbon">
+      <span class="ribbon-dot" aria-hidden="true"></span>
+      First week unlimited — <strong>on us.</strong> New students practice free for 7 days.
+      <a href="#pricing">Claim it →</a>
+    </div>
+
+    <header class="nav" id="top">
+      <div class="wrap nav-inner">
+        <a class="brand" href="#top" aria-label="Lumen and Lotus home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="34" height="34"><circle cx="20" cy="20" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M20 4c5 7 5 14 0 20-5-6-5-13 0-20zM20 36c-5-7-5-14 0-20 5 6 5 13 0 20z" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+          </span>
+          <span class="brand-text">Lumen <em>&amp;</em> Lotus</span>
+        </a>
+        <nav class="links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="btn btn-sm" href="#pricing">Book a class</a>
+        <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" id="menuBtn">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="btn" href="#pricing">Book a class</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-photo" aria-hidden="true"></div>
+        <div class="wrap hero-inner reveal">
+          <p class="eyebrow">Inglewood · Calgary</p>
+          <h1>Come home to<br /><span class="accentword">your breath.</span></h1>
+          <p class="lede">Move slow. Breathe deep. Begin again. A warm, unhurried studio where modern movement meets ancient practice.</p>
+          <div class="hero-cta">
+            <a class="btn btn-lg" href="#pricing">Claim your free week</a>
+            <a class="btn btn-ghost btn-lg" href="#schedule">View the schedule</a>
+          </div>
+          <div class="hero-strip">
+            <span>★ 4.9 from 280+ students</span>
+            <span class="dot">·</span>
+            <span>Open 7 days</span>
+            <span class="dot">·</span>
+            <span>All bodies welcome</span>
+          </div>
+        </div>
+        <svg class="divider" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,80 C360,10 1080,10 1440,80 L1440,80 L0,80 Z" fill="var(--bg)"/></svg>
+      </section>
+
+      <!-- PHILOSOPHY -->
+      <section class="intro" id="intro">
+        <div class="wrap intro-grid">
+          <div class="intro-copy reveal">
+            <p class="kicker">The studio</p>
+            <h2>A practice for every body, every day.</h2>
+            <p>Lumen &amp; Lotus is a light-filled studio in Calgary's Inglewood district where modern movement meets ancient practice. Whether it's your first sun salutation or your thousandth, you'll find a warm, unhurried space to reconnect with your body and quiet the noise.</p>
+            <ul class="ticks">
+              <li>Real teachers, real light, no ego.</li>
+              <li>Heated wood floors and linen-soft props.</li>
+              <li>Tea and stillness after every class.</li>
+            </ul>
+          </div>
+          <div class="intro-art reveal">
+            <div class="arch arch-a"></div>
+            <div class="arch arch-b"></div>
+            <span class="leaf" aria-hidden="true">
+              <svg viewBox="0 0 60 60" width="56" height="56"><path d="M30 4C14 14 14 46 30 56c16-10 16-42 0-52z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M30 8v44" stroke="currentColor" stroke-width="1.1"/></svg>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLASS MENU / PRICING -->
+      <section class="classes" id="classes">
+        <div class="wrap">
+          <header class="sec-head reveal">
+            <p class="kicker">Class menu</p>
+            <h2>Choose your way in.</h2>
+            <p class="sub">Transparent pricing, no contracts. Your first mat is always on us.</p>
+          </header>
+
+          <div class="chips reveal">
+            {classTypes.map((c) => <span class="chip">{c}</span>)}
+          </div>
+
+          <div class="price-grid" id="pricing">
+            {services.map((s) => (
+              <article class={`price-card ${s.featured ? "is-featured" : ""}`}>
+                {s.featured && <span class="tag">Most loved</span>}
+                <h3>{s.name}</h3>
+                <p class="price">{s.price}<small>{s.unit ?? ""}</small></p>
+                <p class="note">{s.note}</p>
+                <a class={`btn ${s.featured ? "" : "btn-ghost"} btn-block`} href="#visit">Book now</a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- SCHEDULE -->
+      <section class="schedule" id="schedule">
+        <div class="wrap">
+          <header class="sec-head reveal">
+            <p class="kicker">This week</p>
+            <h2>Find your moment on the mat.</h2>
+          </header>
+          <div class="sched-table reveal" role="table" aria-label="Weekly class schedule">
+            <div class="sched-row sched-head" role="row">
+              <span role="columnheader">Day</span>
+              <span role="columnheader">Time</span>
+              <span role="columnheader">Class</span>
+              <span role="columnheader">Teacher</span>
+              <span role="columnheader" class="hide-sm">Level</span>
+              <span role="columnheader"></span>
+            </div>
+            {schedule.map((s) => (
+              <div class="sched-row" role="row">
+                <span class="sday" role="cell">{s.day}</span>
+                <span role="cell">{s.time}</span>
+                <span class="sname" role="cell">{s.name}</span>
+                <span role="cell">{s.teacher}</span>
+                <span class="hide-sm" role="cell">{s.level}</span>
+                <a class="book-link" href="#visit" role="cell">Reserve</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- TEACHERS -->
+      <section class="teachers" id="teachers">
+        <div class="wrap">
+          <header class="sec-head reveal">
+            <p class="kicker">Meet the teachers</p>
+            <h2>You'll be in good hands.</h2>
+          </header>
+          <div class="teacher-grid">
+            {teachers.map((t) => (
+              <article class="teacher-card reveal">
+                <div class="portrait">
+                  <img src={`https://picsum.photos/seed/${t.seed}/440/520`} alt={`Portrait of ${t.name}`} loading="lazy" width="440" height="520" />
+                </div>
+                <h3>{t.name}</h3>
+                <p class="t-role">{t.role}</p>
+                <div class="t-tags">{t.tags.map((tag) => <span>{tag}</span>)}</div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS slider -->
+      <section class="praise" id="praise">
+        <div class="wrap">
+          <header class="sec-head reveal">
+            <p class="kicker">In their words</p>
+            <h2>The most welcoming studio you'll find.</h2>
+          </header>
+          <div class="slider reveal" id="slider">
+            <div class="slides" id="slides">
+              {testimonials.map((t) => (
+                <figure class="slide">
+                  <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                  <blockquote>"{t.quote}"</blockquote>
+                  <figcaption>
+                    <img src={`https://picsum.photos/seed/${t.seed}/96/96`} alt={`${t.name}, student`} width="48" height="48" loading="lazy" />
+                    <span>{t.name}</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <div class="slider-dots" id="dots" role="tablist" aria-label="Testimonials"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISIT / NAP -->
+      <section class="visit" id="visit">
+        <div class="wrap visit-grid">
+          <div class="visit-copy reveal">
+            <p class="kicker">Visit us</p>
+            <h2>Find your stillness in the heart of Inglewood.</h2>
+            <address class="nap">
+              <a class="nap-line" href="tel:+14035550184">
+                <strong>(403) 555-0184</strong>
+                <span>Tap to call</span>
+              </a>
+              <a class="nap-line" href="mailto:hello@lumenandlotus.ca">
+                <strong>hello@lumenandlotus.ca</strong>
+                <span>Questions welcome</span>
+              </a>
+              <p class="addr">1322 9th Avenue SE<br />Inglewood, Calgary, AB T2G 0T3</p>
+            </address>
+            <ul class="hours">
+              {hours.map((h) => (
+                <li><span>{h.day}</span><span>{h.time}</span></li>
+              ))}
+            </ul>
+            <a class="btn btn-lg" href="#pricing">Book your free intro week</a>
+          </div>
+          <a class="map reveal" href="https://maps.google.com/?q=1322+9th+Avenue+SE+Calgary" target="_blank" rel="noopener" aria-label="Open map to the studio">
+            <img src="https://picsum.photos/seed/inglewoodmap/720/720?grayscale" alt="Map of the Inglewood studio location" loading="lazy" width="720" height="720" />
+            <span class="pin" aria-hidden="true"></span>
+          </a>
+        </div>
+      </section>
+
+      <!-- NEWSLETTER -->
+      <section class="newsletter">
+        <div class="wrap news-inner reveal">
+          <h2>Join the circle.</h2>
+          <p>Workshops, retreats and seasonal series — gentle notes for the not-yet-ready and the long-devoted alike.</p>
+          <form class="news-form" onsubmit="return false;">
+            <label class="sr" for="email">Email address</label>
+            <input id="email" type="email" placeholder="you@email.com" autocomplete="email" required />
+            <button class="btn" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap foot-inner">
+        <div class="foot-brand">
+          <span class="brand-text">Lumen <em>&amp;</em> Lotus</span>
+          <p>Move slow. Breathe deep. Begin again.</p>
+        </div>
+        <nav class="foot-links" aria-label="Footer">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <p class="foot-addr">1322 9th Avenue SE, Inglewood<br />Calgary, AB · (403) 555-0184</p>
+      </div>
+      <p class="copyright">© 2026 Lumen &amp; Lotus Yoga. Made with breath in Calgary.</p>
+    </footer>
+
+    <a class="sticky-book" href="#pricing">Book a class</a>
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+      }
+      body { margin: 0; }
+    </style>
+
+    <style>
+      :root {
+        --bg: #F4ECE1;
+        --fg: #3A2E25;
+        --primary: #B5663F;
+        --primary-fg: #FBF4EC;
+        --accent: #7A8466;
+        --muted: #E7DBC9;
+        --border: #D6C6B0;
+        --sans: "Hanken Grotesk", system-ui, sans-serif;
+        --display: "Spectral", Georgia, serif;
+        --r: 18px;
+        --maxw: 1180px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--sans);
+        font-weight: 400;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.2rem, 4vw, 2.5rem); }
+
+      h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.08; letter-spacing: -0.01em; margin: 0; }
+      h2 { font-size: clamp(1.9rem, 4.2vw, 3rem); }
+      p { margin: 0 0 1rem; }
+      a { color: inherit; }
+      img { display: block; max-width: 100%; }
+
+      .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+      .skip { position: absolute; left: -999px; top: 0; background: var(--primary); color: var(--primary-fg); padding: .6rem 1rem; z-index: 200; border-radius: 0 0 8px 0; }
+      .skip:focus { left: 0; }
+      :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+      .kicker { font-family: var(--sans); text-transform: uppercase; letter-spacing: .22em; font-size: .72rem; font-weight: 600; color: var(--primary); margin: 0 0 .7rem; }
+
+      /* Buttons */
+      .btn {
+        --b: var(--primary);
+        display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+        background: var(--b); color: var(--primary-fg);
+        font-family: var(--sans); font-weight: 600; font-size: .95rem;
+        padding: .85rem 1.5rem; min-height: 44px; border-radius: 999px;
+        border: 1.5px solid var(--b); text-decoration: none; cursor: pointer;
+        transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+      }
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -12px rgba(58,46,37,.5); }
+      .btn-lg { padding: 1.05rem 1.9rem; font-size: 1rem; }
+      .btn-sm { padding: .6rem 1.1rem; min-height: 40px; font-size: .85rem; }
+      .btn-block { width: 100%; margin-top: 1rem; }
+      .btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+      .btn-ghost:hover { background: var(--muted); border-color: var(--primary); }
+
+      /* Ribbon */
+      .ribbon {
+        background: var(--accent); color: var(--primary-fg);
+        text-align: center; font-size: .82rem; padding: .55rem 1rem;
+        display: flex; align-items: center; justify-content: center; gap: .55rem; flex-wrap: wrap;
+      }
+      .ribbon a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+      .ribbon-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary-fg); animation: breathe 3.2s ease-in-out infinite; }
+      @keyframes breathe { 0%,100% { transform: scale(1); opacity: .6; } 50% { transform: scale(1.5); opacity: 1; } }
+
+      /* Nav */
+      .nav { position: sticky; top: 0; z-index: 100; background: color-mix(in oklab, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+      .nav-inner { display: flex; align-items: center; gap: 1.5rem; height: 70px; }
+      .brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--fg); font-family: var(--display); font-size: 1.3rem; }
+      .brand-mark { color: var(--primary); display: grid; place-items: center; }
+      .brand-text em { color: var(--primary); font-style: italic; }
+      .links { display: flex; gap: 1.4rem; margin-left: auto; }
+      .links a { text-decoration: none; font-size: .9rem; font-weight: 500; color: var(--fg); position: relative; padding: .3rem 0; transition: color .2s; }
+      .links a::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: var(--primary); transition: width .25s ease; }
+      .links a:hover { color: var(--primary); }
+      .links a:hover::after { width: 100%; }
+      .nav .btn-sm { flex-shrink: 0; }
+      .menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 10px; margin-left: auto; }
+      .menu-btn span { width: 24px; height: 2px; background: var(--fg); border-radius: 2px; transition: .3s; }
+      .menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .mobile-menu { display: none; flex-direction: column; gap: .4rem; padding: 1rem clamp(1.2rem,4vw,2.5rem) 1.4rem; border-bottom: 1px solid var(--border); background: var(--bg); }
+      .mobile-menu a { text-decoration: none; color: var(--fg); padding: .6rem 0; font-weight: 500; }
+      .mobile-menu.open { display: flex; }
+
+      /* Hero */
+      .hero { position: relative; padding: clamp(3.5rem, 9vw, 7rem) 0 5.5rem; overflow: hidden; }
+      .hero-photo { position: absolute; inset: 0; background-image: url("https://picsum.photos/seed/yogahero/1600/1100"); background-size: cover; background-position: center; filter: sepia(.35) saturate(1.05) contrast(.96) brightness(.9); }
+      .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, color-mix(in oklab, var(--bg) 86%, transparent) 0%, color-mix(in oklab, var(--bg) 62%, transparent) 42%, color-mix(in oklab, var(--primary) 30%, transparent) 100%); }
+      .hero-inner { position: relative; max-width: 660px; }
+      .eyebrow { font-size: .8rem; letter-spacing: .25em; text-transform: uppercase; font-weight: 600; color: var(--primary); margin-bottom: 1rem; }
+      .hero h1 { font-size: clamp(2.8rem, 8vw, 5.4rem); font-weight: 500; }
+      .accentword { font-style: italic; color: var(--primary); }
+      .lede { font-size: clamp(1.05rem, 2.2vw, 1.3rem); max-width: 30ch; margin: 1.4rem 0 2rem; color: color-mix(in oklab, var(--fg) 86%, transparent); }
+      .hero-cta { display: flex; gap: .9rem; flex-wrap: wrap; }
+      .hero-strip { display: flex; align-items: center; gap: .7rem; flex-wrap: wrap; margin-top: 2.2rem; font-size: .85rem; font-weight: 500; color: color-mix(in oklab, var(--fg) 78%, transparent); }
+      .hero-strip .dot { color: var(--border); }
+      .divider { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 70px; }
+
+      /* Intro */
+      .intro { padding: clamp(3rem, 7vw, 5.5rem) 0; }
+      .intro-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+      .intro-copy h2 { margin: 0 0 1.2rem; }
+      .ticks { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; gap: .8rem; }
+      .ticks li { position: relative; padding-left: 1.8rem; font-weight: 500; }
+      .ticks li::before { content: ""; position: absolute; left: 0; top: .5em; width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--accent); background: color-mix(in oklab, var(--accent) 30%, transparent); }
+      .intro-art { position: relative; min-height: 380px; }
+      .arch { position: absolute; background-size: cover; background-position: center; box-shadow: 0 22px 50px -22px rgba(58,46,37,.55); }
+      .arch-a { inset: 0 30% 18% 0; border-radius: 200px 200px 14px 14px; background-image: url("https://picsum.photos/seed/yogaroom/600/760"); filter: sepia(.3) saturate(1.05); }
+      .arch-b { right: 0; bottom: 0; width: 52%; height: 58%; border-radius: 14px 14px 160px 160px; background-image: url("https://picsum.photos/seed/yogahands/420/520"); filter: sepia(.4) saturate(1.1) brightness(.95); border: 6px solid var(--bg); }
+      .leaf { position: absolute; top: -14px; right: 22%; color: var(--accent); animation: sway 6s ease-in-out infinite; }
+      @keyframes sway { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(8deg); } }
+
+      .sec-head { max-width: 640px; margin: 0 auto clamp(2rem, 4vw, 3rem); text-align: center; }
+      .sec-head .sub, .sec-head .kicker { margin-left: auto; margin-right: auto; }
+      .sec-head .sub { color: color-mix(in oklab, var(--fg) 75%, transparent); margin-top: .8rem; }
+
+      /* Classes / pricing */
+      .classes { padding: clamp(3rem, 7vw, 5.5rem) 0; background: var(--muted); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+      .chips { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-bottom: 2.6rem; }
+      .chip { font-size: .82rem; font-weight: 500; padding: .45rem 1rem; border-radius: 999px; border: 1px solid var(--border); background: var(--bg); }
+      .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem; }
+      .price-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 1.7rem 1.6rem; display: flex; flex-direction: column; position: relative; transition: transform .3s ease, box-shadow .3s ease; }
+      .price-card:hover { transform: translateY(-5px); box-shadow: 0 24px 50px -28px rgba(58,46,37,.5); }
+      .price-card.is-featured { background: var(--fg); color: var(--primary-fg); border-color: var(--fg); }
+      .price-card.is-featured .note { color: color-mix(in oklab, var(--primary-fg) 80%, transparent); }
+      .tag { position: absolute; top: -12px; left: 1.6rem; background: var(--primary); color: var(--primary-fg); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: .35rem .8rem; border-radius: 999px; }
+      .price-card h3 { font-size: 1.3rem; margin-bottom: .5rem; }
+      .price { font-family: var(--display); font-size: 2.2rem; line-height: 1; margin: .2rem 0 .6rem; }
+      .price small { font-family: var(--sans); font-size: .9rem; font-weight: 500; opacity: .7; }
+      .note { font-size: .9rem; margin: 0; color: color-mix(in oklab, var(--fg) 72%, transparent); flex: 1; }
+      .price-card .btn-block.btn-ghost { color: inherit; }
+
+      /* Schedule */
+      .schedule { padding: clamp(3rem, 7vw, 5.5rem) 0; }
+      .sched-table { border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; background: var(--bg); }
+      .sched-row { display: grid; grid-template-columns: 56px 90px 1.6fr 1fr 1fr 100px; align-items: center; gap: 1rem; padding: 1rem 1.4rem; border-bottom: 1px solid var(--border); font-size: .92rem; }
+      .sched-row:last-child { border-bottom: 0; }
+      .sched-head { background: var(--muted); font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 600; color: color-mix(in oklab, var(--fg) 65%, transparent); }
+      .sched-row:not(.sched-head):hover { background: var(--muted); }
+      .sday { font-family: var(--display); font-weight: 600; color: var(--primary); }
+      .sname { font-weight: 600; }
+      .book-link { justify-self: end; text-decoration: none; font-weight: 600; font-size: .85rem; color: var(--primary); border: 1.5px solid var(--border); border-radius: 999px; padding: .4rem .9rem; min-height: 36px; display: inline-flex; align-items: center; transition: .2s; }
+      .book-link:hover { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+
+      /* Teachers */
+      .teachers { padding: clamp(3rem, 7vw, 5.5rem) 0; background: var(--muted); border-top: 1px solid var(--border); }
+      .teacher-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.6rem; }
+      .teacher-card { text-align: center; }
+      .portrait { aspect-ratio: 4/5; border-radius: 200px 200px 18px 18px; overflow: hidden; margin-bottom: 1.1rem; box-shadow: 0 22px 44px -26px rgba(58,46,37,.55); }
+      .portrait img { width: 100%; height: 100%; object-fit: cover; filter: sepia(.32) saturate(1.08) contrast(.97); transition: transform .6s ease, filter .4s ease; }
+      .teacher-card:hover .portrait img { transform: scale(1.05); filter: sepia(.15) saturate(1.1); }
+      .teacher-card h3 { font-size: 1.35rem; }
+      .t-role { font-size: .9rem; color: var(--primary); margin: .25rem 0 .8rem; font-weight: 500; }
+      .t-tags { display: flex; gap: .4rem; justify-content: center; flex-wrap: wrap; }
+      .t-tags span { font-size: .72rem; padding: .3rem .7rem; border-radius: 999px; background: var(--bg); border: 1px solid var(--border); }
+
+      /* Testimonials slider */
+      .praise { padding: clamp(3rem, 7vw, 5.5rem) 0; }
+      .slider { max-width: 720px; margin: 0 auto; overflow: hidden; }
+      .slides { display: flex; transition: transform .6s cubic-bezier(.4,0,.2,1); }
+      .slide { min-width: 100%; text-align: center; padding: 0 1rem; }
+      .stars { color: var(--primary); letter-spacing: .15em; font-size: 1.1rem; margin-bottom: 1rem; }
+      .slide blockquote { font-family: var(--display); font-size: clamp(1.3rem, 3.2vw, 1.9rem); font-style: italic; line-height: 1.4; margin: 0 auto 1.6rem; max-width: 26ch; }
+      .slide figcaption { display: flex; align-items: center; justify-content: center; gap: .7rem; font-weight: 600; }
+      .slide figcaption img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; filter: sepia(.3); }
+      .slider-dots { display: flex; gap: .55rem; justify-content: center; margin-top: 2rem; }
+      .slider-dots button { width: 11px; height: 11px; border-radius: 50%; border: 0; background: var(--border); cursor: pointer; padding: 0; transition: .25s; }
+      .slider-dots button[aria-selected="true"] { background: var(--primary); transform: scale(1.25); }
+
+      /* Visit */
+      .visit { padding: clamp(3rem, 7vw, 5.5rem) 0; background: var(--muted); border-top: 1px solid var(--border); }
+      .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }
+      .visit-copy h2 { margin-bottom: 1.5rem; }
+      .nap { font-style: normal; display: grid; gap: .9rem; margin-bottom: 1.6rem; }
+      .nap-line { display: flex; flex-direction: column; text-decoration: none; padding: .8rem 1.1rem; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; min-height: 44px; justify-content: center; transition: .2s; }
+      .nap-line:hover { border-color: var(--primary); transform: translateX(4px); }
+      .nap-line strong { font-size: 1.05rem; }
+      .nap-line span { font-size: .78rem; color: var(--primary); }
+      .addr { font-size: 1rem; line-height: 1.7; margin: .4rem 0 0; }
+      .hours { list-style: none; padding: 0; margin: 0 0 1.8rem; border-top: 1px solid var(--border); }
+      .hours li { display: flex; justify-content: space-between; padding: .7rem 0; border-bottom: 1px solid var(--border); font-size: .92rem; }
+      .hours li span:first-child { font-weight: 600; }
+      .map { position: relative; display: block; border-radius: var(--r); overflow: hidden; aspect-ratio: 1; box-shadow: 0 24px 50px -30px rgba(58,46,37,.6); }
+      .map img { width: 100%; height: 100%; object-fit: cover; filter: sepia(.4) saturate(.7) contrast(1.05); }
+      .map::after { content: ""; position: absolute; inset: 0; background: color-mix(in oklab, var(--primary) 22%, transparent); mix-blend-mode: multiply; }
+      .pin { position: absolute; top: 50%; left: 50%; width: 22px; height: 22px; background: var(--primary); border: 3px solid var(--primary-fg); border-radius: 50% 50% 50% 0; transform: translate(-50%, -100%) rotate(-45deg); box-shadow: 0 4px 12px rgba(0,0,0,.3); z-index: 2; }
+
+      /* Newsletter */
+      .newsletter { padding: clamp(3rem, 7vw, 5rem) 0; background: var(--fg); color: var(--primary-fg); }
+      .news-inner { text-align: center; max-width: 580px; margin: 0 auto; }
+      .news-inner h2 { color: var(--primary-fg); }
+      .news-inner p { color: color-mix(in oklab, var(--primary-fg) 80%, transparent); margin: .8rem 0 1.8rem; }
+      .news-form { display: flex; gap: .6rem; max-width: 440px; margin: 0 auto; flex-wrap: wrap; }
+      .news-form input { flex: 1; min-width: 200px; padding: .9rem 1.2rem; border-radius: 999px; border: 1.5px solid color-mix(in oklab, var(--primary-fg) 30%, transparent); background: color-mix(in oklab, var(--primary-fg) 8%, transparent); color: var(--primary-fg); font-family: var(--sans); font-size: .95rem; min-height: 44px; }
+      .news-form input::placeholder { color: color-mix(in oklab, var(--primary-fg) 55%, transparent); }
+      .news-form input:focus-visible { outline-color: var(--primary); }
+
+      /* Footer */
+      .foot { background: var(--bg); padding: clamp(2.5rem, 5vw, 4rem) 0 1.5rem; border-top: 1px solid var(--border); }
+      .foot-inner { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; align-items: flex-start; }
+      .foot-brand .brand-text { font-family: var(--display); font-size: 1.5rem; }
+      .foot-brand em { color: var(--primary); font-style: italic; }
+      .foot-brand p { font-size: .9rem; color: color-mix(in oklab, var(--fg) 70%, transparent); margin: .5rem 0 0; }
+      .foot-links { display: flex; flex-direction: column; gap: .55rem; }
+      .foot-links a { text-decoration: none; font-size: .9rem; color: var(--fg); }
+      .foot-links a:hover { color: var(--primary); }
+      .foot-addr { font-size: .88rem; color: color-mix(in oklab, var(--fg) 70%, transparent); line-height: 1.7; margin: 0; }
+      .copyright { text-align: center; font-size: .8rem; color: color-mix(in oklab, var(--fg) 55%, transparent); margin: 2.5rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+
+      /* Sticky book */
+      .sticky-book { position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 90; background: var(--primary); color: var(--primary-fg); text-decoration: none; font-weight: 600; font-size: .9rem; padding: .85rem 1.4rem; min-height: 48px; display: inline-flex; align-items: center; border-radius: 999px; box-shadow: 0 14px 32px -12px rgba(58,46,37,.7); transition: transform .25s ease; }
+      .sticky-book:hover { transform: translateY(-3px) scale(1.03); }
+
+      /* Reveal */
+      .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* Responsive */
+      @media (max-width: 880px) {
+        .links, .nav .btn-sm { display: none; }
+        .menu-btn { display: flex; }
+        .intro-grid, .visit-grid { grid-template-columns: 1fr; }
+        .intro-art { min-height: 420px; order: -1; }
+      }
+      @media (max-width: 620px) {
+        .sched-row { grid-template-columns: 46px 78px 1.4fr 80px; }
+        .hide-sm { display: none; }
+        .book-link { display: none; }
+        .sched-head span:last-child { display: none; }
+        .sticky-book { right: 1rem; bottom: 1rem; }
+      }
+    </style>
+
+    <script>
+      // Mobile menu
+      const mb = document.getElementById("menuBtn");
+      const mm = document.getElementById("mobileMenu");
+      mb?.addEventListener("click", () => {
+        const open = mm.classList.toggle("open");
+        mb.setAttribute("aria-expanded", String(open));
+      });
+      mm?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          mm.classList.remove("open");
+          mb.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      // Scroll reveal
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // Testimonial slider
+      const slides = document.getElementById("slides");
+      const dotsWrap = document.getElementById("dots");
+      if (slides && dotsWrap) {
+        const count = slides.children.length;
+        let i = 0;
+        for (let d = 0; d < count; d++) {
+          const b = document.createElement("button");
+          b.setAttribute("role", "tab");
+          b.setAttribute("aria-label", "Testimonial " + (d + 1));
+          b.addEventListener("click", () => go(d));
+          dotsWrap.appendChild(b);
+        }
+        const dots = Array.from(dotsWrap.children);
+        function go(n) {
+          i = n;
+          slides.style.transform = `translateX(-${i * 100}%)`;
+          dots.forEach((d, k) => d.setAttribute("aria-selected", String(k === i)));
+        }
+        go(0);
+        let timer = setInterval(() => go((i + 1) % count), 5500);
+        slides.parentElement.addEventListener("mouseenter", () => clearInterval(timer));
+        slides.parentElement.addEventListener("mouseleave", () => { timer = setInterval(() => go((i + 1) % count), 5500); });
+      }
+    </script>
+  </body>
+</html>

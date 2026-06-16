@@ -1,0 +1,579 @@
+---
+const nav = [
+  { label: "Services", href: "#services" },
+  { label: "Your Team", href: "#team" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "First Visit", href: "#first-visit" },
+  { label: "Visit Us", href: "#visit" },
+];
+
+const services = [
+  { name: "New Patient Exam, X-rays & Cleaning", price: "$189", note: "Free for kids under 6", seed: "bwexam" },
+  { name: "Professional Teeth Whitening", price: "from $349", note: "One bright visit", seed: "bwwhite" },
+  { name: "Invisalign Clear Aligners", price: "from $4,500", note: "Free consult", seed: "bwalign" },
+  { name: "Dental Implants", price: "from $3,200", note: "Per tooth", seed: "bwimplant" },
+  { name: "Emergency / Same-Day Visit", price: "from $120", note: "Seen this week", seed: "bwemerg" },
+  { name: "Brightwater Membership Plan", price: "$39/mo", note: "No insurance? No problem", seed: "bwmember" },
+];
+
+const team = [
+  { name: "Dr. Maya Brightwater", role: "Lead Dentist, DDS", note: "Gentle cosmetic & restorative care", seed: "drmaya" },
+  { name: "Dr. Theo Okonkwo", role: "Family Dentist, DMD", note: "Kids & nervous patients welcome", seed: "drtheo" },
+  { name: "Sana Petrov, RDH", role: "Registered Hygienist", note: "Your calm cleaning specialist", seed: "rdhsana" },
+];
+
+const reviews = [
+  { quote: "I used to dread the dentist. The team here is so calm and gentle — I actually look forward to my cleanings now.", who: "Priya S., Calgary" },
+  { quote: "Booked online Sunday night, seen Monday for a chipped tooth. Painless and friendly the whole way.", who: "Marcus L." },
+  { quote: "They explained everything without the jargon and never pushed extra treatments. Honest, kind care.", who: "Dana R." },
+];
+
+const steps = [
+  { t: "Say hello", d: "Warm welcome, comfy chair, and a tea while we go over your paperwork." },
+  { t: "Get to know you", d: "We listen first — your history, worries, and goals. No judgment, ever." },
+  { t: "Gentle check-up", d: "Low-dose digital X-rays and an unhurried exam at your pace." },
+  { t: "Clear plan", d: "Plain-language options with transparent pricing. You decide what's next." },
+];
+
+const hours = [
+  { d: "Mon – Thu", h: "8:00am – 6:00pm" },
+  { d: "Friday", h: "8:00am – 4:00pm" },
+  { d: "Saturday", h: "9:00am – 2:00pm (alternating)" },
+  { d: "Sunday", h: "Closed" },
+];
+
+const insurers = ["Sun Life", "Manulife", "Canada Life", "Blue Cross", "Green Shield", "Direct Billing"];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  name: "Brightwater Dental & Wellness",
+  image: "https://picsum.photos/seed/bwhero/1200/800",
+  telephone: "+1-403-555-0142",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "1420 8th Street SW, Suite 210",
+    addressLocality: "Calgary",
+    addressRegion: "AB",
+    postalCode: "T2R 1J5",
+    addressCountry: "CA",
+  },
+  priceRange: "$$",
+  aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "380" },
+  openingHours: ["Mo-Th 08:00-18:00", "Fr 08:00-16:00", "Sa 09:00-14:00"],
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brightwater Dental & Wellness — Gentle Modern Dentistry in Calgary</title>
+    <meta name="description" content="Gentle, modern dentistry your whole family will smile about. Relaxed, judgment-free care in Calgary with same-week appointments, transparent pricing, and a 4.9★ rating from 380+ reviews." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet" />
+    <set:html value={`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="bar" id="top">
+      <div class="bar-inner">
+        <a class="brand" href="#top" aria-label="Brightwater Dental & Wellness home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="32" height="32"><path d="M16 3c-4 0-5 2-9 2S2 3 2 9c0 7 3 20 6 20 2 0 2-7 4-7s2 7 4 7c3 0 6-13 6-20 0-6-3-4-5-4s-1-2-5-2Z" fill="currentColor"/></svg>
+          </span>
+          <span class="brand-name">Brightwater<em>Dental & Wellness</em></span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <div class="bar-cta">
+          <a class="phone" href="tel:+14035550142" aria-label="Call us at (403) 555-0142">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1Z" fill="currentColor"/></svg>
+            <span>(403) 555-0142</span>
+          </a>
+          <a class="btn btn-book" href="#visit">Book Now</a>
+        </div>
+        <button class="burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+      <nav class="mnav" aria-label="Mobile">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="btn btn-book" href="#visit">Book Now</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <span class="blob blob-1" aria-hidden="true"></span>
+        <span class="blob blob-2" aria-hidden="true"></span>
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <span class="pill"><span class="dot"></span> Accepting new patients • Same-week visits</span>
+            <h1>Gentle, modern dentistry your whole family will <em>smile</em> about.</h1>
+            <p class="lede">Relaxed, judgment-free care in Calgary. We explain everything in plain language, never push extra treatments, and make every visit feel easy.</p>
+            <div class="hero-actions">
+              <a class="btn btn-book big" href="#visit">Request an appointment</a>
+              <a class="btn btn-ghost big" href="tel:+14035550142">Call (403) 555-0142</a>
+            </div>
+            <div class="hero-trust">
+              <span class="stars" aria-label="4.9 out of 5 stars">★★★★★</span>
+              <span><strong>4.9</strong> from <strong>380+</strong> Google reviews</span>
+            </div>
+          </div>
+          <div class="hero-art reveal">
+            <div class="photo photo-main">
+              <img src="https://picsum.photos/seed/bwsmile/720/860" alt="A relaxed patient smiling in a bright, modern dental clinic" loading="eager" />
+            </div>
+            <div class="float-card">
+              <span class="fc-emoji" aria-hidden="true">✓</span>
+              <div><strong>Same-day relief</strong><span>Chipped tooth? Seen this week.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRUST STRIP -->
+      <section class="trust" aria-label="Why patients trust us">
+        <div class="trust-row">
+          <div class="trust-item"><strong>4.9★</strong><span>Google rating</span></div>
+          <div class="trust-item"><strong>380+</strong><span>Happy reviews</span></div>
+          <div class="trust-item"><strong>15 yrs</strong><span>Caring for Calgary</span></div>
+          <div class="trust-item"><strong>$0</strong><span>Kids under 6 exam</span></div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services" class="section">
+        <div class="head reveal">
+          <span class="eyebrow">What we do</span>
+          <h2>Care with clear, honest pricing</h2>
+          <p>No surprises and no jargon — just the treatments you need, priced up front.</p>
+        </div>
+        <div class="cards">
+          {services.map((s) => (
+            <article class="card reveal">
+              <div class="card-img"><img src={`https://picsum.photos/seed/${s.seed}/480/300`} alt={s.name} loading="lazy" /></div>
+              <div class="card-body">
+                <h3>{s.name}</h3>
+                <span class="note">{s.note}</span>
+                <div class="card-foot">
+                  <span class="price">{s.price}</span>
+                  <a class="card-link" href="#visit">Book →</a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- BEFORE / AFTER -->
+      <section class="section ba-section">
+        <div class="head reveal">
+          <span class="eyebrow">Real results</span>
+          <h2>Drag to see the difference</h2>
+          <p>A whitening + bonding makeover, evenly lit and honestly framed.</p>
+        </div>
+        <div class="ba reveal" id="ba">
+          <img class="ba-after" src="https://picsum.photos/seed/bwafter/1100/620" alt="Patient smile after treatment" />
+          <div class="ba-before" id="baBefore">
+            <img src="https://picsum.photos/seed/bwbefore/1100/620?grayscale" alt="Patient smile before treatment" />
+            <span class="ba-tag">Before</span>
+          </div>
+          <span class="ba-tag ba-tag-after">After</span>
+          <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Reveal before and after" />
+          <span class="ba-handle" id="baHandle" aria-hidden="true"><span></span></span>
+        </div>
+      </section>
+
+      <!-- TEAM -->
+      <section id="team" class="section muted-bg">
+        <div class="head reveal">
+          <span class="eyebrow">Meet the team</span>
+          <h2>The people who'll put you at ease</h2>
+        </div>
+        <div class="team">
+          {team.map((m) => (
+            <article class="member reveal">
+              <div class="member-photo"><img src={`https://picsum.photos/seed/${m.seed}/360/360`} alt={`Portrait of ${m.name}`} loading="lazy" /></div>
+              <h3>{m.name}</h3>
+              <span class="member-role">{m.role}</span>
+              <p>{m.note}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- FIRST VISIT -->
+      <section id="first-visit" class="section">
+        <div class="head reveal">
+          <span class="eyebrow">What to expect</span>
+          <h2>Your first visit, step by step</h2>
+          <p>No insurance? Ask about our <strong>$39/month Brightwater Membership Plan</strong>.</p>
+        </div>
+        <ol class="steps">
+          {steps.map((s, i) => (
+            <li class="step reveal">
+              <span class="step-num">{i + 1}</span>
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <!-- REVIEWS -->
+      <section id="reviews" class="section reviews-bg">
+        <div class="head reveal">
+          <span class="eyebrow">Kind words</span>
+          <h2>Calgary smiles, in their words</h2>
+        </div>
+        <div class="quotes">
+          {reviews.map((r) => (
+            <figure class="quote reveal">
+              <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <blockquote>{r.quote}</blockquote>
+              <figcaption>— {r.who}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- INSURANCE MARQUEE -->
+      <section class="marquee-sec" aria-label="Insurance accepted">
+        <p class="marquee-lead">Most insurance accepted • Direct billing available</p>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            {[...insurers, ...insurers].map((i) => <span class="ins">{i}</span>)}
+          </div>
+        </div>
+      </section>
+
+      <!-- VISIT / NAP / CTA -->
+      <section id="visit" class="section visit">
+        <div class="visit-grid">
+          <div class="visit-info reveal">
+            <span class="eyebrow">Visit us</span>
+            <h2>Book a calmer visit</h2>
+            <p class="lede">New patients always welcome. Most insurance accepted, direct billing, and free parking out front.</p>
+            <a class="nap-line" href="tel:+14035550142">
+              <span class="ni" aria-hidden="true">☎</span> (403) 555-0142
+            </a>
+            <a class="nap-line" href="https://maps.google.com/?q=1420+8th+Street+SW+Suite+210+Calgary+AB" target="_blank" rel="noopener">
+              <span class="ni" aria-hidden="true">⚲</span> 1420 8th Street SW, Suite 210, Calgary, AB T2R 1J5
+            </a>
+            <table class="hours">
+              <tbody>
+                {hours.map((h) => (
+                  <tr><th scope="row">{h.d}</th><td>{h.h}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <form class="visit-form reveal" onsubmit="event.preventDefault(); this.reset(); document.getElementById('formMsg').hidden=false;">
+            <h3>Request an appointment</h3>
+            <label>Full name<input type="text" name="name" required placeholder="Jordan Avery" /></label>
+            <label>Phone<input type="tel" name="phone" required placeholder="(403) 555-0142" /></label>
+            <label>Service
+              <select name="service">
+                {services.map((s) => <option>{s.name}</option>)}
+              </select>
+            </label>
+            <label>Preferred time
+              <select name="time">
+                <option>Weekday morning</option>
+                <option>Weekday afternoon</option>
+                <option>Saturday</option>
+                <option>As soon as possible</option>
+              </select>
+            </label>
+            <button class="btn btn-book big" type="submit">Request appointment</button>
+            <p class="form-msg" id="formMsg" hidden role="status">Thanks! We'll call you within one business hour to confirm.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="foot-grid">
+        <div>
+          <span class="brand-name foot-name">Brightwater<em>Dental & Wellness</em></span>
+          <p class="foot-tag">Dentistry that puts you at ease.</p>
+        </div>
+        <div class="foot-nap">
+          <p>1420 8th Street SW, Suite 210<br />Calgary, AB T2R 1J5</p>
+          <p><a href="tel:+14035550142">(403) 555-0142</a></p>
+        </div>
+      </div>
+      <p class="copy">© 2026 Brightwater Dental & Wellness • Most insurance accepted • Free parking</p>
+    </footer>
+
+    <script is:inline>
+      // Mobile nav
+      const burger = document.querySelector(".burger");
+      const header = document.querySelector(".bar");
+      burger?.addEventListener("click", () => {
+        const open = header.classList.toggle("open");
+        burger.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      document.querySelectorAll(".mnav a").forEach((a) =>
+        a.addEventListener("click", () => {
+          header.classList.remove("open");
+          burger.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      // Sticky shrink
+      addEventListener("scroll", () => header.classList.toggle("scrolled", scrollY > 20));
+
+      // Before/After slider
+      const range = document.getElementById("baRange");
+      const before = document.getElementById("baBefore");
+      const handle = document.getElementById("baHandle");
+      function setBA(v) {
+        before.style.width = v + "%";
+        handle.style.left = v + "%";
+      }
+      range?.addEventListener("input", (e) => setBA(e.target.value));
+      setBA(50);
+
+      // Scroll reveal
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduce && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (ents) => ents.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }),
+          { threshold: 0.14 }
+        );
+        document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      }
+    </script>
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+    </style>
+
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #1b2440;
+        --primary: #4f6ef7;
+        --primary-fg: #ffffff;
+        --accent: #ff9a76;
+        --muted: #eef1fb;
+        --border: #dde2f3;
+        --display: "DM Serif Display", Georgia, serif;
+        --body: "DM Sans", system-ui, sans-serif;
+        --radius: 22px;
+        --shadow: 0 18px 50px -22px rgba(31, 45, 91, 0.35);
+        --maxw: 1180px;
+      }
+
+      body { font-family: var(--body); color: var(--fg); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+      h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.08; margin: 0; letter-spacing: -0.01em; }
+      h1 em, .brand-name em, h2 em { font-style: italic; color: var(--accent); }
+      p { margin: 0; }
+      a { color: inherit; }
+      :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; border-radius: 6px; }
+
+      .skip { position: absolute; left: -999px; top: 0; background: var(--primary); color: #fff; padding: 10px 16px; z-index: 200; border-radius: 0 0 10px 0; }
+      .skip:focus { left: 0; }
+
+      .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--body); font-weight: 700; font-size: 0.98rem; text-decoration: none; padding: 0 20px; min-height: 46px; border-radius: 999px; border: 1.5px solid transparent; cursor: pointer; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+      .btn.big { min-height: 54px; padding: 0 28px; font-size: 1.04rem; }
+      .btn-book { background: var(--primary); color: var(--primary-fg); box-shadow: 0 12px 26px -12px rgba(79, 110, 247, .8); }
+      .btn-book:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -12px rgba(79, 110, 247, .9); }
+      .btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+      .btn-ghost:hover { background: var(--muted); transform: translateY(-2px); }
+
+      /* HEADER */
+      .bar { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.85); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .2s, box-shadow .2s; }
+      .bar.scrolled { border-color: var(--border); box-shadow: 0 6px 24px -18px rgba(31,45,91,.5); }
+      .bar-inner { max-width: var(--maxw); margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; gap: 20px; }
+      .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--fg); }
+      .brand-mark { color: var(--primary); display: grid; place-items: center; }
+      .brand-name { font-family: var(--display); font-size: 1.18rem; line-height: 1; display: flex; flex-direction: column; }
+      .brand-name em { font-size: 0.6rem; font-style: normal; font-family: var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--primary); margin-top: 2px; }
+      .nav { display: none; gap: 6px; margin-left: auto; }
+      .nav a { text-decoration: none; font-weight: 500; font-size: .94rem; padding: 8px 12px; border-radius: 10px; color: var(--fg); transition: background .15s, color .15s; }
+      .nav a:hover { background: var(--muted); color: var(--primary); }
+      .bar-cta { display: none; align-items: center; gap: 14px; }
+      .phone { display: inline-flex; align-items: center; gap: 7px; text-decoration: none; font-weight: 700; font-size: .92rem; color: var(--fg); }
+      .phone svg { color: var(--primary); }
+      .burger { margin-left: auto; display: grid; gap: 5px; background: none; border: 0; padding: 12px; cursor: pointer; }
+      .burger span { width: 22px; height: 2.5px; background: var(--fg); border-radius: 2px; transition: .25s; }
+      .bar.open .burger span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+      .bar.open .burger span:nth-child(2) { opacity: 0; }
+      .bar.open .burger span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+      .mnav { display: grid; gap: 4px; padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s; }
+      .bar.open .mnav { max-height: 420px; padding: 8px 20px 20px; border-top: 1px solid var(--border); }
+      .mnav a { text-decoration: none; padding: 12px 8px; border-radius: 10px; font-weight: 600; }
+      .mnav a:hover { background: var(--muted); }
+      .mnav .btn-book { margin-top: 8px; }
+
+      @media (min-width: 920px) {
+        .nav, .bar-cta { display: flex; }
+        .burger, .mnav { display: none; }
+      }
+
+      /* SECTION BASE */
+      .section { max-width: var(--maxw); margin: 0 auto; padding: clamp(56px, 8vw, 104px) 20px; }
+      .head { max-width: 620px; margin: 0 auto clamp(32px, 5vw, 54px); text-align: center; }
+      .eyebrow { display: inline-block; font-weight: 700; font-size: .76rem; letter-spacing: .16em; text-transform: uppercase; color: var(--primary); margin-bottom: 14px; }
+      .head h2 { font-size: clamp(2rem, 4.6vw, 3rem); }
+      .head p { margin-top: 14px; color: #515a78; font-size: 1.06rem; }
+      .muted-bg { max-width: none; background: var(--muted); }
+      .muted-bg > * { max-width: var(--maxw); margin-left: auto; margin-right: auto; }
+      .stars { color: var(--accent); letter-spacing: 2px; }
+
+      /* HERO */
+      .hero { position: relative; overflow: hidden; background: linear-gradient(180deg, var(--muted) 0%, #fff 78%); }
+      .hero-grid { max-width: var(--maxw); margin: 0 auto; padding: clamp(40px, 7vw, 88px) 20px clamp(56px, 8vw, 96px); display: grid; gap: clamp(36px, 5vw, 56px); align-items: center; }
+      @media (min-width: 920px) { .hero-grid { grid-template-columns: 1.05fr 0.95fr; } }
+      .pill { display: inline-flex; align-items: center; gap: 9px; background: #fff; border: 1px solid var(--border); color: var(--fg); font-weight: 600; font-size: .86rem; padding: 8px 16px; border-radius: 999px; box-shadow: var(--shadow); }
+      .pill .dot { width: 9px; height: 9px; border-radius: 50%; background: #2bb673; box-shadow: 0 0 0 4px rgba(43,182,115,.18); }
+      .hero h1 { font-size: clamp(2.6rem, 6.5vw, 4.3rem); margin: 22px 0 0; }
+      .hero .lede { margin-top: 20px; font-size: clamp(1.05rem, 2vw, 1.25rem); color: #4a5478; max-width: 30ch; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+      .hero-trust { display: flex; align-items: center; gap: 12px; margin-top: 26px; font-size: .96rem; color: #4a5478; }
+      .hero-trust .stars { font-size: 1.15rem; }
+
+      .hero-art { position: relative; }
+      .photo { border-radius: 32px 32px 90px 32px; overflow: hidden; box-shadow: var(--shadow); border: 6px solid #fff; }
+      .photo-main img { width: 100%; height: clamp(360px, 52vw, 560px); object-fit: cover; filter: saturate(1.02) contrast(1.02); }
+      .photo-main { position: relative; }
+      .photo-main::after { content: ""; position: absolute; inset: 0; background: linear-gradient(150deg, rgba(79,110,247,.16), transparent 55%); mix-blend-mode: multiply; }
+      .float-card { position: absolute; left: -14px; bottom: 26px; display: flex; align-items: center; gap: 12px; background: #fff; padding: 14px 18px; border-radius: 18px; box-shadow: var(--shadow); border: 1px solid var(--border); max-width: 260px; }
+      .fc-emoji { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: var(--accent); color: #fff; font-weight: 700; flex: none; }
+      .float-card strong { display: block; font-size: .96rem; }
+      .float-card span:last-child { font-size: .82rem; color: #5b6488; }
+      .blob { position: absolute; border-radius: 50%; filter: blur(8px); z-index: 0; opacity: .5; }
+      .blob-1 { width: 360px; height: 360px; background: radial-gradient(circle at 30% 30%, #c4d0ff, transparent 70%); top: -120px; right: -80px; }
+      .blob-2 { width: 300px; height: 300px; background: radial-gradient(circle at 40% 40%, #ffd9c9, transparent 70%); bottom: -100px; left: -60px; }
+      .hero-grid { position: relative; z-index: 1; }
+
+      /* TRUST */
+      .trust { background: var(--fg); color: #fff; }
+      .trust-row { max-width: var(--maxw); margin: 0 auto; padding: 28px 20px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+      @media (min-width: 700px) { .trust-row { grid-template-columns: repeat(4, 1fr); } }
+      .trust-item { text-align: center; }
+      .trust-item strong { display: block; font-family: var(--display); font-size: clamp(1.7rem, 3.5vw, 2.3rem); color: #fff; }
+      .trust-item span { font-size: .86rem; color: #aeb7da; }
+
+      /* SERVICE CARDS */
+      .cards { display: grid; gap: 22px; grid-template-columns: 1fr; }
+      @media (min-width: 600px) { .cards { grid-template-columns: 1fr 1fr; } }
+      @media (min-width: 960px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+      .card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform .22s ease, box-shadow .22s ease, border-color .22s; display: flex; flex-direction: column; }
+      .card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--primary); }
+      .card-img { aspect-ratio: 16 / 10; overflow: hidden; }
+      .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+      .card:hover .card-img img { transform: scale(1.06); }
+      .card-body { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+      .card-body h3 { font-size: 1.18rem; }
+      .note { font-size: .86rem; color: var(--accent); font-weight: 700; }
+      .card-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--border); }
+      .price { font-family: var(--display); font-size: 1.3rem; }
+      .card-link { text-decoration: none; font-weight: 700; color: var(--primary); }
+      .card-link:hover { color: var(--accent); }
+
+      /* BEFORE / AFTER */
+      .ba-section { max-width: var(--maxw); }
+      .ba { position: relative; max-width: 860px; margin: 0 auto; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 6px solid #fff; user-select: none; }
+      .ba img { width: 100%; height: clamp(280px, 42vw, 460px); object-fit: cover; display: block; }
+      .ba-before { position: absolute; inset: 0; width: 50%; overflow: hidden; border-right: 3px solid #fff; }
+      .ba-before img { position: absolute; inset: 0; width: 860px; max-width: none; }
+      @media (min-width: 880px){ .ba-before img { width: 848px; } }
+      .ba-tag { position: absolute; top: 14px; left: 14px; background: rgba(27,36,64,.82); color: #fff; font-size: .76rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
+      .ba-tag-after { left: auto; right: 14px; background: var(--primary); }
+      .ba-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+      .ba-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: #fff; transform: translateX(-50%); pointer-events: none; }
+      .ba-handle span { position: absolute; top: 50%; left: 50%; width: 46px; height: 46px; transform: translate(-50%,-50%); background: #fff; border-radius: 50%; box-shadow: 0 6px 18px -6px rgba(0,0,0,.5); display: grid; place-items: center; }
+      .ba-handle span::before { content: "⟷"; color: var(--primary); font-size: 1.2rem; font-weight: 700; }
+
+      /* TEAM */
+      .team { display: grid; gap: 24px; grid-template-columns: 1fr; }
+      @media (min-width: 720px) { .team { grid-template-columns: repeat(3, 1fr); } }
+      .member { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; text-align: center; transition: transform .2s; }
+      .member:hover { transform: translateY(-5px); }
+      .member-photo { width: 130px; height: 130px; margin: 0 auto 16px; border-radius: 40% 40% 46% 46%; overflow: hidden; border: 4px solid var(--muted); }
+      .member-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.03); }
+      .member h3 { font-size: 1.3rem; }
+      .member-role { display: block; color: var(--primary); font-weight: 700; font-size: .86rem; margin: 6px 0 10px; }
+      .member p { color: #515a78; font-size: .96rem; }
+
+      /* STEPS */
+      .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; grid-template-columns: 1fr; counter-reset: s; }
+      @media (min-width: 640px) { .steps { grid-template-columns: 1fr 1fr; } }
+      @media (min-width: 980px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+      .step { position: relative; background: var(--muted); border-radius: var(--radius); padding: 26px 22px; }
+      .step-num { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; background: var(--primary); color: #fff; font-family: var(--display); font-size: 1.4rem; margin-bottom: 14px; }
+      .step h3 { font-size: 1.22rem; }
+      .step p { margin-top: 8px; color: #515a78; font-size: .96rem; }
+
+      /* REVIEWS */
+      .reviews-bg { max-width: none; background: linear-gradient(180deg, #fff, var(--muted)); }
+      .reviews-bg > * { max-width: var(--maxw); margin-left: auto; margin-right: auto; }
+      .quotes { display: grid; gap: 22px; grid-template-columns: 1fr; }
+      @media (min-width: 820px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
+      .quote { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; box-shadow: 0 14px 40px -28px rgba(31,45,91,.5); margin: 0; }
+      .quote .stars { font-size: 1.1rem; }
+      .quote blockquote { margin: 14px 0 16px; font-size: 1.08rem; line-height: 1.5; }
+      .quote figcaption { font-weight: 700; color: var(--primary); }
+
+      /* MARQUEE */
+      .marquee-sec { padding: 40px 0 8px; text-align: center; }
+      .marquee-lead { font-weight: 700; color: #515a78; margin-bottom: 22px; }
+      .marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+      .marquee-track { display: flex; gap: 18px; width: max-content; animation: scroll 26s linear infinite; }
+      @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; flex-wrap: wrap; justify-content: center; } }
+      .ins { font-family: var(--display); font-size: 1.4rem; color: var(--fg); padding: 12px 26px; border: 1px solid var(--border); border-radius: 14px; background: #fff; white-space: nowrap; }
+      @keyframes scroll { to { transform: translateX(-50%); } }
+
+      /* VISIT */
+      .visit { }
+      .visit-grid { display: grid; gap: clamp(30px, 5vw, 54px); grid-template-columns: 1fr; align-items: start; }
+      @media (min-width: 880px) { .visit-grid { grid-template-columns: 1fr 1fr; } }
+      .visit-info h2 { font-size: clamp(2rem, 4.4vw, 2.9rem); margin-top: 12px; }
+      .visit-info .lede { color: #515a78; margin: 16px 0 24px; }
+      .nap-line { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 600; padding: 12px 0; border-bottom: 1px solid var(--border); }
+      .nap-line:hover { color: var(--primary); }
+      .ni { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--muted); color: var(--primary); flex: none; }
+      .hours { width: 100%; border-collapse: collapse; margin-top: 22px; }
+      .hours th, .hours td { text-align: left; padding: 11px 0; border-bottom: 1px solid var(--border); font-size: .98rem; }
+      .hours th { font-weight: 600; }
+      .hours td { text-align: right; color: #515a78; }
+
+      .visit-form { background: var(--muted); border: 1px solid var(--border); border-radius: 26px; padding: clamp(24px, 4vw, 36px); display: grid; gap: 16px; }
+      .visit-form h3 { font-size: 1.6rem; }
+      .visit-form label { display: grid; gap: 7px; font-weight: 600; font-size: .9rem; }
+      .visit-form input, .visit-form select { font-family: var(--body); font-size: 1rem; padding: 13px 14px; border-radius: 12px; border: 1.5px solid var(--border); background: #fff; color: var(--fg); }
+      .visit-form input:focus, .visit-form select:focus { border-color: var(--primary); outline: none; }
+      .visit-form .btn { margin-top: 6px; }
+      .form-msg { background: #e3f7ed; color: #1d6b45; padding: 12px 14px; border-radius: 12px; font-weight: 600; font-size: .92rem; }
+
+      /* FOOTER */
+      .foot { background: var(--fg); color: #cdd4ee; padding: clamp(40px, 6vw, 64px) 20px 30px; }
+      .foot-grid { max-width: var(--maxw); margin: 0 auto; display: grid; gap: 26px; grid-template-columns: 1fr; padding-bottom: 26px; border-bottom: 1px solid rgba(255,255,255,.12); }
+      @media (min-width: 700px) { .foot-grid { grid-template-columns: 1.4fr 1fr; align-items: center; } }
+      .foot-name { color: #fff; font-size: 1.4rem; }
+      .foot-name em { color: var(--accent); }
+      .foot-tag { font-family: var(--display); font-size: 1.1rem; color: #aeb7da; margin-top: 8px; }
+      .foot-nap a { color: #fff; font-weight: 700; text-decoration: none; }
+      .foot-nap p { margin: 4px 0; }
+      .copy { max-width: var(--maxw); margin: 22px auto 0; font-size: .84rem; color: #8b95bd; text-align: center; }
+
+      /* REVEAL */
+      .reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .6s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,575 @@
+---
+const nav = [
+  { label: "Programs", href: "#programs" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Coaches", href: "#coaches" },
+  { label: "Schedule", href: "#schedule" },
+  { label: "Visit", href: "#visit" },
+];
+
+const programs = [
+  { tag: "01", name: "Barbell Strength", body: "Squat, bench, deadlift, press. Coached technique, progressive overload, real numbers.", seed: "irongrid-strength" },
+  { tag: "02", name: "Metabolic HIIT", body: "45 minutes of organized chaos. Intervals that torch fat and build a bigger engine.", seed: "irongrid-hiit" },
+  { tag: "03", name: "Conditioning", body: "Sleds, ropes, carries, rower. Brutal, simple, effective work capacity training.", seed: "irongrid-cond" },
+  { tag: "04", name: "Open Gym", body: "Your program, our racks. Coaches on the floor when you want a set of eyes.", seed: "irongrid-open" },
+];
+
+const stats = [
+  { val: 1400, suffix: "+", label: "Members trained" },
+  { val: 62, suffix: "", label: "Classes / week" },
+  { val: 18, suffix: "", label: "Certified coaches" },
+  { val: 9, suffix: " yrs", label: "On 11th Ave" },
+];
+
+const plans = [
+  { name: "Drop-In", price: "$25", unit: "/ class", popular: false, features: ["Single coached class", "No commitment", "Gear provided"] },
+  { name: "Unlimited Monthly", price: "$169", unit: "/ month", popular: true, features: ["Unlimited classes", "Open gym access", "Free InBody scan", "Programming app"] },
+  { name: "Strength Foundations", price: "$299", unit: "/ 8 weeks", popular: false, features: ["Beginner barbell program", "Small-group coaching", "Movement assessment"] },
+  { name: "1-on-1 Coaching", price: "$90", unit: "/ session", popular: false, features: ["Fully personal program", "Dedicated coach", "Nutrition check-ins"] },
+];
+
+const coaches = [
+  { name: "Marcus Vell", spec: "Head Coach · Powerlifting", cred: "CSCS · 3x National Medalist", seed: "irongrid-marcus" },
+  { name: "Tasha Okoro", spec: "Conditioning · HIIT", cred: "NASM-CPT · Ex-Pro Rugby", seed: "irongrid-tasha" },
+  { name: "Rhys Delgado", spec: "Olympic Lifting", cred: "USAW-L2 · Sports Sci BSc", seed: "irongrid-rhys" },
+];
+
+const testimonials = [
+  { quote: "Down 22 lbs and deadlifting double my bodyweight. The coaches actually program for YOU.", name: "Megan R." },
+  { quote: "I was terrified of a 'real' gym. Six months later it's the best part of my day.", name: "Devon T." },
+  { quote: "Small classes, real coaching, zero ego. Worth every dollar.", name: "Priya S." },
+];
+
+const schedule = [
+  { time: "05:30", cls: "Barbell Strength", coach: "Marcus" },
+  { time: "06:30", cls: "Metabolic HIIT", coach: "Tasha" },
+  { time: "12:00", cls: "Open Gym", coach: "Floor" },
+  { time: "17:30", cls: "Conditioning", coach: "Rhys" },
+  { time: "18:30", cls: "Barbell Strength", coach: "Marcus" },
+  { time: "19:30", cls: "Metabolic HIIT", coach: "Tasha" },
+];
+
+const hours = [
+  { d: "Mon – Fri", h: "5:00 AM – 9:00 PM" },
+  { d: "Saturday", h: "7:00 AM – 4:00 PM" },
+  { d: "Sunday", h: "8:00 AM – 2:00 PM" },
+];
+
+const phone = "(403) 555-0184";
+const phoneHref = "tel:+14035550184";
+const address = "1142 11 Avenue SW, Calgary, AB T2R 0G6";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HealthClub",
+  name: "IRONGRID Strength Co.",
+  description: "Coached strength training and group fitness in Calgary.",
+  telephone: "+14035550184",
+  address: { "@type": "PostalAddress", streetAddress: "1142 11 Avenue SW", addressLocality: "Calgary", addressRegion: "AB", postalCode: "T2R 0G6", addressCountry: "CA" },
+  openingHours: ["Mo-Fr 05:00-21:00", "Sa 07:00-16:00", "Su 08:00-14:00"],
+};
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IRONGRID Strength Co. — Coached Strength Training in Calgary</title>
+  <meta name="description" content="IRONGRID Strength Co. — Calgary's home for serious strength. Coached barbell training, HIIT, and conditioning for every body. Book a free intro class on 11th Ave SW." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <set:html value={`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`} />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="IRONGRID home">
+        <span class="brand-mark" aria-hidden="true"></span>IRON<span class="brand-accent">GRID</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      </nav>
+      <a class="btn btn-sm" href="#cta">Book Free Intro</a>
+      <button class="burger" aria-label="Toggle menu" aria-expanded="false" id="burger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      <a class="btn" href="#cta">Book Free Intro</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-h">
+      <div class="hero-img" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="wrap hero-inner">
+        <p class="eyebrow"><span class="dot"></span>Calgary · 11th Ave SW</p>
+        <h1 id="hero-h">SHOW UP.<br/>LIFT HEAVY.<br/><span class="hl">REPEAT.</span></h1>
+        <p class="lede">Coached strength training for every body — no egos, just progress. Calgary's home for serious strength.</p>
+        <div class="hero-cta">
+          <a class="btn btn-lg" href="#cta">Book a Free Intro Class</a>
+          <a class="btn btn-ghost btn-lg" href={phoneHref}>Call {phone}</a>
+        </div>
+      </div>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          {Array(2).fill(0).map(() => (
+            <span>STRENGTH · HIIT · CONDITIONING · OPEN GYM · COACHED · STRENGTH · HIIT · CONDITIONING · OPEN GYM · COACHED · </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats" aria-label="By the numbers">
+      <div class="wrap stats-grid">
+        {stats.map((s) => (
+          <div class="stat">
+            <div class="stat-val" data-count={s.val} data-suffix={s.suffix}>0{s.suffix}</div>
+            <div class="stat-label">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section class="section" id="programs" aria-labelledby="prog-h">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="kicker">/ Training styles</p>
+          <h2 id="prog-h">Pick your <span class="hl">poison.</span></h2>
+        </div>
+        <div class="prog-grid">
+          {programs.map((p) => (
+            <article class="prog-card">
+              <div class="prog-photo" style={`background-image:url(https://picsum.photos/seed/${p.seed}/700/520)`} role="img" aria-label={p.name + " training"}></div>
+              <div class="prog-body">
+                <span class="prog-tag">{p.tag}</span>
+                <h3>{p.name}</h3>
+                <p>{p.body}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section pricing" id="pricing" aria-labelledby="price-h">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="kicker">/ Memberships</p>
+          <h2 id="price-h">No fine print. <span class="hl">Just the work.</span></h2>
+        </div>
+        <div class="plan-grid">
+          {plans.map((pl) => (
+            <article class={"plan" + (pl.popular ? " plan-pop" : "")}>
+              {pl.popular && <span class="plan-badge">Most Popular</span>}
+              <h3>{pl.name}</h3>
+              <div class="plan-price">{pl.price}<span>{pl.unit}</span></div>
+              <ul>
+                {pl.features.map((f) => <li>{f}</li>)}
+              </ul>
+              <a class={"btn btn-block" + (pl.popular ? "" : " btn-ghost")} href="#cta">Get Started</a>
+            </article>
+          ))}
+        </div>
+        <p class="price-note">Drop-in $25 · Intro Pack (3 classes + assessment) $59 · Open Gym Membership $89/mo</p>
+      </div>
+    </section>
+
+    <!-- COACHES -->
+    <section class="section" id="coaches" aria-labelledby="coach-h">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="kicker">/ The floor</p>
+          <h2 id="coach-h">Coaches who <span class="hl">give a damn.</span></h2>
+        </div>
+        <div class="coach-grid">
+          {coaches.map((c) => (
+            <article class="coach">
+              <div class="coach-photo" style={`background-image:url(https://picsum.photos/seed/${c.seed}/600/720?grayscale)`} role="img" aria-label={"Coach " + c.name}></div>
+              <div class="coach-info">
+                <span class="coach-spec">{c.spec}</span>
+                <h3>{c.name}</h3>
+                <p>{c.cred}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS SLIDER -->
+    <section class="section testi" aria-labelledby="testi-h">
+      <div class="wrap">
+        <div class="sec-head center">
+          <p class="kicker">/ Results</p>
+          <h2 id="testi-h">They showed up. <span class="hl">It worked.</span></h2>
+        </div>
+        <div class="slider" id="slider">
+          <div class="slides" id="slides">
+            {testimonials.map((t) => (
+              <figure class="slide">
+                <blockquote>"{t.quote}"</blockquote>
+                <figcaption>— {t.name}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <div class="dots" id="dots" role="tablist" aria-label="Testimonials">
+            {testimonials.map((_, i) => (
+              <button class={"sdot" + (i === 0 ? " on" : "")} data-i={i} aria-label={"Testimonial " + (i + 1)}></button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section class="section schedule" id="schedule" aria-labelledby="sch-h">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="kicker">/ Today on the timetable</p>
+          <h2 id="sch-h">Find your <span class="hl">slot.</span></h2>
+        </div>
+        <ul class="sch-list">
+          {schedule.map((s) => (
+            <li class="sch-row">
+              <span class="sch-time">{s.time}</span>
+              <span class="sch-cls">{s.cls}</span>
+              <span class="sch-coach">{s.coach}</span>
+              <a class="sch-reserve" href="#cta">Reserve →</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-band" id="cta" aria-labelledby="cta-h">
+      <div class="cta-img" aria-hidden="true"></div>
+      <div class="wrap cta-inner">
+        <h2 id="cta-h">YOUR FIRST CLASS<br/><span class="hl">IS ON US.</span></h2>
+        <p>Book a free intro class. Meet a coach, learn the lifts, feel the room. No pressure, no contract.</p>
+        <div class="hero-cta">
+          <a class="btn btn-lg" href="#schedule">Book a Free Intro Class</a>
+          <a class="btn btn-ghost btn-lg" href={phoneHref}>Call {phone}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT / NAP -->
+    <section class="section visit" id="visit" aria-labelledby="visit-h">
+      <div class="wrap visit-grid">
+        <div>
+          <p class="kicker">/ Find us</p>
+          <h2 id="visit-h">Drop in.</h2>
+          <address class="nap">
+            <p class="nap-line"><strong>IRONGRID Strength Co.</strong></p>
+            <p>{address}</p>
+            <p><a href={phoneHref}>{phone}</a></p>
+            <a class="btn btn-ghost" href="https://maps.google.com/?q=1142+11+Avenue+SW+Calgary+AB" target="_blank" rel="noopener">Open in Maps</a>
+          </address>
+        </div>
+        <div class="hours">
+          <h3>Hours</h3>
+          {hours.map((h) => (
+            <div class="hours-row"><span>{h.d}</span><span>{h.h}</span></div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>IRON<span class="brand-accent">GRID</span></a>
+      <p>{address} · <a href={phoneHref}>{phone}</a></p>
+      <p class="fine">© 2026 IRONGRID Strength Co. — Calgary, AB. No egos, just progress.</p>
+    </div>
+  </footer>
+
+  <a class="book-bar" href="#cta">Book a Free Intro Class →</a>
+
+  <style>
+    :root {
+      --bg: #0A0B0D;
+      --fg: #F2F4F5;
+      --primary: #C6F800;
+      --primary-fg: #0A0B0D;
+      --accent: #FF3B30;
+      --muted: #9AA0A6;
+      --border: #232629;
+      --card: #111317;
+      --max: 1200px;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--fg);
+      font-family: "Inter", system-ui, sans-serif;
+      line-height: 1.55; -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 clamp(1.1rem, 4vw, 3rem); }
+    h1, h2, h3 { font-family: "Anton", Impact, sans-serif; font-weight: 400; line-height: 0.92; letter-spacing: 0.01em; text-transform: uppercase; }
+    .hl { color: var(--primary); }
+    a { color: inherit; }
+    .skip { position: absolute; left: -999px; }
+    .skip:focus { left: 1rem; top: 1rem; z-index: 200; background: var(--primary); color: var(--primary-fg); padding: .6rem 1rem; border-radius: 6px; }
+    :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 44px; padding: .8rem 1.5rem;
+      background: var(--primary); color: var(--primary-fg);
+      font-weight: 700; font-size: .82rem; letter-spacing: .06em; text-transform: uppercase;
+      text-decoration: none; border: 2px solid var(--primary); border-radius: 2px;
+      transition: transform .15s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+      cursor: pointer;
+    }
+    .btn:hover { background: transparent; color: var(--primary); transform: translateY(-2px); }
+    .btn-sm { padding: .55rem 1rem; min-height: 40px; font-size: .72rem; }
+    .btn-lg { padding: 1rem 1.9rem; font-size: .9rem; }
+    .btn-block { display: flex; width: 100%; }
+    .btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+    .btn-ghost:hover { border-color: var(--primary); color: var(--primary); background: transparent; }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(10,11,13,.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { display: flex; align-items: center; gap: 1.2rem; height: 68px; }
+    .brand { display: flex; align-items: center; gap: .5rem; font-family: "Anton", sans-serif; font-size: 1.45rem; letter-spacing: .04em; text-decoration: none; }
+    .brand-accent { color: var(--primary); }
+    .brand-mark { width: 16px; height: 16px; background: var(--primary); transform: rotate(45deg); box-shadow: 5px 0 0 var(--accent); }
+    .nav-links { display: flex; gap: 1.5rem; margin-left: auto; }
+    .nav-links a { text-decoration: none; font-size: .8rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover { color: var(--primary); }
+    .burger { display: none; flex-direction: column; gap: 5px; background: none; border: 0; padding: 8px; cursor: pointer; }
+    .burger span { width: 24px; height: 2px; background: var(--fg); transition: .25s; }
+    .mobile-menu { display: none; flex-direction: column; gap: .4rem; padding: 1rem clamp(1.1rem,4vw,3rem) 1.4rem; border-bottom: 1px solid var(--border); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a:not(.btn) { text-decoration: none; padding: .6rem 0; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; border-bottom: 1px solid var(--border); }
+
+    /* HERO */
+    .hero { position: relative; min-height: 92vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; border-bottom: 1px solid var(--border); }
+    .hero-img { position: absolute; inset: 0; background: url(https://picsum.photos/seed/irongrid-hero/1600/1100) center/cover; filter: grayscale(.4) contrast(1.15) brightness(.42); }
+    .hero-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(10,11,13,.92) 30%, rgba(198,248,0,.10) 100%), linear-gradient(0deg, var(--bg), transparent 55%); }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 64px 64px; opacity: .25; mask-image: radial-gradient(circle at 70% 40%, #000, transparent 75%); }
+    .hero-inner { position: relative; z-index: 2; padding: 5rem 0 3rem; }
+    .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.3rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: pulse 1.8s infinite; }
+    @keyframes pulse { 50% { opacity: .35; } }
+    .hero h1 { font-size: clamp(3.4rem, 13vw, 9.5rem); margin-bottom: 1.4rem; text-shadow: 0 4px 40px rgba(0,0,0,.5); }
+    .lede { max-width: 46ch; font-size: clamp(1rem, 2.4vw, 1.25rem); color: var(--fg); opacity: .85; margin-bottom: 2.2rem; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: .9rem; }
+
+    .marquee { position: relative; z-index: 2; border-top: 1px solid var(--border); background: var(--primary); color: var(--primary-fg); overflow: hidden; }
+    .marquee-track { display: flex; white-space: nowrap; font-family: "Anton", sans-serif; font-size: 1.05rem; letter-spacing: .08em; padding: .55rem 0; animation: scroll 26s linear infinite; }
+    @keyframes scroll { to { transform: translateX(-50%); } }
+
+    /* STATS */
+    .stats { border-bottom: 1px solid var(--border); background: var(--card); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat { padding: 2.4rem 1rem; text-align: center; border-right: 1px solid var(--border); }
+    .stat:last-child { border-right: 0; }
+    .stat-val { font-family: "Anton", sans-serif; font-size: clamp(2.4rem, 6vw, 3.6rem); color: var(--primary); line-height: 1; }
+    .stat-label { font-size: .76rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-top: .5rem; }
+
+    /* SECTIONS */
+    .section { padding: clamp(3.5rem, 9vw, 7rem) 0; border-bottom: 1px solid var(--border); }
+    .sec-head { margin-bottom: 2.6rem; }
+    .sec-head.center { text-align: center; }
+    .kicker { font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: .7rem; }
+    .sec-head h2 { font-size: clamp(2.2rem, 6.5vw, 4.4rem); }
+
+    /* PROGRAMS */
+    .prog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    .prog-card { position: relative; overflow: hidden; border: 1px solid var(--border); border-radius: 4px; min-height: 280px; display: flex; align-items: flex-end; background: var(--card); transition: border-color .3s, transform .3s; }
+    .prog-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+    .prog-photo { position: absolute; inset: 0; background-size: cover; background-position: center; filter: grayscale(.55) brightness(.5) contrast(1.1); transition: filter .4s, transform .5s; }
+    .prog-card:hover .prog-photo { filter: grayscale(0) brightness(.62) contrast(1.05); transform: scale(1.05); }
+    .prog-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,11,13,.96) 8%, rgba(10,11,13,.2) 80%); z-index: 1; }
+    .prog-body { position: relative; z-index: 2; padding: 1.6rem; }
+    .prog-tag { font-family: "Anton", sans-serif; font-size: 1rem; color: var(--primary); }
+    .prog-body h3 { font-size: 1.8rem; margin: .2rem 0 .5rem; }
+    .prog-body p { color: var(--muted); font-size: .92rem; max-width: 42ch; }
+
+    /* PRICING */
+    .pricing { background: var(--card); }
+    .plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .plan { position: relative; border: 1px solid var(--border); border-radius: 4px; padding: 1.8rem 1.4rem; background: var(--bg); display: flex; flex-direction: column; transition: transform .25s, border-color .25s; }
+    .plan:hover { transform: translateY(-5px); border-color: var(--muted); }
+    .plan-pop { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary), 0 18px 50px -20px rgba(198,248,0,.4); }
+    .plan-badge { position: absolute; top: -11px; left: 1.4rem; background: var(--primary); color: var(--primary-fg); font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .7rem; border-radius: 2px; }
+    .plan h3 { font-size: 1.4rem; margin-bottom: .6rem; }
+    .plan-price { font-family: "Anton", sans-serif; font-size: 2.4rem; color: var(--fg); line-height: 1; margin-bottom: 1.1rem; }
+    .plan-price span { font-family: "Inter", sans-serif; font-size: .8rem; color: var(--muted); margin-left: .3rem; }
+    .plan ul { list-style: none; padding: 0; margin: 0 0 1.5rem; flex: 1; }
+    .plan li { font-size: .88rem; color: var(--muted); padding: .45rem 0 .45rem 1.4rem; position: relative; border-bottom: 1px solid var(--border); }
+    .plan li::before { content: ""; position: absolute; left: 0; top: .85rem; width: 8px; height: 8px; background: var(--primary); transform: rotate(45deg); }
+    .price-note { text-align: center; margin-top: 1.8rem; color: var(--muted); font-size: .85rem; }
+
+    /* COACHES */
+    .coach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .coach { position: relative; overflow: hidden; border: 1px solid var(--border); border-radius: 4px; aspect-ratio: 4/5; display: flex; align-items: flex-end; }
+    .coach-photo { position: absolute; inset: 0; background-size: cover; background-position: center top; filter: contrast(1.1) brightness(.62); transition: filter .4s, transform .5s; }
+    .coach:hover .coach-photo { filter: contrast(1.1) brightness(.72); transform: scale(1.04); }
+    .coach::before { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,11,13,.95) 5%, transparent 65%); z-index: 1; }
+    .coach-info { position: relative; z-index: 2; padding: 1.5rem; }
+    .coach-spec { display: inline-block; background: var(--accent); color: #fff; font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .25rem .55rem; border-radius: 2px; margin-bottom: .6rem; }
+    .coach-info h3 { font-size: 1.7rem; }
+    .coach-info p { color: var(--muted); font-size: .82rem; margin-top: .2rem; }
+
+    /* TESTIMONIALS */
+    .testi { background: var(--card); }
+    .slider { max-width: 760px; margin: 0 auto; text-align: center; }
+    .slides { position: relative; overflow: hidden; }
+    .slide { display: none; animation: fade .5s ease; }
+    .slide.on { display: block; }
+    @keyframes fade { from { opacity: 0; transform: translateY(8px); } }
+    .slide blockquote { font-family: "Anton", sans-serif; font-size: clamp(1.5rem, 4.5vw, 2.6rem); line-height: 1.1; text-transform: uppercase; }
+    .slide blockquote::first-letter { color: var(--primary); }
+    .slide figcaption { margin-top: 1.3rem; color: var(--accent); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .85rem; }
+    .dots { display: flex; gap: .6rem; justify-content: center; margin-top: 1.8rem; }
+    .sdot { width: 40px; height: 6px; border: 0; border-radius: 0; background: var(--border); cursor: pointer; transition: background .25s; padding: 0; }
+    .sdot.on { background: var(--primary); }
+
+    /* SCHEDULE */
+    .sch-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--border); }
+    .sch-row { display: grid; grid-template-columns: 90px 1fr auto auto; align-items: center; gap: 1rem; padding: 1.15rem .4rem; border-bottom: 1px solid var(--border); transition: background .2s, padding-left .2s; }
+    .sch-row:hover { background: var(--card); padding-left: 1rem; }
+    .sch-time { font-family: "Anton", sans-serif; font-size: 1.4rem; color: var(--primary); }
+    .sch-cls { font-weight: 600; text-transform: uppercase; letter-spacing: .04em; font-size: .95rem; }
+    .sch-coach { color: var(--muted); font-size: .82rem; }
+    .sch-reserve { color: var(--accent); font-weight: 700; text-decoration: none; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+    .sch-reserve:hover { color: var(--primary); }
+
+    /* CTA BAND */
+    .cta-band { position: relative; overflow: hidden; padding: clamp(4rem, 10vw, 8rem) 0; text-align: center; border-bottom: 1px solid var(--border); }
+    .cta-img { position: absolute; inset: 0; background: url(https://picsum.photos/seed/irongrid-cta/1600/900) center/cover; filter: grayscale(.6) brightness(.32) contrast(1.2); }
+    .cta-img::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(198,248,0,.12), transparent 60%), rgba(10,11,13,.4); }
+    .cta-inner { position: relative; z-index: 2; }
+    .cta-band h2 { font-size: clamp(2.6rem, 9vw, 6rem); margin-bottom: 1.2rem; }
+    .cta-band p { max-width: 50ch; margin: 0 auto 2.2rem; color: var(--fg); opacity: .85; }
+    .cta-band .hero-cta { justify-content: center; }
+
+    /* VISIT */
+    .visit-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: start; }
+    .visit h2 { font-size: clamp(2.2rem, 6vw, 3.6rem); margin-bottom: 1.3rem; }
+    .nap { font-style: normal; color: var(--muted); display: flex; flex-direction: column; gap: .5rem; align-items: flex-start; }
+    .nap-line strong { color: var(--fg); font-size: 1.05rem; }
+    .nap a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    .nap .btn-ghost { margin-top: .6rem; }
+    .hours { border: 1px solid var(--border); border-radius: 4px; padding: 1.6rem; background: var(--card); }
+    .hours h3 { font-size: 1.3rem; color: var(--primary); margin-bottom: 1rem; }
+    .hours-row { display: flex; justify-content: space-between; gap: 1rem; padding: .65rem 0; border-bottom: 1px solid var(--border); font-size: .9rem; }
+    .hours-row:last-child { border-bottom: 0; }
+    .hours-row span:first-child { color: var(--muted); }
+
+    /* FOOTER */
+    .footer { padding: 3rem 0 6rem; }
+    .footer-inner { display: flex; flex-direction: column; gap: .7rem; align-items: center; text-align: center; }
+    .footer p { color: var(--muted); font-size: .88rem; }
+    .footer a { color: var(--primary); text-decoration: none; }
+    .fine { font-size: .76rem; opacity: .7; }
+
+    /* STICKY BOOK BAR (mobile) */
+    .book-bar { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; background: var(--primary); color: var(--primary-fg); text-align: center; padding: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; text-decoration: none; font-size: .92rem; box-shadow: 0 -8px 30px rgba(0,0,0,.5); }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .nav-inner > .btn-sm { display: none; }
+      .burger { display: flex; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border-right: 0; }
+      .stat:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .prog-grid { grid-template-columns: 1fr; }
+      .plan-grid { grid-template-columns: 1fr 1fr; }
+      .coach-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .visit-grid { grid-template-columns: 1fr; }
+      .sch-row { grid-template-columns: 70px 1fr auto; }
+      .sch-coach { display: none; }
+      .book-bar { display: block; }
+      .footer { padding-bottom: 6.5rem; }
+    }
+    @media (max-width: 520px) {
+      .plan-grid { grid-template-columns: 1fr; }
+      .hero { min-height: 86vh; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, .marquee-track, .dot { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+
+  <script>
+    // Mobile menu
+    const burger = document.getElementById("burger");
+    const menu = document.getElementById("mobileMenu");
+    burger?.addEventListener("click", () => {
+      const open = menu.classList.toggle("open");
+      burger.setAttribute("aria-expanded", String(open));
+    });
+    menu?.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        menu.classList.remove("open");
+        burger?.setAttribute("aria-expanded", "false");
+      })
+    );
+
+    // Testimonial slider
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const dots = Array.from(document.querySelectorAll(".sdot"));
+    let cur = 0;
+    function show(i) {
+      slides.forEach((s, n) => s.classList.toggle("on", n === i));
+      dots.forEach((d, n) => d.classList.toggle("on", n === i));
+      cur = i;
+    }
+    if (slides.length) {
+      show(0);
+      dots.forEach((d) => d.addEventListener("click", () => show(Number(d.dataset.i))));
+      let timer = setInterval(() => show((cur + 1) % slides.length), 5000);
+      document.getElementById("slider")?.addEventListener("mouseenter", () => clearInterval(timer));
+    }
+
+    // Scroll reveal + animated counters
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll(".section, .stats, .cta-band").forEach((el) => el.classList.add("reveal"));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("in");
+        e.target.querySelectorAll?.(".stat-val").forEach((el) => {
+          const end = Number(el.dataset.count);
+          const suffix = el.dataset.suffix || "";
+          if (reduce) { el.textContent = end + suffix; return; }
+          let t0 = null;
+          const step = (ts) => {
+            if (!t0) t0 = ts;
+            const p = Math.min((ts - t0) / 1300, 1);
+            el.textContent = Math.floor(p * end) + suffix;
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        });
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.18 });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>
