@@ -1,5 +1,7 @@
 # Deployment
 
+> **Live (2026-06-15):** the service **landing page** (`sites/landing`) is deployed on **Netlify** at **https://studio0rbit-audit.netlify.app/** — our own account, free `*.netlify.app` subdomain (custom domain to attach later). The free-audit contact form uses **Web3Forms** (host-agnostic, no activation; **verified delivering email**) — *not* FormSubmit (activation-token churn) or Netlify Forms (drag-drop deploys skip form detection → 404). See the `deploy-shop-site` skill → "Contact form handling." The client-shop Publish→webhook→rebuild loop (below) has **not** yet been exercised on a real client launch.
+
 Each shop site builds to static files (`sites/<slug>/dist/`) and hosts on a free static host. Under our model the **client owns their hosting account**; for our own demos we use ours.
 
 Build first: `pnpm build` (or `pnpm --filter <slug> build`). Output is `sites/<slug>/dist/`.

@@ -8,7 +8,7 @@
 
 ```
 node scripts/build-gallery.mjs   # compile all 60 (already run)
-npx serve gallery -l 4300        # then open http://localhost:4300
+node scripts/serve-gallery.mjs   # then open http://localhost:4300 (use this, not `npx serve -s`)
 ```
 
 **One at a time** (live dev server for editing): `pnpm --filter <slug> dev` → opens at its fixed port below.

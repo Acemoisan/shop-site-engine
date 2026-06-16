@@ -1,5 +1,7 @@
 # Phase 0: Engine + Demos Implementation Plan
 
+> **✅ STATUS: COMPLETE (2026-06-15).** Every deliverable shipped — engine, `packages/shared`, the demos (now 5: barber, café, spa, electrician, fitness), and the Storyblok edit→publish→rebuild loop verified. Kept as the worked record of the engine build; unchecked boxes below are historical, not outstanding. Live status: [roadmap.md](../roadmap.md).
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Stand up the code-first production engine (Astro + Tailwind v4 + shadcn token theming + OKLCH design tokens, pnpm monorepo) and ship two themed demo shop sites (barber/salon + restaurant/café) from one shared component set — proving the "new shop = token swap + content fill" thesis.

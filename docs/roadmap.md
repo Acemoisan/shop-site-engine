@@ -93,11 +93,23 @@ See [decisions.md](decisions.md) and the [editability & handoff verification](re
 
 ---
 
+## Status (2026-06-15): Phases 0–2 + 4 substantially shipped 🚀
+Capability is built and the service is **live**. The phase checkboxes below are kept as the original spec; the Progress log is the source of truth for what's actually done.
+- **LIVE:** service landing page → **https://studio0rbit-audit.netlify.app/** (Netlify, `sites/landing`).
+- Engine + **5 CMS-wired demos** + **60 template exploration sites** built & screenshot-verified.
+- **Site-audit tool** (`packages/audit`) built and run on a real Calgary prospect ("chopchop").
+- GTM kit written (packaging, outreach, proposal/terms, prospecting playbook, landing copy).
+- **Remaining:** run the Calgary prospect scrape + send first outreach batch (Phase 3 + Phase 4 outreach); ongoing design elevation.
+
 ## Progress log
 - **2026-06-15:** Phase 0 engine built and verified — pnpm monorepo, Astro + Tailwind v4 + OKLCH token theming, 7 shared section components + LocalBusiness JSON-LD. **Two demos live & screenshotted** (barber, café) proving new shop = `theme.css` + `content.ts` only. CLAUDE.md + client handoff guide written. Fixed a Tailwind v4 monorepo `@source` bug.
-- **2026-06-15:** ✅ **Storyblok wired (barber).** Created `shop`/`shop_hours`/`shop_service` content types via Management API, pre-filled the barber story, connected the site to fetch from Storyblok CDN (read token in `.env`, local fallback). **Edit→publish→rebuild loop verified** (changed tagline in Storyblok → appeared in build). Client self-edit requirement proven. In-iframe visual editing deferred to the design phase (needs deploy + bridge).
-- **2026-06-15 pending:** live deploy (needs owner hosting login / Netlify Drop).
-- **Owner feedback:** demos are too plain/basic — **design elevation is the next priority** (see below). Booking-link → client-account flow now documented in the handoff guide.
+- **2026-06-15:** ✅ **Storyblok wired (barber).** Created `shop`/`shop_hours`/`shop_service` content types via Management API, pre-filled the barber story, connected the site to fetch from Storyblok CDN (read token in `.env`, local fallback). **Edit→publish→rebuild loop verified** (changed tagline in Storyblok → appeared in build). Client self-edit requirement proven.
+- **2026-06-15:** ✅ **All 5 demos CMS-wired** (barber, café, spa, electrician, fitness) from one Storyblok space, each with local fallback; custom heroes editable via `hero_kicker`/`hero_subcopy`/`hero_cta_label`. Screenshot-verified desktop + mobile.
+- **2026-06-15:** ✅ **60 template exploration sites** (`sites/tmpl-*`, 20 industries × 3 variants) built as a design-harvesting library — bespoke layouts to mine new components back into `packages/shared`. Viewable via the gallery on `:4300`.
+- **2026-06-15:** ✅ **Site-audit tool** (`packages/audit` + `site-audit` skill) built — fetch a prospect URL → PSI/Lighthouse + heuristic findings → branded 1-page audit + before/after preview. **Run on a real prospect ("chopchop").**
+- **2026-06-15:** ✅ **GTM kit** drafted in `docs/gtm/` (packaging, outreach, prospecting playbook, proposal & terms, landing-page copy, vertical content kits).
+- **2026-06-15:** ✅ **Service landing page LIVE — https://studio0rbit-audit.netlify.app/** (`sites/landing`, Netlify). Working Web3Forms free-audit form (→ aidan.c.moisan@gmail.com, verified delivering), integrated `/templates` gallery, pricing tiers $1,800 / $3,500 (Growth) / $6,000. Phase 4 infra achieved; first outreach batch still to send.
+- **Owner feedback:** demos were too plain/basic — **design elevation is an ongoing priority** (see below). Booking-link → client-account flow documented in the handoff guide.
 
 ## ⭐ Next focus (roadmap revisit): make sites genuinely impressive
 The v0 components prove the engine but look plain. The design system is *the* differentiator (anti–"AI slop"). Before/alongside go-to-market, elevate to client-grade design:
@@ -107,7 +119,7 @@ The v0 components prove the engine but look plain. The design system is *the* di
 - **To revisit together:** how we generate exciting designs fast (Figma + Figma MCP, design references, component variants).
 
 ## Open items to resolve along the way
-- 🧭 Final price points within mid-market (Phase 2).
-- ⚠️ Reconfirm: Figma MCP seat rules, Outscraper/Targetron pricing, Calgary build-price anchors.
+- ✅ Price points set & published live: $1,800 / $3,500 (Growth) / $6,000 one-time (revisit anchors with real sales data).
+- ⚠️ Reconfirm before Phase 3 scrape: Outscraper/Targetron pricing, Calgary build-price anchors; Figma MCP seat rules if adopted.
 - Privacy: reference **Alberta PIPA** (not PIPEDA) on any site collecting form/booking data.
 - Test a no-code (Framer) build by hand for comparison (owner, parallel).

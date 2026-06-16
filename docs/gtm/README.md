@@ -6,8 +6,8 @@ Sales/GTM deliverables for the Calgary local-shop website service (roadmap Phase
 |---|---|
 | [packaging.md](packaging.md) | Three mid-market tiers (Starter/Growth/Pro), deliverables, proposed one-time prices, add-ons, scoping→package mapping. |
 | [outreach.md](outreach.md) | Value-first / free-audit outreach: prospecting funnel, qualification checklist, message templates, the 1-page audit structure, intake questions, expectation-setting. |
-| [handoff-guide.md](handoff-guide.md) | Walk-away handoff: internal account-ownership checklist + plain-English client self-edit guide. |
+| [handoff-guide.md](handoff-guide.md) | Walk-away handoff: **internal** account-ownership checklist + caveat. (Client-facing guide is canonical at [`../client-handoff-guide.md`](../client-handoff-guide.md).) |
 
 **Model reminder:** one-time fee, no maintenance, client owns all accounts, self-edit = content (not layout).
 
-> Drafted 2026-06-15 in a parallel session while another session builds the engine/demos (roadmap Phases 0–1). Final price points, deposit/contract terms, and tool-pricing reconfirms are owner decisions (flagged inline).
+> Drafted 2026-06-15. Pricing tiers are now **set & live** ($1,800 / $3,500 / $6,000 — see [packaging.md](packaging.md) and the live site https://studio0rbit-audit.netlify.app/). Deposit/contract terms and tool-pricing reconfirms remain owner decisions (flagged inline).

@@ -1,5 +1,7 @@
 # Foundational Question Framework
 
+> **2026-06-15 — ARCHIVAL.** This framework served its purpose: every gate is cleared, the owner decisions are locked, and the capability has **shipped** (engine + 5 demos + 60 templates + live landing page at https://studio0rbit-audit.netlify.app/). The 🔬/🧭 tags below are point-in-time. Pricing/PIPA confidence was firmed up in the [pricing, tools & compliance report](2026-06-15-pricing-tools-and-compliance.md) (re-verification). Live status now lives in [roadmap.md](../roadmap.md).
+
 The complete line of questioning the project must answer with confidence **before** planning or implementation. Goal: a bulletproof plan. Each question is tagged with status:
 
 - ✅ **Answered** — covered by verified research (see linked report)
@@ -105,7 +107,7 @@ Two deep-research passes ran on 2026-06-15:
 
 - **Domain 1 (prospecting):** partly ✅ (value-first/free-audit outreach; Outscraper/Targetron scraping) — rest provisional.
 - **Domain 2 (offering):** provisional — 3-tier packages + recurring care plan pattern documented; needs re-verify.
-- **Domain 3 (pricing):** provisional only — **highest priority to re-verify** (Calgary ~$2.5–5k builds, ~$100–300/mo care).
+- **Domain 3 (pricing):** ✅ **DONE** — re-verified in the [pricing, tools & compliance report](2026-06-15-pricing-tools-and-compliance.md); tiers now committed & live ($1,800 / $3,500 / $6,000 one-time, no care plan).
 - **Domain 4 (engagement types):** ✅ **DONE** — full [engagement scoping rubric](2026-06-15-engagement-scoping-rubric.md) (25/25 claims verified): decision tree (new/rebuild/fix/care), automatable rapid-audit checklist (PSI API + SEOmator CLI + Lighthouse CI), and per-tier scoping guidance.
 - **Domain 5 (anatomy):** ✅ **DONE** — salons/trades in [product report](2026-06-15-product-delivery-and-tooling.md); restaurants/cafés + retail in [vertical anatomy report](2026-06-15-vertical-anatomy-restaurant-retail.md) (HTML menus + Menu schema, ChowNow ordering, Shopify Buy Button, Astro e-commerce spectrum, Google free local listings — CA-eligible).
 - **Domain 7 (tooling/AI pipeline):** ✅ Figma MCP + Astro Docs MCP verified; pipeline shape hypothesized.
@@ -117,4 +119,5 @@ Two deep-research passes ran on 2026-06-15:
 1. ✅ **Re-verification done** (2026-06-15) — 18 claims re-checked; pricing/fees firmed up; PIPA & Square corrections applied.
 2. ✅ **Engagement-scoping rubric done** — [report](2026-06-15-engagement-scoping-rubric.md).
 3. ✅ **Restaurant/café + retail anatomy done** — [report](2026-06-15-vertical-anatomy-restaurant-retail.md).
-4. **🧭 Owner decisions** (research can't decide): positioning (premium vs budget/volume), niche vs general, price points, and capacity (solo vs team, time, tool budget). **← THE LAST GATE before planning. All research domains are now answered.**
+4. ✅ **Owner decisions LOCKED** (2026-06-15): mid-market productized positioning ($3k–$8k tiered), all verticals (barber/café first), price points set & live, solo full-time. See [roadmap.md](../roadmap.md) Locked decisions. **Gate cleared — planning + implementation done.**
+5. ✅ **Pricing/tools/compliance re-verified** — [report](2026-06-15-pricing-tools-and-compliance.md) (the report that resolved Domain 3 + the PIPA/Square corrections).

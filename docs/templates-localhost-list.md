@@ -1,7 +1,7 @@
 # Template localhost URLs (60)
 
 Run `pnpm --filter <slug> dev` to start one, then open its URL.
-Or view all at once: `npx serve gallery -l 4300` → http://localhost:4300
+Or view all at once: `node scripts/serve-gallery.mjs` → http://localhost:4300 (use this, not `npx serve -s`)
 
 | # | URL | Industry | Variant | Brand | Start command |
 |---|-----|----------|---------|-------|---------------|
@@ -58,7 +58,7 @@ Or view all at once: `npx serve gallery -l 4300` → http://localhost:4300
 | 51 | http://localhost:4351 | Fashion & Apparel | minimal | Meridian Atelier | `pnpm --filter tmpl-fashion-minimal dev` |
 | 52 | http://localhost:4352 | Jewelry Brand | elegant | Aurelle & Vale — Fine Jewelry Atelier | `pnpm --filter tmpl-jewelry-elegant dev` |
 | 53 | http://localhost:4353 | Jewelry Brand | modernlux | Aurelle & Vale — Fine Jewelry Atelier | `pnpm --filter tmpl-jewelry-modernlux dev` |
-| 54 | http://localhost:4354 | Jewelry Brand | artisan | Aurelle &amp; Vale — Fine Jewelry Atelier | `pnpm --filter tmpl-jewelry-artisan dev` |
+| 54 | http://localhost:4354 | Jewelry Brand | artisan | Aurelle & Vale — Fine Jewelry Atelier | `pnpm --filter tmpl-jewelry-artisan dev` |
 | 55 | http://localhost:4355 | Boutique Hotel & Resort | coastal | Marisol Coastal | `pnpm --filter tmpl-hotel-coastal dev` |
 | 56 | http://localhost:4356 | Boutique Hotel & Resort | urban | The Marisol | `pnpm --filter tmpl-hotel-urban dev` |
 | 57 | http://localhost:4357 | Boutique Hotel & Resort | lodge | Marisol Lodge | `pnpm --filter tmpl-hotel-lodge dev` |

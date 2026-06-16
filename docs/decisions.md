@@ -6,6 +6,21 @@ Running log of decisions for the Calgary local-shop website service. Newest firs
 
 ---
 
+## 2026-06-15 — SHIPPED: capability built, service live (closes the open loops)
+
+Reality has caught up to the plan. Recording it so earlier "reopened/pending/proposed" entries below are read as **history, not live uncertainty**:
+
+- **Code-first is LOCKED and validated** (closes the "code-vs-no-code reopened" thread at the entries below). Evidence: the Astro + Tailwind v4 + OKLCH-token engine ships, **5 CMS-wired demos** + **60 template exploration sites** are built, and the **live landing page** runs on it. No-code (Framer/Wix/Webflow) remains a per-client handoff fallback only.
+- **Service is LIVE:** landing page at **https://studio0rbit-audit.netlify.app/** (Netlify, `sites/landing`).
+- **Prices committed (no longer "proposed"):** the live site publishes **$1,800 / $3,500 (Growth) / $6,000** one-time, matching `docs/gtm/packaging.md`. Revisit anchors with real sales data, not as an open question.
+- **Toolchain table below ("Status: proposed, not yet committed") is now COMMITTED** — validated by the shipped engine.
+- **Site-audit tool exists** (`packages/audit` + `site-audit` skill), run on a real prospect ("chopchop") — the "AI site-audit tool" build item is done.
+- Still genuinely open: run the Calgary prospect scrape + first outreach batch (roadmap Phase 3–4); reconfirm scraper pricing.
+
+> Note on older entries: the **PIPEDA** mention further down (in the 2026-06-15 GTM-research entry) was **superseded** by the correction "it's Alberta **PIPA**, not PIPEDA." The **care-plan / WaaS** directional notes are reference-only — the locked model is one-time fee, no maintenance.
+
+---
+
 ## 2026-06-15 — Business model & hard requirements (owner direction)
 
 Owner set direction that changes earlier assumptions. **Decided, not provisional:**

@@ -1,7 +1,8 @@
-# Client Handoff & Self-Edit Guide (walk-away model)
+# Internal Handoff Checklist (walk-away model)
 
-**Date:** 2026-06-15 · **Status:** content draft. The build session wires Storyblok; this is the *content* of the kit we hand the client.
-**Purpose:** make the "build it, hand it over, never touch it again" model real. After handoff the client **owns every account** and can **edit their own content unaided**. This doc has two parts: (1) the internal handoff checklist we run, (2) the plain-English guide we give the client.
+**Date:** 2026-06-15 · **Scope:** the *internal* steps we run before walking away.
+**Canonical client-facing guide:** [`../client-handoff-guide.md`](../client-handoff-guide.md) — the complete, current plain-English manual we hand the client (Storyblok step-by-step, booking tools, owner test checklist). This file holds only the **internal** checklist + caveat that isn't in the client doc, so they don't drift.
+**Purpose:** make the "build it, hand it over, never touch it again" model real. After handoff the client **owns every account** and can **edit their own content unaided**.
 
 > Why this matters (verified): no maintenance contract means the handoff must be genuinely self-sufficient. The [editability verification](../research/2026-06-15-editability-and-handoff-verification.md) confirms Storyblok's free visual editor closes the self-edit gap, and the hardest breakers are **account ownership** and the **content-vs-structure boundary** — both addressed below.
 
@@ -32,50 +33,9 @@
 
 ---
 
-## PART 2 — Client-facing guide (plain English, goes in their handoff kit)
+## PART 2 — Client-facing guide
 
-### 🎉 Your website is yours — completely
-
-You own everything: your domain, your hosting, your editor, and the site itself. There are **no monthly fees to us**. Your only ongoing cost is your domain renewal (~$15–20/year) and any business tools you already use (like Square or Stripe).
-
-### ✏️ What you can change yourself, anytime
-
-Log in to **Storyblok** (your visual editor) and you can update:
-- ✅ Text — descriptions, headings, about, specials
-- ✅ Photos — swap, add, remove (drag and drop)
-- ✅ Hours, address, phone, email
-- ✅ Links — social, booking, ordering
-- ✅ Menu items / services / prices
-
-You click the thing on the page, change it, and hit **Publish**. That's it — no code.
-
-### 🔒 What needs a pro (a quick paid job, not self-serve)
-
-- Changing the **layout, design, or navigation**
-- Adding **new page types or sections**
-- New features (online store, new booking system)
-
-These keep your build affordable by staying out of your monthly life — when you want one, it's a small one-time job.
-
-### 🔑 Your accounts (keep these safe)
-
-| What | Where | Your login |
-|---|---|---|
-| Domain | [registrar] | __________ |
-| Hosting | [host] | __________ |
-| Editor | Storyblok | __________ |
-| Bookings/Payments | [their tool] | __________ |
-
-*(We fill these in with you at handoff. Store them in a password manager.)*
-
-### 📈 Getting found on Google (do this once)
-
-- Claim/complete your **Google Business Profile**: exact name, address, hours, phone, website, categories, photos. Complete profiles rank better and 4★+ ratings get far more clicks.
-- Ask happy customers for reviews — it's the single biggest local-ranking lever you control.
-
-### 🆘 If something breaks
-
-Your site is "static" — there's no server, database, or plugins to maintain, so it's very low-risk. If your domain or hosting ever shows an issue, it's almost always a billing/renewal lapse on one of *your* accounts — check those first. For anything structural, reach out and we'll quote a quick fix.
+➡️ Lives in **[`../client-handoff-guide.md`](../client-handoff-guide.md)** (canonical). It covers, in plain English: what the client owns, what they can self-edit in Storyblok vs what needs a pro, their accounts table, Google Business Profile setup, and what to do if something breaks. Don't duplicate it here — edit it there.
 
 ---
 

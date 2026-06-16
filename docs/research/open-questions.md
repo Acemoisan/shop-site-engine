@@ -1,5 +1,7 @@
 # Open Questions & Next Steps
 
+> **2026-06-15 update:** the owner-decision gate (bottom) is **resolved** and the capability has shipped (service live at https://studio0rbit-audit.netlify.app/). Only the minor "confirm during build" items remain. This file is now an archival tracker — see [roadmap.md](../roadmap.md) for live status.
+
 Status as of 2026-06-15, after five research passes + a re-verification pass. Most original gaps are now closed.
 
 ## ✅ Closed since the first pass
@@ -18,11 +20,9 @@ Status as of 2026-06-15, after five research passes + a re-verification pass. Mo
 5. **12-month real-world maintenance/failure rate** of AI-built sites for non-technical owners.
 6. **Lab vs field (CrUX) CWV** reconciliation for low-traffic small-business sites.
 
-## 🧭 Owner decisions — THE LAST GATE before planning
-Research can inform but not make these:
-1. **Positioning:** premium/custom vs budget/volume.
-2. **Niche:** one vertical (e.g. restaurants) vs general local-shop.
-3. **Price points & packaging:** our actual tiers and care-plan price.
-4. **Capacity:** solo vs team, time available, monthly tool/subscription budget.
-
-Once these are set, move to **planning** (write the build plan for the starter template + AI pipeline) and then **implementation** (scaffold + a sample Calgary shop site to measure turnaround).
+## ✅ Owner decisions — RESOLVED (was "the last gate"); see [roadmap.md](../roadmap.md) Locked decisions
+All four are locked, and planning + implementation are **done** (engine, 5 demos, 60 templates, live landing page at https://studio0rbit-audit.netlify.app/):
+1. **Positioning** → mid-market productized, ~$3k–$8k tiered (live: $1,800 / $3,500 / $6,000).
+2. **Niche** → all verticals; demo order barber/café first.
+3. **Price points & packaging** → set & published (see [packaging.md](../gtm/packaging.md)). One-time fee, no care plan.
+4. **Capacity** → solo, full-time.
