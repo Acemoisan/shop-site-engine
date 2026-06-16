@@ -6,7 +6,19 @@ import { runSeomatorProbe } from "./probes/seomator.js"
 import { inventoryFromHtml } from "./inventory.js"
 import { detectStack } from "./stack.js"
 import { assembleAudit } from "./collect.js"
+import { renderReport } from "./report.js"
 import type { FeatureKey, StackProbe } from "./types.js"
+
+function prettifyHostname(hostname: string): string {
+  let host = hostname.toLowerCase()
+  if (host.startsWith("www.")) host = host.slice(4)
+  const parts = host.split(".")
+  if (parts.length > 1) parts.pop()
+  const base = parts.join(" ")
+  const spaced = base.replace(/[-_.]+/g, " ").trim()
+  if (!spaced) return hostname
+  return spaced.replace(/\b\w/g, (c) => c.toUpperCase())
+}
 
 async function main() {
   const url = process.argv[2]
@@ -41,10 +53,17 @@ async function main() {
 
   const data = assembleAudit({ url, fetchedAt, reachable: page.reachable, blocked, vertical, psi, seomator, inventory, stack })
 
-  const outFile = `audit-${new URL(url).hostname}.json`
-  await writeFile(outFile, JSON.stringify(data, null, 2))
+  const hostname = new URL(url).hostname
+  const shopName = prettifyHostname(hostname)
+  const outFile = `audit-${hostname}.json`
+  const htmlFile = `audit-${hostname}.html`
+  const html = renderReport(data, shopName)
+  await Promise.all([
+    writeFile(outFile, JSON.stringify(data, null, 2)),
+    writeFile(htmlFile, html),
+  ])
   console.log(JSON.stringify(data, null, 2))
-  console.error(`\n✔ ${data.grade.overall} (${data.grade.confidence}) → ${data.tier}  ·  written to ${outFile}`)
+  console.error(`\n✔ ${data.grade.overall} (${data.grade.confidence}) → ${data.tier}  ·  written to ${outFile} and ${htmlFile}`)
 }
 
 main().catch((e) => { console.error(e); process.exit(1) })
