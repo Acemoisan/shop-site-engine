@@ -5,10 +5,13 @@ import { shop as fallback } from "../content/shop";
 import type { ShopContent } from "@studio0rbit/shared";
 import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
 import Hero from "@studio0rbit/shared/components/Hero.astro";
+import Stats from "@studio0rbit/shared/components/Stats.astro";
+import Features from "@studio0rbit/shared/components/Features.astro";
 import ContactNAP from "@studio0rbit/shared/components/ContactNAP.astro";
 import Hours from "@studio0rbit/shared/components/Hours.astro";
 import Services from "@studio0rbit/shared/components/Services.astro";
-import Reviews from "@studio0rbit/shared/components/Reviews.astro";
+import Testimonials from "@studio0rbit/shared/components/Testimonials.astro";
+import Faq from "@studio0rbit/shared/components/Faq.astro";
 import CTA from "@studio0rbit/shared/components/CTA.astro";
 import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
 import LocalBusinessJsonLd from "@studio0rbit/shared/seo/LocalBusinessJsonLd.astro";
@@ -50,6 +53,32 @@ if (token) {
   }
 }
 console.log(`[demo-barber] content source: ${source}`);
+
+// Section content for the elaborate template (barber-specific; not yet in the CMS model).
+const stats = [
+  { value: "Est. 2012", label: "Beltline barbers" },
+  { value: `${shop.rating ?? 4.9}★`, label: "200+ Google reviews" },
+  { value: "Walk-ins", label: "Welcome daily" },
+];
+const features = [
+  { icon: "scissors", title: "Master barbers", body: "Skilled hands and sharp eyes — every cut dialled in to you." },
+  { icon: "star", title: "Classic & modern", body: "From a clean side-part to a skin fade, we do it all." },
+  { icon: "clock", title: "In and out, sharp", body: "Respect for your time — quality work without the wait." },
+  { icon: "calendar", title: "Easy online booking", body: "Reserve your chair in seconds, or walk in any day." },
+  { icon: "coffee", title: "On the house", body: "Grab a coffee or a whisky while you wait." },
+  { icon: "mapPin", title: "Heart of 17th Ave", body: "Right in the Beltline — easy to find, easy to park." },
+];
+const testimonials = [
+  { quote: "Best fade in the city, hands down. Been coming for years.", name: "Mike D." },
+  { quote: "Walked in on a Saturday, barely waited, left looking sharp.", name: "Chris L." },
+  { quote: "These guys actually listen — exactly the cut I asked for.", name: "Andre P." },
+];
+const faqs = [
+  { q: "Do you take walk-ins?", a: "Yes — walk-ins are welcome every day we're open. Booking ahead guarantees your time." },
+  { q: "How do I book?", a: "Tap any 'Book' button to reserve online, or just drop by." },
+  { q: "Do you cut kids' hair?", a: "Absolutely — all ages are welcome in the chair." },
+  { q: "Is there parking?", a: "Street parking along 17th Ave plus nearby lots." },
+];
 ---
 <html lang="en">
   <head>
@@ -62,12 +91,19 @@ console.log(`[demo-barber] content source: ${source}`);
     <LocalBusinessJsonLd shop={shop} />
   </head>
   <body id="top" class="bg-background text-foreground font-sans">
-    <SiteNav name={shop.name} bookingUrl={shop.bookingUrl} />
+    <SiteNav
+      name={shop.name}
+      bookingUrl={shop.bookingUrl}
+      links={[{ label: "Services", href: "#services" }, { label: "Why us", href: "#features" }, { label: "Hours", href: "#hours" }, { label: "Visit", href: "#visit" }]}
+    />
     <Hero name={shop.name} tagline={shop.tagline} bookingUrl={shop.bookingUrl} heroImage={shop.heroImage} />
+    <Stats items={stats} />
+    <Features label="Why us" heading="A proper barber, done right" items={features} />
     <Services services={shop.services} heading="Services" />
     <Hours hours={shop.hours} />
-    <Reviews blurb={shop.reviewsBlurb} rating={shop.rating} />
+    <Testimonials label="Reviews" heading="Calgary keeps coming back" items={testimonials} />
     <ContactNAP name={shop.name} phone={shop.phone} address={shop.address} mapUrl={shop.mapUrl} serviceArea={shop.serviceArea} />
+    <Faq items={faqs} />
     <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} />
     <SiteFooter name={shop.name} address={shop.address} phone={shop.phone} />
   </body>
