@@ -2,12 +2,15 @@
   "name": "@studio0rbit/audit",
   "version": "0.0.0",
   "type": "module",
-  "bin": { "site-audit": "./src/cli.ts" },
+  "bin": {
+    "site-audit": "./src/cli.ts"
+  },
   "scripts": {
     "test": "vitest run",
     "site-audit": "tsx src/cli.ts"
   },
   "dependencies": {
+    "@seomator/seo-audit": "^3.0.1",
     "tsx": "^4.19.0"
   },
   "devDependencies": {

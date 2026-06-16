@@ -5,7 +5,8 @@
   "scripts": {
     "dev:barber": "pnpm --filter demo-barber dev",
     "dev:cafe": "pnpm --filter demo-cafe dev",
-    "build": "pnpm -r build"
+    "build": "pnpm -r build",
+    "site-audit": "pnpm --filter @studio0rbit/audit site-audit"
   },
   "pnpm": {
     "onlyBuiltDependencies": ["esbuild", "sharp"]
