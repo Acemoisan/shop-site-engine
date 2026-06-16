@@ -19,15 +19,16 @@ const f = site.finalCta;
         </a>
       </div>
 
-      <!-- TEMPORARY: wired to FormSubmit.co (free form→email relay) routing to
-           site.formEmail for testing. FIRST submission triggers a one-time
-           activation email to that inbox — click it once to enable delivery.
-           Swap to a hashed FormSubmit endpoint or a proper provider before go-live. -->
-      <form class="rounded-2xl border border-background/15 bg-background/5 p-6 backdrop-blur-sm sm:p-8" action={`https://formsubmit.co/${site.formEmail}`} method="POST">
-        <input type="hidden" name="_subject" value="New Studio0rbit audit request" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <!-- Contact form → Netlify Forms (native to our host, NO activation step).
+           The static HTML carries data-netlify + a hidden form-name so Netlify
+           detects the form on deploy; submissions show in the Netlify dashboard
+           (Forms tab) and can email you via Forms → notifications. Progressive
+           enhancement: JS posts via fetch for an inline success state; without JS
+           it falls back to a normal Netlify form POST. -->
+      <div>
+      <form id="auditForm" name="audit" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-email={site.email} class="rounded-2xl border border-background/15 bg-background/5 p-6 backdrop-blur-sm sm:p-8">
+        <input type="hidden" name="form-name" value="audit" />
+        <p class="hidden"><label>Leave this field empty: <input name="bot-field" /></label></p>
         <h3 class="font-display text-lg font-semibold">{c.heading}</h3>
         <p class="mt-1 text-sm text-background/70">{c.body}</p>
         <div class="mt-5 grid gap-4">
@@ -38,8 +39,47 @@ const f = site.finalCta;
           <textarea name="message" rows="3" placeholder="What do you need? (a new site, bookings, online ordering...)" class="rounded-[var(--radius)] border border-background/20 bg-background/10 px-4 py-3 text-sm text-background placeholder:text-background/50 focus:border-accent focus:outline-none"></textarea>
           <button type="submit" class="rounded-[var(--radius)] bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90">{f.cta.label}</button>
           <p class="text-xs leading-relaxed text-background/55">{c.pipaNote}</p>
+          <p id="formStatus" role="status" aria-live="polite" class="hidden text-sm font-medium text-accent"></p>
         </div>
       </form>
+      <div id="formSuccess" hidden class="rounded-2xl border border-accent/40 bg-accent/10 p-8 text-center">
+        <p class="font-display text-xl font-semibold text-background">Thanks — your request is in! ✦</p>
+        <p class="mt-2 text-sm text-background/80">We'll review your shop and reply within one business day.</p>
+        <a href="/templates" class="mt-4 inline-block text-sm font-medium text-accent transition hover:opacity-80">While you wait, browse our templates →</a>
+      </div>
+      </div>
     </div>
   </div>
+  <script is:inline>
+    (function () {
+      var form = document.getElementById("auditForm");
+      if (!form) return;
+      var statusEl = document.getElementById("formStatus");
+      var success = document.getElementById("formSuccess");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var btn = form.querySelector("button[type=submit]");
+        var orig = btn ? btn.textContent : "";
+        if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+        if (statusEl) { statusEl.classList.add("hidden"); statusEl.textContent = ""; }
+        var body = new URLSearchParams();
+        new FormData(form).forEach(function (v, k) { body.append(k, v); });
+        fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body.toString() })
+          .then(function (r) {
+            if (!r.ok) throw new Error("status " + r.status);
+            form.style.display = "none";
+            if (success) success.hidden = false;
+            success && success.scrollIntoView({ behavior: "smooth", block: "center" });
+          })
+          .catch(function () {
+            if (btn) { btn.disabled = false; btn.textContent = orig; }
+            if (statusEl) {
+              var email = form.getAttribute("data-email") || "";
+              statusEl.textContent = "Couldn't send just now — please email us directly at " + email + ".";
+              statusEl.classList.remove("hidden");
+            }
+          });
+      });
+    })();
+  </script>
 </section>

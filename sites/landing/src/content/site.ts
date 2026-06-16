@@ -19,13 +19,15 @@ export interface Faq { q: string; a: string }
 export const site = {
   brand: "Studio0rbit",
   city: "Calgary",
-  email: "hello@studio0rbit.ca", // TODO: confirm real contact before go-live
-  formEmail: "aidan.c.moisan@gmail.com", // TEMPORARY — routes the contact form to owner's inbox for testing; revert/replace before go-live
+  // Working inbox for go-live. Swap to a branded hello@studio0rbit.ca address
+  // (with forwarding to this inbox) once the domain is set up.
+  email: "aidan.c.moisan@gmail.com",
+  formEmail: "aidan.c.moisan@gmail.com", // contact form delivers here via FormSubmit
   nav: [
     { label: "What you get", href: "#benefits" },
     { label: "How it works", href: "#how" },
     { label: "Pricing", href: "#pricing" },
-    { label: "Work", href: "#work" },
+    { label: "Templates", href: "/templates" },
     { label: "FAQ", href: "#faq" },
   ],
 
@@ -34,7 +36,7 @@ export const site = {
     headline: "Built fast. Owned by you.",
     sub: "A professional, mobile-first website that gets your shop found on Google and turns visitors into calls, bookings, and customers. One fair price — no monthly fees, ever.",
     ctaPrimary: { label: "Get a free website audit", href: "#contact" },
-    ctaSecondary: { label: "See the work", href: "#work" },
+    ctaSecondary: { label: "Browse templates", href: "/templates" },
     trust: [
       "You own your domain, hosting & site",
       "Edit it yourself, anytime",
@@ -106,6 +108,19 @@ export const site = {
       { title: "No monthly fees to us", body: "One-time build, then it's yours. Margin comes from how efficiently we build — not from billing you forever." },
       { title: "You can actually edit it", body: "Update hours, photos, and menus yourself in minutes with a visual editor." },
       { title: "Fast & local", body: "Most sites go live in days. Built for Calgary shops by someone who gets it." },
+    ],
+  },
+
+  templates: {
+    heading: "See what we build",
+    sub: "60 example designs across 20 industries — three distinct directions each. Every one is fast, mobile-first, and yours to own. Click any to explore the full live page; yours is custom-built to your brand.",
+    featured: [
+      "tmpl-dining-luxe",
+      "tmpl-coffee-nordic",
+      "tmpl-saas-dark",
+      "tmpl-barber-vintage",
+      "tmpl-jewelry-elegant",
+      "tmpl-agency-brutalist",
     ],
   },
 

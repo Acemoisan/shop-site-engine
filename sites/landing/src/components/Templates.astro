@@ -1,0 +1,61 @@
+---
+import { site } from "../content/site";
+import Icon from "./Icon.astro";
+import templates from "../data/templates.json";
+const t = site.templates;
+const byScore = (templates as any[]);
+const featured = t.featured
+  .map((slug) => byScore.find((x) => x.slug === slug))
+  .filter(Boolean) as any[];
+const total = byScore.length;
+---
+<section id="templates" class="scroll-mt-20 bg-background">
+  <div class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <div class="max-w-2xl">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Templates</p>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{t.heading}</h2>
+        <p class="mt-4 text-muted-foreground">{t.sub}</p>
+      </div>
+      <a href="/templates" class="group inline-flex shrink-0 items-center gap-2 rounded-[var(--radius)] bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90">
+        Browse all {total} templates
+        <Icon name="arrow" class="h-4 w-4 transition group-hover:translate-x-0.5" />
+      </a>
+    </div>
+
+    <div class="tpl-grid mt-12">
+      {featured.map((f) => (
+        <a class="tpl-card group" href={`/templates/g/${f.slug}/`} target="_blank" rel="noopener" aria-label={`Open ${f.brandName} template`}>
+          <div class="tpl-thumb">
+            <iframe class="tpl-frame" src={`/templates/g/${f.slug}/`} loading="lazy" tabindex="-1" title={`${f.brandName} preview`} aria-hidden="true"></iframe>
+            <span class="tpl-open">Open ↗</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 p-4">
+            <div class="min-w-0">
+              <h3 class="truncate font-display text-sm font-semibold text-foreground">{f.brandName}</h3>
+              <p class="truncate text-xs text-muted-foreground">{f.categoryTitle} · {f.variant}</p>
+            </div>
+            <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-primary/10 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
+              <Icon name="arrow" class="h-4 w-4" />
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <p class="mt-8 text-center text-sm text-muted-foreground sm:hidden">
+      <a href="/templates" class="font-semibold text-primary underline-offset-4 hover:underline">See all {total} templates →</a>
+    </p>
+  </div>
+
+  <style>
+    .tpl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+    .tpl-card { display: block; overflow: hidden; border: 1px solid var(--border); border-radius: 1rem; background: var(--card); box-shadow: 0 1px 2px rgba(0,0,0,.04); transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+    .tpl-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.13); border-color: color-mix(in oklab, var(--primary) 50%, var(--border)); }
+    .tpl-thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--muted); border-bottom: 1px solid var(--border); }
+    .tpl-frame { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform: scale(0.205); transform-origin: top left; pointer-events: none; }
+    .tpl-open { position: absolute; right: .6rem; bottom: .6rem; opacity: 0; transform: translateY(4px); transition: opacity .18s ease, transform .18s ease; background: var(--primary); color: var(--primary-foreground); font-size: 11px; font-weight: 600; padding: .25rem .55rem; border-radius: 999px; }
+    .tpl-card:hover .tpl-open { opacity: 1; transform: translateY(0); }
+    @media (max-width: 640px) { .tpl-frame { transform: scale(0.30); } }
+  </style>
+</section>
