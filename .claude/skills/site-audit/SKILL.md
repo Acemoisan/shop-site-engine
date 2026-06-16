@@ -41,7 +41,7 @@ Two-layer rule: **the collector computes the facts (grade, tier, inventory); you
 
 8. **Post-audit: how we'd implement it (scoping → plan).** Turn findings into our build plan:
    - **Tier → package → effort → price.** Map `tier` (and any visual-review upgrade) to Starter/Growth/Pro using `docs/gtm/packaging.md` and the Calgary anchors in the research doc.
-   - **Pick the engine template.** Choose the closest `sites/tmpl-<vertical>-<variant>` (see `docs/templates-catalogue.md`) as the design starting point.
+   - **Pick the design direction, then build on the shared engine.** Browse `sites/tmpl-<vertical>-<variant>` (see `docs/templates-catalogue.md`) as *visual reference only* — the `tmpl-*` sites are standalone explorations with no shared components. The actual client build follows the **`create-shop-site` skill**: a new `sites/<slug>` on `packages/shared` with its own `theme.css` + content (the production "one engine, themed per shop" rule). Mine the chosen `tmpl-*` for layout/token ideas; don't ship it as-is.
    - **Content migration.** List what ports straight over from their current site (services + prices, hours, reviews, address/map, booking link, phone) into our content model / Storyblok (use the `storyblok-shop-cms` skill).
    - **Close the gaps.** The missing `fixes.targeted` items (e.g. contact form, Menu/service structured data) become build tasks; we ship LocalBusiness JSON-LD by default.
    - **The performance win is the headline.** A static Astro build gets LCP < 2.5s / CWV pass — name the concrete before→after (e.g. "LCP 4.2s → under 2.5s").

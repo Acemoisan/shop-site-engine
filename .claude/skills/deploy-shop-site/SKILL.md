@@ -1,6 +1,6 @@
 ---
 name: deploy-shop-site
-description: Use when deploying, hosting, or launching a Studio0rbit shop site — standing up auto-deploy, doing a per-client launch (standalone repo + host build hook + publish webhook), or quickly publishing a demo. Clients need no GitHub. Calgary shop-site engine specific.
+description: Use when deploying, hosting, or launching a Studio0rbit shop site — standing up auto-deploy, doing a per-client launch (standalone repo + host build hook + publish webhook), quickly publishing a demo, or wiring a contact form to deliver email. Clients need no GitHub. Calgary shop-site engine specific.
 ---
 
 # Deploy a Shop Site
@@ -38,15 +38,32 @@ The `sites/*` monorepo is our **development** capability. For a client **launch*
 - **Cloudflare Wrangler** (scriptable): `npx wrangler login` (run via `! ` in the session prompt so output lands here), then `npx wrangler pages deploy sites/<slug>/dist --project-name=<slug>`.
 - **Git-connected monorepo** (per-site host settings): Base dir `sites/<slug>` · Build `pnpm --filter <slug> build` · Publish `sites/<slug>/dist` · Env `STORYBLOK_TOKEN`.
 
+## Contact form handling (static sites have no backend)
+A static site can't email a form on its own — it needs a third-party form endpoint. **Use [Web3Forms](https://web3forms.com).** Verified working on the live landing site (2026-06-15); reference impl: `sites/landing/src/components/Contact.astro`.
+
+**Why Web3Forms (and not the others we burned time on):**
+- ✅ **Web3Forms** — host-agnostic (works on *any* static deploy, incl. Netlify drag-drop), **no activation step**, emails submissions instantly. Free tier ~250/mo.
+- ❌ **FormSubmit.co** — requires clicking an email activation link, and that token gets **invalidated by any later submission** (token churn) → "confirmation token not found." Painful; avoid.
+- ❌ **Netlify Forms** — form detection only runs on **Git/CLI builds, NOT manual drag-drop deploys**. Drag-drop → the form is never registered → POST returns **404**. Only viable if deploying via Git or `netlify deploy` (CLI).
+
+**Setup (≈2 min):**
+1. Owner gets a free **access key** at web3forms.com (enter their email → key emailed instantly; no account). The key is **public/safe to commit** — it lives in client-side HTML. Store it in `site.ts` (e.g. `web3formsKey`).
+2. Form: hidden `<input name="access_key" value={key}>`, optional hidden `subject`/`from_name`, a hidden `botcheck` honeypot, and named fields.
+3. Progressive-enhancement JS: `fetch("https://api.web3forms.com/submit", {method:"POST", headers:{"Content-Type":"application/json", Accept:"application/json"}, body: JSON.stringify(data)})` → check `json.success` → show inline success; no-JS falls back to a normal POST to the same endpoint.
+
+> ⚠️ **You CANNOT verify Web3Forms with curl/server requests** — the free tier rejects non-browser calls with `"...Pro plan is required"` (it only accepts client-side/browser submissions). That error means the **key/endpoint are fine**, not broken. Verify by submitting from a **real browser** on the deployed (or locally-served) site — it returns `{success:true}` and emails the owner.
+
 ## Tokens (don't mix them up)
 - Site env var `STORYBLOK_TOKEN` = **delivery/read** token (same for every story in a space; safe in host config). See `storyblok-shop-cms` for delivery-vs-management tokens.
 - The **management** `sb_pat_` token is for content-model setup only — never goes in host/deploy config.
 
 ## Verification status
-Verified: static build output and the Storyblok content fetch at build time (`content source: Storyblok` in the build log). **Not yet executed end-to-end:** a live host + Publish→webhook→rebuild loop (pending an owner host login). When first run, confirm a Storyblok Publish triggers a deploy and the change appears live in ~1 min, then record it here and in `docs/deployment.md`.
+Verified: static build output and the Storyblok content fetch at build time (`content source: Storyblok` in the build log). **First live deploy done (2026-06-15):** the landing site shipped to **Netlify** (drag-drop of `dist`) at a free `*.netlify.app` subdomain, with a **Web3Forms contact form verified delivering email** end-to-end. **Still not executed end-to-end:** the Storyblok Publish→webhook→rebuild auto-update loop (pending a Git/CLI-connected host build). When first run, confirm a Storyblok Publish triggers a deploy and the change appears live in ~1 min, then record it here and in `docs/deployment.md`.
 
 ## Common mistakes
 - Copying only the site dir to a standalone repo → `@studio0rbit/shared` won't resolve (see gotcha above).
 - Putting the `sb_pat_` management token in host env → wrong token; use the delivery token.
 - Forgetting the publish webhook → site builds once but never auto-updates on client edits.
 - Wrong output dir (must be `dist`) or missing `STORYBLOK_TOKEN` env → unstyled/empty or fallback-only deploy.
+- Using Netlify Forms with a drag-drop deploy → form unregistered, POST 404 (use Web3Forms, or deploy via Git/CLI). See Contact form handling above.
+- "Testing" a Web3Forms key with curl and concluding it's broken → free tier blocks server requests; only a real browser submission works.
