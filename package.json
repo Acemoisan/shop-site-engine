@@ -9,6 +9,12 @@
     "site-audit": "pnpm --filter @studio0rbit/audit site-audit"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "sharp"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.1.0"
   }
 }
