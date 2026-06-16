@@ -1,0 +1,629 @@
+---
+const nav = [
+  { label: "The Table", href: "#story" },
+  { label: "Menu", href: "#menu" },
+  { label: "The Room", href: "#gallery" },
+  { label: "Press", href: "#press" },
+  { label: "Visit", href: "#visit" },
+];
+
+const tasting = [
+  { name: "The Lumiere Tasting Menu", desc: "Eight courses, drawn from the morning's harvest", price: "$165" },
+  { name: "Wine Pairing", desc: "Sommelier-selected, five pours", price: "$95" },
+];
+
+const plates = [
+  { name: "Hand-Dived Scallop", desc: "Brown butter, sea herbs, finger lime", price: "$34" },
+  { name: "Alberta Wagyu", desc: "Charred leek, bone-marrow jus, black garlic", price: "$62" },
+  { name: "Heritage Beet", desc: "Whipped goat cheese, walnut, aged balsamic", price: "$26" },
+  { name: "Tarte Tatin", desc: "Crème fraîche, salted caramel, vanilla bean", price: "$19" },
+  { name: "Cheese Trolley", desc: "Three selections, house preserves, walnut bread", price: "$28" },
+];
+
+const testimonials = [
+  { quote: "The closest thing to a Michelin evening this city has. Every course told a story.", who: "Daniel R.", role: "Avenue Magazine" },
+  { quote: "Faultless service and a tasting menu I'm still thinking about a week later.", who: "Priya N.", role: "Guest" },
+  { quote: "We came for an anniversary and left planning the next visit. Quietly extraordinary.", who: "Marc & Eloise T.", role: "Guests" },
+];
+
+const press = ["Michelin Guide — Recommended", "enRoute Top 10", "Avenue Best Restaurants 2026"];
+
+const hours = [
+  { day: "Tuesday – Thursday", time: "5:30pm – 10:00pm" },
+  { day: "Friday – Saturday", time: "5:00pm – 11:00pm" },
+  { day: "Sunday & Monday", time: "Closed" },
+];
+
+const gallery = [
+  { seed: "lumiere-plate-1", w: 600, h: 760, span: "tall", alt: "Plated seasonal course with garnish" },
+  { seed: "lumiere-hands-2", w: 600, h: 420, span: "wide", alt: "Chef plating a dish by hand" },
+  { seed: "lumiere-room-3", w: 600, h: 420, span: "wide", alt: "Candlelit dining room" },
+  { seed: "lumiere-detail-4", w: 600, h: 760, span: "tall", alt: "Table setting with linen and ceramic" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Maison Lumiere — Rustic Farm-to-Table French Dining in Calgary</title>
+    <meta
+      name="description"
+      content="Maison Lumiere is a rustic farm-to-table French tasting house in Calgary. Eight seasonal courses, one unhurried evening. Reserve a table on Stephen Avenue SW."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#hero">Skip to content</a>
+
+    <header class="bar" id="top">
+      <div class="bar__inner">
+        <a class="brand" href="#hero" aria-label="Maison Lumiere home">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="28" height="28">
+              <path d="M16 3c4 5 4 9 0 13-4-4-4-8 0-13Z" fill="currentColor" />
+              <path d="M16 16v13M9 29h14" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" />
+            </svg>
+          </span>
+          <span class="brand__name">Maison&nbsp;Lumiere</span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+
+        <a class="reserve" href="#reserve">
+          <span class="reserve__label">Reserve</span>
+          <span class="reserve__meta">via Resy</span>
+        </a>
+
+        <button class="burger" aria-expanded="false" aria-controls="mnav" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mnav" id="mnav" aria-label="Mobile">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="mnav__cta" href="#reserve">Reserve a Table</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div class="hero__media" aria-hidden="true">
+          <img src="https://picsum.photos/seed/lumiere-hero-rustic/1600/1100" alt="" />
+        </div>
+        <div class="hero__inner">
+          <p class="eyebrow eyebrow--light">Farm-to-table · Calgary</p>
+          <h1 class="hero__title">A quiet room,<br />a long table,<br /><em>an evening you'll remember.</em></h1>
+          <p class="hero__sub">
+            Seasonal French cuisine, plated with intention — eight courses, one unhurried evening.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--solid" href="#reserve">Reserve a Table</a>
+            <a class="btn btn--ghost" href="#menu">See the Menu</a>
+          </div>
+        </div>
+        <div class="hero__scroll" aria-hidden="true"><span></span>Scroll</div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>Harvested at dawn</span><span class="dot">✦</span>
+          <span>Wood-fired</span><span class="dot">✦</span>
+          <span>Alberta provenance</span><span class="dot">✦</span>
+          <span>Eight courses</span><span class="dot">✦</span>
+          <span>Sommelier pairings</span><span class="dot">✦</span>
+          <span>Harvested at dawn</span><span class="dot">✦</span>
+          <span>Wood-fired</span><span class="dot">✦</span>
+          <span>Alberta provenance</span><span class="dot">✦</span>
+          <span>Eight courses</span><span class="dot">✦</span>
+          <span>Sommelier pairings</span><span class="dot">✦</span>
+        </div>
+      </div>
+
+      <!-- STORY -->
+      <section class="story reveal" id="story">
+        <div class="story__media">
+          <img src="https://picsum.photos/seed/lumiere-chef-rustic/900/1100" alt="Chef tending an open hearth in the kitchen" />
+          <span class="story__tag">The Hearth</span>
+        </div>
+        <div class="story__copy">
+          <p class="eyebrow">Where provenance meets the plate</p>
+          <h2>We cook the way the land asks us to.</h2>
+          <p>
+            Every morning begins at the market gardens north of the city — beets pulled from cold soil,
+            herbs still damp, whatever the season is willing to give. By evening it has become eight
+            quiet courses, plated by hand over linen and ceramic.
+          </p>
+          <p>
+            Nothing arrives in a hurry. The room is small, the fire is real, and the table is long enough
+            to lose an evening at. This is modern French cooking with farm dirt still under its nails.
+          </p>
+          <p class="story__sign">— Élise Bonnard, Chef &amp; Proprietor</p>
+        </div>
+      </section>
+
+      <!-- MENU -->
+      <section class="menu" id="menu">
+        <div class="menu__head">
+          <p class="eyebrow">Tasting &amp; à la carte</p>
+          <h2>The Seasonal Menu</h2>
+          <p class="menu__note">Composed daily from the morning harvest. Last seating 90 minutes before close.</p>
+        </div>
+
+        <div class="menu__cols">
+          <div class="menu__col menu__col--feature">
+            <h3 class="course">The Tasting</h3>
+            {tasting.map((t) => (
+              <div class="row">
+                <div class="row__text">
+                  <span class="row__name">{t.name}</span>
+                  <span class="row__desc">{t.desc}</span>
+                </div>
+                <span class="leader" aria-hidden="true"></span>
+                <span class="row__price">{t.price}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="menu__col">
+            <h3 class="course">À la Carte</h3>
+            {plates.map((p) => (
+              <div class="row">
+                <div class="row__text">
+                  <span class="row__name">{p.name}</span>
+                  <span class="row__desc">{p.desc}</span>
+                </div>
+                <span class="leader" aria-hidden="true"></span>
+                <span class="row__price">{p.price}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="gallery" id="gallery">
+        <div class="gallery__head">
+          <p class="eyebrow">The room &amp; the plate</p>
+          <h2>An Evening in Frames</h2>
+        </div>
+        <div class="gallery__grid">
+          {gallery.map((g) => (
+            <figure class={`gtile gtile--${g.span} reveal`}>
+              <img src={`https://picsum.photos/seed/${g.seed}/${g.w}/${g.h}`} alt={g.alt} loading="lazy" />
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- PRESS + TESTIMONIALS -->
+      <section class="press" id="press">
+        <div class="press__logos">
+          <span class="star" aria-hidden="true">✦</span>
+          {press.map((p) => <span class="press__name">{p}</span>)}
+        </div>
+
+        <div class="quotes" role="region" aria-label="Guest praise" data-slider>
+          <div class="quotes__track">
+            {testimonials.map((t) => (
+              <blockquote class="quote">
+                <p>“{t.quote}”</p>
+                <footer><strong>{t.who}</strong><span>{t.role}</span></footer>
+              </blockquote>
+            ))}
+          </div>
+          <div class="quotes__dots" aria-hidden="true">
+            {testimonials.map((_, i) => (
+              <button class={i === 0 ? "is-active" : ""} data-go={i} aria-label={`Quote ${i + 1}`}></button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- PRIVATE DINING / RESERVE -->
+      <section class="resv" id="reserve">
+        <div class="reserve__media" aria-hidden="true">
+          <img src="https://picsum.photos/seed/lumiere-private-rustic/1400/900" alt="" />
+        </div>
+        <div class="reserve__card">
+          <p class="eyebrow eyebrow--light">Chef's table · Private dining</p>
+          <h2>Reserve the long table.</h2>
+          <p>
+            Smart casual. Private dining and the chef's table available for parties of six to twelve.
+            Tell us the occasion and we'll build the evening around it.
+          </p>
+          <form class="rform" onsubmit="return false">
+            <label>Date<input type="date" name="date" /></label>
+            <label>Guests
+              <select name="guests">
+                <option>2 guests</option><option>4 guests</option>
+                <option>6 guests</option><option>8+ (private)</option>
+              </select>
+            </label>
+            <a class="btn btn--solid" href="#" role="button">Reserve via Resy</a>
+          </form>
+          <p class="reserve__call">Or call <a href="tel:+14035550182">(403) 555-0182</a></p>
+        </div>
+      </section>
+
+      <!-- VISIT -->
+      <section class="visit" id="visit">
+        <div class="visit__col">
+          <p class="eyebrow">Hours</p>
+          <h2>Open for dinner</h2>
+          <ul class="hours">
+            {hours.map((h) => (
+              <li><span>{h.day}</span><span class="hours__t">{h.time}</span></li>
+            ))}
+          </ul>
+        </div>
+        <div class="visit__col">
+          <p class="eyebrow">Find us</p>
+          <h2>Stephen Avenue</h2>
+          <address>
+            1124 Stephen Avenue SW<br />Calgary, AB T2P 1J9
+          </address>
+          <p class="visit__links">
+            <a href="tel:+14035550182">(403) 555-0182</a>
+            <a href="https://maps.google.com/?q=1124+Stephen+Avenue+SW+Calgary" target="_blank" rel="noopener">Get directions →</a>
+          </p>
+          <p class="visit__dress">Smart casual · Parties of 6–12 welcome at the chef's table.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="foot__top">
+        <span class="brand__name">Maison Lumiere</span>
+        <p>Modern French dining, harvested at dawn — in the heart of Calgary.</p>
+        <a class="btn btn--ghost btn--light" href="#reserve">Reserve a Table</a>
+      </div>
+      <div class="foot__bottom">
+        <span>© 2026 Maison Lumiere</span>
+        <span>1124 Stephen Avenue SW · (403) 555-0182</span>
+      </div>
+    </footer>
+
+    <a class="callstrip" href="tel:+14035550182">Call to reserve · (403) 555-0182</a>
+
+    <script>
+      const burger = document.querySelector(".burger");
+      const mnav = document.getElementById("mnav");
+      burger?.addEventListener("click", () => {
+        const open = burger.getAttribute("aria-expanded") === "true";
+        burger.setAttribute("aria-expanded", String(!open));
+        mnav?.classList.toggle("is-open", !open);
+      });
+      mnav?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          burger?.setAttribute("aria-expanded", "false");
+          mnav.classList.remove("is-open");
+        })
+      );
+
+      // scroll reveal
+      const ro = new IntersectionObserver(
+        (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("in")),
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => ro.observe(el));
+
+      // quote slider
+      const slider = document.querySelector("[data-slider]");
+      if (slider) {
+        const track = slider.querySelector(".quotes__track");
+        const dots = [...slider.querySelectorAll(".quotes__dots button")];
+        let i = 0;
+        const go = (n) => {
+          i = (n + dots.length) % dots.length;
+          track.style.transform = `translateX(-${i * 100}%)`;
+          dots.forEach((d, k) => d.classList.toggle("is-active", k === i));
+        };
+        dots.forEach((d) => d.addEventListener("click", () => go(Number(d.dataset.go))));
+        let timer = setInterval(() => go(i + 1), 5000);
+        slider.addEventListener("pointerenter", () => clearInterval(timer));
+        slider.addEventListener("pointerleave", () => (timer = setInterval(() => go(i + 1), 5000)));
+      }
+    </script>
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        * { animation: none !important; transition: none !important; }
+      }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+    </style>
+
+    <style>
+      :root {
+        --bg: #f3ead9;
+        --fg: #33271a;
+        --primary: #7a5230;
+        --primary-fg: #f7f1e6;
+        --accent: #9a6b3f;
+        --muted: #e6d8c0;
+        --border: #cbb893;
+        --display: "Fraunces", Georgia, serif;
+        --body: "Source Serif 4", Georgia, serif;
+        --maxw: 1180px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--body);
+        font-size: 1.0625rem;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.05; margin: 0; letter-spacing: -0.01em; }
+      a { color: inherit; }
+
+      .skip {
+        position: absolute; left: -999px; top: 0; z-index: 200;
+        background: var(--fg); color: var(--bg); padding: .7rem 1.1rem; border-radius: 0 0 .4rem 0;
+      }
+      .skip:focus { left: 0; }
+
+      :focus-visible { outline: 2.5px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+      .eyebrow {
+        font-family: var(--body); font-size: .72rem; letter-spacing: .28em; text-transform: uppercase;
+        color: var(--accent); margin: 0 0 1rem; font-weight: 500;
+      }
+      .eyebrow--light { color: #e7cfa6; }
+
+      /* ---------- BAR ---------- */
+      .bar {
+        position: sticky; top: 0; z-index: 100;
+        background: color-mix(in oklab, var(--bg) 86%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+      .bar__inner {
+        max-width: var(--maxw); margin: 0 auto; padding: .8rem 1.25rem;
+        display: flex; align-items: center; gap: 1rem;
+      }
+      .brand { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--primary); }
+      .brand__mark { color: var(--accent); display: inline-flex; }
+      .brand__name { font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: .01em; }
+      .nav { margin-left: auto; display: flex; gap: 1.6rem; }
+      .nav a { text-decoration: none; font-size: .92rem; letter-spacing: .02em; position: relative; padding: .2rem 0; }
+      .nav a::after {
+        content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 1.5px;
+        background: var(--accent); transition: width .3s ease;
+      }
+      .nav a:hover::after { width: 100%; }
+
+      .reserve {
+        display: inline-flex; flex-direction: column; line-height: 1; text-decoration: none;
+        background: var(--primary); color: var(--primary-fg);
+        padding: .55rem 1.15rem; border-radius: 2px; min-height: 44px; justify-content: center;
+        transition: background .25s ease, transform .25s ease;
+      }
+      .reserve:hover { background: var(--accent); transform: translateY(-1px); }
+      .reserve__label { font-family: var(--display); font-weight: 600; font-size: .98rem; }
+      .reserve__meta { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; opacity: .8; margin-top: 3px; }
+
+      .burger { display: none; background: none; border: 0; padding: 10px; cursor: pointer; width: 44px; height: 44px; }
+      .burger span { display: block; width: 22px; height: 2px; background: var(--fg); margin: 4px auto; transition: .3s; }
+      .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+      .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+      .mnav { display: none; flex-direction: column; padding: 0 1.25rem 1rem; gap: .25rem; border-top: 1px solid var(--border); }
+      .mnav.is-open { display: flex; }
+      .mnav a { text-decoration: none; padding: .7rem 0; border-bottom: 1px solid var(--muted); }
+      .mnav__cta { background: var(--primary); color: var(--primary-fg); text-align: center; border-radius: 2px; margin-top: .6rem; border: 0 !important; }
+
+      /* ---------- BTN ---------- */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 48px; padding: 0 1.5rem; text-decoration: none; border-radius: 2px;
+        font-family: var(--display); font-weight: 600; font-size: 1rem; letter-spacing: .01em;
+        transition: transform .25s ease, background .25s ease, color .25s ease, box-shadow .25s ease;
+      }
+      .btn--solid { background: var(--primary); color: var(--primary-fg); box-shadow: 0 8px 22px -12px rgba(51,39,26,.7); }
+      .btn--solid:hover { background: var(--accent); transform: translateY(-2px); }
+      .btn--ghost { border: 1.5px solid currentColor; color: var(--fg); }
+      .btn--ghost:hover { background: var(--fg); color: var(--bg); transform: translateY(-2px); }
+      .btn--light { color: var(--primary-fg); }
+      .btn--light:hover { background: var(--primary-fg); color: var(--primary); }
+
+      /* ---------- HERO ---------- */
+      .hero { position: relative; min-height: 90vh; display: grid; align-items: center; overflow: hidden; }
+      .hero__media { position: absolute; inset: 0; z-index: 0; }
+      .hero__media img {
+        width: 100%; height: 100%; object-fit: cover;
+        filter: sepia(.35) saturate(1.1) contrast(.95) brightness(.78);
+        animation: kenburns 22s ease-in-out infinite alternate;
+      }
+      @keyframes kenburns { from { transform: scale(1.05); } to { transform: scale(1.16) translate(-2%, -1%); } }
+      .hero::after {
+        content: ""; position: absolute; inset: 0; z-index: 1;
+        background:
+          linear-gradient(90deg, rgba(35,25,15,.82) 0%, rgba(35,25,15,.45) 45%, rgba(35,25,15,.15) 100%),
+          radial-gradient(120% 90% at 80% 110%, rgba(154,107,63,.35), transparent 60%);
+      }
+      .hero__inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 7rem 1.25rem; width: 100%; }
+      .hero__title { color: var(--primary-fg); font-size: clamp(2.6rem, 7vw, 5rem); max-width: 14ch; }
+      .hero__title em { font-style: italic; color: #f0d6ab; font-weight: 400; }
+      .hero__sub { color: #ece0cb; font-size: clamp(1.05rem, 2vw, 1.3rem); max-width: 34ch; margin: 1.4rem 0 2.2rem; }
+      .hero__actions { display: flex; flex-wrap: wrap; gap: .9rem; }
+      .hero__actions .btn--ghost { color: #f0e6d3; }
+      .hero__scroll {
+        position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%); z-index: 2;
+        color: #e7cfa6; font-size: .68rem; letter-spacing: .25em; text-transform: uppercase; text-align: center;
+      }
+      .hero__scroll span { display: block; width: 1px; height: 34px; margin: 0 auto .5rem; background: #e7cfa6; animation: drop 1.8s ease-in-out infinite; transform-origin: top; }
+      @keyframes drop { 0%, 100% { transform: scaleY(.4); opacity: .4; } 50% { transform: scaleY(1); opacity: 1; } }
+
+      /* ---------- MARQUEE ---------- */
+      .marquee { background: var(--primary); color: var(--primary-fg); overflow: hidden; padding: .85rem 0; border-block: 1px solid color-mix(in oklab, var(--primary) 70%, black); }
+      .marquee__track { display: inline-flex; align-items: center; gap: 1.5rem; white-space: nowrap; animation: scroll 32s linear infinite; }
+      .marquee__track span { font-family: var(--display); font-style: italic; font-size: 1.05rem; }
+      .marquee .dot { color: #e7cfa6; font-style: normal; }
+      @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+      /* ---------- REVEAL ---------- */
+      .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* ---------- STORY ---------- */
+      .story {
+        max-width: var(--maxw); margin: 0 auto; padding: clamp(4rem, 9vw, 7rem) 1.25rem;
+        display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center;
+      }
+      .story__media { position: relative; }
+      .story__media img {
+        width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 3px;
+        filter: sepia(.3) saturate(1.05) contrast(.98); box-shadow: 0 30px 60px -30px rgba(51,39,26,.55);
+      }
+      .story__tag {
+        position: absolute; bottom: 1rem; left: -.8rem; background: var(--bg); color: var(--accent);
+        font-family: var(--display); font-style: italic; padding: .4rem 1rem; border: 1px solid var(--border); border-radius: 2px;
+      }
+      .story__copy h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.3rem; }
+      .story__copy p { margin: 0 0 1.1rem; color: color-mix(in oklab, var(--fg) 88%, transparent); }
+      .story__sign { font-family: var(--display); font-style: italic; color: var(--primary); }
+
+      /* ---------- MENU ---------- */
+      .menu { background: var(--muted); border-block: 1px solid var(--border); }
+      .menu__head { max-width: var(--maxw); margin: 0 auto; padding: clamp(3.5rem,7vw,6rem) 1.25rem 0; text-align: center; }
+      .menu__head h2 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
+      .menu__note { color: var(--accent); font-style: italic; max-width: 40ch; margin: 1rem auto 0; }
+      .menu__cols {
+        max-width: var(--maxw); margin: 0 auto; padding: clamp(2.5rem,5vw,4rem) 1.25rem clamp(4rem,8vw,6rem);
+        display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4.5rem);
+      }
+      .menu__col--feature { background: color-mix(in oklab, var(--bg) 70%, white); padding: 1.8rem; border-radius: 3px; border: 1px solid var(--border); align-self: start; }
+      .course { font-family: var(--body); font-size: .78rem; letter-spacing: .26em; text-transform: uppercase; color: var(--accent); padding-bottom: 1rem; margin-bottom: 1.2rem; border-bottom: 1px solid var(--border); }
+      .row { display: flex; align-items: baseline; gap: .6rem; padding: .85rem 0; }
+      .row__text { display: flex; flex-direction: column; }
+      .row__name { font-family: var(--display); font-size: 1.18rem; font-weight: 600; }
+      .row__desc { font-size: .9rem; color: color-mix(in oklab, var(--fg) 70%, transparent); font-style: italic; }
+      .leader { flex: 1; border-bottom: 1.5px dotted var(--border); transform: translateY(-4px); min-width: 1.5rem; }
+      .row__price { font-family: var(--display); font-size: 1.1rem; color: var(--primary); white-space: nowrap; }
+
+      /* ---------- GALLERY ---------- */
+      .gallery { max-width: var(--maxw); margin: 0 auto; padding: clamp(4rem,8vw,7rem) 1.25rem; }
+      .gallery__head { text-align: center; margin-bottom: 2.5rem; }
+      .gallery__head h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+      .gallery__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; grid-auto-rows: 1fr; }
+      .gtile { margin: 0; overflow: hidden; border-radius: 3px; border: 1px solid var(--border); }
+      .gtile img { width: 100%; height: 100%; object-fit: cover; filter: sepia(.32) saturate(1.05) contrast(.97); transition: transform .8s ease, filter .6s ease; }
+      .gtile:hover img { transform: scale(1.07); filter: sepia(.15) saturate(1.1); }
+      .gtile--tall { grid-row: span 2; }
+      .gtile--wide { grid-column: span 2; }
+
+      /* ---------- PRESS ---------- */
+      .press { background: var(--primary); color: var(--primary-fg); padding: clamp(3.5rem,7vw,5.5rem) 1.25rem; }
+      .press__logos {
+        max-width: var(--maxw); margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center;
+        align-items: center; gap: 1rem 2.2rem; padding-bottom: 3rem; border-bottom: 1px solid color-mix(in oklab, var(--primary-fg) 25%, transparent);
+      }
+      .press__name { font-family: var(--display); font-style: italic; font-size: clamp(1rem,2vw,1.25rem); opacity: .92; }
+      .star { color: #e7cfa6; font-size: 1.3rem; }
+      .quotes { max-width: 760px; margin: 3rem auto 0; overflow: hidden; }
+      .quotes__track { display: flex; transition: transform .6s cubic-bezier(.4,0,.2,1); }
+      .quote { flex: 0 0 100%; margin: 0; text-align: center; padding: 0 .5rem; }
+      .quote p { font-family: var(--display); font-style: italic; font-size: clamp(1.3rem, 3vw, 1.9rem); line-height: 1.4; margin: 0 0 1.4rem; }
+      .quote footer { display: flex; flex-direction: column; gap: 2px; }
+      .quote footer strong { font-size: .95rem; letter-spacing: .04em; }
+      .quote footer span { font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: #e7cfa6; }
+      .quotes__dots { display: flex; justify-content: center; gap: .55rem; margin-top: 2rem; }
+      .quotes__dots button { width: 9px; height: 9px; border-radius: 50%; border: 1px solid #e7cfa6; background: transparent; cursor: pointer; padding: 0; transition: .3s; }
+      .quotes__dots button.is-active { background: #e7cfa6; transform: scale(1.25); }
+
+      /* ---------- RESERVE ---------- */
+      .resv { position: relative; display: grid; min-height: 70vh; align-items: center; overflow: hidden; }
+      .reserve__media { position: absolute; inset: 0; z-index: 0; }
+      .reserve__media img { width: 100%; height: 100%; object-fit: cover; filter: sepia(.4) saturate(1.1) contrast(.95) brightness(.6); }
+      .resv::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(35,25,15,.85), rgba(35,25,15,.35)); }
+      .reserve__card { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: clamp(3rem,7vw,5rem) 1.25rem; width: 100%; color: var(--primary-fg); }
+      .reserve__card h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+      .reserve__card > p { max-width: 44ch; color: #ece0cb; margin: 1.2rem 0 2rem; }
+      .rform { display: flex; flex-wrap: wrap; gap: .9rem; align-items: end; }
+      .rform label { display: flex; flex-direction: column; gap: .35rem; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: #e7cfa6; }
+      .rform input, .rform select {
+        font-family: var(--body); font-size: 1rem; padding: .7rem .9rem; min-height: 48px;
+        border: 1px solid var(--border); border-radius: 2px; background: var(--bg); color: var(--fg);
+      }
+      .reserve__call { position: relative; z-index: 2; margin-top: 1.3rem; color: #ece0cb; }
+      .reserve__call a { color: #f0d6ab; text-decoration: underline; text-underline-offset: 3px; }
+
+      /* ---------- VISIT ---------- */
+      .visit {
+        max-width: var(--maxw); margin: 0 auto; padding: clamp(4rem,8vw,6rem) 1.25rem;
+        display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,5vw,4rem);
+      }
+      .visit__col h2 { font-size: clamp(1.8rem,4vw,2.6rem); margin-bottom: 1.4rem; }
+      .hours { list-style: none; margin: 0; padding: 0; }
+      .hours li { display: flex; justify-content: space-between; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--border); }
+      .hours__t { color: var(--primary); font-family: var(--display); }
+      address { font-style: normal; font-size: 1.2rem; line-height: 1.7; font-family: var(--display); }
+      .visit__links { display: flex; flex-wrap: wrap; gap: 1.4rem; margin: 1.4rem 0 1rem; }
+      .visit__links a { color: var(--accent); text-decoration: none; font-weight: 500; }
+      .visit__links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+      .visit__dress { font-style: italic; color: color-mix(in oklab, var(--fg) 70%, transparent); }
+
+      /* ---------- FOOT ---------- */
+      .foot { background: var(--fg); color: var(--primary-fg); }
+      .foot__top {
+        max-width: var(--maxw); margin: 0 auto; padding: clamp(3rem,6vw,4.5rem) 1.25rem;
+        display: grid; gap: 1.2rem; justify-items: center; text-align: center;
+      }
+      .foot__top .brand__name { font-size: 1.8rem; }
+      .foot__top p { color: #d8c8af; max-width: 38ch; margin: 0; }
+      .foot__bottom {
+        max-width: var(--maxw); margin: 0 auto; padding: 1.2rem 1.25rem; display: flex; flex-wrap: wrap;
+        justify-content: space-between; gap: .6rem; font-size: .82rem; color: #b9a888;
+        border-top: 1px solid color-mix(in oklab, var(--primary-fg) 18%, transparent);
+      }
+
+      /* ---------- CALL STRIP ---------- */
+      .callstrip {
+        display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+        background: var(--accent); color: var(--primary-fg); text-align: center;
+        padding: .85rem; text-decoration: none; font-family: var(--display); font-weight: 600;
+        min-height: 48px; box-shadow: 0 -6px 18px -10px rgba(0,0,0,.5);
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+      @media (max-width: 880px) {
+        .nav { display: none; }
+        .reserve.reserve--bar, .bar .reserve { margin-left: auto; }
+        .burger { display: block; }
+        .story { grid-template-columns: 1fr; }
+        .menu__cols, .visit { grid-template-columns: 1fr; }
+        .gallery__grid { grid-template-columns: repeat(2, 1fr); }
+        .gtile--wide { grid-column: span 2; }
+        .gtile--tall { grid-row: span 1; }
+        .callstrip { display: block; }
+        .foot__top { padding-bottom: 5rem; }
+      }
+      @media (max-width: 560px) {
+        .bar .reserve__meta { display: none; }
+        .bar .reserve { padding: .6rem .9rem; }
+        .hero__inner { padding: 5rem 1.25rem; }
+        .gallery__grid { grid-template-columns: 1fr; }
+        .gtile--wide { grid-column: span 1; }
+        .rform { flex-direction: column; align-items: stretch; }
+        .rform .btn { width: 100%; }
+      }
+    </style>
+  </body>
+</html>

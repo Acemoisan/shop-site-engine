@@ -1,0 +1,552 @@
+---
+const nav = [
+  { label: "Rooms", href: "#rooms" },
+  { label: "Experiences", href: "#experiences" },
+  { label: "Dining", href: "#dining" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Find Us", href: "#location" },
+];
+
+const rooms = [
+  { name: "Fireside Cabin", blurb: "Pine-clad retreat with a wood stove and mountain views.", rate: 385, seed: "lodge-fireside", feats: ["Wood stove", "King bed", "Mountain view"] },
+  { name: "Garden View King", blurb: "Calm, light-filled room opening to the courtyard pines.", rate: 245, seed: "lodge-garden", feats: ["Courtyard", "King bed", "Soaking tub"] },
+  { name: "The Loft", blurb: "Split-level corner suite with timber beams and a soaking tub.", rate: 510, seed: "lodge-loft", feats: ["Split-level", "Beams", "Soaking tub"] },
+  { name: "Signature Spa Suite", blurb: "In-room rainfall shower, wool robes, and daily turndown.", rate: 560, seed: "lodge-spa", feats: ["Rainfall shower", "Robes", "Turndown"] },
+  { name: "Family Garden Cottage", blurb: "Two bedrooms, a kitchenette, and a private fir-shaded patio.", rate: 475, seed: "lodge-cottage", feats: ["2 bedrooms", "Kitchenette", "Patio"] },
+  { name: "Ocean Terrace Suite", blurb: "A rare valley-view suite with a private fireside balcony.", rate: 420, seed: "lodge-terrace", feats: ["Balcony", "Fireplace", "Valley view"] },
+];
+
+const experiences = [
+  { name: "Cedar Sauna & Hot Spring", icon: "spa" },
+  { name: "Guided Forest Walks", icon: "trail" },
+  { name: "The Hearth Bar", icon: "fire" },
+  { name: "24-Hour Concierge", icon: "bell" },
+  { name: "Stargazing Deck", icon: "star" },
+  { name: "Mountain Wi-Fi", icon: "wifi" },
+];
+
+const packages = [
+  { name: "Two-Night Slow Escape", note: "incl. breakfast + late checkout", price: 560 },
+  { name: "Spa & Stay", note: "60-min treatment for two", price: 690, featured: true },
+  { name: "Romance Retreat", note: "champagne, rose turndown, dinner for two", price: 740 },
+];
+
+const testimonials = [
+  { quote: "The most restful three nights we've had in years. The staff remembered our names by morning.", who: "Priya & Daniel R." },
+  { quote: "Every window framed something beautiful. We're already planning our return.", who: "Marcus T." },
+  { quote: "Quiet, warm, and effortlessly elegant — exactly what a getaway should feel like.", who: "Lena O." },
+];
+
+const gallery = ["lodge-g1", "lodge-g2", "lodge-g3", "lodge-g4", "lodge-g5"];
+
+const hours = [
+  ["Front Desk & Concierge", "24 hours"],
+  ["Check-in / Check-out", "3:00 PM · 11:00 AM"],
+  ["Restaurant", "Breakfast 7–11 AM · Dinner 5:30–10 PM"],
+  ["Spa", "Daily 9 AM – 8 PM"],
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marisol Lodge — A Mountain Retreat in Tofino, BC</title>
+    <meta name="description" content="Come in from the cold. Marisol Lodge is a boutique mountain retreat of fireside cabins, cedar sauna, and warm woodsy comfort. From $245/night. Reserve direct." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      name: "Marisol Lodge",
+      description: "Boutique mountain lodge retreat.",
+      address: { "@type": "PostalAddress", streetAddress: "148 Shoreline Drive", addressLocality: "Tofino", addressRegion: "BC", postalCode: "V0R 2Z0", addressCountry: "CA" },
+      telephone: "+1-250-555-0192",
+      email: "hello@marisolhotels.com",
+      priceRange: "$$$",
+      starRating: { "@type": "Rating", ratingValue: "5" },
+    })} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav" id="top">
+      <div class="wrap nav-in">
+        <a class="brand" href="#top" aria-label="Marisol Lodge home">
+          <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+            <path d="M16 3 L29 27 H3 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M16 12 L23 27 H9 Z" fill="currentColor"/>
+          </svg>
+          <span>Marisol<em>Lodge</em></span>
+        </a>
+        <nav class="links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="btn book-top" href="#book">Reserve</a>
+        <button class="burger" aria-label="Menu" aria-expanded="false" id="burger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile" id="mobile" aria-label="Mobile">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="btn" href="#book">Reserve</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-img" aria-hidden="true"></div>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="wrap hero-in reveal">
+          <p class="kicker">Tofino · British Columbia</p>
+          <h1>Come in from<br /><span>the cold.</span></h1>
+          <p class="lede">A boutique escape, intimately yours — pine-clad cabins, a cedar sauna, and a hearth that never goes out.</p>
+          <a class="btn lg" href="#book">Check Availability</a>
+        </div>
+        <!-- BOOKING BAR -->
+        <form class="bookbar reveal" id="book" aria-label="Check availability">
+          <label>Check-in<input type="date" name="in" value="2026-07-10" /></label>
+          <label>Check-out<input type="date" name="out" value="2026-07-13" /></label>
+          <label>Guests
+            <select name="guests">
+              <option>1 guest</option><option selected>2 guests</option><option>3 guests</option><option>4+ guests</option>
+            </select>
+          </label>
+          <button class="btn" type="submit">Check Availability</button>
+        </form>
+      </section>
+
+      <!-- STORY -->
+      <section class="story wrap" aria-labelledby="story-h">
+        <div class="story-txt reveal">
+          <p class="kicker">The Welcome</p>
+          <h2 id="story-h">Stay a while.<br />The world can wait.</h2>
+          <p>Tucked where the firs meet the shoreline mist, Marisol Lodge was built by hand from hewn timber and warm intention. Wool throws, amber lamplight, and the low crackle of the hearth set the pace here — slow, sheltering, and quietly luxurious.</p>
+          <div class="stats">
+            <div><strong>12</strong><span>cabins & suites</span></div>
+            <div><strong>4.9</strong><span>guest rating</span></div>
+            <div><strong>2008</strong><span>family-run since</span></div>
+          </div>
+        </div>
+        <div class="story-img reveal">
+          <img src="https://picsum.photos/seed/lodge-story/720/880" alt="Firelit lodge interior with raw wood beams and wool textures" loading="lazy" />
+          <span class="badge">Best-Rate Guarantee</span>
+        </div>
+      </section>
+
+      <!-- ROOMS -->
+      <section class="rooms" id="rooms" aria-labelledby="rooms-h">
+        <div class="wrap">
+          <header class="sec-head reveal">
+            <p class="kicker">Rooms & Suites</p>
+            <h2 id="rooms-h">Where you'll come to rest</h2>
+          </header>
+          <div class="room-grid">
+            {rooms.map((r) => (
+              <article class="room reveal">
+                <div class="room-img">
+                  <img src={`https://picsum.photos/seed/${r.seed}/640/520`} alt={`${r.name} at Marisol Lodge`} loading="lazy" />
+                  <span class="rate">from ${r.rate}<small>/night</small></span>
+                </div>
+                <div class="room-body">
+                  <h3>{r.name}</h3>
+                  <p>{r.blurb}</p>
+                  <ul class="feats">{r.feats.map((f) => <li>{f}</li>)}</ul>
+                  <a class="ghost" href="#book">Reserve this room →</a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCES (bento) -->
+      <section class="exp" id="experiences" aria-labelledby="exp-h">
+        <div class="wrap">
+          <header class="sec-head reveal">
+            <p class="kicker light">Amenities & Experiences</p>
+            <h2 id="exp-h">The full stay, beyond the bed</h2>
+          </header>
+          <div class="exp-grid reveal">
+            {experiences.map((e) => (
+              <div class="exp-cell">
+                <span class="ico" aria-hidden="true">
+                  {e.icon === "fire" && <svg viewBox="0 0 24 24"><path d="M12 2c1 4 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 1-2-1-5-1-8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>}
+                  {e.icon === "spa" && <svg viewBox="0 0 24 24"><path d="M12 21c5-3 8-7 8-11a4 4 0 0 0-8-1 4 4 0 0 0-8 1c0 4 3 8 8 11z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>}
+                  {e.icon === "trail" && <svg viewBox="0 0 24 24"><path d="M4 20 L9 9 L13 15 L16 7 L20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>}
+                  {e.icon === "bell" && <svg viewBox="0 0 24 24"><path d="M5 18h14l-1.5-3v-4a5.5 5.5 0 0 0-11 0v4z M10 21h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>}
+                  {e.icon === "star" && <svg viewBox="0 0 24 24"><path d="M12 3l2.5 6 6.5.5-5 4 1.6 6.4L12 17l-5.6 2.9L8 13l-5-4 6.5-.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>}
+                  {e.icon === "wifi" && <svg viewBox="0 0 24 24"><path d="M3 9a14 14 0 0 1 18 0 M6 13a9 9 0 0 1 12 0 M9 16.5a4 4 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>}
+                </span>
+                <span>{e.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- DINING split -->
+      <section class="dining" id="dining" aria-labelledby="din-h">
+        <div class="wrap dining-in">
+          <div class="dining-img reveal">
+            <img src="https://picsum.photos/seed/lodge-dining/760/640" alt="The Hearth — lodge restaurant set for dinner" loading="lazy" />
+          </div>
+          <div class="dining-txt reveal">
+            <p class="kicker">The Hearth</p>
+            <h2 id="din-h">Dinner by firelight</h2>
+            <p>Our open kitchen turns the day's foraging and the coast's catch into honest, generous plates — served beside a stone fireplace as the valley darkens.</p>
+            <ul class="menu">
+              <li><span>Cedar-Smoked Trout</span><b>$29</b></li>
+              <li><span>Wild Mushroom & Barley</span><b>$26</b></li>
+              <li><span>Maple-Braised Short Rib</span><b>$38</b></li>
+              <li><span>Warm Apple & Oat Crumble</span><b>$14</b></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY horizontal scroll -->
+      <section class="gallery" id="gallery" aria-labelledby="gal-h">
+        <div class="wrap sec-head reveal">
+          <p class="kicker">The Lodge in Light</p>
+          <h2 id="gal-h">Picture your stay</h2>
+        </div>
+        <div class="scroller" role="list">
+          {gallery.map((g, i) => (
+            <figure role="listitem" class={i % 2 ? "tall" : ""}>
+              <img src={`https://picsum.photos/seed/${g}/720/900`} alt="Marisol Lodge grounds, cabins, and woodland surroundings" loading="lazy" />
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- PACKAGES -->
+      <section class="pkg" aria-labelledby="pkg-h">
+        <div class="wrap">
+          <header class="sec-head reveal">
+            <p class="kicker light">Offers & Packages</p>
+            <h2 id="pkg-h">Reasons to linger longer</h2>
+          </header>
+          <div class="pkg-grid">
+            {packages.map((p) => (
+              <article class={`pkg-card reveal ${p.featured ? "feat" : ""}`}>
+                {p.featured && <span class="tag">Most loved</span>}
+                <h3>{p.name}</h3>
+                <p>{p.note}</p>
+                <div class="price">from <strong>${p.price}</strong></div>
+                <a class={p.featured ? "btn" : "ghost"} href="#book">Book this package</a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS slider -->
+      <section class="reviews" aria-labelledby="rev-h">
+        <div class="wrap">
+          <header class="sec-head reveal">
+            <p class="kicker">Guest Stories</p>
+            <h2 id="rev-h">Five stars, by the fire</h2>
+          </header>
+          <div class="slider reveal">
+            {testimonials.map((t, i) => (
+              <figure class="slide" data-slide={i} hidden={i !== 0 ? true : undefined}>
+                <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote>“{t.quote}”</blockquote>
+                <figcaption>— {t.who}</figcaption>
+              </figure>
+            ))}
+            <div class="dots" role="tablist" aria-label="Choose review">
+              {testimonials.map((_, i) => (
+                <button class={`dot ${i === 0 ? "on" : ""}`} data-dot={i} aria-label={`Review ${i + 1}`}></button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LOCATION / CTA -->
+      <section class="location" id="location" aria-labelledby="loc-h">
+        <div class="wrap loc-in">
+          <div class="loc-txt reveal">
+            <p class="kicker">Find Us</p>
+            <h2 id="loc-h">Getting here</h2>
+            <address>
+              <strong>Marisol Lodge</strong><br />
+              148 Shoreline Drive<br />
+              Tofino, BC V0R 2Z0
+            </address>
+            <p class="dir">A scenic 3-hour drive from Nanaimo along Highway 4 — winding through old-growth forest to the coast.</p>
+            <dl class="hours">
+              {hours.map(([k, v]) => (<><dt>{k}</dt><dd>{v}</dd></>))}
+            </dl>
+            <div class="cta-row">
+              <a class="btn" href="tel:+12505550192">Call (250) 555-0192</a>
+              <a class="ghost" href="#book">Reserve online</a>
+            </div>
+          </div>
+          <a class="loc-map reveal" href="https://maps.google.com/?q=Tofino+BC" target="_blank" rel="noopener" aria-label="Open map to Marisol Lodge">
+            <img src="https://picsum.photos/seed/lodge-map/720/720?grayscale" alt="Map showing Marisol Lodge near Tofino" loading="lazy" />
+            <span class="pin" aria-hidden="true"></span>
+            <span class="map-cta">View on map →</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap foot-in">
+        <div>
+          <a class="brand" href="#top"><span>Marisol<em>Lodge</em></span></a>
+          <p>A boutique escape, intimately yours.</p>
+        </div>
+        <p class="np">148 Shoreline Drive, Tofino, BC · <a href="tel:+12505550192">(250) 555-0192</a> · <a href="mailto:hello@marisolhotels.com">hello@marisolhotels.com</a></p>
+        <p class="fine">© 2026 Marisol Hotels & Retreats. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      const burger = document.getElementById("burger");
+      const mobile = document.getElementById("mobile");
+      burger?.addEventListener("click", () => {
+        const open = mobile.classList.toggle("show");
+        burger.setAttribute("aria-expanded", String(open));
+      });
+      mobile?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          mobile.classList.remove("show");
+          burger.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      // scroll reveal
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // testimonial slider
+      const slides = [...document.querySelectorAll(".slide")];
+      const dots = [...document.querySelectorAll(".dot")];
+      let cur = 0;
+      const show = (n) => {
+        slides.forEach((s, i) => (s.hidden = i !== n));
+        dots.forEach((d, i) => d.classList.toggle("on", i === n));
+        cur = n;
+      };
+      dots.forEach((d, i) => d.addEventListener("click", () => show(i)));
+      if (slides.length > 1 && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        setInterval(() => show((cur + 1) % slides.length), 6000);
+      }
+    </script>
+
+    <style>
+      :root {
+        --bg: #f3ebdd; --fg: #33271c; --primary: #7a4a2b; --primary-fg: #f7f1e6;
+        --accent: #b07a3c; --muted: #e3d6c0; --border: #cbb893;
+        --sans: "Source Sans 3", system-ui, sans-serif;
+        --disp: "Bitter", Georgia, serif;
+        --maxw: 1180px; --r: 14px;
+      }
+      * { box-sizing: border-box; margin: 0; }
+      html { scroll-behavior: smooth; }
+      body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-weight: 400; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; }
+      h1, h2, h3 { font-family: var(--disp); font-weight: 600; line-height: 1.08; letter-spacing: -0.01em; }
+      .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: clamp(1.1rem, 4vw, 2.4rem); }
+      .kicker { font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.9rem; }
+      .kicker.light { color: #e8c890; }
+      .skip { position: absolute; left: -999px; }
+      .skip:focus { left: 1rem; top: 1rem; z-index: 99; background: var(--primary); color: var(--primary-fg); padding: 0.6rem 1rem; border-radius: 8px; }
+      :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+      .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: var(--primary); color: var(--primary-fg); font-weight: 600; font-family: var(--sans); border: none; cursor: pointer; padding: 0.85rem 1.5rem; min-height: 44px; border-radius: 100px; text-decoration: none; transition: transform 0.2s, background 0.2s, box-shadow 0.2s; box-shadow: 0 4px 14px rgba(58, 36, 18, 0.18); }
+      .btn:hover { background: #623a20; transform: translateY(-2px); box-shadow: 0 8px 22px rgba(58, 36, 18, 0.28); }
+      .btn.lg { padding: 1.05rem 2.2rem; font-size: 1.05rem; }
+      .ghost { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; color: var(--primary); text-decoration: none; border-bottom: 1.5px solid var(--accent); padding-bottom: 1px; transition: color 0.2s, gap 0.2s; }
+      .ghost:hover { color: var(--accent); }
+
+      /* NAV */
+      .nav { position: sticky; top: 0; z-index: 40; background: rgba(243, 235, 221, 0.86); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+      .nav-in { display: flex; align-items: center; gap: 1.5rem; height: 68px; }
+      .brand { display: flex; align-items: center; gap: 0.55rem; font-family: var(--disp); font-weight: 700; font-size: 1.25rem; text-decoration: none; color: var(--primary); letter-spacing: -0.01em; }
+      .brand em { font-style: normal; color: var(--accent); font-weight: 500; }
+      .links { display: none; gap: 1.5rem; margin-left: auto; }
+      .links a { text-decoration: none; font-weight: 500; font-size: 0.96rem; position: relative; padding: 0.3rem 0; }
+      .links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.25s; }
+      .links a:hover::after { width: 100%; }
+      .book-top { display: none; padding: 0.6rem 1.2rem; min-height: 40px; }
+      .burger { margin-left: auto; background: none; border: none; cursor: pointer; width: 44px; height: 44px; display: grid; place-content: center; gap: 5px; }
+      .burger span { display: block; width: 24px; height: 2px; background: var(--fg); transition: 0.25s; }
+      .mobile { display: none; flex-direction: column; gap: 0.4rem; padding: 0.8rem clamp(1.1rem, 4vw, 2.4rem) 1.4rem; border-top: 1px solid var(--border); }
+      .mobile.show { display: flex; }
+      .mobile a { text-decoration: none; font-weight: 500; padding: 0.7rem 0; min-height: 44px; display: flex; align-items: center; }
+      .mobile .btn { margin-top: 0.4rem; }
+
+      /* HERO */
+      .hero { position: relative; min-height: 92vh; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(5rem, 12vh, 9rem); overflow: hidden; }
+      .hero-img { position: absolute; inset: 0; background: url("https://picsum.photos/seed/lodge-hero/1800/1400") center/cover; filter: saturate(0.9) brightness(0.92) sepia(0.18); transform: scale(1.04); animation: drift 22s ease-in-out infinite alternate; }
+      @keyframes drift { to { transform: scale(1.12) translateY(-1.5%); } }
+      .hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(40,26,14,0.42) 0%, rgba(40,26,14,0.12) 38%, rgba(58,36,18,0.78) 100%), radial-gradient(120% 80% at 70% 0%, rgba(176,122,60,0.25), transparent); }
+      .hero-in { position: relative; color: var(--primary-fg); }
+      .hero-in .kicker { color: #f0d6a8; }
+      .hero h1 { font-size: clamp(2.9rem, 9vw, 6rem); font-weight: 700; text-shadow: 0 2px 30px rgba(0,0,0,0.4); }
+      .hero h1 span { color: #f0d6a8; font-style: italic; font-weight: 500; }
+      .hero .lede { max-width: 30rem; margin: 1.4rem 0 2rem; font-size: clamp(1.05rem, 2vw, 1.25rem); font-weight: 300; color: #f3e7d4; }
+
+      /* BOOKING BAR */
+      .bookbar { position: relative; z-index: 5; margin: -2.5rem auto 0; max-width: calc(var(--maxw) - 1rem); width: calc(100% - 2.2rem); background: var(--primary-fg); border: 1px solid var(--border); border-radius: var(--r); padding: 1rem; display: grid; gap: 0.7rem; box-shadow: 0 24px 60px rgba(58, 36, 18, 0.22); }
+      .bookbar label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--accent); }
+      .bookbar input, .bookbar select { font-family: var(--sans); font-size: 1rem; color: var(--fg); border: 1px solid var(--border); background: var(--bg); border-radius: 10px; padding: 0.7rem 0.8rem; min-height: 44px; }
+      .bookbar .btn { align-self: end; min-height: 48px; }
+
+      /* STORY */
+      .story { display: grid; gap: clamp(2rem, 6vw, 4rem); padding-block: clamp(4rem, 10vw, 7rem); align-items: center; }
+      .story h2 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 1.2rem; }
+      .story p { max-width: 38ch; color: #5a4836; }
+      .stats { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+      .stats strong { display: block; font-family: var(--disp); font-size: 2.2rem; color: var(--primary); }
+      .stats span { font-size: 0.85rem; color: #6b5946; }
+      .story-img { position: relative; }
+      .story-img img { width: 100%; border-radius: var(--r); object-fit: cover; aspect-ratio: 4/5; box-shadow: 0 20px 50px rgba(58, 36, 18, 0.2); }
+      .badge { position: absolute; bottom: 1.1rem; left: 1.1rem; background: var(--primary); color: var(--primary-fg); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.55rem 1rem; border-radius: 100px; box-shadow: 0 8px 20px rgba(0,0,0,0.25); }
+
+      .sec-head { margin-bottom: clamp(2rem, 5vw, 3rem); max-width: 46ch; }
+      .sec-head h2 { font-size: clamp(1.9rem, 4.5vw, 3rem); }
+
+      /* ROOMS */
+      .rooms { padding-block: clamp(3rem, 8vw, 6rem); }
+      .room-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+      .room { background: var(--primary-fg); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s; }
+      .room:hover { transform: translateY(-5px); box-shadow: 0 20px 44px rgba(58, 36, 18, 0.18); }
+      .room-img { position: relative; aspect-ratio: 16/11; overflow: hidden; }
+      .room-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+      .room:hover .room-img img { transform: scale(1.06); }
+      .rate { position: absolute; bottom: 0.8rem; right: 0.8rem; background: rgba(243, 235, 221, 0.95); color: var(--primary); font-family: var(--disp); font-weight: 700; padding: 0.4rem 0.85rem; border-radius: 100px; font-size: 1.05rem; }
+      .rate small { font-family: var(--sans); font-weight: 500; font-size: 0.72rem; color: #6b5946; }
+      .room-body { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
+      .room-body h3 { font-size: 1.4rem; }
+      .room-body p { color: #5a4836; font-size: 0.96rem; }
+      .feats { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.2rem 0 0.5rem; }
+      .feats li { font-size: 0.78rem; background: var(--muted); color: #5a4836; padding: 0.3rem 0.7rem; border-radius: 100px; }
+      .room-body .ghost { margin-top: auto; align-self: flex-start; }
+
+      /* EXPERIENCES */
+      .exp { background: linear-gradient(160deg, #3a2412, #5a3a20); color: var(--primary-fg); padding-block: clamp(4rem, 9vw, 6.5rem); }
+      .exp .sec-head h2 { color: var(--primary-fg); }
+      .exp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .exp-cell { display: flex; flex-direction: column; gap: 0.9rem; padding: 1.5rem 1.3rem; border: 1px solid rgba(203, 184, 147, 0.28); border-radius: var(--r); background: rgba(247, 241, 230, 0.04); font-weight: 500; transition: background 0.25s, transform 0.25s; }
+      .exp-cell:hover { background: rgba(247, 241, 230, 0.1); transform: translateY(-3px); }
+      .ico { display: grid; place-content: center; width: 46px; height: 46px; border-radius: 12px; background: rgba(176, 122, 60, 0.25); color: #f0d6a8; }
+      .ico svg { width: 26px; height: 26px; }
+
+      /* DINING */
+      .dining { padding-block: clamp(4rem, 9vw, 6.5rem); }
+      .dining-in { display: grid; gap: clamp(2rem, 6vw, 4rem); align-items: center; }
+      .dining-img img { width: 100%; border-radius: var(--r); object-fit: cover; aspect-ratio: 5/4; filter: sepia(0.16) saturate(1.05); box-shadow: 0 20px 50px rgba(58, 36, 18, 0.2); }
+      .dining-txt h2 { font-size: clamp(1.9rem, 4.5vw, 3rem); margin-bottom: 1rem; }
+      .dining-txt > p { color: #5a4836; max-width: 40ch; margin-bottom: 1.6rem; }
+      .menu { list-style: none; padding: 0; }
+      .menu li { display: flex; align-items: baseline; gap: 0.8rem; padding: 0.85rem 0; border-bottom: 1px dashed var(--border); }
+      .menu li span { font-family: var(--disp); font-size: 1.08rem; }
+      .menu li::after { content: ""; flex: 1; }
+      .menu li b { font-family: var(--disp); color: var(--accent); }
+
+      /* GALLERY */
+      .gallery { padding-block: clamp(3rem, 7vw, 5rem); overflow: hidden; }
+      .scroller { display: flex; gap: 1.1rem; overflow-x: auto; padding: 0.5rem clamp(1.1rem, 4vw, 2.4rem) 1.5rem; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+      .scroller figure { flex: 0 0 auto; width: 270px; scroll-snap-align: start; border-radius: var(--r); overflow: hidden; }
+      .scroller img { width: 100%; height: 340px; object-fit: cover; filter: sepia(0.2) saturate(1.02); transition: transform 0.5s, filter 0.4s; }
+      .scroller figure.tall img { height: 410px; }
+      .scroller figure:hover img { transform: scale(1.05); filter: sepia(0) saturate(1.1); }
+
+      /* PACKAGES */
+      .pkg { background: var(--muted); padding-block: clamp(4rem, 9vw, 6.5rem); }
+      .pkg .kicker.light { color: var(--accent); }
+      .pkg-grid { display: grid; gap: 1.3rem; grid-template-columns: 1fr; }
+      .pkg-card { position: relative; background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 2rem 1.7rem; display: flex; flex-direction: column; gap: 0.6rem; transition: transform 0.25s, box-shadow 0.25s; }
+      .pkg-card:hover { transform: translateY(-4px); box-shadow: 0 16px 38px rgba(58, 36, 18, 0.16); }
+      .pkg-card.feat { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+      .pkg-card.feat p { color: #e6d4bd; }
+      .pkg-card h3 { font-size: 1.45rem; }
+      .pkg-card p { color: #5a4836; }
+      .price { font-size: 0.95rem; margin: 0.4rem 0 0.9rem; }
+      .price strong { font-family: var(--disp); font-size: 2rem; color: inherit; }
+      .pkg-card:not(.feat) .price strong { color: var(--primary); }
+      .tag { position: absolute; top: -0.7rem; right: 1.5rem; background: var(--accent); color: #2a1c0e; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 0.85rem; border-radius: 100px; }
+      .pkg-card.feat .ghost { color: var(--primary-fg); border-color: #f0d6a8; }
+
+      /* REVIEWS */
+      .reviews { padding-block: clamp(4rem, 9vw, 6.5rem); }
+      .slider { position: relative; background: var(--primary-fg); border: 1px solid var(--border); border-radius: var(--r); padding: clamp(2rem, 5vw, 3.5rem); text-align: center; box-shadow: 0 16px 40px rgba(58, 36, 18, 0.12); }
+      .stars { color: var(--accent); font-size: 1.3rem; letter-spacing: 0.15em; margin-bottom: 1rem; }
+      .slide blockquote { font-family: var(--disp); font-size: clamp(1.3rem, 3vw, 1.85rem); font-style: italic; font-weight: 500; line-height: 1.4; max-width: 32ch; margin: 0 auto 1.2rem; }
+      .slide figcaption { color: var(--accent); font-weight: 600; letter-spacing: 0.04em; }
+      .dots { display: flex; gap: 0.6rem; justify-content: center; margin-top: 1.8rem; }
+      .dot { width: 12px; height: 12px; min-height: 0; border-radius: 50%; border: none; background: var(--border); cursor: pointer; padding: 0; transition: background 0.2s, transform 0.2s; }
+      .dot.on { background: var(--accent); transform: scale(1.25); }
+
+      /* LOCATION */
+      .location { background: linear-gradient(160deg, #3a2412, #4d3018); color: var(--primary-fg); padding-block: clamp(4rem, 9vw, 6.5rem); }
+      .loc-in { display: grid; gap: clamp(2rem, 6vw, 4rem); align-items: center; }
+      .loc-txt h2 { color: var(--primary-fg); font-size: clamp(1.9rem, 4.5vw, 3rem); margin-bottom: 1.3rem; }
+      .loc-txt address { font-style: normal; font-family: var(--disp); font-size: 1.15rem; line-height: 1.7; margin-bottom: 1rem; }
+      .dir { color: #e0cdb2; max-width: 42ch; margin-bottom: 1.6rem; }
+      .hours { display: grid; grid-template-columns: 1fr; gap: 0.2rem 1.2rem; margin-bottom: 1.8rem; }
+      .hours dt { font-weight: 600; color: #f0d6a8; padding-top: 0.6rem; }
+      .hours dd { margin: 0 0 0.5rem; color: #e0cdb2; border-bottom: 1px solid rgba(203,184,147,0.18); padding-bottom: 0.6rem; }
+      .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+      .cta-row .ghost { color: #f0d6a8; border-color: #f0d6a8; }
+      .loc-map { position: relative; display: block; border-radius: var(--r); overflow: hidden; aspect-ratio: 1/1; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+      .loc-map img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.3) saturate(0.8) brightness(0.95); transition: transform 0.5s; }
+      .loc-map:hover img { transform: scale(1.05); }
+      .pin { position: absolute; top: 50%; left: 50%; width: 20px; height: 20px; background: var(--accent); border: 3px solid var(--primary-fg); border-radius: 50% 50% 50% 0; transform: translate(-50%, -100%) rotate(-45deg); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+      .map-cta { position: absolute; bottom: 1rem; left: 1rem; background: var(--primary-fg); color: var(--primary); font-weight: 600; padding: 0.5rem 1rem; border-radius: 100px; font-size: 0.9rem; }
+
+      /* FOOTER */
+      .foot { background: #2a1c0e; color: #d9c6ab; padding-block: 3rem; }
+      .foot-in { display: grid; gap: 1.2rem; }
+      .foot .brand { color: #f0d6a8; }
+      .foot .brand em { color: var(--accent); }
+      .foot p { font-size: 0.92rem; }
+      .np a { color: #f0d6a8; text-decoration: none; }
+      .np a:hover { text-decoration: underline; }
+      .fine { color: #8a7359; font-size: 0.82rem; }
+
+      /* REVEAL */
+      .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* RESPONSIVE */
+      @media (min-width: 640px) {
+        .bookbar { grid-template-columns: 1fr 1fr 1fr auto; align-items: end; }
+        .room-grid { grid-template-columns: repeat(2, 1fr); }
+        .pkg-grid { grid-template-columns: repeat(3, 1fr); }
+        .hours { grid-template-columns: auto 1fr; }
+        .hours dt { padding-top: 0.6rem; }
+      }
+      @media (min-width: 880px) {
+        .links { display: flex; }
+        .book-top { display: inline-flex; }
+        .burger { display: none; }
+        .story { grid-template-columns: 1.05fr 0.95fr; }
+        .room-grid { grid-template-columns: repeat(3, 1fr); }
+        .exp-grid { grid-template-columns: repeat(3, 1fr); }
+        .dining-in { grid-template-columns: 1fr 1fr; }
+        .loc-in { grid-template-columns: 1.1fr 0.9fr; }
+        .foot-in { grid-template-columns: 1fr auto; align-items: center; }
+        .fine { grid-column: 1 / -1; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; scroll-behavior: auto; }
+        .reveal { opacity: 1; transform: none; transition: none; }
+        .hero-img { animation: none; }
+      }
+    </style>
+  </body>
+</html>

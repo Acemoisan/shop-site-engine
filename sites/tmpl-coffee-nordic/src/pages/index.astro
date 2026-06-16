@@ -1,0 +1,839 @@
+---
+const nav = [
+  { label: "Menu", href: "#menu" },
+  { label: "Our Craft", href: "#craft" },
+  { label: "Visit", href: "#visit" },
+  { label: "Reviews", href: "#reviews" },
+];
+
+const drinks = [
+  { name: "Pour-Over", note: "single origin, rotating", price: "5.50" },
+  { name: "Flat White", note: "double ristretto, silk milk", price: "5.00" },
+  { name: "Cortado", note: "equal parts, warm", price: "4.50" },
+  { name: "Cold Brew", note: "16oz, 18-hour steep", price: "6.00" },
+];
+
+const beans = [
+  {
+    origin: "Ethiopia Guji",
+    process: "washed",
+    roast: "light",
+    notes: ["floral", "bergamot", "stone fruit"],
+    size: "250g bag",
+    price: "22",
+    seed: "guji-bag",
+  },
+  {
+    origin: "Colombia Huila",
+    process: "honey",
+    roast: "medium",
+    notes: ["cocoa", "cherry", "brown sugar"],
+    size: "250g bag",
+    price: "20",
+    seed: "huila-bag",
+  },
+  {
+    origin: "House Subscription",
+    process: "two bags monthly",
+    roast: "rotating",
+    notes: ["free local delivery"],
+    size: "per month",
+    price: "38",
+    seed: "subscription",
+  },
+];
+
+const reviews = [
+  {
+    quote:
+      "The best flat white in Calgary, full stop. The Guji pour-over ruined every other coffee for me.",
+    name: "Priya R.",
+  },
+  {
+    quote:
+      "Tucked into Inglewood and worth the trip. You can taste how fresh the roast is.",
+    name: "Daniel M.",
+  },
+  {
+    quote: "I've been on their subscription for a year. Never a dull bag.",
+    name: "Sophie L.",
+  },
+];
+
+const hours = [
+  { day: "Mon – Fri", time: "7:00am – 5:00pm" },
+  { day: "Saturday", time: "8:00am – 4:00pm" },
+  { day: "Sunday", time: "8:00am – 4:00pm" },
+];
+
+const gallery = [
+  { seed: "nordic-pour", alt: "Slow pour-over brewing into a ceramic cup" },
+  { seed: "nordic-beans", alt: "Freshly roasted whole beans cooling" },
+  { seed: "nordic-space", alt: "Bright, airy cafe interior with plants" },
+  { seed: "nordic-latte", alt: "Latte art in a pale stoneware mug" },
+  { seed: "nordic-roaster", alt: "The drum roaster mid-batch" },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>northpoint — small-batch coffee, roasted in Calgary</title>
+    <meta
+      name="description"
+      content="Northpoint Coffee Roasters — single-origin beans roasted weekly in the heart of Inglewood, Calgary. Slow coffee for a fast city."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav" id="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="#main" aria-label="northpoint home">
+          <span class="brand-dot" aria-hidden="true"></span>northpoint
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="btn btn-sm" href="#cta">Order online</a>
+        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menuToggle">
+          <span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="btn" href="#cta">Order online</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-h">
+        <div class="wrap hero-grid">
+          <div class="hero-copy reveal">
+            <p class="eyebrow">Inglewood · Calgary · est. 2019</p>
+            <h1 id="hero-h">
+              Small-batch coffee,<br /><em>roasted in Calgary.</em>
+            </h1>
+            <p class="lede">
+              Single-origin beans roasted weekly in the heart of Inglewood. Slow
+              coffee for a fast city.
+            </p>
+            <div class="hero-actions">
+              <a class="btn" href="#menu">View the menu</a>
+              <a class="btn btn-ghost" href="#visit">Visit us &rarr;</a>
+            </div>
+            <dl class="hero-stats">
+              <div><dt>Roasted</dt><dd>weekly</dd></div>
+              <div><dt>Origins</dt><dd>rotating</dd></div>
+              <div><dt>Batch</dt><dd>small</dd></div>
+            </dl>
+          </div>
+          <div class="hero-media reveal">
+            <div class="hero-img hero-img-a">
+              <img
+                src="https://picsum.photos/seed/nordic-hero/900/1100"
+                alt="A slow pour-over over a pale ceramic cup in soft morning light"
+                loading="eager"
+              />
+            </div>
+            <div class="hero-img hero-img-b">
+              <img
+                src="https://picsum.photos/seed/nordic-hero2/600/600"
+                alt="Whole coffee beans scattered on a light surface"
+                loading="lazy"
+              />
+            </div>
+            <div class="hero-badge" aria-hidden="true">
+              <span>since</span><strong>2019</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          {Array.from({ length: 2 }).map(() => (
+            <span>
+              floral · bergamot · stone fruit
+              <i>✦</i>
+              cocoa · cherry · brown sugar
+              <i>✦</i>
+              slow coffee for a fast city
+              <i>✦</i>
+              roasted weekly in inglewood
+              <i>✦</i>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- MENU & BEANS -->
+      <section class="section" id="menu" aria-labelledby="menu-h">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="eyebrow">The Menu</p>
+            <h2 id="menu-h">Drinks &amp; beans, priced plainly.</h2>
+          </div>
+
+          <div class="menu-grid">
+            <ul class="drink-list reveal" aria-label="Cafe drinks">
+              {drinks.map((d) => (
+                <li class="drink">
+                  <div class="drink-main">
+                    <span class="drink-name">{d.name}</span>
+                    <span class="dots" aria-hidden="true"></span>
+                    <span class="drink-price">${d.price}</span>
+                  </div>
+                  <span class="drink-note">{d.note}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="bean-stack">
+              {beans.map((b) => (
+                <article class="bean reveal">
+                  <div class="bean-thumb">
+                    <img
+                      src={`https://picsum.photos/seed/${b.seed}/240/240`}
+                      alt={`${b.origin} retail bag`}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="bean-body">
+                    <div class="bean-top">
+                      <h3>{b.origin}</h3>
+                      <span class="bean-price">${b.price}</span>
+                    </div>
+                    <p class="bean-meta">
+                      <span class="chip chip-roast">{b.roast} roast</span>
+                      <span class="chip">{b.process}</span>
+                    </p>
+                    <ul class="notes" aria-label="Tasting notes">
+                      {b.notes.map((t) => (
+                        <li>{t}</li>
+                      ))}
+                    </ul>
+                    <span class="bean-size">{b.size}</span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CRAFT STORY BAND -->
+      <section class="section craft" id="craft" aria-labelledby="craft-h">
+        <div class="wrap craft-grid">
+          <div class="craft-media reveal">
+            <img
+              src="https://picsum.photos/seed/nordic-craft/800/980"
+              alt="Hands cupping a warm mug beside the roaster"
+              loading="lazy"
+            />
+            <div class="craft-tag" aria-hidden="true">small batch</div>
+          </div>
+          <div class="craft-copy reveal">
+            <p class="eyebrow">Our Craft</p>
+            <h2 id="craft-h">From the farm to your favourite cup.</h2>
+            <p>
+              We roast in small batches every week, a few kilos at a time, so the
+              bag you take home tastes the way it did the morning it left the
+              drum. Nothing sits. Nothing dulls.
+            </p>
+            <p>
+              Our greens come from growers we know by name — washed lots from the
+              highlands of Guji, honey-processed cherries from Huila. We chase
+              clarity over char, and we keep it unpretentious but precise.
+            </p>
+            <ol class="steps">
+              <li><span>01</span> Source single lots, traceable to the farm.</li>
+              <li><span>02</span> Roast weekly, in small drum batches.</li>
+              <li><span>03</span> Brew slow, taste, and start again.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY HORIZONTAL SCROLL -->
+      <section class="section gallery" aria-labelledby="gal-h">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="eyebrow">Atmosphere</p>
+            <h2 id="gal-h">A quiet, bright room to slow down in.</h2>
+          </div>
+        </div>
+        <div class="rail" tabindex="0" aria-label="Photo gallery, scrollable">
+          {gallery.map((g, i) => (
+            <figure class={`rail-item ${i % 2 ? "tall" : ""}`}>
+              <img
+                src={`https://picsum.photos/seed/${g.seed}/640/780`}
+                alt={g.alt}
+                loading="lazy"
+              />
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section class="section reviews" id="reviews" aria-labelledby="rev-h">
+        <div class="wrap">
+          <div class="section-head center reveal">
+            <p class="eyebrow">Kind words</p>
+            <h2 id="rev-h">Loved across the city.</h2>
+            <p class="stars" aria-label="Rated 5 out of 5">★★★★★ <span>4.9 · 312 reviews</span></p>
+          </div>
+          <div class="review-grid">
+            {reviews.map((r) => (
+              <figure class="review reveal">
+                <blockquote>“{r.quote}”</blockquote>
+                <figcaption>— {r.name}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- VISIT / HOURS / NAP -->
+      <section class="section visit" id="visit" aria-labelledby="visit-h">
+        <div class="wrap visit-grid">
+          <div class="visit-copy reveal">
+            <p class="eyebrow">Visit Us</p>
+            <h2 id="visit-h">Find us in Inglewood.</h2>
+            <address class="nap">
+              <p class="addr">1142 9 Avenue SE<br />Inglewood, Calgary, AB T2G 0S9</p>
+              <p>
+                <a class="call" href="tel:+14035550192">
+                  <span aria-hidden="true">☎</span> (403) 555-0192
+                </a>
+              </p>
+              <div class="visit-actions">
+                <a class="btn btn-sm" href="https://maps.google.com/?q=1142+9+Avenue+SE+Calgary" target="_blank" rel="noopener">Get directions</a>
+                <a class="btn btn-sm btn-ghost" href="tel:+14035550192">Call us</a>
+              </div>
+            </address>
+          </div>
+          <div class="hours-card reveal">
+            <div class="hours-head">
+              <h3>Hours</h3>
+              <span class="status" id="status">checking…</span>
+            </div>
+            <ul class="hours-list">
+              {hours.map((h) => (
+                <li><span>{h.day}</span><span>{h.time}</span></li>
+              ))}
+            </ul>
+            <div class="map-strip" role="img" aria-label="Map of Inglewood, Calgary location"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA / SUBSCRIPTION -->
+      <section class="cta" id="cta" aria-labelledby="cta-h">
+        <div class="wrap cta-inner reveal">
+          <p class="eyebrow eyebrow-light">House Subscription</p>
+          <h2 id="cta-h">Two bags, every month.<br />Free local delivery.</h2>
+          <p class="cta-lede">
+            Never a dull bag — rotating single origins, roasted fresh and dropped
+            at your door. $38/mo, pause anytime.
+          </p>
+          <div class="cta-actions">
+            <a class="btn btn-light" href="tel:+14035550192">Start subscription</a>
+            <a class="btn btn-outline-light" href="#menu">Browse beans</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#main">
+            <span class="brand-dot" aria-hidden="true"></span>northpoint
+          </a>
+          <p>Single-origin beans roasted weekly in the heart of Inglewood.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <p>1142 9 Avenue SE<br />Inglewood, Calgary, AB</p>
+          <p><a href="tel:+14035550192">(403) 555-0192</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>Hours</h4>
+          <p>Mon–Fri · 7–5<br />Sat–Sun · 8–4</p>
+        </div>
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <p><a href="#main">Instagram</a><br /><a href="#main">Newsletter</a></p>
+        </div>
+      </div>
+      <div class="wrap footer-base">
+        <span>© 2026 Northpoint Coffee Roasters</span>
+        <span>Roasted in Calgary</span>
+      </div>
+    </footer>
+
+    <!-- STICKY MOBILE BAR -->
+    <div class="mobile-bar" aria-label="Quick actions">
+      <a href="tel:+14035550192">☎ Call</a>
+      <a href="https://maps.google.com/?q=1142+9+Avenue+SE+Calgary" target="_blank" rel="noopener">Directions</a>
+      <a class="bar-primary" href="#cta">Order</a>
+    </div>
+
+    <script is:inline>
+      // Sticky nav solidify
+      const nav = document.getElementById("nav");
+      const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 24);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // Mobile menu
+      const toggle = document.getElementById("menuToggle");
+      const menu = document.getElementById("mobileMenu");
+      toggle.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+      menu.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          menu.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      // Open / Closed status pill
+      (function () {
+        const el = document.getElementById("status");
+        if (!el) return;
+        const now = new Date();
+        const day = now.getDay(); // 0 Sun .. 6 Sat
+        const h = now.getHours() + now.getMinutes() / 60;
+        const weekend = day === 0 || day === 6;
+        const open = weekend ? h >= 8 && h < 16 : h >= 7 && h < 17;
+        el.textContent = open ? "Open now" : "Closed";
+        el.classList.add(open ? "is-open" : "is-closed");
+      })();
+
+      // Scroll reveal
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const items = document.querySelectorAll(".reveal");
+      if (reduce || !("IntersectionObserver" in window)) {
+        items.forEach((i) => i.classList.add("in"));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.14 }
+        );
+        items.forEach((i) => io.observe(i));
+      }
+    </script>
+
+    <style is:global>
+      *,
+      *::before,
+      *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      }
+    </style>
+
+    <style>
+      :root {
+        --bg: #fbfaf8;
+        --fg: #33332e;
+        --primary: #7c8c74;
+        --primary-fg: #fbfaf8;
+        --accent: #d9a38c;
+        --muted: #eceae3;
+        --border: #dcd9d0;
+        --shadow: 0 18px 50px -28px rgba(51, 51, 46, 0.32);
+        --radius: 18px;
+        --display: "Cormorant Garamond", Georgia, serif;
+        --body: "Nunito Sans", system-ui, sans-serif;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--body);
+        font-weight: 400;
+        line-height: 1.62;
+        letter-spacing: 0.01em;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .wrap { width: min(1180px, 90vw); margin-inline: auto; }
+
+      h1, h2, h3, h4 {
+        font-family: var(--display);
+        font-weight: 600;
+        line-height: 1.05;
+        letter-spacing: -0.01em;
+        margin: 0;
+      }
+      h1 { font-size: clamp(2.6rem, 7vw, 5rem); }
+      h1 em { font-style: italic; color: var(--primary); }
+      h2 { font-size: clamp(2rem, 4.6vw, 3.2rem); }
+      p { margin: 0 0 1rem; }
+
+      .eyebrow {
+        font-family: var(--body);
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin: 0 0 1rem;
+      }
+      .eyebrow-light { color: var(--primary-fg); opacity: 0.85; }
+
+      .skip {
+        position: absolute; left: -999px; top: 0; z-index: 100;
+        background: var(--fg); color: var(--bg); padding: 0.7rem 1.1rem;
+        border-radius: 0 0 10px 0;
+      }
+      .skip:focus { left: 0; }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 48px; padding: 0 1.6rem;
+        background: var(--primary); color: var(--primary-fg);
+        font-family: var(--body); font-weight: 600; font-size: 0.94rem;
+        letter-spacing: 0.02em; text-decoration: none;
+        border-radius: 999px; border: 1px solid transparent;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      }
+      .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+      .btn-sm { min-height: 44px; padding: 0 1.2rem; font-size: 0.86rem; }
+      .btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+      .btn-ghost:hover { background: var(--muted); }
+      .btn-light { background: var(--bg); color: var(--fg); }
+      .btn-outline-light { background: transparent; color: var(--primary-fg); border-color: rgba(251,250,248,0.5); }
+      .btn-outline-light:hover { background: rgba(251,250,248,0.1); }
+
+      a:focus-visible, button:focus-visible, .rail:focus-visible {
+        outline: 2.5px solid var(--accent); outline-offset: 3px; border-radius: 6px;
+      }
+
+      /* Nav */
+      .nav {
+        position: sticky; top: 0; z-index: 60;
+        backdrop-filter: blur(8px);
+        transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        border-bottom: 1px solid transparent;
+      }
+      .nav.scrolled {
+        background: rgba(251, 250, 248, 0.82);
+        border-bottom-color: var(--border);
+        box-shadow: 0 8px 30px -24px rgba(51,51,46,0.4);
+      }
+      .nav-inner {
+        display: flex; align-items: center; gap: 1.4rem;
+        height: 76px;
+      }
+      .brand {
+        font-family: var(--display); font-size: 1.55rem; font-weight: 600;
+        color: var(--fg); text-decoration: none; letter-spacing: -0.01em;
+        display: inline-flex; align-items: center; gap: 0.5rem;
+      }
+      .brand-dot {
+        width: 11px; height: 11px; border-radius: 50%;
+        background: var(--accent); display: inline-block;
+      }
+      .nav-links { margin-left: auto; display: flex; gap: 1.7rem; }
+      .nav-links a {
+        color: var(--fg); text-decoration: none; font-size: 0.92rem;
+        opacity: 0.8; transition: opacity 0.2s, color 0.2s; position: relative;
+      }
+      .nav-links a::after {
+        content: ""; position: absolute; left: 0; bottom: -5px; height: 1.5px; width: 0;
+        background: var(--accent); transition: width 0.25s ease;
+      }
+      .nav-links a:hover { opacity: 1; color: var(--primary); }
+      .nav-links a:hover::after { width: 100%; }
+
+      .menu-toggle {
+        display: none; margin-left: auto; width: 46px; height: 46px;
+        background: var(--muted); border: 1px solid var(--border); border-radius: 12px;
+        flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer;
+      }
+      .menu-toggle span { width: 20px; height: 2px; background: var(--fg); border-radius: 2px; }
+      .mobile-menu { display: none; }
+
+      /* Hero */
+      .hero { padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(1rem, 3vw, 2rem); }
+      .hero-grid {
+        display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 4.5rem);
+        align-items: center;
+      }
+      .lede { font-size: clamp(1.05rem, 1.6vw, 1.28rem); max-width: 38ch; color: var(--fg); opacity: 0.82; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1.8rem 0 2.4rem; }
+      .hero-stats { display: flex; gap: 2.4rem; margin: 0; padding-top: 1.6rem; border-top: 1px solid var(--border); }
+      .hero-stats dt { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.6; }
+      .hero-stats dd { margin: 0.2rem 0 0; font-family: var(--display); font-size: 1.5rem; font-weight: 600; color: var(--primary); }
+
+      .hero-media { position: relative; }
+      .hero-img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+      .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+      .hero-img-a { aspect-ratio: 9 / 11; }
+      .hero-img-a img { filter: saturate(0.82) brightness(1.06); }
+      .hero-img-b {
+        position: absolute; right: -6%; bottom: -10%;
+        width: 46%; aspect-ratio: 1; border: 6px solid var(--bg);
+        border-radius: 16px;
+      }
+      .hero-img-b img { filter: saturate(0.8) brightness(1.05); }
+      .hero-badge {
+        position: absolute; left: -5%; top: 8%;
+        width: 92px; height: 92px; border-radius: 50%;
+        background: var(--accent); color: var(--bg);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        font-family: var(--display); box-shadow: var(--shadow);
+        animation: float 6s ease-in-out infinite;
+      }
+      .hero-badge span { font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; font-family: var(--body); }
+      .hero-badge strong { font-size: 1.5rem; font-weight: 600; }
+      @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+      /* Marquee */
+      .marquee {
+        overflow: hidden; background: var(--primary); color: var(--primary-fg);
+        padding: 0.85rem 0; white-space: nowrap;
+      }
+      .marquee-track { display: inline-flex; animation: scroll 26s linear infinite; }
+      .marquee-track span {
+        display: inline-flex; align-items: center; gap: 1.4rem; padding-right: 1.4rem;
+        font-family: var(--display); font-size: 1.3rem; font-style: italic;
+      }
+      .marquee-track i { color: var(--accent); font-style: normal; }
+      @keyframes scroll { to { transform: translateX(-50%); } }
+
+      /* Sections */
+      .section { padding: clamp(3.5rem, 8vw, 7rem) 0; }
+      .section-head { max-width: 30ch; margin-bottom: clamp(2rem, 4vw, 3.2rem); }
+      .section-head.center { margin-inline: auto; text-align: center; max-width: 40ch; }
+
+      /* Menu */
+      .menu-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 4vw, 4rem); align-items: start; }
+      .drink-list { list-style: none; margin: 0; padding: 0; }
+      .drink { padding: 1.1rem 0; border-bottom: 1px solid var(--border); }
+      .drink:first-child { padding-top: 0; }
+      .drink-main { display: flex; align-items: baseline; gap: 0.6rem; }
+      .drink-name { font-family: var(--display); font-size: 1.5rem; font-weight: 600; }
+      .dots { flex: 1; border-bottom: 1.5px dotted var(--border); transform: translateY(-4px); }
+      .drink-price { font-family: var(--display); font-size: 1.35rem; color: var(--primary); }
+      .drink-note { font-size: 0.86rem; opacity: 0.65; }
+
+      .bean-stack { display: flex; flex-direction: column; gap: 1rem; }
+      .bean {
+        display: grid; grid-template-columns: 92px 1fr; gap: 1.2rem;
+        background: var(--muted); border: 1px solid var(--border);
+        border-radius: var(--radius); padding: 1.1rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .bean:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+      .bean-thumb { border-radius: 12px; overflow: hidden; aspect-ratio: 1; }
+      .bean-thumb img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.8) brightness(1.04); }
+      .bean-top { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; }
+      .bean-body h3 { font-size: 1.4rem; }
+      .bean-price { font-family: var(--display); font-size: 1.35rem; color: var(--primary); }
+      .bean-meta { display: flex; gap: 0.45rem; flex-wrap: wrap; margin: 0.5rem 0 0.7rem; }
+      .chip {
+        font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+        padding: 0.25rem 0.6rem; border-radius: 999px;
+        background: var(--bg); border: 1px solid var(--border); color: var(--fg);
+      }
+      .chip-roast { background: var(--accent); color: var(--bg); border-color: transparent; }
+      .notes { list-style: none; display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 0.6rem; padding: 0; }
+      .notes li {
+        font-size: 0.78rem; padding: 0.2rem 0.55rem; border-radius: 8px;
+        background: var(--bg); border: 1px solid var(--border);
+      }
+      .bean-size { font-size: 0.78rem; opacity: 0.6; }
+
+      /* Craft */
+      .craft { background: var(--muted); }
+      .craft-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+      .craft-media { position: relative; }
+      .craft-media img {
+        width: 100%; aspect-ratio: 4 / 5; object-fit: cover;
+        border-radius: var(--radius); box-shadow: var(--shadow);
+        filter: saturate(0.82) brightness(1.05);
+      }
+      .craft-tag {
+        position: absolute; bottom: 1.2rem; left: -1.2rem;
+        background: var(--bg); color: var(--primary); font-family: var(--display);
+        font-size: 1.15rem; padding: 0.5rem 1.2rem; border-radius: 999px;
+        border: 1px solid var(--border); box-shadow: var(--shadow);
+      }
+      .craft-copy p { opacity: 0.82; max-width: 52ch; }
+      .steps { list-style: none; margin: 1.8rem 0 0; padding: 0; counter-reset: s; }
+      .steps li { display: flex; gap: 1rem; align-items: baseline; padding: 0.8rem 0; border-top: 1px solid var(--border); font-size: 0.98rem; }
+      .steps span {
+        font-family: var(--display); font-size: 1.2rem; color: var(--accent);
+        min-width: 2ch;
+      }
+
+      /* Gallery rail */
+      .gallery .section-head { max-width: 36ch; }
+      .rail {
+        display: flex; gap: 1.1rem; overflow-x: auto; scroll-snap-type: x mandatory;
+        padding: 0.5rem clamp(5vw, 5vw, 5vw) 2rem; -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+      }
+      .rail-item {
+        flex: 0 0 clamp(220px, 30vw, 300px); margin: 0; scroll-snap-align: start;
+        border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+      }
+      .rail-item img {
+        width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 5;
+        filter: saturate(0.84) brightness(1.04);
+        transition: transform 0.5s ease;
+      }
+      .rail-item.tall img { aspect-ratio: 3 / 5; }
+      .rail-item:hover img { transform: scale(1.05); }
+
+      /* Reviews */
+      .reviews { background: var(--muted); }
+      .stars { font-size: 1.3rem; color: var(--accent); letter-spacing: 0.1em; }
+      .stars span { font-size: 0.84rem; color: var(--fg); opacity: 0.6; letter-spacing: 0; margin-left: 0.4rem; }
+      .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+      .review {
+        background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 1.8rem; margin: 0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .review:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+      .review blockquote {
+        margin: 0 0 1rem; font-family: var(--display); font-size: 1.32rem;
+        line-height: 1.4; font-weight: 500;
+      }
+      .review figcaption { font-size: 0.86rem; font-weight: 600; color: var(--primary); }
+
+      /* Visit */
+      .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 4vw, 3.5rem); align-items: start; }
+      .nap { font-style: normal; }
+      .addr { font-family: var(--display); font-size: 1.5rem; line-height: 1.3; }
+      .call { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 1.1rem; }
+      .call:hover { text-decoration: underline; }
+      .visit-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.4rem; }
+
+      .hours-card {
+        background: var(--muted); border: 1px solid var(--border);
+        border-radius: var(--radius); padding: 1.8rem; box-shadow: var(--shadow);
+      }
+      .hours-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
+      .hours-head h3 { font-size: 1.5rem; }
+      .status {
+        font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+        padding: 0.35rem 0.8rem; border-radius: 999px; background: var(--bg); border: 1px solid var(--border);
+      }
+      .status.is-open { background: var(--primary); color: var(--primary-fg); border-color: transparent; }
+      .status.is-closed { background: var(--accent); color: var(--bg); border-color: transparent; }
+      .hours-list { list-style: none; margin: 0 0 1.4rem; padding: 0; }
+      .hours-list li { display: flex; justify-content: space-between; padding: 0.7rem 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+      .hours-list li:last-child { border-bottom: none; }
+      .hours-list span:first-child { font-weight: 600; }
+      .hours-list span:last-child { opacity: 0.7; }
+      .map-strip {
+        height: 130px; border-radius: 12px; border: 1px solid var(--border);
+        background:
+          linear-gradient(115deg, rgba(124,140,116,0.16), rgba(217,163,140,0.14)),
+          repeating-linear-gradient(0deg, var(--border) 0 1px, transparent 1px 26px),
+          repeating-linear-gradient(90deg, var(--border) 0 1px, transparent 1px 26px),
+          var(--bg);
+        position: relative;
+      }
+      .map-strip::after {
+        content: "◉ Inglewood"; position: absolute; left: 50%; top: 50%;
+        transform: translate(-50%, -50%); font-size: 0.8rem; font-weight: 600; color: var(--primary);
+        background: var(--bg); padding: 0.3rem 0.7rem; border-radius: 999px; border: 1px solid var(--border);
+      }
+
+      /* CTA */
+      .cta { background: var(--primary); color: var(--primary-fg); padding: clamp(4rem, 9vw, 7rem) 0; text-align: center; }
+      .cta-inner { max-width: 44ch; margin-inline: auto; }
+      .cta h2 { color: var(--primary-fg); font-size: clamp(2rem, 5vw, 3.4rem); }
+      .cta-lede { opacity: 0.9; margin: 1.2rem auto 2.2rem; }
+      .cta-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; }
+
+      /* Footer */
+      .footer { background: var(--fg); color: var(--bg); padding: 3.5rem 0 2rem; }
+      .footer .brand { color: var(--bg); }
+      .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 2rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(251,250,248,0.15); }
+      .footer-brand p { opacity: 0.7; max-width: 28ch; margin-top: 0.9rem; font-size: 0.92rem; }
+      .footer-col h4 { font-family: var(--body); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.6; margin-bottom: 0.9rem; }
+      .footer-col p { font-size: 0.92rem; opacity: 0.85; }
+      .footer-col a, .footer-brand a { color: var(--bg); }
+      .footer-base { display: flex; justify-content: space-between; padding-top: 1.5rem; font-size: 0.8rem; opacity: 0.6; flex-wrap: wrap; gap: 0.5rem; }
+
+      /* Mobile bar */
+      .mobile-bar { display: none; }
+      .mobile-bar a {
+        flex: 1; text-align: center; padding: 0.9rem 0; text-decoration: none;
+        color: var(--fg); font-weight: 600; font-size: 0.9rem;
+      }
+      .mobile-bar .bar-primary { background: var(--primary); color: var(--primary-fg); }
+
+      /* Reveal */
+      .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .nav-links, .nav-inner > .btn { display: none; }
+        .menu-toggle { display: flex; }
+        .mobile-menu {
+          display: flex; flex-direction: column; gap: 0.4rem; padding: 0 5vw;
+          max-height: 0; overflow: hidden; background: rgba(251,250,248,0.97);
+          border-bottom: 1px solid transparent; transition: max-height 0.35s ease, padding 0.35s ease;
+        }
+        .mobile-menu.open { max-height: 360px; padding: 0.8rem 5vw 1.4rem; border-bottom-color: var(--border); }
+        .mobile-menu a { color: var(--fg); text-decoration: none; padding: 0.7rem 0; font-size: 1.05rem; }
+        .mobile-menu .btn { margin-top: 0.4rem; }
+
+        .hero-grid { grid-template-columns: 1fr; }
+        .hero-media { max-width: 460px; margin: 1rem auto 0; }
+        .menu-grid, .craft-grid, .visit-grid { grid-template-columns: 1fr; }
+        .craft-media { order: -1; max-width: 440px; }
+        .review-grid { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+
+        .mobile-bar {
+          display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 70;
+          background: var(--bg); border-top: 1px solid var(--border);
+          box-shadow: 0 -8px 30px -20px rgba(51,51,46,0.4);
+        }
+        main { padding-bottom: 56px; }
+      }
+      @media (max-width: 540px) {
+        .hero-stats { gap: 1.4rem; }
+        .bean { grid-template-columns: 70px 1fr; }
+        .footer-grid { grid-template-columns: 1fr; }
+        .footer-base { flex-direction: column; }
+      }
+    </style>
+  </body>
+</html>

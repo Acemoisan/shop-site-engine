@@ -1,0 +1,1285 @@
+---
+// Maison Lumiere — Dark luxe fine-dining template (self-contained, no imports)
+const nav = [
+  { label: "The Experience", href: "#experience" },
+  { label: "Menu", href: "#menu" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Press", href: "#press" },
+  { label: "Visit", href: "#visit" },
+];
+
+const menu = [
+  {
+    course: "Tasting",
+    items: [
+      { name: "The Lumiere Tasting Menu", desc: "Eight courses, an unhurried evening", price: "165" },
+      { name: "Wine Pairing", desc: "Sommelier-selected, five pours", price: "95" },
+    ],
+  },
+  {
+    course: "À la Carte",
+    items: [
+      { name: "Hand-Dived Scallop", desc: "Brown butter, sea herbs, finger lime", price: "34" },
+      { name: "Alberta Wagyu", desc: "Charred leek, bone-marrow jus, black garlic", price: "62" },
+      { name: "Heritage Beet", desc: "Whipped goat cheese, walnut, aged balsamic", price: "26" },
+    ],
+  },
+  {
+    course: "To Finish",
+    items: [
+      { name: "Tarte Tatin", desc: "Crème fraîche, salted caramel, vanilla bean", price: "19" },
+      { name: "Cheese Trolley", desc: "Three selections, house preserves, walnut bread", price: "28" },
+    ],
+  },
+];
+
+const testimonials = [
+  { quote: "The closest thing to a Michelin evening this city has. Every course told a story.", who: "Daniel R., Avenue Magazine" },
+  { quote: "Faultless service and a tasting menu I'm still thinking about a week later.", who: "Priya N." },
+  { quote: "We came for an anniversary and left planning the next visit. Quietly extraordinary.", who: "Marc & Eloise T." },
+];
+
+const press = ["Michelin Guide — Recommended", "enRoute Top 10", "Avenue Best Restaurants 2026"];
+
+const gallery = [
+  { seed: "lumiere-plate-1", w: 800, h: 1000, alt: "Plated course under candlelight", span: "tall" },
+  { seed: "lumiere-room-2", w: 1000, h: 700, alt: "The dining room at dusk", span: "wide" },
+  { seed: "lumiere-hands-3", w: 800, h: 800, alt: "Chef plating a dish", span: "" },
+  { seed: "lumiere-detail-4", w: 800, h: 800, alt: "Table setting detail", span: "" },
+  { seed: "lumiere-plate-5", w: 1000, h: 700, alt: "Dessert course", span: "wide" },
+];
+
+const hours = [
+  { day: "Tuesday – Thursday", time: "5:30pm – 10:00pm" },
+  { day: "Friday – Saturday", time: "5:00pm – 11:00pm" },
+  { day: "Sunday & Monday", time: "Closed" },
+];
+
+const resy = "https://resy.com";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Maison Lumiere — Modern French Tasting House | Calgary</title>
+    <meta
+      name="description"
+      content="Maison Lumiere — modern French dining in the heart of Calgary. Eight courses, one unhurried evening. Reserve a table on Stephen Avenue SW."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="bar" id="top">
+      <div class="bar-inner">
+        <a class="brand" href="#top" aria-label="Maison Lumiere home">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <span class="brand-name">Maison Lumiere</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="reserve" href={resy}>Reserve a Table</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </div>
+      <div class="mobile-nav" id="mobileNav" hidden>
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="reserve mobile" href={resy}>Reserve a Table</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" aria-label="Introduction">
+        <div class="hero-img" aria-hidden="true"></div>
+        <div class="hero-grain" aria-hidden="true"></div>
+        <div class="hero-content reveal">
+          <p class="eyebrow">Modern French · Calgary · Est. 2024</p>
+          <h1>A quiet room,<br />a long table,<br /><em>an evening you'll remember.</em></h1>
+          <p class="lede">
+            Seasonal French cuisine in the heart of Calgary — eight courses, one unhurried evening.
+          </p>
+          <div class="hero-cta">
+            <a class="btn-gold" href={resy}>Reserve a Table</a>
+            <a class="btn-ghost" href="#menu">View the Menu</a>
+          </div>
+        </div>
+        <div class="hero-scroll" aria-hidden="true">
+          <span>Scroll</span>
+          <div class="hero-line"></div>
+        </div>
+      </section>
+
+      <!-- BOOKING STRIP -->
+      <section class="strip" aria-label="Reservation details">
+        <div class="strip-item"><span class="k">Seatings</span><span class="v">Tue – Sat, 5pm</span></div>
+        <div class="strip-item"><span class="k">Table of</span><span class="v">2 – 12 Guests</span></div>
+        <div class="strip-item"><span class="k">Dress</span><span class="v">Smart Casual</span></div>
+        <a class="strip-cta" href="tel:+14035550182">Call (403) 555-0182</a>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="experience" id="experience">
+        <div class="exp-media reveal">
+          <img
+            src="https://picsum.photos/seed/lumiere-chef/900/1100"
+            alt="Chef finishing a course in the Maison Lumiere kitchen"
+            loading="lazy"
+            width="900"
+            height="1100"
+          />
+        </div>
+        <div class="exp-copy reveal">
+          <p class="eyebrow">The Experience</p>
+          <h2>Where provenance meets the plate.</h2>
+          <p>
+            Every evening at Maison Lumiere begins with a single ingredient and ends with a memory.
+            Our kitchen draws on the rhythm of the Alberta seasons — foraged herbs, dry-aged beef,
+            the first beets of autumn — plated with French intention and quiet confidence.
+          </p>
+          <p>
+            There is no rush here. Eight courses unfold across a single, candlelit evening, paced by
+            a sommelier who knows when a pour should whisper and when it should sing.
+          </p>
+          <div class="exp-sign">— Chef Élodie Marchand</div>
+        </div>
+      </section>
+
+      <!-- MENU -->
+      <section class="menu" id="menu">
+        <div class="section-head reveal">
+          <p class="eyebrow">Tasting &amp; À la Carte</p>
+          <h2>The Menu</h2>
+          <p class="sub">Seasonal selections, changing with the harvest. Prices per guest.</p>
+        </div>
+        <div class="menu-grid">
+          {menu.map((group) => (
+            <div class="menu-col reveal">
+              <h3 class="course">{group.course}</h3>
+              <ul>
+                {group.items.map((it) => (
+                  <li class="dish">
+                    <div class="dish-line">
+                      <span class="dish-name">{it.name}</span>
+                      <span class="leader" aria-hidden="true"></span>
+                      <span class="dish-price">${it.price}</span>
+                    </div>
+                    <p class="dish-desc">{it.desc}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="gallery" id="gallery">
+        <div class="section-head reveal">
+          <p class="eyebrow">Ambiance</p>
+          <h2>A glimpse of the evening.</h2>
+        </div>
+        <div class="gal-grid">
+          {gallery.map((g) => (
+            <figure class={`gal-item ${g.span} reveal`}>
+              <img
+                src={`https://picsum.photos/seed/${g.seed}/${g.w}/${g.h}`}
+                alt={g.alt}
+                loading="lazy"
+                width={g.w}
+                height={g.h}
+              />
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- PRESS MARQUEE -->
+      <section class="press" id="press" aria-label="Press and accolades">
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            {[...press, ...press, ...press].map((p) => (
+              <span class="marq-item"><span class="star">✦</span>{p}</span>
+            ))}
+          </div>
+        </div>
+        <div class="quotes">
+          {testimonials.map((t) => (
+            <blockquote class="quote reveal">
+              <p>“{t.quote}”</p>
+              <cite>{t.who}</cite>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+
+      <!-- PRIVATE DINING -->
+      <section class="private reveal" aria-label="Private dining">
+        <div class="private-card">
+          <p class="eyebrow">Chef's Table &amp; Private Dining</p>
+          <h2>An evening, entirely yours.</h2>
+          <p>
+            Our chef's table and private room seat parties of six to twelve — a tasting menu shaped
+            around your occasion, paired and paced for the table. Anniversaries, milestones, the
+            quietly extraordinary.
+          </p>
+          <a class="btn-gold" href="tel:+14035550182">Enquire — (403) 555-0182</a>
+        </div>
+      </section>
+
+      <!-- VISIT -->
+      <section class="visit" id="visit">
+        <div class="visit-info reveal">
+          <p class="eyebrow">Visit</p>
+          <h2>1124 Stephen Avenue SW</h2>
+          <address>
+            Calgary, AB T2P 1J9<br />
+            <a href="tel:+14035550182">(403) 555-0182</a>
+          </address>
+          <div class="hours">
+            {hours.map((h) => (
+              <div class="hour-row">
+                <span class="h-day">{h.day}</span>
+                <span class="h-time">{h.time}</span>
+              </div>
+            ))}
+          </div>
+          <p class="note">Last seating 90 minutes before close. Smart casual.</p>
+          <a class="btn-gold" href={resy}>Reserve a Table</a>
+        </div>
+        <a
+          class="visit-map reveal"
+          href="https://maps.google.com/?q=1124+Stephen+Avenue+SW+Calgary+AB"
+          aria-label="Open map to Maison Lumiere"
+        >
+          <img
+            src="https://picsum.photos/seed/lumiere-map-room/900/900?grayscale"
+            alt="The Maison Lumiere dining room"
+            loading="lazy"
+            width="900"
+            height="900"
+          />
+          <span class="map-pin">View Map ↗</span>
+        </a>
+      </section>
+
+      <!-- CLOSING CTA -->
+      <section class="closer" aria-label="Reserve">
+        <div class="closer-inner reveal">
+          <p class="eyebrow">Maison Lumiere</p>
+          <h2>The table is set.</h2>
+          <p class="lede">Eight courses. One unhurried evening. Join us.</p>
+          <a class="btn-gold lg" href={resy}>Reserve a Table</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="foot-inner">
+        <div class="foot-brand">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <span class="brand-name">Maison Lumiere</span>
+          <p>Modern French tasting house · Calgary, AB</p>
+        </div>
+        <div class="foot-cols">
+          <div>
+            <h4>Visit</h4>
+            <p>1124 Stephen Avenue SW<br />Calgary, AB T2P 1J9</p>
+            <a href="tel:+14035550182">(403) 555-0182</a>
+          </div>
+          <div>
+            <h4>Hours</h4>
+            <p>Tue – Thu · 5:30 – 10pm<br />Fri – Sat · 5 – 11pm<br />Sun – Mon · Closed</p>
+          </div>
+          <div>
+            <h4>Newsletter</h4>
+            <form class="news" onsubmit="return false">
+              <label class="sr" for="email">Email address</label>
+              <input id="email" type="email" placeholder="you@example.com" required />
+              <button type="submit" aria-label="Subscribe">→</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="foot-base">
+        <span>© 2026 Maison Lumiere</span>
+        <span>Reservations via Resy</span>
+      </div>
+    </footer>
+
+    <script>
+      const btn = document.getElementById("menuBtn");
+      const mob = document.getElementById("mobileNav");
+      if (btn && mob) {
+        btn.addEventListener("click", () => {
+          const open = mob.hasAttribute("hidden");
+          if (open) mob.removeAttribute("hidden");
+          else mob.setAttribute("hidden", "");
+          btn.setAttribute("aria-expanded", String(open));
+          btn.classList.toggle("open", open);
+        });
+        mob.querySelectorAll("a").forEach((a) =>
+          a.addEventListener("click", () => {
+            mob.setAttribute("hidden", "");
+            btn.setAttribute("aria-expanded", "false");
+            btn.classList.remove("open");
+          })
+        );
+      }
+
+      const bar = document.getElementById("top");
+      const onScroll = () => bar?.classList.toggle("scrolled", window.scrollY > 40);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      }
+    </script>
+
+    <style is:global>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+
+    <style>
+      :root {
+        --bg: #0e0e10;
+        --fg: #ede7da;
+        --primary: #c9a35b;
+        --primary-fg: #0e0e10;
+        --accent: #b8863b;
+        --muted: #1b1b1f;
+        --border: #2c2a26;
+        --fg-soft: rgba(237, 231, 218, 0.62);
+        --display: "Playfair Display", Georgia, serif;
+        --body: "Cormorant Garamond", Georgia, serif;
+        --wrap: 1200px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--body);
+        font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.25rem);
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--display);
+        font-weight: 600;
+        line-height: 1.08;
+        margin: 0;
+      }
+      em {
+        font-style: italic;
+        color: var(--primary);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .eyebrow {
+        font-family: var(--body);
+        text-transform: uppercase;
+        letter-spacing: 0.32em;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin: 0 0 1.2rem;
+      }
+
+      .sr,
+      .skip {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+      .skip:focus {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        width: auto;
+        height: auto;
+        clip: auto;
+        padding: 0.6rem 1rem;
+        background: var(--primary);
+        color: var(--primary-fg);
+        z-index: 200;
+        border-radius: 2px;
+      }
+
+      a:focus-visible,
+      button:focus-visible,
+      input:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 3px;
+      }
+
+      /* ---------- Buttons ---------- */
+      .btn-gold {
+        display: inline-block;
+        background: var(--primary);
+        color: var(--primary-fg);
+        font-family: var(--body);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        padding: 1rem 1.9rem;
+        min-height: 44px;
+        border: 1px solid var(--primary);
+        transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+      }
+      .btn-gold:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(201, 163, 91, 0.25);
+      }
+      .btn-gold.lg {
+        padding: 1.2rem 2.6rem;
+        font-size: 0.95rem;
+      }
+      .btn-ghost {
+        display: inline-block;
+        color: var(--fg);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        padding: 1rem 1.6rem;
+        min-height: 44px;
+        border: 1px solid var(--border);
+        transition: border-color 0.3s, color 0.3s;
+      }
+      .btn-ghost:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      /* ---------- Top bar ---------- */
+      .bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(14, 14, 16, 0.4);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid transparent;
+        transition: background 0.4s, border-color 0.4s;
+      }
+      .bar.scrolled {
+        background: rgba(14, 14, 16, 0.94);
+        border-color: var(--border);
+      }
+      .bar-inner {
+        max-width: var(--wrap);
+        margin: 0 auto;
+        padding: 0.9rem 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-right: auto;
+      }
+      .brand-mark {
+        color: var(--primary);
+        font-size: 1.1rem;
+      }
+      .brand-name {
+        font-family: var(--display);
+        font-size: 1.3rem;
+        letter-spacing: 0.04em;
+      }
+      .nav {
+        display: flex;
+        gap: 1.6rem;
+      }
+      .nav a {
+        font-size: 0.92rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--fg-soft);
+        position: relative;
+        padding: 0.3rem 0;
+        transition: color 0.25s;
+      }
+      .nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 1px;
+        background: var(--primary);
+        transition: width 0.3s;
+      }
+      .nav a:hover {
+        color: var(--fg);
+      }
+      .nav a:hover::after {
+        width: 100%;
+      }
+      .reserve {
+        background: var(--primary);
+        color: var(--primary-fg);
+        padding: 0.7rem 1.3rem;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: background 0.3s;
+      }
+      .reserve:hover {
+        background: var(--accent);
+      }
+      .menu-btn {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: 0;
+        cursor: pointer;
+        padding: 10px;
+        min-height: 44px;
+        min-width: 44px;
+      }
+      .menu-btn span {
+        width: 24px;
+        height: 2px;
+        background: var(--fg);
+        transition: transform 0.3s, opacity 0.3s;
+      }
+      .menu-btn.open span:first-child {
+        transform: translateY(3.5px) rotate(45deg);
+      }
+      .menu-btn.open span:last-child {
+        transform: translateY(-3.5px) rotate(-45deg);
+      }
+      .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        padding: 1rem 1.4rem 1.6rem;
+        border-top: 1px solid var(--border);
+        background: var(--bg);
+      }
+      .mobile-nav a {
+        padding: 0.7rem 0;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.95rem;
+        color: var(--fg-soft);
+      }
+      .mobile-nav .reserve.mobile {
+        margin-top: 0.6rem;
+        justify-content: center;
+        color: var(--primary-fg);
+      }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        position: relative;
+        min-height: 92vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 6rem 1.4rem 4rem;
+        overflow: hidden;
+      }
+      .hero-img {
+        position: absolute;
+        inset: 0;
+        background: url("https://picsum.photos/seed/lumiere-hero-dish/1800/2000") center/cover no-repeat;
+        filter: brightness(0.5) saturate(0.7) sepia(0.25) hue-rotate(-12deg);
+        animation: kenburns 22s ease-in-out infinite alternate;
+        z-index: 0;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            120% 90% at 30% 40%,
+            rgba(14, 14, 16, 0.35),
+            rgba(14, 14, 16, 0.92)
+          ),
+          linear-gradient(180deg, rgba(14, 14, 16, 0.6), transparent 30%, rgba(14, 14, 16, 0.95));
+        z-index: 1;
+      }
+      .hero-grain {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        opacity: 0.5;
+        mix-blend-mode: overlay;
+        background-image: radial-gradient(rgba(201, 163, 91, 0.08) 1px, transparent 1px);
+        background-size: 4px 4px;
+        pointer-events: none;
+      }
+      @keyframes kenburns {
+        from {
+          transform: scale(1) translate(0, 0);
+        }
+        to {
+          transform: scale(1.12) translate(-2%, -2%);
+        }
+      }
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 900px;
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+      }
+      .hero h1 {
+        font-size: clamp(2.6rem, 1.4rem + 5.4vw, 5.4rem);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin: 0.5rem 0 1.6rem;
+      }
+      .lede {
+        font-size: clamp(1.15rem, 1rem + 0.7vw, 1.5rem);
+        color: var(--fg-soft);
+        max-width: 36ch;
+        margin: 0 auto;
+      }
+      .hero-cta {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2.4rem;
+      }
+      .hero-scroll {
+        position: absolute;
+        bottom: 1.6rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--fg-soft);
+      }
+      .hero-line {
+        width: 1px;
+        height: 50px;
+        background: linear-gradient(var(--primary), transparent);
+        animation: drop 2s ease-in-out infinite;
+      }
+      @keyframes drop {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scaleY(0.7);
+        }
+        50% {
+          opacity: 1;
+          transform: scaleY(1);
+        }
+      }
+
+      /* ---------- Booking strip ---------- */
+      .strip {
+        background: var(--muted);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2rem 2.6rem;
+        padding: 1.4rem 1.4rem;
+      }
+      .strip-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+      }
+      .strip-item .k {
+        font-size: 0.68rem;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--primary);
+      }
+      .strip-item .v {
+        font-family: var(--display);
+        font-size: 1.15rem;
+      }
+      .strip-cta {
+        color: var(--fg);
+        border-bottom: 1px solid var(--primary);
+        padding-bottom: 2px;
+        font-size: 1.05rem;
+        transition: color 0.3s;
+      }
+      .strip-cta:hover {
+        color: var(--primary);
+      }
+
+      /* ---------- Section heads ---------- */
+      section {
+        scroll-margin-top: 80px;
+      }
+      .section-head {
+        text-align: center;
+        max-width: 640px;
+        margin: 0 auto 3.2rem;
+        padding: 0 1.4rem;
+      }
+      .section-head h2 {
+        font-size: clamp(2rem, 1.4rem + 2.4vw, 3.4rem);
+      }
+      .section-head .sub {
+        color: var(--fg-soft);
+        margin-top: 1rem;
+      }
+
+      /* ---------- Experience ---------- */
+      .experience {
+        max-width: var(--wrap);
+        margin: 0 auto;
+        padding: 6.5rem 1.4rem;
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: clamp(2rem, 5vw, 5rem);
+        align-items: center;
+      }
+      .exp-media {
+        position: relative;
+      }
+      .exp-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.82) saturate(0.78) sepia(0.18);
+        border: 1px solid var(--border);
+      }
+      .exp-media::after {
+        content: "";
+        position: absolute;
+        inset: 14px;
+        border: 1px solid rgba(201, 163, 91, 0.4);
+        pointer-events: none;
+      }
+      .exp-copy h2 {
+        font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
+        margin-bottom: 1.4rem;
+      }
+      .exp-copy p {
+        color: var(--fg-soft);
+        margin: 0 0 1.2rem;
+      }
+      .exp-sign {
+        font-family: var(--display);
+        font-style: italic;
+        font-size: 1.4rem;
+        color: var(--primary);
+        margin-top: 1.6rem;
+      }
+
+      /* ---------- Menu ---------- */
+      .menu {
+        max-width: var(--wrap);
+        margin: 0 auto;
+        padding: 4rem 1.4rem 6.5rem;
+      }
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem 4rem;
+      }
+      .course {
+        font-style: italic;
+        font-size: 1.05rem;
+        font-weight: 400;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--primary);
+        font-family: var(--body);
+        padding-bottom: 0.9rem;
+        margin-bottom: 1.4rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .menu-col ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .dish {
+        margin-bottom: 1.7rem;
+      }
+      .dish-line {
+        display: flex;
+        align-items: baseline;
+        gap: 0.4rem;
+      }
+      .dish-name {
+        font-family: var(--display);
+        font-size: 1.3rem;
+      }
+      .leader {
+        flex: 1;
+        border-bottom: 1px dotted var(--border);
+        transform: translateY(-3px);
+      }
+      .dish-price {
+        font-family: var(--display);
+        color: var(--primary);
+        font-size: 1.25rem;
+      }
+      .dish-desc {
+        color: var(--fg-soft);
+        font-size: 1.02rem;
+        margin: 0.2rem 0 0;
+        font-style: italic;
+      }
+
+      /* ---------- Gallery ---------- */
+      .gallery {
+        max-width: var(--wrap);
+        margin: 0 auto;
+        padding: 4rem 1.4rem 6.5rem;
+      }
+      .gal-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 200px;
+        gap: 1rem;
+      }
+      .gal-item {
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+      .gal-item.tall {
+        grid-row: span 2;
+        grid-column: span 2;
+      }
+      .gal-item.wide {
+        grid-column: span 2;
+      }
+      .gal-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.78) saturate(0.72) sepia(0.2);
+        transition: transform 0.7s ease, filter 0.5s;
+      }
+      .gal-item:hover img {
+        transform: scale(1.06);
+        filter: brightness(0.95) saturate(0.85) sepia(0.1);
+      }
+
+      /* ---------- Press ---------- */
+      .press {
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        background: var(--muted);
+        padding: 4.5rem 0;
+      }
+      .marquee {
+        overflow: hidden;
+        margin-bottom: 4rem;
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+      }
+      .marquee-track {
+        display: flex;
+        gap: 3.5rem;
+        width: max-content;
+        animation: scroll-x 32s linear infinite;
+      }
+      .marq-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-family: var(--display);
+        font-size: 1.4rem;
+        white-space: nowrap;
+        color: var(--fg-soft);
+      }
+      .marq-item .star {
+        color: var(--primary);
+      }
+      @keyframes scroll-x {
+        to {
+          transform: translateX(-33.33%);
+        }
+      }
+      .quotes {
+        max-width: var(--wrap);
+        margin: 0 auto;
+        padding: 0 1.4rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2.5rem;
+      }
+      .quote {
+        margin: 0;
+        text-align: center;
+        padding: 0 1rem;
+      }
+      .quote p {
+        font-family: var(--display);
+        font-style: italic;
+        font-size: 1.3rem;
+        line-height: 1.5;
+        margin: 0 0 1rem;
+      }
+      .quote cite {
+        font-style: normal;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        color: var(--primary);
+      }
+
+      /* ---------- Private dining ---------- */
+      .private {
+        position: relative;
+        padding: 6rem 1.4rem;
+        background: linear-gradient(rgba(14, 14, 16, 0.86), rgba(14, 14, 16, 0.92)),
+          url("https://picsum.photos/seed/lumiere-private/1600/900") center/cover fixed;
+      }
+      .private-card {
+        max-width: 620px;
+        margin: 0 auto;
+        text-align: center;
+        border: 1px solid var(--border);
+        background: rgba(27, 27, 31, 0.7);
+        padding: clamp(2.4rem, 5vw, 4rem);
+      }
+      .private-card h2 {
+        font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+        margin-bottom: 1.2rem;
+      }
+      .private-card p {
+        color: var(--fg-soft);
+        margin: 0 0 2rem;
+      }
+
+      /* ---------- Visit ---------- */
+      .visit {
+        max-width: var(--wrap);
+        margin: 0 auto;
+        padding: 6.5rem 1.4rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(2rem, 5vw, 4.5rem);
+        align-items: center;
+      }
+      .visit-info h2 {
+        font-size: clamp(1.8rem, 1.3rem + 2vw, 2.8rem);
+        margin-bottom: 1.2rem;
+      }
+      .visit-info address {
+        font-style: normal;
+        color: var(--fg-soft);
+        font-size: 1.15rem;
+        margin-bottom: 2rem;
+      }
+      .visit-info address a {
+        color: var(--primary);
+        border-bottom: 1px solid var(--border);
+      }
+      .hours {
+        border-top: 1px solid var(--border);
+        margin-bottom: 1.4rem;
+      }
+      .hour-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .h-day {
+        color: var(--fg-soft);
+      }
+      .h-time {
+        font-family: var(--display);
+      }
+      .note {
+        color: var(--fg-soft);
+        font-style: italic;
+        font-size: 0.98rem;
+        margin: 0 0 2rem;
+      }
+      .visit-map {
+        position: relative;
+        display: block;
+        aspect-ratio: 1;
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+      .visit-map img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.6) saturate(0) contrast(1.05);
+        transition: transform 0.6s, filter 0.5s;
+      }
+      .visit-map:hover img {
+        transform: scale(1.04);
+      }
+      .map-pin {
+        position: absolute;
+        bottom: 1.2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--primary);
+        color: var(--primary-fg);
+        padding: 0.6rem 1.3rem;
+        font-size: 0.82rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      /* ---------- Closer ---------- */
+      .closer {
+        position: relative;
+        text-align: center;
+        padding: 7rem 1.4rem;
+        background: linear-gradient(rgba(14, 14, 16, 0.78), rgba(14, 14, 16, 0.9)),
+          url("https://picsum.photos/seed/lumiere-closer/1600/900") center/cover;
+        border-top: 1px solid var(--border);
+      }
+      .closer-inner {
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      .closer h2 {
+        font-size: clamp(2.4rem, 1.6rem + 4vw, 4.4rem);
+        margin-bottom: 1.2rem;
+      }
+      .closer .lede {
+        margin-bottom: 2.4rem;
+      }
+
+      /* ---------- Footer ---------- */
+      .foot {
+        background: var(--muted);
+        border-top: 1px solid var(--border);
+        padding: 4rem 1.4rem 2rem;
+      }
+      .foot-inner {
+        max-width: var(--wrap);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 3rem;
+      }
+      .foot-brand .brand-name {
+        font-size: 1.5rem;
+      }
+      .foot-brand p {
+        color: var(--fg-soft);
+        margin-top: 0.6rem;
+        font-size: 0.98rem;
+      }
+      .foot-cols {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 2rem;
+      }
+      .foot-cols h4 {
+        font-family: var(--body);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        color: var(--primary);
+        margin-bottom: 0.8rem;
+      }
+      .foot-cols p {
+        color: var(--fg-soft);
+        margin: 0 0 0.6rem;
+        font-size: 0.98rem;
+        line-height: 1.7;
+      }
+      .foot-cols a {
+        color: var(--fg);
+        border-bottom: 1px solid var(--border);
+      }
+      .news {
+        display: flex;
+        border: 1px solid var(--border);
+        background: var(--bg);
+      }
+      .news input {
+        flex: 1;
+        background: transparent;
+        border: 0;
+        color: var(--fg);
+        padding: 0.7rem 0.9rem;
+        font-family: var(--body);
+        font-size: 1rem;
+        min-width: 0;
+      }
+      .news input::placeholder {
+        color: var(--fg-soft);
+      }
+      .news button {
+        background: var(--primary);
+        color: var(--primary-fg);
+        border: 0;
+        width: 48px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .news button:hover {
+        background: var(--accent);
+      }
+      .foot-base {
+        max-width: var(--wrap);
+        margin: 3rem auto 0;
+        padding-top: 1.6rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--fg-soft);
+      }
+
+      /* ---------- Reveal ---------- */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 880px) {
+        .nav,
+        .bar .reserve {
+          display: none;
+        }
+        .menu-btn {
+          display: flex;
+        }
+        .experience,
+        .visit {
+          grid-template-columns: 1fr;
+        }
+        .exp-media {
+          order: -1;
+          max-height: 460px;
+        }
+        .foot-inner {
+          grid-template-columns: 1fr;
+        }
+        .gal-grid {
+          grid-template-columns: repeat(2, 1fr);
+          grid-auto-rows: 160px;
+        }
+        .gal-item.tall {
+          grid-column: span 2;
+          grid-row: span 2;
+        }
+        .gal-item.wide {
+          grid-column: span 2;
+        }
+      }
+      @media (max-width: 520px) {
+        .private {
+          background-attachment: scroll;
+        }
+        .strip {
+          gap: 1rem 1.6rem;
+        }
+        .gal-grid {
+          grid-template-columns: 1fr;
+          grid-auto-rows: 220px;
+        }
+        .gal-item,
+        .gal-item.tall,
+        .gal-item.wide {
+          grid-column: span 1;
+          grid-row: span 1;
+        }
+      }
+    </style>
+  </body>
+</html>

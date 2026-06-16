@@ -1,0 +1,647 @@
+---
+const nav = [
+  { label: "Stay", href: "#rooms" },
+  { label: "Experiences", href: "#amenities" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Dining", href: "#dining" },
+  { label: "Visit", href: "#visit" },
+];
+
+const rooms = [
+  { name: "Garden View King", seed: "marisol-garden", desc: "Calm, light-filled room opening to the courtyard.", price: 245, beds: "King · 1 guest", size: "32 m²" },
+  { name: "Ocean Terrace Suite", seed: "marisol-ocean", desc: "Wake to the surf from a private balcony above the dunes.", price: 420, beds: "King · 2 guests", size: "48 m²" },
+  { name: "Signature Spa Suite", seed: "marisol-spa", desc: "In-room rainfall shower, robes, and daily turndown.", price: 560, beds: "King · 2 guests", size: "55 m²" },
+  { name: "Family Garden Cottage", seed: "marisol-cottage", desc: "Two bedrooms, a kitchenette, and a private patio.", price: 475, beds: "2 bed · 4 guests", size: "70 m²" },
+];
+
+const amenities = [
+  { title: "Oceanfront Spa", desc: "Salt scrubs, cedar sauna, and tidal-pool soaking baths.", icon: "wave" },
+  { title: "Heated Sea Pool", desc: "An infinity edge that meets the horizon at golden hour.", icon: "pool" },
+  { title: "Coastal Dining", desc: "Day-boat seafood and a cellar of west-coast wines.", icon: "dining" },
+  { title: "Private Concierge", desc: "Surf lessons, kayak tours, and quiet beach picnics.", icon: "concierge" },
+];
+
+const gallery = [
+  { seed: "marisol-g1", h: 420, alt: "Linen curtains drifting in sea breeze" },
+  { seed: "marisol-g2", h: 280, alt: "Driftwood and pale sand at low tide" },
+  { seed: "marisol-g3", h: 340, alt: "Chair facing the open ocean horizon" },
+  { seed: "marisol-g4", h: 260, alt: "Sunlit pool deck with breezy palms" },
+  { seed: "marisol-g5", h: 380, alt: "Plated seafood at the coastal restaurant" },
+  { seed: "marisol-g6", h: 300, alt: "Boardwalk path winding through the dunes" },
+];
+
+const packages = [
+  { name: "Two-Night Slow Escape", note: "Breakfast daily + late checkout", price: 560, featured: false },
+  { name: "Spa & Stay", note: "60-minute treatment for two", price: 690, featured: true },
+  { name: "Romance Retreat", note: "Champagne, rose turndown, dinner for two", price: 740, featured: false },
+];
+
+const testimonials = [
+  { quote: "The most restful three nights we've had in years. The staff remembered our names by morning.", who: "Priya & Daniel R." },
+  { quote: "Every window framed something beautiful. We're already planning our return.", who: "Marcus T." },
+  { quote: "Quiet, warm, and effortlessly elegant — exactly what a getaway should feel like.", who: "Lena O." },
+];
+
+const hours = [
+  ["Front Desk & Concierge", "24 hours"],
+  ["Check-in / Check-out", "3:00 PM · 11:00 AM"],
+  ["Restaurant", "Breakfast 7–11 AM · Dinner 5:30–10 PM"],
+  ["Spa", "Daily 9 AM – 8 PM"],
+];
+
+const icons = {
+  wave: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M2 16c2.2 0 2.2-2.2 4.4-2.2S8.6 16 10.8 16 13 13.8 15.2 13.8 17.4 16 19.6 16 22 13.8 22 13.8"/><path d="M2 10c2.2 0 2.2-2.2 4.4-2.2S8.6 10 10.8 10 13 7.8 15.2 7.8 17.4 10 19.6 10 22 7.8 22 7.8"/></svg>',
+  pool: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 5v12M14 5v12M6 9h8M2 20c2 0 2-1.6 4-1.6S8 20 10 20s2-1.6 4-1.6S16 20 18 20s2-1.6 4-1.6"/><circle cx="14" cy="6" r="2"/></svg>',
+  dining: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5 3v8a2 2 0 0 0 4 0V3M7 11v10M16 3c-1.5 0-2.5 2-2.5 5s1 4 2.5 4m0-9c1.5 0 2.5 2 2.5 5s-1 4-2.5 4m0 0v8"/></svg>',
+  concierge: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 18a8 8 0 0 1 16 0M12 6V4M2 18h20"/><circle cx="12" cy="9" r="3"/></svg>',
+};
+const icon = (k) => icons[k] || "";
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marisol Coastal — A boutique escape by the sea, Tofino BC</title>
+  <meta name="description" content="Marisol Coastal is a boutique seaside retreat in Tofino, BC. Ocean-terrace suites, an oceanfront spa, and day-boat dining. Where the tide sets the pace." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Marisol Coastal home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 28 28" width="26" height="26"><path d="M2 19c3 0 3-3 6-3s3 3 6 3 3-3 6-3 3 3 6 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="14" cy="9" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span>
+        <span class="brand-text">Marisol<em>Coastal</em></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      </nav>
+      <a class="btn btn-sm" href="#book">Check Availability</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile" aria-label="Mobile">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      <a class="btn" href="#book">Check Availability</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-img" role="img" aria-label="Sunlit Pacific shoreline at Tofino with breezy linen"></div>
+      <div class="hero-scrim"></div>
+      <div class="wrap hero-content reveal">
+        <p class="eyebrow">Tofino · British Columbia</p>
+        <h1>Where the tide<br/>sets the pace.</h1>
+        <p class="lede">A boutique escape, intimately yours — ocean-terrace suites, a salt-air spa, and mornings that begin with the surf.</p>
+      </div>
+    </section>
+
+    <!-- BOOKING BAR -->
+    <section class="bookbar-wrap" id="book" aria-label="Check availability">
+      <form class="bookbar wrap reveal" onsubmit="return false;">
+        <label class="field">
+          <span>Check-in</span>
+          <input type="date" value="2026-07-10" />
+        </label>
+        <label class="field">
+          <span>Check-out</span>
+          <input type="date" value="2026-07-13" />
+        </label>
+        <label class="field">
+          <span>Guests</span>
+          <select>
+            <option>1 guest</option>
+            <option selected>2 guests</option>
+            <option>3 guests</option>
+            <option>4 guests</option>
+          </select>
+        </label>
+        <button class="btn btn-block" type="submit">Check Availability</button>
+      </form>
+    </section>
+
+    <!-- STORY -->
+    <section class="story wrap" aria-labelledby="story-h">
+      <div class="story-text reveal">
+        <p class="eyebrow">The Welcome</p>
+        <h2 id="story-h">Stay a while.<br/>The world can wait.</h2>
+        <p>Tucked between the dunes and the cedar line, Marisol Coastal is twenty-two rooms of quiet light and open horizon. We built it for slow mornings — bare feet on warm wood, coffee carried to the balcony, the long exhale that only the sea seems to allow.</p>
+        <p>No crowds, no rush. Just salt air, soft linen, and a team who learns your name by the first morning.</p>
+        <div class="story-stats">
+          <div><strong>22</strong><span>rooms &amp; suites</span></div>
+          <div><strong>4.9</strong><span>guest rating</span></div>
+          <div><strong>120m</strong><span>to the shoreline</span></div>
+        </div>
+      </div>
+      <div class="story-media reveal">
+        <img src="https://picsum.photos/seed/marisol-story/720/900" alt="A single chair facing a wide ocean view through open doors" loading="lazy" />
+        <span class="media-tag">Ocean Terrace · Suite 14</span>
+      </div>
+    </section>
+
+    <!-- ROOMS -->
+    <section class="rooms" id="rooms" aria-labelledby="rooms-h">
+      <div class="wrap section-head reveal">
+        <p class="eyebrow">Rooms &amp; Suites</p>
+        <h2 id="rooms-h">Rest with the windows open.</h2>
+      </div>
+      <div class="wrap room-grid">
+        {rooms.map((r) => (
+          <article class="room reveal">
+            <div class="room-img">
+              <img src={`https://picsum.photos/seed/${r.seed}/640/440`} alt={`${r.name} interior`} loading="lazy" />
+              <span class="room-rate">from <strong>${r.price}</strong><small>/night</small></span>
+            </div>
+            <div class="room-body">
+              <h3>{r.name}</h3>
+              <p class="room-meta">{r.beds} · {r.size}</p>
+              <p>{r.desc}</p>
+              <a class="link-arrow" href="#book">Book this room <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- AMENITIES (bento) -->
+    <section class="amenities" id="amenities" aria-labelledby="am-h">
+      <div class="wrap section-head reveal">
+        <p class="eyebrow">Experiences</p>
+        <h2 id="am-h">The whole stay, not just the bed.</h2>
+      </div>
+      <div class="wrap bento">
+        <div class="bento-photo reveal" style="--bg:url('https://picsum.photos/seed/marisol-bento/900/700')">
+          <span>Salt-air spa &amp; sea pool</span>
+        </div>
+        {amenities.map((a) => (
+          <article class="bento-card reveal">
+            <span class="ico" aria-hidden="true" set:html={icon(a.icon)} />
+            <h3>{a.title}</h3>
+            <p>{a.desc}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- GALLERY (masonry) -->
+    <section class="gallery" id="gallery" aria-labelledby="g-h">
+      <div class="wrap section-head reveal">
+        <p class="eyebrow">Gallery</p>
+        <h2 id="g-h">Picture yourself here.</h2>
+      </div>
+      <div class="wrap masonry">
+        {gallery.map((g) => (
+          <figure class="reveal" style={`--h:${g.h}px`}>
+            <img src={`https://picsum.photos/seed/${g.seed}/600/${g.h}`} alt={g.alt} loading="lazy" />
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <!-- DINING -->
+    <section class="dining" id="dining" aria-labelledby="d-h">
+      <div class="wrap dining-inner">
+        <div class="dining-media reveal">
+          <img src="https://picsum.photos/seed/marisol-dining/760/620" alt="A coastal dish of day-boat seafood plated simply" loading="lazy" />
+        </div>
+        <div class="dining-text reveal">
+          <p class="eyebrow">Dining</p>
+          <h2 id="d-h">From the day boat<br/>to your table.</h2>
+          <p>Our kitchen cooks what the tide brings in — spot prawns at noon, halibut at dusk, oysters shucked to order. Breakfast spills onto the deck; dinner ends with the last of the light over the water.</p>
+          <ul class="menu-list">
+            <li><span>Spot prawn crudo, citrus, sea salt</span><b>24</b></li>
+            <li><span>Grilled halibut, fennel, brown butter</span><b>38</b></li>
+            <li><span>Cedar-smoked oysters, half dozen</span><b>21</b></li>
+          </ul>
+          <a class="btn btn-ghost" href="#book">Reserve a table</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PACKAGES -->
+    <section class="packages" aria-labelledby="p-h">
+      <div class="wrap section-head reveal">
+        <p class="eyebrow">Offers &amp; Packages</p>
+        <h2 id="p-h">Stay direct, stay longer.</h2>
+        <p class="best-rate"><span class="dot" aria-hidden="true"></span> Best-rate guarantee on every direct booking</p>
+      </div>
+      <div class="wrap pkg-grid">
+        {packages.map((p) => (
+          <article class={`pkg reveal ${p.featured ? "pkg--featured" : ""}`}>
+            {p.featured && <span class="pkg-flag">Most loved</span>}
+            <h3>{p.name}</h3>
+            <p>{p.note}</p>
+            <p class="pkg-price">from <strong>${p.price}</strong></p>
+            <a class="btn btn-block" href="#book">Reserve</a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS slider -->
+    <section class="reviews" aria-labelledby="r-h">
+      <div class="wrap">
+        <p class="eyebrow center reveal">Guest Notes</p>
+        <h2 id="r-h" class="center reveal">Quietly unforgettable.</h2>
+        <div class="slider reveal" data-slider>
+          {testimonials.map((t, i) => (
+            <blockquote class="slide" data-slide={i} aria-hidden={i !== 0 ? "true" : "false"}>
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>“{t.quote}”</p>
+              <cite>— {t.who}</cite>
+            </blockquote>
+          ))}
+        </div>
+        <div class="dots" role="tablist" aria-label="Choose review">
+          {testimonials.map((t, i) => (
+            <button class={`dot-btn ${i === 0 ? "is-on" : ""}`} data-dot={i} role="tab" aria-label={`Review ${i + 1}`}></button>
+          ))}
+        </div>
+        <div class="awards reveal" aria-label="Awards and press">
+          <span>★ Condé Nast Readers' Choice</span>
+          <span>Travel + Leisure 2025</span>
+          <span>Green Key Eco-Rated</span>
+          <span>TripAdvisor Travelers' Choice</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT / NAP -->
+    <section class="visit" id="visit" aria-labelledby="v-h">
+      <div class="wrap visit-inner">
+        <div class="visit-info reveal">
+          <p class="eyebrow">Location &amp; Contact</p>
+          <h2 id="v-h">Getting here.</h2>
+          <p class="addr">Marisol Coastal<br/>148 Shoreline Drive, Tofino, BC V0R 2Z0</p>
+          <p class="dir">A 20-minute drive from Tofino-Long Beach Airport, due west along the Pacific Rim. Float-plane transfers on request.</p>
+          <dl class="hours">
+            {hours.map(([k, v]) => (<div><dt>{k}</dt><dd>{v}</dd></div>))}
+          </dl>
+          <div class="nap-actions">
+            <a class="btn" href="tel:+12505550192">Call (250) 555-0192</a>
+            <a class="btn btn-ghost" href="mailto:hello@marisolhotels.com">hello@marisolhotels.com</a>
+          </div>
+        </div>
+        <a class="visit-map reveal" href="https://maps.google.com/?q=Tofino+BC" target="_blank" rel="noopener" aria-label="Open map to Marisol Coastal">
+          <img src="https://picsum.photos/seed/marisol-map/720/640?grayscale" alt="Map of the Tofino shoreline" loading="lazy" />
+          <span class="pin" aria-hidden="true"></span>
+          <span class="map-tag">Open in Maps →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" aria-labelledby="cta-h">
+      <div class="wrap reveal">
+        <h2 id="cta-h">The tide is already turning.</h2>
+        <p>Reserve your stay above the dunes — best rates, always, when you book with us.</p>
+        <div class="cta-btns">
+          <a class="btn btn-light" href="#book">Check Availability</a>
+          <a class="btn btn-outline" href="tel:+12505550192">Call to Book</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div>
+        <span class="brand-text foot"><span class="brand-mark sm" aria-hidden="true"><svg viewBox="0 0 28 28" width="20" height="20"><path d="M2 19c3 0 3-3 6-3s3 3 6 3 3-3 6-3 3 3 6 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="14" cy="9" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>Marisol<em>Coastal</em></span>
+        <p>A boutique escape, intimately yours.</p>
+      </div>
+      <div class="foot-nap">
+        <p>148 Shoreline Drive, Tofino, BC V0R 2Z0</p>
+        <p><a href="tel:+12505550192">(250) 555-0192</a> · <a href="mailto:hello@marisolhotels.com">hello@marisolhotels.com</a></p>
+      </div>
+      <p class="copy">© 2026 Marisol Hotels &amp; Retreats. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Hotel",
+    "name": "Marisol Coastal",
+    "description": "A boutique seaside retreat in Tofino, BC.",
+    "address": { "@type": "PostalAddress", "streetAddress": "148 Shoreline Drive", "addressLocality": "Tofino", "addressRegion": "BC", "postalCode": "V0R 2Z0", "addressCountry": "CA" },
+    "telephone": "+1-250-555-0192",
+    "email": "hello@marisolhotels.com",
+    "priceRange": "$$$",
+    "starRating": { "@type": "Rating", "ratingValue": "5" }
+  })} />
+
+  <script>
+    const tog = document.querySelector('.nav-toggle');
+    const menu = document.querySelector('.nav-mobile');
+    tog?.addEventListener('click', () => {
+      const open = document.body.classList.toggle('menu-open');
+      tog.setAttribute('aria-expanded', String(open));
+    });
+    menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+      document.body.classList.remove('menu-open');
+      tog?.setAttribute('aria-expanded', 'false');
+    }));
+
+    const header = document.querySelector('.nav');
+    const onScroll = () => header?.classList.toggle('scrolled', window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const els = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      els.forEach((e) => e.classList.add('in'));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: 0.12 });
+      els.forEach((e) => io.observe(e));
+    }
+
+    // testimonial slider
+    const slides = Array.from(document.querySelectorAll('[data-slide]'));
+    const dots = Array.from(document.querySelectorAll('[data-dot]'));
+    let cur = 0;
+    const show = (n) => {
+      cur = (n + slides.length) % slides.length;
+      slides.forEach((s, i) => { s.classList.toggle('on', i === cur); s.setAttribute('aria-hidden', String(i !== cur)); });
+      dots.forEach((d, i) => d.classList.toggle('is-on', i === cur));
+    };
+    dots.forEach((d, i) => d.addEventListener('click', () => show(i)));
+    slides[0]?.classList.add('on');
+    if (!reduce && slides.length > 1) setInterval(() => show(cur + 1), 6000);
+  </script>
+
+  <style is:global>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; }
+    img { max-width: 100%; display: block; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+  </style>
+
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --fg: #27343b;
+      --primary: #3f7e93;
+      --primary-fg: #fbfaf6;
+      --accent: #d8a47f;
+      --muted: #e9e3d7;
+      --border: #d6cfc1;
+      --sand: #efe9dd;
+      --maxw: 1180px;
+      --r: 18px;
+      --shadow: 0 18px 50px -24px rgba(39, 52, 59, 0.32);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Mulish", system-ui, sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: 0.005em;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { width: min(100% - 2.5rem, var(--maxw)); margin-inline: auto; }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 400; line-height: 1.04; letter-spacing: -0.01em; margin: 0; }
+    h2 { font-size: clamp(2rem, 5vw, 3.2rem); }
+    h3 { font-size: 1.4rem; line-height: 1.15; }
+    p { margin: 0 0 1rem; }
+    a { color: inherit; }
+
+    .eyebrow { font-family: "Mulish", sans-serif; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--primary); margin: 0 0 0.9rem; }
+    .center { text-align: center; }
+
+    .skip { position: absolute; left: -999px; top: 0; background: var(--primary); color: var(--primary-fg); padding: 0.7rem 1.1rem; border-radius: 0 0 10px 0; z-index: 200; }
+    .skip:focus { left: 0; }
+
+    :focus-visible { outline: 2.5px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+
+    /* buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px; padding: 0 1.5rem;
+      background: var(--primary); color: var(--primary-fg);
+      border: 1px solid var(--primary); border-radius: 999px;
+      font-family: "Mulish", sans-serif; font-weight: 600; font-size: 0.92rem;
+      letter-spacing: 0.02em; text-decoration: none; cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+    .btn:hover { background: #356a7d; transform: translateY(-2px); box-shadow: 0 12px 26px -14px rgba(63, 126, 147, 0.7); }
+    .btn-sm { min-height: 42px; padding: 0 1.2rem; font-size: 0.85rem; }
+    .btn-block { width: 100%; }
+    .btn-ghost { background: transparent; color: var(--primary); border-color: var(--border); }
+    .btn-ghost:hover { background: var(--sand); color: var(--primary); }
+    .btn-light { background: var(--bg); color: var(--primary); border-color: var(--bg); }
+    .btn-light:hover { background: #fff; color: var(--primary); }
+    .btn-outline { background: transparent; color: var(--primary-fg); border-color: rgba(251,250,246,0.6); }
+    .btn-outline:hover { background: rgba(251,250,246,0.14); color: var(--primary-fg); }
+
+    /* nav */
+    .nav { position: sticky; top: 0; z-index: 100; transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s; }
+    .nav.scrolled { background: rgba(247, 244, 238, 0.86); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--border); }
+    .nav-inner { display: flex; align-items: center; gap: 1.4rem; padding: 0.9rem 0; }
+    .brand { display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none; color: var(--fg); }
+    .brand-mark { color: var(--primary); display: inline-flex; }
+    .brand-text { font-family: "Fraunces", serif; font-size: 1.35rem; letter-spacing: -0.01em; }
+    .brand-text em { font-style: normal; color: var(--primary); font-weight: 500; }
+    .nav-links { margin-left: auto; display: flex; gap: 1.6rem; }
+    .nav-links a { text-decoration: none; font-weight: 500; font-size: 0.92rem; color: var(--fg); position: relative; padding: 0.3rem 0; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; bottom: -2px; height: 1.5px; width: 0; background: var(--accent); transition: width 0.3s ease; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-toggle { display: none; background: none; border: 0; width: 44px; height: 44px; cursor: pointer; flex-direction: column; gap: 5px; align-items: center; justify-content: center; }
+    .nav-toggle span { width: 22px; height: 2px; background: var(--fg); transition: transform 0.3s, opacity 0.3s; }
+    .nav-mobile { display: none; }
+
+    /* hero */
+    .hero { position: relative; min-height: 86vh; display: flex; align-items: flex-end; overflow: hidden; }
+    .hero-img { position: absolute; inset: 0; background-image: url("https://picsum.photos/seed/marisol-hero/1700/1100"); background-size: cover; background-position: center; filter: saturate(0.92) brightness(1.06); transform: scale(1.06); animation: heroDrift 22s ease-in-out infinite alternate; }
+    @keyframes heroDrift { to { transform: scale(1.12) translateY(-1.5%); } }
+    .hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(39,52,59,0.18) 0%, rgba(39,52,59,0) 32%, rgba(39,52,59,0.06) 60%, rgba(247,244,238,0.92) 100%), linear-gradient(90deg, rgba(63,126,147,0.22), rgba(0,0,0,0) 55%); }
+    .hero-content { position: relative; padding-bottom: clamp(3rem, 7vw, 6rem); }
+    .hero-content .eyebrow { color: var(--accent); }
+    .hero h1 { font-size: clamp(2.8rem, 9vw, 6rem); font-weight: 400; color: var(--fg); }
+    .hero .lede { max-width: 30ch; font-size: clamp(1.05rem, 2.2vw, 1.3rem); margin-top: 1.2rem; color: #33424a; }
+
+    /* booking bar */
+    .bookbar-wrap { margin-top: -3.4rem; position: relative; z-index: 20; }
+    .bookbar { background: #fff; border: 1px solid var(--border); border-radius: var(--r); box-shadow: var(--shadow); padding: 1rem; display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 0.8rem; align-items: end; }
+    .field { display: flex; flex-direction: column; gap: 0.35rem; }
+    .field span { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #6a7178; }
+    .field input, .field select { font-family: inherit; font-size: 0.95rem; padding: 0.7rem 0.8rem; min-height: 48px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); color: var(--fg); }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--primary); }
+
+    /* story */
+    .story { padding: clamp(4rem, 9vw, 7rem) 0; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+    .story-text p { color: #3a474e; max-width: 46ch; }
+    .story-text h2 { margin-bottom: 1.4rem; }
+    .story-stats { display: flex; gap: 2.2rem; margin-top: 2rem; flex-wrap: wrap; }
+    .story-stats strong { display: block; font-family: "Fraunces", serif; font-size: 2.2rem; color: var(--primary); line-height: 1; }
+    .story-stats span { font-size: 0.82rem; color: #6a7178; }
+    .story-media { position: relative; }
+    .story-media img { border-radius: var(--r); box-shadow: var(--shadow); aspect-ratio: 4/5; object-fit: cover; }
+    .media-tag { position: absolute; left: 1rem; bottom: 1rem; background: rgba(247,244,238,0.92); backdrop-filter: blur(4px); padding: 0.45rem 0.9rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; color: var(--primary); }
+
+    .section-head { margin-bottom: 2.4rem; }
+    .section-head h2 { max-width: 16ch; }
+
+    /* rooms */
+    .rooms { padding: clamp(3rem, 6vw, 5rem) 0; background: var(--sand); }
+    .room-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
+    .room { background: #fff; border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .room:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .room-img { position: relative; aspect-ratio: 16/10; overflow: hidden; }
+    .room-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .room:hover .room-img img { transform: scale(1.06); }
+    .room-rate { position: absolute; right: 0.9rem; bottom: 0.9rem; background: rgba(247,244,238,0.94); backdrop-filter: blur(5px); padding: 0.4rem 0.8rem; border-radius: 999px; font-size: 0.78rem; color: #4a565d; }
+    .room-rate strong { font-family: "Fraunces", serif; font-size: 1.1rem; color: var(--primary); }
+    .room-rate small { font-size: 0.7rem; }
+    .room-body { padding: 1.4rem 1.4rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .room-body h3 { margin-bottom: 0.3rem; }
+    .room-meta { font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.7rem; }
+    .room-body p { color: #4a565d; font-size: 0.95rem; }
+    .link-arrow { margin-top: auto; padding-top: 0.6rem; text-decoration: none; font-weight: 600; font-size: 0.9rem; color: var(--primary); }
+    .link-arrow span { transition: transform 0.25s ease; display: inline-block; }
+    .link-arrow:hover span { transform: translateX(5px); }
+
+    /* amenities bento */
+    .amenities { padding: clamp(4rem, 8vw, 7rem) 0; }
+    .bento { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    .bento-photo { grid-row: span 2; min-height: 320px; border-radius: var(--r); position: relative; overflow: hidden; background-image: var(--bg); background-size: cover; background-position: center; display: flex; align-items: flex-end; padding: 1.4rem; }
+    .bento-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(63,126,147,0.05), rgba(39,52,59,0.55)); }
+    .bento-photo span { position: relative; z-index: 1; color: var(--primary-fg); font-family: "Fraunces", serif; font-size: 1.45rem; max-width: 14ch; }
+    .bento-card { background: var(--muted); border: 1px solid var(--border); border-radius: var(--r); padding: 1.6rem; transition: transform 0.3s ease, background 0.3s; }
+    .bento-card:hover { transform: translateY(-4px); background: #fff; }
+    .ico { display: inline-flex; width: 46px; height: 46px; align-items: center; justify-content: center; border-radius: 12px; background: var(--bg); color: var(--primary); margin-bottom: 0.9rem; }
+    .ico svg { width: 24px; height: 24px; }
+    .bento-card h3 { font-size: 1.2rem; margin-bottom: 0.35rem; }
+    .bento-card p { color: #4a565d; font-size: 0.92rem; margin: 0; }
+
+    /* gallery masonry */
+    .gallery { padding: clamp(2rem, 4vw, 4rem) 0 clamp(4rem, 8vw, 7rem); }
+    .masonry { columns: 3 220px; column-gap: 1.2rem; }
+    .masonry figure { margin: 0 0 1.2rem; break-inside: avoid; border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); }
+    .masonry img { width: 100%; height: var(--h); object-fit: cover; transition: transform 0.6s ease, filter 0.4s; filter: saturate(0.94); }
+    .masonry figure:hover img { transform: scale(1.05); filter: saturate(1.05); }
+
+    /* dining */
+    .dining { background: var(--primary); color: var(--primary-fg); }
+    .dining-inner { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+    .dining-media { overflow: hidden; }
+    .dining-media img { width: 100%; height: 100%; object-fit: cover; min-height: 340px; filter: saturate(0.95); }
+    .dining-text { padding: clamp(3rem, 6vw, 5.5rem) clamp(1.5rem, 4vw, 4rem); }
+    .dining-text .eyebrow { color: var(--accent); }
+    .dining-text p { color: rgba(251,250,246,0.85); }
+    .menu-list { list-style: none; padding: 0; margin: 1.6rem 0 1.8rem; }
+    .menu-list li { display: flex; align-items: baseline; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid rgba(251,250,246,0.18); }
+    .menu-list span { flex: 1; font-size: 0.96rem; }
+    .menu-list b { font-family: "Fraunces", serif; font-weight: 500; color: var(--accent); }
+    .dining .btn-ghost { color: var(--primary-fg); border-color: rgba(251,250,246,0.5); }
+    .dining .btn-ghost:hover { background: rgba(251,250,246,0.14); color: var(--primary-fg); }
+
+    /* packages */
+    .packages { padding: clamp(4rem, 8vw, 7rem) 0; }
+    .packages .section-head { text-align: center; }
+    .packages .section-head h2 { margin-inline: auto; }
+    .best-rate { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: #5a666d; margin-top: 0.8rem; }
+    .best-rate .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(216,164,127,0.25); }
+    .pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+    .pkg { background: #fff; border: 1px solid var(--border); border-radius: var(--r); padding: 2rem 1.7rem; text-align: center; position: relative; transition: transform 0.3s ease, box-shadow 0.3s; }
+    .pkg:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .pkg--featured { background: var(--sand); border-color: var(--accent); transform: translateY(-8px); }
+    .pkg--featured:hover { transform: translateY(-12px); }
+    .pkg-flag { position: absolute; top: -0.8rem; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 999px; }
+    .pkg h3 { font-size: 1.3rem; margin-bottom: 0.4rem; }
+    .pkg p { color: #5a666d; font-size: 0.9rem; }
+    .pkg-price { margin: 1rem 0 1.4rem; color: #6a7178; font-size: 0.85rem; }
+    .pkg-price strong { font-family: "Fraunces", serif; font-size: 2rem; color: var(--primary); display: inline-block; }
+
+    /* reviews */
+    .reviews { padding: clamp(4rem, 8vw, 7rem) 0; background: var(--sand); }
+    .slider { position: relative; min-height: 220px; margin: 2.4rem auto 0; max-width: 720px; }
+    .slide { position: absolute; inset: 0; margin: 0; text-align: center; opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s; }
+    .slide.on { opacity: 1; visibility: visible; transform: none; position: relative; }
+    .stars { color: var(--accent); letter-spacing: 0.2em; margin-bottom: 1rem; }
+    .slide p { font-family: "Fraunces", serif; font-size: clamp(1.3rem, 3vw, 1.9rem); line-height: 1.35; color: var(--fg); font-style: italic; }
+    .slide cite { display: block; margin-top: 1rem; font-style: normal; font-weight: 600; color: var(--primary); font-size: 0.92rem; }
+    .dots { display: flex; gap: 0.6rem; justify-content: center; margin-top: 1.6rem; }
+    .dot-btn { width: 44px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
+    .dot-btn::after { content: ""; position: absolute; inset: 50% 0 auto 50%; transform: translate(-50%,-50%); width: 9px; height: 9px; border-radius: 50%; background: var(--border); transition: background 0.3s, width 0.3s; }
+    .dot-btn.is-on::after { background: var(--primary); width: 24px; border-radius: 6px; }
+    .awards { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .awards span { font-size: 0.82rem; letter-spacing: 0.04em; color: #6a7178; font-weight: 500; }
+
+    /* visit */
+    .visit { padding: clamp(4rem, 8vw, 7rem) 0; }
+    .visit-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+    .addr { font-family: "Fraunces", serif; font-size: 1.25rem; line-height: 1.5; color: var(--fg); }
+    .dir { color: #5a666d; max-width: 42ch; }
+    .hours { margin: 1.6rem 0 2rem; border-top: 1px solid var(--border); }
+    .hours div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--border); }
+    .hours dt { font-weight: 600; font-size: 0.92rem; }
+    .hours dd { margin: 0; color: #5a666d; font-size: 0.92rem; text-align: right; }
+    .nap-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .visit-map { position: relative; display: block; border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); }
+    .visit-map img { width: 100%; height: 100%; min-height: 360px; object-fit: cover; filter: saturate(0.4) sepia(0.12); transition: transform 0.6s ease; }
+    .visit-map:hover img { transform: scale(1.04); }
+    .pin { position: absolute; left: 50%; top: 46%; width: 18px; height: 18px; background: var(--accent); border: 3px solid #fff; border-radius: 50% 50% 50% 0; transform: translate(-50%,-50%) rotate(-45deg); box-shadow: 0 6px 14px -4px rgba(0,0,0,0.4); }
+    .map-tag { position: absolute; left: 1rem; bottom: 1rem; background: rgba(247,244,238,0.94); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.82rem; font-weight: 600; color: var(--primary); }
+
+    /* cta */
+    .cta { background: var(--primary); color: var(--primary-fg); text-align: center; padding: clamp(4rem, 9vw, 7rem) 0; background-image: linear-gradient(rgba(63,126,147,0.82), rgba(45,92,108,0.9)), url("https://picsum.photos/seed/marisol-cta/1600/700"); background-size: cover; background-position: center; }
+    .cta h2 { font-size: clamp(2rem, 5.5vw, 3.4rem); }
+    .cta p { color: rgba(251,250,246,0.9); margin: 1rem auto 2rem; max-width: 40ch; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* footer */
+    .footer { background: var(--fg); color: rgba(251,250,246,0.78); padding: clamp(3rem, 6vw, 4.5rem) 0 2.5rem; }
+    .footer-inner { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; align-items: start; }
+    .brand-text.foot { color: var(--primary-fg); display: inline-flex; align-items: center; gap: 0.5rem; }
+    .brand-text.foot .brand-mark.sm { color: var(--accent); }
+    .footer p { margin: 0.6rem 0 0; font-size: 0.9rem; }
+    .foot-nap a { color: var(--accent); text-decoration: none; }
+    .foot-nap a:hover { text-decoration: underline; }
+    .copy { grid-column: 1 / -1; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(251,250,246,0.14); font-size: 0.82rem; }
+
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-inner > .btn-sm { display: none; }
+      .nav-toggle { display: flex; margin-left: auto; }
+      body.menu-open .nav-toggle span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+      body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
+      .nav-mobile { display: flex; flex-direction: column; gap: 0.4rem; padding: 0 1.25rem; max-height: 0; overflow: hidden; background: rgba(247,244,238,0.97); backdrop-filter: blur(10px); transition: max-height 0.35s ease, padding 0.35s ease; }
+      body.menu-open .nav-mobile { max-height: 360px; padding: 0.5rem 1.25rem 1.2rem; }
+      .nav-mobile a:not(.btn) { padding: 0.7rem 0; text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border); }
+      .nav-mobile .btn { margin-top: 0.6rem; }
+      .story, .visit-inner, .dining-inner { grid-template-columns: 1fr; }
+      .room-grid, .bento, .pkg-grid { grid-template-columns: 1fr; }
+      .bento-photo { grid-row: auto; min-height: 240px; }
+      .masonry { columns: 2 160px; }
+      .pkg--featured { transform: none; }
+      .pkg--featured:hover { transform: translateY(-5px); }
+      .dining-inner { display: flex; flex-direction: column-reverse; }
+    }
+    @media (max-width: 620px) {
+      .bookbar { grid-template-columns: 1fr 1fr; }
+      .bookbar .btn-block { grid-column: 1 / -1; }
+      .masonry { columns: 1; }
+      .story-stats { gap: 1.4rem; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .awards { gap: 0.6rem 1.4rem; }
+    }
+  </style>
+</body>
+</html>

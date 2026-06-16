@@ -1,0 +1,621 @@
+---
+// Ironwood Brewing Co. — "Pulp Theory" hazy variant. Fully self-contained showcase template.
+const nav = [
+  { label: "On Tap", href: "#tap" },
+  { label: "Visit", href: "#visit" },
+  { label: "Events", href: "#events" },
+  { label: "Our Story", href: "#story" },
+  { label: "Cans & Merch", href: "#cans" },
+];
+
+const taps = [
+  { name: "Pulp Theory", style: "Hazy IPA", abv: "6.8%", ibu: "45", note: "Mango, guava, soft pillowy bitterness.", price: "$8 / 16oz", pack: "$22 / 4-pack", flag: true, seed: "pulptheory" },
+  { name: "Ironclad", style: "West Coast IPA", abv: "7.1%", ibu: "65", note: "Pine, grapefruit, dry snappy finish.", price: "$8 / 16oz", pack: "$20 / 4-pack", seed: "ironclad" },
+  { name: "Riverstone", style: "Czech Pilsner", abv: "4.9%", ibu: "32", note: "Crisp, floral Saaz, clean lager bite.", price: "$7 / 16oz", pack: "$18 / 4-pack", seed: "riverstone" },
+  { name: "Foundry Stout", style: "Oatmeal Stout", abv: "5.6%", ibu: "38", note: "Cocoa, espresso, smooth roast.", price: "$7.50 / 16oz", pack: "$19 / 4-pack", seed: "foundry" },
+  { name: "Sundial", style: "Tropical Sour Ale", abv: "4.4%", ibu: "8", note: "Passionfruit, lime, bright tart.", price: "$8 / 12oz", pack: "Taproom only", seed: "sundial" },
+  { name: "Last Light NA", style: "Non-Alc Hazy Pale", abv: "0.4%", ibu: "25", note: "All the juice, none of the buzz.", price: "$6 / 16oz", pack: "$16 / 4-pack", seed: "lastlight" },
+];
+
+const events = [
+  { day: "TUE", label: "Trivia Night", time: "7:00pm", note: "Prizes + pitcher deals" },
+  { day: "FRI", label: "Live Music", time: "8:00pm", note: "Rotating local acts" },
+  { day: "SAT", label: "Food Truck", time: "12:00pm", note: "Weekend rotation" },
+  { day: "SUN", label: "Vinyl & Pints", time: "2:00pm", note: "Bring a record, play a side" },
+];
+
+const testimonials = [
+  { quote: "Best taproom in the city — Pulp Theory ruined every other hazy for me.", who: "Devon R.", meta: "Untappd 4.7★" },
+  { quote: "Dog-friendly patio, killer pilsner, and the food truck rotation is unreal on Fridays.", who: "Marisol T.", meta: "Regular" },
+  { quote: "Brought visiting friends here and now it's our standing Saturday spot.", who: "Aaron L.", meta: "Inglewood local" },
+];
+
+const hours = [
+  { d: "Mon", h: "Closed", closed: true },
+  { d: "Tue – Thu", h: "3:00pm – 10:00pm" },
+  { d: "Fri", h: "12:00pm – 12:00am" },
+  { d: "Sat", h: "11:00am – 12:00am" },
+  { d: "Sun", h: "11:00am – 8:00pm" },
+];
+
+const togo = [
+  { name: "Growler Fill", note: "Any tap · 1.9L", price: "$24", seed: "growler" },
+  { name: "Crowler", note: "Sealed 1L to-go", price: "$14", seed: "crowler" },
+  { name: "Gift Card", note: "The easy win", price: "from $25", seed: "giftcard" },
+];
+
+const desc = "Ironwood Brewing Co. — independent, hop-forward Calgary taproom in Inglewood. See what's pouring, hours, events and to-go cans of Pulp Theory hazy IPA.";
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ironwood Brewing Co. — Pulp Theory Hazy IPA · Inglewood Taproom</title>
+  <meta name="description" content={desc} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600&display=swap" />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BarOrPub",
+    name: "Ironwood Brewing Co.",
+    description: desc,
+    telephone: "+14035550148",
+    address: { "@type": "PostalAddress", streetAddress: "1142 Brewery Lane SE", addressLocality: "Calgary", addressRegion: "AB", postalCode: "T2G 1M9", addressCountry: "CA" },
+    servesCuisine: "Craft Beer",
+    priceRange: "$$",
+    openingHours: ["Tu-Th 15:00-22:00", "Fr 12:00-24:00", "Sa 11:00-24:00", "Su 11:00-20:00"],
+  })} />
+</head>
+<body>
+<div id="agegate" class="agegate" role="dialog" aria-modal="true" aria-label="Age verification">
+  <div class="agegate__card">
+    <div class="crest crest--lg" aria-hidden="true"><span>EST<br/>2014</span></div>
+    <h2>Are you 21 or older?</h2>
+    <p>You must be of legal drinking age to enter the Ironwood taproom.</p>
+    <div class="agegate__btns">
+      <button id="agree" class="btn btn--solid">Yes, pour me in</button>
+      <a class="btn btn--ghost" href="https://www.responsibility.org/">No, take me back</a>
+    </div>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__row">
+    <a href="#top" class="brand">
+      <span class="brand__mark" aria-hidden="true">◗</span>
+      <span class="brand__name">Ironwood<em>Brewing&nbsp;Co.</em></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+    </nav>
+    <a href="#visit" class="btn btn--solid nav__cta">Visit the Taproom</a>
+    <button id="navtoggle" class="nav__toggle" aria-expanded="false" aria-label="Menu">☰</button>
+  </div>
+  <nav id="mobnav" class="nav__mobile" aria-label="Mobile">
+    {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+    <a href="#visit" class="btn btn--solid">Visit the Taproom</a>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="wrap hero__grid">
+      <div class="hero__copy reveal">
+        <p class="eyebrow">Independent · Hop-Forward · Calgary since 2014</p>
+        <h1>Small batch.<br/><span class="hl">Big pour.</span><br/>Brewed two blocks from here.</h1>
+        <p class="lead">Honest beer for the neighborhood — fresh from our Inglewood brewhouse to your glass with as few steps in between as possible.</p>
+        <div class="hero__cta">
+          <a href="#tap" class="btn btn--solid">See What's On Tap</a>
+          <a href="tel:+14035550148" class="btn btn--ghost">Call (403) 555-0148</a>
+        </div>
+        <div class="hero__chips">
+          <span class="chip"><b class="dot"></b> Open Now · til 10pm</span>
+          <span class="chip">Dog-friendly patio</span>
+          <span class="chip">Food truck weekends</span>
+        </div>
+      </div>
+      <div class="hero__media reveal">
+        <figure class="can">
+          <img src="https://picsum.photos/seed/ironwoodpour/720/900" alt="A backlit glass of hazy IPA with rising foam at the Ironwood taproom" loading="eager" />
+          <figcaption class="can__tag">Pulp Theory · Hazy IPA</figcaption>
+        </figure>
+        <div class="splash" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      {Array.from({ length: 2 }).map(() => (
+        <span>MANGO · GUAVA · PASSIONFRUIT · FRESH HOPS · NO ADJUNCTS · LOCAL MALT · PULP THEORY · DRINK FRESH&nbsp;✦&nbsp;</span>
+      ))}
+    </div>
+  </div>
+
+  <!-- ON TAP -->
+  <section id="tap" class="sec sec--tap">
+    <div class="wrap">
+      <div class="sec__head">
+        <p class="eyebrow">What's Pouring</p>
+        <h2>On Tap Right Now</h2>
+        <p class="sec__sub">Six fresh lines, rotated weekly. Pours, packs and to-go — all brewed on site.</p>
+      </div>
+      <div class="taps">
+        {taps.map((t) => (
+          <article class={"tap" + (t.flag ? " tap--flag" : "")}>
+            {t.flag && <span class="tap__ribbon">Flagship</span>}
+            <div class="tap__art">
+              <img src={`https://picsum.photos/seed/${t.seed}/240/320`} alt={`${t.name} ${t.style}`} loading="lazy" />
+            </div>
+            <div class="tap__body">
+              <div class="tap__top">
+                <h3>{t.name}</h3>
+                <span class="tap__style">{t.style}</span>
+              </div>
+              <div class="meta">
+                <span class="pill">{t.abv} ABV</span>
+                <span class="pill">{t.ibu} IBU</span>
+              </div>
+              <p class="tap__note">{t.note}</p>
+              <div class="tap__price"><strong>{t.price}</strong><span>{t.pack}</span></div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story" class="sec sec--story">
+    <div class="wrap story">
+      <div class="story__media reveal">
+        <img src="https://picsum.photos/seed/brewhousecopper/760/620" alt="Gleaming copper and steel fermentation tanks in the Ironwood brewhouse" loading="lazy" />
+        <div class="story__badge"><span>10+</span>years pouring</div>
+      </div>
+      <div class="story__copy reveal">
+        <p class="eyebrow">Our Story</p>
+        <h2>Fewer steps between brewhouse and glass.</h2>
+        <p>We started Ironwood in a leaky Inglewood garage in 2014 with two kettles, a borrowed forklift, and a stubborn belief that beer tastes best the week it's brewed. A decade later the kettles are bigger, but nothing else changed: independent, hop-forward, neighborhood-proud.</p>
+        <p>Every batch is brewed two blocks from the taps you drink it at. We source local malt, chase the freshest hops, and never reach for cheap adjuncts. <strong>Pulp Theory</strong>, our pillowy mango-and-guava hazy, is the beer that built our patio crowd — and the one our regulars swear ruined every other IPA.</p>
+        <div class="stats">
+          <div><b>4.7★</b><span>Untappd avg</span></div>
+          <div><b>40+</b><span>recipes brewed</span></div>
+          <div><b>2 blks</b><span>brewhouse to bar</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section id="events" class="sec sec--events">
+    <div class="wrap">
+      <div class="sec__head">
+        <p class="eyebrow eyebrow--light">This Week</p>
+        <h2>Events &amp; Live Music</h2>
+        <p class="sec__sub sec__sub--light">Live music Fridays · Trivia Tuesdays · Food truck every weekend.</p>
+      </div>
+      <div class="events">
+        {events.map((e) => (
+          <article class="event">
+            <div class="event__day">{e.day}</div>
+            <div class="event__info">
+              <h3>{e.label}</h3>
+              <p>{e.note}</p>
+            </div>
+            <div class="event__time">{e.time}</div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CANS / TO-GO -->
+  <section id="cans" class="sec sec--cans">
+    <div class="wrap">
+      <div class="sec__head">
+        <p class="eyebrow">To-Go &amp; Merch</p>
+        <h2>Take the Pour Home</h2>
+        <p class="sec__sub">Fills, crowlers and gift cards at the bar — fresh sealed, every time.</p>
+      </div>
+      <div class="togo">
+        {togo.map((c) => (
+          <article class="togo__card">
+            <div class="togo__img"><img src={`https://picsum.photos/seed/${c.seed}/420/300`} alt={c.name} loading="lazy" /></div>
+            <div class="togo__row">
+              <div><h3>{c.name}</h3><p>{c.note}</p></div>
+              <span class="togo__price">{c.price}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS slider -->
+  <section class="sec sec--reviews">
+    <div class="wrap">
+      <div class="sec__head">
+        <p class="eyebrow">Social Proof</p>
+        <h2>The Regulars Said It Best</h2>
+      </div>
+      <div class="slider" id="slider">
+        <div class="slider__track" id="track">
+          {testimonials.map((t) => (
+            <blockquote class="quote">
+              <div class="quote__stars" aria-hidden="true">★★★★★</div>
+              <p>“{t.quote}”</p>
+              <footer><b>{t.who}</b><span>{t.meta}</span></footer>
+            </blockquote>
+          ))}
+        </div>
+        <div class="slider__dots" id="dots" role="tablist" aria-label="Testimonials"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section id="visit" class="sec sec--visit">
+    <div class="wrap visit">
+      <div class="visit__hours">
+        <p class="eyebrow">Taproom Hours</p>
+        <h2>Visit the Taproom</h2>
+        <p class="open"><b class="dot"></b> Open Now</p>
+        <table class="hours">
+          <tbody>
+            {hours.map((h) => (
+              <tr class={h.closed ? "is-closed" : ""}>
+                <th scope="row">{h.d}</th>
+                <td>{h.h}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <ul class="amen">
+          <li>Patio</li><li>Dog-friendly</li><li>Street parking</li><li>Untappd verified</li>
+        </ul>
+      </div>
+      <div class="visit__map">
+        <div class="map" aria-hidden="true">
+          <img src="https://picsum.photos/seed/inglewoodmap/720/520?grayscale" alt="" loading="lazy" />
+          <span class="map__pin">◗</span>
+        </div>
+        <address class="nap">
+          <strong>Ironwood Brewing Co.</strong><br/>
+          1142 Brewery Lane SE, Inglewood<br/>
+          Calgary, AB T2G 1M9
+          <div class="nap__cta">
+            <a class="btn btn--solid" href="tel:+14035550148">Call (403) 555-0148</a>
+            <a class="btn btn--ghost" href="https://maps.google.com/?q=1142+Brewery+Lane+SE+Calgary+AB" target="_blank" rel="noopener">Get Directions</a>
+          </div>
+        </address>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="wrap cta__inner">
+      <h2>Come thirsty.<br/>Leave a regular.</h2>
+      <p>Pull up a stool, grab a pour of Pulp Theory, and stay for the food truck. We saved you a spot on the patio.</p>
+      <div class="cta__btns">
+        <a class="btn btn--light" href="#tap">See What's On Tap</a>
+        <a class="btn btn--outline" href="tel:+14035550148">Call (403) 555-0148</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <a href="#top" class="brand brand--foot"><span class="brand__mark" aria-hidden="true">◗</span><span class="brand__name">Ironwood<em>Brewing Co.</em></span></a>
+      <p class="foot__tag">Honest beer for the neighborhood. Independent &amp; family-run in Inglewood since 2014.</p>
+    </div>
+    <div>
+      <h3>Visit</h3>
+      <p>1142 Brewery Lane SE<br/>Calgary, AB T2G 1M9<br/><a href="tel:+14035550148">(403) 555-0148</a></p>
+    </div>
+    <div>
+      <h3>Hours</h3>
+      <p>Tue–Thu 3pm–10pm<br/>Fri–Sat til midnight<br/>Sun 11am–8pm · Mon closed</p>
+    </div>
+    <div>
+      <h3>Follow</h3>
+      <p><a href="#">Untappd</a><br/><a href="#">Instagram</a><br/><a href="#">Newsletter</a></p>
+    </div>
+  </div>
+  <div class="wrap foot__base">
+    <span>© 2026 Ironwood Brewing Co.</span>
+    <span>Please drink responsibly. 21+</span>
+  </div>
+</footer>
+
+<style is:global>
+  *,*::before,*::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+
+<style>
+  :root {
+    --bg: #FFF8EC;
+    --fg: #2A1A4A;
+    --primary: #FF5C2E;
+    --primary-fg: #FFFFFF;
+    --accent: #FFC23C;
+    --muted: #FCE3D2;
+    --border: #F7C9A8;
+    --grad: linear-gradient(120deg, #FF5C2E 0%, #FF8A3D 38%, #FFC23C 100%);
+    --grad-juice: radial-gradient(circle at 30% 20%, #FFC23C 0%, #FF5C2E 45%, #E0407E 100%);
+    --font-d: "Bricolage Grotesque", system-ui, sans-serif;
+    --font-b: "DM Sans", system-ui, sans-serif;
+    --r: 22px;
+    --shadow: 0 18px 50px -22px rgba(42,26,74,.45);
+  }
+  body { background: var(--bg); color: var(--fg); font-family: var(--font-b); line-height: 1.6; font-size: 17px; }
+  .wrap { width: min(1180px, 92vw); margin-inline: auto; }
+  h1,h2,h3 { font-family: var(--font-d); font-weight: 800; line-height: 1.02; letter-spacing: -.02em; margin: 0; }
+  .eyebrow { font-family: var(--font-d); font-weight: 700; text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; color: var(--primary); margin: 0 0 .6rem; }
+  .eyebrow--light { color: var(--accent); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 48px; padding: 0 1.5rem; border-radius: 999px; font-family: var(--font-d); font-weight: 700; font-size: .98rem; text-decoration: none; cursor: pointer; border: 2px solid transparent; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+  .btn:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
+  .btn--solid { background: var(--primary); color: var(--primary-fg); box-shadow: 0 10px 24px -10px var(--primary); }
+  .btn--solid:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -12px var(--primary); }
+  .btn--ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+  .btn--ghost:hover { background: var(--muted); transform: translateY(-2px); }
+  .btn--light { background: var(--bg); color: var(--fg); }
+  .btn--light:hover { transform: translateY(-2px); }
+  .btn--outline { border-color: rgba(255,255,255,.6); color: #fff; }
+  .btn--outline:hover { background: rgba(255,255,255,.14); transform: translateY(-2px); }
+
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #2bb673; box-shadow: 0 0 0 4px rgba(43,182,115,.22); animation: pulse 2s infinite; }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 8px rgba(43,182,115,0); } }
+
+  /* AGE GATE */
+  .agegate { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 1.5rem; background: var(--grad-juice); }
+  .agegate.is-hidden { display: none; }
+  .agegate__card { background: var(--bg); border-radius: var(--r); padding: clamp(1.8rem,5vw,3rem); max-width: 440px; text-align: center; box-shadow: var(--shadow); }
+  .agegate__card h2 { font-size: clamp(1.5rem,4vw,2rem); margin-bottom: .5rem; }
+  .agegate__card p { margin: 0 0 1.4rem; color: #5a4a78; }
+  .agegate__btns { display: flex; flex-direction: column; gap: .7rem; }
+  .crest { width: 92px; height: 92px; border-radius: 50%; margin: 0 auto 1.2rem; display: grid; place-items: center; background: var(--grad); color: #fff; font-family: var(--font-d); font-weight: 800; font-size: .85rem; line-height: 1; text-align: center; box-shadow: inset 0 0 0 4px rgba(255,255,255,.4); }
+
+  /* NAV */
+  .nav { position: sticky; top: 0; z-index: 90; background: rgba(255,248,236,.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav__row { display: flex; align-items: center; gap: 1rem; min-height: 70px; }
+  .brand { display: flex; align-items: center; gap: .55rem; text-decoration: none; font-family: var(--font-d); font-weight: 800; font-size: 1.18rem; }
+  .brand__mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--grad); color: #fff; font-size: 1.1rem; }
+  .brand__name em { font-style: normal; color: var(--primary); font-weight: 700; }
+  .nav__links { display: none; gap: 1.4rem; margin-left: auto; }
+  .nav__links a { text-decoration: none; font-weight: 600; font-size: .96rem; position: relative; }
+  .nav__links a::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 0; height: 2px; background: var(--primary); transition: width .2s ease; }
+  .nav__links a:hover::after { width: 100%; }
+  .nav__cta { display: none; }
+  .nav__toggle { margin-left: auto; background: var(--muted); border: 1px solid var(--border); border-radius: 12px; width: 48px; height: 48px; font-size: 1.3rem; cursor: pointer; color: var(--fg); }
+  .nav__mobile { display: none; flex-direction: column; gap: .4rem; padding: 0 0 1rem; }
+  .nav__mobile.is-open { display: flex; }
+  .nav__mobile a { text-decoration: none; font-weight: 600; padding: .7rem .4rem; border-radius: 10px; }
+  .nav__mobile a:not(.btn):hover { background: var(--muted); }
+  .nav__mobile .btn { margin-top: .4rem; }
+  @media (min-width: 880px) {
+    .nav__links { display: flex; }
+    .nav__cta { display: inline-flex; }
+    .nav__toggle { display: none; }
+    .nav__mobile { display: none !important; }
+  }
+
+  /* HERO */
+  .hero { position: relative; overflow: hidden; padding: clamp(2.5rem,7vw,5rem) 0 clamp(3rem,7vw,5rem); }
+  .hero__blobs span { position: absolute; border-radius: 50%; filter: blur(50px); opacity: .55; }
+  .hero__blobs span:nth-child(1) { width: 380px; height: 380px; background: #FFC23C; top: -120px; right: -60px; }
+  .hero__blobs span:nth-child(2) { width: 320px; height: 320px; background: #FF5C2E; bottom: -130px; left: -80px; }
+  .hero__blobs span:nth-child(3) { width: 260px; height: 260px; background: #E0407E; top: 40%; right: 30%; opacity: .25; }
+  .hero__grid { position: relative; display: grid; gap: clamp(2rem,5vw,3.5rem); grid-template-columns: 1fr; align-items: center; }
+  h1 { font-size: clamp(2.6rem, 7.5vw, 4.7rem); }
+  .hl { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { font-size: clamp(1.05rem,2vw,1.22rem); max-width: 30ch; color: #4a3a6e; margin: 1.2rem 0 1.6rem; }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-bottom: 1.4rem; }
+  .hero__chips { display: flex; flex-wrap: wrap; gap: .55rem; }
+  .chip { display: inline-flex; align-items: center; gap: .45rem; background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: .4rem .9rem; font-size: .82rem; font-weight: 600; }
+  .hero__media { position: relative; }
+  .can { position: relative; margin: 0; border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); transform: rotate(-2deg); transition: transform .4s ease; }
+  .can:hover { transform: rotate(0deg) scale(1.01); }
+  .can img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+  .can::before { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(255,92,46,.32), rgba(224,64,126,.18) 60%, transparent); mix-blend-mode: multiply; }
+  .can__tag { position: absolute; left: 1rem; bottom: 1rem; background: rgba(255,248,236,.92); padding: .5rem 1rem; border-radius: 999px; font-family: var(--font-d); font-weight: 700; font-size: .9rem; }
+  .splash { position: absolute; inset: -18px; z-index: -1; background: var(--grad-juice); border-radius: 40px; opacity: .35; transform: rotate(3deg); }
+
+  /* MARQUEE */
+  .marquee { background: var(--fg); color: var(--accent); overflow: hidden; padding: .75rem 0; border-top: 3px solid var(--primary); border-bottom: 3px solid var(--primary); }
+  .marquee__track { display: flex; width: max-content; animation: scroll 26s linear infinite; }
+  .marquee__track span { font-family: var(--font-d); font-weight: 800; letter-spacing: .04em; white-space: nowrap; font-size: 1rem; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  .sec { padding: clamp(3.2rem,8vw,6rem) 0; }
+  .sec__head { max-width: 640px; margin-bottom: 2.4rem; }
+  .sec__head h2 { font-size: clamp(2rem,5vw,3.1rem); }
+  .sec__sub { color: #5a4a78; margin: .8rem 0 0; font-size: 1.05rem; }
+  .sec__sub--light { color: rgba(255,248,236,.82); }
+
+  /* TAP LIST */
+  .taps { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+  .tap { position: relative; display: flex; gap: 1rem; background: #fff; border: 1px solid var(--border); border-radius: var(--r); padding: 1rem; box-shadow: 0 10px 30px -24px rgba(42,26,74,.5); transition: transform .2s ease, box-shadow .2s ease; }
+  .tap:hover { transform: translateY(-4px); box-shadow: 0 22px 44px -26px rgba(42,26,74,.6); }
+  .tap--flag { border-color: var(--primary); background: linear-gradient(180deg, #fff, #FFF3E6); }
+  .tap__ribbon { position: absolute; top: -10px; right: 16px; background: var(--grad); color: #fff; font-family: var(--font-d); font-weight: 800; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .7rem; border-radius: 999px; }
+  .tap__art { flex: 0 0 86px; border-radius: 14px; overflow: hidden; }
+  .tap__art img { width: 86px; height: 100%; min-height: 118px; object-fit: cover; filter: saturate(1.15) contrast(1.05); }
+  .tap__body { flex: 1; min-width: 0; }
+  .tap__top { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem .7rem; }
+  .tap__top h3 { font-size: 1.3rem; }
+  .tap__style { font-size: .82rem; font-weight: 600; color: var(--primary); }
+  .meta { display: flex; gap: .4rem; margin: .5rem 0; }
+  .pill { background: var(--muted); border-radius: 999px; padding: .22rem .7rem; font-size: .74rem; font-weight: 600; font-family: var(--font-d); }
+  .tap__note { margin: 0 0 .7rem; color: #5a4a78; font-size: .95rem; }
+  .tap__price { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .8rem; }
+  .tap__price strong { font-family: var(--font-d); font-size: 1.1rem; color: var(--primary); }
+  .tap__price span { font-size: .82rem; color: #7a6a98; }
+  @media (min-width: 720px) { .taps { grid-template-columns: 1fr 1fr; } }
+
+  /* STORY */
+  .story { display: grid; gap: clamp(1.8rem,5vw,3rem); align-items: center; grid-template-columns: 1fr; }
+  .story__media { position: relative; border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); }
+  .story__media img { width: 100%; aspect-ratio: 6/5; object-fit: cover; }
+  .story__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(200deg, transparent 50%, rgba(255,92,46,.28)); }
+  .story__badge { position: absolute; right: 1rem; bottom: 1rem; background: var(--grad); color: #fff; border-radius: 16px; padding: .8rem 1rem; font-weight: 600; font-size: .8rem; display: grid; line-height: 1.1; }
+  .story__badge span { font-family: var(--font-d); font-weight: 800; font-size: 1.7rem; }
+  .story__copy h2 { font-size: clamp(1.9rem,4.5vw,2.8rem); margin-bottom: 1rem; }
+  .story__copy p { color: #4a3a6e; margin: 0 0 1rem; }
+  .stats { display: flex; flex-wrap: wrap; gap: 1.6rem; margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px solid var(--border); }
+  .stats b { font-family: var(--font-d); font-size: 1.7rem; display: block; color: var(--primary); }
+  .stats span { font-size: .82rem; color: #7a6a98; }
+  @media (min-width: 860px) { .story { grid-template-columns: 1fr 1.1fr; } }
+
+  /* EVENTS */
+  .sec--events { background: var(--fg); color: var(--bg); border-radius: clamp(28px,5vw,48px); }
+  .sec--events h2 { font-size: clamp(2rem,5vw,3.1rem); }
+  .events { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  .event { display: flex; align-items: center; gap: 1.1rem; background: rgba(255,255,255,.05); border: 1px solid rgba(255,194,60,.25); border-radius: 18px; padding: 1.1rem 1.3rem; transition: background .2s ease, transform .2s ease; }
+  .event:hover { background: rgba(255,194,60,.12); transform: translateX(4px); }
+  .event__day { flex: 0 0 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; background: var(--grad); color: #fff; font-family: var(--font-d); font-weight: 800; font-size: .92rem; }
+  .event__info { flex: 1; }
+  .event__info h3 { font-size: 1.2rem; }
+  .event__info p { margin: .15rem 0 0; font-size: .88rem; color: rgba(255,248,236,.72); }
+  .event__time { font-family: var(--font-d); font-weight: 700; color: var(--accent); }
+  @media (min-width: 760px) { .events { grid-template-columns: 1fr 1fr; } }
+
+  /* TO-GO */
+  .togo { display: grid; gap: 1.2rem; grid-template-columns: 1fr; }
+  .togo__card { background: #fff; border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; box-shadow: 0 10px 30px -24px rgba(42,26,74,.5); transition: transform .2s ease; }
+  .togo__card:hover { transform: translateY(-5px); }
+  .togo__img { aspect-ratio: 7/5; overflow: hidden; }
+  .togo__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; filter: saturate(1.1); }
+  .togo__card:hover .togo__img img { transform: scale(1.06); }
+  .togo__row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.1rem 1.3rem; }
+  .togo__row h3 { font-size: 1.25rem; }
+  .togo__row p { margin: .2rem 0 0; font-size: .85rem; color: #7a6a98; }
+  .togo__price { font-family: var(--font-d); font-weight: 800; font-size: 1.3rem; color: var(--primary); white-space: nowrap; }
+  @media (min-width: 760px) { .togo { grid-template-columns: repeat(3,1fr); } }
+
+  /* REVIEWS SLIDER */
+  .slider { position: relative; overflow: hidden; }
+  .slider__track { display: flex; transition: transform .5s cubic-bezier(.4,0,.2,1); }
+  .quote { flex: 0 0 100%; margin: 0; padding: clamp(1.8rem,5vw,3rem); background: var(--grad-juice); color: #fff; border-radius: var(--r); text-align: center; }
+  .quote__stars { color: #fff; letter-spacing: .2em; font-size: 1.1rem; margin-bottom: 1rem; }
+  .quote p { font-family: var(--font-d); font-weight: 700; font-size: clamp(1.3rem,3.5vw,2rem); line-height: 1.25; margin: 0 auto 1.2rem; max-width: 22ch; }
+  .quote footer b { font-family: var(--font-d); display: block; }
+  .quote footer span { font-size: .85rem; opacity: .85; }
+  .slider__dots { display: flex; justify-content: center; gap: .5rem; margin-top: 1.3rem; }
+  .slider__dots button { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--primary); background: transparent; cursor: pointer; padding: 0; transition: background .2s; }
+  .slider__dots button[aria-selected="true"] { background: var(--primary); }
+  .slider__dots button:focus-visible { outline: 3px solid var(--fg); outline-offset: 2px; }
+
+  /* VISIT */
+  .visit { display: grid; gap: clamp(1.8rem,5vw,3rem); grid-template-columns: 1fr; align-items: start; }
+  .visit__hours h2 { font-size: clamp(1.9rem,4.5vw,2.8rem); margin-bottom: .6rem; }
+  .open { display: flex; align-items: center; gap: .5rem; font-weight: 600; margin: 0 0 1.2rem; }
+  .hours { width: 100%; border-collapse: collapse; }
+  .hours th, .hours td { text-align: left; padding: .7rem .2rem; border-bottom: 1px solid var(--border); }
+  .hours th { font-family: var(--font-b); font-weight: 600; }
+  .hours td { text-align: right; color: #5a4a78; font-weight: 500; }
+  .hours .is-closed td { color: var(--primary); font-weight: 600; }
+  .amen { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: 1.3rem 0 0; }
+  .amen li { background: var(--muted); border-radius: 999px; padding: .35rem .85rem; font-size: .8rem; font-weight: 600; }
+  .visit__map { background: #fff; border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); }
+  .map { position: relative; aspect-ratio: 7/5; }
+  .map img { width: 100%; height: 100%; object-fit: cover; opacity: .8; }
+  .map::after { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(255,92,46,.18), rgba(255,194,60,.12)); }
+  .map__pin { position: absolute; top: 44%; left: 50%; transform: translate(-50%,-50%); font-size: 2rem; color: var(--primary); text-shadow: 0 4px 10px rgba(0,0,0,.3); }
+  .nap { font-style: normal; padding: 1.3rem; line-height: 1.6; }
+  .nap strong { font-family: var(--font-d); font-size: 1.1rem; }
+  .nap__cta { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+  @media (min-width: 860px) { .visit { grid-template-columns: 1fr 1.05fr; } }
+
+  /* CTA */
+  .cta { background: var(--grad); color: #fff; }
+  .cta__inner { padding: clamp(3rem,8vw,5.5rem) 0; text-align: center; }
+  .cta h2 { font-size: clamp(2.2rem,6vw,3.6rem); }
+  .cta p { max-width: 46ch; margin: 1rem auto 1.8rem; font-size: 1.1rem; opacity: .95; }
+  .cta__btns { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; }
+
+  /* FOOTER */
+  .foot { background: var(--fg); color: var(--bg); padding: clamp(2.5rem,6vw,4rem) 0 1.5rem; }
+  .foot__grid { display: grid; gap: 1.8rem; grid-template-columns: 1fr; }
+  .brand--foot { color: var(--bg); margin-bottom: .8rem; }
+  .brand--foot .brand__name em { color: var(--accent); }
+  .foot__tag { color: rgba(255,248,236,.66); font-size: .92rem; max-width: 34ch; }
+  .foot h3 { font-size: .82rem; text-transform: uppercase; letter-spacing: .14em; color: var(--accent); margin-bottom: .7rem; }
+  .foot p { margin: 0; color: rgba(255,248,236,.78); font-size: .92rem; }
+  .foot a { color: rgba(255,248,236,.78); text-decoration: none; }
+  .foot a:hover { color: var(--accent); }
+  .foot__base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; margin-top: 2.5rem; padding-top: 1.3rem; border-top: 1px solid rgba(255,248,236,.14); font-size: .8rem; color: rgba(255,248,236,.5); }
+  @media (min-width: 720px) { .foot__grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+
+<script>
+  // Age gate
+  const gate = document.getElementById('agegate');
+  if (sessionStorage.getItem('iw-age-ok')) gate?.classList.add('is-hidden');
+  document.getElementById('agree')?.addEventListener('click', () => {
+    sessionStorage.setItem('iw-age-ok', '1');
+    gate?.classList.add('is-hidden');
+  });
+
+  // Mobile nav
+  const tog = document.getElementById('navtoggle');
+  const mob = document.getElementById('mobnav');
+  tog?.addEventListener('click', () => {
+    const open = mob?.classList.toggle('is-open');
+    tog.setAttribute('aria-expanded', String(open));
+  });
+  mob?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+    mob.classList.remove('is-open');
+    tog?.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Testimonial slider
+  const track = document.getElementById('track');
+  const dots = document.getElementById('dots');
+  const slides = track ? track.children.length : 0;
+  let idx = 0;
+  if (track && dots) {
+    for (let i = 0; i < slides; i++) {
+      const b = document.createElement('button');
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-label', 'Testimonial ' + (i + 1));
+      b.addEventListener('click', () => go(i));
+      dots.appendChild(b);
+    }
+    const go = (i) => {
+      idx = i;
+      track.style.transform = `translateX(-${i * 100}%)`;
+      [...dots.children].forEach((d, di) => d.setAttribute('aria-selected', String(di === i)));
+    };
+    go(0);
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) setInterval(() => go((idx + 1) % slides), 5000);
+  }
+</script>
+</body>
+</html>

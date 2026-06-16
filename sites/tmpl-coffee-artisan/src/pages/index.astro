@@ -1,0 +1,1273 @@
+---
+const nav = [
+  { label: "Menu", href: "#menu" },
+  { label: "Our Craft", href: "#craft" },
+  { label: "Visit", href: "#visit" },
+  { label: "Reviews", href: "#reviews" },
+];
+
+const drinks = [
+  { name: "Pour-Over", note: "single origin, rotating", price: "$5.50" },
+  { name: "Flat White", note: "double ristretto, silk milk", price: "$5.00" },
+  { name: "Cortado", note: "equal parts, no foam", price: "$4.50" },
+  { name: "Cold Brew", note: "16oz, 18-hour steep", price: "$6.00" },
+];
+
+const beans = [
+  {
+    name: "Ethiopia Guji",
+    origin: "Washed · Single Origin",
+    tags: ["floral", "bergamot", "stone fruit"],
+    price: "$22",
+    seed: "guji-beans",
+  },
+  {
+    name: "Colombia Huila",
+    origin: "Honey Process · Single Origin",
+    tags: ["cocoa", "cherry", "brown sugar"],
+    price: "$20",
+    seed: "huila-beans",
+  },
+  {
+    name: "House Subscription",
+    origin: "Two bags monthly · Free local delivery",
+    tags: ["rotating", "fresh weekly"],
+    price: "$38/mo",
+    seed: "subscription-beans",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "The best flat white in Calgary, full stop. The Guji pour-over ruined every other coffee for me.",
+    name: "Priya R.",
+  },
+  {
+    quote:
+      "Tucked into Inglewood and worth the trip. You can taste how fresh the roast is.",
+    name: "Daniel M.",
+  },
+  {
+    quote: "I've been on their subscription for a year. Never a dull bag.",
+    name: "Sophie L.",
+  },
+];
+
+const hours = [
+  { day: "Monday – Friday", time: "7:00am – 5:00pm" },
+  { day: "Saturday – Sunday", time: "8:00am – 4:00pm" },
+];
+
+const gallery = [
+  { seed: "pourover-craft", alt: "Barista preparing a pour-over" },
+  { seed: "roaster-drum", alt: "Roaster drum turning fresh beans" },
+  { seed: "latte-art-cup", alt: "Latte art in a ceramic cup" },
+  { seed: "cafe-interior-warm", alt: "Warm wood interior of the cafe" },
+  { seed: "raw-green-beans", alt: "Raw green coffee beans" },
+  { seed: "hands-mug", alt: "Hands cupping a warm mug" },
+];
+
+const marquee = [
+  "Small-batch",
+  "Roasted weekly",
+  "Single origin",
+  "Inglewood, YYC",
+  "Slow coffee",
+  "Est. 2018",
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Northpoint Coffee Co. — Small-Batch Roaster in Inglewood, Calgary</title>
+    <meta
+      name="description"
+      content="Northpoint Coffee Co. — single-origin beans roasted weekly in the heart of Inglewood, Calgary. Slow coffee for a fast city. Visit us, order beans, or join the subscription."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#menu">Skip to content</a>
+
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="#top" class="brand" aria-label="Northpoint Coffee Co. home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="34" height="34">
+              <path
+                d="M8 14h18a8 8 0 0 1 0 16h-2M8 14v8a8 8 0 0 0 8 8h4M26 18h2a4 4 0 0 1 0 8h-2"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              ></path>
+              <path
+                d="M13 6c-1.5 2 1.5 3 0 5M19 6c-1.5 2 1.5 3 0 5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+          </span>
+          <span class="brand-text">Northpoint <em>Co.</em></span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="nav-cta" href="#order">Order online</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-photo" aria-hidden="true"></div>
+        <div class="hero-grain" aria-hidden="true"></div>
+        <div class="hero-inner reveal">
+          <p class="eyebrow">Single-origin roaster · Inglewood, Calgary</p>
+          <h1 id="hero-title">
+            Small-batch coffee,<br /><span class="ink-script">roasted in Calgary.</span>
+          </h1>
+          <p class="lede">
+            Northpoint Coffee Co. — single-origin beans roasted weekly in a
+            little brick shop on 9th Ave. Slow coffee for a fast city.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#menu">View the menu</a>
+            <a class="btn btn-ghost" href="#visit">Visit us</a>
+          </div>
+        </div>
+        <div class="hero-stamp" aria-hidden="true">
+          <svg viewBox="0 0 120 120" width="118" height="118">
+            <defs>
+              <path
+                id="circlePath"
+                d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"
+              ></path>
+            </defs>
+            <text class="stamp-text">
+              <textPath href="#circlePath">
+                · roasted weekly · small batch · est. 2018 ·
+              </textPath>
+            </text>
+            <circle cx="60" cy="60" r="22" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+            <text x="60" y="65" text-anchor="middle" class="stamp-center">N°</text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          {[...marquee, ...marquee].map((m) => (
+            <span class="marquee-item">{m}<i class="dot">✦</i></span>
+          ))}
+        </div>
+      </div>
+
+      <!-- MENU -->
+      <section class="section menu" id="menu" aria-labelledby="menu-title">
+        <div class="section-head reveal">
+          <p class="kicker">The Counter</p>
+          <h2 id="menu-title">Menu &amp; beans</h2>
+          <p class="section-sub">
+            Drinks pulled to order, beans bagged the morning we roast them.
+          </p>
+        </div>
+
+        <div class="menu-grid">
+          <ul class="drink-list reveal" aria-label="Drinks menu">
+            {drinks.map((d) => (
+              <li class="drink">
+                <span class="drink-name">{d.name}</span>
+                <span class="drink-dots" aria-hidden="true"></span>
+                <span class="drink-price">{d.price}</span>
+                <span class="drink-note">{d.note}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="bean-rail reveal" aria-label="Retail beans">
+            {beans.map((b) => (
+              <article class="bean-card">
+                <div class="bean-photo">
+                  <img
+                    src={`https://picsum.photos/seed/${b.seed}/420/300`}
+                    alt={`${b.name} coffee`}
+                    loading="lazy"
+                    width="420"
+                    height="300"
+                  />
+                </div>
+                <div class="bean-body">
+                  <div class="bean-top">
+                    <h3>{b.name}</h3>
+                    <span class="bean-price">{b.price}</span>
+                  </div>
+                  <p class="bean-origin">{b.origin}</p>
+                  <ul class="tags">
+                    {b.tags.map((t) => <li class="tag">{t}</li>)}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- CRAFT / STORY -->
+      <section class="section craft" id="craft" aria-labelledby="craft-title">
+        <div class="craft-grid">
+          <div class="craft-photo reveal">
+            <img
+              src="https://picsum.photos/seed/northpoint-roaster/720/860"
+              alt="Roasting small batches at Northpoint"
+              loading="lazy"
+              width="720"
+              height="860"
+            />
+            <div class="craft-tape" aria-hidden="true">roast log · batch 412</div>
+          </div>
+          <div class="craft-copy reveal">
+            <p class="kicker">Our Craft</p>
+            <h2 id="craft-title">From the farm to your favourite cup.</h2>
+            <p>
+              We buy small lots from farmers we know by name, then roast them in
+              25lb batches on a vintage drum roaster in the back of the shop.
+              Nothing sits more than a week — you taste the coffee the way the
+              farm intended.
+            </p>
+            <dl class="craft-stats">
+              <div><dt>25lb</dt><dd>batch size</dd></div>
+              <div><dt>7 days</dt><dd>max bag age</dd></div>
+              <div><dt>12</dt><dd>origin partners</dd></div>
+            </dl>
+            <a class="btn btn-primary" href="#order">Order this week's roast</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="section gallery" aria-labelledby="gallery-title">
+        <div class="section-head reveal">
+          <p class="kicker">The Shop</p>
+          <h2 id="gallery-title">A warm room on 9th Ave.</h2>
+        </div>
+        <div class="gallery-grid">
+          {gallery.map((g, i) => (
+            <figure class={`gtile gtile-${i + 1} reveal`}>
+              <img
+                src={`https://picsum.photos/seed/${g.seed}/640/640`}
+                alt={g.alt}
+                loading="lazy"
+                width="640"
+                height="640"
+              />
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section class="section reviews" id="reviews" aria-labelledby="reviews-title">
+        <div class="section-head reveal">
+          <p class="kicker">Word of mouth</p>
+          <h2 id="reviews-title">Loved by the neighbourhood</h2>
+          <p class="rating" aria-label="Rated 4.9 out of 5">
+            <span class="stars" aria-hidden="true">★★★★★</span> 4.9 · 380+ reviews
+          </p>
+        </div>
+        <div class="review-grid">
+          {testimonials.map((t) => (
+            <blockquote class="review reveal">
+              <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+              <p>{t.quote}</p>
+              <cite>— {t.name}</cite>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+
+      <!-- VISIT + ORDER -->
+      <section class="section visit" id="visit" aria-labelledby="visit-title">
+        <div class="visit-grid">
+          <div class="visit-copy reveal" id="order">
+            <p class="kicker">Visit Us</p>
+            <h2 id="visit-title">Come sit a while.</h2>
+            <p class="status">
+              <span class="status-pill">● Open now</span> until 5:00pm today
+            </p>
+            <table class="hours" aria-label="Opening hours">
+              <tbody>
+                {hours.map((h) => (
+                  <tr>
+                    <th scope="row">{h.day}</th>
+                    <td>{h.time}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <address class="nap">
+              1142 9 Avenue SE, Inglewood<br />Calgary, AB T2G 0S9
+            </address>
+            <div class="visit-cta">
+              <a class="btn btn-primary" href="tel:+14035550192">Call (403) 555-0192</a>
+              <a
+                class="btn btn-ghost"
+                href="https://maps.google.com/?q=1142+9+Avenue+SE+Calgary"
+                target="_blank"
+                rel="noopener"
+              >Get directions</a>
+            </div>
+          </div>
+          <div class="visit-map reveal" aria-hidden="true">
+            <img
+              src="https://picsum.photos/seed/inglewood-map/640/720?grayscale"
+              alt=""
+              loading="lazy"
+              width="640"
+              height="720"
+            />
+            <span class="map-pin" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="40" height="40">
+                <path
+                  d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"
+                  fill="currentColor"
+                ></path>
+                <circle cx="12" cy="9" r="2.6" fill="var(--bg)"></circle>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="brand-text">Northpoint <em>Co.</em></span>
+          <p>Single-origin beans, roasted weekly in Inglewood, Calgary.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <p>1142 9 Avenue SE<br />Calgary, AB T2G 0S9</p>
+          <a href="tel:+14035550192">(403) 555-0192</a>
+        </div>
+        <div class="footer-col">
+          <h4>Hours</h4>
+          <p>Mon–Fri 7am – 5pm<br />Sat–Sun 8am – 4pm</p>
+        </div>
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <a href="#">Instagram</a><br />
+          <a href="#">Newsletter</a>
+        </div>
+      </div>
+      <p class="copyright">© 2026 Northpoint Coffee Co. · Made slow in Calgary.</p>
+    </footer>
+
+    <!-- STICKY MOBILE BAR -->
+    <div class="mobile-bar" aria-hidden="false">
+      <a class="btn btn-ghost" href="tel:+14035550192">Call</a>
+      <a class="btn btn-primary" href="#order">Order online</a>
+    </div>
+
+    <script>
+      // Solidify nav on scroll
+      const nav = document.getElementById("nav");
+      const onScroll = () =>
+        nav?.classList.toggle("scrolled", window.scrollY > 24);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // Scroll reveal
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const els = document.querySelectorAll(".reveal");
+      if (reduce || !("IntersectionObserver" in window)) {
+        els.forEach((e) => e.classList.add("in"));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((en) => {
+              if (en.isIntersecting) {
+                en.target.classList.add("in");
+                io.unobserve(en.target);
+              }
+            });
+          },
+          { threshold: 0.16 }
+        );
+        els.forEach((e) => io.observe(e));
+      }
+    </script>
+
+    <style is:global>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+
+    <style>
+      :root {
+        --bg: #f3ead7;
+        --fg: #2e2117;
+        --primary: #9b4a1f;
+        --primary-fg: #f8f1e4;
+        --accent: #c8832b;
+        --muted: #e4d6bc;
+        --border: #cbb892;
+        --font-display: "Fraunces", Georgia, serif;
+        --font-body: "Work Sans", system-ui, sans-serif;
+        --radius: 14px;
+        --shadow: 0 18px 40px -22px rgba(46, 33, 23, 0.55);
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--font-body);
+        font-size: clamp(1rem, 0.95rem + 0.2vw, 1.075rem);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .skip {
+        position: absolute;
+        left: -999px;
+        top: 0;
+        background: var(--primary);
+        color: var(--primary-fg);
+        padding: 0.6rem 1rem;
+        border-radius: 0 0 var(--radius) 0;
+        z-index: 200;
+      }
+      .skip:focus {
+        left: 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--font-display);
+        font-weight: 600;
+        line-height: 1.05;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0.75rem 1.5rem;
+        border-radius: 999px;
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 0.98rem;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease,
+          background 0.2s ease;
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: var(--primary-fg);
+        box-shadow: var(--shadow);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        background: #863e18;
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--fg);
+        border: 1.5px solid var(--border);
+      }
+      .btn-ghost:hover {
+        transform: translateY(-2px);
+        border-color: var(--primary);
+        background: var(--muted);
+      }
+
+      /* ===== NAV ===== */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        transition: background 0.3s ease, box-shadow 0.3s ease,
+          border-color 0.3s ease;
+        border-bottom: 1px solid transparent;
+      }
+      .nav.scrolled {
+        background: rgba(243, 234, 215, 0.86);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 6px 24px -18px rgba(46, 33, 23, 0.6);
+      }
+      .nav-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0.85rem 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        text-decoration: none;
+        color: var(--primary);
+      }
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border: 1.5px solid var(--border);
+        border-radius: 50%;
+        background: var(--muted);
+      }
+      .brand-text {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.35rem;
+        color: var(--fg);
+        letter-spacing: -0.01em;
+      }
+      .brand-text em {
+        font-style: italic;
+        color: var(--primary);
+        font-weight: 600;
+      }
+      .nav-links {
+        display: none;
+        margin-left: auto;
+        gap: 1.6rem;
+      }
+      .nav-links a {
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        padding: 0.3rem 0;
+        position: relative;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.25s ease;
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .nav-cta {
+        margin-left: auto;
+        background: var(--primary);
+        color: var(--primary-fg);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 0.6rem 1.15rem;
+        border-radius: 999px;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+      }
+      .nav-cta:hover {
+        background: #863e18;
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        min-height: clamp(560px, 86vh, 820px);
+        display: flex;
+        align-items: center;
+        padding: 4rem 1.4rem 5rem;
+        isolation: isolate;
+      }
+      .hero-photo {
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        background:
+          url("https://picsum.photos/seed/northpoint-hero/1600/1200") center /
+          cover no-repeat;
+        filter: sepia(0.45) saturate(1.05) contrast(0.98) brightness(0.82);
+        transform: scale(1.06);
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background: linear-gradient(
+          110deg,
+          rgba(46, 33, 23, 0.82) 0%,
+          rgba(46, 33, 23, 0.5) 48%,
+          rgba(155, 74, 31, 0.32) 100%
+        );
+      }
+      .hero-grain {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        opacity: 0.5;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      }
+      .hero-inner {
+        max-width: 720px;
+        color: var(--primary-fg);
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin: 0 0 1.1rem;
+      }
+      .hero h1 {
+        font-size: clamp(2.7rem, 7vw, 5rem);
+        font-weight: 600;
+        color: var(--primary-fg);
+      }
+      .ink-script {
+        font-style: italic;
+        font-weight: 500;
+        color: var(--accent);
+      }
+      .lede {
+        max-width: 38ch;
+        margin: 1.4rem 0 2rem;
+        font-size: clamp(1.05rem, 1rem + 0.4vw, 1.25rem);
+        color: #efe2cb;
+      }
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+      }
+      .hero-cta .btn-ghost {
+        color: var(--primary-fg);
+        border-color: rgba(248, 241, 228, 0.5);
+      }
+      .hero-cta .btn-ghost:hover {
+        background: rgba(248, 241, 228, 0.12);
+        border-color: var(--primary-fg);
+      }
+      .hero-stamp {
+        position: absolute;
+        right: 5%;
+        bottom: 8%;
+        color: var(--accent);
+        display: none;
+        animation: spin 26s linear infinite;
+      }
+      .stamp-text {
+        font-family: var(--font-body);
+        font-size: 9.6px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        fill: var(--primary-fg);
+      }
+      .stamp-center {
+        font-family: var(--font-display);
+        font-size: 16px;
+        font-weight: 700;
+        fill: var(--primary-fg);
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ===== MARQUEE ===== */
+      .marquee {
+        background: var(--primary);
+        color: var(--primary-fg);
+        overflow: hidden;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .marquee-track {
+        display: flex;
+        white-space: nowrap;
+        width: max-content;
+        animation: scroll-x 28s linear infinite;
+      }
+      .marquee-item {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 1.3rem;
+        padding: 0.9rem 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 1.4rem;
+        margin-right: 1.4rem;
+      }
+      .marquee-item .dot {
+        color: var(--accent);
+        font-style: normal;
+        font-size: 0.8rem;
+      }
+      @keyframes scroll-x {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ===== SECTION ===== */
+      .section {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: clamp(3.5rem, 8vw, 6.5rem) 1.4rem;
+      }
+      .section-head {
+        max-width: 640px;
+        margin-bottom: 3rem;
+      }
+      .kicker {
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin: 0 0 0.8rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .kicker::before {
+        content: "";
+        width: 26px;
+        height: 1.5px;
+        background: var(--accent);
+      }
+      .section h2 {
+        font-size: clamp(2rem, 4.5vw, 3.2rem);
+      }
+      .section-sub {
+        margin: 1rem 0 0;
+        color: #5d4d3a;
+        max-width: 46ch;
+      }
+
+      /* ===== MENU ===== */
+      .menu-grid {
+        display: grid;
+        gap: 2.5rem;
+      }
+      .drink-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 1.4rem;
+      }
+      .drink {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: baseline;
+        gap: 0.6rem;
+        padding-bottom: 1.2rem;
+        border-bottom: 1px dashed var(--border);
+      }
+      .drink-name {
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        font-weight: 600;
+      }
+      .drink-dots {
+        border-bottom: 2px dotted var(--border);
+        transform: translateY(-4px);
+      }
+      .drink-price {
+        font-weight: 600;
+        color: var(--primary);
+        font-size: 1.1rem;
+      }
+      .drink-note {
+        grid-column: 1 / -1;
+        color: #6b5a45;
+        font-size: 0.9rem;
+        margin-top: -0.2rem;
+      }
+
+      .bean-rail {
+        display: grid;
+        gap: 1.2rem;
+      }
+      .bean-card {
+        display: grid;
+        grid-template-columns: 96px 1fr;
+        gap: 1.1rem;
+        background: var(--muted);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 0.8rem;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .bean-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow);
+      }
+      .bean-photo {
+        border-radius: 10px;
+        overflow: hidden;
+        aspect-ratio: 1;
+      }
+      .bean-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: sepia(0.4) saturate(1.1) brightness(0.95);
+      }
+      .bean-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.4rem;
+      }
+      .bean-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.8rem;
+      }
+      .bean-top h3 {
+        font-size: 1.2rem;
+      }
+      .bean-price {
+        font-weight: 600;
+        color: var(--primary);
+        white-space: nowrap;
+      }
+      .bean-origin {
+        margin: 0;
+        font-size: 0.82rem;
+        color: #6b5a45;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .tags {
+        list-style: none;
+        margin: 0.2rem 0 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .tag {
+        font-size: 0.75rem;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        color: var(--fg);
+        padding: 0.18rem 0.6rem;
+        border-radius: 999px;
+        font-weight: 500;
+      }
+
+      /* ===== CRAFT ===== */
+      .craft {
+        background: var(--muted);
+        max-width: none;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .craft-grid {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        gap: 2.5rem;
+        align-items: center;
+      }
+      .craft-photo {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        rotate: -1.2deg;
+      }
+      .craft-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: sepia(0.42) saturate(1.05) brightness(0.92);
+      }
+      .craft-tape {
+        position: absolute;
+        top: 1rem;
+        left: -0.5rem;
+        background: var(--accent);
+        color: var(--fg);
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 0.35rem 0.9rem;
+        rotate: -3deg;
+        box-shadow: var(--shadow);
+      }
+      .craft-copy p {
+        color: #5d4d3a;
+        margin: 1.2rem 0;
+        max-width: 46ch;
+      }
+      .craft-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.8rem;
+        margin: 1.6rem 0 2rem;
+      }
+      .craft-stats dt {
+        font-family: var(--font-display);
+        font-size: 2.1rem;
+        font-weight: 700;
+        color: var(--primary);
+        line-height: 1;
+      }
+      .craft-stats dd {
+        margin: 0.35rem 0 0;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #6b5a45;
+      }
+
+      /* ===== GALLERY ===== */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.9rem;
+      }
+      .gtile {
+        margin: 0;
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        aspect-ratio: 1;
+      }
+      .gtile img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: sepia(0.35) saturate(1.05) brightness(0.95);
+        transition: transform 0.5s ease, filter 0.5s ease;
+      }
+      .gtile:hover img {
+        transform: scale(1.06);
+        filter: sepia(0.15) saturate(1.1) brightness(1);
+      }
+
+      /* ===== REVIEWS ===== */
+      .rating {
+        margin: 1rem 0 0;
+        font-weight: 600;
+      }
+      .stars {
+        color: var(--accent);
+        letter-spacing: 0.12em;
+      }
+      .review-grid {
+        display: grid;
+        gap: 1.4rem;
+      }
+      .review {
+        position: relative;
+        margin: 0;
+        background: var(--muted);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2.4rem 1.6rem 1.6rem;
+      }
+      .quote-mark {
+        position: absolute;
+        top: 0.2rem;
+        left: 1rem;
+        font-family: var(--font-display);
+        font-size: 3.6rem;
+        color: var(--accent);
+        line-height: 1;
+      }
+      .review p {
+        margin: 0 0 1rem;
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 1.15rem;
+        line-height: 1.45;
+      }
+      .review cite {
+        font-style: normal;
+        font-weight: 600;
+        color: var(--primary);
+      }
+
+      /* ===== VISIT ===== */
+      .visit-grid {
+        display: grid;
+        gap: 2.5rem;
+        align-items: stretch;
+      }
+      .status {
+        margin: 0 0 1.4rem;
+        font-weight: 500;
+        color: #5d4d3a;
+      }
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: #2f6b3a;
+        color: #f2f7ed;
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+        margin-right: 0.4rem;
+      }
+      .hours {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1.6rem;
+      }
+      .hours th,
+      .hours td {
+        text-align: left;
+        padding: 0.85rem 0;
+        border-bottom: 1px dashed var(--border);
+      }
+      .hours th {
+        font-weight: 500;
+      }
+      .hours td {
+        text-align: right;
+        font-weight: 600;
+        color: var(--primary);
+      }
+      .nap {
+        font-style: normal;
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin-bottom: 1.6rem;
+      }
+      .visit-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+      }
+      .visit-map {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        min-height: 280px;
+      }
+      .visit-map img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: sepia(0.5) saturate(0.8) brightness(0.95);
+      }
+      .map-pin {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        color: var(--primary);
+        filter: drop-shadow(0 4px 6px rgba(46, 33, 23, 0.5));
+        animation: bob 2.6s ease-in-out infinite;
+      }
+      @keyframes bob {
+        50% {
+          transform: translate(-50%, -112%);
+        }
+      }
+
+      /* ===== FOOTER ===== */
+      .footer {
+        background: var(--fg);
+        color: var(--primary-fg);
+        padding: 3.5rem 1.4rem 6.5rem;
+      }
+      .footer-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        gap: 2rem;
+      }
+      .footer-brand .brand-text {
+        color: var(--primary-fg);
+        font-size: 1.5rem;
+      }
+      .footer-brand p {
+        color: #d9c8ac;
+        max-width: 30ch;
+        margin: 0.6rem 0 0;
+      }
+      .footer-col h4 {
+        font-family: var(--font-body);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.75rem;
+        color: var(--accent);
+        margin-bottom: 0.7rem;
+      }
+      .footer-col p {
+        margin: 0 0 0.6rem;
+        color: #d9c8ac;
+        line-height: 1.6;
+      }
+      .footer-col a {
+        color: var(--primary-fg);
+        text-decoration: none;
+        line-height: 1.9;
+      }
+      .footer-col a:hover {
+        color: var(--accent);
+      }
+      .copyright {
+        max-width: 1180px;
+        margin: 2.5rem auto 0;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(217, 200, 172, 0.22);
+        font-size: 0.82rem;
+        color: #b9a584;
+      }
+
+      /* ===== MOBILE BAR ===== */
+      .mobile-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 90;
+        display: flex;
+        gap: 0.7rem;
+        padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+        background: rgba(243, 234, 215, 0.92);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid var(--border);
+      }
+      .mobile-bar .btn {
+        flex: 1;
+        min-height: 46px;
+      }
+
+      /* ===== REVEAL ===== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (min-width: 720px) {
+        .menu-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 3.5rem;
+          align-items: start;
+        }
+        .gallery-grid {
+          grid-template-columns: repeat(4, 1fr);
+          grid-auto-flow: dense;
+        }
+        .gtile-1 {
+          grid-column: span 2;
+          grid-row: span 2;
+          aspect-ratio: 1;
+        }
+        .gtile-4 {
+          grid-column: span 2;
+          aspect-ratio: 2 / 1;
+        }
+        .review-grid,
+        .visit-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .review-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .craft-grid {
+          grid-template-columns: 0.9fr 1.1fr;
+        }
+        .footer-inner {
+          grid-template-columns: 1.6fr 1fr 1fr 1fr;
+        }
+        .visit-grid {
+          grid-template-columns: 1.1fr 0.9fr;
+        }
+      }
+
+      @media (min-width: 940px) {
+        .nav-links {
+          display: flex;
+        }
+        .nav-cta {
+          margin-left: 0;
+        }
+        .hero-stamp {
+          display: block;
+        }
+        .mobile-bar {
+          display: none;
+        }
+      }
+    </style>
+  </body>
+</html>

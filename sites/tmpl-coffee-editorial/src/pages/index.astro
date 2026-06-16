@@ -1,0 +1,870 @@
+---
+// Northpoint Coffee Roasters — Editorial variant
+// Self-contained Astro page. Plain JS data only; no imports.
+
+const nav = [
+  { label: "Menu", href: "#menu" },
+  { label: "Craft", href: "#craft" },
+  { label: "Visit", href: "#visit" },
+  { label: "Journal", href: "#gallery" },
+];
+
+const drinks = [
+  { name: "Pour-Over", note: "single origin, rotating", price: "$5.50" },
+  { name: "Flat White", note: "double ristretto, silk milk", price: "$5.00" },
+  { name: "Cortado", note: "equal parts, no foam", price: "$4.50" },
+  { name: "Cold Brew", note: "16oz, 18-hour steep", price: "$6.00" },
+];
+
+const beans = [
+  {
+    origin: "Ethiopia Guji",
+    process: "washed",
+    tags: ["floral", "bergamot", "stone fruit"],
+    weight: "250g bag",
+    price: "$22",
+    seed: "guji-eth",
+  },
+  {
+    origin: "Colombia Huila",
+    process: "honey process",
+    tags: ["cocoa", "cherry", "brown sugar"],
+    weight: "250g bag",
+    price: "$20",
+    seed: "huila-col",
+  },
+  {
+    origin: "House Subscription",
+    process: "two bags monthly",
+    tags: ["free local delivery", "rotating origins"],
+    weight: "per month",
+    price: "$38",
+    seed: "sub-house",
+  },
+];
+
+const testimonials = [
+  { quote: "The best flat white in Calgary, full stop. The Guji pour-over ruined every other coffee for me.", name: "Priya R." },
+  { quote: "Tucked into Inglewood and worth the trip. You can taste how fresh the roast is.", name: "Daniel M." },
+  { quote: "I've been on their subscription for a year. Never a dull bag.", name: "Sophie L." },
+];
+
+const hours = [
+  { day: "Monday — Friday", time: "7:00am – 5:00pm" },
+  { day: "Saturday — Sunday", time: "8:00am – 4:00pm" },
+];
+
+const gallery = ["roast-01", "latte-art-02", "beans-03", "counter-04", "window-05", "hands-06"];
+
+const phone = "(403) 555-0192";
+const phoneHref = "tel:+14035550192";
+const address = "1142 9 Avenue SE, Inglewood, Calgary, AB T2G 0S9";
+const mapHref = "https://maps.google.com/?q=1142+9+Avenue+SE+Inglewood+Calgary";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Northpoint Coffee Roasters — Single-Origin Coffee, Roasted in Inglewood</title>
+    <meta
+      name="description"
+      content="Northpoint Coffee Roasters — single-origin beans roasted weekly in the heart of Inglewood, Calgary. Slow coffee for a fast city."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav" id="nav" data-nav>
+      <div class="nav-inner">
+        <a class="brand" href="#main" aria-label="Northpoint Coffee Roasters home">
+          <span class="brand-mark" aria-hidden="true">N</span>
+          NORTHPOINT
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          {nav.map((l) => <a href={l.href}>{l.label}</a>)}
+        </nav>
+        <a class="nav-cta" href="#cta">Order online</a>
+        <button class="nav-toggle" aria-label="Toggle menu" data-toggle aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </div>
+      <nav class="nav-mobile" data-mobile aria-label="Mobile">
+        {nav.map((l) => <a href={l.href}>{l.label}</a>)}
+        <a class="nav-cta-m" href="#cta">Order online</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-media" data-parallax>
+          <img
+            src="https://picsum.photos/seed/northpoint-hero/1600/1100"
+            alt="Slow pour-over coffee being brewed over a glass carafe"
+            loading="eager"
+          />
+        </div>
+        <div class="hero-grid">
+          <p class="kicker">Est. 2016 · Inglewood, Calgary</p>
+          <h1 class="hero-title">
+            Slow coffee<br /><em>for a fast</em> city.
+          </h1>
+          <div class="hero-foot">
+            <p class="lede">
+              Single-origin beans roasted weekly in small batches. From the
+              farm to your favourite cup — no shortcuts, no filler.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-solid" href="#menu">View the menu</a>
+              <a class="btn btn-ghost" href="#cta">Subscribe →</a>
+            </div>
+          </div>
+        </div>
+        <span class="issue" aria-hidden="true">Vol. 09 — The Roast Issue</span>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          {Array.from({ length: 2 }).map(() => (
+            <span>
+              Small-batch <em>·</em> Single origin <em>·</em> Roasted weekly
+              <em>·</em> Inglewood <em>·</em> Provenance-led <em>·</em> Slow
+              coffee <em>·</em>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- MENU & BEANS -->
+      <section class="menu" id="menu">
+        <div class="section-head reveal">
+          <span class="num">01</span>
+          <h2>The Menu</h2>
+          <p>Brewed by the cup or bagged for the cupboard.</p>
+        </div>
+
+        <div class="menu-cols">
+          <div class="drinks reveal">
+            <h3 class="col-title">On the bar</h3>
+            <ul class="drink-list">
+              {drinks.map((d) => (
+                <li>
+                  <span class="d-name">{d.name}</span>
+                  <span class="d-rule" aria-hidden="true"></span>
+                  <span class="d-note">{d.note}</span>
+                  <span class="d-price">{d.price}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="beans">
+            <h3 class="col-title">Retail beans</h3>
+            <div class="bean-grid">
+              {beans.map((b) => (
+                <article class="bean-card reveal">
+                  <div class="bean-photo">
+                    <img
+                      src={`https://picsum.photos/seed/${b.seed}/600/600`}
+                      alt={`${b.origin} coffee`}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="bean-body">
+                    <header class="bean-top">
+                      <h4>{b.origin}</h4>
+                      <span class="bean-price">{b.price}</span>
+                    </header>
+                    <p class="bean-process">{b.process} · {b.weight}</p>
+                    <ul class="tags">
+                      {b.tags.map((t) => <li>{t}</li>)}
+                    </ul>
+                    <a class="bean-sub" href="#cta">Add to order →</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CRAFT / STORY BAND -->
+      <section class="craft" id="craft">
+        <div class="craft-media reveal">
+          <img
+            src="https://picsum.photos/seed/northpoint-roaster/900/1100"
+            alt="The drum roaster mid-batch inside the Inglewood roastery"
+            loading="lazy"
+          />
+          <span class="craft-cap">The roastery — 6am, batch no. 412</span>
+        </div>
+        <div class="craft-text reveal">
+          <span class="num">02</span>
+          <h2>From the farm to your<br /><em>favourite cup.</em></h2>
+          <p class="drop">
+            <span class="dropcap">W</span>e source green coffee directly from
+            growers we know by name, roast it in small batches the week you
+            buy it, and never let a bag sit. Provenance isn't a marketing
+            line here — it's printed on the side of every bag.
+          </p>
+          <p>
+            Each origin is profiled by hand on our 1956 drum roaster until the
+            cup tastes the way the farm intended. Floral and bright, or deep
+            and cocoa-rich — we chase the character, not a house standard.
+          </p>
+          <dl class="stats">
+            <div><dt>10</dt><dd>years roasting in Calgary</dd></div>
+            <div><dt>14</dt><dd>direct-trade origins</dd></div>
+            <div><dt>52</dt><dd>fresh roasts a year</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- TESTIMONIAL SLIDER -->
+      <section class="proof" aria-label="Customer reviews">
+        <div class="proof-rating reveal">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <span class="rating-text">4.9 average · 280+ Google reviews</span>
+        </div>
+        <div class="slider" data-slider>
+          <div class="slides" data-slides>
+            {testimonials.map((t, i) => (
+              <figure class="slide" data-slide aria-hidden={i === 0 ? "false" : "true"}>
+                <blockquote>“{t.quote}”</blockquote>
+                <figcaption>— {t.name}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <div class="dots" data-dots>
+            {testimonials.map((_, i) => (
+              <button class="dot" data-dot aria-label={`Review ${i + 1}`}></button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- VISIT / HOURS + NAP -->
+      <section class="visit" id="visit">
+        <div class="visit-info reveal">
+          <span class="num">03</span>
+          <h2>Visit us</h2>
+          <p class="status" data-status>
+            <span class="dot-live" aria-hidden="true"></span>
+            <span data-status-text>Open now</span>
+          </p>
+          <table class="hours">
+            <tbody>
+              {hours.map((h) => (
+                <tr>
+                  <th scope="row">{h.day}</th>
+                  <td>{h.time}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <address class="nap">
+            {address}
+          </address>
+          <div class="visit-actions">
+            <a class="btn btn-solid" href={phoneHref}>Call {phone}</a>
+            <a class="btn btn-ghost" href={mapHref} target="_blank" rel="noopener">Get directions →</a>
+          </div>
+        </div>
+        <div class="visit-map reveal">
+          <img
+            src="https://picsum.photos/seed/northpoint-street/900/900"
+            alt="Exterior of the Northpoint cafe on 9 Avenue SE in Inglewood"
+            loading="lazy"
+          />
+          <span class="pin" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="gallery" id="gallery">
+        <div class="section-head reveal">
+          <span class="num">04</span>
+          <h2>The Journal</h2>
+          <p>Latte art, the space, and the people who make it.</p>
+        </div>
+        <div class="bento">
+          {gallery.map((g, i) => (
+            <figure class={`tile tile-${i}`}>
+              <img
+                src={`https://picsum.photos/seed/np-${g}/800/800`}
+                alt="Scene from inside Northpoint Coffee Roasters"
+                loading="lazy"
+              />
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta" id="cta">
+        <div class="cta-inner reveal">
+          <p class="kicker light">The House Subscription</p>
+          <h2>Two bags a month,<br /><em>free local delivery.</em></h2>
+          <p class="cta-lede">
+            $38/mo — rotating single origins, roasted the week they ship.
+            Pause or cancel anytime. You own the account; we just roast.
+          </p>
+          <div class="cta-actions">
+            <a class="btn btn-cream" href="#menu">Start a subscription</a>
+            <a class="btn btn-line" href={phoneHref}>Call {phone}</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="f-brand">
+          <span class="brand-mark big" aria-hidden="true">N</span>
+          <p>NORTHPOINT<br /><span>Coffee Roasters</span></p>
+        </div>
+        <div class="f-col">
+          <h3>Visit</h3>
+          <address>{address}</address>
+          <a href={phoneHref}>{phone}</a>
+        </div>
+        <div class="f-col">
+          <h3>Hours</h3>
+          {hours.map((h) => <p>{h.day}<br /><span>{h.time}</span></p>)}
+        </div>
+        <div class="f-col">
+          <h3>Follow</h3>
+          <a href="#">Instagram</a>
+          <a href="#">Newsletter</a>
+          <a href="#cta">Subscription</a>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <span>© 2026 Northpoint Coffee Roasters</span>
+        <span>Inglewood · Calgary · AB</span>
+      </div>
+    </footer>
+
+    <!-- sticky mobile booking bar -->
+    <div class="bookbar" aria-hidden="false">
+      <a href={phoneHref}>Call</a>
+      <a href={mapHref} target="_blank" rel="noopener">Directions</a>
+      <a class="bb-cta" href="#cta">Order</a>
+    </div>
+
+    <style is:global>
+      *,
+      *::before,
+      *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+      }
+    </style>
+
+    <style>
+      :root {
+        --bg: #f7f5f1;
+        --fg: #161412;
+        --primary: #1a1a1a;
+        --primary-fg: #f7f5f1;
+        --accent: #b5462e;
+        --muted: #e8e4dc;
+        --border: #d2ccc0;
+        --display: "Playfair Display", Georgia, serif;
+        --body: "Inter", system-ui, sans-serif;
+        --pad: clamp(1.25rem, 5vw, 6rem);
+        --maxw: 1280px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--body);
+        font-size: clamp(1rem, 0.95rem + 0.3vw, 1.0625rem);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; margin: 0; line-height: 1.04; }
+      em { font-style: italic; color: var(--accent); }
+
+      .skip {
+        position: absolute; left: -999px; top: 0; z-index: 200;
+        background: var(--primary); color: var(--primary-fg);
+        padding: 0.75rem 1rem; border-radius: 0 0 6px 0;
+      }
+      .skip:focus { left: 0; }
+
+      a { color: inherit; }
+      :focus-visible { outline: 2.5px solid var(--accent); outline-offset: 3px; }
+
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 48px; padding: 0 1.5rem;
+        font-family: var(--body); font-weight: 600; font-size: 0.95rem;
+        text-decoration: none; border-radius: 2px; letter-spacing: 0.01em;
+        transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+        border: 1.5px solid transparent;
+      }
+      .btn:hover { transform: translateY(-2px); }
+      .btn-solid { background: var(--primary); color: var(--primary-fg); }
+      .btn-solid:hover { background: var(--accent); }
+      .btn-ghost { border-color: var(--fg); color: var(--fg); }
+      .btn-ghost:hover { background: var(--fg); color: var(--bg); }
+      .btn-cream { background: var(--bg); color: var(--primary); }
+      .btn-cream:hover { background: var(--accent); color: var(--bg); }
+      .btn-line { border-color: var(--bg); color: var(--bg); }
+      .btn-line:hover { background: var(--bg); color: var(--primary); }
+
+      .kicker {
+        font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--accent); font-weight: 600; margin: 0;
+      }
+      .kicker.light { color: var(--accent); }
+
+      /* ===== NAV ===== */
+      .nav {
+        position: sticky; top: 0; z-index: 100;
+        background: color-mix(in srgb, var(--bg) 80%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s ease, background 0.3s ease;
+      }
+      .nav[data-scrolled] {
+        border-bottom-color: var(--border);
+        background: color-mix(in srgb, var(--bg) 94%, transparent);
+      }
+      .nav-inner {
+        max-width: var(--maxw); margin: 0 auto;
+        display: flex; align-items: center; gap: 1.5rem;
+        padding: 0.9rem var(--pad);
+      }
+      .brand {
+        display: flex; align-items: center; gap: 0.6rem;
+        font-weight: 600; letter-spacing: 0.18em; font-size: 0.9rem;
+        text-decoration: none; margin-right: auto;
+      }
+      .brand-mark {
+        display: grid; place-items: center;
+        width: 30px; height: 30px; border-radius: 50%;
+        background: var(--accent); color: var(--bg);
+        font-family: var(--display); font-weight: 700; font-size: 1.05rem;
+        line-height: 1;
+      }
+      .brand-mark.big { width: 48px; height: 48px; font-size: 1.6rem; }
+      .nav-links { display: flex; gap: 1.6rem; }
+      .nav-links a {
+        text-decoration: none; font-size: 0.9rem; font-weight: 500;
+        position: relative; padding: 0.3rem 0;
+      }
+      .nav-links a::after {
+        content: ""; position: absolute; left: 0; bottom: 0;
+        width: 0; height: 1.5px; background: var(--accent);
+        transition: width 0.28s ease;
+      }
+      .nav-links a:hover::after { width: 100%; }
+      .nav-cta {
+        text-decoration: none; font-size: 0.85rem; font-weight: 600;
+        padding: 0.55rem 1.1rem; border: 1.5px solid var(--fg); border-radius: 2px;
+        transition: background 0.25s, color 0.25s;
+      }
+      .nav-cta:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+      .nav-toggle {
+        display: none; flex-direction: column; gap: 5px;
+        background: none; border: 0; cursor: pointer; padding: 10px;
+      }
+      .nav-toggle span { width: 24px; height: 2px; background: var(--fg); transition: 0.3s; }
+      .nav-mobile { display: none; }
+
+      @media (max-width: 860px) {
+        .nav-links, .nav-cta { display: none; }
+        .nav-toggle { display: flex; }
+        .nav-mobile {
+          display: grid; gap: 0.25rem; overflow: hidden;
+          max-height: 0; transition: max-height 0.35s ease;
+          padding: 0 var(--pad);
+        }
+        .nav-mobile[data-open] { max-height: 340px; padding-bottom: 1.25rem; }
+        .nav-mobile a { text-decoration: none; padding: 0.85rem 0; border-bottom: 1px solid var(--border); font-weight: 500; }
+        .nav-cta-m { color: var(--accent); font-weight: 600; }
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        position: relative;
+        min-height: clamp(560px, 88vh, 920px);
+        display: flex; flex-direction: column; justify-content: flex-end;
+        padding: var(--pad);
+        padding-top: clamp(3rem, 10vh, 7rem);
+        overflow: hidden;
+      }
+      .hero-media { position: absolute; inset: 0; z-index: 0; }
+      .hero-media img {
+        width: 100%; height: 116%; object-fit: cover;
+        filter: contrast(1.05) saturate(0.92) brightness(0.96);
+        will-change: transform;
+      }
+      .hero::after {
+        content: ""; position: absolute; inset: 0; z-index: 1;
+        background: linear-gradient(180deg,
+          color-mix(in srgb, var(--primary) 30%, transparent) 0%,
+          color-mix(in srgb, var(--primary) 12%, transparent) 35%,
+          color-mix(in srgb, var(--bg) 88%, transparent) 100%);
+      }
+      .hero-grid { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; width: 100%; }
+      .hero .kicker { color: var(--accent); margin-bottom: 1rem; }
+      .hero-title {
+        font-size: clamp(3.2rem, 11vw, 8.5rem);
+        font-weight: 800; letter-spacing: -0.02em;
+        color: var(--primary);
+        text-shadow: 0 1px 40px color-mix(in srgb, var(--bg) 60%, transparent);
+      }
+      .hero-foot {
+        display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem;
+        align-items: end; margin-top: clamp(1.5rem, 4vw, 2.5rem);
+        max-width: 1000px;
+      }
+      .lede { margin: 0; max-width: 42ch; font-size: 1.05rem; color: var(--fg); }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+      .issue {
+        position: absolute; top: clamp(5rem, 12vh, 7rem); right: var(--pad);
+        z-index: 2; writing-mode: vertical-rl;
+        font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
+        color: var(--primary); font-weight: 600;
+      }
+      @media (max-width: 700px) {
+        .hero-foot { grid-template-columns: 1fr; }
+        .issue { display: none; }
+      }
+
+      /* ===== MARQUEE ===== */
+      .marquee {
+        background: var(--primary); color: var(--bg);
+        overflow: hidden; padding: 0.85rem 0; white-space: nowrap;
+        border-block: 1px solid var(--primary);
+      }
+      .marquee-track {
+        display: inline-flex; animation: scroll 30s linear infinite;
+        font-family: var(--display); font-style: italic; font-size: 1.3rem;
+      }
+      .marquee-track span { padding-right: 1rem; }
+      .marquee-track em { color: var(--accent); font-style: normal; padding: 0 0.4rem; }
+      @keyframes scroll { to { transform: translateX(-50%); } }
+
+      /* ===== SECTION HEAD ===== */
+      .num {
+        display: block; font-family: var(--display); font-style: italic;
+        font-size: 1rem; color: var(--accent); margin-bottom: 0.6rem;
+      }
+      .section-head { max-width: var(--maxw); margin: 0 auto; padding: clamp(3.5rem, 8vw, 6rem) var(--pad) 0; }
+      .section-head h2 { font-size: clamp(2.4rem, 6vw, 4.5rem); letter-spacing: -0.02em; }
+      .section-head p { color: color-mix(in srgb, var(--fg) 70%, var(--bg)); max-width: 48ch; margin: 0.75rem 0 0; }
+
+      /* ===== MENU ===== */
+      .menu-cols {
+        max-width: var(--maxw); margin: 0 auto;
+        padding: clamp(2rem, 5vw, 3.5rem) var(--pad) clamp(3.5rem, 8vw, 6rem);
+        display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 5vw, 4rem);
+        align-items: start;
+      }
+      .col-title {
+        font-family: var(--body); text-transform: uppercase; letter-spacing: 0.18em;
+        font-size: 0.78rem; font-weight: 600; color: var(--accent);
+        padding-bottom: 0.9rem; margin-bottom: 1.4rem; border-bottom: 1px solid var(--border);
+      }
+      .drink-list { list-style: none; margin: 0; padding: 0; }
+      .drink-list li {
+        display: grid; grid-template-columns: auto 1fr auto;
+        align-items: baseline; gap: 0.5rem;
+        padding: 0.9rem 0; border-bottom: 1px solid var(--border);
+      }
+      .d-name { font-family: var(--display); font-size: 1.3rem; font-weight: 600; }
+      .d-rule { border-bottom: 1px dotted var(--border); transform: translateY(-4px); }
+      .d-note { grid-column: 1 / 2; grid-row: 2; font-size: 0.85rem; color: color-mix(in srgb, var(--fg) 60%, var(--bg)); font-style: italic; }
+      .d-price { font-family: var(--display); font-weight: 700; font-size: 1.2rem; color: var(--accent); }
+
+      .bean-grid { display: grid; gap: 1.25rem; }
+      .bean-card {
+        display: grid; grid-template-columns: 130px 1fr; gap: 1.25rem;
+        background: var(--muted); border: 1px solid var(--border); border-radius: 4px;
+        overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .bean-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -20px color-mix(in srgb, var(--primary) 50%, transparent); }
+      .bean-photo { overflow: hidden; }
+      .bean-photo img {
+        width: 100%; height: 100%; object-fit: cover; min-height: 150px;
+        filter: saturate(0.85) contrast(1.05); transition: transform 0.5s ease;
+      }
+      .bean-card:hover .bean-photo img { transform: scale(1.06); }
+      .bean-body { padding: 1.1rem 1.25rem 1.1rem 0; }
+      .bean-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+      .bean-top h4 { font-size: 1.35rem; }
+      .bean-price { font-family: var(--display); font-weight: 700; color: var(--accent); font-size: 1.25rem; }
+      .bean-process { font-size: 0.82rem; color: color-mix(in srgb, var(--fg) 60%, var(--bg)); margin: 0.35rem 0 0.8rem; font-style: italic; }
+      .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1rem; padding: 0; }
+      .tags li {
+        font-size: 0.72rem; padding: 0.28rem 0.65rem; border-radius: 999px;
+        background: var(--bg); border: 1px solid var(--border); letter-spacing: 0.02em;
+      }
+      .bean-sub { text-decoration: none; font-weight: 600; font-size: 0.85rem; color: var(--primary); border-bottom: 1.5px solid var(--accent); padding-bottom: 2px; }
+      .bean-sub:hover { color: var(--accent); }
+
+      @media (max-width: 820px) {
+        .menu-cols { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 480px) {
+        .bean-card { grid-template-columns: 1fr; }
+        .bean-photo img { min-height: 180px; }
+        .bean-body { padding: 0 1.25rem 1.25rem; }
+      }
+
+      /* ===== CRAFT ===== */
+      .craft {
+        max-width: var(--maxw); margin: 0 auto;
+        padding: clamp(3.5rem, 8vw, 6rem) var(--pad);
+        display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 6vw, 5rem);
+        align-items: center;
+      }
+      .craft-media { position: relative; }
+      .craft-media img {
+        width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px;
+        filter: contrast(1.06) saturate(0.9);
+      }
+      .craft-cap {
+        position: absolute; bottom: 1rem; left: 1rem;
+        background: color-mix(in srgb, var(--primary) 88%, transparent); color: var(--bg);
+        font-size: 0.72rem; letter-spacing: 0.06em; padding: 0.45rem 0.8rem; border-radius: 2px;
+      }
+      .craft-text h2 { font-size: clamp(2.2rem, 5.5vw, 4rem); letter-spacing: -0.02em; margin: 0.3rem 0 1.5rem; }
+      .dropcap {
+        float: left; font-family: var(--display); font-weight: 800;
+        font-size: 4.2rem; line-height: 0.78; padding: 0.1rem 0.6rem 0 0; color: var(--accent);
+      }
+      .craft-text p { margin: 0 0 1.1rem; max-width: 56ch; }
+      .stats { display: flex; flex-wrap: wrap; gap: 2.5rem; margin: 2rem 0 0; padding-top: 1.75rem; border-top: 1px solid var(--border); }
+      .stats dt { font-family: var(--display); font-weight: 700; font-size: clamp(2.4rem, 6vw, 3.2rem); color: var(--accent); line-height: 1; }
+      .stats dd { margin: 0.4rem 0 0; font-size: 0.82rem; max-width: 14ch; color: color-mix(in srgb, var(--fg) 70%, var(--bg)); }
+      @media (max-width: 820px) { .craft { grid-template-columns: 1fr; } }
+
+      /* ===== PROOF / SLIDER ===== */
+      .proof {
+        background: var(--primary); color: var(--bg);
+        padding: clamp(3.5rem, 8vw, 6rem) var(--pad);
+        text-align: center;
+      }
+      .proof-rating { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-bottom: 2.5rem; }
+      .stars { color: var(--accent); font-size: 1.6rem; letter-spacing: 0.15em; }
+      .rating-text { font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; color: color-mix(in srgb, var(--bg) 70%, var(--primary)); }
+      .slider { max-width: 880px; margin: 0 auto; }
+      .slides { position: relative; min-height: 200px; }
+      .slide {
+        position: absolute; inset: 0; margin: 0;
+        opacity: 0; transition: opacity 0.6s ease; pointer-events: none;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+      }
+      .slide[data-active] { opacity: 1; pointer-events: auto; position: relative; }
+      .slide blockquote {
+        font-family: var(--display); font-style: italic; font-weight: 500;
+        font-size: clamp(1.4rem, 3.5vw, 2.3rem); line-height: 1.3; margin: 0; max-width: 24ch;
+      }
+      .slide figcaption { margin-top: 1.5rem; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+      .dots { display: flex; gap: 0.6rem; justify-content: center; margin-top: 2.25rem; }
+      .dot {
+        width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--bg);
+        background: transparent; cursor: pointer; padding: 0; transition: background 0.25s;
+      }
+      .dot[data-active] { background: var(--accent); border-color: var(--accent); }
+
+      /* ===== VISIT ===== */
+      .visit {
+        max-width: var(--maxw); margin: 0 auto;
+        padding: clamp(3.5rem, 8vw, 6rem) var(--pad);
+        display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 4.5rem);
+        align-items: center;
+      }
+      .visit-info h2 { font-size: clamp(2.4rem, 6vw, 4rem); margin: 0.3rem 0 1rem; }
+      .status { display: inline-flex; align-items: center; gap: 0.55rem; font-weight: 600; font-size: 0.9rem; margin: 0 0 1.5rem; }
+      .dot-live { width: 9px; height: 9px; border-radius: 50%; background: #2e8b57; box-shadow: 0 0 0 0 rgba(46,139,87,0.5); animation: pulse 2.2s infinite; }
+      @keyframes pulse { 70% { box-shadow: 0 0 0 8px rgba(46,139,87,0); } 100% { box-shadow: 0 0 0 0 rgba(46,139,87,0); } }
+      .status[data-closed] .dot-live { background: var(--accent); animation: none; }
+      .hours { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+      .hours th, .hours td { text-align: left; padding: 0.85rem 0; border-bottom: 1px solid var(--border); }
+      .hours th { font-weight: 500; font-family: var(--display); font-size: 1.1rem; }
+      .hours td { text-align: right; color: var(--accent); font-weight: 600; }
+      .nap { font-style: normal; font-size: 1.05rem; line-height: 1.5; margin-bottom: 1.5rem; max-width: 30ch; }
+      .visit-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+      .visit-map { position: relative; }
+      .visit-map img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; filter: grayscale(0.25) contrast(1.05); }
+      .pin {
+        position: absolute; top: 50%; left: 50%; width: 22px; height: 22px;
+        transform: translate(-50%, -100%); background: var(--accent);
+        border-radius: 50% 50% 50% 0; rotate: -45deg; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      }
+      .pin::after { content: ""; position: absolute; inset: 6px; background: var(--bg); border-radius: 50%; }
+      @media (max-width: 820px) { .visit { grid-template-columns: 1fr; } }
+
+      /* ===== GALLERY BENTO ===== */
+      .bento {
+        max-width: var(--maxw); margin: 0 auto;
+        padding: clamp(2rem, 4vw, 3rem) var(--pad) clamp(3.5rem, 8vw, 6rem);
+        display: grid; grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 180px; gap: 0.85rem;
+      }
+      .tile { margin: 0; overflow: hidden; border-radius: 4px; }
+      .tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.4s ease; filter: saturate(0.88); }
+      .tile:hover img { transform: scale(1.07); filter: saturate(1.05); }
+      .tile-0 { grid-column: span 2; grid-row: span 2; }
+      .tile-3 { grid-column: span 2; }
+      .tile-5 { grid-row: span 2; }
+      @media (max-width: 720px) {
+        .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+        .tile-0 { grid-column: span 2; grid-row: span 2; }
+        .tile-3, .tile-5 { grid-column: span 1; grid-row: span 1; }
+      }
+
+      /* ===== CTA ===== */
+      .cta { background: var(--accent); color: var(--bg); }
+      .cta-inner {
+        max-width: var(--maxw); margin: 0 auto;
+        padding: clamp(4rem, 10vw, 7rem) var(--pad); text-align: center;
+      }
+      .cta .kicker { color: color-mix(in srgb, var(--bg) 85%, var(--accent)); }
+      .cta h2 { font-size: clamp(2.6rem, 7vw, 5rem); letter-spacing: -0.02em; margin: 1rem 0; }
+      .cta h2 em { color: var(--primary); }
+      .cta-lede { max-width: 48ch; margin: 0 auto 2rem; font-size: 1.05rem; }
+      .cta-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; justify-content: center; }
+
+      /* ===== FOOTER ===== */
+      .footer { background: var(--primary); color: var(--primary-fg); padding: clamp(3rem, 6vw, 5rem) var(--pad) 2rem; }
+      .footer-grid {
+        max-width: var(--maxw); margin: 0 auto;
+        display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2rem;
+        padding-bottom: 2.5rem; border-bottom: 1px solid color-mix(in srgb, var(--bg) 18%, var(--primary));
+      }
+      .f-brand { display: flex; align-items: center; gap: 1rem; }
+      .f-brand p { margin: 0; letter-spacing: 0.16em; font-weight: 600; font-size: 0.95rem; }
+      .f-brand span { color: color-mix(in srgb, var(--bg) 60%, var(--primary)); letter-spacing: 0.08em; font-weight: 400; }
+      .f-col h3 { font-family: var(--body); text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.74rem; color: var(--accent); margin-bottom: 1rem; }
+      .f-col a, .f-col address, .f-col p { display: block; text-decoration: none; font-style: normal; font-size: 0.9rem; margin-bottom: 0.6rem; color: color-mix(in srgb, var(--bg) 82%, var(--primary)); }
+      .f-col a:hover { color: var(--bg); }
+      .f-col p span { color: color-mix(in srgb, var(--bg) 55%, var(--primary)); }
+      .footer-bar {
+        max-width: var(--maxw); margin: 1.75rem auto 0;
+        display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
+        font-size: 0.78rem; letter-spacing: 0.08em; color: color-mix(in srgb, var(--bg) 55%, var(--primary));
+      }
+      @media (max-width: 820px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+
+      /* ===== STICKY BOOKBAR (mobile) ===== */
+      .bookbar { display: none; }
+      @media (max-width: 720px) {
+        .bookbar {
+          display: grid; grid-template-columns: 1fr 1fr 1.2fr;
+          position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+          background: color-mix(in srgb, var(--bg) 94%, transparent);
+          backdrop-filter: blur(8px); border-top: 1px solid var(--border);
+        }
+        .bookbar a {
+          text-align: center; padding: 1rem 0.5rem; min-height: 52px;
+          text-decoration: none; font-weight: 600; font-size: 0.88rem;
+          display: flex; align-items: center; justify-content: center;
+        }
+        .bb-cta { background: var(--accent); color: var(--bg); }
+        main { padding-bottom: 52px; }
+      }
+
+      /* ===== REVEAL ===== */
+      .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+    </style>
+
+    <script>
+      // Nav scroll state
+      const nav = document.querySelector("[data-nav]");
+      const onScroll = () => {
+        if (window.scrollY > 24) nav?.setAttribute("data-scrolled", "");
+        else nav?.removeAttribute("data-scrolled");
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // Mobile toggle
+      const toggle = document.querySelector("[data-toggle]");
+      const mobile = document.querySelector("[data-mobile]");
+      toggle?.addEventListener("click", () => {
+        const open = mobile?.hasAttribute("data-open");
+        if (open) mobile?.removeAttribute("data-open");
+        else mobile?.setAttribute("data-open", "");
+        toggle.setAttribute("aria-expanded", String(!open));
+      });
+      mobile?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          mobile.removeAttribute("data-open");
+          toggle?.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      // Parallax hero
+      const para = document.querySelector("[data-parallax] img");
+      if (para && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        window.addEventListener("scroll", () => {
+          const y = Math.min(window.scrollY, 900);
+          para.style.transform = `translateY(${y * 0.12}px)`;
+        }, { passive: true });
+      }
+
+      // Scroll reveal
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // Testimonial slider
+      const slides = Array.from(document.querySelectorAll("[data-slide]"));
+      const dots = Array.from(document.querySelectorAll("[data-dot]"));
+      let cur = 0;
+      const show = (i) => {
+        cur = (i + slides.length) % slides.length;
+        slides.forEach((s, n) => {
+          s.toggleAttribute("data-active", n === cur);
+          s.setAttribute("aria-hidden", String(n !== cur));
+        });
+        dots.forEach((d, n) => d.toggleAttribute("data-active", n === cur));
+      };
+      dots.forEach((d, i) => d.addEventListener("click", () => show(i)));
+      show(0);
+      let timer = setInterval(() => show(cur + 1), 5500);
+      const slider = document.querySelector("[data-slider]");
+      slider?.addEventListener("mouseenter", () => clearInterval(timer));
+      slider?.addEventListener("mouseleave", () => { timer = setInterval(() => show(cur + 1), 5500); });
+
+      // Live open/closed status
+      const status = document.querySelector("[data-status]");
+      const statusText = document.querySelector("[data-status-text]");
+      if (status && statusText) {
+        const now = new Date();
+        const day = now.getDay(); // 0 Sun .. 6 Sat
+        const h = now.getHours();
+        const weekday = day >= 1 && day <= 5;
+        const open = weekday ? h >= 7 && h < 17 : h >= 8 && h < 16;
+        if (open) { statusText.textContent = "Open now"; }
+        else { statusText.textContent = "Closed · opens soon"; status.setAttribute("data-closed", ""); }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,665 @@
+---
+// Ironwood Brewing Co. — Industrial Taproom template (self-contained)
+const nav = [
+  { label: "On Tap", href: "#on-tap" },
+  { label: "Visit", href: "#visit" },
+  { label: "Events", href: "#events" },
+  { label: "Story", href: "#story" },
+  { label: "To-Go", href: "#togo" },
+];
+
+const onTap = [
+  { name: "Pulp Theory", style: "Hazy IPA", abv: "6.8%", ibu: "45", note: "Mango, guava, soft pillowy bitterness.", price: "$8 / 16oz", pack: "$22 / 4-pack", seed: "ironwood-pulp" },
+  { name: "Ironclad", style: "West Coast IPA", abv: "7.1%", ibu: "65", note: "Pine, grapefruit, dry snappy finish.", price: "$8 / 16oz", pack: "$20 / 4-pack", seed: "ironwood-clad" },
+  { name: "Riverstone", style: "Czech Pilsner", abv: "4.9%", ibu: "32", note: "Crisp, floral Saaz, clean lager bite.", price: "$7 / 16oz", pack: "$18 / 4-pack", seed: "ironwood-river" },
+  { name: "Foundry Stout", style: "Oatmeal Stout", abv: "5.6%", ibu: "38", note: "Cocoa, espresso, smooth roast.", price: "$7.50 / 16oz", pack: "$19 / 4-pack", seed: "ironwood-foundry" },
+  { name: "Sundial", style: "Tropical Sour Ale", abv: "4.4%", ibu: "8", note: "Passionfruit, lime, bright tart.", price: "$8 / 12oz", pack: "Taproom only", seed: "ironwood-sun" },
+  { name: "Last Light NA", style: "Non-Alc Hazy Pale", abv: "0.4%", ibu: "25", note: "All the juice, none of the buzz.", price: "$6 / 16oz", pack: "$16 / 4-pack", seed: "ironwood-last" },
+];
+
+const events = [
+  { day: "TUE", title: "Trivia Night", time: "7:00pm — free to play, prizes on tap" },
+  { day: "FRI", title: "Live Music", time: "8:00pm — local acts, no cover" },
+  { day: "SAT", title: "Food Truck Rally", time: "All day — rotating Calgary trucks" },
+  { day: "SUN", title: "Cellar Pours", time: "1:00pm — rare & barrel-aged kegs" },
+];
+
+const togo = [
+  { name: "Growler Fill", detail: "Any tap · 1.9L", price: "$24" },
+  { name: "Crowler", detail: "Sealed fresh · 1L", price: "$14" },
+  { name: "Gift Card", detail: "Good for beer & merch", price: "from $25" },
+];
+
+const reviews = [
+  { quote: "Best taproom in the city — Pulp Theory ruined every other hazy for me.", name: "Devon R.", meta: "Untappd 4.7★" },
+  { quote: "Dog-friendly patio, killer pilsner, and the food truck rotation is unreal on Fridays.", name: "Marisol T.", meta: "Regular since 2019" },
+  { quote: "Brought visiting friends here and now it's our standing Saturday spot.", name: "Aaron L.", meta: "Inglewood local" },
+];
+
+const hours = [
+  { d: "Mon", h: "Closed", closed: true },
+  { d: "Tue – Thu", h: "3:00pm – 10:00pm" },
+  { d: "Fri", h: "12:00pm – 12:00am" },
+  { d: "Sat", h: "11:00am – 12:00am" },
+  { d: "Sun", h: "11:00am – 8:00pm" },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BarOrPub",
+  name: "Ironwood Brewing Co.",
+  image: "https://picsum.photos/seed/ironwood-hero/1200/800",
+  address: { "@type": "PostalAddress", streetAddress: "1142 Brewery Lane SE", addressLocality: "Calgary", addressRegion: "AB", postalCode: "T2G 1M9", addressCountry: "CA" },
+  telephone: "+1-403-555-0148",
+  servesCuisine: "Craft Beer",
+  priceRange: "$$",
+};
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ironwood Brewing Co. — Industrial Taproom in Inglewood, Calgary</title>
+  <meta name="description" content="Independent, hop-forward craft beer in Inglewood. See what's on tap, hours, events, and visit our copper-and-concrete taproom. Honest beer for the neighborhood since 2014." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <set:html value={`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`} />
+</head>
+<body>
+  <!-- Age gate -->
+  <div class="agegate" id="agegate" role="dialog" aria-modal="true" aria-label="Age verification">
+    <div class="agegate__card">
+      <span class="badge badge--lg">EST. 2014</span>
+      <h2>Are you 21<span class="plus">+</span>?</h2>
+      <p>You must be of legal drinking age to enter Ironwood Brewing Co.</p>
+      <div class="agegate__actions">
+        <button class="btn btn--primary" id="ageYes">Yes, pour me in</button>
+        <a class="btn btn--ghost" href="https://www.responsibility.org/">I'm not</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav__inner">
+      <a href="#top" class="brand" aria-label="Ironwood Brewing Co. home">
+        <span class="brand__crest" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="34" height="34"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2"/><path d="M24 12c-5 4-8 8-8 13a8 8 0 0016 0c0-5-3-9-8-13z" fill="currentColor"/><path d="M16 30c-3 0-5-2-6-5 3 0 6 1 7 4" fill="currentColor"/></svg>
+        </span>
+        <span class="brand__txt">Ironwood<span class="brand__sub">Brewing&nbsp;Co.</span></span>
+      </a>
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a href="#visit" class="btn btn--primary btn--sm nav__cta">Visit Us</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero__media" aria-hidden="true"></div>
+      <div class="hero__grain" aria-hidden="true"></div>
+      <div class="wrap hero__inner">
+        <span class="badge">Independent · Inglewood · Calgary</span>
+        <h1>Small Batch.<br><em>Big Pour.</em><br>Brewed Two<br>Blocks From Here.</h1>
+        <p class="hero__lead">Honest beer for the neighborhood. Copper kettles, concrete floors, and fresh pints fewer steps from the brewhouse than anywhere in the city.</p>
+        <div class="hero__cta">
+          <a href="#on-tap" class="btn btn--primary">See What's On Tap</a>
+          <a href="#visit" class="btn btn--ghost">Visit the Taproom</a>
+        </div>
+        <dl class="hero__stats">
+          <div><dt>2014</dt><dd>Pouring since</dd></div>
+          <div><dt>14</dt><dd>Lines on tap</dd></div>
+          <div><dt>4.7★</dt><dd>Untappd avg</dd></div>
+        </dl>
+      </div>
+      <a href="#on-tap" class="hero__scroll" aria-label="Scroll to tap list">▼</a>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Fresh Beer</span><span class="dot">◆</span><span>Hop-Forward</span><span class="dot">◆</span><span>Dog-Friendly Patio</span><span class="dot">◆</span><span>Live Music Fridays</span><span class="dot">◆</span><span>Trivia Tuesdays</span><span class="dot">◆</span><span>Fresh Beer</span><span class="dot">◆</span><span>Hop-Forward</span><span class="dot">◆</span><span>Dog-Friendly Patio</span><span class="dot">◆</span><span>Live Music Fridays</span><span class="dot">◆</span><span>Trivia Tuesdays</span><span class="dot">◆</span>
+      </div>
+    </div>
+
+    <!-- ON TAP -->
+    <section class="section" id="on-tap">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="kicker">What's Pouring</span>
+          <h2>On The Board</h2>
+          <p class="sec-sub">Six fresh lines, updated as kegs blow. ABV, IBU, and the honest tasting note — no marketing fluff.</p>
+        </div>
+        <ul class="taplist">
+          {onTap.map((b, i) => (
+            <li class="tap reveal" style={`--d:${i * 60}ms`}>
+              <div class="tap__art" aria-hidden="true">
+                <img src={`https://picsum.photos/seed/${b.seed}/200/280`} alt="" loading="lazy" />
+              </div>
+              <div class="tap__body">
+                <div class="tap__top">
+                  <h3>{b.name}</h3>
+                  <span class="tap__price">{b.price}</span>
+                </div>
+                <div class="chips">
+                  <span class="chip chip--style">{b.style}</span>
+                  <span class="chip">{b.abv} ABV</span>
+                  <span class="chip">{b.ibu} IBU</span>
+                </div>
+                <p class="tap__note">{b.note}</p>
+                <span class="tap__pack">{b.pack}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="section story" id="story">
+      <div class="wrap story__grid">
+        <div class="story__media reveal">
+          <img src="https://picsum.photos/seed/ironwood-brewhouse/800/1000" alt="Gleaming copper and steel brewing tanks inside the Ironwood brewhouse" loading="lazy" />
+          <span class="story__tag">The Brewhouse</span>
+        </div>
+        <div class="story__copy reveal">
+          <span class="kicker">Our Story</span>
+          <h2>Refined Grit, Brewed In Inglewood</h2>
+          <p>We built Ironwood in an old machine shop in 2014 — kept the corrugated walls, the concrete, the bones. The copper kettles went in where the lathes came out. Everything you drink here is brewed in the room you're standing in.</p>
+          <p>Independent and family-run. We source Alberta barley and chase the freshest hops we can get our hands on. No shortcuts, no contract brewing, no corporate parent. Just honest beer for the neighborhood that built us.</p>
+          <ul class="story__pillars">
+            <li><strong>100%</strong> independent</li>
+            <li><strong>Local</strong> Alberta grain</li>
+            <li><strong>Zero</strong> contract brewing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="section events" id="events">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="kicker">This Week</span>
+          <h2>Events &amp; Live Music</h2>
+          <p class="sec-sub">Live music Fridays · Trivia Tuesdays · Food truck every weekend.</p>
+        </div>
+        <div class="events__grid">
+          {events.map((e, i) => (
+            <article class="evt reveal" style={`--d:${i * 70}ms`}>
+              <span class="evt__day">{e.day}</span>
+              <div>
+                <h3>{e.title}</h3>
+                <p>{e.time}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- TO-GO / MERCH -->
+    <section class="section togo" id="togo">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="kicker">To-Go</span>
+          <h2>Take Some Home</h2>
+        </div>
+        <div class="togo__grid">
+          {togo.map((t) => (
+            <div class="togo__card reveal">
+              <h3>{t.name}</h3>
+              <p>{t.detail}</p>
+              <span class="togo__price">{t.price}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="section reviews" id="reviews">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="kicker">Social Proof</span>
+          <h2>What The Regulars Say</h2>
+        </div>
+        <div class="reviews__grid">
+          {reviews.map((r) => (
+            <figure class="review reveal">
+              <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <blockquote>“{r.quote}”</blockquote>
+              <figcaption><strong>{r.name}</strong><span>{r.meta}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT / NAP -->
+    <section class="section visit" id="visit">
+      <div class="wrap visit__grid">
+        <div class="visit__info reveal">
+          <span class="kicker">Visit The Taproom</span>
+          <h2>Find Us In Inglewood</h2>
+          <div class="hours" aria-label="Opening hours">
+            <div class="hours__live"><span class="dot-live"></span> Open Now · until 12:00am</div>
+            <table>
+              <tbody>
+                {hours.map((row) => (
+                  <tr class={row.closed ? "is-closed" : ""}>
+                    <th scope="row">{row.d}</th>
+                    <td>{row.h}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <address class="nap">
+            <p>1142 Brewery Lane SE<br>Inglewood, Calgary, AB T2G 1M9</p>
+            <div class="nap__actions">
+              <a href="tel:+14035550148" class="btn btn--primary">Call (403) 555-0148</a>
+              <a href="https://maps.google.com/?q=1142+Brewery+Lane+SE+Calgary" class="btn btn--ghost" target="_blank" rel="noopener">Get Directions</a>
+            </div>
+            <ul class="amenities">
+              <li>Patio</li><li>Dog-friendly</li><li>Free parking</li><li>Family until 9pm</li>
+            </ul>
+          </address>
+        </div>
+        <div class="visit__map reveal" aria-hidden="true">
+          <img src="https://picsum.photos/seed/ironwood-map/800/900?grayscale" alt="Map of Ironwood Brewing Co. location in Inglewood, Calgary" loading="lazy" />
+          <span class="visit__pin">📍 1142 Brewery Lane SE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="wrap cta__inner reveal">
+        <h2>The Tanks Are Full.<br>The Patio's Open.</h2>
+        <p>Pull up a stool. First pint's the hardest decision you'll make all week.</p>
+        <div class="cta__actions">
+          <a href="tel:+14035550148" class="btn btn--primary btn--lg">Call to Reserve</a>
+          <a href="https://maps.google.com/?q=1142+Brewery+Lane+SE+Calgary" class="btn btn--outline btn--lg" target="_blank" rel="noopener">Directions</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__grid">
+      <div>
+        <span class="brand brand--foot">
+          <span class="brand__crest" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="30" height="30"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2"/><path d="M24 12c-5 4-8 8-8 13a8 8 0 0016 0c0-5-3-9-8-13z" fill="currentColor"/></svg>
+          </span>
+          <span class="brand__txt">Ironwood<span class="brand__sub">Brewing Co.</span></span>
+        </span>
+        <p class="foot__tag">Honest beer for the neighborhood. Independent since 2014.</p>
+      </div>
+      <div>
+        <h4>Taproom</h4>
+        <p>1142 Brewery Lane SE<br>Inglewood, Calgary, AB</p>
+        <a href="tel:+14035550148">(403) 555-0148</a>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <p>Tue–Thu 3–10 · Fri 12–12<br>Sat 11–12 · Sun 11–8 · Mon closed</p>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <ul class="foot__social">
+          <li><a href="#reviews">Untappd</a></li>
+          <li><a href="#events">Instagram</a></li>
+          <li><a href="#on-tap">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap foot__base">
+      <p>© 2026 Ironwood Brewing Co. · Please enjoy responsibly · 21+</p>
+    </div>
+  </footer>
+
+  <script>
+    // Age gate
+    const gate = document.getElementById('agegate');
+    if (sessionStorage.getItem('iw_age_ok')) gate?.remove();
+    document.getElementById('ageYes')?.addEventListener('click', () => {
+      sessionStorage.setItem('iw_age_ok', '1');
+      gate?.classList.add('is-out');
+      setTimeout(() => gate?.remove(), 400);
+    });
+
+    // Nav toggle + scroll state
+    const nav = document.getElementById('nav');
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle?.addEventListener('click', () => {
+      const open = links?.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(!!open));
+    });
+    links?.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => {
+        links.classList.remove('is-open');
+        toggle?.setAttribute('aria-expanded', 'false');
+      })
+    );
+    const onScroll = () => nav?.classList.toggle('is-stuck', window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Scroll reveal
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const els = document.querySelectorAll('.reveal');
+    if (mql.matches || !('IntersectionObserver' in window)) {
+      els.forEach((el) => el.classList.add('in'));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      els.forEach((el) => io.observe(el));
+    }
+  </script>
+
+  <style is:global>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body { margin: 0; }
+    img { display: block; max-width: 100%; }
+  </style>
+
+  <style>
+    :root {
+      --bg: #16140F;
+      --fg: #E8E2D6;
+      --primary: #B5793A;
+      --primary-fg: #16140F;
+      --accent: #C98A4B;
+      --muted: #2A2620;
+      --border: #3D372E;
+      --display: "Oswald", system-ui, sans-serif;
+      --body: "Inter", system-ui, sans-serif;
+      --wrap: 1180px;
+      --r: 6px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
+
+    h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; line-height: 1.02; margin: 0; text-transform: uppercase; letter-spacing: 0.01em; }
+    a { color: inherit; }
+
+    ::selection { background: var(--primary); color: var(--primary-fg); }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px;
+    }
+
+    /* ---- buttons ---- */
+    .btn {
+      --pad: .95rem 1.5rem;
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      min-height: 44px; padding: var(--pad);
+      font-family: var(--display); font-weight: 600; font-size: .9rem;
+      text-transform: uppercase; letter-spacing: .08em; text-decoration: none;
+      border: 1px solid transparent; border-radius: var(--r); cursor: pointer;
+      transition: transform .15s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+    }
+    .btn--sm { --pad: .6rem 1rem; min-height: 38px; font-size: .78rem; }
+    .btn--lg { --pad: 1.1rem 2rem; font-size: 1rem; }
+    .btn--primary { background: var(--primary); color: var(--primary-fg); box-shadow: 0 0 0 0 rgba(201,138,75,.5); }
+    .btn--primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 22px -8px rgba(201,138,75,.7); }
+    .btn--ghost { background: rgba(232,226,214,.06); color: var(--fg); border-color: var(--border); }
+    .btn--ghost:hover { background: rgba(232,226,214,.12); transform: translateY(-2px); }
+    .btn--outline { background: transparent; color: var(--fg); border-color: var(--fg); }
+    .btn--outline:hover { background: var(--fg); color: var(--bg); transform: translateY(-2px); }
+
+    /* ---- badge / kicker ---- */
+    .badge {
+      display: inline-block; font-family: var(--display); font-weight: 600;
+      font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--accent); padding: .4rem .8rem; border: 1px solid var(--border);
+      border-radius: 100px; background: rgba(181,121,58,.08);
+    }
+    .badge--lg { font-size: .8rem; }
+    .kicker {
+      display: inline-block; font-family: var(--display); font-weight: 600;
+      font-size: .8rem; letter-spacing: .28em; text-transform: uppercase; color: var(--primary);
+      margin-bottom: .65rem;
+    }
+
+    /* ---- nav ---- */
+    .nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 50;
+      transition: background .3s ease, box-shadow .3s ease, border-color .3s ease;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.is-stuck {
+      background: rgba(22,20,15,.86); backdrop-filter: blur(10px);
+      border-color: var(--border); box-shadow: 0 12px 30px -20px #000;
+    }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; padding: .9rem 0; }
+    .brand { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--fg); }
+    .brand__crest { color: var(--primary); display: grid; place-items: center; }
+    .brand__txt { font-family: var(--display); font-weight: 700; font-size: 1.25rem; text-transform: uppercase; letter-spacing: .04em; line-height: .95; display: flex; flex-direction: column; }
+    .brand__sub { font-size: .58rem; letter-spacing: .3em; color: var(--accent); font-weight: 500; }
+
+    .nav__links { display: flex; align-items: center; gap: 1.6rem; }
+    .nav__links > a:not(.btn) {
+      font-family: var(--display); font-weight: 500; text-transform: uppercase;
+      letter-spacing: .12em; font-size: .82rem; text-decoration: none; color: var(--fg);
+      opacity: .82; transition: opacity .2s, color .2s; position: relative; padding: .3rem 0;
+    }
+    .nav__links > a:not(.btn):hover { opacity: 1; color: var(--accent); }
+    .nav__toggle { display: none; background: none; border: 1px solid var(--border); border-radius: var(--r); width: 46px; height: 44px; flex-direction: column; gap: 5px; align-items: center; justify-content: center; cursor: pointer; }
+    .nav__toggle span { width: 22px; height: 2px; background: var(--fg); transition: .25s; }
+
+    /* ---- hero ---- */
+    .hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
+    .hero__media {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(105deg, rgba(22,20,15,.96) 12%, rgba(22,20,15,.7) 48%, rgba(22,20,15,.45) 100%),
+        url("https://picsum.photos/seed/ironwood-hero/1600/1100");
+      background-size: cover; background-position: center;
+      filter: saturate(.7) contrast(1.05);
+    }
+    .hero__grain {
+      position: absolute; inset: 0; pointer-events: none; opacity: .5;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,0,0,.18) 3px 4px),
+        radial-gradient(circle at 70% 30%, rgba(201,138,75,.16), transparent 55%);
+      mix-blend-mode: overlay;
+    }
+    .hero__inner { position: relative; padding: 7rem 0 4rem; }
+    .hero h1 {
+      font-size: clamp(2.6rem, 9vw, 6rem); font-weight: 700; margin: 1.1rem 0 0; letter-spacing: -.01em;
+    }
+    .hero h1 em { font-style: normal; color: var(--primary); }
+    .hero__lead { max-width: 46ch; margin: 1.5rem 0 2rem; font-size: clamp(1rem, 1.4vw, 1.18rem); color: #cfc7b7; }
+    .hero__cta { display: flex; flex-wrap: wrap; gap: .85rem; }
+    .hero__stats { display: flex; gap: 2.5rem; margin: 3rem 0 0; padding: 0; }
+    .hero__stats div { display: flex; flex-direction: column; }
+    .hero__stats dt { font-family: var(--display); font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.4rem); color: var(--accent); }
+    .hero__stats dd { margin: 0; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: #9c9484; }
+    .hero__scroll { position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%); color: var(--accent); text-decoration: none; font-size: .9rem; animation: bob 1.8s ease-in-out infinite; }
+    @keyframes bob { 50% { transform: translate(-50%, 8px); } }
+
+    /* ---- marquee ---- */
+    .marquee { overflow: hidden; border-block: 1px solid var(--border); background: var(--primary); color: var(--primary-fg); padding: .7rem 0; }
+    .marquee__track { display: inline-flex; gap: 1.6rem; align-items: center; white-space: nowrap; font-family: var(--display); font-weight: 600; text-transform: uppercase; letter-spacing: .14em; font-size: .92rem; animation: scroll 28s linear infinite; }
+    .marquee .dot { opacity: .65; }
+    @keyframes scroll { to { transform: translateX(-50%); } }
+
+    /* ---- sections ---- */
+    .section { padding: clamp(3.5rem, 8vw, 7rem) 0; }
+    .sec-head { max-width: 640px; margin-bottom: 2.6rem; }
+    .sec-head h2 { font-size: clamp(2rem, 5vw, 3.2rem); }
+    .sec-sub { color: #b0a895; margin: .7rem 0 0; }
+
+    /* ---- tap list ---- */
+    .taplist { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+    @media (min-width: 760px) { .taplist { grid-template-columns: 1fr 1fr; } }
+    .tap {
+      display: flex; gap: 1.1rem; padding: 1.1rem; background: var(--muted);
+      border: 1px solid var(--border); border-radius: calc(var(--r) + 2px);
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+    }
+    .tap:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 18px 40px -28px #000; }
+    .tap__art { flex: 0 0 76px; border-radius: var(--r); overflow: hidden; align-self: stretch; min-height: 120px; }
+    .tap__art img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.5) sepia(.25) saturate(1.3) brightness(.85); transition: filter .3s, transform .4s; }
+    .tap:hover .tap__art img { filter: none; transform: scale(1.06); }
+    .tap__body { flex: 1; display: flex; flex-direction: column; }
+    .tap__top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    .tap__top h3 { font-size: 1.35rem; }
+    .tap__price { font-family: var(--display); font-weight: 600; color: var(--accent); white-space: nowrap; font-size: 1rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: .55rem 0 .6rem; }
+    .chip {
+      font-family: var(--display); font-weight: 500; font-size: .68rem; letter-spacing: .08em;
+      text-transform: uppercase; padding: .25rem .55rem; border-radius: 100px;
+      border: 1px solid var(--border); color: #c9c0ae; background: rgba(0,0,0,.18);
+    }
+    .chip--style { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+    .tap__note { margin: 0 0 .6rem; font-size: .92rem; color: #b8b09e; }
+    .tap__pack { margin-top: auto; font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color: #8c8474; font-family: var(--display); }
+
+    /* ---- story ---- */
+    .story { background:
+      linear-gradient(180deg, transparent, rgba(0,0,0,.25)), var(--bg); }
+    .story__grid { display: grid; gap: 2.5rem; align-items: center; }
+    @media (min-width: 900px) { .story__grid { grid-template-columns: .85fr 1.15fr; gap: 4rem; } }
+    .story__media { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+    .story__media img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: contrast(1.1) brightness(.78) sepia(.18) saturate(1.2); }
+    .story__tag { position: absolute; left: 1rem; bottom: 1rem; font-family: var(--display); text-transform: uppercase; letter-spacing: .12em; font-size: .76rem; background: var(--bg); border: 1px solid var(--border); padding: .4rem .8rem; border-radius: 100px; color: var(--accent); }
+    .story__copy h2 { font-size: clamp(1.9rem, 4.5vw, 3rem); margin-bottom: 1.1rem; }
+    .story__copy p { color: #bcb4a2; margin: 0 0 1rem; max-width: 52ch; }
+    .story__pillars { list-style: none; display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem; padding: 0; margin: 1.8rem 0 0; }
+    .story__pillars li { font-size: .82rem; text-transform: uppercase; letter-spacing: .1em; color: #9c9484; }
+    .story__pillars strong { display: block; font-family: var(--display); font-size: 1.7rem; color: var(--accent); letter-spacing: 0; }
+
+    /* ---- events ---- */
+    .events { background: var(--muted); border-block: 1px solid var(--border); }
+    .events__grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .events__grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 980px) { .events__grid { grid-template-columns: repeat(4, 1fr); } }
+    .evt { display: flex; gap: 1rem; align-items: center; padding: 1.4rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); transition: transform .25s, border-color .25s; }
+    .evt:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .evt__day { font-family: var(--display); font-weight: 700; font-size: 1.05rem; letter-spacing: .1em; color: var(--primary-fg); background: var(--primary); border-radius: var(--r); display: grid; place-items: center; width: 52px; height: 52px; flex: 0 0 auto; }
+    .evt h3 { font-size: 1.05rem; }
+    .evt p { margin: .2rem 0 0; font-size: .84rem; color: #a89f8d; }
+
+    /* ---- to-go ---- */
+    .togo__grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+    @media (min-width: 700px) { .togo__grid { grid-template-columns: repeat(3, 1fr); } }
+    .togo__card { padding: 2rem 1.6rem; text-align: center; border: 1px dashed var(--border); border-radius: 10px; background: var(--muted); transition: border-color .25s, transform .25s; }
+    .togo__card:hover { border-color: var(--primary); border-style: solid; transform: translateY(-4px); }
+    .togo__card h3 { font-size: 1.4rem; }
+    .togo__card p { margin: .4rem 0 1rem; color: #a89f8d; font-size: .88rem; }
+    .togo__price { font-family: var(--display); font-weight: 700; font-size: 1.6rem; color: var(--accent); }
+
+    /* ---- reviews ---- */
+    .reviews__grid { display: grid; gap: 1.2rem; grid-template-columns: 1fr; }
+    @media (min-width: 820px) { .reviews__grid { grid-template-columns: repeat(3, 1fr); } }
+    .review { margin: 0; padding: 1.8rem; background: var(--muted); border: 1px solid var(--border); border-radius: 10px; display: flex; flex-direction: column; }
+    .review__stars { color: var(--primary); letter-spacing: .15em; font-size: 1rem; margin-bottom: .8rem; }
+    .review blockquote { margin: 0 0 1.2rem; font-size: 1.05rem; color: var(--fg); line-height: 1.5; }
+    .review figcaption { margin-top: auto; }
+    .review figcaption strong { display: block; font-family: var(--display); letter-spacing: .04em; }
+    .review figcaption span { font-size: .8rem; color: var(--accent); }
+
+    /* ---- visit ---- */
+    .visit__grid { display: grid; gap: 2.5rem; align-items: stretch; }
+    @media (min-width: 920px) { .visit__grid { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+    .visit__info h2 { font-size: clamp(1.9rem, 4.5vw, 3rem); margin-bottom: 1.5rem; }
+    .hours { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 1.6rem; background: var(--muted); }
+    .hours__live { display: flex; align-items: center; gap: .55rem; font-family: var(--display); text-transform: uppercase; letter-spacing: .1em; font-size: .8rem; padding: .9rem 1.2rem; border-bottom: 1px solid var(--border); color: var(--accent); }
+    .dot-live { width: 9px; height: 9px; border-radius: 50%; background: #6fbf73; box-shadow: 0 0 0 0 rgba(111,191,115,.6); animation: pulse 2s infinite; }
+    @keyframes pulse { 70% { box-shadow: 0 0 0 8px rgba(111,191,115,0); } }
+    .hours table { width: 100%; border-collapse: collapse; }
+    .hours tr { border-bottom: 1px solid var(--border); }
+    .hours tr:last-child { border-bottom: 0; }
+    .hours th, .hours td { padding: .75rem 1.2rem; text-align: left; font-size: .92rem; }
+    .hours th { font-family: var(--display); font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: #cfc7b7; }
+    .hours td { text-align: right; color: #b0a895; }
+    .hours tr.is-closed td { color: #7d7565; }
+    .nap p { margin: 0 0 1rem; font-style: normal; color: #cfc7b7; }
+    address.nap { font-style: normal; }
+    .nap__actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-bottom: 1.2rem; }
+    .amenities { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 0; }
+    .amenities li { font-family: var(--display); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; padding: .35rem .7rem; border: 1px solid var(--border); border-radius: 100px; color: #b0a895; }
+    .visit__map { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); min-height: 320px; }
+    .visit__map img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.55) sepia(.3) saturate(1.4); }
+    .visit__pin { position: absolute; left: 1rem; bottom: 1rem; background: var(--bg); border: 1px solid var(--border); padding: .5rem .9rem; border-radius: 100px; font-size: .82rem; font-family: var(--display); letter-spacing: .04em; }
+
+    /* ---- cta ---- */
+    .cta { position: relative; padding: clamp(4rem, 10vw, 8rem) 0; text-align: center; overflow: hidden;
+      background:
+        linear-gradient(rgba(22,20,15,.82), rgba(22,20,15,.92)),
+        url("https://picsum.photos/seed/ironwood-cta/1600/700");
+      background-size: cover; background-position: center; border-block: 1px solid var(--border);
+    }
+    .cta h2 { font-size: clamp(2.2rem, 6vw, 4.2rem); }
+    .cta p { color: #cfc7b7; max-width: 44ch; margin: 1.2rem auto 2rem; }
+    .cta__actions { display: flex; flex-wrap: wrap; gap: .9rem; justify-content: center; }
+
+    /* ---- footer ---- */
+    .foot { background: #100E0A; border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
+    .foot__grid { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+    @media (min-width: 760px) { .foot__grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; } }
+    .brand--foot { margin-bottom: .9rem; }
+    .foot__tag { color: #9c9484; max-width: 32ch; font-size: .9rem; }
+    .foot h4 { font-size: .82rem; letter-spacing: .16em; color: var(--accent); margin-bottom: .8rem; }
+    .foot p, .foot a { color: #b0a895; font-size: .9rem; text-decoration: none; }
+    .foot a:hover { color: var(--fg); }
+    .foot__social { list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem; }
+    .foot__base { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .foot__base p { font-size: .8rem; color: #7d7565; margin: 0; }
+
+    /* ---- age gate ---- */
+    .agegate { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 1.5rem;
+      background: rgba(10,9,6,.92); backdrop-filter: blur(8px); transition: opacity .4s ease; }
+    .agegate.is-out { opacity: 0; pointer-events: none; }
+    .agegate__card { max-width: 420px; text-align: center; background: var(--muted); border: 1px solid var(--border); border-radius: 14px; padding: 2.5rem 2rem; box-shadow: 0 30px 80px -30px #000; }
+    .agegate__card h2 { font-size: 2.4rem; margin: 1rem 0 .6rem; }
+    .agegate__card h2 .plus { color: var(--primary); }
+    .agegate__card p { color: #b0a895; margin: 0 0 1.6rem; }
+    .agegate__actions { display: flex; flex-direction: column; gap: .7rem; }
+
+    /* ---- reveal animation ---- */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease var(--d, 0ms), transform .6s ease var(--d, 0ms); }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .marquee__track, .hero__scroll, .dot-live { animation: none; }
+    }
+
+    /* ---- responsive nav ---- */
+    @media (max-width: 880px) {
+      .nav__toggle { display: flex; }
+      .nav__links {
+        position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: .2rem;
+        background: rgba(22,20,15,.97); backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border); padding: 1rem 1.25rem 1.5rem;
+        transform: translateY(-12px); opacity: 0; pointer-events: none; transition: .25s;
+      }
+      .nav__links.is-open { transform: none; opacity: 1; pointer-events: auto; }
+      .nav__links > a:not(.btn) { padding: .8rem 0; border-bottom: 1px solid var(--border); }
+      .nav__cta { margin-top: .6rem; }
+      .hero__stats { gap: 1.6rem; flex-wrap: wrap; }
+    }
+  </style>
+</body>
+</html>
