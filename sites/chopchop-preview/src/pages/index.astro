@@ -1,0 +1,606 @@
+---
+// Chop-Chop Barbershop — client preview built on the "barber-modern" engine template.
+// Real content (services, prices, hours, reviews, phone, booking). Imagery is placeholder.
+const nav = [
+  { label: "Services", href: "#services" },
+  { label: "Your barber", href: "#barbers" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "Visit", href: "#visit" },
+];
+
+const booking = "https://chopchopbarbershop.setmore.com/";
+const phone = "(403) 230-2804";
+const phoneHref = "tel:+14032302804";
+
+const services = [
+  { name: "Men's Regular Haircut", note: "Consult + cut, your style", price: "35", min: "25" },
+  { name: "Skin Fade / Zero Fade", note: "Precision taper, clean lines", price: "40", min: "30" },
+  { name: "Beard Trim & Line-Up", note: "Shape, edge, finish", price: "20", min: "10" },
+  { name: "Buzz Cut / Single Length", note: "Quick, clean, done", price: "18.90", min: "15" },
+  { name: "Kid's Cut · 12 & under", note: "Patient, friendly chairs", price: "26", min: "15" },
+  { name: "Senior's Cut · 65+", note: "Classic care", price: "26", min: "15" },
+];
+
+const barbers = [
+  { name: "Moe", role: "Owner · Master Barber", spec: "10+ yrs · fades & classics", seed: "chopchop-moe" },
+];
+
+const gallery = [
+  { seed: "chopchop-fade1", alt: "Close skin fade detail", tall: true },
+  { seed: "chopchop-beard2", alt: "Beard line-up close-up" },
+  { seed: "chopchop-chair3", alt: "Barber chair detail" },
+  { seed: "chopchop-razor4", alt: "Line-up in progress", tall: true },
+  { seed: "chopchop-scissor5", alt: "Scissor cut over comb" },
+];
+
+const testimonials = [
+  { quote: "Best haircut I've ever had. Moe is a natural talent with an old-school barbershop feel.", name: "Jordan Erelis" },
+  { quote: "I've been going to Chop-Chop since 2020 and have always gotten a great haircut.", name: "Rob VH" },
+  { quote: "Mo is the best barber I have ever been to. Comfortable atmosphere in the shop.", name: "Mike C." },
+];
+
+const hours = [
+  { d: "Mon – Fri", h: "10:00am – 6:00pm", open: true },
+  { d: "Saturday", h: "10:00am – 4:00pm", open: true },
+  { d: "Sunday", h: "Closed", open: false },
+];
+
+const stats = [
+  { n: "2020", l: "Serving Renfrew" },
+  { n: "10+", l: "Yrs master barber" },
+  { n: "60s", l: "To book online" },
+  { n: "5★", l: "Client reviews" },
+];
+
+const mapsQuery = "https://maps.google.com/?q=Chop-Chop+Barbershop+Renfrew+Calgary";
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  name: "Chop-Chop Barbershop",
+  description: "Family-owned neighbourhood barbershop in Renfrew, Calgary. Classic cuts, modern style.",
+  telephone: "+14032302804",
+  url: "https://chopchopbarber.com",
+  areaServed: "Calgary, AB",
+  address: { "@type": "PostalAddress", addressLocality: "Calgary", addressRegion: "AB", addressCountry: "CA" },
+  openingHours: ["Mo-Fr 10:00-18:00", "Sa 10:00-16:00"],
+  priceRange: "$$",
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chop-Chop Barbershop — Classic Cuts, Modern Style · Renfrew, Calgary</title>
+    <meta
+      name="description"
+      content="Family-owned neighbourhood barbershop in Renfrew, Calgary. Skin fades, classic cuts, beard line-ups and kids' cuts by a master barber. Book online in under 60 seconds."
+    />
+    <meta property="og:title" content="Chop-Chop Barbershop — Classic Cuts, Modern Style" />
+    <meta property="og:description" content="Renfrew's neighbourhood barbershop. Book your chair in under 60 seconds." />
+    <meta property="og:type" content="business.business" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%82%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav" id="top">
+      <div class="wrap nav-inner">
+        <a class="brand" href="#top" aria-label="Chop-Chop Barbershop home">
+          <span class="crest" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="28" height="28">
+              <circle cx="9" cy="22" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="23" cy="22" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M12.2 19L27 6M19.8 19L5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="brand-text">Chop-Chop<em>Barbershop</em></span>
+        </a>
+        <nav class="links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <div class="nav-cta">
+          <a class="phone-link" href={phoneHref}>{phone}</a>
+          <a class="btn btn-dark" href={booking} target="_blank" rel="noopener">Book now</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-h">
+        <div class="wrap hero-grid">
+          <div class="hero-copy reveal">
+            <p class="eyebrow">Est. 2020 · Renfrew, Calgary</p>
+            <h1 id="hero-h">
+              Renfrew's neighbourhood chair for the <em>classic cut</em> and the modern fade.
+            </h1>
+            <p class="lede">
+              Family-owned, master-barber craft, and a comfortable community feel.
+              Sharp cuts, friendly chairs — book yours in under sixty seconds.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-dark" href={booking} target="_blank" rel="noopener">Book online</a>
+              <a class="btn btn-ghost" href={phoneHref}>Call the shop</a>
+            </div>
+            <div class="hero-meta">
+              <span aria-hidden="true">★★★★★</span>
+              <span>Loved by Renfrew regulars since 2020</span>
+            </div>
+          </div>
+          <div class="hero-media reveal">
+            <div class="hero-photo">
+              <img
+                src="https://picsum.photos/seed/chopchop-hero/900/1100"
+                alt="Barber giving a precise fade at Chop-Chop Barbershop"
+                loading="eager"
+                width="900"
+                height="1100"
+              />
+            </div>
+            <div class="hero-card">
+              <p class="hc-num">Today</p>
+              <p class="hc-line"><span class="dot" aria-hidden="true"></span>Open · 10–6</p>
+              <p class="hc-sub">Walk in or grab a chair online.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Classic Cuts</span><span>•</span><span>Skin Fades</span><span>•</span>
+          <span>Beard Line-Up</span><span>•</span><span>Kids' Cuts</span><span>•</span>
+          <span>Modern Style</span><span>•</span>
+          <span>Classic Cuts</span><span>•</span><span>Skin Fades</span><span>•</span>
+          <span>Beard Line-Up</span><span>•</span><span>Kids' Cuts</span><span>•</span>
+          <span>Modern Style</span><span>•</span>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <section class="section services" id="services" aria-labelledby="svc-h">
+        <div class="wrap">
+          <div class="sec-head">
+            <p class="eyebrow">The menu</p>
+            <h2 id="svc-h">Cuts, fades &amp; beard work</h2>
+            <p class="sec-sub">Every price includes the consult. Every line shows the time.</p>
+          </div>
+          <ul class="svc-list">
+            {services.map((s) => (
+              <li class="svc-row">
+                <div class="svc-main">
+                  <h3>{s.name}</h3>
+                  <p>{s.note}</p>
+                </div>
+                <span class="svc-rule" aria-hidden="true"></span>
+                <div class="svc-meta">
+                  <span class="svc-price">${s.price}</span>
+                  <span class="svc-min">{s.min} min</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="section stats-sec" aria-label="Shop at a glance">
+        <div class="wrap stats-grid">
+          {stats.map((s) => (
+            <div class="stat">
+              <p class="stat-n">{s.n}</p>
+              <p class="stat-l">{s.l}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- BARBER -->
+      <section class="section barbers" id="barbers" aria-labelledby="barb-h">
+        <div class="wrap">
+          <div class="sec-head center">
+            <p class="eyebrow">Your barber</p>
+            <h2 id="barb-h">Family-owned, master-barber craft</h2>
+            <p class="sec-sub">Ten-plus years in the chair, and a shop built to feel like the neighbourhood's.</p>
+          </div>
+          <div class="barb-grid solo">
+            {barbers.map((b) => (
+              <article class="barb-card reveal">
+                <div class="barb-photo">
+                  <img
+                    src={`https://picsum.photos/seed/${b.seed}/600/720`}
+                    alt={`Portrait of ${b.name}, ${b.role}`}
+                    loading="lazy"
+                    width="600"
+                    height="720"
+                  />
+                  <span class="barb-tag">{b.spec}</span>
+                </div>
+                <div class="barb-body">
+                  <h3>{b.name}</h3>
+                  <p class="barb-role">{b.role}</p>
+                  <a class="barb-book" href={booking} target="_blank" rel="noopener">Book with {b.name} →</a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="section gallery" aria-labelledby="gal-h">
+        <div class="wrap">
+          <div class="sec-head">
+            <p class="eyebrow">Our work</p>
+            <h2 id="gal-h">Real chairs, real cuts</h2>
+            <p class="sec-sub">Placeholder shots here — your real cuts drop straight in.</p>
+          </div>
+          <div class="gal-grid">
+            {gallery.map((g) => (
+              <figure class={`gal-item${g.tall ? " tall" : ""}`}>
+                <img
+                  src={`https://picsum.photos/seed/${g.seed}/700/${g.tall ? 900 : 600}`}
+                  alt={g.alt}
+                  loading="lazy"
+                  width="700"
+                  height={g.tall ? 900 : 600}
+                />
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section quotes" id="reviews" aria-labelledby="quo-h">
+        <div class="wrap">
+          <div class="sec-head center">
+            <p class="eyebrow">Word of mouth</p>
+            <h2 id="quo-h">The chair speaks for itself</h2>
+          </div>
+          <div class="quote-grid">
+            {testimonials.map((t) => (
+              <figure class="quote-card reveal">
+                <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote>“{t.quote}”</blockquote>
+                <figcaption>— {t.name}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <div class="quotes-cta">
+            <a class="btn btn-dark" href={booking} target="_blank" rel="noopener">Book your chair</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- BOOKING CTA BAND -->
+      <section class="cta-band" id="book" aria-labelledby="cta-h">
+        <div class="wrap cta-inner">
+          <div>
+            <p class="eyebrow light">Walk in or book ahead</p>
+            <h2 id="cta-h">Classic cuts. Modern style.<br />Your chair's waiting.</h2>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-light" href={phoneHref}>Call {phone}</a>
+            <a class="btn btn-accent" href={booking} target="_blank" rel="noopener">Book online · 60s</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISIT / HOURS / NAP -->
+      <section class="section visit" id="visit" aria-labelledby="visit-h">
+        <div class="wrap visit-grid">
+          <div>
+            <p class="eyebrow">Visit the shop</p>
+            <h2 id="visit-h">Find us in Renfrew</h2>
+            <address class="nap">
+              Chop-Chop Barbershop<br />
+              Renfrew · Calgary, AB<br />
+              <a href={phoneHref}>{phone}</a>
+            </address>
+            <p class="nap-actions">
+              <a class="btn btn-dark" href={booking} target="_blank" rel="noopener">Book online</a>
+              <a class="btn btn-ghost" href={mapsQuery} target="_blank" rel="noopener">Get directions →</a>
+            </p>
+            <ul class="hours">
+              {hours.map((h) => (
+                <li class={h.open ? "" : "closed"}>
+                  <span>{h.d}</span>
+                  <span>{h.h}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="map-card">
+            <img
+              src="https://picsum.photos/seed/chopchop-map/800/700?grayscale"
+              alt="Map area around Renfrew, Calgary"
+              loading="lazy"
+              width="800"
+              height="700"
+            />
+            <a class="map-pin" href={mapsQuery} target="_blank" rel="noopener" aria-label="Open in Google Maps">
+              <span class="pin" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap foot-inner">
+        <div class="foot-brand">
+          <span class="brand-text">Chop-Chop<em>Barbershop</em></span>
+          <p>Family-owned in Renfrew. Classic cuts, modern style. Est. 2020.</p>
+        </div>
+        <nav class="foot-links" aria-label="Footer">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+          <a href={booking} target="_blank" rel="noopener">Book</a>
+        </nav>
+        <p class="foot-fine">© 2026 Chop-Chop Barbershop · Renfrew, Calgary AB · {phone}</p>
+      </div>
+    </footer>
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+      }
+    </style>
+
+    <style>
+      :root {
+        --bg: #faf8f4;
+        --fg: #1a1a1a;
+        --primary: #1a1a1a;
+        --primary-fg: #faf8f4;
+        --accent: #b23a2e;
+        --muted: #efece5;
+        --border: #dcd6cb;
+        --sans: "Inter", system-ui, sans-serif;
+        --display: "Fraunces", Georgia, serif;
+        --max: 1180px;
+        --pad: clamp(1.1rem, 4vw, 2.5rem);
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--sans);
+        font-weight: 400;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding-inline: var(--pad); }
+
+      h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.04; letter-spacing: -0.01em; margin: 0; }
+      h1 em, h2 em, h1 i, .brand-text em { font-style: italic; }
+
+      .eyebrow {
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        font-weight: 500; color: var(--accent); margin: 0 0 1rem;
+      }
+      .eyebrow.light { color: #e9a79c; }
+
+      .skip {
+        position: absolute; left: -999px; top: 0; z-index: 100;
+        background: var(--fg); color: var(--bg); padding: .7rem 1rem; border-radius: 0 0 8px 0;
+      }
+      .skip:focus { left: 0; }
+
+      a { color: inherit; }
+      :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 46px; padding: 0 1.4rem; border-radius: 100px;
+        font-family: var(--sans); font-size: 0.92rem; font-weight: 500;
+        text-decoration: none; border: 1px solid transparent;
+        transition: transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+        cursor: pointer; white-space: nowrap;
+      }
+      .btn:hover { transform: translateY(-2px); }
+      .btn-dark { background: var(--primary); color: var(--primary-fg); }
+      .btn-dark:hover { box-shadow: 0 10px 24px -10px rgba(26,26,26,.5); }
+      .btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+      .btn-ghost:hover { border-color: var(--fg); }
+      .btn-light { background: var(--bg); color: var(--fg); }
+      .btn-accent { background: var(--accent); color: #fff; }
+      .btn-accent:hover { box-shadow: 0 10px 24px -10px rgba(178,58,46,.6); }
+
+      /* Nav */
+      .nav {
+        position: sticky; top: 0; z-index: 50;
+        background: color-mix(in oklab, var(--bg) 88%, transparent);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 1.5rem; }
+      .brand { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--fg); }
+      .crest { color: var(--accent); display: inline-flex; }
+      .brand-text { font-family: var(--display); font-weight: 600; font-size: 1.12rem; letter-spacing: -0.01em; }
+      .brand-text em { font-weight: 400; color: var(--accent); margin-left: .28rem; font-size: .82em; }
+      .links { display: none; gap: 1.8rem; }
+      .links a { text-decoration: none; font-size: .92rem; color: var(--fg); opacity: .82; position: relative; padding: .2rem 0; }
+      .links a::after { content: ""; position: absolute; left: 0; bottom: -2px; height: 1.5px; width: 0; background: var(--accent); transition: width .25s ease; }
+      .links a:hover { opacity: 1; }
+      .links a:hover::after { width: 100%; }
+      .nav-cta { display: flex; align-items: center; gap: 1rem; }
+      .phone-link { display: none; text-decoration: none; font-size: .9rem; font-weight: 500; }
+
+      /* Hero */
+      .hero { padding-top: clamp(2.5rem, 6vw, 4.5rem); padding-bottom: clamp(2rem, 5vw, 3.5rem); }
+      .hero-grid { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }
+      .hero h1 { font-size: clamp(2.5rem, 7vw, 4.6rem); margin-bottom: 1.4rem; }
+      .hero h1 em { color: var(--accent); }
+      .lede { font-size: clamp(1.02rem, 1.6vw, 1.18rem); max-width: 38ch; color: color-mix(in oklab, var(--fg) 78%, transparent); margin: 0 0 2rem; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-bottom: 1.8rem; }
+      .hero-meta { display: flex; align-items: center; gap: .65rem; font-size: .88rem; color: color-mix(in oklab, var(--fg) 66%, transparent); }
+      .hero-meta span:first-child { color: var(--accent); letter-spacing: .12em; }
+
+      .hero-media { position: relative; }
+      .hero-photo { border-radius: 18px; overflow: hidden; box-shadow: 0 30px 60px -34px rgba(26,26,26,.45); }
+      .hero-photo img { width: 100%; height: clamp(360px, 56vw, 560px); object-fit: cover; filter: saturate(.95) contrast(1.02); }
+      .hero-card {
+        position: absolute; left: -8px; bottom: -18px; background: var(--bg);
+        border: 1px solid var(--border); border-radius: 14px; padding: 1rem 1.2rem;
+        box-shadow: 0 18px 40px -20px rgba(26,26,26,.35); min-width: 190px;
+      }
+      .hc-num { margin: 0; font-size: .68rem; text-transform: uppercase; letter-spacing: .2em; color: var(--accent); }
+      .hc-line { margin: .35rem 0 .25rem; font-family: var(--display); font-size: 1.25rem; display: flex; align-items: center; gap: .5rem; }
+      .hc-sub { margin: 0; font-size: .78rem; color: color-mix(in oklab, var(--fg) 60%, transparent); }
+      .dot { width: 9px; height: 9px; border-radius: 50%; background: #3f9b6a; box-shadow: 0 0 0 4px rgba(63,155,106,.18); }
+
+      /* Marquee */
+      .marquee { overflow: hidden; border-block: 1px solid var(--border); background: var(--muted); padding: .85rem 0; }
+      .marquee-track { display: inline-flex; gap: 1.6rem; white-space: nowrap; animation: scroll 26s linear infinite; }
+      .marquee-track span { font-family: var(--display); font-style: italic; font-size: 1.15rem; color: color-mix(in oklab, var(--fg) 70%, transparent); }
+      .marquee-track span:nth-child(even) { color: var(--accent); font-style: normal; }
+      @keyframes scroll { to { transform: translateX(-50%); } }
+
+      /* Sections */
+      .section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+      .sec-head { max-width: 44ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+      .sec-head.center { margin-inline: auto; text-align: center; }
+      .sec-head h2 { font-size: clamp(2rem, 4.5vw, 3.1rem); }
+      .sec-sub { margin: 1rem 0 0; color: color-mix(in oklab, var(--fg) 66%, transparent); font-size: 1.02rem; }
+
+      /* Services */
+      .svc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .25rem; }
+      .svc-row {
+        display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: .5rem 1.2rem;
+        padding: 1.3rem 0; border-top: 1px solid var(--border); transition: padding-left .25s ease;
+      }
+      .svc-row:hover { padding-left: .6rem; }
+      .svc-row:last-child { border-bottom: 1px solid var(--border); }
+      .svc-main h3 { font-size: 1.4rem; }
+      .svc-main p { margin: .3rem 0 0; font-size: .9rem; color: color-mix(in oklab, var(--fg) 60%, transparent); }
+      .svc-rule { display: none; }
+      .svc-meta { text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
+      .svc-price { font-family: var(--display); font-size: 1.5rem; color: var(--accent); }
+      .svc-min { font-size: .8rem; color: color-mix(in oklab, var(--fg) 55%, transparent); letter-spacing: .04em; }
+
+      /* Stats */
+      .stats-sec { padding-block: clamp(2.5rem, 5vw, 4rem); background: var(--muted); border-block: 1px solid var(--border); }
+      .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; text-align: center; }
+      .stat-n { font-family: var(--display); font-size: clamp(2.4rem, 6vw, 3.4rem); margin: 0; }
+      .stat-l { margin: .3rem 0 0; font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; color: color-mix(in oklab, var(--fg) 62%, transparent); }
+
+      /* Barbers */
+      .barb-grid { display: grid; grid-template-columns: 1fr; gap: 1.6rem; }
+      .barb-grid.solo { max-width: 380px; margin-inline: auto; }
+      .barb-card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform .3s ease, box-shadow .3s ease; }
+      .barb-card:hover { transform: translateY(-5px); box-shadow: 0 24px 44px -28px rgba(26,26,26,.4); }
+      .barb-photo { position: relative; aspect-ratio: 5/6; overflow: hidden; }
+      .barb-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+      .barb-card:hover .barb-photo img { transform: scale(1.05); }
+      .barb-tag { position: absolute; left: 12px; bottom: 12px; background: var(--bg); color: var(--fg); font-size: .72rem; letter-spacing: .04em; padding: .35rem .7rem; border-radius: 100px; border: 1px solid var(--border); }
+      .barb-body { padding: 1.2rem 1.3rem 1.4rem; }
+      .barb-body h3 { font-size: 1.45rem; }
+      .barb-role { margin: .25rem 0 .9rem; font-size: .85rem; color: var(--accent); letter-spacing: .04em; }
+      .barb-book { text-decoration: none; font-size: .9rem; font-weight: 500; border-bottom: 1.5px solid transparent; padding-bottom: 2px; transition: border-color .2s ease; }
+      .barb-book:hover { border-color: var(--accent); }
+
+      /* Gallery */
+      .gal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .9rem; grid-auto-flow: dense; }
+      .gal-item { margin: 0; overflow: hidden; border-radius: 14px; aspect-ratio: 1/1; }
+      .gal-item.tall { grid-row: span 2; aspect-ratio: auto; }
+      .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s ease, filter .4s ease; filter: saturate(.92); }
+      .gal-item:hover img { transform: scale(1.06); filter: saturate(1.05); }
+
+      /* Quotes */
+      .quote-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
+      .quote-card { background: var(--muted); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem 1.6rem; margin: 0; }
+      .stars { color: var(--accent); letter-spacing: .15em; font-size: .9rem; margin-bottom: 1rem; }
+      .quote-card blockquote { margin: 0; font-family: var(--display); font-size: 1.2rem; line-height: 1.4; }
+      .quote-card figcaption { margin-top: 1.1rem; font-size: .85rem; color: color-mix(in oklab, var(--fg) 60%, transparent); font-weight: 500; }
+      .quotes-cta { text-align: center; margin-top: 2.4rem; }
+
+      /* CTA band */
+      .cta-band { background: var(--primary); color: var(--primary-fg); }
+      .cta-inner { padding-block: clamp(3rem, 7vw, 5rem); display: grid; gap: 2rem; align-items: center; }
+      .cta-band h2 { font-size: clamp(1.9rem, 4.5vw, 3rem); color: var(--primary-fg); }
+      .cta-actions { display: flex; flex-wrap: wrap; gap: .9rem; }
+
+      /* Visit */
+      .visit-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: start; }
+      .visit h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); margin-bottom: 1.2rem; }
+      .nap { font-style: normal; font-size: 1.05rem; line-height: 1.7; color: color-mix(in oklab, var(--fg) 80%, transparent); }
+      .nap a { text-decoration: none; }
+      .nap-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin: 1.5rem 0 2rem; }
+      .hours { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+      .hours li { display: flex; justify-content: space-between; padding: .85rem .2rem; border-bottom: 1px solid var(--border); font-size: .98rem; }
+      .hours li span:first-child { font-weight: 500; }
+      .hours li.closed { color: color-mix(in oklab, var(--fg) 48%, transparent); }
+      .hours li span:last-child { color: color-mix(in oklab, var(--fg) 62%, transparent); }
+
+      .map-card { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+      .map-card img { width: 100%; height: clamp(260px, 40vw, 420px); object-fit: cover; filter: contrast(1.05) sepia(.12); }
+      .map-pin { position: absolute; inset: 0; display: grid; place-items: center; }
+      .pin { width: 22px; height: 22px; background: var(--accent); border: 3px solid var(--bg); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); box-shadow: 0 8px 18px -6px rgba(0,0,0,.5); animation: bob 2.2s ease-in-out infinite; }
+      @keyframes bob { 0%,100% { transform: rotate(-45deg) translateY(0); } 50% { transform: rotate(-45deg) translateY(-6px); } }
+
+      /* Footer */
+      .footer { border-top: 1px solid var(--border); padding-block: 3rem 2.5rem; background: var(--muted); }
+      .foot-inner { display: grid; gap: 1.6rem; }
+      .foot-brand p { margin: .5rem 0 0; font-size: .9rem; color: color-mix(in oklab, var(--fg) 62%, transparent); }
+      .foot-links { display: flex; flex-wrap: wrap; gap: 1.3rem; }
+      .foot-links a { text-decoration: none; font-size: .9rem; opacity: .8; }
+      .foot-links a:hover { opacity: 1; color: var(--accent); }
+      .foot-fine { margin: 0; font-size: .8rem; color: color-mix(in oklab, var(--fg) 55%, transparent); border-top: 1px solid var(--border); padding-top: 1.4rem; }
+
+      /* Reveal (visible by default; JS adds a gentle entrance when scripting is on) */
+      .reveal { opacity: 1; transform: none; transition: opacity .7s ease, transform .7s ease; }
+      .js .reveal { opacity: 0; transform: translateY(22px); }
+      .js .reveal.in { opacity: 1; transform: none; }
+
+      /* Responsive */
+      @media (min-width: 720px) {
+        .gal-grid { grid-template-columns: repeat(3, 1fr); }
+        .quote-grid { grid-template-columns: repeat(3, 1fr); }
+        .stats-grid { grid-template-columns: repeat(4, 1fr); }
+        .visit-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .cta-inner { grid-template-columns: 1.4fr 1fr; }
+        .phone-link { display: inline; }
+      }
+      @media (min-width: 960px) {
+        .links { display: flex; }
+        .hero-grid { grid-template-columns: 1.05fr .95fr; }
+        .svc-row { grid-template-columns: 1fr 80px auto; }
+        .svc-rule { display: block; height: 1px; align-self: center; background: linear-gradient(90deg, var(--border), transparent); }
+      }
+    </style>
+
+    <script>
+      document.documentElement.classList.add("js");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>
