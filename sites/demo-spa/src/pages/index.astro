@@ -1,6 +1,7 @@
 ---
 import "@studio0rbit/shared/styles/base.css";
 import "../theme.css";
+import { shop as fallback } from "../content/shop";
 import type { ShopContent } from "@studio0rbit/shared";
 import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
 import Features from "@studio0rbit/shared/components/Features.astro";
@@ -11,39 +12,69 @@ import CTA from "@studio0rbit/shared/components/CTA.astro";
 import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
 import LocalBusinessJsonLd from "@studio0rbit/shared/seo/LocalBusinessJsonLd.astro";
 
-const shop: ShopContent = {
-  name: "Stillwater Spa",
-  tagline: "A quiet place to slow down.",
-  vertical: "salon",
-  phone: "+1-403-555-0155",
-  address: "318 9 Ave SE, Inglewood, Calgary, AB",
-  mapUrl: "https://maps.google.com/?q=318+9+Ave+SE+Calgary",
-  serviceArea: "Inglewood",
-  bookingUrl: "#book",
-  hours: [
-    { day: "Tue–Fri", open: "10:00", close: "20:00" },
-    { day: "Sat–Sun", open: "9:00", close: "18:00" },
-    { day: "Mon", open: "", close: "", closed: true },
-  ],
-  services: [
-    { name: "Swedish Massage — 60 min", price: "$130" },
-    { name: "Deep Tissue — 90 min", price: "$185" },
-    { name: "Signature Facial", price: "$145" },
-    { name: "Nordic Sauna Session", price: "$45" },
-    { name: "Couples Retreat (2 hr)", price: "$390" },
-  ],
-  url: "https://stillwater.example.com",
-};
-const features = [
+// Local defaults — used as fallback if Storyblok is unavailable or a field is empty.
+let shop: ShopContent = fallback;
+let features = [
   { icon: "leaf", title: "Natural & organic", body: "Plant-based products, ethically sourced, never tested on animals." },
   { icon: "sparkles", title: "Expert therapists", body: "Registered massage therapists and licensed estheticians." },
   { icon: "heart", title: "Calm by design", body: "A serene space built for genuine rest, away from the noise." },
 ];
-const testimonials = [
+let testimonials = [
   { quote: "The most relaxed I've felt in years. The sauna alone is worth the visit.", name: "Elise M." },
   { quote: "Booking was effortless and the massage was incredible. My new ritual.", name: "Jordan P." },
   { quote: "A true escape in the middle of the city. Beautiful, quiet, restorative.", name: "Sam K." },
 ];
+let h = {
+  heroKicker: "Calgary · Inglewood",
+  heroSubcopy: "Massage, facials, and a Nordic sauna in the heart of the city. Unhurried care, thoughtfully delivered.",
+  heroCtaLabel: "Book a treatment",
+  featuresLabel: "Why Stillwater", featuresHeading: "Rest, the way it should feel",
+  testimonialsLabel: "Guests", testimonialsHeading: "Quietly loved in Calgary",
+  ctaHeading: "Your escape is waiting",
+};
+
+// Content comes from Storyblok (client-editable). Everything below is overridable in the CMS.
+const token = import.meta.env.STORYBLOK_TOKEN;
+const slug = import.meta.env.STORYBLOK_STORY ?? "stillwater-spa";
+let source = "fallback (local file)";
+if (token) {
+  try {
+    const res = await fetch(`https://api.storyblok.com/v2/cdn/stories/${slug}?token=${token}&version=published`);
+    if (res.ok) {
+      const { story } = await res.json();
+      const c = story.content;
+      shop = {
+        name: c.name,
+        tagline: c.tagline,
+        vertical: "salon",
+        phone: c.phone,
+        address: c.address,
+        mapUrl: c.map_url,
+        serviceArea: c.service_area,
+        bookingUrl: c.booking_url,
+        hours: (c.hours ?? []).map((x: any) => ({ day: x.day, open: x.open, close: x.close, closed: x.closed })),
+        services: (c.services ?? []).map((x: any) => ({ name: x.name, price: x.price, description: x.description })),
+        url: fallback.url,
+      };
+      if (c.features?.length) features = c.features.map((x: any) => ({ icon: x.icon, title: x.title, body: x.body }));
+      if (c.testimonials?.length) testimonials = c.testimonials.map((x: any) => ({ quote: x.quote, name: x.name }));
+      h = {
+        heroKicker: c.hero_kicker || h.heroKicker,
+        heroSubcopy: c.hero_subcopy || h.heroSubcopy,
+        heroCtaLabel: c.hero_cta_label || h.heroCtaLabel,
+        featuresLabel: c.features_label || h.featuresLabel,
+        featuresHeading: c.features_heading || h.featuresHeading,
+        testimonialsLabel: c.testimonials_label || h.testimonialsLabel,
+        testimonialsHeading: c.testimonials_heading || h.testimonialsHeading,
+        ctaHeading: c.cta_heading || h.ctaHeading,
+      };
+      source = "Storyblok";
+    }
+  } catch {
+    // keep fallbacks
+  }
+}
+console.log(`[demo-spa] content source: ${source}`);
 ---
 <html lang="en">
   <head>
@@ -60,18 +91,18 @@ const testimonials = [
 
     <section class="relative overflow-hidden bg-muted px-6 py-32 text-center sm:py-40">
       <div class="mx-auto max-w-2xl">
-        <p class="text-sm uppercase tracking-[0.35em] text-primary">Calgary · Inglewood</p>
+        <p class="text-sm uppercase tracking-[0.35em] text-primary">{h.heroKicker}</p>
         <h1 class="mt-6 font-display text-5xl font-medium leading-[1.05] text-foreground sm:text-7xl">{shop.tagline}</h1>
-        <p class="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">Massage, facials, and a Nordic sauna in the heart of the city. Unhurried care, thoughtfully delivered.</p>
-        <a href="#book" class="mt-10 inline-block rounded-[var(--radius)] bg-primary px-9 py-4 font-medium text-primary-foreground transition hover:opacity-90">Book a treatment</a>
+        <p class="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">{h.heroSubcopy}</p>
+        <a href={shop.bookingUrl} class="mt-10 inline-block rounded-[var(--radius)] bg-primary px-9 py-4 font-medium text-primary-foreground transition hover:opacity-90">{h.heroCtaLabel}</a>
       </div>
     </section>
 
-    <Features label="Why Stillwater" heading="Rest, the way it should feel" items={features} />
+    <Features label={h.featuresLabel} heading={h.featuresHeading} items={features} />
     <Services services={shop.services} heading="Treatments" />
     <Hours hours={shop.hours} />
-    <Testimonials label="Guests" heading="Quietly loved in Calgary" items={testimonials} />
-    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} heading="Your escape is waiting" />
+    <Testimonials label={h.testimonialsLabel} heading={h.testimonialsHeading} items={testimonials} />
+    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} heading={h.ctaHeading} />
     <SiteFooter name={shop.name} address={shop.address} phone={shop.phone} />
   </body>
 </html>

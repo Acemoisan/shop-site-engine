@@ -1,6 +1,7 @@
 ---
 import "@studio0rbit/shared/styles/base.css";
 import "../theme.css";
+import { shop as fallback } from "../content/shop";
 import type { ShopContent } from "@studio0rbit/shared";
 import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
 import Stats from "@studio0rbit/shared/components/Stats.astro";
@@ -12,31 +13,14 @@ import CTA from "@studio0rbit/shared/components/CTA.astro";
 import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
 import LocalBusinessJsonLd from "@studio0rbit/shared/seo/LocalBusinessJsonLd.astro";
 
-const shop: ShopContent = {
-  name: "Voltline Electric",
-  tagline: "Power you can count on.",
-  vertical: "trades",
-  phone: "+1-403-555-0170",
-  address: "Unit 4, 1220 9 Ave SE, Calgary, AB",
-  mapUrl: "https://maps.google.com/?q=1220+9+Ave+SE+Calgary",
-  serviceArea: "Calgary & surrounding area",
-  bookingUrl: "#book",
-  hours: [],
-  services: [
-    { name: "Panel upgrades & replacements", price: "from $1,800" },
-    { name: "EV charger installation", price: "from $650" },
-    { name: "Lighting & pot-light retrofits", price: "from $120/fixture" },
-    { name: "Troubleshooting & repairs", price: "$140/hr" },
-    { name: "Emergency callout (24/7)", price: "from $190" },
-  ],
-  url: "https://voltline.example.com",
-};
-const stats = [
+// Local defaults — used as fallback if Storyblok is unavailable or a field is empty.
+let shop: ShopContent = fallback;
+let stats = [
   { value: "15+ yrs", label: "Serving Calgary" },
   { value: "4.9★", label: "300+ Google reviews" },
   { value: "24/7", label: "Emergency callout" },
 ];
-const features = [
+let features = [
   { icon: "shield", title: "Licensed & insured", body: "Master-electrician certified and fully insured — every job to Alberta code." },
   { icon: "target", title: "Upfront pricing", body: "Clear written quotes before we start. No surprises on the invoice." },
   { icon: "clock", title: "On time, every time", body: "We show up in the window we promise — and clean up after ourselves." },
@@ -44,17 +28,72 @@ const features = [
   { icon: "award", title: "Workmanship warranty", body: "Two-year warranty on labour for total peace of mind." },
   { icon: "phone", title: "Real people answer", body: "Call and reach a Calgary electrician, not a call centre." },
 ];
-const testimonials = [
+let testimonials = [
   { quote: "Upgraded our panel and added an EV charger in a day. Spotless work and a fair price.", name: "Dana R. — Mahogany" },
   { quote: "Came out the same night when our power tripped. Lifesavers.", name: "Marcus T. — Bridgeland" },
   { quote: "Finally an electrician who calls back. Quote was exactly what we paid.", name: "Priya S. — Altadore" },
 ];
-const faqs = [
+let faqs = [
   { q: "Are you licensed and insured?", a: "Yes — master-electrician certified and fully insured, with permits pulled on every job that needs one." },
   { q: "Do you give free quotes?", a: "Yes. We provide a clear written quote before any work begins." },
   { q: "Do you offer emergency service?", a: "We offer 24/7 emergency callout across Calgary and surrounding communities." },
   { q: "What areas do you serve?", a: "Calgary and surrounding area, including Airdrie, Cochrane, and Okotoks." },
 ];
+let h = {
+  heroKicker: "Licensed & insured · Calgary",
+  heroSubcopy: "Residential & commercial electrical — fast, code-perfect, and upfront on price.",
+  heroCtaLabel: "Request a quote",
+  featuresLabel: "Why Voltline", featuresHeading: "Electrical work you don't have to think about",
+  testimonialsLabel: "Reviews", testimonialsHeading: "Calgary homeowners trust us",
+  faqHeading: "Questions, answered",
+  ctaHeading: "Get a free quote today",
+};
+
+// Content comes from Storyblok (client-editable). Everything below is overridable in the CMS.
+const token = import.meta.env.STORYBLOK_TOKEN;
+const slug = import.meta.env.STORYBLOK_STORY ?? "voltline-electric";
+let source = "fallback (local file)";
+if (token) {
+  try {
+    const res = await fetch(`https://api.storyblok.com/v2/cdn/stories/${slug}?token=${token}&version=published`);
+    if (res.ok) {
+      const { story } = await res.json();
+      const c = story.content;
+      shop = {
+        name: c.name,
+        tagline: c.tagline,
+        vertical: "trades",
+        phone: c.phone,
+        address: c.address,
+        mapUrl: c.map_url,
+        serviceArea: c.service_area,
+        bookingUrl: c.booking_url,
+        hours: (c.hours ?? []).map((x: any) => ({ day: x.day, open: x.open, close: x.close, closed: x.closed })),
+        services: (c.services ?? []).map((x: any) => ({ name: x.name, price: x.price, description: x.description })),
+        url: fallback.url,
+      };
+      if (c.stats?.length) stats = c.stats.map((x: any) => ({ value: x.value, label: x.label }));
+      if (c.features?.length) features = c.features.map((x: any) => ({ icon: x.icon, title: x.title, body: x.body }));
+      if (c.testimonials?.length) testimonials = c.testimonials.map((x: any) => ({ quote: x.quote, name: x.name }));
+      if (c.faqs?.length) faqs = c.faqs.map((x: any) => ({ q: x.question, a: x.answer }));
+      h = {
+        heroKicker: c.hero_kicker || h.heroKicker,
+        heroSubcopy: c.hero_subcopy || h.heroSubcopy,
+        heroCtaLabel: c.hero_cta_label || h.heroCtaLabel,
+        featuresLabel: c.features_label || h.featuresLabel,
+        featuresHeading: c.features_heading || h.featuresHeading,
+        testimonialsLabel: c.testimonials_label || h.testimonialsLabel,
+        testimonialsHeading: c.testimonials_heading || h.testimonialsHeading,
+        faqHeading: c.faq_heading || h.faqHeading,
+        ctaHeading: c.cta_heading || h.ctaHeading,
+      };
+      source = "Storyblok";
+    }
+  } catch {
+    // keep fallbacks
+  }
+}
+console.log(`[demo-electrician] content source: ${source}`);
 ---
 <html lang="en">
   <head>
@@ -72,22 +111,22 @@ const faqs = [
     <section class="relative isolate overflow-hidden bg-foreground px-6 py-28 text-background sm:py-36">
       <div class="absolute inset-0 -z-10 bg-gradient-to-br from-primary/40 via-transparent to-transparent"></div>
       <div class="mx-auto max-w-3xl text-center">
-        <span class="inline-flex items-center gap-2 rounded-full border border-background/20 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.15em] text-background/80">Licensed & insured · Calgary</span>
+        <span class="inline-flex items-center gap-2 rounded-full border border-background/20 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.15em] text-background/80">{h.heroKicker}</span>
         <h1 class="mt-6 font-display text-5xl font-bold tracking-tight sm:text-6xl">{shop.tagline}</h1>
-        <p class="mx-auto mt-5 max-w-xl text-lg text-background/70">Residential & commercial electrical — fast, code-perfect, and upfront on price.</p>
+        <p class="mx-auto mt-5 max-w-xl text-lg text-background/70">{h.heroSubcopy}</p>
         <div class="mt-9 flex flex-wrap justify-center gap-4">
           <a href={`tel:${shop.phone}`} class="rounded-[var(--radius)] bg-primary px-7 py-3.5 font-semibold text-primary-foreground shadow-lg transition hover:opacity-90">Call {shop.phone}</a>
-          <a href="#book" class="rounded-[var(--radius)] border border-background/30 px-7 py-3.5 font-semibold text-background transition hover:bg-background/10">Request a quote</a>
+          <a href={shop.bookingUrl} class="rounded-[var(--radius)] border border-background/30 px-7 py-3.5 font-semibold text-background transition hover:bg-background/10">{h.heroCtaLabel}</a>
         </div>
       </div>
     </section>
 
     <Stats items={stats} />
-    <Features label="Why Voltline" heading="Electrical work you don't have to think about" items={features} />
+    <Features label={h.featuresLabel} heading={h.featuresHeading} items={features} />
     <Services services={shop.services} heading="What we do" />
-    <Testimonials label="Reviews" heading="Calgary homeowners trust us" items={testimonials} />
-    <Faq items={faqs} />
-    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} heading="Get a free quote today" />
+    <Testimonials label={h.testimonialsLabel} heading={h.testimonialsHeading} items={testimonials} />
+    <Faq heading={h.faqHeading} items={faqs} />
+    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} heading={h.ctaHeading} />
     <SiteFooter name={shop.name} address={shop.address} phone={shop.phone} />
   </body>
 </html>

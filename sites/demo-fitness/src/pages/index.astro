@@ -1,6 +1,7 @@
 ---
 import "@studio0rbit/shared/styles/base.css";
 import "../theme.css";
+import { shop as fallback } from "../content/shop";
 import type { ShopContent } from "@studio0rbit/shared";
 import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
 import Stats from "@studio0rbit/shared/components/Stats.astro";
@@ -12,45 +13,84 @@ import CTA from "@studio0rbit/shared/components/CTA.astro";
 import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
 import LocalBusinessJsonLd from "@studio0rbit/shared/seo/LocalBusinessJsonLd.astro";
 
-const shop: ShopContent = {
-  name: "Forge Athletic Club",
-  tagline: "Train like it matters.",
-  vertical: "retail",
-  phone: "+1-403-555-0199",
-  address: "1140 11 St SE, Ramsay, Calgary, AB",
-  mapUrl: "https://maps.google.com/?q=1140+11+St+SE+Calgary",
-  serviceArea: "Ramsay",
-  bookingUrl: "#book",
-  hours: [],
-  services: [
-    { name: "Day Pass", price: "$25" },
-    { name: "Monthly — Open Gym", price: "$89/mo" },
-    { name: "Monthly — Unlimited Classes", price: "$159/mo" },
-    { name: "Personal Coaching (4-pack)", price: "$320" },
-  ],
-  url: "https://forge.example.com",
-};
-const stats = [
+// Local defaults — used as fallback if Storyblok is unavailable or a field is empty.
+let shop: ShopContent = fallback;
+let stats = [
   { value: "2,000+", label: "Members trained" },
   { value: "30+", label: "Classes / week" },
   { value: "5am–11pm", label: "Open daily" },
 ];
-const features = [
+let features = [
   { icon: "dumbbell", title: "Serious equipment", body: "Full rack room, platforms, sleds, and a dedicated conditioning floor." },
   { icon: "target", title: "Real coaching", body: "Certified coaches program every session — no guessing, just progress." },
   { icon: "bolt", title: "Classes that hit", body: "Strength, HIIT, and conditioning on a schedule that fits your day." },
   { icon: "heart", title: "A real community", body: "Train alongside people who'll push you and learn your name." },
 ];
-const testimonials = [
+let testimonials = [
   { quote: "Strongest and fittest I've been in my life. The coaching is next level.", name: "Tyler B." },
   { quote: "Walked in nervous, left hooked. Best community in Calgary.", name: "Renee D." },
   { quote: "The 5am crew is unmatched. Forge changed my mornings.", name: "Omar H." },
 ];
-const faqs = [
+let faqs = [
   { q: "Is the first class really free?", a: "Yes — your first class or day pass is on us. Just show up 10 minutes early." },
   { q: "I'm a total beginner. Is that okay?", a: "Absolutely. Every session scales to your level and our coaches guide you." },
   { q: "Can I freeze my membership?", a: "Yes, memberships can be frozen anytime — no long-term lock-in." },
 ];
+let h = {
+  heroKicker: "Forge Athletic Club · Ramsay",
+  heroSubcopy: "Strength, conditioning & coaching in Calgary's Ramsay district. Your first class is free.",
+  heroCtaLabel: "Start free trial",
+  featuresLabel: "Why Forge", featuresHeading: "Built for people who show up",
+  testimonialsLabel: "Members", testimonialsHeading: "The proof is in the people",
+  faqHeading: "Questions, answered",
+  ctaHeading: "Your first class is free",
+};
+
+// Content comes from Storyblok (client-editable). Everything below is overridable in the CMS.
+const token = import.meta.env.STORYBLOK_TOKEN;
+const slug = import.meta.env.STORYBLOK_STORY ?? "forge-athletic";
+let source = "fallback (local file)";
+if (token) {
+  try {
+    const res = await fetch(`https://api.storyblok.com/v2/cdn/stories/${slug}?token=${token}&version=published`);
+    if (res.ok) {
+      const { story } = await res.json();
+      const c = story.content;
+      shop = {
+        name: c.name,
+        tagline: c.tagline,
+        vertical: "retail",
+        phone: c.phone,
+        address: c.address,
+        mapUrl: c.map_url,
+        serviceArea: c.service_area,
+        bookingUrl: c.booking_url,
+        hours: (c.hours ?? []).map((x: any) => ({ day: x.day, open: x.open, close: x.close, closed: x.closed })),
+        services: (c.services ?? []).map((x: any) => ({ name: x.name, price: x.price, description: x.description })),
+        url: fallback.url,
+      };
+      if (c.stats?.length) stats = c.stats.map((x: any) => ({ value: x.value, label: x.label }));
+      if (c.features?.length) features = c.features.map((x: any) => ({ icon: x.icon, title: x.title, body: x.body }));
+      if (c.testimonials?.length) testimonials = c.testimonials.map((x: any) => ({ quote: x.quote, name: x.name }));
+      if (c.faqs?.length) faqs = c.faqs.map((x: any) => ({ q: x.question, a: x.answer }));
+      h = {
+        heroKicker: c.hero_kicker || h.heroKicker,
+        heroSubcopy: c.hero_subcopy || h.heroSubcopy,
+        heroCtaLabel: c.hero_cta_label || h.heroCtaLabel,
+        featuresLabel: c.features_label || h.featuresLabel,
+        featuresHeading: c.features_heading || h.featuresHeading,
+        testimonialsLabel: c.testimonials_label || h.testimonialsLabel,
+        testimonialsHeading: c.testimonials_heading || h.testimonialsHeading,
+        faqHeading: c.faq_heading || h.faqHeading,
+        ctaHeading: c.cta_heading || h.ctaHeading,
+      };
+      source = "Storyblok";
+    }
+  } catch {
+    // keep fallbacks
+  }
+}
+console.log(`[demo-fitness] content source: ${source}`);
 ---
 <html lang="en">
   <head>
@@ -68,19 +108,19 @@ const faqs = [
     <section class="relative overflow-hidden px-6 py-32 text-center sm:py-44">
       <div class="absolute inset-0 -z-10 bg-gradient-to-b from-primary/15 via-transparent to-transparent"></div>
       <div class="mx-auto max-w-3xl">
-        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-primary">Forge Athletic Club · Ramsay</p>
-        <h1 class="mt-6 font-display text-6xl font-extrabold uppercase leading-[0.88] tracking-tight text-foreground sm:text-8xl">Train like<br />it matters.</h1>
-        <p class="mx-auto mt-7 max-w-lg text-lg text-muted-foreground">Strength, conditioning & coaching in Calgary's Ramsay district. Your first class is free.</p>
-        <a href="#book" class="mt-10 inline-block rounded-[var(--radius)] bg-primary px-10 py-4 font-bold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">Start free trial</a>
+        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-primary">{h.heroKicker}</p>
+        <h1 class="mt-6 font-display text-6xl font-extrabold uppercase leading-[0.88] tracking-tight text-foreground sm:text-8xl">{shop.tagline}</h1>
+        <p class="mx-auto mt-7 max-w-lg text-lg text-muted-foreground">{h.heroSubcopy}</p>
+        <a href={shop.bookingUrl} class="mt-10 inline-block rounded-[var(--radius)] bg-primary px-10 py-4 font-bold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">{h.heroCtaLabel}</a>
       </div>
     </section>
 
     <Stats items={stats} />
-    <Features label="Why Forge" heading="Built for people who show up" items={features} />
+    <Features label={h.featuresLabel} heading={h.featuresHeading} items={features} />
     <Services services={shop.services} heading="Memberships" />
-    <Testimonials label="Members" heading="The proof is in the people" items={testimonials} />
-    <Faq items={faqs} />
-    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} heading="Your first class is free" />
+    <Testimonials label={h.testimonialsLabel} heading={h.testimonialsHeading} items={testimonials} />
+    <Faq heading={h.faqHeading} items={faqs} />
+    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} heading={h.ctaHeading} />
     <SiteFooter name={shop.name} address={shop.address} phone={shop.phone} />
   </body>
 </html>
