@@ -10,6 +10,14 @@ A pnpm-workspace monorepo that produces custom shop sites from one shared engine
 
 **Business model context:** one-time fee, NO maintenance contract. The client owns all accounts and self-edits content. Build accordingly — nothing that requires us long-term. See `docs/roadmap.md` and `docs/decisions.md`.
 
+## AI-heavy architecture: always be building skills
+
+This project is a **production capability**, not a pile of one-off sites. The pipeline itself is the product, so **codify every repeatable workflow as a skill** in `.claude/skills/` rather than re-deriving it each build. When you solve something non-obvious (a CMS wiring, an API quirk, a per-vertical pattern, a deploy recipe), the default reflex is: *should this be a skill?* If we'd do it again for the next shop, yes — write or update one.
+
+- **Prefer skills + scripts over manual steps.** A skill with a runnable script (see `storyblok-shop-cms/setup-shop.mjs`) turns a 30-minute manual setup into one command.
+- **Existing skills:** `storyblok-shop-cms` — wiring Storyblok into a shop site, content model, Management API recipes, and the client editing/upload/publish model. Use it before hand-rolling CMS work.
+- Keep skills grounded in verified, working implementations (point at the real files), and update them when the pattern evolves.
+
 ## The token system (how theming works)
 
 Each shop's brand lives entirely in `sites/<slug>/src/theme.css` as CSS custom properties in **OKLCH**:
