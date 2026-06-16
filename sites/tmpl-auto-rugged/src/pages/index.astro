@@ -1,0 +1,637 @@
+---
+const nav = [
+  { label: "Packages", href: "#packages" },
+  { label: "Results", href: "#results" },
+  { label: "Garage", href: "#garage" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "Contact", href: "#contact" },
+];
+
+const stats = [
+  { num: 4200, suffix: "+", label: "Cars Detailed" },
+  { num: 12, suffix: "yr", label: "On The Floor" },
+  { num: 5, suffix: "yr", label: "Coating Warranty" },
+  { num: 487, suffix: "", label: "5-Star Reviews" },
+];
+
+const packages = [
+  {
+    name: "Express Maintenance",
+    price: "149",
+    popular: false,
+    desc: "Exterior wash, decon, interior vacuum & wipe-down, tire dressing.",
+    includes: ["Foam bath & decon", "Wheel & tire dressing", "Interior vac + wipe"],
+  },
+  {
+    name: "Full Detail",
+    price: "349",
+    popular: false,
+    desc: "Clay bar, single-stage polish, deep interior shampoo, glass & trim restoration.",
+    includes: ["Clay bar treatment", "Single-stage polish", "Deep interior shampoo"],
+  },
+  {
+    name: "Ceramic — 5 Year",
+    price: "1,299",
+    popular: true,
+    desc: "Full paint correction prep + Gtechniq/Modesta coating, hydrophobic finish, warranty.",
+    includes: ["2-stage correction prep", "Gtechniq / Modesta coat", "5-year warranty"],
+  },
+  {
+    name: "PPF — Full Front",
+    price: "1,895",
+    popular: false,
+    desc: "XPEL self-healing film: hood, fenders, mirrors, bumper.",
+    includes: ["XPEL self-healing film", "Hood / fenders / mirrors", "Front bumper wrap"],
+  },
+];
+
+const gallery = [
+  { seed: "ruggedcar1", alt: "Black coupe reflecting shop lights" },
+  { seed: "ruggedtruck2", alt: "Lifted truck on the detailing bay" },
+  { seed: "ruggedwheel3", alt: "Brake caliper and alloy wheel detail" },
+  { seed: "ruggedhood4", alt: "Water beading on a coated hood" },
+  { seed: "ruggedexotic5", alt: "Exotic car under studio lighting" },
+  { seed: "ruggedbay6", alt: "Industrial detailing bay floor" },
+];
+
+const process = [
+  { n: "01", t: "Inspect", d: "Paint depth readings + swirl-finder lamp." },
+  { n: "02", t: "Correct", d: "Multi-stage cut & polish, panel by panel." },
+  { n: "03", t: "Protect", d: "Ceramic or PPF applied in a sealed bay." },
+  { n: "04", t: "Inspect", d: "Final QC under light. Keys back, glass finish." },
+];
+
+const reviews = [
+  { q: "Dropped off a 6-year-old daily and got back something that looked better than the showroom. The 2-stage correction is unreal.", a: "Marcus D.", c: "Audi S5" },
+  { q: "They coated my F-150 and walked me through every step. Water just rolls off it now. Worth every dollar.", a: "Janelle R.", c: "Ford F-150" },
+  { q: "Booked the lifetime ceramic on my GT-R. Professional, on time, and the finish is glass. These guys actually care.", a: "Tony V.", c: "Nissan GT-R" },
+];
+
+const partners = ["XPEL", "MODESTA", "GTECHNIQ", "CERAMIC PRO"];
+const hours = [
+  { d: "Mon – Fri", h: "8:00am – 6:00pm" },
+  { d: "Saturday", h: "9:00am – 4:00pm" },
+  { d: "Sunday", h: "Closed · drop-off by appt" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>APEX // IRON GARAGE — Auto Detailing, Ceramic & PPF in Calgary</title>
+    <meta
+      name="description"
+      content="Apex & Iron Auto Studio — Calgary's rugged detail & protection shop. Paint correction, ceramic coating and XPEL paint protection film. Showroom finish, street-tough protection."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav" id="top">
+      <div class="wrap nav-inner">
+        <a class="brand" href="#top" aria-label="Apex Iron Garage home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          APEX <span class="slash">//</span> IRON
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="btn btn-sm" href="tel:+14035550182">Call (403) 555-0182</a>
+        <button class="burger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="mobile-menu" hidden>
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="btn" href="#contact">Book Now</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="wrap hero-grid">
+          <div class="hero-copy reveal">
+            <p class="eyebrow"><span class="dot"></span>Calgary's Detail & Protection Studio</p>
+            <h1>Showroom Finish.<br /><span class="hl">Street-Tough</span> Protection.</h1>
+            <p class="lead">
+              Detailing, ceramic coating &amp; paint protection — done right the first
+              time. We don't wash cars. We transform them.
+            </p>
+            <div class="hero-cta">
+              <a class="btn" href="#contact">Get Instant Quote</a>
+              <a class="btn btn-ghost" href="tel:+14035550182">Call The Shop</a>
+            </div>
+            <div class="badges">
+              {partners.map((p) => <span class="badge">{p}</span>)}
+            </div>
+          </div>
+        </div>
+        <div class="hazard" aria-hidden="true"></div>
+      </section>
+
+      <!-- STATS -->
+      <section class="stats" aria-label="Shop stats">
+        <div class="wrap stat-grid">
+          {stats.map((s) => (
+            <div class="stat">
+              <span class="stat-num" data-target={s.num} data-suffix={s.suffix}>0</span>
+              <span class="stat-label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- PACKAGES -->
+      <section class="section" id="packages">
+        <div class="wrap">
+          <header class="head">
+            <p class="kicker">/ 01 — Packages</p>
+            <h2>Pick Your Level Of Protection</h2>
+            <p class="sub">Transparent pricing. No upsell games. Every package ends with a QC inspection.</p>
+          </header>
+          <div class="cards">
+            {packages.map((p) => (
+              <article class={`card${p.popular ? " card-pop" : ""}`}>
+                {p.popular && <span class="pop-badge">Most Popular</span>}
+                <h3>{p.name}</h3>
+                <p class="price"><span class="from">from</span>$<span class="amt">{p.price}</span></p>
+                <p class="card-desc">{p.desc}</p>
+                <ul class="incl">
+                  {p.includes.map((i) => <li>{i}</li>)}
+                </ul>
+                <a class="btn btn-block" href="#contact">Book {p.name.split(" ")[0]}</a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- BEFORE / AFTER -->
+      <section class="section section-alt" id="results">
+        <div class="wrap">
+          <header class="head">
+            <p class="kicker">/ 02 — Proof</p>
+            <h2>Drag The Line. See The Cut.</h2>
+            <p class="sub">2-stage paint correction on a daily-driven hood. Swirls gone, gloss back.</p>
+          </header>
+          <div class="ba" id="ba">
+            <img class="ba-after" src="https://picsum.photos/seed/ruggedafter/1200/700" alt="Corrected glossy paint after detailing" />
+            <div class="ba-before" id="baBefore">
+              <img src="https://picsum.photos/seed/ruggedbefore/1200/700?grayscale" alt="Dull swirled paint before correction" />
+              <span class="ba-tag ba-tag-b">Before</span>
+            </div>
+            <span class="ba-tag ba-tag-a">After</span>
+            <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Reveal before and after" />
+            <span class="ba-handle" id="baHandle" aria-hidden="true"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="section">
+        <div class="wrap">
+          <header class="head">
+            <p class="kicker">/ 03 — The Process</p>
+            <h2>Four Stages. Zero Shortcuts.</h2>
+          </header>
+          <ol class="timeline">
+            {process.map((s) => (
+              <li class="step reveal">
+                <span class="step-n">{s.n}</span>
+                <h3>{s.t}</h3>
+                <p>{s.d}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="section section-alt" id="garage">
+        <div class="wrap">
+          <header class="head">
+            <p class="kicker">/ 04 — The Garage</p>
+            <h2>Off The Shop Floor</h2>
+            <p class="sub">Exotics, trucks and daily drivers — real work, real results.</p>
+          </header>
+          <div class="grid-gal">
+            {gallery.map((g, i) => (
+              <figure class={`tile tile-${i + 1}`}>
+                <img src={`https://picsum.photos/seed/${g.seed}/800/800`} alt={g.alt} loading="lazy" />
+                <span class="tile-sheen" aria-hidden="true"></span>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section class="section" id="reviews">
+        <div class="wrap">
+          <header class="head">
+            <p class="kicker">/ 05 — Reviews</p>
+            <h2>4.9 / 5 From 487 Owners</h2>
+            <div class="stars" aria-label="4.9 out of 5 stars">★★★★★</div>
+          </header>
+          <div class="reviews">
+            {reviews.map((r) => (
+              <blockquote class="review reveal">
+                <div class="stars sm" aria-hidden="true">★★★★★</div>
+                <p>{r.q}</p>
+                <footer><strong>{r.a}</strong> · {r.c}</footer>
+              </blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT / CTA -->
+      <section class="section section-alt cta-sec" id="contact">
+        <div class="wrap cta-grid">
+          <div>
+            <p class="kicker">/ 06 — Book In</p>
+            <h2>Ready To Transform It?</h2>
+            <p class="sub">Drop us a vehicle and a service. We'll quote you back same day.</p>
+            <ul class="nap">
+              <li><strong>Visit</strong> Bay 4, 2210 Centre Avenue NE, Calgary, AB T2E 0A6</li>
+              <li><strong>Call</strong> <a href="tel:+14035550182">(403) 555-0182</a></li>
+              <li><strong>Email</strong> <a href="mailto:book@apexiron.ca">book@apexiron.ca</a></li>
+            </ul>
+            <div class="hours">
+              {hours.map((h) => (
+                <div class="hour-row"><span>{h.d}</span><span>{h.h}</span></div>
+              ))}
+            </div>
+          </div>
+          <form class="quote" onsubmit="return false">
+            <h3>Instant Quote</h3>
+            <label>Vehicle<input type="text" placeholder="e.g. 2019 Audi S5" required /></label>
+            <label>Service
+              <select>
+                <option>Express Maintenance</option>
+                <option>Full Detail</option>
+                <option selected>Ceramic — 5 Year</option>
+                <option>PPF — Full Front</option>
+              </select>
+            </label>
+            <label>Phone<input type="tel" placeholder="(403) 555-0000" required /></label>
+            <button class="btn btn-block" type="submit">Request Quote</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap foot-inner">
+        <a class="brand" href="#top">APEX <span class="slash">//</span> IRON</a>
+        <p>Bay 4, 2210 Centre Avenue NE, Calgary, AB · <a href="tel:+14035550182">(403) 555-0182</a></p>
+        <p class="fine">© 2026 Apex &amp; Iron Auto Studio. Built tough in Calgary.</p>
+      </div>
+    </footer>
+
+    <!-- STICKY BOOKING BAR -->
+    <div class="bookbar" aria-label="Quick actions">
+      <a class="btn btn-block" href="#contact">Book Now</a>
+      <a class="btn btn-ghost btn-block" href="tel:+14035550182">Call</a>
+    </div>
+
+    <style is:global>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      :root {
+        --bg: #0e0f11; --fg: #f2f2f0; --primary: #ff5a1f; --primary-fg: #0e0f11;
+        --accent: #ffb300; --muted: #1c1f23; --border: #2c3036;
+        --sans: "Barlow", system-ui, sans-serif;
+        --disp: "Oswald", "Barlow", sans-serif;
+      }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg); color: var(--fg); font-family: var(--sans);
+        line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+      }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; }
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      }
+    </style>
+
+    <style>
+      .wrap { width: min(1180px, 92vw); margin-inline: auto; }
+      .skip {
+        position: absolute; left: -999px; top: 0; background: var(--primary);
+        color: var(--primary-fg); padding: .7rem 1rem; z-index: 100; font-weight: 600;
+      }
+      .skip:focus { left: 0; }
+      :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 48px; padding: .85rem 1.5rem; background: var(--primary);
+        color: var(--primary-fg); font-family: var(--disp); font-weight: 600;
+        text-transform: uppercase; letter-spacing: .04em; text-decoration: none;
+        border: 2px solid var(--primary); cursor: pointer; font-size: .95rem;
+        clip-path: polygon(0 0, 100% 0, 100% 70%, calc(100% - 14px) 100%, 0 100%);
+        transition: background .2s, color .2s, transform .15s;
+      }
+      .btn:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+      .btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); clip-path: none; }
+      .btn-ghost:hover { background: var(--muted); border-color: var(--primary); color: var(--primary); }
+      .btn-sm { min-height: 44px; padding: .6rem 1rem; font-size: .8rem; }
+      .btn-block { width: 100%; }
+
+      /* NAV */
+      .nav {
+        position: sticky; top: 0; z-index: 50;
+        background: rgba(14,15,17,.86); backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-inner { display: flex; align-items: center; gap: 1.5rem; padding: .9rem 0; }
+      .brand {
+        display: flex; align-items: center; gap: .55rem; font-family: var(--disp);
+        font-weight: 700; font-size: 1.3rem; letter-spacing: .06em; text-decoration: none;
+        text-transform: uppercase;
+      }
+      .brand-mark {
+        width: 18px; height: 18px; background: var(--primary);
+        clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); display: inline-block;
+      }
+      .slash { color: var(--primary); }
+      .nav-links { display: none; gap: 1.4rem; margin-left: auto; }
+      .nav-links a {
+        font-family: var(--disp); font-weight: 500; text-transform: uppercase;
+        letter-spacing: .05em; font-size: .9rem; text-decoration: none; color: var(--fg);
+        opacity: .82; transition: color .2s, opacity .2s; padding: .3rem 0;
+      }
+      .nav-links a:hover { color: var(--primary); opacity: 1; }
+      .nav .btn-sm { display: none; }
+      .burger {
+        margin-left: auto; width: 44px; height: 44px; background: transparent;
+        border: 1px solid var(--border); display: grid; place-content: center; gap: 4px; cursor: pointer;
+      }
+      .burger span { width: 20px; height: 2px; background: var(--fg); display: block; transition: .25s; }
+      .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+      .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+      .mobile-menu { display: flex; flex-direction: column; gap: .3rem; padding: 1rem 4vw 1.4rem; border-top: 1px solid var(--border); }
+      .mobile-menu a { font-family: var(--disp); text-transform: uppercase; text-decoration: none; padding: .7rem 0; letter-spacing: .05em; }
+      @media (min-width: 880px) {
+        .nav-links { display: flex; }
+        .nav .btn-sm { display: inline-flex; }
+        .burger, .mobile-menu { display: none; }
+      }
+
+      /* HERO */
+      .hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden; }
+      .hero-media {
+        position: absolute; inset: 0;
+        background:
+          linear-gradient(115deg, rgba(255,90,31,.18), transparent 55%),
+          url("https://picsum.photos/seed/ruggedhero/1600/1100") center/cover;
+        filter: grayscale(.4) contrast(1.15) brightness(.55);
+      }
+      .hero-scrim {
+        position: absolute; inset: 0;
+        background: linear-gradient(180deg, rgba(14,15,17,.55), rgba(14,15,17,.78) 60%, var(--bg));
+      }
+      .hero-grid { position: relative; z-index: 2; padding: 6rem 0 7rem; }
+      .hero-copy { max-width: 720px; }
+      .eyebrow {
+        font-family: var(--disp); text-transform: uppercase; letter-spacing: .22em;
+        font-size: .8rem; color: var(--accent); display: inline-flex; align-items: center; gap: .6rem; margin-bottom: 1.2rem;
+      }
+      .dot { width: 9px; height: 9px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 0 4px rgba(255,90,31,.2); }
+      h1 {
+        font-family: var(--disp); font-weight: 700; line-height: .95;
+        font-size: clamp(2.7rem, 8vw, 5.4rem); text-transform: uppercase; letter-spacing: -.01em;
+      }
+      .hl { color: var(--primary); }
+      .lead { font-size: clamp(1rem, 2.4vw, 1.25rem); max-width: 46ch; margin: 1.4rem 0 2rem; color: #cfd0cd; }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; }
+      .badges { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2.4rem; }
+      .badge {
+        font-family: var(--disp); font-size: .72rem; letter-spacing: .14em; padding: .4rem .8rem;
+        border: 1px solid var(--border); color: #b9bbb7; text-transform: uppercase;
+      }
+      .hazard {
+        position: absolute; bottom: 0; left: 0; right: 0; height: 10px; z-index: 3;
+        background: repeating-linear-gradient(45deg, var(--accent) 0 22px, var(--bg) 22px 44px);
+        opacity: .9;
+      }
+
+      /* STATS */
+      .stats { border-bottom: 1px solid var(--border); background: var(--muted); }
+      .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+      .stat { padding: 2rem 1rem; text-align: center; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+      .stat:nth-child(2n) { border-right: none; }
+      .stat-num { font-family: var(--disp); font-weight: 700; font-size: clamp(2.2rem, 6vw, 3.4rem); color: var(--primary); display: block; line-height: 1; }
+      .stat-label { font-family: var(--disp); text-transform: uppercase; letter-spacing: .12em; font-size: .76rem; color: #b9bbb7; }
+      @media (min-width: 760px) {
+        .stat-grid { grid-template-columns: repeat(4, 1fr); }
+        .stat { border-bottom: none; }
+        .stat:nth-child(2n) { border-right: 1px solid var(--border); }
+        .stat:last-child { border-right: none; }
+      }
+
+      /* SECTIONS */
+      .section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
+      .section-alt { background: var(--muted); }
+      .head { max-width: 640px; margin-bottom: 2.8rem; }
+      .kicker { font-family: var(--disp); color: var(--primary); text-transform: uppercase; letter-spacing: .18em; font-size: .82rem; margin-bottom: .8rem; }
+      h2 { font-family: var(--disp); font-weight: 700; text-transform: uppercase; font-size: clamp(1.8rem, 5vw, 3rem); line-height: 1; letter-spacing: -.01em; }
+      .sub { color: #b9bbb7; margin-top: .9rem; font-size: 1.05rem; }
+
+      /* PACKAGES */
+      .cards { display: grid; gap: 1.2rem; grid-template-columns: 1fr; }
+      .card {
+        position: relative; background: var(--bg); border: 1px solid var(--border);
+        padding: 1.8rem 1.5rem; display: flex; flex-direction: column;
+        transition: border-color .25s, transform .25s;
+      }
+      .section-alt .card { background: #15171a; }
+      .card:hover { border-color: var(--primary); transform: translateY(-4px); }
+      .card-pop { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary), 0 24px 50px -20px rgba(255,90,31,.45); }
+      .pop-badge {
+        position: absolute; top: -12px; left: 1.5rem; background: var(--primary); color: var(--primary-fg);
+        font-family: var(--disp); text-transform: uppercase; letter-spacing: .1em; font-size: .72rem; padding: .3rem .7rem;
+      }
+      .card h3 { font-family: var(--disp); text-transform: uppercase; font-size: 1.3rem; letter-spacing: .02em; }
+      .price { font-family: var(--disp); font-weight: 700; font-size: 2.4rem; color: var(--accent); margin: .4rem 0 .2rem; }
+      .price .from { font-size: .8rem; color: #9a9c98; text-transform: uppercase; letter-spacing: .1em; margin-right: .4rem; }
+      .card-desc { color: #b9bbb7; font-size: .95rem; flex: 1; }
+      .incl { list-style: none; margin: 1.1rem 0 1.4rem; display: grid; gap: .5rem; }
+      .incl li { font-size: .9rem; padding-left: 1.5rem; position: relative; }
+      .incl li::before { content: "›"; position: absolute; left: 0; color: var(--primary); font-weight: 700; }
+      @media (min-width: 680px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+      @media (min-width: 1080px) { .cards { grid-template-columns: repeat(4, 1fr); } }
+
+      /* BEFORE/AFTER */
+      .ba { position: relative; aspect-ratio: 12/7; overflow: hidden; border: 1px solid var(--border); user-select: none; max-width: 980px; }
+      .ba img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+      .ba-before { position: absolute; inset: 0; width: 50%; overflow: hidden; border-right: 3px solid var(--primary); }
+      .ba-before img { width: 100vw; max-width: 980px; }
+      .ba-tag {
+        position: absolute; bottom: 1rem; font-family: var(--disp); text-transform: uppercase;
+        letter-spacing: .12em; font-size: .76rem; padding: .35rem .7rem; z-index: 3;
+        background: rgba(14,15,17,.8); border: 1px solid var(--border);
+      }
+      .ba-tag-b { left: 1rem; color: #cfd0cd; }
+      .ba-tag-a { right: 1rem; color: var(--primary); }
+      .ba-range { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; z-index: 4; margin: 0; }
+      .ba-handle {
+        position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: var(--primary);
+        transform: translateX(-50%); z-index: 2; pointer-events: none;
+      }
+      .ba-handle::after {
+        content: "↔"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        width: 44px; height: 44px; background: var(--primary); color: var(--primary-fg);
+        display: grid; place-content: center; border-radius: 50%; font-size: 1.2rem; font-weight: 700;
+      }
+
+      /* TIMELINE */
+      .timeline { list-style: none; display: grid; gap: 1.2rem; grid-template-columns: 1fr; }
+      .step { border: 1px solid var(--border); border-left: 3px solid var(--primary); padding: 1.5rem; background: var(--bg); }
+      .section .step { background: #15171a; }
+      .step-n { font-family: var(--disp); font-weight: 700; font-size: 2rem; color: var(--accent); }
+      .step h3 { font-family: var(--disp); text-transform: uppercase; margin: .3rem 0 .4rem; letter-spacing: .04em; }
+      .step p { color: #b9bbb7; font-size: .95rem; }
+      @media (min-width: 720px) { .timeline { grid-template-columns: repeat(4, 1fr); } }
+
+      /* GALLERY */
+      .grid-gal { display: grid; grid-template-columns: repeat(2, 1fr); gap: .8rem; }
+      .tile { position: relative; overflow: hidden; aspect-ratio: 1; border: 1px solid var(--border); }
+      .tile img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.35) contrast(1.1) brightness(.85); transition: filter .4s, transform .5s; }
+      .tile:hover img { filter: grayscale(0) contrast(1.05) brightness(1); transform: scale(1.06); }
+      .tile-sheen {
+        position: absolute; inset: 0; pointer-events: none;
+        background: linear-gradient(115deg, transparent 40%, rgba(255,179,0,.25) 50%, transparent 60%);
+        transform: translateX(-100%); transition: transform .6s;
+      }
+      .tile:hover .tile-sheen { transform: translateX(100%); }
+      @media (min-width: 760px) {
+        .grid-gal { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; }
+        .tile-1 { grid-column: span 2; grid-row: span 2; }
+        .tile-1 { aspect-ratio: auto; }
+      }
+
+      /* REVIEWS */
+      .stars { color: var(--primary); font-size: 1.5rem; letter-spacing: .15em; margin-top: 1rem; }
+      .stars.sm { font-size: 1rem; margin: 0 0 .8rem; }
+      .reviews { display: grid; gap: 1.2rem; grid-template-columns: 1fr; }
+      .review { border: 1px solid var(--border); padding: 1.8rem; background: #15171a; position: relative; }
+      .review p { font-size: 1.02rem; margin-bottom: 1rem; }
+      .review footer { font-family: var(--disp); text-transform: uppercase; letter-spacing: .06em; font-size: .82rem; color: #b9bbb7; }
+      .review footer strong { color: var(--fg); }
+      @media (min-width: 880px) { .reviews { grid-template-columns: repeat(3, 1fr); } }
+
+      /* CONTACT */
+      .cta-grid { display: grid; gap: 2.4rem; grid-template-columns: 1fr; }
+      .nap { list-style: none; margin: 1.6rem 0; display: grid; gap: .8rem; }
+      .nap li { font-size: 1rem; }
+      .nap strong { font-family: var(--disp); text-transform: uppercase; letter-spacing: .1em; font-size: .76rem; color: var(--primary); display: block; }
+      .nap a { color: var(--accent); text-decoration: none; }
+      .nap a:hover { text-decoration: underline; }
+      .hours { border: 1px solid var(--border); }
+      .hour-row { display: flex; justify-content: space-between; padding: .8rem 1rem; border-bottom: 1px solid var(--border); font-size: .92rem; }
+      .hour-row:last-child { border-bottom: none; }
+      .hour-row span:first-child { font-family: var(--disp); text-transform: uppercase; letter-spacing: .05em; }
+      .quote { background: var(--bg); border: 1px solid var(--border); border-top: 3px solid var(--primary); padding: 1.8rem; display: grid; gap: 1rem; align-content: start; }
+      .quote h3 { font-family: var(--disp); text-transform: uppercase; font-size: 1.4rem; }
+      .quote label { display: grid; gap: .4rem; font-family: var(--disp); text-transform: uppercase; letter-spacing: .08em; font-size: .78rem; color: #b9bbb7; }
+      .quote input, .quote select {
+        font-family: var(--sans); font-size: 1rem; padding: .8rem; background: var(--muted);
+        border: 1px solid var(--border); color: var(--fg); min-height: 48px;
+      }
+      .quote input:focus, .quote select:focus { border-color: var(--primary); outline: none; }
+      @media (min-width: 860px) { .cta-grid { grid-template-columns: 1.1fr .9fr; } }
+
+      /* FOOTER */
+      .footer { border-top: 1px solid var(--border); padding: 2.5rem 0 6rem; background: var(--muted); }
+      .foot-inner { display: grid; gap: .6rem; text-align: center; }
+      .foot-inner .brand { justify-content: center; }
+      .foot-inner p { color: #b9bbb7; font-size: .9rem; }
+      .foot-inner a { color: var(--accent); text-decoration: none; }
+      .fine { font-size: .8rem; opacity: .7; }
+
+      /* STICKY BOOK BAR */
+      .bookbar {
+        position: fixed; bottom: 0; left: 0; right: 0; z-index: 40; display: flex; gap: .6rem;
+        padding: .7rem 4vw; background: rgba(14,15,17,.94); backdrop-filter: blur(8px);
+        border-top: 1px solid var(--border);
+      }
+      .bookbar .btn { min-height: 50px; }
+      @media (min-width: 880px) { .bookbar { display: none; } .footer { padding-bottom: 2.5rem; } }
+
+      /* REVEAL */
+      .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+    </style>
+
+    <script>
+      // Mobile nav
+      const burger = document.querySelector(".burger");
+      const menu = document.querySelector(".mobile-menu");
+      burger?.addEventListener("click", () => {
+        const open = burger.getAttribute("aria-expanded") === "true";
+        burger.setAttribute("aria-expanded", String(!open));
+        menu.hidden = open;
+      });
+      menu?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          burger.setAttribute("aria-expanded", "false");
+          menu.hidden = true;
+        })
+      );
+
+      // Before/after slider
+      const range = document.getElementById("baRange");
+      const before = document.getElementById("baBefore");
+      const handle = document.getElementById("baHandle");
+      range?.addEventListener("input", () => {
+        const v = range.value + "%";
+        before.style.width = v;
+        handle.style.left = v;
+      });
+
+      // Scroll reveal
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // Stat counters
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const counters = document.querySelectorAll(".stat-num");
+      const cio = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const target = +el.dataset.target;
+          const suffix = el.dataset.suffix || "";
+          if (reduce) { el.textContent = target.toLocaleString() + suffix; cio.unobserve(el); return; }
+          let cur = 0;
+          const step = Math.max(1, Math.ceil(target / 60));
+          const tick = () => {
+            cur = Math.min(target, cur + step);
+            el.textContent = cur.toLocaleString() + suffix;
+            if (cur < target) requestAnimationFrame(tick);
+          };
+          tick();
+          cio.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      counters.forEach((c) => cio.observe(c));
+    </script>
+  </body>
+</html>

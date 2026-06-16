@@ -1,0 +1,678 @@
+---
+const nav = [
+  { label: "Studio", href: "#studio" },
+  { label: "Work", href: "#work" },
+  { label: "Services", href: "#services" },
+  { label: "Process", href: "#process" },
+  { label: "Contact", href: "#contact" },
+];
+
+const projects = [
+  { num: "01", name: "Mount Royal Residence", place: "Calgary, AB", year: "2024", seed: "meridian-mtroyal", h: 760 },
+  { num: "02", name: "Inglewood Brasserie", place: "Inglewood", year: "2023", seed: "meridian-brasserie", h: 600 },
+  { num: "03", name: "Bridgeland Loft", place: "Bridgeland", year: "2024", seed: "meridian-loft", h: 680 },
+  { num: "04", name: "Elbow River House", place: "Calgary, AB", year: "2022", seed: "meridian-elbow", h: 560 },
+  { num: "05", name: "Heritage Mill Reuse", place: "Ramsay", year: "2023", seed: "meridian-mill", h: 720 },
+];
+
+const materials = [
+  { name: "Quarter-sawn Oak", tone: "#9A7748" },
+  { name: "Warm Lime Plaster", tone: "#D8C5A6" },
+  { name: "Honed Travertine", tone: "#C9B79A" },
+  { name: "Aged Brass", tone: "#9C7B3F" },
+  { name: "Tobacco Leather", tone: "#6E4A2E" },
+  { name: "Smoked Glass", tone: "#4A4038" },
+];
+
+const services = [
+  { name: "Architectural Design", desc: "Full design from concept to construction documents.", price: "From $18,000" },
+  { name: "Interior Design & Styling", desc: "Space planning, finishes, FF&E and styling.", price: "From $9,500" },
+  { name: "Renovation & Adaptive Reuse", desc: "Reworking existing structures with care.", price: "From $14,000" },
+  { name: "Feasibility & Site Study", desc: "Zoning, massing, and budget viability report.", price: "$2,800 flat" },
+  { name: "Design Consultation", desc: "A focused half-day session, plans and direction.", price: "$850" },
+  { name: "FF&E Procurement", desc: "Sourcing furniture, fixtures and finishes.", price: "12% of value" },
+];
+
+const steps = [
+  { num: "01", name: "Conversation", text: "We begin with how a space should feel — listening before drawing a single line." },
+  { num: "02", name: "Concept & Light", text: "Massing, daylight studies and material direction shape the early vision." },
+  { num: "03", name: "Documentation", text: "Resolved drawings and details that builders and trades can trust." },
+  { num: "04", name: "Build & Handover", text: "We stay close through construction to protect the original intent." },
+];
+
+const testimonials = [
+  { quote: "Meridian understood the light in our home before we did. The result is calm in a way photos can't capture.", who: "Hannah & David Reyes", proj: "Mount Royal Residence" },
+  { quote: "Professional, unhurried, and exacting. They turned an awkward heritage building into our best restaurant yet.", who: "Marco L., Inglewood Hospitality", proj: "Inglewood Brasserie" },
+  { quote: "Every decision felt intentional. Six months in, the space still surprises us.", who: "Priya Nandakumar", proj: "Bridgeland Loft" },
+];
+
+const press = ["AZURE", "Dwell", "Western Living", "AD Pro", "Wallpaper*", "Canadian Architect"];
+const hours = [
+  { d: "Monday – Friday", t: "9:00 – 17:30" },
+  { d: "Saturday", t: "By appointment" },
+  { d: "Sunday", t: "Closed" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meridian & Co. — Architecture + Interiors | Calgary</title>
+    <meta
+      name="description"
+      content="Meridian & Co. is a Calgary architecture and interiors studio designing private residences, hospitality, and adaptive reuse with honest materials and generous daylight."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#work">Skip to work</a>
+
+    <header class="nav" id="nav">
+      <div class="wrap nav__inner">
+        <a class="mark" href="#top" aria-label="Meridian and Co. home">
+          <span class="mark__glyph" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.4">
+              <path d="M3 29 16 4l13 25" />
+              <path d="M9 29 16 16l7 13" />
+            </svg>
+          </span>
+          <span class="mark__name">Meridian<em>&amp;</em>Co.</span>
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="btn btn--sm" href="#contact">Studio visit</a>
+        <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" id="navToggle">
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div class="hero__media">
+          <img src="https://picsum.photos/seed/meridian-hero-warm/1800/1200" alt="Sunlit interior with oak joinery and warm plaster walls" />
+        </div>
+        <div class="wrap hero__inner">
+          <p class="eyebrow">Architecture + Interiors · Calgary, AB</p>
+          <h1 class="hero__title">Buildings that<br /><em>hold their quiet.</em></h1>
+          <p class="hero__lede">
+            We shape light, material, and proportion into places worth keeping —
+            for private residences, hospitality, and adaptive reuse.
+          </p>
+          <div class="hero__cta">
+            <a class="btn" href="#contact">Book a studio visit</a>
+            <a class="btn btn--ghost" href="#work">View selected work</a>
+          </div>
+        </div>
+        <div class="hero__scroll" aria-hidden="true"><span>Scroll</span><i></i></div>
+      </section>
+
+      <!-- STATEMENT -->
+      <section class="statement reveal" id="studio">
+        <div class="wrap">
+          <p class="label">Studio · 01</p>
+          <p class="statement__big">
+            Meridian &amp; Co. designs <em>slowly</em> and builds to last —
+            favouring honest materials, generous daylight, and proportion over
+            ornament. Every project begins with how a space should
+            <em>feel</em> before how it should look.
+          </p>
+        </div>
+      </section>
+
+      <!-- PROJECT INDEX (hover swaps preview) -->
+      <section class="index" id="work">
+        <div class="wrap index__head">
+          <p class="label">Selected Work · 02</p>
+          <h2 class="h2">A practice measured in projects, not portfolios.</h2>
+        </div>
+        <div class="wrap index__grid">
+          <ol class="index__list" id="indexList">
+            {projects.map((p, i) => (
+              <li class="idx" data-seed={p.seed} data-active={i === 0 ? "true" : "false"}>
+                <a href="#contact" class="idx__row">
+                  <span class="idx__num">{p.num}</span>
+                  <span class="idx__name">{p.name}</span>
+                  <span class="idx__meta">{p.place} · {p.year}</span>
+                  <span class="idx__arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+          <div class="index__preview" id="indexPreview" aria-hidden="true">
+            {projects.map((p, i) => (
+              <img
+                class={i === 0 ? "is-on" : ""}
+                data-seed={p.seed}
+                src={`https://picsum.photos/seed/${p.seed}/900/${p.h}`}
+                alt=""
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- MATERIALS STRIP -->
+      <section class="materials reveal">
+        <div class="wrap">
+          <p class="label">Palette &amp; finishes</p>
+          <ul class="materials__row">
+            {materials.map((m) => (
+              <li class="swatch">
+                <span class="swatch__chip" style={`--tone:${m.tone}`}></span>
+                <span class="swatch__name">{m.name}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <!-- FEATURED CASE STUDY -->
+      <section class="case reveal">
+        <div class="wrap case__grid">
+          <figure class="case__plate case__plate--lg">
+            <img src="https://picsum.photos/seed/meridian-case-a/1100/1300" alt="Heritage building reworked with warm timber and brass" />
+          </figure>
+          <div class="case__copy">
+            <p class="label">Featured · Heritage Mill Reuse</p>
+            <h2 class="h2">An awkward heritage shell, reworked into the city's best room.</h2>
+            <p>
+              A century-old mill in Ramsay, returned to use as a restaurant.
+              We preserved the masonry and timber bones, then layered warm
+              plaster, brass, and tobacco leather to let golden-hour light do
+              the rest.
+            </p>
+            <dl class="case__facts">
+              <div><dt>Scope</dt><dd>Adaptive reuse · Interiors · FF&amp;E</dd></div>
+              <div><dt>Area</dt><dd>4,200 sq ft</dd></div>
+              <div><dt>Year</dt><dd>2023</dd></div>
+            </dl>
+            <figure class="case__plate case__plate--sm">
+              <img src="https://picsum.photos/seed/meridian-case-b/900/620" alt="Detail of brass and timber joint in golden light" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="services reveal" id="services">
+        <div class="wrap services__head">
+          <p class="label">Services · 03</p>
+          <h2 class="h2">How we engage.</h2>
+        </div>
+        <div class="wrap services__list">
+          {services.map((s) => (
+            <article class="srv">
+              <div class="srv__top">
+                <h3>{s.name}</h3>
+                <span class="srv__price">{s.price}</span>
+              </div>
+              <p>{s.desc}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="process reveal" id="process">
+        <div class="wrap process__head">
+          <p class="label">Process · 04</p>
+          <h2 class="h2">Four phases, unhurried.</h2>
+        </div>
+        <div class="wrap process__grid">
+          {steps.map((st) => (
+            <article class="step">
+              <span class="step__num">{st.num}</span>
+              <h3>{st.name}</h3>
+              <p>{st.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- PRESS MARQUEE -->
+      <section class="press reveal" aria-label="Recognition and press">
+        <div class="press__track">
+          {[...press, ...press].map((p) => (
+            <span class="press__item">{p}<i aria-hidden="true">✶</i></span>
+          ))}
+        </div>
+      </section>
+
+      <!-- TESTIMONIAL SLIDER -->
+      <section class="quotes reveal" aria-label="Client testimonials">
+        <div class="wrap">
+          <p class="label">In their words · 05</p>
+          <div class="quotes__viewport">
+            <div class="quotes__track" id="quoteTrack">
+              {testimonials.map((t) => (
+                <blockquote class="quote">
+                  <p>“{t.quote}”</p>
+                  <footer><strong>{t.who}</strong><span>{t.proj}</span></footer>
+                </blockquote>
+              ))}
+            </div>
+          </div>
+          <div class="quotes__dots" id="quoteDots" role="tablist" aria-label="Choose testimonial">
+            {testimonials.map((_, i) => (
+              <button class={i === 0 ? "is-on" : ""} data-i={i} aria-label={`Testimonial ${i + 1}`}></button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT / NAP -->
+      <section class="contact" id="contact">
+        <div class="wrap contact__grid">
+          <div class="contact__copy">
+            <p class="label">Contact · 06</p>
+            <h2 class="h2">Tell us about<br />your space.</h2>
+            <p class="contact__lede">
+              We welcome studio visits and consultations. Share a few words on
+              your project and we'll be in touch within two working days.
+            </p>
+            <address class="nap">
+              <p class="nap__name">Meridian &amp; Co. Architecture + Interiors</p>
+              <p>1208 9th Avenue SE, Studio 4<br />Inglewood, Calgary, AB T2G 0T1</p>
+              <p>
+                <a href="tel:+14035550192">(403) 555-0192</a><br />
+                <a href="mailto:studio@meridianandco.ca">studio@meridianandco.ca</a>
+              </p>
+            </address>
+            <ul class="hours">
+              {hours.map((h) => (
+                <li><span>{h.d}</span><span>{h.t}</span></li>
+              ))}
+            </ul>
+            <div class="contact__cta">
+              <a class="btn" href="tel:+14035550192">Call the studio</a>
+              <a class="btn btn--ghost" href="https://maps.google.com/?q=1208+9th+Avenue+SE+Calgary" target="_blank" rel="noopener">Get directions</a>
+            </div>
+          </div>
+          <figure class="contact__map">
+            <img src="https://picsum.photos/seed/meridian-studio/900/1100" alt="Meridian and Co. studio entrance in Inglewood, Calgary" />
+            <figcaption>The studio · Inglewood, Calgary</figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap foot__inner">
+        <span class="mark__name">Meridian<em>&amp;</em>Co.</span>
+        <p>1208 9th Avenue SE, Studio 4 · Inglewood, Calgary, AB · (403) 555-0192</p>
+        <p class="foot__fine">© 2026 Meridian &amp; Co. Architecture + Interiors. Spaces composed with light and restraint.</p>
+      </div>
+    </footer>
+
+    <style is:global>
+      :root {
+        --bg: #f3ede3;
+        --fg: #2c2620;
+        --primary: #5a4632;
+        --primary-fg: #f7f2ea;
+        --accent: #b07a4a;
+        --muted: #9a8c79;
+        --border: #ded4c4;
+        --paper: #faf6ef;
+        --display: "Cormorant Garamond", Georgia, serif;
+        --body: "Hanken Grotesk", system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--body);
+        line-height: 1.6;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; text-decoration: none; }
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      }
+    </style>
+
+    <style>
+      .wrap { width: min(1240px, 90vw); margin-inline: auto; }
+      .label {
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--accent); font-weight: 600; margin-bottom: 1.1rem;
+      }
+      .eyebrow {
+        font-size: 0.74rem; letter-spacing: 0.24em; text-transform: uppercase;
+        color: var(--primary-fg); opacity: 0.85; font-weight: 600; margin-bottom: 1.4rem;
+      }
+      .h2 {
+        font-family: var(--display); font-weight: 600;
+        font-size: clamp(1.9rem, 4vw, 3.1rem); line-height: 1.06;
+        letter-spacing: -0.01em; color: var(--primary);
+      }
+      .skip {
+        position: absolute; left: -999px; top: 0; z-index: 100;
+        background: var(--primary); color: var(--primary-fg); padding: 0.8rem 1.2rem;
+      }
+      .skip:focus { left: 12px; top: 12px; }
+
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 48px; padding: 0 1.7rem; border-radius: 999px;
+        background: var(--primary); color: var(--primary-fg);
+        font-weight: 600; font-size: 0.92rem; letter-spacing: 0.01em;
+        border: 1px solid var(--primary); transition: transform .25s ease, background .25s ease;
+      }
+      .btn:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+      .btn--ghost { background: transparent; color: var(--primary); }
+      .btn--ghost:hover { background: var(--primary); color: var(--primary-fg); transform: translateY(-2px); }
+      .btn--sm { min-height: 42px; padding: 0 1.2rem; font-size: 0.84rem; }
+      :focus-visible { outline: 2.5px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+      /* NAV */
+      .nav {
+        position: fixed; inset: 0 0 auto 0; z-index: 50;
+        transition: background .4s ease, box-shadow .4s ease, border-color .4s ease;
+        border-bottom: 1px solid transparent;
+      }
+      .nav.is-solid {
+        background: color-mix(in srgb, var(--paper) 92%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom-color: var(--border);
+      }
+      .nav__inner { display: flex; align-items: center; gap: 1.5rem; padding: 1.1rem 0; }
+      .mark { display: flex; align-items: center; gap: 0.55rem; color: var(--primary-fg); }
+      .nav.is-solid .mark { color: var(--primary); }
+      .mark__glyph { color: var(--accent); display: inline-flex; }
+      .mark__name {
+        font-family: var(--display); font-weight: 700; font-size: 1.35rem; letter-spacing: 0.01em;
+      }
+      .mark__name em { color: var(--accent); font-style: normal; margin: 0 0.12em; }
+      .nav__links { display: flex; gap: 1.7rem; margin-left: auto; }
+      .nav__links a {
+        font-size: 0.86rem; letter-spacing: 0.04em; color: var(--primary-fg);
+        opacity: 0.9; position: relative; padding: 0.2rem 0;
+      }
+      .nav.is-solid .nav__links a { color: var(--fg); }
+      .nav__links a::after {
+        content: ""; position: absolute; left: 0; bottom: -2px; height: 1.5px; width: 0;
+        background: var(--accent); transition: width .3s ease;
+      }
+      .nav__links a:hover::after { width: 100%; }
+      .nav .btn--sm { background: var(--accent); border-color: var(--accent); }
+      .nav.is-solid .btn--sm { background: var(--primary); border-color: var(--primary); }
+      .nav__toggle {
+        display: none; flex-direction: column; gap: 5px; width: 44px; height: 44px;
+        align-items: center; justify-content: center; background: none; border: 0; cursor: pointer;
+      }
+      .nav__toggle span { width: 22px; height: 2px; background: var(--primary-fg); transition: .3s; }
+      .nav.is-solid .nav__toggle span { background: var(--fg); }
+
+      /* HERO */
+      .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; color: var(--primary-fg); }
+      .hero__media { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+      .hero__media img {
+        width: 100%; height: 100%; object-fit: cover;
+        filter: saturate(1.04) contrast(1.02) brightness(0.96);
+        animation: heroZoom 14s ease-out forwards;
+      }
+      @keyframes heroZoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+      .hero__media::after {
+        content: ""; position: absolute; inset: 0;
+        background:
+          linear-gradient(180deg, rgba(44,38,32,0.42) 0%, rgba(44,38,32,0.05) 35%, rgba(44,38,32,0.78) 100%),
+          linear-gradient(90deg, rgba(90,70,50,0.30), transparent 60%);
+        mix-blend-mode: multiply;
+      }
+      .hero__inner { padding: 0 0 clamp(4rem, 9vh, 7rem); }
+      .hero__title {
+        font-family: var(--display); font-weight: 600;
+        font-size: clamp(2.9rem, 9vw, 6.6rem); line-height: 0.96; letter-spacing: -0.015em;
+        margin-bottom: 1.6rem; text-wrap: balance;
+      }
+      .hero__title em { font-style: italic; color: #ecd9bf; }
+      .hero__lede { max-width: 44ch; font-size: clamp(1rem, 1.4vw, 1.18rem); opacity: 0.92; margin-bottom: 2.2rem; }
+      .hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+      .hero .btn--ghost { color: var(--primary-fg); border-color: rgba(247,242,234,0.55); }
+      .hero .btn--ghost:hover { background: var(--primary-fg); color: var(--primary); }
+      .hero__scroll {
+        position: absolute; right: 5vw; bottom: 2.4rem; display: flex; align-items: center; gap: 0.7rem;
+        font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.85;
+      }
+      .hero__scroll i { width: 1px; height: 46px; background: var(--primary-fg); position: relative; overflow: hidden; }
+      .hero__scroll i::after {
+        content: ""; position: absolute; inset: 0; background: var(--accent);
+        animation: scrollPulse 2.2s ease-in-out infinite;
+      }
+      @keyframes scrollPulse { 0% { transform: translateY(-100%); } 60%,100% { transform: translateY(100%); } }
+
+      /* STATEMENT */
+      .statement { padding: clamp(5rem, 11vh, 9rem) 0; }
+      .statement__big {
+        font-family: var(--display); font-weight: 500;
+        font-size: clamp(1.7rem, 4.2vw, 3.3rem); line-height: 1.18; letter-spacing: -0.01em;
+        max-width: 22ch; color: var(--primary); text-wrap: balance;
+      }
+      .statement__big em { font-style: italic; color: var(--accent); }
+
+      /* INDEX */
+      .index { padding: clamp(3rem, 6vh, 5rem) 0 clamp(5rem, 9vh, 7rem); }
+      .index__head { margin-bottom: 3rem; }
+      .index__head .h2 { max-width: 20ch; }
+      .index__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: start; }
+      .index__list { list-style: none; }
+      .idx { border-top: 1px solid var(--border); }
+      .idx:last-child { border-bottom: 1px solid var(--border); }
+      .idx__row {
+        display: grid; grid-template-columns: auto 1fr auto auto; align-items: baseline;
+        gap: 1.2rem; padding: 1.4rem 0.4rem; transition: padding .35s ease, color .35s ease;
+      }
+      .idx[data-active="true"] .idx__row { padding-left: 1.3rem; color: var(--accent); }
+      .idx__num { font-family: var(--display); font-size: 1rem; color: var(--muted); }
+      .idx[data-active="true"] .idx__num { color: var(--accent); }
+      .idx__name { font-family: var(--display); font-size: clamp(1.4rem, 2.6vw, 2.1rem); font-weight: 600; line-height: 1; color: var(--primary); }
+      .idx[data-active="true"] .idx__name { color: var(--accent); }
+      .idx__meta { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.03em; white-space: nowrap; }
+      .idx__arrow { color: var(--accent); opacity: 0; transform: translateX(-8px); transition: .35s; }
+      .idx[data-active="true"] .idx__arrow { opacity: 1; transform: translateX(0); }
+      .index__preview {
+        position: sticky; top: 110px; aspect-ratio: 9 / 7; border-radius: 14px; overflow: hidden;
+        background: var(--border); box-shadow: 0 30px 60px -30px rgba(44,38,32,0.45);
+      }
+      .index__preview img {
+        position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+        opacity: 0; transform: scale(1.04); transition: opacity .6s ease, transform .8s ease;
+        filter: saturate(1.05);
+      }
+      .index__preview img.is-on { opacity: 1; transform: scale(1); }
+
+      /* MATERIALS */
+      .materials { padding: clamp(3.5rem, 7vh, 5.5rem) 0; background: var(--paper); border-block: 1px solid var(--border); }
+      .materials__row { list-style: none; display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.4rem; }
+      .swatch { display: flex; flex-direction: column; gap: 0.8rem; }
+      .swatch__chip {
+        height: 92px; border-radius: 10px; background: var(--tone);
+        box-shadow: inset 0 0 0 1px rgba(44,38,32,0.10), 0 14px 24px -16px rgba(44,38,32,0.5);
+        transition: transform .35s ease;
+      }
+      .swatch:hover .swatch__chip { transform: translateY(-5px); }
+      .swatch__name { font-size: 0.78rem; letter-spacing: 0.04em; color: var(--fg); }
+
+      /* CASE */
+      .case { padding: clamp(5rem, 10vh, 8rem) 0; }
+      .case__grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+      .case__plate { border-radius: 14px; overflow: hidden; }
+      .case__plate img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.05) brightness(1.01); transition: transform .8s ease; }
+      .case__plate:hover img { transform: scale(1.04); }
+      .case__plate--lg { aspect-ratio: 4 / 5; box-shadow: 0 40px 70px -40px rgba(44,38,32,0.5); position: sticky; top: 110px; }
+      .case__copy > p { margin: 1.2rem 0 1.8rem; max-width: 52ch; color: color-mix(in srgb, var(--fg) 86%, transparent); }
+      .case__facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; border-top: 1px solid var(--border); padding-top: 1.6rem; margin-bottom: 2rem; }
+      .case__facts dt { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+      .case__facts dd { font-size: 0.9rem; }
+      .case__plate--sm { aspect-ratio: 16 / 11; }
+
+      /* SERVICES */
+      .services { padding: clamp(5rem, 10vh, 8rem) 0; background: var(--paper); border-block: 1px solid var(--border); }
+      .services__head { margin-bottom: 3rem; }
+      .services__list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+      .srv { background: var(--paper); padding: 2.2rem 1.9rem; transition: background .35s ease; }
+      .srv:hover { background: var(--bg); }
+      .srv__top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 0.9rem; }
+      .srv__top h3 { font-family: var(--display); font-size: 1.5rem; font-weight: 600; color: var(--primary); line-height: 1.05; }
+      .srv__price { font-size: 0.82rem; font-weight: 600; color: var(--accent); white-space: nowrap; }
+      .srv p { font-size: 0.92rem; color: color-mix(in srgb, var(--fg) 80%, transparent); }
+
+      /* PROCESS */
+      .process { padding: clamp(5rem, 10vh, 8rem) 0; }
+      .process__head { margin-bottom: 3rem; }
+      .process__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+      .step { border-top: 2px solid var(--accent); padding-top: 1.3rem; }
+      .step__num { font-family: var(--display); font-size: 2.4rem; color: var(--muted); display: block; line-height: 1; margin-bottom: 0.8rem; }
+      .step h3 { font-family: var(--display); font-size: 1.45rem; font-weight: 600; color: var(--primary); margin-bottom: 0.6rem; }
+      .step p { font-size: 0.9rem; color: color-mix(in srgb, var(--fg) 82%, transparent); }
+
+      /* PRESS MARQUEE */
+      .press { background: var(--primary); color: var(--primary-fg); padding: 1.6rem 0; overflow: hidden; }
+      .press__track { display: flex; gap: 3.5rem; width: max-content; animation: marquee 26s linear infinite; }
+      .press:hover .press__track { animation-play-state: paused; }
+      .press__item { font-family: var(--display); font-size: 1.5rem; letter-spacing: 0.02em; display: flex; align-items: center; gap: 3.5rem; white-space: nowrap; }
+      .press__item i { color: var(--accent); font-style: normal; font-size: 0.9rem; }
+      @keyframes marquee { to { transform: translateX(-50%); } }
+
+      /* QUOTES */
+      .quotes { padding: clamp(5rem, 10vh, 8rem) 0; }
+      .quotes__viewport { overflow: hidden; }
+      .quotes__track { display: flex; transition: transform .6s cubic-bezier(.4,0,.2,1); }
+      .quote { flex: 0 0 100%; }
+      .quote p { font-family: var(--display); font-weight: 500; font-size: clamp(1.5rem, 3.8vw, 2.9rem); line-height: 1.2; color: var(--primary); max-width: 24ch; text-wrap: balance; }
+      .quote footer { display: flex; gap: 0.8rem; align-items: baseline; margin-top: 1.8rem; font-size: 0.86rem; }
+      .quote footer strong { color: var(--accent); }
+      .quote footer span { color: var(--muted); }
+      .quotes__dots { display: flex; gap: 0.6rem; margin-top: 2.4rem; }
+      .quotes__dots button { width: 34px; height: 4px; border: 0; border-radius: 2px; background: var(--border); cursor: pointer; transition: background .3s; padding: 0; }
+      .quotes__dots button.is-on { background: var(--accent); }
+
+      /* CONTACT */
+      .contact { padding: clamp(5rem, 10vh, 8rem) 0; background: var(--primary); color: var(--primary-fg); }
+      .contact__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: center; }
+      .contact .label { color: #ecd9bf; }
+      .contact .h2 { color: var(--primary-fg); }
+      .contact__lede { max-width: 42ch; margin: 1.4rem 0 2.2rem; opacity: 0.9; }
+      .nap { font-style: normal; margin-bottom: 1.8rem; line-height: 1.7; }
+      .nap__name { font-family: var(--display); font-size: 1.3rem; margin-bottom: 0.5rem; }
+      .nap a { border-bottom: 1px solid rgba(247,242,234,0.4); transition: border-color .3s; }
+      .nap a:hover { border-color: var(--accent); }
+      .hours { list-style: none; border-top: 1px solid rgba(247,242,234,0.22); margin-bottom: 2rem; }
+      .hours li { display: flex; justify-content: space-between; padding: 0.7rem 0; border-bottom: 1px solid rgba(247,242,234,0.16); font-size: 0.9rem; }
+      .hours li span:last-child { color: #ecd9bf; }
+      .contact__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+      .contact .btn { background: var(--accent); border-color: var(--accent); color: #2c2620; }
+      .contact .btn:hover { background: var(--primary-fg); border-color: var(--primary-fg); }
+      .contact .btn--ghost { background: transparent; color: var(--primary-fg); border-color: rgba(247,242,234,0.5); }
+      .contact .btn--ghost:hover { background: var(--primary-fg); color: var(--primary); }
+      .contact__map { position: relative; border-radius: 14px; overflow: hidden; box-shadow: 0 40px 70px -40px rgba(0,0,0,0.6); }
+      .contact__map img { width: 100%; aspect-ratio: 9 / 11; object-fit: cover; filter: saturate(1.05); }
+      .contact__map figcaption { position: absolute; left: 1rem; bottom: 1rem; background: color-mix(in srgb, var(--primary) 88%, transparent); padding: 0.5rem 0.9rem; border-radius: 999px; font-size: 0.78rem; letter-spacing: 0.04em; }
+
+      /* FOOTER */
+      .foot { background: var(--bg); padding: clamp(3rem, 6vh, 4.5rem) 0; border-top: 1px solid var(--border); }
+      .foot__inner { display: flex; flex-direction: column; gap: 0.8rem; align-items: center; text-align: center; }
+      .foot .mark__name { color: var(--primary); font-size: 1.6rem; }
+      .foot p { font-size: 0.85rem; color: var(--muted); }
+      .foot__fine { font-size: 0.78rem; }
+
+      /* REVEAL */
+      .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* RESPONSIVE */
+      @media (max-width: 980px) {
+        .index__grid, .case__grid, .contact__grid { grid-template-columns: 1fr; }
+        .index__preview, .case__plate--lg { position: static; }
+        .index__preview { display: none; }
+        .services__list, .process__grid, .materials__row { grid-template-columns: repeat(2, 1fr); }
+        .case__plate--lg { aspect-ratio: 16 / 12; }
+      }
+      @media (max-width: 720px) {
+        .nav__links, .nav__inner > .btn--sm { display: none; }
+        .nav__toggle { display: flex; }
+        .nav__inner.is-open { flex-wrap: wrap; }
+        .nav__inner.is-open .nav__links {
+          display: flex; flex-direction: column; gap: 0.2rem; width: 100%; order: 3; margin: 0.6rem 0 0;
+        }
+        .nav__inner.is-open .nav__links a { padding: 0.7rem 0; border-top: 1px solid var(--border); color: var(--fg); }
+        .idx__row { grid-template-columns: auto 1fr; row-gap: 0.3rem; }
+        .idx__meta { grid-column: 2; }
+        .idx__arrow { display: none; }
+        .services__list, .process__grid { grid-template-columns: 1fr; }
+        .materials__row { grid-template-columns: repeat(3, 1fr); }
+        .case__facts { grid-template-columns: 1fr 1fr; }
+      }
+    </style>
+
+    <script>
+      // Sticky nav solidify
+      const nav = document.getElementById("nav");
+      const onScroll = () => nav.classList.toggle("is-solid", window.scrollY > 60);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // Mobile menu
+      const toggle = document.getElementById("navToggle");
+      const inner = document.querySelector(".nav__inner");
+      toggle?.addEventListener("click", () => {
+        const open = inner.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+      inner?.querySelectorAll(".nav__links a").forEach((a) =>
+        a.addEventListener("click", () => {
+          inner.classList.remove("is-open");
+          toggle.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      // Project index hover -> swap preview
+      const items = document.querySelectorAll(".idx");
+      const previews = document.querySelectorAll("#indexPreview img");
+      const activate = (seed) => {
+        items.forEach((it) => it.setAttribute("data-active", String(it.dataset.seed === seed)));
+        previews.forEach((p) => p.classList.toggle("is-on", p.dataset.seed === seed));
+      };
+      items.forEach((it) => {
+        it.addEventListener("mouseenter", () => activate(it.dataset.seed));
+        it.addEventListener("focusin", () => activate(it.dataset.seed));
+      });
+
+      // Testimonial slider
+      const track = document.getElementById("quoteTrack");
+      const dots = [...document.querySelectorAll("#quoteDots button")];
+      let qi = 0;
+      const go = (i) => {
+        qi = (i + dots.length) % dots.length;
+        track.style.transform = `translateX(-${qi * 100}%)`;
+        dots.forEach((d, n) => d.classList.toggle("is-on", n === qi));
+      };
+      dots.forEach((d) => d.addEventListener("click", () => go(Number(d.dataset.i))));
+      let timer = setInterval(() => go(qi + 1), 6000);
+      track?.addEventListener("pointerenter", () => clearInterval(timer));
+      track?.addEventListener("pointerleave", () => (timer = setInterval(() => go(qi + 1), 6000)));
+
+      // Scroll reveal
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => e.isIntersecting && (e.target.classList.add("in"), io.unobserve(e.target))),
+        { threshold: 0.14 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

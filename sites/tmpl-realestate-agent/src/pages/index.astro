@@ -1,0 +1,736 @@
+---
+// Boutique personal-brand real estate agent — editorial, story-led
+const nav = [
+  { label: "Listings", href: "#listings" },
+  { label: "About", href: "#about" },
+  { label: "Results", href: "#results" },
+  { label: "Neighborhoods", href: "#areas" },
+  { label: "Contact", href: "#contact" },
+];
+
+const listings = [
+  { addr: "88 Roxboro Road SW", price: "$3,495,000", beds: 5, baths: 6, sqft: "6,200", area: "Roxboro", seed: "roxboro88" },
+  { addr: "412 Eagle Ridge Drive SW", price: "$2,150,000", beds: 4, baths: 4, sqft: "4,050", area: "Eagle Ridge", seed: "eagleridge412" },
+  { addr: "207 18th Avenue NW", price: "$899,000", beds: 3, baths: 3, sqft: "2,100", area: "Mount Pleasant", seed: "mtpleasant207" },
+];
+
+const services = [
+  { name: "Buyer Representation", price: "No cost to buyers", note: "Commission paid by the seller — full advocacy, none of the fee." },
+  { name: "Luxury Listing & Marketing", price: "2.5% commission", note: "Cinematic video, drone, and a staging consult included." },
+  { name: "Standard Residential Listing", price: "2.0% commission", note: "The full white-glove process, right-sized for your home." },
+  { name: "Professional Home Valuation (CMA)", price: "Complimentary", note: "An honest read on your home's true market position." },
+  { name: "Premium Staging Consultation", price: "$350", note: "Credited back in full on a signed listing." },
+  { name: "Architectural Photo & 3D Tour", price: "$1,200", note: "Per property — the imagery that makes buyers fall in love." },
+];
+
+const stats = [
+  { value: 480, prefix: "$", suffix: "M+", label: "Lifetime sales volume" },
+  { value: 640, prefix: "", suffix: "+", label: "Homes sold" },
+  { value: 19, prefix: "", suffix: "", label: "Avg. days on market" },
+  { value: 99.2, prefix: "", suffix: "%", label: "List-to-sale ratio" },
+];
+
+const testimonials = [
+  { quote: "Eleanor sold our Mount Royal home in eleven days, over asking. Every detail was handled before we even thought to ask.", who: "Daniel & Priya R.", where: "Mount Royal" },
+  { quote: "The marketing was on another level — the video alone made buyers fall in love. Truly white-glove from start to close.", who: "Marguerite L.", where: "Britannia" },
+  { quote: "As first-time buyers we felt completely guided, never pressured. We found exactly the right home in Inglewood.", who: "James & Cora T.", where: "Inglewood" },
+];
+
+const areas = [
+  { name: "Mount Royal", note: "Heritage estates & mature elms", seed: "mountroyal" },
+  { name: "Inglewood", note: "Walkable, creative, riverside", seed: "inglewood" },
+  { name: "Britannia", note: "Quiet prestige, big lots", seed: "britannia" },
+  { name: "Eagle Ridge", note: "Reservoir views & calm", seed: "eagleridge" },
+];
+
+const hours = [
+  { d: "Mon – Fri", h: "9:00 AM – 6:00 PM" },
+  { d: "Saturday", h: "10:00 AM – 4:00 PM" },
+  { d: "Sunday", h: "By appointment" },
+];
+
+const press = ["WSJ", "Forbes", "Avenue", "Luxe", "Western Living"];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Eleanor Vale, Realtor — Calgary Real Estate, Handled Personally</title>
+    <meta
+      name="description"
+      content="Eleanor Vale of Meridian & Vale — boutique, story-led real estate across Calgary's finest neighborhoods. $480M+ sold, 19 average days on market. Your move, handled personally."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#listings">Skip to listings</a>
+
+    <header class="nav" id="top">
+      <div class="wrap nav-inner">
+        <a href="#top" class="brand" aria-label="Eleanor Vale, Realtor — home">
+          <span class="brand-mark" aria-hidden="true">EV</span>
+          <span class="brand-name">Eleanor Vale<em>Realtor · Meridian &amp; Vale</em></span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a href="tel:+14035550192" class="nav-cta">(403) 555-0192</a>
+        <button class="burger" aria-label="Toggle menu" aria-expanded="false" id="burger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a href="tel:+14035550192" class="mobile-call">Call (403) 555-0192</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" aria-label="Introduction">
+        <div class="hero-photo" aria-hidden="true"></div>
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Boutique brokerage · Calgary</p>
+            <h1>Your move,<br /><em>handled personally.</em></h1>
+            <p class="lede">
+              A different standard of service across Calgary's finest neighborhoods —
+              one client, one story, and every detail managed before you think to ask.
+            </p>
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">Book a consultation</a>
+              <a href="#listings" class="btn btn-ghost">View listings</a>
+            </div>
+          </div>
+          <figure class="hero-portrait">
+            <img
+              src="https://picsum.photos/seed/eleanorvale-portrait/640/800"
+              width="640" height="800" loading="eager"
+              alt="Eleanor Vale, Calgary realtor, photographed on location in a sunlit kitchen"
+            />
+            <figcaption>Eleanor Vale<span>Founding Realtor</span></figcaption>
+          </figure>
+        </div>
+        <div class="press-strip wrap" aria-label="As seen in">
+          <span class="press-label">As seen in</span>
+          {press.map((p) => <span class="press-logo">{p}</span>)}
+        </div>
+      </section>
+
+      <!-- LISTINGS -->
+      <section id="listings" class="section listings" aria-labelledby="listings-h">
+        <div class="wrap">
+          <div class="sec-head">
+            <p class="eyebrow">Currently representing</p>
+            <h2 id="listings-h">Homes worth the story.</h2>
+          </div>
+          <div class="listing-grid">
+            {listings.map((l) => (
+              <article class="card">
+                <a href="#contact" class="card-media">
+                  <img
+                    src={`https://picsum.photos/seed/${l.seed}/720/480`}
+                    width="720" height="480" loading="lazy"
+                    alt={`${l.addr} in ${l.area}`}
+                  />
+                  <span class="card-area">{l.area}</span>
+                </a>
+                <div class="card-body">
+                  <p class="card-price">{l.price}</p>
+                  <h3 class="card-addr">{l.addr}</h3>
+                  <p class="card-meta">{l.beds} bd · {l.baths} ba · {l.sqft} sqft</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT / STORY SPLIT -->
+      <section id="about" class="section about" aria-labelledby="about-h">
+        <div class="wrap about-grid">
+          <figure class="about-photo reveal">
+            <img
+              src="https://picsum.photos/seed/eleanor-detail/700/860"
+              width="700" height="860" loading="lazy"
+              alt="A quiet Calgary street with mature trees at golden hour"
+            />
+          </figure>
+          <div class="about-copy reveal">
+            <p class="eyebrow">The person behind the name</p>
+            <h2 id="about-h">I take fewer clients, on purpose.</h2>
+            <p>
+              For nineteen years I've worked one home at a time — listening longer,
+              marketing harder, and treating every transaction as the most important
+              decision in someone's year. Because it usually is.
+            </p>
+            <p>
+              That focus is the whole point of Meridian &amp; Vale. No call center, no
+              hand-off, no junior agent you've never met. Just me, a tight circle of
+              trusted partners, and a reputation built one Calgary block at a time.
+            </p>
+            <p class="signature">Eleanor Vale</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section id="results" class="section stats" aria-labelledby="stats-h">
+        <div class="wrap">
+          <h2 id="stats-h" class="sr-only">By the numbers</h2>
+          <div class="stat-grid">
+            {stats.map((s) => (
+              <div class="stat">
+                <span class="stat-num" data-value={s.value} data-prefix={s.prefix} data-suffix={s.suffix}>
+                  {s.prefix}0{s.suffix}
+                </span>
+                <span class="stat-label">{s.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- VALUATION BAND -->
+      <section class="section valuation" aria-labelledby="val-h">
+        <div class="wrap val-grid">
+          <div>
+            <p class="eyebrow light">For sellers</p>
+            <h2 id="val-h">What's your home worth, really?</h2>
+            <p class="val-lede">
+              A genuine, no-pressure valuation — researched by hand, not a robot.
+              I'll tell you what your home would sell for this season and why.
+            </p>
+          </div>
+          <form class="val-form" onsubmit="return false">
+            <label class="sr-only" for="addr">Property address</label>
+            <input id="addr" type="text" placeholder="Your home's address" autocomplete="street-address" />
+            <button type="submit" class="btn btn-primary">Get my valuation</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="section services" aria-labelledby="serv-h">
+        <div class="wrap">
+          <div class="sec-head">
+            <p class="eyebrow">Plainly priced</p>
+            <h2 id="serv-h">Service, and what it costs.</h2>
+          </div>
+          <ul class="serv-list">
+            {services.map((s) => (
+              <li class="serv-row">
+                <div class="serv-main">
+                  <h3>{s.name}</h3>
+                  <p>{s.note}</p>
+                </div>
+                <span class="serv-price">{s.price}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <!-- TESTIMONIAL SLIDER -->
+      <section class="section quotes" aria-labelledby="quotes-h">
+        <div class="wrap">
+          <h2 id="quotes-h" class="sr-only">Client testimonials</h2>
+          <div class="slider" id="slider">
+            <div class="slides" id="slides">
+              {testimonials.map((t) => (
+                <figure class="quote">
+                  <blockquote>“{t.quote}”</blockquote>
+                  <figcaption>{t.who} <span>· {t.where}</span></figcaption>
+                </figure>
+              ))}
+            </div>
+            <div class="dots" id="dots" role="tablist" aria-label="Choose testimonial">
+              {testimonials.map((_, i) => (
+                <button class={i === 0 ? "dot active" : "dot"} data-i={i} role="tab" aria-label={`Testimonial ${i + 1}`}></button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEIGHBORHOODS -->
+      <section id="areas" class="section areas" aria-labelledby="areas-h">
+        <div class="wrap">
+          <div class="sec-head">
+            <p class="eyebrow">Where I work</p>
+            <h2 id="areas-h">Calgary, block by block.</h2>
+          </div>
+          <div class="area-grid">
+            {areas.map((a) => (
+              <a href="#contact" class="area-tile">
+                <img
+                  src={`https://picsum.photos/seed/${a.seed}/520/640?grayscale`}
+                  width="520" height="640" loading="lazy"
+                  alt={`${a.name} neighborhood, Calgary`}
+                />
+                <span class="area-text">
+                  <strong>{a.name}</strong>
+                  <em>{a.note}</em>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT / NAP -->
+      <section id="contact" class="section contact" aria-labelledby="contact-h">
+        <div class="wrap contact-grid">
+          <div>
+            <p class="eyebrow">Let's begin</p>
+            <h2 id="contact-h">A conversation, not a pitch.</h2>
+            <p class="contact-lede">
+              Private showings available evenings by request. Tell me about your
+              move and I'll tell you exactly how I'd handle it.
+            </p>
+            <div class="nap">
+              <p class="nap-name">Meridian &amp; Vale Private Brokerage</p>
+              <address>
+                1100 1st Street SW, Suite 400<br />Calgary, AB T2R 0V1
+              </address>
+              <a class="nap-call" href="tel:+14035550192">
+                <span aria-hidden="true">☎</span> (403) 555-0192
+              </a>
+              <a class="nap-mail" href="mailto:hello@meridianvale.ca">hello@meridianvale.ca</a>
+              <a class="nap-map" href="https://maps.google.com/?q=1100+1st+Street+SW+Calgary" target="_blank" rel="noopener">View on map →</a>
+            </div>
+          </div>
+          <div class="hours-card">
+            <h3>Office hours</h3>
+            <ul>
+              {hours.map((h) => (
+                <li><span>{h.d}</span><span>{h.h}</span></li>
+              ))}
+            </ul>
+            <a href="tel:+14035550192" class="btn btn-primary full">Book a consultation</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <div class="footer-brand">
+          <span class="brand-mark" aria-hidden="true">EV</span>
+          <p>Eleanor Vale, Realtor — Meridian &amp; Vale Private Brokerage. Serving Calgary's finest neighborhoods.</p>
+        </div>
+        <p class="footer-fine">© 2026 Meridian &amp; Vale. 1100 1st Street SW, Suite 400, Calgary, AB · (403) 555-0192</p>
+      </div>
+    </footer>
+
+    <script is:inline>
+      // mobile nav
+      const burger = document.getElementById("burger");
+      const menu = document.getElementById("mobileMenu");
+      burger?.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        burger.setAttribute("aria-expanded", String(open));
+      });
+      menu?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          menu.classList.remove("open");
+          burger.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // scroll reveal
+      const reveals = document.querySelectorAll(".reveal");
+      if (reduce) reveals.forEach((r) => r.classList.add("in"));
+      else {
+        const io = new IntersectionObserver(
+          (es) => es.forEach((e) => e.isIntersecting && (e.target.classList.add("in"), io.unobserve(e.target))),
+          { threshold: 0.2 }
+        );
+        reveals.forEach((r) => io.observe(r));
+      }
+
+      // animated counters
+      const nums = document.querySelectorAll(".stat-num");
+      const animate = (el) => {
+        const target = parseFloat(el.dataset.value);
+        const pre = el.dataset.prefix || "";
+        const suf = el.dataset.suffix || "";
+        const dec = el.dataset.value.includes(".") ? 1 : 0;
+        if (reduce) { el.textContent = pre + target.toFixed(dec) + suf; return; }
+        const dur = 1400, start = performance.now();
+        const tick = (now) => {
+          const p = Math.min((now - start) / dur, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = pre + (target * eased).toFixed(dec) + suf;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+      const statIO = new IntersectionObserver(
+        (es) => es.forEach((e) => { if (e.isIntersecting) { animate(e.target); statIO.unobserve(e.target); } }),
+        { threshold: 0.5 }
+      );
+      nums.forEach((n) => statIO.observe(n));
+
+      // testimonial slider
+      const slides = document.getElementById("slides");
+      const dots = document.querySelectorAll(".dot");
+      let idx = 0;
+      const go = (i) => {
+        idx = i;
+        slides.style.transform = `translateX(-${i * 100}%)`;
+        dots.forEach((d, di) => d.classList.toggle("active", di === i));
+      };
+      dots.forEach((d) => d.addEventListener("click", () => go(+d.dataset.i)));
+      if (!reduce) setInterval(() => go((idx + 1) % dots.length), 6000);
+    </script>
+
+    <style is:global>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      :root {
+        --bg: #f4efe6;
+        --fg: #2a2722;
+        --primary: #9a4e33;
+        --primary-fg: #f4efe6;
+        --accent: #6e7150;
+        --muted: #e7e0d2;
+        --border: #d5ccbc;
+        --display: "Fraunces", Georgia, serif;
+        --body: "DM Sans", system-ui, sans-serif;
+      }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--body);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; text-decoration: none; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        * { transition: none !important; animation: none !important; }
+      }
+    </style>
+
+    <style>
+      .wrap { width: min(1180px, 92vw); margin-inline: auto; }
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; overflow: hidden;
+        clip: rect(0 0 0 0); white-space: nowrap;
+      }
+      .skip {
+        position: absolute; left: -999px; top: 0; background: var(--fg);
+        color: var(--bg); padding: 0.7rem 1rem; z-index: 200;
+      }
+      .skip:focus { left: 0.5rem; top: 0.5rem; }
+      a:focus-visible, button:focus-visible, input:focus-visible {
+        outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 2px;
+      }
+      .eyebrow {
+        font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--accent); font-weight: 600; margin-bottom: 1rem;
+      }
+      .eyebrow.light { color: #d9c9ac; }
+
+      /* NAV */
+      .nav {
+        position: sticky; top: 0; z-index: 100;
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-inner { display: flex; align-items: center; gap: 1.5rem; height: 76px; }
+      .brand { display: flex; align-items: center; gap: 0.7rem; }
+      .brand-mark {
+        display: grid; place-items: center; width: 40px; height: 40px;
+        border-radius: 50%; background: var(--primary); color: var(--primary-fg);
+        font-family: var(--display); font-weight: 600; font-size: 1rem; flex: none;
+      }
+      .brand-name { font-family: var(--display); font-weight: 600; line-height: 1.1; font-size: 1.05rem; }
+      .brand-name em {
+        display: block; font-family: var(--body); font-style: normal;
+        font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
+        color: var(--accent); font-weight: 500; margin-top: 2px;
+      }
+      .nav-links { display: none; gap: 1.6rem; margin-left: auto; }
+      .nav-links a { font-size: 0.9rem; font-weight: 500; position: relative; padding: 4px 0; }
+      .nav-links a::after {
+        content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 1.5px;
+        background: var(--primary); transition: width 0.25s;
+      }
+      .nav-links a:hover::after { width: 100%; }
+      .nav-cta {
+        display: none; font-weight: 600; font-size: 0.9rem; padding: 0.6rem 1.1rem;
+        border: 1px solid var(--border); border-radius: 999px; transition: 0.25s;
+      }
+      .nav-cta:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+      .burger {
+        margin-left: auto; width: 44px; height: 44px; display: grid; place-content: center;
+        gap: 5px; background: none; border: none; cursor: pointer;
+      }
+      .burger span { display: block; width: 24px; height: 2px; background: var(--fg); transition: 0.25s; }
+      .mobile-menu { display: none; flex-direction: column; padding: 0 4vw 1.2rem; border-bottom: 1px solid var(--border); }
+      .mobile-menu.open { display: flex; }
+      .mobile-menu a { padding: 0.85rem 0; border-top: 1px solid var(--border); font-weight: 500; }
+      .mobile-call { color: var(--primary); font-weight: 600; }
+
+      /* HERO */
+      .hero { position: relative; padding-top: 3rem; overflow: hidden; }
+      .hero-photo {
+        position: absolute; inset: 0;
+        background-image: url("https://picsum.photos/seed/calgary-estate-dusk/1600/1100");
+        background-size: cover; background-position: center;
+        opacity: 0.16; filter: sepia(0.3) saturate(0.85);
+        mask-image: linear-gradient(to bottom, #000 35%, transparent 92%);
+      }
+      .hero-grid {
+        position: relative; display: grid; grid-template-columns: 1fr;
+        gap: 2.5rem; align-items: center; padding-bottom: 2.5rem;
+      }
+      .hero-copy h1 {
+        font-family: var(--display); font-weight: 500;
+        font-size: clamp(2.7rem, 9vw, 5rem); line-height: 1.02;
+        letter-spacing: -0.02em; margin-bottom: 1.4rem;
+      }
+      .hero-copy h1 em { font-style: italic; color: var(--primary); }
+      .lede { font-size: clamp(1rem, 2.5vw, 1.2rem); max-width: 30ch; color: color-mix(in srgb, var(--fg) 78%, transparent); }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 48px; padding: 0 1.5rem; border-radius: 999px;
+        font-weight: 600; font-size: 0.95rem; transition: 0.25s; cursor: pointer; border: 1px solid transparent;
+      }
+      .btn-primary { background: var(--primary); color: var(--primary-fg); }
+      .btn-primary:hover { background: color-mix(in srgb, var(--primary) 86%, #000); transform: translateY(-2px); }
+      .btn-ghost { border-color: var(--border); }
+      .btn-ghost:hover { border-color: var(--fg); background: var(--muted); }
+      .btn.full { width: 100%; margin-top: 1.4rem; }
+
+      .hero-portrait { position: relative; max-width: 420px; }
+      .hero-portrait img {
+        width: 100%; aspect-ratio: 4/5; object-fit: cover;
+        border-radius: 8px 8px 80px 8px; filter: saturate(0.9) contrast(1.02) sepia(0.12);
+        box-shadow: 0 30px 60px -28px rgba(42,39,34,0.5);
+      }
+      .hero-portrait figcaption {
+        position: absolute; left: -0.6rem; bottom: 1.6rem;
+        background: var(--bg); border: 1px solid var(--border);
+        padding: 0.7rem 1.1rem; border-radius: 6px;
+        font-family: var(--display); font-weight: 600; font-size: 1.1rem;
+        box-shadow: 0 10px 30px -16px rgba(42,39,34,0.4);
+      }
+      .hero-portrait figcaption span {
+        display: block; font-family: var(--body); font-weight: 500; font-size: 0.7rem;
+        letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+      }
+      .press-strip {
+        position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 2rem;
+        padding: 1.6rem 0 2.4rem; border-top: 1px solid var(--border);
+      }
+      .press-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+      .press-logo {
+        font-family: var(--display); font-style: italic; font-size: 1.15rem;
+        color: color-mix(in srgb, var(--fg) 50%, transparent); transition: 0.25s;
+      }
+      .press-logo:hover { color: var(--fg); }
+
+      /* SECTIONS */
+      .section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
+      .sec-head { margin-bottom: 2.6rem; max-width: 32ch; }
+      .sec-head h2, .about-copy h2, .val-grid h2, .contact-grid h2 {
+        font-family: var(--display); font-weight: 500;
+        font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.06; letter-spacing: -0.015em;
+      }
+
+      /* LISTINGS */
+      .listings { background: var(--bg); }
+      .listing-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+      .card { background: var(--bg); }
+      .card-media {
+        display: block; position: relative; overflow: hidden; border-radius: 6px;
+        aspect-ratio: 3/2; border: 1px solid var(--border);
+      }
+      .card-media img {
+        width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease;
+        filter: saturate(0.92) sepia(0.06);
+      }
+      .card:hover .card-media img { transform: scale(1.06); }
+      .card-area {
+        position: absolute; left: 0.9rem; top: 0.9rem;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        padding: 0.3rem 0.75rem; border-radius: 999px; font-size: 0.72rem;
+        letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+      }
+      .card-body { padding-top: 1.1rem; }
+      .card-price { font-family: var(--display); font-weight: 600; font-size: 1.5rem; color: var(--primary); }
+      .card-addr { font-family: var(--display); font-weight: 500; font-size: 1.15rem; margin: 0.15rem 0 0.35rem; }
+      .card-meta { font-size: 0.9rem; color: color-mix(in srgb, var(--fg) 65%, transparent); }
+
+      /* ABOUT */
+      .about { background: var(--muted); }
+      .about-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center; }
+      .about-photo img {
+        width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 6px;
+        filter: saturate(0.85) sepia(0.18) contrast(1.02);
+      }
+      .about-copy p { margin-top: 1.1rem; max-width: 46ch; color: color-mix(in srgb, var(--fg) 82%, transparent); }
+      .signature {
+        font-family: var(--display); font-style: italic; font-size: 1.6rem;
+        color: var(--primary); margin-top: 1.6rem !important;
+      }
+      .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* STATS */
+      .stats { background: var(--fg); color: var(--bg); }
+      .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem 1.5rem; }
+      .stat { text-align: center; }
+      .stat-num {
+        display: block; font-family: var(--display); font-weight: 500;
+        font-size: clamp(2.3rem, 7vw, 3.6rem); line-height: 1; color: #e8c9a0;
+      }
+      .stat-label {
+        display: block; margin-top: 0.7rem; font-size: 0.82rem;
+        letter-spacing: 0.06em; color: color-mix(in srgb, var(--bg) 72%, transparent);
+      }
+
+      /* VALUATION */
+      .valuation { background: var(--primary); color: var(--primary-fg); }
+      .val-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
+      .val-lede { margin-top: 1rem; max-width: 42ch; color: color-mix(in srgb, var(--primary-fg) 86%, transparent); }
+      .val-form { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+      .val-form input {
+        flex: 1 1 240px; min-height: 50px; padding: 0 1.1rem; border-radius: 999px;
+        border: 1px solid color-mix(in srgb, var(--primary-fg) 40%, transparent);
+        background: color-mix(in srgb, var(--primary-fg) 10%, transparent);
+        color: var(--primary-fg); font-family: var(--body); font-size: 0.95rem;
+      }
+      .val-form input::placeholder { color: color-mix(in srgb, var(--primary-fg) 65%, transparent); }
+      .val-form .btn-primary { background: var(--bg); color: var(--fg); }
+      .val-form .btn-primary:hover { background: var(--muted); }
+
+      /* SERVICES */
+      .serv-list { border-top: 1px solid var(--border); }
+      .serv-row {
+        display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem;
+        padding: 1.5rem 0; border-bottom: 1px solid var(--border); list-style: none;
+        transition: padding-left 0.3s;
+      }
+      .serv-row:hover { padding-left: 0.6rem; }
+      .serv-main h3 { font-family: var(--display); font-weight: 500; font-size: 1.25rem; }
+      .serv-main p { font-size: 0.92rem; color: color-mix(in srgb, var(--fg) 68%, transparent); margin-top: 0.25rem; max-width: 48ch; }
+      .serv-price {
+        font-family: var(--display); font-weight: 600; font-size: 1.05rem; color: var(--primary);
+        white-space: nowrap; text-align: right; flex: none;
+      }
+
+      /* QUOTES */
+      .quotes { background: var(--muted); }
+      .slider { overflow: hidden; max-width: 820px; margin-inline: auto; }
+      .slides { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+      .quote { flex: 0 0 100%; padding: 0 0.5rem; text-align: center; }
+      .quote blockquote {
+        font-family: var(--display); font-weight: 400; font-style: italic;
+        font-size: clamp(1.3rem, 3.5vw, 1.9rem); line-height: 1.4;
+      }
+      .quote figcaption {
+        margin-top: 1.4rem; font-weight: 600; font-size: 0.95rem;
+      }
+      .quote figcaption span { color: var(--accent); font-weight: 500; }
+      .dots { display: flex; gap: 0.55rem; justify-content: center; margin-top: 2rem; }
+      .dot {
+        width: 40px; height: 40px; padding: 0; border: none; background: none; cursor: pointer;
+        display: grid; place-items: center;
+      }
+      .dot::before {
+        content: ""; width: 9px; height: 9px; border-radius: 50%;
+        background: var(--border); transition: 0.25s;
+      }
+      .dot.active::before { background: var(--primary); transform: scale(1.3); }
+
+      /* AREAS */
+      .area-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .area-tile {
+        position: relative; overflow: hidden; border-radius: 6px; aspect-ratio: 4/5;
+        border: 1px solid var(--border);
+      }
+      .area-tile img {
+        width: 100%; height: 100%; object-fit: cover; transition: 0.6s;
+        filter: contrast(1.05);
+      }
+      .area-tile::after {
+        content: ""; position: absolute; inset: 0;
+        background: linear-gradient(to top, color-mix(in srgb, var(--primary) 78%, #000) 0%, transparent 60%);
+        mix-blend-mode: multiply; opacity: 0.85; transition: 0.4s;
+      }
+      .area-tile:hover img { transform: scale(1.07); }
+      .area-tile:hover::after { opacity: 0.95; }
+      .area-text {
+        position: absolute; left: 1.1rem; bottom: 1.1rem; right: 1.1rem; z-index: 1;
+        color: var(--primary-fg);
+      }
+      .area-text strong { display: block; font-family: var(--display); font-weight: 600; font-size: 1.3rem; }
+      .area-text em { font-style: normal; font-size: 0.82rem; opacity: 0.9; }
+
+      /* CONTACT */
+      .contact-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-lede { margin-top: 1rem; max-width: 42ch; color: color-mix(in srgb, var(--fg) 78%, transparent); }
+      .nap { margin-top: 2rem; display: grid; gap: 0.55rem; }
+      .nap-name { font-family: var(--display); font-weight: 600; font-size: 1.15rem; }
+      .nap address { font-style: normal; color: color-mix(in srgb, var(--fg) 75%, transparent); }
+      .nap-call { font-family: var(--display); font-weight: 600; font-size: 1.5rem; color: var(--primary); margin-top: 0.4rem; }
+      .nap-call:hover { text-decoration: underline; }
+      .nap-mail, .nap-map { color: var(--accent); font-weight: 500; }
+      .nap-mail:hover, .nap-map:hover { color: var(--fg); }
+      .hours-card {
+        background: var(--muted); border: 1px solid var(--border); border-radius: 8px;
+        padding: 1.8rem;
+      }
+      .hours-card h3 { font-family: var(--display); font-weight: 600; font-size: 1.3rem; margin-bottom: 1rem; }
+      .hours-card ul { list-style: none; }
+      .hours-card li {
+        display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 0;
+        border-bottom: 1px solid var(--border); font-size: 0.92rem;
+      }
+      .hours-card li:last-child { border-bottom: none; }
+      .hours-card li span:first-child { font-weight: 500; }
+      .hours-card li span:last-child { color: color-mix(in srgb, var(--fg) 70%, transparent); }
+
+      /* FOOTER */
+      .footer { background: var(--fg); color: var(--bg); padding: 3rem 0; }
+      .footer-inner { display: grid; gap: 1.5rem; }
+      .footer-brand { display: flex; align-items: center; gap: 1rem; }
+      .footer-brand p { font-size: 0.92rem; max-width: 50ch; color: color-mix(in srgb, var(--bg) 80%, transparent); }
+      .footer-fine { font-size: 0.8rem; color: color-mix(in srgb, var(--bg) 60%, transparent); }
+
+      /* RESPONSIVE */
+      @media (min-width: 720px) {
+        .listing-grid { grid-template-columns: repeat(3, 1fr); }
+        .stat-grid { grid-template-columns: repeat(4, 1fr); }
+        .val-grid { grid-template-columns: 1.1fr 0.9fr; }
+        .area-grid { grid-template-columns: repeat(4, 1fr); }
+        .contact-grid { grid-template-columns: 1.3fr 0.7fr; }
+        .footer-inner { grid-template-columns: 1fr auto; align-items: center; }
+      }
+      @media (min-width: 900px) {
+        .burger { display: none; }
+        .nav-links { display: flex; }
+        .nav-cta { display: inline-flex; }
+        .hero-grid { grid-template-columns: 1.15fr 0.85fr; gap: 3rem; padding-bottom: 3rem; }
+        .hero-portrait { margin-left: auto; }
+        .about-grid { grid-template-columns: 0.9fr 1.1fr; gap: 4rem; }
+      }
+    </style>
+  </body>
+</html>

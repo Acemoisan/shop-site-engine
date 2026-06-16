@@ -1,0 +1,525 @@
+---
+const nav = [
+  { label: "Work", href: "#work" },
+  { label: "Studio", href: "#studio" },
+  { label: "Services", href: "#services" },
+  { label: "Contact", href: "#contact" },
+];
+
+const projects = [
+  { n: "01", name: "Mount Royal Residence", loc: "Calgary, AB", year: "2024", seed: "meridian-mount", w: 1200, h: 1500 },
+  { n: "02", name: "Inglewood Brasserie", loc: "Inglewood", year: "2024", seed: "meridian-brass", w: 1200, h: 1500 },
+  { n: "03", name: "Bridgeland Loft", loc: "Bridgeland", year: "2023", seed: "meridian-loft", w: 1200, h: 1500 },
+  { n: "04", name: "Bow Valley House", loc: "Canmore", year: "2023", seed: "meridian-bow", w: 1200, h: 1500 },
+];
+
+const services = [
+  { name: "Architectural Design", desc: "Full design from concept to construction documents.", price: "From $18,000" },
+  { name: "Interior Design & Styling", desc: "Space planning, finishes, FF&E and styling.", price: "From $9,500" },
+  { name: "Feasibility & Site Study", desc: "Zoning, massing, and budget viability report.", price: "$2,800 flat" },
+  { name: "Renovation & Adaptive Reuse", desc: "Reworking existing structures with care.", price: "From $14,000" },
+  { name: "Design Consultation", desc: "A focused half-day session, plans and direction.", price: "$850" },
+  { name: "FF&E Procurement", desc: "Sourcing furniture, fixtures and finishes.", price: "12% of value" },
+];
+
+const process = [
+  { n: "01", title: "Consultation", body: "We listen for how a space should feel before a line is drawn." },
+  { n: "02", title: "Concept", body: "Massing, light studies, and material direction take shape." },
+  { n: "03", title: "Design", body: "Drawings resolve into construction-ready documents." },
+  { n: "04", title: "Delivery", body: "We see it built — exacting, unhurried, on site." },
+];
+
+const testimonials = [
+  { quote: "Meridian understood the light in our home before we did. The result is calm in a way photos can't capture.", who: "Hannah & David Reyes", role: "Mount Royal Residence" },
+  { quote: "Professional, unhurried, and exacting. They turned an awkward heritage building into our best restaurant yet.", who: "Marco L.", role: "Inglewood Hospitality Group" },
+  { quote: "Every decision felt intentional. Six months in, the space still surprises us.", who: "Priya Nandakumar", role: "Bridgeland Loft" },
+];
+
+const press = ["AZURE", "DWELL", "ARCHELLO", "WALLPAPER*", "DESIGNLINES", "CANADIAN ARCHITECT"];
+const materials = ["Board-formed concrete", "White oak", "Honed limestone", "Blackened steel", "Lime plaster"];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meridian & Co. — Architecture + Interiors | Calgary</title>
+    <meta name="description" content="Meridian & Co. is a Calgary architecture and interiors studio shaping light, material, and proportion into places worth keeping. Book a studio visit." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#work">Skip to work</a>
+
+    <header class="nav" id="nav">
+      <div class="wrap nav-inner">
+        <a class="wordmark" href="#top" aria-label="Meridian and Co. home">
+          MERIDIAN<span class="amp">&amp;</span>CO
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          {nav.map((l) => <a href={l.href}>{l.label}</a>)}
+        </nav>
+        <a class="nav-cta" href="#contact">Studio visit</a>
+        <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      {nav.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href="#contact" class="m-cta">Studio visit</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-img" aria-hidden="true"></div>
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="wrap hero-content">
+        <p class="eyebrow reveal">Calgary · Architecture + Interiors</p>
+        <h1 class="reveal">BUILDINGS<br />THAT HOLD<br /><span class="accent">THEIR QUIET.</span></h1>
+        <div class="hero-foot reveal">
+          <p>We shape light, material, and proportion into places worth keeping. A studio working across private residences, hospitality, and adaptive reuse.</p>
+          <a class="btn" href="#work">See selected work</a>
+        </div>
+      </div>
+      <div class="scroll-cue" aria-hidden="true"><span>SCROLL</span><i></i></div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        {Array(2).fill(0).map(() => (
+          <span>RESIDENTIAL <i>·</i> HOSPITALITY <i>·</i> ADAPTIVE REUSE <i>·</i> FEASIBILITY <i>·</i> INTERIORS <i>·</i> FF&amp;E <i>·</i> </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- STATEMENT -->
+    <section class="statement" id="studio">
+      <div class="wrap">
+        <p class="label reveal"><span>02</span> The Studio</p>
+        <h2 class="big reveal">
+          We design <span class="accent">slowly</span> and build to last — favouring honest materials, generous daylight, and proportion over ornament.
+        </h2>
+        <div class="statement-grid">
+          <p class="reveal">Meridian & Co. is a Calgary architecture and interiors studio working across private residences, hospitality, and adaptive reuse. Every project begins with how a space should feel before it considers how it should look.</p>
+          <div class="stat-row reveal">
+            <div class="stat"><strong>18</strong><span>Years building</span></div>
+            <div class="stat"><strong>60+</strong><span>Spaces delivered</span></div>
+            <div class="stat"><strong>9</strong><span>Awards & features</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT INDEX -->
+    <section class="work" id="work">
+      <div class="wrap work-head">
+        <p class="label reveal"><span>03</span> Selected Work</p>
+        <h2 class="reveal">A PORTFOLIO OF PLACES.</h2>
+      </div>
+      <ol class="index" id="projectIndex">
+        {projects.map((p) => (
+          <li class="index-row reveal" data-seed={p.seed}>
+            <a href="#contact" class="index-link">
+              <span class="idx-n">{p.n}</span>
+              <span class="idx-name">{p.name}</span>
+              <span class="idx-loc">{p.loc}</span>
+              <span class="idx-year">{p.year}</span>
+              <span class="idx-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+      <div class="index-preview" id="indexPreview" aria-hidden="true"></div>
+    </section>
+
+    <!-- FEATURED CASE STUDY -->
+    <section class="case">
+      <div class="case-img" aria-hidden="true"></div>
+      <div class="wrap case-content">
+        <p class="label light reveal"><span>04</span> Featured</p>
+        <h2 class="reveal">MOUNT ROYAL<br />RESIDENCE</h2>
+        <p class="case-brief reveal">A heritage lot reimagined as a sequence of daylit rooms around a central court. Board-formed concrete grounds the plan; white oak and lime plaster soften it. The result is calm — measured in light, not square footage.</p>
+        <div class="case-meta reveal">
+          <div><span>Scope</span><strong>Architecture + Interiors</strong></div>
+          <div><span>Year</span><strong>2024</strong></div>
+          <div><span>Location</span><strong>Mount Royal, Calgary</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MATERIALS STRIP -->
+    <section class="materials" aria-label="Materials and palette">
+      <div class="wrap">
+        <p class="label reveal"><span>05</span> Materials & Palette</p>
+      </div>
+      <div class="swatches">
+        {materials.map((m, i) => (
+          <div class="swatch reveal" data-i={i}>
+            <span class="sw-chip"></span>
+            <span class="sw-name">{m}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+      <div class="wrap">
+        <p class="label reveal"><span>06</span> Capabilities</p>
+        <h2 class="reveal">HOW WE ENGAGE.</h2>
+        <div class="svc-list">
+          {services.map((s) => (
+            <article class="svc reveal">
+              <h3>{s.name}</h3>
+              <p>{s.desc}</p>
+              <span class="price">{s.price}</span>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process">
+      <div class="wrap">
+        <p class="label reveal"><span>07</span> How We Work</p>
+        <div class="proc-grid">
+          {process.map((p) => (
+            <div class="proc reveal">
+              <span class="proc-n">{p.n}</span>
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="quotes" aria-label="Testimonials">
+      <div class="wrap">
+        <p class="label reveal"><span>08</span> In Their Words</p>
+        <div class="q-track">
+          {testimonials.map((t) => (
+            <figure class="q reveal">
+              <blockquote>“{t.quote}”</blockquote>
+              <figcaption><strong>{t.who}</strong><span>{t.role}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+      <div class="press" aria-label="Press">
+        <div class="press-track">
+          {[...press, ...press].map((p) => <span>{p}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div class="contact-left">
+          <p class="label light reveal"><span>09</span> Enquiry</p>
+          <h2 class="reveal">TELL US<br />ABOUT YOUR<br /><span class="accent">SPACE.</span></h2>
+          <a class="btn big" href="tel:+14035550192">Call (403) 555-0192</a>
+          <a class="link-mail" href="mailto:studio@meridianandco.ca">studio@meridianandco.ca</a>
+        </div>
+        <address class="contact-right reveal">
+          <div class="nap">
+            <span>Studio</span>
+            <p>Meridian & Co. Architecture + Interiors<br />1208 9th Avenue SE, Studio 4<br />Inglewood, Calgary, AB T2G 0T1</p>
+          </div>
+          <div class="nap">
+            <span>Hours</span>
+            <p>Mon–Fri 9:00am – 5:30pm<br />Saturday by appointment<br />Sunday closed</p>
+          </div>
+          <a class="maplink" href="https://maps.google.com/?q=1208+9th+Avenue+SE+Calgary" target="_blank" rel="noopener">View on map ↗</a>
+        </address>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <span class="wordmark">MERIDIAN<span class="amp">&amp;</span>CO</span>
+        <p>Architecture + Interiors · Calgary, AB</p>
+        <p class="copy">© 2026 Meridian & Co. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      const burger = document.getElementById("burger");
+      const menu = document.getElementById("mobileMenu");
+      burger?.addEventListener("click", () => {
+        const open = menu.hidden;
+        menu.hidden = !open;
+        burger.setAttribute("aria-expanded", String(open));
+        burger.classList.toggle("active", open);
+      });
+      menu?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          menu.hidden = true;
+          burger.setAttribute("aria-expanded", "false");
+          burger.classList.remove("active");
+        })
+      );
+
+      const nav = document.getElementById("nav");
+      const onScroll = () => nav.classList.toggle("solid", window.scrollY > 60);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduce && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+          { threshold: 0.12 }
+        );
+        document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      }
+
+      const preview = document.getElementById("indexPreview");
+      document.querySelectorAll("#projectIndex .index-row").forEach((row) => {
+        const seed = row.getAttribute("data-seed");
+        row.addEventListener("mouseenter", () => {
+          preview.style.backgroundImage = `url(https://picsum.photos/seed/${seed}/700/520)`;
+          preview.classList.add("show");
+        });
+        row.addEventListener("mouseleave", () => preview.classList.remove("show"));
+        row.addEventListener("mousemove", (e) => {
+          preview.style.setProperty("--mx", e.clientX + "px");
+          preview.style.setProperty("--my", e.clientY + "px");
+        });
+      });
+    </script>
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+      }
+    </style>
+
+    <style>
+      :root {
+        --bg: #111214;
+        --fg: #ECEAE6;
+        --primary: #ECEAE6;
+        --primary-fg: #111214;
+        --accent: #C99A4B;
+        --muted: #7E8085;
+        --border: #2A2C30;
+        --font-display: "Anton", sans-serif;
+        --font-body: "Manrope", sans-serif;
+        --wrap: 1320px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--font-body);
+        font-size: 17px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); }
+      .accent { color: var(--accent); }
+
+      .skip { position: absolute; left: -9999px; top: 0; background: var(--accent); color: #111; padding: 12px 18px; z-index: 200; }
+      .skip:focus { left: 12px; top: 12px; }
+
+      a { color: inherit; text-decoration: none; }
+      :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+      /* NAV */
+      .nav { position: fixed; inset: 0 0 auto 0; z-index: 100; transition: background .4s ease, border-color .4s ease, backdrop-filter .4s; border-bottom: 1px solid transparent; }
+      .nav.solid { background: rgba(17,18,20,.82); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+      .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+      .wordmark { font-family: var(--font-display); font-size: 21px; letter-spacing: .06em; }
+      .wordmark .amp { color: var(--accent); margin: 0 1px; }
+      .nav-links { display: none; gap: 38px; }
+      .nav-links a { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: var(--muted); transition: color .25s; }
+      .nav-links a:hover { color: var(--fg); }
+      .nav-cta { display: none; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; padding: 11px 20px; border: 1px solid var(--border); border-radius: 2px; transition: background .3s, color .3s, border-color .3s; }
+      .nav-cta:hover { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+      .burger { display: flex; flex-direction: column; gap: 6px; background: none; border: 0; cursor: pointer; width: 44px; height: 44px; align-items: center; justify-content: center; }
+      .burger span { width: 26px; height: 2px; background: var(--fg); transition: transform .3s, opacity .3s; }
+      .burger.active span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+      .burger.active span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
+      .mobile-menu { position: fixed; top: 76px; left: 0; right: 0; z-index: 99; background: rgba(17,18,20,.97); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); display: flex; flex-direction: column; padding: 14px 20px 26px; }
+      .mobile-menu a { padding: 16px 4px; font-family: var(--font-display); font-size: 28px; letter-spacing: .03em; border-bottom: 1px solid var(--border); }
+      .mobile-menu .m-cta { color: var(--accent); border-bottom: 0; }
+
+      /* HERO */
+      .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; padding-bottom: clamp(48px, 8vh, 96px); overflow: hidden; }
+      .hero-img { position: absolute; inset: 0; background: url("https://picsum.photos/seed/meridian-hero-arch/1920/2200") center/cover no-repeat; filter: grayscale(.45) contrast(1.12) brightness(.62); transform: scale(1.04); animation: heroZoom 16s ease-out forwards; }
+      @keyframes heroZoom { to { transform: scale(1); } }
+      .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17,18,20,.55) 0%, rgba(17,18,20,.2) 35%, rgba(17,18,20,.92) 100%); }
+      .hero-grain { position: absolute; inset: 0; z-index: 1; opacity: .5; mix-blend-mode: overlay; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/></svg>"); }
+      .hero-content { position: relative; z-index: 2; width: 100%; }
+      .eyebrow { font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin: 0 0 24px; }
+      .hero h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(3.3rem, 14.5vw, 12rem); line-height: .86; letter-spacing: -.01em; margin: 0; text-transform: uppercase; }
+      .hero-foot { display: grid; gap: 26px; margin-top: clamp(32px, 5vh, 56px); max-width: 560px; }
+      .hero-foot p { margin: 0; color: #d8d6d1; font-size: clamp(1rem, 2.4vw, 1.15rem); }
+
+      .btn { display: inline-flex; align-items: center; align-self: flex-start; gap: 10px; background: var(--primary); color: var(--primary-fg); font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; padding: 16px 28px; border-radius: 2px; transition: transform .3s, background .3s; min-height: 44px; }
+      .btn:hover { transform: translateY(-2px); background: var(--accent); color: #111; }
+      .btn.big { font-size: 15px; padding: 20px 34px; }
+
+      .scroll-cue { position: absolute; bottom: 28px; right: clamp(20px, 5vw, 64px); z-index: 3; display: flex; align-items: center; gap: 12px; color: var(--muted); }
+      .scroll-cue span { font-size: 11px; letter-spacing: .22em; }
+      .scroll-cue i { width: 1px; height: 46px; background: linear-gradient(var(--accent), transparent); display: block; transform-origin: top; animation: cue 2.2s ease-in-out infinite; }
+      @keyframes cue { 0%,100% { transform: scaleY(.3); opacity: .4; } 50% { transform: scaleY(1); opacity: 1; } }
+
+      /* MARQUEE */
+      .marquee { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; padding: 20px 0; background: #0d0e10; }
+      .marquee-track { display: flex; white-space: nowrap; width: max-content; animation: scroll 32s linear infinite; }
+      .marquee-track span { font-family: var(--font-display); font-size: clamp(1.4rem, 3.4vw, 2.6rem); letter-spacing: .04em; color: var(--fg); text-transform: uppercase; }
+      .marquee-track i { color: var(--accent); margin: 0 .35em; font-style: normal; }
+      @keyframes scroll { to { transform: translateX(-50%); } }
+
+      /* SECTION COMMON */
+      section { position: relative; }
+      .label { display: flex; align-items: baseline; gap: 14px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin: 0 0 30px; }
+      .label span { color: var(--accent); font-family: var(--font-display); font-size: 15px; letter-spacing: .05em; }
+      .label.light { color: rgba(236,234,230,.7); }
+
+      /* STATEMENT */
+      .statement { padding: clamp(80px, 12vh, 150px) 0; border-bottom: 1px solid var(--border); }
+      h2.big { font-family: var(--font-body); font-weight: 600; font-size: clamp(1.7rem, 4.6vw, 3.6rem); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 clamp(40px, 6vh, 72px); max-width: 16ch; }
+      .statement-grid { display: grid; gap: 44px; }
+      .statement-grid > p { margin: 0; color: var(--muted); max-width: 50ch; font-size: 1.08rem; }
+      .stat-row { display: flex; flex-wrap: wrap; gap: clamp(28px, 6vw, 70px); }
+      .stat strong { display: block; font-family: var(--font-display); font-size: clamp(2.6rem, 7vw, 4.4rem); line-height: 1; color: var(--fg); }
+      .stat span { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+      h2 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; line-height: .92; letter-spacing: 0; }
+
+      /* WORK INDEX */
+      .work { padding: clamp(80px, 12vh, 140px) 0 clamp(60px, 9vh, 110px); }
+      .work-head h2 { font-size: clamp(2.6rem, 9vw, 7rem); margin: 0; }
+      .index { list-style: none; margin: clamp(40px, 6vh, 70px) 0 0; padding: 0; border-top: 1px solid var(--border); }
+      .index-row { border-bottom: 1px solid var(--border); }
+      .index-link { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; padding: clamp(20px, 3.4vh, 36px) clamp(8px, 2vw, 24px); transition: padding-left .35s ease, background .35s; position: relative; }
+      .index-row:hover .index-link { padding-left: clamp(20px, 4vw, 48px); background: rgba(201,154,75,.05); }
+      .idx-n { font-family: var(--font-display); font-size: clamp(1rem, 2vw, 1.4rem); color: var(--muted); transition: color .3s; }
+      .index-row:hover .idx-n { color: var(--accent); }
+      .idx-name { font-family: var(--font-display); font-size: clamp(1.5rem, 4.6vw, 3.2rem); text-transform: uppercase; letter-spacing: .01em; line-height: 1; transition: color .3s; }
+      .index-row:hover .idx-name { color: var(--accent); }
+      .idx-loc { display: none; color: var(--muted); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; justify-self: end; }
+      .idx-year { color: var(--muted); font-size: 13px; letter-spacing: .12em; font-variant-numeric: tabular-nums; }
+      .idx-arrow { color: var(--accent); font-size: 1.4rem; opacity: 0; transform: translate(-6px,6px); transition: .35s; }
+      .index-row:hover .idx-arrow { opacity: 1; transform: none; }
+
+      .index-preview { position: fixed; top: 0; left: 0; width: 340px; height: 252px; background-size: cover; background-position: center; border: 1px solid var(--accent); pointer-events: none; z-index: 90; opacity: 0; transform: translate(calc(var(--mx) + 24px), calc(var(--my) - 130px)) scale(.92); transition: opacity .3s ease; filter: grayscale(.3) contrast(1.1); }
+      .index-preview.show { opacity: 1; }
+
+      /* CASE STUDY */
+      .case { position: relative; min-height: 92vh; display: flex; align-items: flex-end; padding: clamp(60px,10vh,120px) 0; overflow: hidden; }
+      .case-img { position: absolute; inset: 0; background: url("https://picsum.photos/seed/meridian-case-spread/1920/1400") center/cover no-repeat; filter: grayscale(.4) contrast(1.1) brightness(.55); }
+      .case::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(17,18,20,.94) 0%, rgba(17,18,20,.5) 55%, rgba(17,18,20,.2) 100%); }
+      .case-content { position: relative; z-index: 2; max-width: 640px; }
+      .case-content h2 { font-size: clamp(2.6rem, 9vw, 6.5rem); margin: 0 0 30px; }
+      .case-brief { color: #d8d6d1; font-size: 1.1rem; margin: 0 0 40px; max-width: 48ch; }
+      .case-meta { display: grid; grid-template-columns: repeat(3, auto); gap: clamp(24px, 5vw, 60px); }
+      .case-meta span { display: block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+      .case-meta strong { font-weight: 600; font-size: .95rem; }
+
+      /* MATERIALS */
+      .materials { padding: clamp(70px,10vh,120px) 0; border-bottom: 1px solid var(--border); }
+      .swatches { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--border); }
+      .swatch { flex: 1 1 180px; display: flex; flex-direction: column; gap: 18px; padding: 28px clamp(16px,3vw,32px); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background .3s; }
+      .swatch:hover { background: #0d0e10; }
+      .sw-chip { width: 100%; height: 120px; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.05); }
+      .swatch[data-i="0"] .sw-chip { background: #8c8a85; }
+      .swatch[data-i="1"] .sw-chip { background: #c9a877; }
+      .swatch[data-i="2"] .sw-chip { background: #d8d4cc; }
+      .swatch[data-i="3"] .sw-chip { background: #2b2c2e; }
+      .swatch[data-i="4"] .sw-chip { background: #e7e3da; }
+      .sw-name { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+      /* SERVICES */
+      .services { padding: clamp(80px,12vh,150px) 0; border-bottom: 1px solid var(--border); }
+      .services h2 { font-size: clamp(2.4rem, 8vw, 6rem); margin: 0 0 clamp(40px,6vh,70px); }
+      .svc-list { display: grid; gap: 0; border-top: 1px solid var(--border); }
+      .svc { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 16px 24px; padding: clamp(26px,4vh,40px) 0; border-bottom: 1px solid var(--border); transition: padding-left .3s, background .3s; }
+      .svc:hover { padding-left: 18px; background: rgba(201,154,75,.04); }
+      .svc h3 { grid-column: 1; margin: 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(1.3rem, 3.4vw, 2.1rem); text-transform: uppercase; letter-spacing: .01em; }
+      .svc p { grid-column: 1; margin: 0; color: var(--muted); max-width: 44ch; }
+      .svc .price { grid-column: 2; grid-row: 1; justify-self: end; font-family: var(--font-display); font-size: clamp(1.1rem,3vw,1.6rem); color: var(--accent); white-space: nowrap; }
+
+      /* PROCESS */
+      .process { padding: clamp(80px,12vh,150px) 0; border-bottom: 1px solid var(--border); }
+      .proc-grid { display: grid; gap: 1px; grid-template-columns: 1fr; background: var(--border); border: 1px solid var(--border); }
+      .proc { background: var(--bg); padding: clamp(32px,5vw,52px) clamp(24px,3vw,40px); transition: background .3s; }
+      .proc:hover { background: #0d0e10; }
+      .proc-n { font-family: var(--font-display); font-size: clamp(2.4rem,5vw,3.4rem); color: var(--accent); display: block; margin-bottom: 18px; }
+      .proc h3 { margin: 0 0 12px; font-family: var(--font-display); font-weight: 400; font-size: 1.4rem; text-transform: uppercase; letter-spacing: .02em; }
+      .proc p { margin: 0; color: var(--muted); }
+
+      /* QUOTES */
+      .quotes { padding: clamp(80px,12vh,150px) 0 0; }
+      .q-track { display: grid; gap: clamp(28px,4vw,40px); grid-template-columns: 1fr; margin-top: 20px; }
+      .q { margin: 0; padding: clamp(30px,4vw,44px); border: 1px solid var(--border); border-radius: 2px; background: #0d0e10; transition: border-color .3s, transform .3s; }
+      .q:hover { border-color: var(--accent); transform: translateY(-4px); }
+      .q blockquote { margin: 0 0 26px; font-size: clamp(1.05rem, 2.2vw, 1.3rem); line-height: 1.45; font-weight: 500; }
+      .q figcaption strong { display: block; }
+      .q figcaption span { color: var(--muted); font-size: 13px; letter-spacing: .04em; }
+      .press { margin-top: clamp(70px,10vh,110px); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; padding: 26px 0; }
+      .press-track { display: flex; gap: clamp(40px,7vw,90px); white-space: nowrap; width: max-content; animation: scroll 28s linear infinite; }
+      .press-track span { font-family: var(--font-display); font-size: clamp(1.1rem,2.6vw,1.7rem); letter-spacing: .06em; color: var(--muted); }
+
+      /* CONTACT */
+      .contact { padding: clamp(80px,13vh,160px) 0; position: relative; overflow: hidden; }
+      .contact::before { content: ""; position: absolute; inset: 0; background: url("https://picsum.photos/seed/meridian-contact-detail/1600/1200") center/cover no-repeat; opacity: .14; filter: grayscale(1) contrast(1.2); mix-blend-mode: luminosity; }
+      .contact-grid { position: relative; display: grid; gap: clamp(48px,7vw,90px); grid-template-columns: 1fr; }
+      .contact-left h2 { font-size: clamp(2.8rem, 11vw, 7.5rem); margin: 0 0 clamp(34px,5vh,52px); }
+      .link-mail { display: inline-block; margin-top: 20px; color: var(--muted); letter-spacing: .04em; border-bottom: 1px solid var(--border); padding-bottom: 4px; transition: color .3s, border-color .3s; }
+      .link-mail:hover { color: var(--accent); border-color: var(--accent); }
+      .contact-right { font-style: normal; display: grid; gap: 34px; align-content: start; }
+      .nap span { display: block; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+      .nap p { margin: 0; line-height: 1.7; }
+      .maplink { color: var(--fg); border-bottom: 1px solid var(--accent); padding-bottom: 3px; width: fit-content; font-size: 14px; letter-spacing: .06em; }
+
+      /* FOOTER */
+      .footer { border-top: 1px solid var(--border); padding: 50px 0; }
+      .footer-inner { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+      .footer .wordmark { font-size: 26px; }
+      .footer p { margin: 0; color: var(--muted); font-size: 14px; }
+      .footer .copy { font-size: 12.5px; }
+
+      /* REVEAL */
+      .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* RESPONSIVE */
+      @media (min-width: 720px) {
+        .q-track { grid-template-columns: repeat(3, 1fr); }
+        .proc-grid { grid-template-columns: repeat(2, 1fr); }
+        .idx-loc { display: block; }
+        .index-link { grid-template-columns: auto 1.4fr auto auto auto; }
+        .statement-grid { grid-template-columns: 1.1fr 1fr; align-items: end; }
+      }
+      @media (min-width: 1000px) {
+        .nav-links { display: flex; }
+        .nav-cta { display: inline-flex; }
+        .burger { display: none; }
+        .proc-grid { grid-template-columns: repeat(4, 1fr); }
+        .contact-grid { grid-template-columns: 1.3fr 1fr; align-items: start; }
+      }
+      @media (max-width: 999px) { .index-preview { display: none; } }
+    </style>
+  </body>
+</html>

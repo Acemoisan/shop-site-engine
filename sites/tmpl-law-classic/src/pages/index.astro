@@ -1,0 +1,653 @@
+---
+const nav = [
+  { label: "Practice Areas", href: "#practice" },
+  { label: "The Firm", href: "#firm" },
+  { label: "Results", href: "#results" },
+  { label: "Voices", href: "#voices" },
+  { label: "Contact", href: "#contact" },
+];
+
+const practiceAreas = [
+  { name: "Personal Injury", price: "Contingency — no fee unless we win", note: "Free case review", seed: "injury" },
+  { name: "Family Law & Divorce", price: "Consultation $250", note: "Applied to retainer", seed: "family" },
+  { name: "Estate Planning & Wills", price: "Flat-fee from $850", note: "Will package", seed: "estate" },
+  { name: "Real Estate & Conveyancing", price: "Closings from $1,200", note: "Residential", seed: "realestate" },
+  { name: "Business & Commercial", price: "Retainer from $5,000", note: "Disputes & advisory", seed: "business" },
+  { name: "Wrongful Dismissal", price: "Free 30-min assessment", note: "Employment", seed: "employment" },
+];
+
+const stats = [
+  { value: 48, prefix: "$", suffix: "M+", label: "Recovered for clients" },
+  { value: 1900, prefix: "", suffix: "+", label: "Cases resolved" },
+  { value: 32, prefix: "", suffix: "", label: "Years serving Calgary" },
+  { value: 98, prefix: "", suffix: "%", label: "Client satisfaction" },
+];
+
+const attorneys = [
+  { name: "Eleanor Halloran, KC", role: "Founding Partner — Litigation", seed: "eleanor", creds: ["Best Lawyers, 2019–2025", "Called to the Bar, 1991"] },
+  { name: "Theodore Vance", role: "Partner — Personal Injury", seed: "theodore", creds: ["Super Lawyers Rising Star", "AV-Preeminent Rated"] },
+  { name: "Mara Whitfield", role: "Senior Associate — Family", seed: "mara", creds: ["Collaborative Law Certified", "Called to the Bar, 2008"] },
+];
+
+const testimonials = [
+  { quote: "Halloran & Vance treated my injury claim like it was the only case that mattered. They recovered far more than I expected.", who: "Marcus D.", where: "Calgary" },
+  { quote: "Compassionate through a hard divorce, and relentless when it counted. I always knew where I stood.", who: "Priya S.", where: "Airdrie" },
+  { quote: "Clear advice, fair fees, and a will done right the first time. I send every colleague to them.", who: "Robert L.", where: "Cochrane" },
+];
+
+const steps = [
+  { n: "01", t: "Free Consultation", d: "A confidential conversation to understand your matter — no obligation, no fee." },
+  { n: "02", t: "Case Strategy", d: "We assess the facts, the law, and your goals, then chart the path forward." },
+  { n: "03", t: "Representation", d: "Decades of courtroom experience advocating relentlessly on your behalf." },
+  { n: "04", t: "Resolution", d: "Settlement or verdict — we pursue the outcome you deserve." },
+];
+
+const hours = [
+  { d: "Monday – Friday", h: "8:30 AM – 5:30 PM" },
+  { d: "Saturday", h: "By appointment" },
+  { d: "Sunday", h: "Closed" },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Halloran &amp; Vance LLP — Calgary Trial Attorneys</title>
+    <meta
+      name="description"
+      content="Halloran & Vance LLP — Calgary trial attorneys for personal injury, family, estate and business law. Over 30 years of courtroom experience. Free, confidential consultation."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="site-header" id="top">
+      <div class="bar">
+        <a class="brand" href="#top" aria-label="Halloran and Vance, home">
+          <span class="monogram" aria-hidden="true">H<span class="amp">&amp;</span>V</span>
+          <span class="wordmark">
+            <span class="wm-name">Halloran &amp; Vance</span>
+            <span class="wm-sub">LLP · Trial Attorneys</span>
+          </span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <div class="header-cta">
+          <a class="phone" href="tel:+14035550182">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.25 1Z"/></svg>
+            <span>(403) 555-0182</span>
+          </a>
+          <a class="btn-gold" href="#contact">Free Consultation</a>
+        </div>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="btn-gold" href="#contact">Free Consultation</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-photo" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <p class="eyebrow reveal">Calgary · Est. 1992 · Trial Attorneys</p>
+          <h1 class="reveal">We fight for the<br /><em>outcome you deserve.</em></h1>
+          <p class="hero-sub reveal">
+            Halloran &amp; Vance has represented Calgarians in personal injury, family,
+            and business disputes for over thirty years. Free, confidential consultation.
+          </p>
+          <div class="hero-actions reveal">
+            <a class="btn-gold lg" href="#contact">Request a Consultation</a>
+            <a class="btn-ghost lg" href="tel:+14035550182">Call (403) 555-0182</a>
+          </div>
+          <p class="hero-fee reveal">No fee unless we win &mdash; on personal injury matters.</p>
+        </div>
+      </section>
+
+      <!-- TRUST BAR -->
+      <section class="trustbar" aria-label="Recognitions">
+        <div class="trust-track">
+          {["Best Lawyers", "Super Lawyers", "AV-Preeminent", "Chambers Canada", "CBA Member", "Best Lawyers", "Super Lawyers", "AV-Preeminent", "Chambers Canada", "CBA Member"].map((b) => (
+            <span class="trust-seal"><span class="seal-mark" aria-hidden="true"></span>{b}</span>
+          ))}
+        </div>
+      </section>
+
+      <!-- PRACTICE AREAS -->
+      <section class="section" id="practice">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="kicker">What we practice</p>
+            <h2>Counsel for the matters that matter most.</h2>
+          </div>
+          <div class="practice-grid">
+            {practiceAreas.map((p) => (
+              <a class="practice-card reveal" href="#contact">
+                <span class="pc-art" style={`background-image:url(https://picsum.photos/seed/${p.seed}/480/320?grayscale)`} aria-hidden="true"></span>
+                <span class="pc-body">
+                  <span class="pc-name">{p.name}</span>
+                  <span class="pc-price">{p.price}</span>
+                  <span class="pc-note">{p.note}</span>
+                  <span class="pc-link">Discuss your case <span aria-hidden="true">&rarr;</span></span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="stats" id="results">
+        <div class="wrap">
+          <p class="kicker on-dark">A record of results</p>
+          <div class="stat-grid">
+            {stats.map((s) => (
+              <div class="stat">
+                <div class="stat-num" data-target={s.value} data-prefix={s.prefix} data-suffix={s.suffix}>{s.prefix}0{s.suffix}</div>
+                <div class="stat-label">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- THE FIRM -->
+      <section class="section" id="firm">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="kicker">The firm</p>
+            <h2>Decades in the courtroom. On your side.</h2>
+            <p class="lede">
+              We are a small firm by design — partners who answer their own phones and
+              know your matter by name. The same attorney who hears your story argues your case.
+            </p>
+          </div>
+          <div class="attorneys">
+            {attorneys.map((a) => (
+              <article class="attorney reveal">
+                <div class="att-photo" style={`background-image:url(https://picsum.photos/seed/${a.seed}/520/620?grayscale)`} role="img" aria-label={`Portrait of ${a.name}`}></div>
+                <div class="att-meta">
+                  <h3>{a.name}</h3>
+                  <p class="att-role">{a.role}</p>
+                  <ul class="att-creds">
+                    {a.creds.map((c) => <li>{c}</li>)}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="section process-sec">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="kicker">What to expect</p>
+            <h2>A clear path from first call to resolution.</h2>
+          </div>
+          <ol class="process">
+            {steps.map((s) => (
+              <li class="step reveal">
+                <span class="step-n">{s.n}</span>
+                <h3>{s.t}</h3>
+                <p>{s.d}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS SLIDER -->
+      <section class="voices" id="voices">
+        <div class="wrap">
+          <p class="kicker on-dark">Client voices</p>
+          <div class="slider" data-slider>
+            {testimonials.map((t, i) => (
+              <figure class={`slide ${i === 0 ? "is-active" : ""}`} data-slide={i}>
+                <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+                <blockquote>{t.quote}</blockquote>
+                <figcaption>&mdash; {t.who}, <span>{t.where}</span></figcaption>
+              </figure>
+            ))}
+          </div>
+          <div class="slider-dots" role="tablist" aria-label="Testimonials">
+            {testimonials.map((t, i) => (
+              <button class={`dot ${i === 0 ? "is-active" : ""}`} data-dot={i} role="tab" aria-label={`Testimonial ${i + 1}`} aria-selected={i === 0 ? "true" : "false"}></button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT / CTA -->
+      <section class="section contact-sec" id="contact">
+        <div class="wrap contact-grid">
+          <div class="contact-copy">
+            <p class="kicker">Free, confidential</p>
+            <h2>Request your consultation.</h2>
+            <p class="lede">
+              Tell us about your matter. We will respond within one business day —
+              and after-hours, our urgent line is always open.
+            </p>
+            <div class="nap">
+              <p class="firm-name">Halloran &amp; Vance LLP</p>
+              <address>
+                Suite 1400, 333 7th Avenue SW<br />
+                Calgary, AB&nbsp; T2P 2Z1
+              </address>
+              <p><a href="tel:+14035550182">(403) 555-0182</a></p>
+              <p><a href="mailto:intake@halloranvance.ca">intake@halloranvance.ca</a></p>
+            </div>
+            <ul class="hours">
+              {hours.map((h) => (
+                <li><span>{h.d}</span><span>{h.h}</span></li>
+              ))}
+            </ul>
+          </div>
+          <form class="contact-form" onsubmit="return false">
+            <label>Full name<input type="text" name="name" autocomplete="name" required /></label>
+            <label>Phone<input type="tel" name="phone" autocomplete="tel" required /></label>
+            <label>Email<input type="email" name="email" autocomplete="email" required /></label>
+            <label>How can we help?
+              <select name="area">
+                {practiceAreas.map((p) => <option>{p.name}</option>)}
+              </select>
+            </label>
+            <label>Briefly, your matter<textarea name="message" rows="4"></textarea></label>
+            <button class="btn-gold lg" type="submit">Send Confidential Request</button>
+            <p class="form-note">Submitting does not create a solicitor-client relationship.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap foot-grid">
+        <div>
+          <span class="monogram footer-mono" aria-hidden="true">H<span class="amp">&amp;</span>V</span>
+          <p class="foot-tag">When the stakes are high, experience matters.</p>
+        </div>
+        <address class="foot-nap">
+          Halloran &amp; Vance LLP<br />
+          Suite 1400, 333 7th Avenue SW, Calgary, AB T2P 2Z1<br />
+          <a href="tel:+14035550182">(403) 555-0182</a>
+        </address>
+        <p class="copy">&copy; 2026 Halloran &amp; Vance LLP. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LegalService",
+      name: "Halloran & Vance LLP",
+      description: "Calgary trial attorneys for personal injury, family, estate and business law.",
+      telephone: "+1-403-555-0182",
+      email: "intake@halloranvance.ca",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Suite 1400, 333 7th Avenue SW",
+        addressLocality: "Calgary",
+        addressRegion: "AB",
+        postalCode: "T2P 2Z1",
+        addressCountry: "CA",
+      },
+      openingHours: "Mo-Fr 08:30-17:30",
+      priceRange: "$$$",
+    })} />
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; }
+      img { max-width: 100%; display: block; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+      }
+    </style>
+
+    <style>
+      :root {
+        --bg: #fbfaf6;
+        --fg: #15233b;
+        --primary: #152844;
+        --primary-fg: #f6efe0;
+        --accent: #b08a48;
+        --accent-deep: #8f6d33;
+        --muted: #eceadf;
+        --border: #d8d2c0;
+        --display: "Cormorant Garamond", Georgia, serif;
+        --body: "Source Sans 3", system-ui, sans-serif;
+        --wrap: 1180px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--body);
+        font-size: 17px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { width: min(var(--wrap), 92vw); margin-inline: auto; }
+      h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.08; margin: 0; letter-spacing: 0.005em; }
+      a { color: inherit; }
+
+      .skip {
+        position: absolute; left: -999px; top: 0; z-index: 200;
+        background: var(--primary); color: var(--primary-fg); padding: 0.6rem 1rem;
+      }
+      .skip:focus { left: 1rem; top: 1rem; }
+      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+        outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px;
+      }
+
+      /* ---------- HEADER ---------- */
+      .site-header {
+        position: sticky; top: 0; z-index: 100;
+        background: color-mix(in oklab, var(--bg) 88%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+      .bar {
+        width: min(var(--wrap), 94vw); margin-inline: auto;
+        display: flex; align-items: center; gap: 1.5rem;
+        padding: 0.85rem 0; min-height: 64px;
+      }
+      .brand { display: inline-flex; align-items: center; gap: 0.7rem; text-decoration: none; margin-right: auto; }
+      .monogram {
+        font-family: var(--display); font-weight: 700; font-size: 1.5rem; letter-spacing: 0.04em;
+        width: 46px; height: 46px; display: grid; place-items: center; flex: none;
+        color: var(--accent); border: 1.5px solid var(--accent);
+        position: relative;
+      }
+      .monogram .amp { font-size: 0.62em; color: var(--accent-deep); }
+      .wordmark { display: flex; flex-direction: column; line-height: 1.05; }
+      .wm-name { font-family: var(--display); font-size: 1.35rem; font-weight: 600; }
+      .wm-sub { font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-deep); }
+      .nav { display: none; gap: 1.6rem; }
+      .nav a {
+        text-decoration: none; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+        font-weight: 500; color: var(--fg); position: relative; padding-block: 0.2rem;
+      }
+      .nav a::after {
+        content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 1.5px;
+        background: var(--accent); transition: width 0.3s ease;
+      }
+      .nav a:hover::after { width: 100%; }
+      .header-cta { display: none; align-items: center; gap: 1rem; }
+      .phone { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; font-weight: 600; font-size: 0.92rem; color: var(--primary); }
+      .phone svg { color: var(--accent); }
+
+      .btn-gold {
+        display: inline-flex; align-items: center; justify-content: center;
+        background: var(--accent); color: #1d1404; text-decoration: none; font-weight: 600;
+        font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase;
+        padding: 0.7rem 1.2rem; border: none; cursor: pointer;
+        transition: background 0.25s ease, transform 0.25s ease; min-height: 44px;
+      }
+      .btn-gold:hover { background: var(--accent-deep); transform: translateY(-1px); }
+      .btn-gold.lg { padding: 0.95rem 1.7rem; font-size: 0.9rem; }
+      .btn-ghost {
+        display: inline-flex; align-items: center; justify-content: center;
+        background: transparent; color: var(--primary-fg); text-decoration: none; font-weight: 600;
+        font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase;
+        padding: 0.95rem 1.7rem; border: 1px solid color-mix(in oklab, var(--primary-fg) 55%, transparent);
+        min-height: 44px; transition: border-color 0.25s, background 0.25s;
+      }
+      .btn-ghost:hover { border-color: var(--accent); background: color-mix(in oklab, var(--accent) 14%, transparent); }
+
+      .menu-toggle {
+        display: inline-flex; flex-direction: column; gap: 5px; justify-content: center;
+        width: 44px; height: 44px; background: none; border: none; cursor: pointer; padding: 10px;
+      }
+      .menu-toggle span { height: 2px; background: var(--primary); transition: transform 0.3s, opacity 0.3s; }
+      .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      .mobile-nav { display: none; flex-direction: column; gap: 0.25rem; padding: 0.5rem 4vw 1.25rem; border-top: 1px solid var(--border); }
+      .mobile-nav.open { display: flex; }
+      .mobile-nav a { text-decoration: none; padding: 0.7rem 0; font-size: 0.95rem; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); }
+      .mobile-nav .btn-gold { margin-top: 0.75rem; border-bottom: none; }
+
+      /* ---------- HERO ---------- */
+      .hero { position: relative; overflow: hidden; background: var(--primary); color: var(--primary-fg); }
+      .hero-photo {
+        position: absolute; inset: 0;
+        background-image: url("https://picsum.photos/seed/calgary-courthouse/1600/1100?grayscale");
+        background-size: cover; background-position: center;
+        opacity: 0.22; mix-blend-mode: luminosity;
+      }
+      .hero::after {
+        content: ""; position: absolute; inset: 0;
+        background: linear-gradient(115deg, var(--primary) 22%, transparent 75%),
+                    radial-gradient(120% 90% at 80% 10%, color-mix(in oklab, var(--accent) 30%, transparent), transparent 55%);
+      }
+      .hero-inner {
+        position: relative; z-index: 2;
+        width: min(var(--wrap), 92vw); margin-inline: auto;
+        padding: clamp(4rem, 11vw, 9rem) 0 clamp(3.5rem, 8vw, 6rem);
+        max-width: 880px;
+      }
+      .eyebrow { font-size: 0.78rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.4rem; font-weight: 600; }
+      .hero h1 { font-size: clamp(2.8rem, 8.5vw, 5.6rem); font-weight: 600; }
+      .hero h1 em { font-style: italic; color: var(--accent); }
+      .hero-sub { font-size: clamp(1.05rem, 2.4vw, 1.3rem); max-width: 38ch; margin: 1.6rem 0 2.2rem; color: color-mix(in oklab, var(--primary-fg) 86%, white); }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+      .hero-fee { margin-top: 1.8rem; font-size: 0.85rem; letter-spacing: 0.04em; color: color-mix(in oklab, var(--primary-fg) 70%, transparent); border-left: 2px solid var(--accent); padding-left: 0.9rem; }
+
+      /* ---------- TRUST BAR ---------- */
+      .trustbar { background: var(--muted); border-bottom: 1px solid var(--border); overflow: hidden; }
+      .trust-track {
+        display: flex; gap: 3rem; padding: 1.1rem 0; width: max-content;
+        animation: marquee 32s linear infinite;
+      }
+      .trustbar:hover .trust-track { animation-play-state: paused; }
+      @keyframes marquee { to { transform: translateX(-50%); } }
+      .trust-seal { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--display); font-size: 1.15rem; font-weight: 600; color: color-mix(in oklab, var(--primary) 72%, var(--bg)); white-space: nowrap; }
+      .seal-mark { width: 12px; height: 12px; border: 1.5px solid var(--accent); transform: rotate(45deg); flex: none; }
+
+      /* ---------- SECTIONS ---------- */
+      .section { padding: clamp(3.5rem, 8vw, 7rem) 0; }
+      .section-head { max-width: 720px; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+      .kicker { font-size: 0.76rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent-deep); font-weight: 600; margin: 0 0 0.9rem; }
+      .kicker.on-dark { color: var(--accent); }
+      .section-head h2 { font-size: clamp(1.9rem, 4.6vw, 3.1rem); }
+      .lede { font-size: clamp(1.05rem, 2.2vw, 1.22rem); color: color-mix(in oklab, var(--fg) 78%, var(--bg)); margin-top: 1.1rem; max-width: 56ch; }
+
+      /* practice grid */
+      .practice-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+      .practice-card {
+        display: flex; gap: 1.1rem; align-items: stretch; text-decoration: none;
+        background: var(--bg); padding: 1.4rem; transition: background 0.3s;
+      }
+      .practice-card:hover { background: var(--muted); }
+      .pc-art {
+        width: 92px; flex: none; border-radius: 2px;
+        background-size: cover; background-position: center;
+        filter: sepia(0.3) saturate(0.7); position: relative;
+      }
+      .pc-art::after { content: ""; position: absolute; inset: 0; background: color-mix(in oklab, var(--primary) 50%, transparent); mix-blend-mode: multiply; border-radius: 2px; }
+      .pc-body { display: flex; flex-direction: column; gap: 0.25rem; }
+      .pc-name { font-family: var(--display); font-size: 1.45rem; font-weight: 600; color: var(--primary); line-height: 1.1; }
+      .pc-price { font-size: 0.95rem; font-weight: 600; color: var(--accent-deep); }
+      .pc-note { font-size: 0.82rem; color: color-mix(in oklab, var(--fg) 60%, var(--bg)); text-transform: uppercase; letter-spacing: 0.08em; }
+      .pc-link { margin-top: auto; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); opacity: 0; transform: translateX(-6px); transition: opacity 0.3s, transform 0.3s; }
+      .practice-card:hover .pc-link { opacity: 1; transform: none; }
+
+      /* stats */
+      .stats { background: var(--primary); color: var(--primary-fg); padding: clamp(3rem, 7vw, 5.5rem) 0; }
+      .stats .kicker { margin-bottom: 2rem; }
+      .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem 1.5rem; }
+      .stat-num { font-family: var(--display); font-size: clamp(2.6rem, 7vw, 4.2rem); font-weight: 600; color: var(--accent); line-height: 1; }
+      .stat-label { margin-top: 0.5rem; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; color: color-mix(in oklab, var(--primary-fg) 78%, transparent); }
+
+      /* attorneys */
+      .attorneys { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+      .attorney { border: 1px solid var(--border); background: var(--bg); }
+      .att-photo {
+        aspect-ratio: 5 / 5.4; background-size: cover; background-position: center top;
+        filter: contrast(1.05) sepia(0.22) brightness(0.96);
+        position: relative;
+      }
+      .att-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, color-mix(in oklab, var(--primary) 40%, transparent)); mix-blend-mode: multiply; }
+      .att-meta { padding: 1.4rem; }
+      .att-meta h3 { font-size: 1.6rem; color: var(--primary); }
+      .att-role { font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-deep); margin: 0.35rem 0 0.9rem; font-weight: 600; }
+      .att-creds { list-style: none; margin: 0; padding: 0; }
+      .att-creds li { font-size: 0.9rem; padding: 0.35rem 0; border-top: 1px solid var(--border); color: color-mix(in oklab, var(--fg) 80%, var(--bg)); }
+
+      /* process */
+      .process-sec { background: var(--muted); }
+      .process { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 1.5rem; counter-reset: none; }
+      .step { background: var(--bg); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 1.6rem; }
+      .step-n { font-family: var(--display); font-size: 2.4rem; font-weight: 600; color: color-mix(in oklab, var(--accent) 75%, var(--border)); display: block; line-height: 1; }
+      .step h3 { font-size: 1.45rem; color: var(--primary); margin: 0.6rem 0 0.5rem; }
+      .step p { margin: 0; font-size: 0.96rem; color: color-mix(in oklab, var(--fg) 78%, var(--bg)); }
+
+      /* voices / slider */
+      .voices { background: var(--primary); color: var(--primary-fg); padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
+      .voices .kicker { margin-bottom: 1rem; }
+      .slider { position: relative; min-height: 260px; }
+      .slide {
+        position: absolute; inset: 0; margin: 0; opacity: 0; visibility: hidden;
+        transition: opacity 0.6s ease; max-width: 880px;
+      }
+      .slide.is-active { opacity: 1; visibility: visible; position: relative; }
+      .quote-mark { font-family: var(--display); font-size: 6rem; line-height: 0.5; color: var(--accent); display: block; height: 2.5rem; }
+      .slide blockquote { font-family: var(--display); font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 500; font-style: italic; line-height: 1.3; margin: 0; }
+      .slide figcaption { margin-top: 1.5rem; font-size: 0.92rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+      .slide figcaption span { color: color-mix(in oklab, var(--primary-fg) 65%, transparent); }
+      .slider-dots { display: flex; gap: 0.7rem; margin-top: 2rem; }
+      .dot { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--accent); background: transparent; cursor: pointer; padding: 0; transition: background 0.3s; min-width: 12px; }
+      .dot.is-active { background: var(--accent); }
+
+      /* contact */
+      .contact-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-copy h2 { font-size: clamp(1.9rem, 4.6vw, 3rem); }
+      .nap { margin: 1.8rem 0; }
+      .firm-name { font-family: var(--display); font-size: 1.4rem; font-weight: 600; color: var(--primary); margin: 0 0 0.4rem; }
+      .nap address { font-style: normal; color: color-mix(in oklab, var(--fg) 80%, var(--bg)); }
+      .nap a { color: var(--primary); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent); }
+      .hours { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+      .hours li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+      .hours li span:last-child { color: var(--accent-deep); font-weight: 600; }
+
+      .contact-form { display: flex; flex-direction: column; gap: 1rem; background: var(--muted); border: 1px solid var(--border); padding: clamp(1.5rem, 4vw, 2.2rem); }
+      .contact-form label { display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--primary); }
+      .contact-form input, .contact-form select, .contact-form textarea {
+        font-family: var(--body); font-size: 1rem; padding: 0.7rem 0.8rem;
+        border: 1px solid var(--border); background: var(--bg); color: var(--fg);
+        border-radius: 2px; min-height: 44px;
+      }
+      .contact-form textarea { resize: vertical; }
+      .contact-form .btn-gold { margin-top: 0.5rem; }
+      .form-note { font-size: 0.74rem; color: color-mix(in oklab, var(--fg) 55%, var(--bg)); margin: 0; text-transform: none; letter-spacing: 0; }
+
+      /* footer */
+      .site-footer { background: var(--primary); color: var(--primary-fg); padding: 3rem 0 2.5rem; }
+      .foot-grid { display: grid; grid-template-columns: 1fr; gap: 1.6rem; }
+      .footer-mono { color: var(--accent); border-color: var(--accent); }
+      .foot-tag { font-family: var(--display); font-style: italic; font-size: 1.2rem; margin: 0.8rem 0 0; max-width: 26ch; }
+      .foot-nap { font-style: normal; font-size: 0.92rem; color: color-mix(in oklab, var(--primary-fg) 80%, transparent); line-height: 1.8; }
+      .foot-nap a { color: var(--accent); text-decoration: none; }
+      .copy { font-size: 0.8rem; color: color-mix(in oklab, var(--primary-fg) 55%, transparent); margin: 0; align-self: end; }
+
+      /* reveal */
+      .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* ---------- RESPONSIVE ---------- */
+      @media (min-width: 620px) {
+        .practice-grid { grid-template-columns: 1fr 1fr; }
+        .stat-grid { grid-template-columns: repeat(4, 1fr); }
+        .process { grid-template-columns: repeat(2, 1fr); }
+        .attorneys { grid-template-columns: repeat(3, 1fr); }
+        .foot-grid { grid-template-columns: 1.2fr 1fr 1fr; align-items: start; }
+      }
+      @media (min-width: 980px) {
+        .nav { display: flex; }
+        .header-cta { display: flex; }
+        .menu-toggle { display: none; }
+        .practice-grid { grid-template-columns: repeat(3, 1fr); }
+        .process { grid-template-columns: repeat(4, 1fr); }
+        .contact-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+      }
+    </style>
+
+    <script>
+      // mobile nav
+      const toggle = document.querySelector(".menu-toggle");
+      const mnav = document.getElementById("mobile-nav");
+      toggle?.addEventListener("click", () => {
+        const open = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!open));
+        mnav?.classList.toggle("open", !open);
+      });
+      mnav?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          toggle?.setAttribute("aria-expanded", "false");
+          mnav.classList.remove("open");
+        })
+      );
+
+      // scroll reveal
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // animated counters
+      const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+      const animate = (el) => {
+        const target = parseFloat(el.dataset.target);
+        const prefix = el.dataset.prefix || "";
+        const suffix = el.dataset.suffix || "";
+        const dur = 1500; const start = performance.now();
+        const tick = (now) => {
+          const p = Math.min((now - start) / dur, 1);
+          const val = Math.round(easeOut(p) * target);
+          el.textContent = prefix + val.toLocaleString() + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+      const statIO = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { animate(e.target); statIO.unobserve(e.target); } });
+      }, { threshold: 0.5 });
+      document.querySelectorAll(".stat-num").forEach((el) => statIO.observe(el));
+
+      // testimonial slider
+      const slides = Array.from(document.querySelectorAll("[data-slide]"));
+      const dots = Array.from(document.querySelectorAll("[data-dot]"));
+      let cur = 0; let timer;
+      const go = (i) => {
+        slides[cur]?.classList.remove("is-active");
+        dots[cur]?.classList.remove("is-active");
+        dots[cur]?.setAttribute("aria-selected", "false");
+        cur = (i + slides.length) % slides.length;
+        slides[cur]?.classList.add("is-active");
+        dots[cur]?.classList.add("is-active");
+        dots[cur]?.setAttribute("aria-selected", "true");
+      };
+      dots.forEach((d, i) => d.addEventListener("click", () => { go(i); restart(); }));
+      const restart = () => { clearInterval(timer); timer = setInterval(() => go(cur + 1), 6000); };
+      if (slides.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) restart();
+    </script>
+  </body>
+</html>

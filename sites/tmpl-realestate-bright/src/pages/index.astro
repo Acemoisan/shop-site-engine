@@ -1,0 +1,621 @@
+---
+const nav = [
+  { label: "Listings", href: "#listings" },
+  { label: "Sell", href: "#valuation" },
+  { label: "About", href: "#about" },
+  { label: "Areas", href: "#areas" },
+  { label: "Contact", href: "#contact" },
+];
+
+const listings = [
+  { addr: "88 Roxboro Road SW", area: "Roxboro", price: "$3,495,000", bd: 5, ba: 6, sqft: "6,200", seed: "roxboro88", tag: "New" },
+  { addr: "412 Eagle Ridge Drive SW", area: "Eagle Ridge", price: "$2,150,000", bd: 4, ba: 4, sqft: "4,050", seed: "eagleridge412", tag: "" },
+  { addr: "207 18th Avenue NW", area: "Mount Pleasant", price: "$899,000", bd: 3, ba: 3, sqft: "2,100", seed: "mtpleasant207", tag: "Open Sat" },
+  { addr: "14 Britannia Crescent SW", area: "Britannia", price: "$2,795,000", bd: 5, ba: 5, sqft: "5,400", seed: "britannia14", tag: "" },
+  { addr: "933 Memorial Drive NW", area: "Sunnyside", price: "$1,290,000", bd: 3, ba: 3, sqft: "2,640", seed: "sunnyside933", tag: "" },
+  { addr: "61 Inglewood Mews SE", area: "Inglewood", price: "$1,050,000", bd: 4, ba: 3, sqft: "2,380", seed: "inglewood61", tag: "Just Listed" },
+];
+
+const services = [
+  { name: "Buyer Representation", price: "No cost to buyers", note: "Commission paid by seller — full advocacy, zero fee." },
+  { name: "Luxury Listing & Marketing", price: "2.5% commission", note: "Cinematic video, drone & staging consult included." },
+  { name: "Standard Residential Listing", price: "2.0% commission", note: "Full-service listing for Calgary residential homes." },
+  { name: "Professional Home Valuation (CMA)", price: "Complimentary", note: "Accurate, data-led pricing with no obligation." },
+  { name: "Premium Staging Consultation", price: "$350", note: "Credited back on a signed listing agreement." },
+  { name: "Architectural Photography & 3D Tour", price: "$1,200 / property", note: "Magazine-grade imagery and immersive walkthroughs." },
+];
+
+const stats = [
+  { value: 480, prefix: "$", suffix: "M+", label: "Lifetime sales volume" },
+  { value: 640, prefix: "", suffix: "+", label: "Homes sold" },
+  { value: 19, prefix: "", suffix: "", label: "Avg. days on market" },
+  { value: 99.2, prefix: "", suffix: "%", label: "List-to-sale ratio" },
+];
+
+const press = ["WSJ", "Forbes", "Avenue", "BOARD OF TRADE", "LUXE", "CREB®"];
+
+const testimonials = [
+  { quote: "Eleanor sold our Mount Royal home in eleven days, over asking. Every detail was handled before we even thought to ask.", who: "Daniel & Priya R.", ctx: "Mount Royal · Sold" },
+  { quote: "The marketing was on another level — the video alone made buyers fall in love. Truly white-glove from start to close.", who: "Marguerite L.", ctx: "Britannia · Sold" },
+  { quote: "As first-time buyers we felt completely guided, never pressured. We found exactly the right home in Inglewood.", who: "James & Cora T.", ctx: "Inglewood · Bought" },
+];
+
+const areas = [
+  { name: "Mount Royal", seed: "mountroyal", blurb: "Heritage estates & tree-lined calm." },
+  { name: "Inglewood", seed: "inglewoodarea", blurb: "Creative, walkable, riverside character." },
+  { name: "Britannia", seed: "britanniaarea", blurb: "Mid-century luxury, central yet quiet." },
+  { name: "Sunnyside", seed: "sunnysidearea", blurb: "Bridgeland-adjacent, vibrant & young." },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vale Residential — Calgary Real Estate | Find the address that fits your life.</title>
+    <meta name="description" content="Vale Residential is a bright, modern Calgary brokerage. Browse featured listings, get a complimentary home valuation, and work with a team that handles every detail personally." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#listings">Skip to listings</a>
+
+    <header class="nav" id="top">
+      <div class="wrap nav__inner">
+        <a class="brand" href="#top" aria-label="Vale Residential home">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="28" height="28"><path d="M16 3 4 13v16h8v-9h8v9h8V13z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="brand__text">Vale<em>Residential</em></span>
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="btn btn--sm" href="tel:+14035550192">(403) 555-0192</a>
+        <button class="nav__toggle" aria-expanded="false" aria-controls="m-nav" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="m-nav" id="m-nav" hidden>
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="btn" href="tel:+14035550192">Call (403) 555-0192</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero__media">
+          <img src="https://picsum.photos/seed/valehero-house/1600/1100" alt="Sunlit modern Calgary home exterior at golden hour" />
+        </div>
+        <div class="wrap hero__inner">
+          <p class="eyebrow">Calgary residential · est. 2009</p>
+          <h1>Find the address<br />that <em>fits your life.</em></h1>
+          <p class="hero__sub">A different standard of service across Calgary's finest neighborhoods — bright marketing, sharp pricing, and every detail handled personally.</p>
+          <div class="hero__cta">
+            <a class="btn btn--accent" href="#listings">View listings</a>
+            <a class="btn btn--ghost" href="#contact">Book a consultation</a>
+          </div>
+          <div class="hero__bar" role="search" aria-label="Quick property search">
+            <label>Neighborhood<select><option>Any area</option><option>Mount Royal</option><option>Inglewood</option><option>Britannia</option></select></label>
+            <label>Price<select><option>Any price</option><option>$800k – $1.2M</option><option>$1.2M – $2.5M</option><option>$2.5M+</option></select></label>
+            <label>Beds<select><option>Any</option><option>2+</option><option>3+</option><option>4+</option></select></label>
+            <a class="btn btn--accent btn--block" href="#listings">Search</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- LISTINGS -->
+      <section class="section" id="listings">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <div>
+              <p class="eyebrow eyebrow--accent">Featured listings</p>
+              <h2>Currently on the market</h2>
+            </div>
+            <a class="link-arrow" href="#contact">See all listings <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="grid">
+            {listings.map((l) => (
+              <article class="card reveal">
+                <div class="card__media">
+                  {l.tag && <span class="card__tag">{l.tag}</span>}
+                  <img loading="lazy" src={`https://picsum.photos/seed/${l.seed}/800/560`} alt={`${l.addr}, ${l.area}`} />
+                </div>
+                <div class="card__body">
+                  <p class="card__price">{l.price}</p>
+                  <h3 class="card__addr">{l.addr}</h3>
+                  <p class="card__area">{l.area}</p>
+                  <ul class="card__specs">
+                    <li><strong>{l.bd}</strong> bd</li>
+                    <li><strong>{l.ba}</strong> ba</li>
+                    <li><strong>{l.sqft}</strong> sqft</li>
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- VALUATION BAND -->
+      <section class="band" id="valuation">
+        <div class="wrap band__inner">
+          <div class="band__copy reveal">
+            <p class="eyebrow eyebrow--light">For sellers</p>
+            <h2>What's your<br />home worth?</h2>
+            <p>Get a complimentary, data-driven valuation prepared by a real agent — not an algorithm. No obligation, no spam.</p>
+          </div>
+          <form class="vform reveal" onsubmit="return false">
+            <label>Property address<input type="text" placeholder="123 Example Street SW, Calgary" autocomplete="street-address" /></label>
+            <div class="vform__row">
+              <label>Email<input type="email" placeholder="you@email.com" autocomplete="email" /></label>
+              <label>Phone<input type="tel" placeholder="(403) 555-0000" autocomplete="tel" /></label>
+            </div>
+            <button class="btn btn--accent btn--block" type="submit">Get my valuation</button>
+            <p class="vform__fine">Complimentary CMA · typically returned within 24 hours.</p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ABOUT / AGENT -->
+      <section class="section split" id="about">
+        <div class="wrap split__grid">
+          <div class="split__media reveal">
+            <img loading="lazy" src="https://picsum.photos/seed/eleanorvale-agent/720/860" alt="Eleanor Vale, principal realtor, on location" />
+            <div class="split__badge"><strong>15 yrs</strong><span>guiding Calgary moves</span></div>
+          </div>
+          <div class="split__copy reveal">
+            <p class="eyebrow eyebrow--accent">The brokerage</p>
+            <h2>Your move, handled personally.</h2>
+            <p>Vale Residential pairs the polish of a luxury brokerage with the directness of a small, accountable team. We list fewer homes on purpose — so the marketing is sharper, the showings are tighter, and you always reach the person who actually knows your file.</p>
+            <p>From first-time buyers in Inglewood to estate sellers in Roxboro, the standard never changes: clear advice, cinematic marketing, and a close that feels calm.</p>
+            <a class="link-arrow" href="#contact">Meet the team <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="stats" aria-label="Track record">
+        <div class="wrap stats__grid">
+          {stats.map((s) => (
+            <div class="stat reveal">
+              <p class="stat__num" data-value={s.value} data-prefix={s.prefix} data-suffix={s.suffix}>{s.prefix}0{s.suffix}</p>
+              <p class="stat__label">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="section" id="services">
+        <div class="wrap">
+          <div class="sec-head sec-head--center reveal">
+            <div>
+              <p class="eyebrow eyebrow--accent">Services & pricing</p>
+              <h2>Transparent from the first call</h2>
+            </div>
+          </div>
+          <div class="svc">
+            {services.map((s) => (
+              <article class="svc__row reveal">
+                <h3>{s.name}</h3>
+                <p class="svc__note">{s.note}</p>
+                <p class="svc__price">{s.price}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- PRESS -->
+      <section class="press" aria-label="As seen in">
+        <div class="wrap">
+          <p class="press__label">As seen in</p>
+          <div class="marquee" aria-hidden="false">
+            <div class="marquee__track">
+              {[...press, ...press].map((p) => <span class="press__logo">{p}</span>)}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AREAS -->
+      <section class="section" id="areas">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <div>
+              <p class="eyebrow eyebrow--accent">Area guides</p>
+              <h2>Know the neighborhood first</h2>
+            </div>
+            <p class="sec-head__lead">We live and sell here. Start with the streets we know best.</p>
+          </div>
+          <div class="areas">
+            {areas.map((a) => (
+              <a class="area reveal" href="#contact">
+                <img loading="lazy" src={`https://picsum.photos/seed/${a.seed}/640/480`} alt={`${a.name}, Calgary`} />
+                <span class="area__overlay">
+                  <span class="area__name">{a.name}</span>
+                  <span class="area__blurb">{a.blurb}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section tsec" aria-label="Client testimonials">
+        <div class="wrap">
+          <p class="eyebrow eyebrow--accent reveal">Client stories</p>
+          <div class="slider reveal">
+            <div class="slider__track" id="slides">
+              {testimonials.map((t) => (
+                <figure class="slide">
+                  <blockquote>“{t.quote}”</blockquote>
+                  <figcaption><strong>{t.who}</strong><span>{t.ctx}</span></figcaption>
+                </figure>
+              ))}
+            </div>
+            <div class="slider__dots" id="dots">
+              {testimonials.map((_, i) => (
+                <button class={i === 0 ? "is-active" : ""} data-i={i} aria-label={`Testimonial ${i + 1}`}></button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact" id="contact">
+        <div class="wrap contact__grid">
+          <div class="contact__copy reveal">
+            <p class="eyebrow eyebrow--light">Let's talk</p>
+            <h2>Start your move today.</h2>
+            <p>Buying, selling, or simply curious about value — a short call is the best first step. Private showings available evenings by request.</p>
+            <ul class="nap">
+              <li><span>Office</span>Vale Residential · 1100 1st Street SW, Suite 400, Calgary, AB T2R 0V1</li>
+              <li><span>Phone</span><a href="tel:+14035550192">(403) 555-0192</a></li>
+              <li><span>Email</span><a href="mailto:hello@meridianvale.ca">hello@meridianvale.ca</a></li>
+            </ul>
+            <ul class="hours">
+              <li><span>Mon–Fri</span>9:00 AM – 6:00 PM</li>
+              <li><span>Saturday</span>10:00 AM – 4:00 PM</li>
+              <li><span>Sunday</span>By appointment</li>
+            </ul>
+          </div>
+          <div class="contact__cta reveal">
+            <h3>Book a consultation</h3>
+            <a class="btn btn--accent btn--block" href="tel:+14035550192">Call now</a>
+            <a class="btn btn--ghost btn--block" href="mailto:hello@meridianvale.ca">Email the team</a>
+            <a class="map" href="https://maps.google.com/?q=1100+1st+Street+SW+Calgary" target="_blank" rel="noopener">
+              <img loading="lazy" src="https://picsum.photos/seed/valemap/640/300?grayscale" alt="Map to Vale Residential office" />
+              <span>View on map →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap foot__inner">
+        <div class="foot__brand">
+          <span class="brand__text">Vale<em>Residential</em></span>
+          <p>A different standard of service across Calgary's finest neighborhoods.</p>
+        </div>
+        <div class="foot__cols">
+          <div><h4>Explore</h4>{nav.map((n) => <a href={n.href}>{n.label}</a>)}</div>
+          <div><h4>Areas served</h4>{areas.map((a) => <a href="#areas">{a.name}</a>)}</div>
+          <div><h4>Office</h4><p>1100 1st Street SW, Suite 400<br />Calgary, AB T2R 0V1</p><a href="tel:+14035550192">(403) 555-0192</a></div>
+        </div>
+      </div>
+      <div class="wrap foot__base">
+        <p>© 2026 Vale Residential. Independently owned & operated.</p>
+        <p>Equal Housing Opportunity</p>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile nav
+      const tgl = document.querySelector(".nav__toggle");
+      const mnav = document.getElementById("m-nav");
+      tgl?.addEventListener("click", () => {
+        const open = tgl.getAttribute("aria-expanded") === "true";
+        tgl.setAttribute("aria-expanded", String(!open));
+        if (mnav) mnav.hidden = open;
+        tgl.classList.toggle("is-open", !open);
+      });
+      mnav?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          tgl?.setAttribute("aria-expanded", "false");
+          tgl?.classList.remove("is-open");
+          if (mnav) mnav.hidden = true;
+        })
+      );
+
+      // Scroll reveal
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reveals = document.querySelectorAll(".reveal");
+      if (reduce) {
+        reveals.forEach((r) => r.classList.add("in"));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+          { threshold: 0.14 }
+        );
+        reveals.forEach((r) => io.observe(r));
+      }
+
+      // Stat counters
+      const nums = document.querySelectorAll(".stat__num");
+      const animate = (el) => {
+        const target = parseFloat(el.dataset.value);
+        const pre = el.dataset.prefix || "";
+        const suf = el.dataset.suffix || "";
+        const dec = target % 1 !== 0;
+        if (reduce) { el.textContent = pre + target + suf; return; }
+        let cur = 0;
+        const step = target / 48;
+        const tick = () => {
+          cur += step;
+          if (cur >= target) { el.textContent = pre + (dec ? target.toFixed(1) : target) + suf; return; }
+          el.textContent = pre + (dec ? cur.toFixed(1) : Math.floor(cur)) + suf;
+          requestAnimationFrame(tick);
+        };
+        tick();
+      };
+      const sio = new IntersectionObserver((entries) => entries.forEach((e) => {
+        if (e.isIntersecting) { animate(e.target); sio.unobserve(e.target); }
+      }), { threshold: 0.5 });
+      nums.forEach((n) => sio.observe(n));
+
+      // Testimonial slider
+      const track = document.getElementById("slides");
+      const dots = Array.from(document.querySelectorAll("#dots button"));
+      let idx = 0;
+      const go = (i) => {
+        idx = i;
+        if (track) track.style.transform = `translateX(-${i * 100}%)`;
+        dots.forEach((d, j) => d.classList.toggle("is-active", j === i));
+      };
+      dots.forEach((d) => d.addEventListener("click", () => go(Number(d.dataset.i))));
+      if (!reduce && dots.length > 1) {
+        setInterval(() => go((idx + 1) % dots.length), 5500);
+      }
+    </script>
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+    </style>
+
+    <style>
+      :root {
+        --bg: #FBFBF9;
+        --fg: #1A1F22;
+        --primary: #0F5C5A;
+        --primary-fg: #FBFBF9;
+        --accent: #C2683E;
+        --muted: #EFF0EC;
+        --border: #DCDDD7;
+        --sans: "Inter", system-ui, sans-serif;
+        --display: "Playfair Display", Georgia, serif;
+        --r: 14px;
+        --shadow: 0 18px 50px -28px rgba(26, 31, 34, 0.4);
+        --maxw: 1200px;
+      }
+
+      body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-weight: 400; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+      .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: clamp(1.1rem, 4vw, 2.5rem); }
+
+      h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; line-height: 1.04; margin: 0; letter-spacing: -0.01em; }
+      h2 { font-size: clamp(1.9rem, 4.2vw, 3.1rem); }
+      em { font-style: italic; }
+
+      .eyebrow { font-family: var(--sans); text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.72rem; font-weight: 600; color: color-mix(in srgb, var(--fg) 55%, transparent); margin: 0 0 0.85rem; }
+      .eyebrow--accent { color: var(--accent); }
+      .eyebrow--light { color: color-mix(in srgb, var(--primary-fg) 80%, transparent); }
+
+      a { color: inherit; text-decoration: none; }
+      .skip { position: absolute; left: -999px; top: 0; background: var(--primary); color: var(--primary-fg); padding: 0.6rem 1rem; z-index: 200; border-radius: 0 0 8px 0; }
+      .skip:focus { left: 0; }
+      :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+      /* Buttons */
+      .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 46px; padding: 0 1.4rem; border-radius: 999px; font-weight: 500; font-size: 0.95rem; border: 1.5px solid var(--primary); background: var(--primary); color: var(--primary-fg); cursor: pointer; transition: transform 0.2s, background 0.2s, box-shadow 0.2s; }
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px var(--primary); }
+      .btn--accent { background: var(--accent); border-color: var(--accent); }
+      .btn--accent:hover { box-shadow: 0 12px 28px -14px var(--accent); }
+      .btn--ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+      .btn--ghost:hover { border-color: var(--fg); background: var(--muted); }
+      .btn--sm { min-height: 42px; padding: 0 1.1rem; font-size: 0.86rem; }
+      .btn--block { width: 100%; }
+
+      /* Nav */
+      .nav { position: sticky; top: 0; z-index: 100; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+      .nav__inner { display: flex; align-items: center; gap: 1.4rem; min-height: 70px; }
+      .brand { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--primary); }
+      .brand__mark { display: inline-flex; }
+      .brand__text { font-family: var(--display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; color: var(--fg); }
+      .brand__text em { color: var(--primary); font-weight: 500; font-style: italic; }
+      .nav__links { display: none; gap: 1.6rem; margin-left: auto; font-size: 0.92rem; font-weight: 500; }
+      .nav__links a { position: relative; padding: 0.3rem 0; }
+      .nav__links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.25s; }
+      .nav__links a:hover::after { width: 100%; }
+      .nav .btn--sm { display: none; }
+      .nav__toggle { margin-left: auto; display: inline-flex; flex-direction: column; gap: 5px; width: 46px; height: 46px; align-items: center; justify-content: center; background: none; border: 1px solid var(--border); border-radius: 10px; cursor: pointer; }
+      .nav__toggle span { width: 20px; height: 2px; background: var(--fg); transition: transform 0.25s, opacity 0.25s; }
+      .nav__toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav__toggle.is-open span:nth-child(2) { opacity: 0; }
+      .nav__toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .m-nav { display: flex; flex-direction: column; gap: 0.4rem; padding: 0.8rem clamp(1.1rem, 4vw, 2.5rem) 1.4rem; border-bottom: 1px solid var(--border); }
+      .m-nav a:not(.btn) { padding: 0.7rem 0; font-weight: 500; border-bottom: 1px solid var(--border); }
+      .m-nav .btn { margin-top: 0.6rem; }
+
+      /* Hero */
+      .hero { position: relative; min-height: clamp(560px, 88vh, 820px); display: flex; align-items: flex-end; overflow: hidden; }
+      .hero__media { position: absolute; inset: 0; z-index: 0; }
+      .hero__media img { width: 100%; height: 100%; object-fit: cover; animation: ken 24s ease-in-out infinite alternate; }
+      @keyframes ken { from { transform: scale(1.04); } to { transform: scale(1.14); } }
+      @media (prefers-reduced-motion: reduce) { .hero__media img { animation: none; } }
+      .hero::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(251,251,249,0.1) 0%, rgba(251,251,249,0) 30%, rgba(251,251,249,0.6) 72%, var(--bg) 100%); }
+      .hero__inner { position: relative; z-index: 2; padding-block: clamp(2.5rem, 7vw, 5rem); }
+      .hero h1 { font-size: clamp(2.6rem, 8vw, 5.4rem); font-weight: 600; }
+      .hero h1 em { color: var(--primary); }
+      .hero__sub { max-width: 38ch; font-size: clamp(1rem, 1.6vw, 1.18rem); margin: 1.2rem 0 1.8rem; color: color-mix(in srgb, var(--fg) 80%, transparent); }
+      .hero__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2rem; }
+      .hero__bar { display: grid; grid-template-columns: 1fr; gap: 0.7rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 1rem; box-shadow: var(--shadow); max-width: 720px; }
+      .hero__bar label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; color: color-mix(in srgb, var(--fg) 55%, transparent); }
+      .hero__bar select { min-height: 44px; border: 1px solid var(--border); border-radius: 9px; background: var(--bg); padding: 0 0.7rem; font: inherit; color: var(--fg); }
+
+      /* Sections */
+      .section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+      .sec-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem 2rem; margin-bottom: clamp(1.8rem, 4vw, 3rem); }
+      .sec-head--center { justify-content: center; text-align: center; }
+      .sec-head__lead { max-width: 32ch; color: color-mix(in srgb, var(--fg) 65%, transparent); margin: 0; }
+      .link-arrow { font-weight: 600; color: var(--primary); border-bottom: 2px solid transparent; padding-bottom: 2px; transition: border-color 0.2s; }
+      .link-arrow:hover { border-color: var(--accent); }
+
+      /* Listings grid */
+      .grid { display: grid; grid-template-columns: 1fr; gap: clamp(1.2rem, 3vw, 2rem); }
+      .card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+      .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+      .card__media { position: relative; aspect-ratio: 10 / 7; overflow: hidden; }
+      .card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+      .card:hover .card__media img { transform: scale(1.07); }
+      .card__tag { position: absolute; top: 0.9rem; left: 0.9rem; background: var(--accent); color: #fff; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.35rem 0.7rem; border-radius: 999px; }
+      .card__body { padding: 1.2rem 1.3rem 1.4rem; }
+      .card__price { font-family: var(--display); font-size: 1.5rem; font-weight: 700; color: var(--primary); margin: 0 0 0.2rem; }
+      .card__addr { font-size: 1.05rem; font-weight: 500; }
+      .card__area { color: color-mix(in srgb, var(--fg) 55%, transparent); font-size: 0.9rem; margin: 0.1rem 0 0.9rem; }
+      .card__specs { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0.85rem 0 0; border-top: 1px solid var(--border); font-size: 0.9rem; color: color-mix(in srgb, var(--fg) 70%, transparent); }
+      .card__specs strong { color: var(--fg); font-weight: 600; }
+
+      /* Valuation band */
+      .band { background: var(--primary); color: var(--primary-fg); }
+      .band__inner { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 4rem); padding-block: clamp(3rem, 7vw, 5.5rem); align-items: center; }
+      .band h2 { color: var(--primary-fg); font-size: clamp(2.2rem, 6vw, 3.6rem); }
+      .band__copy p { color: color-mix(in srgb, var(--primary-fg) 82%, transparent); max-width: 36ch; margin: 1rem 0 0; }
+      .vform { background: var(--bg); color: var(--fg); border-radius: var(--r); padding: clamp(1.4rem, 3vw, 2rem); box-shadow: var(--shadow); display: grid; gap: 0.9rem; }
+      .vform label { display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: color-mix(in srgb, var(--fg) 55%, transparent); }
+      .vform input { min-height: 46px; border: 1px solid var(--border); border-radius: 9px; padding: 0 0.85rem; font: inherit; color: var(--fg); background: var(--bg); }
+      .vform input:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+      .vform__row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+      .vform__fine { font-size: 0.78rem; color: color-mix(in srgb, var(--fg) 55%, transparent); text-align: center; margin: 0; }
+
+      /* Split / about */
+      .split__grid { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+      .split__media { position: relative; border-radius: var(--r); overflow: hidden; }
+      .split__media img { width: 100%; aspect-ratio: 5 / 6; object-fit: cover; }
+      .split__badge { position: absolute; right: 1rem; bottom: 1rem; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 0.8rem 1.1rem; display: flex; flex-direction: column; box-shadow: var(--shadow); }
+      .split__badge strong { font-family: var(--display); font-size: 1.5rem; color: var(--primary); }
+      .split__badge span { font-size: 0.78rem; color: color-mix(in srgb, var(--fg) 60%, transparent); }
+      .split__copy p { color: color-mix(in srgb, var(--fg) 78%, transparent); margin: 1rem 0; max-width: 50ch; }
+      .split__copy h2 { margin-bottom: 0.4rem; }
+
+      /* Stats */
+      .stats { background: var(--muted); border-block: 1px solid var(--border); }
+      .stats__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.5rem, 4vw, 3rem); padding-block: clamp(2.6rem, 6vw, 4rem); }
+      .stat { text-align: center; }
+      .stat__num { font-family: var(--display); font-weight: 700; font-size: clamp(2.2rem, 6vw, 3.4rem); color: var(--primary); margin: 0; line-height: 1; }
+      .stat__label { font-size: 0.84rem; letter-spacing: 0.04em; color: color-mix(in srgb, var(--fg) 65%, transparent); margin: 0.6rem 0 0; }
+
+      /* Services */
+      .svc { display: grid; gap: 0; border-top: 1px solid var(--border); }
+      .svc__row { display: grid; grid-template-columns: 1fr; gap: 0.2rem; padding: 1.3rem 0; border-bottom: 1px solid var(--border); transition: background 0.2s, padding-left 0.2s; }
+      .svc__row:hover { background: var(--muted); padding-left: 0.9rem; }
+      .svc__row h3 { font-size: 1.2rem; font-weight: 600; }
+      .svc__note { color: color-mix(in srgb, var(--fg) 62%, transparent); font-size: 0.92rem; margin: 0; }
+      .svc__price { font-family: var(--display); font-weight: 600; color: var(--accent); font-size: 1.1rem; margin: 0; }
+
+      /* Press marquee */
+      .press { padding-block: clamp(2.2rem, 5vw, 3.2rem); border-block: 1px solid var(--border); }
+      .press__label { text-align: center; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.72rem; font-weight: 600; color: color-mix(in srgb, var(--fg) 50%, transparent); margin: 0 0 1.4rem; }
+      .marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+      .marquee__track { display: flex; gap: 3rem; width: max-content; animation: scroll 26s linear infinite; }
+      @keyframes scroll { to { transform: translateX(-50%); } }
+      @media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; } }
+      .press__logo { font-family: var(--display); font-weight: 600; font-size: clamp(1.1rem, 2vw, 1.5rem); letter-spacing: 0.04em; color: color-mix(in srgb, var(--fg) 45%, transparent); white-space: nowrap; }
+
+      /* Areas */
+      .areas { display: grid; grid-template-columns: 1fr; gap: clamp(1rem, 2.5vw, 1.6rem); }
+      .area { position: relative; border-radius: var(--r); overflow: hidden; aspect-ratio: 4 / 3; display: block; }
+      .area img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; filter: saturate(1.05); }
+      .area:hover img { transform: scale(1.06); }
+      .area__overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.2rem; background: linear-gradient(180deg, rgba(15,92,90,0) 35%, rgba(15,30,34,0.82) 100%); color: #fff; }
+      .area__name { font-family: var(--display); font-size: 1.4rem; font-weight: 600; }
+      .area__blurb { font-size: 0.86rem; opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s; }
+      .area:hover .area__blurb, .area:focus-visible .area__blurb { opacity: 0.92; transform: translateY(0); }
+
+      /* Testimonials slider */
+      .tsec { background: var(--muted); border-block: 1px solid var(--border); }
+      .slider { overflow: hidden; max-width: 760px; }
+      .slider__track { display: flex; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+      .slide { flex: 0 0 100%; margin: 0; padding-right: 1rem; }
+      .slide blockquote { font-family: var(--display); font-size: clamp(1.4rem, 3vw, 2.1rem); font-weight: 500; line-height: 1.28; margin: 0 0 1.3rem; }
+      .slide figcaption { display: flex; flex-direction: column; }
+      .slide figcaption strong { font-weight: 600; }
+      .slide figcaption span { color: var(--accent); font-size: 0.88rem; font-weight: 500; }
+      .slider__dots { display: flex; gap: 0.5rem; margin-top: 1.6rem; }
+      .slider__dots button { width: 11px; height: 11px; border-radius: 999px; border: 1px solid var(--primary); background: transparent; cursor: pointer; padding: 0; transition: background 0.2s, transform 0.2s; }
+      .slider__dots button.is-active { background: var(--primary); transform: scale(1.15); }
+
+      /* Contact */
+      .contact { padding-block: clamp(3.5rem, 8vw, 6rem); }
+      .contact__grid { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 4vw, 3rem); }
+      .contact__copy p { color: color-mix(in srgb, var(--fg) 75%, transparent); max-width: 44ch; margin: 1rem 0 1.8rem; }
+      .nap, .hours { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; gap: 0.7rem; }
+      .nap li, .hours li { display: grid; grid-template-columns: 88px 1fr; gap: 0.8rem; align-items: baseline; padding-bottom: 0.7rem; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+      .nap span, .hours span { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.7rem; font-weight: 600; color: color-mix(in srgb, var(--fg) 55%, transparent); }
+      .nap a { color: var(--primary); font-weight: 500; border-bottom: 1px solid transparent; }
+      .nap a:hover { border-color: var(--accent); }
+      .contact__cta { background: var(--muted); border: 1px solid var(--border); border-radius: var(--r); padding: clamp(1.4rem, 3vw, 2rem); align-self: start; display: grid; gap: 0.8rem; }
+      .contact__cta h3 { font-size: 1.4rem; margin-bottom: 0.4rem; }
+      .map { position: relative; display: block; border-radius: 10px; overflow: hidden; margin-top: 0.4rem; border: 1px solid var(--border); }
+      .map img { width: 100%; aspect-ratio: 64 / 30; object-fit: cover; }
+      .map span { position: absolute; bottom: 0; left: 0; right: 0; background: color-mix(in srgb, var(--primary) 92%, transparent); color: var(--primary-fg); font-size: 0.82rem; font-weight: 600; padding: 0.55rem 0.9rem; }
+
+      /* Footer */
+      .foot { background: var(--fg); color: color-mix(in srgb, var(--bg) 85%, transparent); padding-top: clamp(2.6rem, 6vw, 4rem); }
+      .foot__inner { display: grid; grid-template-columns: 1fr; gap: 2.2rem; padding-bottom: 2.4rem; border-bottom: 1px solid color-mix(in srgb, var(--bg) 18%, transparent); }
+      .foot__brand .brand__text { color: var(--bg); }
+      .foot__brand .brand__text em { color: color-mix(in srgb, var(--accent) 90%, white 10%); }
+      .foot__brand p { max-width: 34ch; margin: 0.7rem 0 0; font-size: 0.92rem; }
+      .foot__cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.8rem; }
+      .foot__cols h4 { font-family: var(--sans); text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.72rem; color: var(--bg); margin: 0 0 0.9rem; }
+      .foot__cols a, .foot__cols p { display: block; font-size: 0.9rem; margin-bottom: 0.5rem; transition: color 0.2s; }
+      .foot__cols a:hover { color: var(--bg); }
+      .foot__base { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; justify-content: space-between; padding-block: 1.4rem; font-size: 0.8rem; color: color-mix(in srgb, var(--bg) 55%, transparent); }
+
+      /* Reveal */
+      .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* Responsive */
+      @media (min-width: 560px) {
+        .hero__bar { grid-template-columns: repeat(3, 1fr) auto; align-items: end; }
+        .grid { grid-template-columns: repeat(2, 1fr); }
+        .areas { grid-template-columns: repeat(2, 1fr); }
+        .stats__grid { grid-template-columns: repeat(4, 1fr); }
+        .contact__grid { grid-template-columns: 1.3fr 1fr; }
+        .nap li, .hours li { grid-template-columns: 100px 1fr; }
+      }
+      @media (min-width: 880px) {
+        .nav__links, .nav .btn--sm { display: flex; }
+        .nav__toggle, .m-nav { display: none; }
+        .grid { grid-template-columns: repeat(3, 1fr); }
+        .band__inner { grid-template-columns: 1.05fr 1fr; }
+        .split__grid { grid-template-columns: 0.85fr 1.15fr; }
+        .split--rev .split__media { order: 2; }
+        .areas { grid-template-columns: repeat(4, 1fr); }
+        .foot__inner { grid-template-columns: 1.2fr 2fr; }
+        .foot__cols { grid-template-columns: repeat(3, 1fr); }
+      }
+    </style>
+  </body>
+</html>

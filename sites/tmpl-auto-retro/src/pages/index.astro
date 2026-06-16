@@ -1,0 +1,781 @@
+---
+// Apex & Iron Motor Co. — retro garage / route-66 auto detailing template
+// Fully self-contained Astro page. Plain JS data below; no imports.
+
+const nav = [
+  { label: "Garage", href: "#story" },
+  { label: "Service Menu", href: "#services" },
+  { label: "Restored", href: "#beforeafter" },
+  { label: "The Lot", href: "#gallery" },
+  { label: "Word On The Street", href: "#reviews" },
+  { label: "Find Us", href: "#find" },
+];
+
+const services = [
+  {
+    name: "Express Maintenance Detail",
+    price: "149",
+    desc: "Exterior wash, decon, interior vacuum & wipe-down, tire dressing.",
+    tag: "Quick Pit Stop",
+  },
+  {
+    name: "Full Interior + Exterior",
+    price: "349",
+    desc: "Clay bar, single-stage polish, deep interior shampoo, glass & trim restoration.",
+    tag: "The Workhorse",
+  },
+  {
+    name: "Paint Correction — 2-Stage",
+    price: "699",
+    desc: "Swirl & scratch removal, gloss enhancement, panel-by-panel refinement.",
+    tag: "Most Popular",
+    featured: true,
+  },
+  {
+    name: "Ceramic Coating — 5 Year",
+    price: "1,299",
+    desc: "Full correction prep + Gtechniq/Modesta coating, hydrophobic finish, warranty.",
+    tag: "Show Shine",
+  },
+  {
+    name: "Lifetime Ceramic Package",
+    price: "2,499",
+    desc: "Multi-layer coating, wheels off, glass & trim coated, annual maintenance included.",
+    tag: "Forever Gloss",
+  },
+  {
+    name: "Paint Protection Film — Full Front",
+    price: "1,895",
+    desc: "XPEL self-healing film: hood, fenders, mirrors & bumper armored up.",
+    tag: "Armor Up",
+  },
+];
+
+const reviews = [
+  {
+    quote:
+      "Dropped off a 6-year-old daily and got back something that looked better than the showroom. The 2-stage correction is unreal.",
+    name: "Marcus D.",
+    car: "Audi S5",
+  },
+  {
+    quote:
+      "They coated my F-150 and walked me through every step. Water just rolls off it now. Worth every dollar.",
+    name: "Janelle R.",
+    car: "Ford F-150",
+  },
+  {
+    quote:
+      "Booked the lifetime ceramic on my GT-R. Professional, on time, and the finish is glass. These guys actually care.",
+    name: "Tony V.",
+    car: "Nissan GT-R",
+  },
+];
+
+const stats = [
+  { num: "12,400", label: "Cars Detailed" },
+  { num: "18", label: "Years On The Strip" },
+  { num: "Lifetime", label: "Coating Warranty" },
+  { num: "4.9★", label: "From 600+ Reviews" },
+];
+
+const process = [
+  { n: "01", t: "Inspect", d: "Paint depth read & swirl-finder lamp under the hood." },
+  { n: "02", t: "Correct", d: "Panel-by-panel polish to kill scratches & haze." },
+  { n: "03", t: "Protect", d: "Ceramic or film laid down for that bead-and-roll finish." },
+  { n: "04", t: "Inspect", d: "Final sign-off under the lights before keys go back." },
+];
+
+const gallery = [
+  { seed: "hotrod14", label: "'68 Restomod" },
+  { seed: "chrome07", label: "Bumper Buff" },
+  { seed: "truckbed22", label: "Lifted F-150" },
+  { seed: "wheelcap9", label: "Wheels Off" },
+  { seed: "beadhood3", label: "Beads For Days" },
+  { seed: "classic55", label: "Showroom Cruiser" },
+];
+
+const partners = ["XPEL", "Modesta", "Gtechniq", "Ceramic Pro", "Route 66 Certified"];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Apex & Iron Motor Co. — Retro Auto Detailing & Ceramic Coating · Calgary</title>
+    <meta
+      name="description"
+      content="Calgary's retro detail shop. Paint correction, ceramic coating & XPEL film for hot rods, classics & dailies. Showroom finish, street-tough protection."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto+Slab:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="topbar" id="top">
+      <div class="wrap bar">
+        <a class="brand" href="#top" aria-label="Apex and Iron Motor Co. home">
+          <span class="brand-badge" aria-hidden="true">A&amp;I</span>
+          <span class="brand-text">Apex&nbsp;&amp;&nbsp;Iron<small>Motor&nbsp;Co.</small></span>
+        </a>
+        <nav class="desk-nav" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="call-pill" href="tel:+14035550182">Call (403) 555-0182</a>
+        <button class="burger" aria-label="Open menu" aria-expanded="false" id="burger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="m-call" href="tel:+14035550182">Call The Garage</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-photo" aria-hidden="true"></div>
+        <div class="hero-grain" aria-hidden="true"></div>
+        <div class="wrap hero-inner">
+          <p class="kicker"><span class="star">★</span> Est. 2008 · Bay 4, Centre Ave NE</p>
+          <h1 class="hero-title">Showroom Finish.<br /><em>Street-Tough</em> Protection.</h1>
+          <p class="hero-sub">
+            Detailing, ceramic coating &amp; paint protection — done right the first time. Old-school
+            craft, new-school science, on every car that rolls through the bay.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#services">Get A Quote</a>
+            <a class="btn btn-ghost" href="tel:+14035550182">(403) 555-0182</a>
+          </div>
+          <div class="hero-badges">
+            {partners.map((p) => <span class="badge">{p}</span>)}
+          </div>
+        </div>
+        <div class="hero-plate" aria-hidden="true">
+          <span>AB · APEX-66</span>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          {Array.from({ length: 2 }).map(() => (
+            <span class="marquee-row">
+              Paint Correction <i>◆</i> Ceramic Coating <i>◆</i> XPEL Film <i>◆</i> Hot Rod Resto
+              <i>◆</i> Wheels Off Detail <i>◆</i> Bead &amp; Roll <i>◆</i>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- STORY -->
+      <section class="story" id="story">
+        <div class="wrap split">
+          <div class="story-img" data-reveal>
+            <img
+              src="https://picsum.photos/seed/apexgarage88/760/620"
+              alt="The Apex & Iron detailing bay, polishing a classic car under warm shop lights"
+              loading="lazy"
+            />
+            <span class="story-tag">The Bay Since '08</span>
+          </div>
+          <div class="story-copy" data-reveal>
+            <p class="eyebrow">Calgary's Detail &amp; Protection Garage</p>
+            <h2>We Don't Wash Cars.<br />We <span class="ink">Transform</span> Them.</h2>
+            <p>
+              Tucked off Centre Avenue, our shop runs on the same idea it did on day one: treat every
+              fender like it's headed to a Route&nbsp;66 cruise. We blend the patience of an old-school
+              hand-polish with paint depth gauges, swirl lamps and certified coatings.
+            </p>
+            <p>
+              Hot rod, lifted truck, or a daily that's seen a few winters — it leaves here with a
+              finish that beads water and turns heads.
+            </p>
+            <ul class="story-checks">
+              <li>Certified XPEL &amp; Gtechniq installers</li>
+              <li>Warranty-backed ceramic, in writing</li>
+              <li>No upsells — just the work the paint needs</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="stats" aria-label="Shop statistics">
+        <div class="wrap stat-grid">
+          {stats.map((s) => (
+            <div class="stat">
+              <span class="stat-num">{s.num}</span>
+              <span class="stat-label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="services" id="services">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="eyebrow">The Service Menu</p>
+            <h2>Pick Your Pump.</h2>
+            <p class="sec-lead">Transparent prices, no fine print. Every job starts with a free walk-around.</p>
+          </header>
+          <div class="svc-grid">
+            {services.map((s) => (
+              <article class={`svc ${s.featured ? "svc--feat" : ""}`}>
+                <span class={`svc-tag ${s.featured ? "svc-tag--feat" : ""}`}>{s.tag}</span>
+                <h3>{s.name}</h3>
+                <p class="svc-desc">{s.desc}</p>
+                <div class="svc-foot">
+                  <span class="svc-price"><small>from</small>${s.price}</span>
+                  <a class="svc-book" href="#find" aria-label={`Book ${s.name}`}>Book →</a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- BEFORE / AFTER -->
+      <section class="ba" id="beforeafter">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="eyebrow on-dark">Proof In The Paint</p>
+            <h2 class="on-dark">Slide To See The Resto.</h2>
+          </header>
+          <div class="ba-stage" id="baStage">
+            <img
+              class="ba-after"
+              src="https://picsum.photos/seed/aftershine41/1200/700"
+              alt="After: glossy corrected paint with deep reflections"
+              loading="lazy"
+            />
+            <div class="ba-before" id="baBefore">
+              <img
+                src="https://picsum.photos/seed/beforedull41/1200/700?grayscale"
+                alt="Before: dull, swirled and faded paint"
+                loading="lazy"
+              />
+              <span class="ba-pill ba-pill--b">Before</span>
+            </div>
+            <span class="ba-pill ba-pill--a">After</span>
+            <div class="ba-handle" id="baHandle" role="presentation">
+              <span class="ba-knob" aria-hidden="true">◄ ►</span>
+            </div>
+            <label class="sr-only" for="baRange">Reveal before and after</label>
+            <input id="baRange" class="ba-range" type="range" min="0" max="100" value="50" />
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="process" id="process">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="eyebrow">Under The Hood</p>
+            <h2>Inspect → Correct → Protect → Inspect</h2>
+          </header>
+          <ol class="proc-line">
+            {process.map((p) => (
+              <li class="proc-step" data-reveal>
+                <span class="proc-n">{p.n}</span>
+                <h3>{p.t}</h3>
+                <p>{p.d}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="gallery" id="gallery">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="eyebrow">Out On The Lot</p>
+            <h2>Recent Work.</h2>
+            <p class="sec-lead">Drag sideways — real cars that rolled out gleaming.</p>
+          </header>
+        </div>
+        <div class="scroller" tabindex="0" aria-label="Gallery, scroll horizontally">
+          {gallery.map((g) => (
+            <figure class="shot">
+              <img src={`https://picsum.photos/seed/${g.seed}/560/680`} alt={g.label} loading="lazy" />
+              <figcaption>{g.label}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section class="reviews" id="reviews">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="eyebrow">Word On The Street</p>
+            <h2>4.9★ &amp; Climbing.</h2>
+          </header>
+          <div class="rev-grid">
+            {reviews.map((r) => (
+              <figure class="rev">
+                <div class="rev-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote>“{r.quote}”</blockquote>
+                <figcaption>
+                  <strong>{r.name}</strong>
+                  <span>{r.car}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- FIND US / CTA -->
+      <section class="find" id="find">
+        <div class="wrap find-grid">
+          <div class="find-copy">
+            <p class="eyebrow on-dark">Roll On In</p>
+            <h2 class="on-dark">Book A Bay.</h2>
+            <p class="find-lead">
+              Free walk-around quotes. Drop-off or wait in the lounge with a coffee — your call.
+            </p>
+            <ul class="nap">
+              <li>
+                <span class="nap-k">Garage</span>
+                <span>Bay 4, 2210 Centre Avenue NE,<br />Calgary, AB T2E 0A6</span>
+              </li>
+              <li>
+                <span class="nap-k">Phone</span>
+                <a href="tel:+14035550182">(403) 555-0182</a>
+              </li>
+              <li>
+                <span class="nap-k">Email</span>
+                <a href="mailto:book@apexiron.ca">book@apexiron.ca</a>
+              </li>
+              <li>
+                <span class="nap-k">Hours</span>
+                <span>Mon–Fri 8a–6p · Sat 9a–4p<br />Sun closed (drop-off by appt.)</span>
+              </li>
+            </ul>
+            <div class="find-cta">
+              <a class="btn btn-primary" href="tel:+14035550182">Call The Garage</a>
+              <a class="btn btn-ghost on-dark" href="mailto:book@apexiron.ca">Email A Quote</a>
+            </div>
+          </div>
+          <div class="find-map" aria-hidden="true">
+            <img
+              src="https://picsum.photos/seed/centreavemap/640/720?grayscale"
+              alt=""
+              loading="lazy"
+            />
+            <span class="map-pin">Bay 4 · Centre Ave NE</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap foot-grid">
+        <div>
+          <span class="brand-badge" aria-hidden="true">A&amp;I</span>
+          <p class="foot-brand">Apex &amp; Iron Motor Co.</p>
+          <p class="foot-fine">Detailing · Ceramic · Paint Protection · Calgary, AB</p>
+        </div>
+        <nav class="foot-nav" aria-label="Footer">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <p class="foot-copy">© 2026 Apex &amp; Iron Motor Co. · Built tough on Centre Ave.</p>
+      </div>
+    </footer>
+
+    <!-- STICKY BOOKING BAR -->
+    <div class="sticky-bar" id="stickyBar">
+      <span class="sb-text">Ready to roll? <b>Showroom finish from $149.</b></span>
+      <div class="sb-btns">
+        <a class="btn btn-ghost on-dark sb-call" href="tel:+14035550182">Call</a>
+        <a class="btn btn-primary" href="#find">Book Now</a>
+      </div>
+    </div>
+
+    <style is:global>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      :root {
+        --bg: #f4ead5;
+        --fg: #241c14;
+        --primary: #a8331f;
+        --primary-fg: #f4ead5;
+        --accent: #1f6f6b;
+        --muted: #e6d6b8;
+        --border: #cbb78f;
+        --ink: #3a2c1d;
+        --shadow: 6px 6px 0 var(--fg);
+      }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        * { animation: none !important; transition: none !important; }
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Roboto Slab", Georgia, serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; text-decoration: none; }
+    </style>
+
+    <style>
+      .wrap { width: min(1180px, 92vw); margin-inline: auto; }
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+      }
+      .skip {
+        position: absolute; left: -999px; top: 0; z-index: 200;
+        background: var(--fg); color: var(--bg); padding: .7rem 1rem; font-weight: 600;
+      }
+      .skip:focus { left: 0; }
+      :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+      h1, h2, h3, .brand-text, .stat-num, .svc-price, .marquee, .hero-plate {
+        font-family: "Alfa Slab One", "Roboto Slab", serif; font-weight: 400;
+        letter-spacing: .3px; line-height: 1.04;
+      }
+      .eyebrow {
+        font-family: "Roboto Slab", serif; font-weight: 600; text-transform: uppercase;
+        letter-spacing: .22em; font-size: .72rem; color: var(--primary); margin-bottom: .7rem;
+      }
+      .eyebrow.on-dark { color: #e6b8a4; }
+      .ink { color: var(--primary); }
+      .sec-head { max-width: 640px; margin: 0 auto 2.6rem; text-align: center; }
+      .sec-head h2 { font-size: clamp(1.9rem, 5vw, 3.1rem); }
+      .sec-head h2.on-dark, .eyebrow.on-dark + h2 { }
+      .on-dark { color: var(--bg); }
+      .sec-lead { margin-top: .9rem; color: var(--ink); font-size: 1.02rem; }
+
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 48px; padding: 0 1.5rem; font-family: "Roboto Slab", serif;
+        font-weight: 600; text-transform: uppercase; letter-spacing: .05em; font-size: .9rem;
+        border: 3px solid var(--fg); cursor: pointer; transition: transform .15s, box-shadow .15s;
+      }
+      .btn-primary { background: var(--primary); color: var(--primary-fg); box-shadow: var(--shadow); }
+      .btn-primary:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--fg); }
+      .btn-ghost { background: transparent; color: var(--fg); }
+      .btn-ghost:hover { background: var(--fg); color: var(--bg); }
+      .btn-ghost.on-dark { color: var(--bg); border-color: var(--bg); }
+      .btn-ghost.on-dark:hover { background: var(--bg); color: var(--fg); }
+
+      /* ---- TOPBAR ---- */
+      .topbar { position: sticky; top: 0; z-index: 100; background: var(--bg);
+        border-bottom: 3px solid var(--fg); }
+      .bar { display: flex; align-items: center; gap: 1rem; height: 72px; }
+      .brand { display: flex; align-items: center; gap: .65rem; margin-right: auto; }
+      .brand-badge {
+        display: grid; place-items: center; width: 42px; height: 42px; flex: none;
+        background: var(--primary); color: var(--primary-fg); border: 2px solid var(--fg);
+        border-radius: 50%; font-family: "Alfa Slab One", serif; font-size: .82rem;
+        box-shadow: 2px 2px 0 var(--fg);
+      }
+      .brand-text { display: flex; flex-direction: column; font-size: 1.02rem; line-height: 1; }
+      .brand-text small { font-family: "Roboto Slab", serif; font-weight: 600;
+        font-size: .58rem; letter-spacing: .28em; color: var(--ink); margin-top: 3px; }
+      .desk-nav { display: none; gap: 1.4rem; }
+      .desk-nav a { font-weight: 600; font-size: .82rem; text-transform: uppercase;
+        letter-spacing: .04em; position: relative; padding: .3rem 0; }
+      .desk-nav a::after { content: ""; position: absolute; left: 0; bottom: -2px; height: 2px;
+        width: 0; background: var(--primary); transition: width .2s; }
+      .desk-nav a:hover::after { width: 100%; }
+      .call-pill { display: none; }
+      .burger { display: flex; flex-direction: column; gap: 5px; background: none; border: 0;
+        padding: 8px; cursor: pointer; }
+      .burger span { width: 26px; height: 3px; background: var(--fg); transition: .2s; }
+      .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+      .mobile-nav { display: none; flex-direction: column; padding: .5rem 4vw 1.2rem;
+        border-bottom: 3px solid var(--fg); background: var(--muted); }
+      .mobile-nav.open { display: flex; }
+      .mobile-nav a { padding: .85rem 0; font-weight: 600; text-transform: uppercase;
+        letter-spacing: .05em; border-bottom: 1px solid var(--border); }
+      .m-call { color: var(--primary) !important; }
+
+      @media (min-width: 940px) {
+        .desk-nav { display: flex; }
+        .call-pill { display: inline-flex; align-items: center; min-height: 44px;
+          padding: 0 1.1rem; background: var(--fg); color: var(--bg); font-weight: 600;
+          font-size: .82rem; border-radius: 999px; }
+        .call-pill:hover { background: var(--primary); }
+        .burger { display: none; }
+      }
+
+      /* ---- HERO ---- */
+      .hero { position: relative; overflow: hidden; padding: clamp(3.5rem, 9vw, 7rem) 0 4.5rem;
+        border-bottom: 3px solid var(--fg); }
+      .hero-photo { position: absolute; inset: 0; z-index: 0;
+        background: url("https://picsum.photos/seed/route66car/1600/1000") center/cover; }
+      .hero-photo::after { content: ""; position: absolute; inset: 0;
+        background: linear-gradient(105deg, var(--bg) 30%, rgba(244,234,213,.78) 52%, rgba(168,51,31,.34) 100%);
+        mix-blend-mode: multiply; }
+      .hero-photo::before { content: ""; position: absolute; inset: 0;
+        background: radial-gradient(120% 80% at 50% 50%, transparent 55%, rgba(36,28,20,.5));
+        z-index: 1; }
+      .hero-grain { position: absolute; inset: 0; z-index: 1; opacity: .14; pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+      .hero-inner { position: relative; z-index: 2; max-width: 760px; }
+      .kicker { display: inline-flex; align-items: center; gap: .5rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: .12em; font-size: .76rem;
+        background: var(--muted); border: 2px solid var(--fg); padding: .4rem .85rem;
+        margin-bottom: 1.4rem; box-shadow: 3px 3px 0 var(--fg); }
+      .kicker .star { color: var(--primary); }
+      .hero-title { font-size: clamp(2.5rem, 8.5vw, 5.4rem); text-transform: uppercase; }
+      .hero-title em { font-style: normal; color: var(--primary);
+        -webkit-text-stroke: 2px var(--fg); text-shadow: 4px 4px 0 var(--fg); }
+      .hero-sub { margin: 1.5rem 0 2rem; font-size: clamp(1rem, 2.4vw, 1.2rem); max-width: 560px; }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: .9rem; }
+      .hero-badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2.2rem; }
+      .badge { font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em;
+        padding: .35rem .7rem; background: rgba(31,111,107,.14); color: var(--accent);
+        border: 1.5px solid var(--accent); border-radius: 4px; }
+      .hero-plate { position: absolute; right: -10px; bottom: 26px; z-index: 2;
+        background: var(--accent); color: #fff; border: 3px solid var(--fg);
+        padding: .5rem 1.4rem; transform: rotate(-4deg); box-shadow: var(--shadow);
+        font-size: 1.1rem; letter-spacing: .12em; display: none; }
+      @media (min-width: 720px) { .hero-plate { display: block; } }
+
+      /* ---- MARQUEE ---- */
+      .marquee { background: var(--primary); color: var(--primary-fg); overflow: hidden;
+        border-bottom: 3px solid var(--fg); padding: .7rem 0; white-space: nowrap; }
+      .marquee-track { display: inline-flex; animation: scroll 26s linear infinite; }
+      .marquee-row { font-size: 1.15rem; text-transform: uppercase; padding-right: 1rem; }
+      .marquee-row i { color: var(--bg); font-style: normal; margin: 0 .3rem; opacity: .7; }
+      @keyframes scroll { to { transform: translateX(-50%); } }
+      .marquee:hover .marquee-track { animation-play-state: paused; }
+
+      /* ---- STORY ---- */
+      .story { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+      .split { display: grid; gap: 2.5rem; align-items: center; }
+      @media (min-width: 860px) { .split { grid-template-columns: 1fr 1.05fr; gap: 3.5rem; } }
+      .story-img { position: relative; }
+      .story-img img { width: 100%; aspect-ratio: 5/4; object-fit: cover;
+        border: 3px solid var(--fg); box-shadow: var(--shadow); filter: sepia(.25) saturate(1.1); }
+      .story-tag { position: absolute; left: -8px; top: 18px; background: var(--fg); color: var(--bg);
+        padding: .4rem .9rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em;
+        font-size: .72rem; transform: rotate(-3deg); }
+      .story-copy h2 { font-size: clamp(1.9rem, 5vw, 3rem); margin-bottom: 1.2rem; text-transform: uppercase; }
+      .story-copy p { margin-bottom: 1rem; }
+      .story-checks { list-style: none; margin-top: 1.4rem; display: grid; gap: .7rem; }
+      .story-checks li { position: relative; padding-left: 2rem; font-weight: 500; }
+      .story-checks li::before { content: "✓"; position: absolute; left: 0; top: -1px;
+        width: 1.4rem; height: 1.4rem; display: grid; place-items: center; font-size: .8rem;
+        background: var(--accent); color: #fff; border-radius: 50%; }
+
+      /* ---- STATS ---- */
+      .stats { background: var(--fg); color: var(--bg); border-block: 3px solid var(--fg); }
+      .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr);
+        padding: 2.6rem 0; gap: 1.6rem; text-align: center; }
+      @media (min-width: 760px) { .stat-grid { grid-template-columns: repeat(4, 1fr); } }
+      .stat-num { display: block; font-size: clamp(1.8rem, 5vw, 2.7rem); color: #f0c14a; }
+      .stat-label { font-size: .76rem; text-transform: uppercase; letter-spacing: .14em;
+        color: var(--muted); }
+
+      /* ---- SERVICES ---- */
+      .services { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+      .svc-grid { display: grid; gap: 1.4rem; grid-template-columns: 1fr; }
+      @media (min-width: 640px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (min-width: 1000px) { .svc-grid { grid-template-columns: repeat(3, 1fr); } }
+      .svc { position: relative; overflow: hidden; background: var(--muted);
+        border: 3px solid var(--fg); padding: 1.7rem 1.5rem 1.4rem; display: flex;
+        flex-direction: column; transition: transform .18s, box-shadow .18s; }
+      .svc::before { content: ""; position: absolute; top: 0; left: -60%; width: 50%; height: 100%;
+        background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent);
+        transform: skewX(-18deg); transition: left .6s; }
+      .svc:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+      .svc:hover::before { left: 130%; }
+      .svc--feat { background: var(--primary); color: var(--primary-fg); box-shadow: var(--shadow); }
+      .svc--feat .svc-desc { color: rgba(244,234,213,.85); }
+      .svc-tag { align-self: flex-start; font-size: .66rem; font-weight: 600; text-transform: uppercase;
+        letter-spacing: .12em; background: var(--bg); border: 2px solid var(--fg);
+        padding: .25rem .6rem; margin-bottom: 1rem; }
+      .svc-tag--feat { background: #f0c14a; }
+      .svc h3 { font-size: 1.18rem; margin-bottom: .6rem; line-height: 1.15; }
+      .svc-desc { font-size: .92rem; color: var(--ink); flex: 1; margin-bottom: 1.3rem; }
+      .svc-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        border-top: 2px solid currentColor; padding-top: .9rem; }
+      .svc-price { font-size: 1.8rem; }
+      .svc-price small { font-family: "Roboto Slab", serif; font-size: .62rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: .1em; display: block; opacity: .7; }
+      .svc-book { font-weight: 600; text-transform: uppercase; letter-spacing: .05em; font-size: .82rem;
+        white-space: nowrap; }
+      .svc-book:hover { color: var(--accent); }
+      .svc--feat .svc-book:hover { color: #f0c14a; }
+
+      /* ---- BEFORE / AFTER ---- */
+      .ba { background: var(--fg); color: var(--bg); padding: clamp(3.5rem, 8vw, 6rem) 0; }
+      .ba-stage { position: relative; max-width: 960px; margin: 0 auto; border: 3px solid var(--bg);
+        box-shadow: 8px 8px 0 var(--primary); user-select: none; overflow: hidden; aspect-ratio: 12/7; }
+      .ba-stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .ba-before { position: absolute; inset: 0; width: 50%; overflow: hidden; border-right: 3px solid var(--bg); }
+      .ba-before img { width: auto; min-width: 960px; max-width: none;
+        height: 100%; left: 0; }
+      .ba-pill { position: absolute; top: 14px; z-index: 4; font-weight: 600; text-transform: uppercase;
+        letter-spacing: .12em; font-size: .7rem; padding: .3rem .7rem; border: 2px solid var(--bg); }
+      .ba-pill--b { left: 14px; background: var(--fg); color: var(--bg); }
+      .ba-pill--a { right: 14px; background: var(--primary); color: var(--bg); }
+      .ba-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: var(--bg);
+        z-index: 5; transform: translateX(-50%); pointer-events: none; }
+      .ba-knob { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        width: 46px; height: 46px; display: grid; place-items: center; background: var(--primary);
+        color: var(--bg); border: 3px solid var(--bg); border-radius: 50%; font-size: .7rem;
+        letter-spacing: -1px; }
+      .ba-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0;
+        cursor: ew-resize; z-index: 6; }
+
+      /* ---- PROCESS ---- */
+      .process { padding: clamp(3.5rem, 8vw, 6rem) 0; background: var(--muted);
+        border-block: 3px solid var(--fg); }
+      .proc-line { list-style: none; display: grid; gap: 1.4rem; grid-template-columns: 1fr; counter-reset: p; }
+      @media (min-width: 720px) { .proc-line { grid-template-columns: repeat(4, 1fr); } }
+      .proc-step { background: var(--bg); border: 3px solid var(--fg); padding: 1.6rem 1.3rem;
+        position: relative; }
+      .proc-n { font-family: "Alfa Slab One", serif; font-size: 2rem; color: var(--primary);
+        line-height: 1; display: block; margin-bottom: .6rem; }
+      .proc-step h3 { font-size: 1.2rem; margin-bottom: .4rem; text-transform: uppercase; }
+      .proc-step p { font-size: .9rem; color: var(--ink); }
+
+      /* ---- GALLERY ---- */
+      .gallery { padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 3rem); }
+      .scroller { display: flex; gap: 1.2rem; overflow-x: auto; padding: .5rem 4vw 1.5rem;
+        scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+      .scroller::-webkit-scrollbar { height: 8px; }
+      .scroller::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; }
+      .shot { flex: 0 0 78vw; max-width: 300px; scroll-snap-align: center; position: relative; }
+      @media (min-width: 700px) { .shot { flex-basis: 280px; } }
+      .shot img { width: 100%; aspect-ratio: 5/6; object-fit: cover; border: 3px solid var(--fg);
+        box-shadow: var(--shadow); filter: sepia(.22) contrast(1.05); transition: filter .3s; }
+      .shot:hover img { filter: sepia(0) contrast(1.08); }
+      .shot figcaption { position: absolute; left: 12px; bottom: 22px; background: var(--fg);
+        color: var(--bg); padding: .3rem .7rem; font-weight: 600; font-size: .74rem;
+        text-transform: uppercase; letter-spacing: .08em; }
+
+      /* ---- REVIEWS ---- */
+      .reviews { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+      .rev-grid { display: grid; gap: 1.4rem; grid-template-columns: 1fr; }
+      @media (min-width: 800px) { .rev-grid { grid-template-columns: repeat(3, 1fr); } }
+      .rev { background: var(--muted); border: 3px solid var(--fg); padding: 1.7rem 1.5rem;
+        box-shadow: 4px 4px 0 var(--fg); display: flex; flex-direction: column; }
+      .rev-stars { color: var(--primary); font-size: 1.1rem; letter-spacing: 2px; margin-bottom: .9rem; }
+      .rev blockquote { font-size: 1rem; flex: 1; margin-bottom: 1.2rem; }
+      .rev figcaption { display: flex; flex-direction: column; border-top: 2px solid var(--fg);
+        padding-top: .9rem; }
+      .rev figcaption strong { font-weight: 600; }
+      .rev figcaption span { font-size: .82rem; color: var(--accent); text-transform: uppercase;
+        letter-spacing: .08em; }
+
+      /* ---- FIND ---- */
+      .find { background: var(--accent); color: var(--bg); padding: clamp(3.5rem, 8vw, 6rem) 0;
+        border-block: 3px solid var(--fg); }
+      .find-grid { display: grid; gap: 2.5rem; align-items: center; }
+      @media (min-width: 880px) { .find-grid { grid-template-columns: 1.1fr 1fr; gap: 3.5rem; } }
+      .find-copy h2 { font-size: clamp(2rem, 6vw, 3.4rem); text-transform: uppercase; }
+      .find-lead { margin: 1rem 0 1.6rem; font-size: 1.05rem; max-width: 460px; }
+      .nap { list-style: none; display: grid; gap: 1rem; margin-bottom: 1.8rem; }
+      .nap li { display: grid; grid-template-columns: 90px 1fr; gap: .8rem; align-items: start;
+        border-bottom: 1px solid rgba(244,234,213,.3); padding-bottom: 1rem; }
+      .nap-k { font-weight: 600; text-transform: uppercase; letter-spacing: .1em; font-size: .72rem;
+        color: #f0c14a; padding-top: 3px; }
+      .nap a:hover { text-decoration: underline; }
+      .find-cta { display: flex; flex-wrap: wrap; gap: .9rem; }
+      .find-map { position: relative; }
+      .find-map img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border: 3px solid var(--fg);
+        box-shadow: 8px 8px 0 var(--fg); filter: sepia(.3) hue-rotate(120deg) saturate(.8); }
+      .map-pin { position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%);
+        background: var(--primary); color: var(--bg); border: 3px solid var(--bg); padding: .45rem .9rem;
+        font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .06em;
+        box-shadow: 3px 3px 0 var(--fg); white-space: nowrap; }
+
+      /* ---- FOOT ---- */
+      .foot { background: var(--fg); color: var(--bg); padding: 2.8rem 0 6rem; }
+      .foot-grid { display: grid; gap: 1.8rem; align-items: center; }
+      @media (min-width: 760px) { .foot-grid { grid-template-columns: 1fr auto 1fr; align-items: center; } }
+      .foot-brand { font-family: "Alfa Slab One", serif; font-size: 1.2rem; margin-top: .6rem; }
+      .foot-fine { font-size: .8rem; color: var(--muted); margin-top: .3rem; }
+      .foot-nav { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; justify-content: center; }
+      .foot-nav a { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; }
+      .foot-nav a:hover { color: #f0c14a; }
+      .foot-copy { font-size: .78rem; color: var(--muted); text-align: right; }
+      @media (max-width: 759px) { .foot-copy { text-align: left; } }
+
+      /* ---- STICKY BAR ---- */
+      .sticky-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+        background: var(--fg); color: var(--bg); border-top: 3px solid var(--primary);
+        display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        padding: .7rem 4vw; transform: translateY(120%); transition: transform .3s; }
+      .sticky-bar.show { transform: translateY(0); }
+      .sb-text { font-size: .85rem; }
+      .sb-text b { color: #f0c14a; }
+      .sb-btns { display: flex; gap: .6rem; flex: none; }
+      .sb-btns .btn { min-height: 44px; padding: 0 1.1rem; font-size: .8rem; }
+      .sb-call { display: none; }
+      @media (min-width: 560px) { .sb-call { display: inline-flex; } }
+      @media (max-width: 420px) { .sb-text { display: none; } .sb-btns { width: 100%; }
+        .sb-btns .btn { flex: 1; } }
+
+      /* ---- REVEAL ---- */
+      [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .6s, transform .6s; }
+      [data-reveal].in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) { [data-reveal] { opacity: 1; transform: none; } }
+    </style>
+
+    <script>
+      // Mobile nav
+      const burger = document.getElementById("burger");
+      const mnav = document.getElementById("mobileNav");
+      burger?.addEventListener("click", () => {
+        const open = mnav.classList.toggle("open");
+        burger.setAttribute("aria-expanded", String(open));
+      });
+      mnav?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          mnav.classList.remove("open");
+          burger.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      // Scroll reveal
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("in")),
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+
+      // Before/after slider
+      const range = document.getElementById("baRange");
+      const before = document.getElementById("baBefore");
+      const handle = document.getElementById("baHandle");
+      const sync = (v) => {
+        before.style.width = v + "%";
+        handle.style.left = v + "%";
+      };
+      range?.addEventListener("input", (e) => sync(e.target.value));
+      sync(50);
+
+      // Sticky booking bar after hero
+      const bar = document.getElementById("stickyBar");
+      const onScroll = () => {
+        if (window.scrollY > 700) bar.classList.add("show");
+        else bar.classList.remove("show");
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    </script>
+  </body>
+</html>

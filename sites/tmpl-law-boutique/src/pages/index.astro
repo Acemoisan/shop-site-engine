@@ -1,0 +1,494 @@
+---
+// Halloran & Vance LLP — boutique law firm landing template (self-contained)
+const nav = [
+  { label: "Practice", href: "#practice" },
+  { label: "Our Firm", href: "#firm" },
+  { label: "Results", href: "#results" },
+  { label: "Voices", href: "#voices" },
+  { label: "Contact", href: "#contact" },
+];
+
+const practice = [
+  { name: "Personal Injury", price: "No fee unless we win", note: "Free case review", seed: "law-pi" },
+  { name: "Family Law & Divorce", price: "Consultation $250", note: "Applied to retainer", seed: "law-fam" },
+  { name: "Estate Planning & Wills", price: "Flat-fee from $850", note: "Will package", seed: "law-est" },
+  { name: "Real Estate & Conveyancing", price: "Closings from $1,200", note: "Residential", seed: "law-re" },
+  { name: "Business Disputes", price: "Retainer from $5,000", note: "Commercial litigation", seed: "law-biz" },
+  { name: "Wrongful Dismissal", price: "Free 30-min assessment", note: "Employment", seed: "law-emp" },
+];
+
+const stats = [
+  { figure: "$48M+", label: "Recovered for clients" },
+  { figure: "1,900+", label: "Cases resolved" },
+  { figure: "32", label: "Years serving Calgary" },
+  { figure: "98%", label: "Client satisfaction" },
+];
+
+const voices = [
+  { quote: "Halloran & Vance treated my injury claim like it was the only case that mattered. They recovered far more than I expected.", name: "Marcus D.", place: "Calgary" },
+  { quote: "Compassionate through a hard divorce, and relentless when it counted. I always knew where I stood.", name: "Priya S.", place: "Airdrie" },
+  { quote: "Clear advice, fair fees, and a will done right the first time. I send every colleague to them.", name: "Robert L.", place: "Cochrane" },
+];
+
+const process = [
+  { n: "01", title: "Free consultation", body: "We listen first. A confidential conversation about your situation, with no obligation." },
+  { n: "02", title: "Case strategy", body: "A clear, plainspoken plan — what we'll pursue, the likely path, and honest expectations." },
+  { n: "03", title: "Representation", body: "Two senior attorneys on every file. You speak with the lawyer doing the work, always." },
+  { n: "04", title: "Resolution", body: "We push for the outcome you deserve and keep you informed at every turn." },
+];
+
+const team = [
+  { name: "Eleanor Halloran", role: "Founding Partner — Trial Advocacy", cred: "King's Counsel · 28 yrs", seed: "atty-eleanor" },
+  { name: "James Vance", role: "Partner — Family & Estates", cred: "LL.M. · 21 yrs", seed: "atty-james" },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Halloran &amp; Vance LLP — Calgary Trial Attorneys</title>
+  <meta name="description" content="Halloran & Vance LLP — boutique Calgary law firm. Personal injury, family, estates and business disputes. Warm, human counsel with 32 years in the courtroom. Free consultation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="mark" href="#top" aria-label="Halloran and Vance, home">
+        <span class="mono" aria-hidden="true">H<span class="amp">&amp;</span>V</span>
+        <span class="mark-text">Halloran <em>&amp;</em> Vance <span>LLP</span></span>
+      </a>
+      <nav class="links" aria-label="Primary">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      </nav>
+      <div class="nav-cta">
+        <a class="phone" href="tel:+14035550182">(403) 555-0182</a>
+        <a class="btn" href="#contact">Free Consultation</a>
+      </div>
+      <button class="burger" aria-label="Menu" aria-expanded="false" id="burger"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="mobile" id="mobile" aria-label="Mobile">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      <a class="phone" href="tel:+14035550182">Call (403) 555-0182</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-photo" role="img" aria-label="Warm, candid portrait of attorneys in a sunlit office"></div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Calgary's advocates for what matters most</p>
+          <h1>When the stakes are high, <em>experience matters.</em></h1>
+          <p class="lede">Halloran &amp; Vance has represented Calgarians in personal injury, family, and business disputes for over thirty years. Free, confidential consultation — and a lawyer who answers the phone.</p>
+          <div class="hero-actions">
+            <a class="btn big" href="#contact">Book a free consultation</a>
+            <a class="btn ghost big" href="tel:+14035550182">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/></svg>
+              (403) 555-0182
+            </a>
+          </div>
+          <p class="fee">No fee unless we win · 32 years in the courtroom</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST MARQUEE -->
+    <div class="trust" aria-label="Recognitions">
+      <div class="marquee">
+        <div class="track">
+          {["Best Lawyers", "Super Lawyers", "AV-Preeminent", "Chambers", "Calgary Bar Association", "Law Society of Alberta", "Best Lawyers", "Super Lawyers", "AV-Preeminent", "Chambers", "Calgary Bar Association", "Law Society of Alberta"].map((b) => (
+            <span class="badge">{b}<span class="dot" aria-hidden="true">✦</span></span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- PRACTICE AREAS -->
+    <section class="section" id="practice">
+      <div class="wrap">
+        <header class="head">
+          <p class="kicker">What we do</p>
+          <h2>Counsel for the moments that matter</h2>
+          <p class="sub">Six focused practice areas, two senior lawyers on every file. Fees stated plainly, up front.</p>
+        </header>
+        <div class="cards">
+          {practice.map((p, i) => (
+            <a class="card reveal" href="#contact" style={`--i:${i}`}>
+              <div class="card-img" style={`background-image:url(https://picsum.photos/seed/${p.seed}/480/360)`} aria-hidden="true"></div>
+              <div class="card-body">
+                <h3>{p.name}</h3>
+                <p class="card-note">{p.note}</p>
+                <p class="card-price">{p.price}</p>
+                <span class="card-go">Discuss your matter <span aria-hidden="true">→</span></span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS BAND -->
+    <section class="stats" id="results" aria-label="Results">
+      <div class="wrap stats-grid">
+        {stats.map((s) => (
+          <div class="stat reveal">
+            <span class="stat-fig" data-fig={s.figure}>{s.figure}</span>
+            <span class="stat-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- THE FIRM / ATTORNEYS -->
+    <section class="section firm" id="firm">
+      <div class="wrap firm-grid">
+        <div class="firm-copy reveal">
+          <p class="kicker">Our firm</p>
+          <h2>Small by design. <em>Senior on every file.</em></h2>
+          <p>We built a boutique on a simple idea: you should always speak with the lawyer doing your work. No revolving associates, no being passed down a ladder. Just careful, human advocacy from people who have won before.</p>
+          <p>For three decades, Calgarians have trusted us with the hardest chapters of their lives — and the most consequential decisions of their businesses.</p>
+          <a class="btn ghost" href="#contact">Meet with us</a>
+        </div>
+        <div class="team">
+          {team.map((t) => (
+            <article class="bio reveal">
+              <div class="bio-photo" style={`background-image:url(https://picsum.photos/seed/${t.seed}/360/420)`} role="img" aria-label={`Portrait of ${t.name}`}></div>
+              <div class="bio-info">
+                <h3>{t.name}</h3>
+                <p class="bio-role">{t.role}</p>
+                <p class="bio-cred">{t.cred}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section process">
+      <div class="wrap">
+        <header class="head">
+          <p class="kicker">What to expect</p>
+          <h2>A clear path, from first call to resolution</h2>
+        </header>
+        <ol class="steps">
+          {process.map((s) => (
+            <li class="step reveal">
+              <span class="step-n">{s.n}</span>
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS SLIDER -->
+    <section class="section voices" id="voices">
+      <div class="wrap">
+        <header class="head">
+          <p class="kicker light">Client voices</p>
+          <h2 class="onbrand">In their own words</h2>
+        </header>
+        <div class="slider" id="slider">
+          <div class="slides" id="slides">
+            {voices.map((v) => (
+              <figure class="quote">
+                <span class="qmark" aria-hidden="true">&ldquo;</span>
+                <blockquote>{v.quote}</blockquote>
+                <figcaption>{v.name} <span>— {v.place}</span></figcaption>
+              </figure>
+            ))}
+          </div>
+          <div class="dots" id="dots" role="tablist" aria-label="Testimonials">
+            {voices.map((_, i) => (
+              <button class={i === 0 ? "dot-btn on" : "dot-btn"} data-i={i} role="tab" aria-label={`Testimonial ${i + 1}`}></button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / NAP -->
+    <section class="section contact" id="contact">
+      <div class="wrap contact-grid">
+        <div class="contact-copy reveal">
+          <p class="kicker">Free, confidential consultation</p>
+          <h2>Tell us what happened.</h2>
+          <p class="contact-lede">We'll listen, give you an honest read, and lay out the options — no obligation, no fee unless we win.</p>
+          <dl class="nap">
+            <div><dt>Visit</dt><dd>Suite 1400, 333 7th Avenue SW<br/>Calgary, AB T2P 2Z1</dd></div>
+            <div><dt>Call</dt><dd><a href="tel:+14035550182">(403) 555-0182</a><br/><small>After-hours line for urgent matters</small></dd></div>
+            <div><dt>Email</dt><dd><a href="mailto:intake@halloranvance.ca">intake@halloranvance.ca</a></dd></div>
+            <div><dt>Hours</dt><dd>Mon–Fri 8:30 AM – 5:30 PM<br/>Sat by appointment · Sun closed</dd></div>
+          </dl>
+          <a class="map-link" href="https://maps.google.com/?q=333+7th+Avenue+SW+Calgary" target="_blank" rel="noopener">View on map →</a>
+        </div>
+        <form class="form reveal" onsubmit="return false">
+          <label>Your name<input type="text" name="name" autocomplete="name" required /></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel" required /></label>
+          <label>Email<input type="email" name="email" autocomplete="email" /></label>
+          <label>How can we help?<textarea name="message" rows="4" placeholder="Briefly describe your matter…"></textarea></label>
+          <button class="btn big full" type="submit">Request my free consultation</button>
+          <p class="form-note">Your message is confidential. Submitting does not create a solicitor-client relationship.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap foot-grid">
+      <div>
+        <span class="mono foot-mono" aria-hidden="true">H<span class="amp">&amp;</span>V</span>
+        <p class="foot-name">Halloran &amp; Vance LLP — Trial Attorneys</p>
+        <p class="foot-addr">Suite 1400, 333 7th Avenue SW, Calgary, AB T2P 2Z1 · <a href="tel:+14035550182">(403) 555-0182</a></p>
+      </div>
+      <p class="foot-fine">© 2026 Halloran &amp; Vance LLP. Decades in the courtroom. On your side.</p>
+    </div>
+  </footer>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LegalService",
+    "name": "Halloran & Vance LLP",
+    "telephone": "+1-403-555-0182",
+    "email": "intake@halloranvance.ca",
+    "address": { "@type": "PostalAddress", "streetAddress": "Suite 1400, 333 7th Avenue SW", "addressLocality": "Calgary", "addressRegion": "AB", "postalCode": "T2P 2Z1", "addressCountry": "CA" },
+    "areaServed": "Calgary",
+    "openingHours": "Mo-Fr 08:30-17:30"
+  })} />
+
+  <script>
+    const burger = document.getElementById('burger');
+    const mobile = document.getElementById('mobile');
+    burger?.addEventListener('click', () => {
+      const open = mobile.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+    mobile?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+      mobile.classList.remove('open');
+      burger?.setAttribute('aria-expanded', 'false');
+    }));
+
+    // scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.14 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // testimonial slider
+    const slides = document.getElementById('slides');
+    const dots = Array.from(document.querySelectorAll('.dot-btn'));
+    let idx = 0;
+    const go = (i) => {
+      idx = (i + dots.length) % dots.length;
+      slides.style.transform = `translateX(-${idx * 100}%)`;
+      dots.forEach((d, n) => d.classList.toggle('on', n === idx));
+    };
+    dots.forEach((d) => d.addEventListener('click', () => go(Number(d.dataset.i))));
+    let timer = setInterval(() => go(idx + 1), 5500);
+    const sl = document.getElementById('slider');
+    sl?.addEventListener('mouseenter', () => clearInterval(timer));
+    sl?.addEventListener('mouseleave', () => { timer = setInterval(() => go(idx + 1), 5500); });
+  </script>
+
+  <style is:global>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; } }
+    body { margin: 0; }
+  </style>
+
+  <style>
+    :root {
+      --bg: #faf5ef;
+      --fg: #33231f;
+      --primary: #5a2a2c;
+      --primary-fg: #f7ece3;
+      --accent: #b08968;
+      --muted: #efe4d6;
+      --border: #e0d2c2;
+      --sans: "Mulish", system-ui, sans-serif;
+      --display: "Libre Caslon Display", Georgia, serif;
+      --radius: 4px;
+      --maxw: 1180px;
+    }
+    body { background: var(--bg); color: var(--fg); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.1rem, 4vw, 2.4rem); }
+    h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.08; letter-spacing: -0.01em; }
+    h1 em, h2 em { font-style: italic; color: var(--primary); }
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    .skip { position: absolute; left: -999px; top: 0; background: var(--primary); color: var(--primary-fg); padding: .7rem 1rem; z-index: 200; }
+    .skip:focus { left: 0; }
+    :focus-visible { outline: 2.5px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+    .mono { font-family: var(--display); font-weight: 400; letter-spacing: .02em; }
+    .amp { color: var(--accent); font-style: italic; }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 100; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-inner { display: flex; align-items: center; gap: 1.5rem; height: 72px; }
+    .mark { display: flex; align-items: center; gap: .65rem; text-decoration: none; }
+    .mark .mono { font-size: 1.5rem; line-height: 1; border: 1.5px solid var(--accent); padding: .28rem .42rem; border-radius: var(--radius); color: var(--primary); }
+    .mark-text { font-family: var(--display); font-size: 1.18rem; letter-spacing: .01em; }
+    .mark-text em { color: var(--accent); }
+    .mark-text span { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); vertical-align: middle; }
+    .links { display: flex; gap: 1.6rem; margin-left: auto; }
+    .links a { text-decoration: none; font-size: .82rem; letter-spacing: .04em; text-transform: uppercase; font-weight: 600; color: var(--fg); opacity: .78; transition: opacity .2s, color .2s; }
+    .links a:hover { opacity: 1; color: var(--primary); }
+    .nav-cta { display: flex; align-items: center; gap: 1rem; }
+    .phone { text-decoration: none; font-weight: 700; color: var(--primary); white-space: nowrap; }
+    .btn { display: inline-flex; align-items: center; gap: .5rem; background: var(--primary); color: var(--primary-fg); text-decoration: none; padding: .7rem 1.15rem; border-radius: var(--radius); font-weight: 700; font-size: .9rem; letter-spacing: .01em; border: 1px solid var(--primary); transition: transform .18s, background .2s, box-shadow .2s; min-height: 44px; }
+    .btn:hover { transform: translateY(-2px); background: color-mix(in srgb, var(--primary) 88%, #000); box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--primary) 70%, transparent); }
+    .btn.ghost { background: transparent; color: var(--primary); border-color: var(--accent); }
+    .btn.ghost:hover { background: var(--muted); box-shadow: none; }
+    .btn.big { padding: .95rem 1.5rem; font-size: .98rem; }
+    .btn.full { width: 100%; justify-content: center; }
+    .burger { display: none; background: none; border: 0; flex-direction: column; gap: 5px; padding: 10px; cursor: pointer; }
+    .burger span { width: 24px; height: 2px; background: var(--primary); display: block; transition: .25s; }
+    .mobile { display: none; flex-direction: column; gap: .2rem; padding: 0 clamp(1.1rem, 4vw, 2.4rem) 1rem; border-bottom: 1px solid var(--border); }
+    .mobile.open { display: flex; }
+    .mobile a { text-decoration: none; padding: .7rem 0; border-bottom: 1px solid var(--border); font-weight: 600; }
+    .mobile .phone { color: var(--primary); }
+
+    /* HERO */
+    .hero { position: relative; overflow: hidden; }
+    .hero-photo { position: absolute; inset: 0; background-image: linear-gradient(105deg, color-mix(in srgb, var(--bg) 92%, transparent) 0%, color-mix(in srgb, var(--bg) 55%, transparent) 50%, transparent 100%), url(https://picsum.photos/seed/law-hero-boutique/1600/1100); background-size: cover; background-position: center; filter: sepia(.22) saturate(1.05); }
+    .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, var(--bg) 100%); }
+    .hero-grid { position: relative; padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(3rem, 7vw, 5.5rem); }
+    .hero-copy { max-width: 660px; }
+    .eyebrow { font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin: 0 0 1rem; }
+    .hero h1 { font-size: clamp(2.5rem, 6.5vw, 4.6rem); margin: 0 0 1.3rem; }
+    .lede { font-size: clamp(1.05rem, 2vw, 1.25rem); max-width: 36em; color: color-mix(in srgb, var(--fg) 86%, transparent); margin: 0 0 1.8rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-bottom: 1.2rem; }
+    .fee { font-size: .9rem; font-weight: 600; color: var(--primary); letter-spacing: .02em; margin: 0; }
+
+    /* MARQUEE */
+    .trust { background: var(--primary); color: var(--primary-fg); overflow: hidden; border-block: 1px solid color-mix(in srgb, var(--primary) 60%, #000); }
+    .marquee { display: flex; }
+    .track { display: flex; gap: 2.5rem; padding: .85rem 0; white-space: nowrap; animation: scroll 26s linear infinite; }
+    @keyframes scroll { to { transform: translateX(-50%); } }
+    .badge { display: inline-flex; align-items: center; gap: 2.5rem; font-family: var(--display); font-size: 1.05rem; letter-spacing: .03em; opacity: .92; }
+    .badge .dot { color: var(--accent); }
+
+    /* SECTIONS */
+    .section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
+    .head { max-width: 40rem; margin: 0 0 2.8rem; }
+    .kicker { font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin: 0 0 .7rem; }
+    .kicker.light { color: var(--accent); }
+    .head h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin: 0 0 .8rem; }
+    .sub { color: color-mix(in srgb, var(--fg) 78%, transparent); font-size: 1.08rem; margin: 0; }
+
+    /* PRACTICE CARDS */
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.3rem; }
+    .card { text-decoration: none; color: inherit; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s, border-color .25s; }
+    .card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 22px 40px -28px color-mix(in srgb, var(--primary) 60%, transparent); }
+    .card-img { height: 140px; background-size: cover; background-position: center; filter: sepia(.3) saturate(1.05); position: relative; }
+    .card-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--primary) 30%, transparent)); mix-blend-mode: multiply; }
+    .card-body { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+    .card-body h3 { font-size: 1.32rem; margin: 0 0 .35rem; }
+    .card-note { font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin: 0 0 .5rem; }
+    .card-price { font-weight: 700; color: var(--primary); margin: 0 0 1.1rem; }
+    .card-go { margin-top: auto; font-size: .88rem; font-weight: 600; color: var(--fg); opacity: .7; transition: opacity .2s, gap .2s; }
+    .card:hover .card-go { opacity: 1; color: var(--primary); }
+
+    /* STATS */
+    .stats { background: var(--muted); border-block: 1px solid var(--border); padding: clamp(2.5rem, 6vw, 4rem) 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center; }
+    .stat { display: flex; flex-direction: column; gap: .35rem; }
+    .stat-fig { font-family: var(--display); font-size: clamp(2.3rem, 5vw, 3.4rem); color: var(--primary); line-height: 1; }
+    .stat-label { font-size: .85rem; letter-spacing: .05em; text-transform: uppercase; color: color-mix(in srgb, var(--fg) 72%, transparent); font-weight: 600; }
+
+    /* FIRM */
+    .firm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+    .firm-copy h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin: 0 0 1.2rem; }
+    .firm-copy p { color: color-mix(in srgb, var(--fg) 84%, transparent); margin: 0 0 1.1rem; max-width: 38em; }
+    .firm-copy .btn { margin-top: .6rem; }
+    .team { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .bio { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .bio-photo { height: 230px; background-size: cover; background-position: center top; filter: sepia(.25) saturate(1.05) contrast(1.02); }
+    .bio-info { padding: 1.1rem 1.1rem 1.3rem; }
+    .bio-info h3 { font-size: 1.28rem; margin: 0 0 .2rem; }
+    .bio-role { font-size: .82rem; color: var(--primary); font-weight: 700; margin: 0 0 .25rem; }
+    .bio-cred { font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0; }
+
+    /* PROCESS */
+    .process { background: var(--muted); }
+    .steps { list-style: none; counter-reset: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.3rem; }
+    .step { background: var(--bg); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: var(--radius); padding: 1.6rem 1.4rem; }
+    .step-n { font-family: var(--display); font-size: 2.1rem; color: var(--accent); display: block; margin-bottom: .5rem; }
+    .step h3 { font-size: 1.2rem; margin: 0 0 .5rem; }
+    .step p { font-size: .92rem; color: color-mix(in srgb, var(--fg) 80%, transparent); margin: 0; }
+
+    /* VOICES SLIDER */
+    .voices { background: var(--primary); color: var(--primary-fg); }
+    .voices .kicker, .voices .onbrand { color: var(--accent); }
+    .voices .onbrand { color: var(--primary-fg); }
+    .slider { overflow: hidden; }
+    .slides { display: flex; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+    .quote { flex: 0 0 100%; margin: 0; padding: 0 0 0 clamp(0px, 6vw, 4rem); position: relative; max-width: 50rem; }
+    .qmark { font-family: var(--display); font-size: 6rem; line-height: .6; color: var(--accent); position: absolute; left: -.1rem; top: .2rem; opacity: .6; }
+    .quote blockquote { font-family: var(--display); font-size: clamp(1.4rem, 3vw, 2.1rem); line-height: 1.3; margin: 1.6rem 0 1.4rem; }
+    .quote figcaption { font-weight: 700; letter-spacing: .02em; }
+    .quote figcaption span { color: var(--accent); font-weight: 500; }
+    .dots { display: flex; gap: .6rem; margin-top: 2rem; }
+    .dot-btn { width: 11px; height: 11px; border-radius: 50%; border: 1px solid var(--accent); background: transparent; cursor: pointer; padding: 0; transition: background .2s, transform .2s; }
+    .dot-btn.on { background: var(--accent); transform: scale(1.2); }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+    .contact-copy h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin: 0 0 .8rem; }
+    .contact-lede { color: color-mix(in srgb, var(--fg) 82%, transparent); margin: 0 0 1.8rem; max-width: 32em; }
+    .nap { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem 2rem; margin: 0 0 1.4rem; }
+    .nap dt { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: .35rem; }
+    .nap dd { margin: 0; font-size: .98rem; }
+    .nap dd small { color: color-mix(in srgb, var(--fg) 65%, transparent); }
+    .nap a { color: var(--primary); font-weight: 700; text-decoration: none; }
+    .nap a:hover { text-decoration: underline; }
+    .map-link { color: var(--primary); font-weight: 700; text-decoration: none; }
+    .map-link:hover { text-decoration: underline; }
+    .form { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(1.4rem, 3vw, 2.2rem); display: flex; flex-direction: column; gap: 1rem; box-shadow: 0 30px 60px -45px color-mix(in srgb, var(--primary) 70%, transparent); }
+    .form label { display: flex; flex-direction: column; gap: .4rem; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; color: color-mix(in srgb, var(--fg) 75%, transparent); }
+    .form input, .form textarea { font-family: var(--sans); font-size: 1rem; padding: .8rem .85rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--fg); resize: vertical; }
+    .form input:focus, .form textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+    .form-note { font-size: .76rem; color: color-mix(in srgb, var(--fg) 60%, transparent); text-transform: none; letter-spacing: 0; font-weight: 400; margin: 0; }
+
+    /* FOOTER */
+    .footer { background: var(--fg); color: var(--primary-fg); padding: clamp(2.5rem, 6vw, 4rem) 0; }
+    .foot-grid { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; }
+    .foot-mono { font-size: 1.6rem; border: 1.5px solid var(--accent); padding: .25rem .42rem; border-radius: var(--radius); display: inline-block; margin-bottom: .8rem; }
+    .foot-name { font-family: var(--display); font-size: 1.2rem; margin: 0 0 .4rem; }
+    .foot-addr { font-size: .9rem; opacity: .85; margin: 0; }
+    .foot-addr a { color: var(--accent); text-decoration: none; }
+    .foot-fine { font-size: .82rem; opacity: .6; margin: 0; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .card.reveal { transition-delay: calc(var(--i, 0) * 60ms); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .links, .nav-cta .phone { display: none; }
+      .burger { display: flex; }
+      .firm-grid, .contact-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1rem; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .nav-cta .btn { padding: .6rem .9rem; font-size: .82rem; }
+      .team { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .nap { grid-template-columns: 1fr; }
+      .hero h1 { font-size: clamp(2.1rem, 9vw, 3rem); }
+    }
+  </style>
+</body>
+</html>

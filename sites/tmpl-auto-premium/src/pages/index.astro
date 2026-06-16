@@ -1,0 +1,552 @@
+---
+const nav = [
+  { label: "Packages", href: "#packages" },
+  { label: "Results", href: "#results" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Why Us", href: "#why" },
+  { label: "Contact", href: "#contact" },
+];
+
+const packages = [
+  { name: "Express Maintenance", price: "149", popular: false, desc: "Exterior wash, decon, interior vacuum & wipe-down, tire dressing.", items: ["Exterior hand wash", "Iron decontamination", "Interior vacuum", "Tire dressing"] },
+  { name: "Full Detail", price: "349", popular: false, desc: "Clay bar, single-stage polish, deep interior shampoo, glass & trim restoration.", items: ["Clay bar treatment", "Single-stage polish", "Deep interior shampoo", "Glass & trim restore"] },
+  { name: "Paint Correction", price: "699", popular: true, desc: "2-stage swirl & scratch removal, gloss enhancement, panel-by-panel refinement.", items: ["2-stage correction", "Swirl & scratch removal", "Gloss enhancement", "Panel refinement"] },
+  { name: "Ceramic — 5 Year", price: "1,299", popular: false, desc: "Full correction prep + Gtechniq/Modesta coating, hydrophobic finish, warranty.", items: ["Full correction prep", "Gtechniq / Modesta", "Hydrophobic finish", "5-year warranty"] },
+  { name: "Lifetime Ceramic", price: "2,499", popular: false, desc: "Multi-layer coating, wheels off, glass & trim coated, annual maintenance included.", items: ["Multi-layer coating", "Wheels-off service", "Glass & trim coated", "Annual maintenance"] },
+  { name: "PPF — Full Front", price: "1,895", popular: false, desc: "XPEL self-healing film across hood, fenders, mirrors and bumper.", items: ["XPEL self-healing film", "Hood & fenders", "Mirrors & bumper", "Rock-chip defense"] },
+];
+
+const gallery = [
+  { seed: "apexiron-gt1", label: "Nissan GT-R", tag: "Lifetime Ceramic" },
+  { seed: "apexiron-audi2", label: "Audi S5", tag: "2-Stage Correction" },
+  { seed: "apexiron-truck3", label: "Ford F-150", tag: "Ceramic 5-Year" },
+  { seed: "apexiron-exotic4", label: "McLaren 720S", tag: "Full Front PPF" },
+  { seed: "apexiron-class5", label: "'69 Camaro", tag: "Full Detail" },
+  { seed: "apexiron-ev6", label: "Tesla Model S", tag: "Ceramic 5-Year" },
+];
+
+const testimonials = [
+  { quote: "Dropped off a 6-year-old daily and got back something that looked better than the showroom. The 2-stage correction is unreal.", name: "Marcus D.", car: "Audi S5" },
+  { quote: "They coated my F-150 and walked me through every step. Water just rolls off it now. Worth every dollar.", name: "Janelle R.", car: "Ford F-150" },
+  { quote: "Booked the lifetime ceramic on my GT-R. Professional, on time, and the finish is glass. These guys actually care.", name: "Tony V.", car: "Nissan GT-R" },
+];
+
+const process = [
+  { n: "01", t: "Inspect", d: "Paint-depth readings and swirl-finder lamp assessment." },
+  { n: "02", t: "Correct", d: "Multi-stage machine polishing, panel by panel." },
+  { n: "03", t: "Protect", d: "Ceramic or PPF application in a dust-controlled bay." },
+  { n: "04", t: "Inspect", d: "Final QC under studio lighting before handover." },
+];
+
+const certs = ["XPEL", "MODESTA", "GTECHNIQ", "CERAMIC PRO", "IDA CERTIFIED"];
+const stats = [
+  { v: "4,200", l: "Cars Detailed" },
+  { v: "12", l: "Years in Calgary" },
+  { v: "Lifetime", l: "Warranty Option" },
+  { v: "5.0", l: "Avg. Star Rating" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Apex Iron Auto Studio — Premium Detailing, Ceramic & PPF in Calgary</title>
+    <meta name="description" content="Apex Iron is Calgary's premium detailing, ceramic coating and paint protection studio. Showroom finish, street-tough protection — done right the first time." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav" id="top">
+      <div class="wrap nav-inner">
+        <a class="brand" href="#top" aria-label="Apex Iron Auto Studio home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-word">APEX IRON</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="btn btn-sm" href="#contact">Book Now</a>
+        <button class="hamb" aria-label="Toggle menu" aria-expanded="false" id="hamb">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="btn" href="#contact">Book Now</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" aria-label="Intro">
+        <div class="hero-bg" aria-hidden="true">
+          <img src="https://picsum.photos/seed/apexiron-hero-car/1600/1000" alt="" />
+        </div>
+        <div class="hero-grain" aria-hidden="true"></div>
+        <div class="wrap hero-inner reveal">
+          <p class="eyebrow">Calgary's Detail &amp; Protection Studio</p>
+          <h1>Showroom Finish.<br /><span class="chrome">Street-Tough Protection.</span></h1>
+          <p class="lede">Detailing, ceramic coating &amp; paint protection film — done right the first time. Low-key studio, glass-clean results.</p>
+          <div class="hero-cta">
+            <a class="btn btn-lg" href="#contact">Get an Instant Quote</a>
+            <a class="btn btn-ghost btn-lg" href="tel:+14035550182">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/></svg>
+              (403) 555-0182
+            </a>
+          </div>
+          <div class="hero-certs" aria-label="Certifications">
+            {certs.map((c) => <span>{c}</span>)}
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="stats" aria-label="By the numbers">
+        <div class="wrap stats-grid">
+          {stats.map((s) => (
+            <div class="stat reveal">
+              <span class="stat-v" data-count={s.v}>{s.v}</span>
+              <span class="stat-l">{s.l}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- PACKAGES -->
+      <section class="section" id="packages" aria-label="Service packages">
+        <div class="wrap">
+          <header class="sec-head reveal">
+            <p class="eyebrow">Service Menu</p>
+            <h2>Transparent packages, no surprises.</h2>
+            <p class="sec-sub">Every build starts with inspection. Prices shown are starting points — final quotes depend on vehicle size and condition.</p>
+          </header>
+          <div class="cards">
+            {packages.map((p) => (
+              <article class={`card${p.popular ? " card-pop" : ""} reveal`}>
+                {p.popular && <span class="badge">Most Popular</span>}
+                <div class="sheen" aria-hidden="true"></div>
+                <h3>{p.name}</h3>
+                <p class="price"><span class="from">from</span> ${p.price}</p>
+                <p class="card-desc">{p.desc}</p>
+                <ul>
+                  {p.items.map((i) => (
+                    <li>
+                      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M4 12.5 9 17.5 20 6.5"/></svg>
+                      {i}
+                    </li>
+                  ))}
+                </ul>
+                <a class="btn btn-block" href="#contact">Book {p.name}</a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- BEFORE / AFTER -->
+      <section class="section section-dark" id="results" aria-label="Before and after">
+        <div class="wrap">
+          <header class="sec-head reveal">
+            <p class="eyebrow">The Proof</p>
+            <h2>Drag to reveal the correction.</h2>
+            <p class="sec-sub">A single-stage daily driver, before and after our 2-stage paint correction under studio light.</p>
+          </header>
+          <div class="ba reveal" id="ba">
+            <img class="ba-after" src="https://picsum.photos/seed/apexiron-after9/1400/800" alt="Vehicle paint after correction — deep gloss, no swirls" />
+            <div class="ba-before" id="baBefore">
+              <img src="https://picsum.photos/seed/apexiron-before8/1400/800?grayscale" alt="Vehicle paint before correction — dull and swirled" />
+              <span class="ba-tag ba-tag-l">Before</span>
+            </div>
+            <span class="ba-tag ba-tag-r">After</span>
+            <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Reveal before and after" />
+            <div class="ba-handle" id="baHandle" aria-hidden="true">
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="section" id="gallery" aria-label="Work gallery">
+        <div class="wrap">
+          <header class="sec-head reveal">
+            <p class="eyebrow">Portfolio</p>
+            <h2>Recent builds from the bay.</h2>
+          </header>
+          <div class="grid-gallery">
+            {gallery.map((g, i) => (
+              <figure class={`gcell reveal${i === 0 || i === 3 ? " gcell-tall" : ""}`}>
+                <img src={`https://picsum.photos/seed/${g.seed}/800/900`} alt={`${g.label} — ${g.tag}`} loading="lazy" />
+                <figcaption>
+                  <span class="gtag">{g.tag}</span>
+                  <span class="glabel">{g.label}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY US / PROCESS -->
+      <section class="section section-dark" id="why" aria-label="Our process and why choose us">
+        <div class="wrap why-grid">
+          <div class="reveal">
+            <p class="eyebrow">Why Apex Iron</p>
+            <h2>Certified hands. Controlled environment. Guaranteed.</h2>
+            <p class="sec-sub">XPEL and Modesta accredited installers, working in a dust-controlled, climate-stable bay. Warranties registered in your name — you own the protection.</p>
+            <ul class="why-list">
+              <li>Up to lifetime warranty on ceramic packages</li>
+              <li>Paint-depth verified before every correction</li>
+              <li>Loaner vehicles on multi-day builds</li>
+            </ul>
+          </div>
+          <ol class="process">
+            {process.map((p) => (
+              <li class="reveal">
+                <span class="pnum">{p.n}</span>
+                <div>
+                  <h3>{p.t}</h3>
+                  <p>{p.d}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section" aria-label="Reviews">
+        <div class="wrap">
+          <header class="sec-head reveal">
+            <p class="eyebrow">5.0 Average · 380+ Reviews</p>
+            <h2>What Calgary drivers say.</h2>
+          </header>
+          <div class="quotes">
+            {testimonials.map((t) => (
+              <figure class="quote reveal">
+                <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote>{t.quote}</blockquote>
+                <figcaption><strong>{t.name}</strong> · {t.car}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT / CTA -->
+      <section class="section section-cta" id="contact" aria-label="Book and contact">
+        <div class="wrap cta-grid">
+          <div class="reveal">
+            <p class="eyebrow">Booking &amp; Location</p>
+            <h2>Ready to transform it?</h2>
+            <p class="sec-sub">Tell us the vehicle and the goal — we'll send a same-day quote. Drop-offs by appointment.</p>
+            <dl class="nap">
+              <div><dt>Studio</dt><dd>Bay 4, 2210 Centre Avenue NE<br />Calgary, AB T2E 0A6</dd></div>
+              <div><dt>Phone</dt><dd><a href="tel:+14035550182">(403) 555-0182</a></dd></div>
+              <div><dt>Email</dt><dd><a href="mailto:book@apexiron.ca">book@apexiron.ca</a></dd></div>
+              <div><dt>Hours</dt><dd>Mon–Fri 8:00a–6:00p<br />Sat 9:00a–4:00p · Sun closed</dd></div>
+            </dl>
+          </div>
+          <form class="quote-form reveal" onsubmit="return false">
+            <label>Your name<input type="text" name="name" placeholder="Marcus D." required /></label>
+            <label>Vehicle<input type="text" name="vehicle" placeholder="2019 Audi S5" required /></label>
+            <label>Interested in
+              <select name="service">
+                {packages.map((p) => <option>{p.name} — from ${p.price}</option>)}
+              </select>
+            </label>
+            <label>Details<textarea name="notes" rows="3" placeholder="Swirls on the hood, want it gone."></textarea></label>
+            <button class="btn btn-lg btn-block" type="submit">Request My Quote</button>
+            <p class="form-note">Or call <a href="tel:+14035550182">(403) 555-0182</a> — we answer during studio hours.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap foot-inner">
+        <div>
+          <span class="brand-word">APEX IRON</span>
+          <p>Detailing, ceramic coating &amp; paint protection. Bay 4, 2210 Centre Ave NE, Calgary.</p>
+        </div>
+        <p class="copy">© 2026 Apex &amp; Iron Auto Studio. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- STICKY BOOKING BAR -->
+    <div class="bookbar" aria-label="Quick booking">
+      <span class="bookbar-txt">Premium detail from <strong>$149</strong></span>
+      <div class="bookbar-actions">
+        <a class="btn btn-ghost btn-sm" href="tel:+14035550182">Call</a>
+        <a class="btn btn-sm" href="#contact">Book Now</a>
+      </div>
+    </div>
+
+    <style is:global>
+      *,*::before,*::after{box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      body{margin:0}
+      img{display:block;max-width:100%}
+      @media (prefers-reduced-motion: reduce){
+        *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+      }
+    </style>
+
+    <style>
+      :root{
+        --bg:#0a0a0b; --fg:#ececed; --primary:#c9ccd1; --primary-fg:#0a0a0b;
+        --accent:#7d8a9c; --muted:#141518; --border:#26282d;
+        --font-display:"Sora",system-ui,sans-serif; --font-body:"Inter",system-ui,sans-serif;
+        --radius:14px; --wrap:1180px;
+      }
+      body{background:var(--bg);color:var(--fg);font-family:var(--font-body);
+        font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:.01em;}
+      .wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.5rem)}
+      h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin:0}
+      a{color:inherit}
+      .skip{position:absolute;left:-999px;top:0;background:var(--primary);color:var(--primary-fg);padding:.7rem 1rem;z-index:200;border-radius:0 0 8px 0}
+      .skip:focus{left:0}
+      :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+      .eyebrow{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.32em;
+        font-size:.7rem;font-weight:600;color:var(--accent);margin:0 0 1rem}
+      .chrome{background:linear-gradient(180deg,#fff 0%,#c9ccd1 38%,#7d8a9c 60%,#ececed 100%);
+        -webkit-background-clip:text;background-clip:text;color:transparent}
+
+      /* Buttons */
+      .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+        background:var(--primary);color:var(--primary-fg);font-family:var(--font-display);font-weight:600;
+        text-decoration:none;padding:.85rem 1.5rem;border-radius:var(--radius);border:1px solid transparent;
+        min-height:46px;cursor:pointer;font-size:.9rem;transition:transform .2s,box-shadow .25s,background .2s}
+      .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(201,204,209,.45)}
+      .btn-sm{padding:.6rem 1.1rem;min-height:44px;font-size:.82rem}
+      .btn-lg{padding:1rem 1.9rem;font-size:1rem}
+      .btn-block{width:100%}
+      .btn-ghost{background:transparent;color:var(--fg);border-color:var(--border)}
+      .btn-ghost:hover{background:var(--muted);box-shadow:none;border-color:var(--accent)}
+
+      /* Nav */
+      .nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(14px);
+        background:rgba(10,10,11,.72);border-bottom:1px solid var(--border)}
+      .nav-inner{display:flex;align-items:center;gap:1.5rem;padding:.85rem 0;
+        max-width:var(--wrap);margin:0 auto;padding-left:clamp(1.1rem,4vw,2.5rem);padding-right:clamp(1.1rem,4vw,2.5rem)}
+      .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;margin-right:auto}
+      .brand-mark{width:26px;height:26px;border-radius:6px;
+        background:conic-gradient(from 210deg,#7d8a9c,#ececed,#26282d,#c9ccd1,#7d8a9c);
+        box-shadow:inset 0 0 0 1px var(--border)}
+      .brand-word{font-family:var(--font-display);font-weight:700;letter-spacing:.34em;font-size:.95rem}
+      .nav-links{display:none;gap:1.7rem}
+      .nav-links a{text-decoration:none;font-size:.85rem;color:#b9bbc0;font-weight:500;transition:color .2s}
+      .nav-links a:hover{color:var(--fg)}
+      .hamb{display:inline-flex;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:10px}
+      .hamb span{width:24px;height:2px;background:var(--fg);transition:.25s}
+      .mobile-menu{display:none;flex-direction:column;gap:.4rem;padding:0 clamp(1.1rem,4vw,2.5rem) 1.2rem;
+        border-bottom:1px solid var(--border)}
+      .mobile-menu.open{display:flex}
+      .mobile-menu a{text-decoration:none;padding:.7rem .2rem;color:#c4c6cb;border-bottom:1px solid var(--border)}
+      .mobile-menu .btn{margin-top:.6rem}
+
+      /* Hero */
+      .hero{position:relative;overflow:hidden;min-height:92vh;display:flex;align-items:flex-end;padding:7rem 0 4rem}
+      .hero-bg{position:absolute;inset:0}
+      .hero-bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.35) contrast(1.12) brightness(.55)}
+      .hero-bg::after{content:"";position:absolute;inset:0;
+        background:linear-gradient(180deg,rgba(10,10,11,.55) 0%,rgba(10,10,11,.2) 35%,rgba(10,10,11,.95) 100%),
+        radial-gradient(120% 90% at 80% 10%,rgba(125,138,156,.28),transparent 55%)}
+      .hero-grain{position:absolute;inset:0;opacity:.5;pointer-events:none;mix-blend-mode:overlay;
+        background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:3px 3px}
+      .hero-inner{position:relative;max-width:760px}
+      .hero h1{font-size:clamp(2.6rem,8vw,5.2rem);margin:0 0 1.2rem}
+      .lede{font-size:clamp(1.02rem,2.4vw,1.25rem);color:#c2c4c9;max-width:46ch;margin:0 0 2rem}
+      .hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:2.4rem}
+      .hero-certs{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;align-items:center}
+      .hero-certs span{font-family:var(--font-display);font-size:.66rem;letter-spacing:.22em;
+        color:var(--accent);font-weight:600;opacity:.85}
+
+      /* Stats */
+      .stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--muted)}
+      .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;padding:0}
+      .stat{padding:2rem 1rem;text-align:center;position:relative}
+      .stat-v{display:block;font-family:var(--font-display);font-weight:700;
+        font-size:clamp(1.7rem,5vw,2.6rem);background:linear-gradient(180deg,#fff,#9aa0aa);
+        -webkit-background-clip:text;background-clip:text;color:transparent}
+      .stat-l{font-size:.74rem;text-transform:uppercase;letter-spacing:.2em;color:var(--accent)}
+
+      /* Sections */
+      .section{padding:clamp(4rem,9vw,7rem) 0}
+      .section-dark{background:var(--muted);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+      .sec-head{max-width:620px;margin-bottom:3rem}
+      .sec-head h2{font-size:clamp(1.8rem,4.6vw,3rem)}
+      .sec-sub{color:#aaacb2;margin:1rem 0 0;font-size:1.02rem}
+
+      /* Cards */
+      .cards{display:grid;grid-template-columns:1fr;gap:1.2rem}
+      .card{position:relative;overflow:hidden;background:var(--muted);border:1px solid var(--border);
+        border-radius:var(--radius);padding:1.9rem 1.6rem;transition:transform .25s,border-color .25s,box-shadow .3s}
+      .card:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 24px 60px -28px rgba(0,0,0,.9)}
+      .card-pop{border-color:var(--primary);background:linear-gradient(180deg,#181a1e,#0f1013)}
+      .sheen{position:absolute;top:0;left:-60%;width:55%;height:100%;pointer-events:none;
+        background:linear-gradient(105deg,transparent,rgba(255,255,255,.13),transparent);transition:left .7s ease}
+      .card:hover .sheen{left:130%}
+      .badge{position:absolute;top:1rem;right:1rem;font-family:var(--font-display);font-size:.62rem;
+        letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:var(--primary-fg);
+        padding:.35rem .7rem;border-radius:999px;font-weight:700}
+      .card h3{font-size:1.25rem;margin-bottom:.5rem}
+      .price{font-family:var(--font-display);font-weight:700;font-size:2rem;margin:.2rem 0 .8rem;color:var(--fg)}
+      .price .from{font-size:.8rem;font-weight:500;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-right:.3rem}
+      .card-desc{color:#a6a8ae;font-size:.92rem;margin:0 0 1.2rem}
+      .card ul{list-style:none;padding:0;margin:0 0 1.6rem;display:grid;gap:.55rem}
+      .card li{display:flex;gap:.6rem;align-items:flex-start;font-size:.9rem;color:#cdcfd4}
+      .card li svg{color:var(--accent);flex-shrink:0;margin-top:.15rem}
+
+      /* Before/After */
+      .ba{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);
+        aspect-ratio:7/4;user-select:none;touch-action:pan-y}
+      .ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+      .ba-after img{filter:contrast(1.12) saturate(1.1)}
+      .ba-before{position:absolute;inset:0;width:50%;overflow:hidden;border-right:2px solid var(--primary)}
+      .ba-before img{filter:contrast(.9) brightness(.85)}
+      .ba-tag{position:absolute;bottom:1rem;font-family:var(--font-display);font-size:.7rem;letter-spacing:.18em;
+        text-transform:uppercase;background:rgba(10,10,11,.7);padding:.35rem .7rem;border-radius:999px;z-index:4;color:var(--fg)}
+      .ba-tag-l{left:1rem} .ba-tag-r{right:1rem;color:var(--accent)}
+      .ba-range{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;z-index:6}
+      .ba-handle{position:absolute;top:0;left:50%;transform:translateX(-50%);width:44px;height:100%;
+        display:flex;align-items:center;justify-content:center;z-index:5;pointer-events:none}
+      .ba-handle span{width:44px;height:44px;border-radius:50%;background:var(--primary);
+        box-shadow:0 0 0 4px rgba(201,204,209,.18),0 10px 24px -8px #000;position:relative}
+      .ba-handle span::before,.ba-handle span::after{content:"";position:absolute;top:50%;width:0;height:0;
+        border-top:5px solid transparent;border-bottom:5px solid transparent}
+      .ba-handle span::before{left:11px;border-right:7px solid var(--primary-fg);transform:translateY(-50%)}
+      .ba-handle span::after{right:11px;border-left:7px solid var(--primary-fg);transform:translateY(-50%)}
+
+      /* Gallery */
+      .grid-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;grid-auto-flow:dense}
+      .gcell{position:relative;margin:0;overflow:hidden;border-radius:var(--radius);border:1px solid var(--border);aspect-ratio:4/5}
+      .gcell-tall{grid-row:span 1}
+      .gcell img{width:100%;height:100%;object-fit:cover;filter:grayscale(.2) contrast(1.08) brightness(.85);
+        transition:transform .6s,filter .4s}
+      .gcell:hover img{transform:scale(1.06);filter:grayscale(0) contrast(1.12) brightness(1)}
+      .gcell figcaption{position:absolute;left:0;right:0;bottom:0;padding:1rem;display:flex;flex-direction:column;gap:.2rem;
+        background:linear-gradient(180deg,transparent,rgba(10,10,11,.92))}
+      .gtag{font-family:var(--font-display);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+      .glabel{font-family:var(--font-display);font-weight:600;font-size:1rem}
+
+      /* Why / Process */
+      .why-grid{display:grid;gap:3rem}
+      .why-list{list-style:none;padding:0;margin:1.6rem 0 0;display:grid;gap:.7rem}
+      .why-list li{padding-left:1.6rem;position:relative;color:#cdcfd4}
+      .why-list li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;
+        border-radius:2px;background:var(--accent);transform:rotate(45deg)}
+      .process{list-style:none;padding:0;margin:0;display:grid;gap:1px;background:var(--border);
+        border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+      .process li{display:flex;gap:1.1rem;padding:1.5rem;background:var(--bg)}
+      .pnum{font-family:var(--font-display);font-weight:700;font-size:1.3rem;color:var(--accent);min-width:2.2ch}
+      .process h3{font-size:1.05rem;margin-bottom:.2rem}
+      .process p{margin:0;color:#a6a8ae;font-size:.9rem}
+
+      /* Quotes */
+      .quotes{display:grid;gap:1.2rem;grid-template-columns:1fr}
+      .quote{margin:0;background:var(--muted);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem}
+      .stars{color:var(--primary);letter-spacing:.18em;font-size:1rem;margin-bottom:.9rem}
+      .quote blockquote{margin:0 0 1.1rem;font-size:1rem;color:#dcdee2;line-height:1.6}
+      .quote figcaption{font-size:.85rem;color:var(--accent)}
+      .quote figcaption strong{color:var(--fg)}
+
+      /* CTA */
+      .section-cta{background:
+        radial-gradient(80% 120% at 100% 0,rgba(125,138,156,.18),transparent 60%),var(--muted);
+        border-top:1px solid var(--border)}
+      .cta-grid{display:grid;gap:2.5rem}
+      .nap{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin:1.8rem 0 0}
+      .nap dt{font-family:var(--font-display);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+      .nap dd{margin:0;font-size:.95rem;color:#d6d8dc}
+      .nap a{color:var(--primary);text-decoration:none}
+      .nap a:hover{text-decoration:underline}
+      .quote-form{display:grid;gap:.9rem;background:var(--bg);border:1px solid var(--border);
+        border-radius:var(--radius);padding:1.8rem}
+      .quote-form label{display:grid;gap:.4rem;font-size:.78rem;text-transform:uppercase;
+        letter-spacing:.12em;color:var(--accent);font-family:var(--font-display);font-weight:600}
+      .quote-form input,.quote-form select,.quote-form textarea{
+        font-family:var(--font-body);font-size:.95rem;background:var(--muted);color:var(--fg);
+        border:1px solid var(--border);border-radius:10px;padding:.75rem .85rem;text-transform:none;letter-spacing:normal;font-weight:400}
+      .quote-form input:focus,.quote-form select:focus,.quote-form textarea:focus{outline:none;border-color:var(--accent)}
+      .form-note{margin:.4rem 0 0;font-size:.8rem;color:#9a9ca2;text-transform:none;letter-spacing:normal}
+      .form-note a{color:var(--primary)}
+
+      /* Footer */
+      .footer{border-top:1px solid var(--border);padding:2.5rem 0;background:var(--bg)}
+      .foot-inner{display:flex;flex-direction:column;gap:1.2rem;justify-content:space-between}
+      .footer p{margin:.6rem 0 0;color:#8d8f95;font-size:.88rem;max-width:42ch}
+      .copy{font-size:.8rem;color:#6c6e74}
+
+      /* Sticky book bar */
+      .bookbar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:flex;align-items:center;
+        justify-content:space-between;gap:1rem;padding:.7rem clamp(1rem,4vw,1.5rem);
+        background:rgba(10,10,11,.92);backdrop-filter:blur(12px);border-top:1px solid var(--border)}
+      .bookbar-txt{font-size:.82rem;color:#c2c4c9}
+      .bookbar-txt strong{color:var(--primary)}
+      .bookbar-actions{display:flex;gap:.5rem}
+
+      /* Reveal */
+      .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+      .reveal.in{opacity:1;transform:none}
+
+      /* Responsive */
+      @media (min-width:640px){
+        .stats-grid{grid-template-columns:repeat(4,1fr)}
+        .cards{grid-template-columns:repeat(2,1fr)}
+        .quotes{grid-template-columns:repeat(3,1fr)}
+        .foot-inner{flex-direction:row;align-items:flex-end}
+        .bookbar-txt{font-size:.9rem}
+      }
+      @media (min-width:900px){
+        .nav-links{display:flex}
+        .hamb{display:none}
+        .cards{grid-template-columns:repeat(3,1fr)}
+        .grid-gallery{grid-template-columns:repeat(3,1fr)}
+        .gcell{aspect-ratio:4/5}
+        .gcell-tall{grid-row:span 2;aspect-ratio:auto}
+        .why-grid{grid-template-columns:1.05fr .95fr;align-items:start}
+        .cta-grid{grid-template-columns:1fr 1fr;align-items:start}
+        .bookbar{display:none}
+      }
+    </style>
+
+    <script>
+      // Mobile nav
+      const hamb = document.getElementById('hamb');
+      const menu = document.getElementById('mobileMenu');
+      hamb?.addEventListener('click', () => {
+        const open = menu.classList.toggle('open');
+        hamb.setAttribute('aria-expanded', String(open));
+      });
+      menu?.querySelectorAll('a').forEach((a) =>
+        a.addEventListener('click', () => {
+          menu.classList.remove('open');
+          hamb.setAttribute('aria-expanded', 'false');
+        })
+      );
+
+      // Scroll reveal
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+      // Before/After slider
+      const range = document.getElementById('baRange');
+      const before = document.getElementById('baBefore');
+      const handle = document.getElementById('baHandle');
+      range?.addEventListener('input', () => {
+        const v = range.value + '%';
+        before.style.width = v;
+        handle.style.left = v;
+      });
+    </script>
+  </body>
+</html>
