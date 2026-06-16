@@ -26,29 +26,76 @@ You will have up to **three** logins. Keep them in a password manager. You'll us
 
 ---
 
-## 2. Editing your content (Storyblok)
+## 2. Editing your content in Storyblok — the complete guide
 
-> ✅ **Status (barber demo):** connected. The "Ironside Barber Co." site pulls its content from Storyblok. Editing the story there and rebuilding the site updates the page (verified end-to-end on 2026-06-15). The café demo is not yet connected.
+Storyblok is your **content editor** — the dashboard where you change everything on your site: words, numbers, photos, hours, prices, reviews, FAQs. No code, ever. This section covers everything you can do.
 
-Storyblok is your **content editor**. You edit your shop's fields, publish, and the change flows to your site.
+> ✅ **Status (barber demo):** fully connected. *Every* section of the Ironside Barber site — hero, stats, "Why us" cards, services, hours, testimonials, FAQs, contact, and headings — is editable in Storyblok (verified end-to-end on 2026-06-15). Other demos are wired the same way as they go live.
 
-**To make a change:**
-1. Go to **app.storyblok.com** and log in.
-2. In the left sidebar click **Content**, then open the **Ironside Barber Co.** story.
-3. Edit any field:
-   - **Headline / tagline / descriptions** — type in the text fields.
-   - **Hours** — edit the open/close times or tick "closed" for a day (each day is a row you can add/remove).
-   - **Prices / services / menu** — edit name, price, description; add or remove items.
-   - **Phone / address / booking link** — update the contact fields.
-   - **Photos** — upload/replace via the **Assets** manager (crop there too). *(Image fields are added during the design phase.)*
-4. Click **Save**, then **Publish**.
+### 2.1 — Logging in & opening your site
+1. Go to **app.storyblok.com** and log in with your account.
+2. Click your **Space** (your shop) on the dashboard.
+3. In the left sidebar, click **Content**.
+4. Click your site's story (e.g. **Ironside Barber Co.**) to open the editor.
 
-**When does it go live?** Today the site is rebuilt to pick up changes. Once we connect your hosting to auto-rebuild (git-connected deploy — see `deployment.md`), hitting **Publish** will redeploy your site automatically in ~1 minute, no involvement from us.
+### 2.2 — What you'll see (the editor layout)
+The screen has two parts:
+- **Left = a preview area.** It may show your site, a "set up preview" message, or look empty. **Until your site is deployed, this preview may not display — that's normal.** Ignore it and use the panel on the right.
+- **Right = the fields panel.** This is where you make every change. Everything below happens here.
 
-> **Coming with the design phase:** in-page *visual* editing (click directly on the live site preview inside Storyblok). That needs the site deployed + a small "bridge" added — a polish step we'll do when we elevate the design.
+### 2.3 — Editing plain text & numbers
+Most fields are simple boxes: **Name, Tagline, Phone, Address, Map URL, Service area, Booking URL, Reviews blurb, Rating,** and the **section headings** ("Why us" label/heading, Testimonials heading, FAQ heading, CTA heading).
+- Click the box and type. That's it.
+- **Rating** takes a number like `4.9`.
+- **Map URL / Booking URL** take a web link (paste the full `https://…`).
 
-**What you can safely edit:** all the words, numbers, photos, hours, prices, and your phone/address.
-**What to leave alone:** the overall layout and section order (that's the design — ask us if you want it changed).
+### 2.4 — Editing repeating sections ("blocks")
+Sections that repeat — **Hours, Services, Stats, Why-us cards, Testimonials, FAQs** — are made of **blocks** (one block = one row/card). For any of them:
+- **Edit:** click a block to expand it, then edit its fields (e.g. a Service's *name* and *price*; an FAQ's *question* and *answer*).
+- **Add:** click the **＋ Add** button at the bottom of that section to add a new block.
+- **Remove:** click the **⋯** (or trash) icon on a block and choose remove.
+- **Reorder:** **drag** a block by its handle to move it up or down — the order on your site matches the order here.
+
+### 2.5 — The icon picker (Why-us cards)
+Each "Why us" card has an **Icon** field that's a **dropdown** — click it and choose from the available icons (scissors, star, clock, calendar, coffee, map-pin, shield, and more). Pick the one that fits the card; it appears automatically on your site. (Type a letter to filter the list.)
+
+### 2.6 — Adding & changing images ⭐
+Image fields (like your **Hero image**) have an **upload box**. Two ways to add an image:
+
+**A. Upload from your computer (most common)**
+1. Click the image field (or the **Add asset / +** button inside it).
+2. The **Asset browser** opens. Either **drag a file** from your desktop onto it, or click **Upload** and pick a file.
+3. Select the uploaded image — it's now set. Click **Publish** when done.
+
+**B. Reuse an image you already uploaded**
+- The same Asset browser shows your **media library** — click any image you've uploaded before to reuse it (no need to upload twice).
+
+**The Assets manager (bulk):** the **Assets** item in the left sidebar is your whole media library. Upload many photos at once there, organize them in folders, rename, or crop — then pick them from any image field later.
+
+**About image *links*:** image fields take **uploads**, not web URLs — so if you found a photo online, **download it first, then upload it.** ⚠️ Only use photos you own or have a licence to use (your own shop photos are perfect). Big files are fine — Storyblok optimizes them for the web automatically.
+
+**Tip:** landscape photos around **1600px wide** look best for the hero. Use a real photo of *your* space — it's the single biggest upgrade to a shop site.
+
+### 2.7 — Save vs Publish (important!)
+- **Save** = stores your work as a *draft* (not live yet).
+- **Publish** (green button, top-right) = makes it **live**. **Your website only shows the *published* version.**
+- 👉 Always click **Publish** when you want a change to appear on your site. If you only Save, visitors won't see it.
+
+### 2.8 — Undo & version history (you can't permanently break anything)
+- Made a mistake? Storyblok keeps a **History** of every version.
+- Open the story's **History / Versions** (top toolbar or the **⋯** menu), pick an earlier version, and **restore** it.
+- So edit freely — you can always roll back.
+
+### 2.9 — When does my change go live?
+- After you **Publish**, your site rebuilds to pull the new content.
+- **Today:** tell us you published and we rebuild (about a minute).
+- **Once your hosting is connected for auto-deploy:** hitting **Publish** rebuilds and updates your live site **automatically in ~1 minute — with no one's help.** (That's the end state for every client site.)
+
+### 2.10 — What you can change vs what needs a designer
+- ✅ **You control all content:** text, headings, prices, hours, photos, stats, cards, testimonials, FAQs, phone, address, booking link.
+- 🔒 **Leave to a designer (us):** the page **layout, section order, colours/fonts, and adding brand-new page types or sections.** Those live in the site's design, not the content editor. Want one changed? It's a quick paid task — just ask.
+
+> **Coming later:** *visual* editing — clicking directly on your live page preview inside Storyblok to edit in place. It needs the site deployed plus a small add-on; we'll switch it on when your site goes live.
 
 ---
 
@@ -107,10 +154,14 @@ If your site collects customer info (contact form, bookings), your privacy polic
 ---
 
 ### Owner test checklist (walk through this as the client)
-- [ ] I can log into Storyblok and change a piece of text, save, and see it live.
-- [ ] I can replace a photo.
-- [ ] I can update my hours and a price.
+- [ ] I can log into Storyblok and open my site's story.
+- [ ] I can change a piece of text (e.g. the tagline) and **Publish**.
+- [ ] I can **upload a photo from my desktop** into the Hero image field.
+- [ ] I can edit a **price** in Services and a day in **Hours**.
+- [ ] I can edit a **"Why us" card** (text + pick an icon from the dropdown).
+- [ ] I can **add and remove** a block (e.g. an FAQ) and **drag** to reorder.
+- [ ] I understand **Save vs Publish** (only Publish goes live).
+- [ ] I know I can **restore an earlier version** from History if I make a mistake.
 - [ ] My "Book now" button opens *my* booking page.
-- [ ] My phone number is click-to-call on mobile.
-- [ ] My address opens the correct map location.
+- [ ] My phone number is click-to-call on mobile; my address opens the right map.
 - [ ] I know where my domain and hosting logins are.
