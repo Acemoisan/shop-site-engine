@@ -25,6 +25,7 @@ const NESTED = {
 const blok = (white) => ({ type: "bloks", restrict_components: true, component_whitelist: white });
 const SHOP_FIELDS = {
   name: { type: "text" }, tagline: { type: "text" }, hero_image: { type: "asset", filetypes: ["images"] },
+  hero_kicker: { type: "text" }, hero_subcopy: { type: "textarea" }, hero_cta_label: { type: "text" },
   phone: { type: "text" }, address: { type: "text" }, map_url: { type: "text" }, service_area: { type: "text" },
   booking_url: { type: "text" }, reviews_blurb: { type: "text" }, rating: { type: "number" },
   hours: blok(["shop_hours"]), services: blok(["shop_service"]), stats: blok(["shop_stat"]),
