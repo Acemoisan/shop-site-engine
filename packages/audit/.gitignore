@@ -1,3 +1,4 @@
 # Generated per-prospect audit outputs (CLI writes these)
 audit-*.json
 audit-*.html
+shot-*.png
