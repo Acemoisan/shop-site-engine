@@ -1,0 +1,490 @@
+---
+const nav = [
+  { label: "product", href: "#features" },
+  { label: "tour", href: "#tour" },
+  { label: "pricing", href: "#pricing" },
+  { label: "docs", href: "#footer" },
+];
+
+const trustLogos = ["northbeam", "lumen labs", "cadence", "meridian", "axon", "fjord"];
+
+const features = [
+  { kind: "wide", tag: "01 / orchestrate", title: "Pipelines as code", body: "Define handoffs in YAML or the visual builder. Version them, review them, ship them.", seed: "drift-pipe" },
+  { kind: "tall", tag: "02 / connect", title: "50+ native integrations", body: "GitHub, Slack, Linear, Postgres, S3. Bring your stack — we speak its API.", seed: "drift-int" },
+  { kind: "small", tag: "03 / observe", title: "Run logs", body: "Every step traced. Replay any run." },
+  { kind: "small", tag: "04 / secure", title: "SSO + audit", body: "SAML, RBAC, immutable logs." },
+];
+
+const tabs = [
+  { id: "build", label: "build", code: ["$ drift init payments-flow", "  ✓ scaffolded 3 steps", "  ✓ linked github → linear", "", "$ drift deploy --env prod", "  → compiling graph...", "  → 12 nodes, 0 cycles", "  ✓ live in 1.4s"] },
+  { id: "watch", label: "watch", code: ["$ drift logs --follow", "  06:14:02  run#8821 start", "  06:14:02  fetch_pr  ok 84ms", "  06:14:03  notify    ok 21ms", "  06:14:03  sync_db   ok 112ms", "  ✓ run#8821 done in 0.31s", "", "  4,201,338 runs today"] },
+  { id: "ship", label: "ship", code: ["$ drift promote canary", "  → 5% traffic shifted", "  → error rate 0.00%", "  → p99 latency 41ms", "  ✓ promoting to 100%", "", "  rollback armed · 0 incidents"] },
+];
+
+const metrics = [
+  { val: "12,000+", label: "teams onboarded" },
+  { val: "4.2M", label: "workflows / day" },
+  { val: "99.99%", label: "uptime sla" },
+  { val: "11 hrs", label: "saved / person / wk" },
+];
+
+const testimonials = [
+  { quote: "We cut our release cycle from two weeks to two days. Driftwork is the first tool the whole team adopted without being asked.", name: "Priya Nadkarni", role: "VP Engineering, Northbeam" },
+  { quote: "Setup took an afternoon. The mono-deep API meant our platform team could go as far as they wanted.", name: "Marcus Webb", role: "Staff Engineer, Lumen Labs" },
+  { quote: "Our ops finally have a single source of truth. Demo requests went up 30% after we standardized handoffs.", name: "Sofia Tran", role: "Head of Operations, Cadence" },
+];
+
+const plans = [
+  { name: "Starter", price: "$0", unit: "/mo", popular: false, feats: ["Up to 3 users", "100 runs / mo", "2 integrations", "Community support"] },
+  { name: "Team", price: "$24", unit: "/user/mo", popular: true, feats: ["Unlimited automations", "50+ integrations", "Shared workspaces", "Priority email support"] },
+  { name: "Business", price: "$48", unit: "/user/mo", popular: false, feats: ["Advanced permissions", "Audit logs · SSO/SAML", "99.99% SLA", "Dedicated CSM"] },
+];
+
+const integrations = ["github", "slack", "linear", "postgres", "datadog", "s3", "vercel", "stripe", "jira", "snowflake", "pagerduty", "notion"];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>driftwork — the workflow engine your team actually wants to use</title>
+  <meta name="description" content="Driftwork automates the work between the work. Connect your tools, automate handoffs, and give every team a single source of truth. No-code to set up, API-deep when you need it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="driftwork home">
+        <span class="cursor">▍</span>driftwork
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      </nav>
+      <div class="nav-cta">
+        <a class="btn ghost" href="#pricing">book a demo</a>
+        <a class="btn solid" href="#pricing">start free →</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      <a class="btn solid" href="#pricing">start free →</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-h">
+      <div class="grid-bg" aria-hidden="true"></div>
+      <div class="wrap hero-inner">
+        <a class="pill reveal" href="#tour">
+          <span class="dot"></span> new <span class="arrow">→</span> v2 orchestration engine just shipped
+        </a>
+        <h1 id="hero-h" class="reveal">Ship faster.<br /><span class="accent-grad">Drift less.</span></h1>
+        <p class="lede reveal">Driftwork connects your tools, automates handoffs, and gives every team a single source of truth. No-code to set up, API-deep when you need it.</p>
+        <div class="hero-cta reveal">
+          <a class="btn solid lg" href="#pricing">start free</a>
+          <a class="btn ghost lg" href="#tour">book a demo</a>
+        </div>
+        <p class="micro reveal">$0 to start · no credit card · 12,000+ teams</p>
+
+        <div class="terminal reveal" aria-hidden="true">
+          <div class="term-bar">
+            <span class="tl r"></span><span class="tl y"></span><span class="tl g"></span>
+            <span class="term-title">~/driftwork — drift run</span>
+          </div>
+          <pre class="term-body"><code><span class="c-mut">$</span> <span class="c-acc">drift</span> run release-flow --watch
+<span class="c-ok">  ✓</span> fetch_pr      <span class="c-mut">github</span>     84ms
+<span class="c-ok">  ✓</span> run_checks    <span class="c-mut">ci</span>         1.2s
+<span class="c-ok">  ✓</span> notify_team   <span class="c-mut">slack</span>      21ms
+<span class="c-ok">  ✓</span> sync_tracker  <span class="c-mut">linear</span>     63ms
+<span class="c-ok">  ✓</span> deploy        <span class="c-mut">vercel</span>     1.4s
+<span class="c-pri">  → run#8821 completed in 0.31s</span><span class="blink">▍</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <section class="trust" aria-label="Trusted by">
+      <div class="wrap trust-inner">
+        <span class="trust-label">// trusted by 12,000+ engineering teams</span>
+        <ul class="trust-logos">
+          {trustLogos.map((l) => <li>{l}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- FEATURES BENTO -->
+    <section class="section" id="features" aria-labelledby="feat-h">
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="eyebrow">// the platform</span>
+          <h2 id="feat-h">Automate the work between the work.</h2>
+        </header>
+        <div class="bento">
+          {features.map((f) => (
+            <article class={`card ${f.kind} reveal`}>
+              <span class="card-tag">{f.tag}</span>
+              <h3>{f.title}</h3>
+              <p>{f.body}</p>
+              {f.seed && (
+                <div class="card-shot" aria-hidden="true">
+                  <img src={`https://picsum.photos/seed/${f.seed}/640/360?grayscale`} alt="" loading="lazy" width="640" height="360" />
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE TOUR -->
+    <section class="section tour" id="tour" aria-labelledby="tour-h">
+      <div class="grid-bg faint" aria-hidden="true"></div>
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="eyebrow">// product tour</span>
+          <h2 id="tour-h">From commit to production, one engine.</h2>
+        </header>
+        <div class="tabs" role="tablist" aria-label="Product tour">
+          {tabs.map((t, i) => (
+            <button class={`tab ${i === 0 ? "on" : ""}`} role="tab" data-tab={t.id} aria-selected={i === 0 ? "true" : "false"}>{t.label}</button>
+          ))}
+        </div>
+        {tabs.map((t, i) => (
+          <div class={`panel ${i === 0 ? "on" : ""}`} data-panel={t.id} role="tabpanel">
+            <div class="terminal">
+              <div class="term-bar">
+                <span class="tl r"></span><span class="tl y"></span><span class="tl g"></span>
+                <span class="term-title">drift {t.label}</span>
+              </div>
+              <pre class="term-body"><code>{t.code.join("\n")}</code></pre>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- METRICS -->
+    <section class="section metrics" aria-label="Key metrics">
+      <div class="wrap metric-grid">
+        {metrics.map((m) => (
+          <div class="metric reveal">
+            <span class="metric-val">{m.val}</span>
+            <span class="metric-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section" aria-labelledby="tst-h">
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="eyebrow">// teams on driftwork</span>
+          <h2 id="tst-h">The first tool they adopted unprompted.</h2>
+        </header>
+        <div class="quotes">
+          {testimonials.map((t) => (
+            <figure class="quote reveal">
+              <blockquote>{t.quote}</blockquote>
+              <figcaption><span class="q-name">{t.name}</span><span class="q-role">{t.role}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- INTEGRATIONS MARQUEE -->
+    <section class="marquee-sec" aria-label="Integrations">
+      <span class="trust-label wrap">// fits your stack — 50+ integrations</span>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          {[...integrations, ...integrations].map((i) => <span class="chip">{i}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section" id="pricing" aria-labelledby="price-h">
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="eyebrow">// pricing</span>
+          <h2 id="price-h">Transparent. Self-serve. Scales with you.</h2>
+        </header>
+        <div class="pricing">
+          {plans.map((p) => (
+            <article class={`plan ${p.popular ? "pop" : ""}`}>
+              {p.popular && <span class="pop-tag">most popular</span>}
+              <h3>{p.name}</h3>
+              <p class="plan-price">{p.price}<span>{p.unit}</span></p>
+              <ul>
+                {p.feats.map((f) => <li><span class="tick">✓</span>{f}</li>)}
+              </ul>
+              <a class={`btn ${p.popular ? "solid" : "ghost"} full`} href="#cta">{p.price === "$0" ? "start free" : "start trial"}</a>
+            </article>
+          ))}
+        </div>
+        <p class="addons">// add-ons: <b>AI Copilot</b> $12/user/mo · <b>Advanced Analytics</b> $99/mo flat · <b>Enterprise</b> custom — self-host / VPC, 24/7</p>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band" id="cta" aria-labelledby="cta-h">
+      <div class="grid-bg faint" aria-hidden="true"></div>
+      <div class="wrap cta-inner">
+        <h2 id="cta-h">Ready to ship, not shuffle?</h2>
+        <p>Automate the work between the work — and give your team back 11 hours a week.</p>
+        <div class="hero-cta">
+          <a class="btn solid lg" href="#top">start free</a>
+          <a class="btn ghost lg" href="tel:+15875550142">+1 (587) 555-0142</a>
+        </div>
+        <p class="micro">support · mon–fri 6:00 am – 8:00 pm MT · enterprise 24/7 · status updated live</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="wrap foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top"><span class="cursor">▍</span>driftwork</a>
+        <p>The workflow automation platform for product teams.</p>
+        <p class="nap">Driftwork Technologies Inc.<br />Suite 720, 318 11th Avenue SE<br />Calgary, AB T2G 0Y8</p>
+        <p class="nap"><a href="mailto:hello@driftwork.io">hello@driftwork.io</a> · <a href="tel:+15875550142">+1 (587) 555-0142</a></p>
+      </div>
+      <div class="foot-col"><h4>product</h4><a href="#features">Features</a><a href="#tour">Product tour</a><a href="#pricing">Pricing</a><a href="#pricing">Changelog</a></div>
+      <div class="foot-col"><h4>developers</h4><a href="#">API reference</a><a href="#">CLI docs</a><a href="#">Status</a><a href="#">SDKs</a></div>
+      <div class="foot-col"><h4>company</h4><a href="#">About</a><a href="#">Careers</a><a href="#">Security</a><a href="#">Legal</a></div>
+    </div>
+    <div class="wrap foot-bottom">
+      <span>© 2026 Driftwork Technologies Inc.</span>
+      <span class="status"><span class="dot"></span> all systems operational</span>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById("burger");
+    const menu = document.getElementById("mobileMenu");
+    burger?.addEventListener("click", () => {
+      const open = menu.hasAttribute("hidden");
+      if (open) menu.removeAttribute("hidden"); else menu.setAttribute("hidden", "");
+      burger.setAttribute("aria-expanded", String(open));
+      burger.classList.toggle("x", open);
+    });
+    menu?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => { menu.setAttribute("hidden", ""); burger.classList.remove("x"); burger.setAttribute("aria-expanded", "false"); }));
+
+    document.querySelectorAll(".tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const id = tab.getAttribute("data-tab");
+        document.querySelectorAll(".tab").forEach((t) => { t.classList.remove("on"); t.setAttribute("aria-selected", "false"); });
+        tab.classList.add("on"); tab.setAttribute("aria-selected", "true");
+        document.querySelectorAll(".panel").forEach((p) => p.classList.toggle("on", p.getAttribute("data-panel") === id));
+      });
+    });
+
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!mq.matches && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    } else {
+      document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+    }
+  </script>
+
+  <style is:global>
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0}
+    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  </style>
+
+  <style>
+    :root{
+      --bg:#0A0B0D; --fg:#E6E8EB; --primary:#4ADE80; --primary-fg:#06120A;
+      --accent:#38BDF8; --muted:#14171A; --border:#23272E;
+      --mut-fg:#8a929c;
+      --mono:"JetBrains Mono",ui-monospace,monospace;
+      --sans:"Inter",system-ui,sans-serif;
+      --maxw:1120px;
+    }
+    body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2rem)}
+    h1,h2,h3,h4{font-family:var(--mono);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin:0}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .skip{position:absolute;left:-999px;top:0;background:var(--primary);color:var(--primary-fg);padding:.6rem 1rem;z-index:100}
+    .skip:focus{left:1rem;top:1rem}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+    /* buttons */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4em;font-family:var(--mono);font-size:.86rem;font-weight:500;padding:.7rem 1.1rem;min-height:44px;border-radius:8px;border:1px solid transparent;transition:transform .15s,background .2s,border-color .2s,box-shadow .2s;cursor:pointer;white-space:nowrap}
+    .btn.lg{padding:.9rem 1.5rem;font-size:.95rem}
+    .btn.full{width:100%}
+    .btn.solid{background:var(--primary);color:var(--primary-fg);box-shadow:0 0 0 0 rgba(74,222,128,.4)}
+    .btn.solid:hover{transform:translateY(-2px);box-shadow:0 8px 30px -8px rgba(74,222,128,.5)}
+    .btn.ghost{background:transparent;color:var(--fg);border-color:var(--border)}
+    .btn.ghost:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
+
+    /* nav */
+    .nav{position:sticky;top:0;z-index:50;background:rgba(10,11,13,.78);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .nav-inner{display:flex;align-items:center;gap:1.5rem;height:64px}
+    .brand{font-family:var(--mono);font-weight:700;font-size:1.1rem;letter-spacing:-.03em;display:inline-flex;align-items:center}
+    .cursor{color:var(--primary);margin-right:1px;animation:blink 1.2s step-end infinite}
+    @keyframes blink{50%{opacity:0}}
+    .nav-links{display:none;gap:1.6rem;margin-left:auto;font-family:var(--mono);font-size:.84rem;color:var(--mut-fg)}
+    .nav-links a{transition:color .2s}.nav-links a:hover{color:var(--primary)}
+    .nav-cta{display:none;gap:.6rem;margin-left:1rem}
+    .burger{margin-left:auto;display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:1px solid var(--border);border-radius:8px;cursor:pointer}
+    .burger span{display:block;width:18px;height:2px;background:var(--fg);margin-inline:auto;transition:.25s}
+    .burger.x span:first-child{transform:translateY(3.5px) rotate(45deg)}
+    .burger.x span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+    .mobile-menu{display:flex;flex-direction:column;gap:.4rem;padding:1rem clamp(1.1rem,4vw,2rem) 1.4rem;border-bottom:1px solid var(--border);background:var(--bg)}
+    .mobile-menu a{font-family:var(--mono);font-size:.95rem;padding:.5rem 0;color:var(--mut-fg)}
+    .mobile-menu .btn{margin-top:.4rem}
+    @media(min-width:860px){.nav-links,.nav-cta{display:flex}.burger,.mobile-menu{display:none}}
+
+    /* grid backdrop */
+    .grid-bg{position:absolute;inset:0;z-index:0;pointer-events:none;
+      background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.05) 1px,transparent 0);
+      background-size:26px 26px;
+      -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,#000 30%,transparent 80%);
+      mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,#000 30%,transparent 80%)}
+    .grid-bg.faint{opacity:.5;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 20%,transparent 75%)}
+
+    /* hero */
+    .hero{position:relative;overflow:hidden;text-align:center;padding:clamp(3rem,9vw,6rem) 0 clamp(2.5rem,6vw,4rem)}
+    .hero-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+    .pill{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.76rem;color:var(--mut-fg);background:var(--muted);border:1px solid var(--border);border-radius:999px;padding:.4rem .85rem;margin-bottom:1.6rem;transition:border-color .2s}
+    .pill:hover{border-color:var(--accent)}
+    .pill .arrow{color:var(--accent)}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:pulse 2s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(74,222,128,.55)}70%{box-shadow:0 0 0 7px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+    h1{font-size:clamp(2.6rem,8vw,5rem)}
+    .accent-grad{background:linear-gradient(100deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lede{max-width:42ch;color:var(--mut-fg);font-size:clamp(1rem,2.3vw,1.18rem);margin:1.4rem 0 0}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin-top:1.8rem}
+    .micro{font-family:var(--mono);font-size:.74rem;color:var(--mut-fg);margin-top:1rem;letter-spacing:-.01em}
+
+    /* terminal */
+    .terminal{width:100%;max-width:660px;margin:clamp(2.5rem,6vw,3.5rem) auto 0;border:1px solid var(--border);border-radius:12px;background:#0d0f12;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(56,189,248,.06);text-align:left}
+    .term-bar{display:flex;align-items:center;gap:.5rem;padding:.7rem .9rem;background:var(--muted);border-bottom:1px solid var(--border)}
+    .tl{width:11px;height:11px;border-radius:50%}.tl.r{background:#ff5f56}.tl.y{background:#ffbd2e}.tl.g{background:#27c93f}
+    .term-title{font-family:var(--mono);font-size:.72rem;color:var(--mut-fg);margin-left:.5rem}
+    .term-body{margin:0;padding:1.1rem 1.2rem;font-family:var(--mono);font-size:clamp(.72rem,2.2vw,.86rem);line-height:1.75;overflow-x:auto;color:var(--fg)}
+    .term-body code{white-space:pre}
+    .c-mut{color:var(--mut-fg)}.c-acc{color:var(--accent)}.c-ok{color:var(--primary)}.c-pri{color:var(--primary)}
+    .blink{color:var(--primary);animation:blink 1s step-end infinite}
+
+    /* trust */
+    .trust{border-block:1px solid var(--border);background:var(--muted)}
+    .trust-inner{display:flex;flex-direction:column;gap:1rem;padding-block:1.6rem}
+    .trust-label{font-family:var(--mono);font-size:.74rem;color:var(--mut-fg)}
+    .trust-logos{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:1.2rem 2rem}
+    .trust-logos li{font-family:var(--mono);font-weight:500;font-size:1rem;color:var(--mut-fg);opacity:.7;transition:opacity .2s,color .2s}
+    .trust-logos li:hover{opacity:1;color:var(--fg)}
+
+    /* sections */
+    .section{position:relative;padding-block:clamp(3.5rem,9vw,6rem)}
+    .sec-head{margin-bottom:clamp(1.8rem,4vw,2.6rem);max-width:38ch}
+    .eyebrow{font-family:var(--mono);font-size:.76rem;color:var(--accent);display:block;margin-bottom:.7rem}
+    .sec-head h2{font-size:clamp(1.6rem,4.5vw,2.5rem)}
+
+    /* bento */
+    .bento{display:grid;grid-template-columns:1fr;gap:1rem}
+    .card{position:relative;background:var(--muted);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:border-color .25s,transform .25s;overflow:hidden}
+    .card:hover{border-color:var(--primary);transform:translateY(-3px)}
+    .card-tag{font-family:var(--mono);font-size:.72rem;color:var(--accent)}
+    .card h3{font-size:1.15rem;margin:.6rem 0 .5rem}
+    .card p{color:var(--mut-fg);font-size:.92rem;margin:0}
+    .card-shot{margin-top:1.2rem;border:1px solid var(--border);border-radius:10px;overflow:hidden;aspect-ratio:16/9}
+    .card-shot img{width:100%;height:100%;object-fit:cover;filter:saturate(0) brightness(.55) contrast(1.1);mix-blend-mode:luminosity;opacity:.8;transition:filter .3s}
+    .card:hover .card-shot img{filter:saturate(.4) brightness(.6) contrast(1.05)}
+    @media(min-width:760px){
+      .bento{grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr}
+      .card.wide{grid-column:span 2}
+      .card.tall{grid-row:span 2;grid-column:3}
+    }
+
+    /* tour */
+    .tour{overflow:hidden}
+    .tabs{display:flex;gap:.4rem;margin-bottom:1.2rem;flex-wrap:wrap;position:relative;z-index:1}
+    .tab{font-family:var(--mono);font-size:.82rem;color:var(--mut-fg);background:var(--muted);border:1px solid var(--border);border-radius:8px;padding:.6rem 1rem;min-height:44px;cursor:pointer;transition:.2s}
+    .tab:hover{color:var(--fg)}
+    .tab.on{color:var(--primary);border-color:var(--primary);background:rgba(74,222,128,.07)}
+    .panel{display:none;position:relative;z-index:1}
+    .panel.on{display:block;animation:fade .35s ease}
+    @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .panel .terminal{margin-top:0;max-width:760px}
+
+    /* metrics */
+    .metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .metric{background:var(--bg);padding:clamp(1.4rem,4vw,2.2rem) 1.2rem;text-align:center}
+    .metric-val{display:block;font-family:var(--mono);font-weight:700;font-size:clamp(1.8rem,5vw,2.8rem);background:linear-gradient(120deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.03em}
+    .metric-label{display:block;font-family:var(--mono);font-size:.74rem;color:var(--mut-fg);margin-top:.4rem}
+    @media(min-width:760px){.metric-grid{grid-template-columns:repeat(4,1fr)}}
+
+    /* testimonials */
+    .quotes{display:grid;grid-template-columns:1fr;gap:1rem}
+    .quote{background:var(--muted);border:1px solid var(--border);border-radius:14px;padding:1.6rem;margin:0;transition:border-color .25s,transform .25s}
+    .quote:hover{border-color:var(--accent);transform:translateY(-3px)}
+    .quote blockquote{margin:0 0 1.2rem;font-size:1rem;line-height:1.6}
+    .quote blockquote::before{content:"// ";font-family:var(--mono);color:var(--accent)}
+    .q-name{display:block;font-family:var(--mono);font-weight:500;font-size:.86rem;color:var(--primary)}
+    .q-role{display:block;font-family:var(--mono);font-size:.74rem;color:var(--mut-fg);margin-top:.2rem}
+    @media(min-width:760px){.quotes{grid-template-columns:repeat(3,1fr)}}
+
+    /* marquee */
+    .marquee-sec{padding-block:clamp(2rem,5vw,3rem);border-block:1px solid var(--border);background:var(--muted);overflow:hidden}
+    .marquee-sec .trust-label{display:block;margin-bottom:1.2rem}
+    .marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+    .marquee-track{display:flex;gap:.8rem;width:max-content;animation:scroll 28s linear infinite}
+    .marquee:hover .marquee-track{animation-play-state:paused}
+    @keyframes scroll{to{transform:translateX(-50%)}}
+    .chip{font-family:var(--mono);font-size:.84rem;color:var(--mut-fg);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.5rem .9rem;white-space:nowrap}
+
+    /* pricing */
+    .pricing{display:grid;grid-template-columns:1fr;gap:1rem}
+    .plan{position:relative;background:var(--muted);border:1px solid var(--border);border-radius:16px;padding:1.8rem 1.5rem;display:flex;flex-direction:column;transition:transform .25s,border-color .25s}
+    .plan:hover{transform:translateY(-4px)}
+    .plan.pop{border-color:var(--primary);box-shadow:0 0 50px -20px rgba(74,222,128,.4)}
+    .pop-tag{position:absolute;top:-.7rem;left:1.5rem;font-family:var(--mono);font-size:.68rem;background:var(--primary);color:var(--primary-fg);padding:.25rem .6rem;border-radius:6px;font-weight:700}
+    .plan h3{font-size:1.2rem;margin-bottom:.4rem}
+    .plan-price{font-family:var(--mono);font-weight:700;font-size:2.2rem;margin:.2rem 0 1.2rem;letter-spacing:-.03em}
+    .plan-price span{font-size:.82rem;font-weight:400;color:var(--mut-fg)}
+    .plan ul{list-style:none;margin:0 0 1.5rem;padding:0;display:flex;flex-direction:column;gap:.6rem;flex:1}
+    .plan li{display:flex;gap:.6rem;font-size:.9rem;color:var(--mut-fg)}
+    .tick{color:var(--primary);font-family:var(--mono)}
+    .addons{font-family:var(--mono);font-size:.78rem;color:var(--mut-fg);margin-top:1.4rem;text-align:center}
+    .addons b{color:var(--fg);font-weight:500}
+    @media(min-width:760px){.pricing{grid-template-columns:repeat(3,1fr)}.plan.pop{transform:scale(1.03)}.plan.pop:hover{transform:scale(1.03) translateY(-4px)}}
+
+    /* cta band */
+    .cta-band{position:relative;overflow:hidden;text-align:center;padding-block:clamp(4rem,10vw,7rem);border-top:1px solid var(--border)}
+    .cta-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+    .cta-band h2{font-size:clamp(1.8rem,5.5vw,3rem)}
+    .cta-band p{color:var(--mut-fg);max-width:48ch;margin:1rem 0 0;font-size:clamp(1rem,2.4vw,1.15rem)}
+
+    /* footer */
+    .footer{border-top:1px solid var(--border);background:var(--muted);padding-block:clamp(2.6rem,6vw,3.6rem) 1.6rem}
+    .foot-grid{display:grid;grid-template-columns:1fr;gap:2rem}
+    .foot-brand p{color:var(--mut-fg);font-size:.88rem;margin:.8rem 0 0;max-width:34ch}
+    .foot-brand .nap{font-family:var(--mono);font-size:.78rem;line-height:1.7}
+    .foot-brand .nap a:hover{color:var(--primary)}
+    .foot-col h4{font-family:var(--mono);font-size:.74rem;color:var(--mut-fg);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem;font-weight:500}
+    .foot-col a{display:block;font-size:.9rem;color:var(--mut-fg);padding:.32rem 0;transition:color .2s}
+    .foot-col a:hover{color:var(--primary)}
+    .foot-bottom{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid var(--border);font-family:var(--mono);font-size:.74rem;color:var(--mut-fg)}
+    .status{display:inline-flex;align-items:center;gap:.5rem}
+    @media(min-width:760px){.foot-grid{grid-template-columns:2fr 1fr 1fr 1fr}}
+
+    /* reveal */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.in{opacity:1;transform:none}
+    @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none}}
+  </style>
+</body>
+</html>

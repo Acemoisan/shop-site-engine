@@ -1,0 +1,560 @@
+---
+const nav = [
+  { label: "Features", href: "#features" },
+  { label: "Product", href: "#tour" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Customers", href: "#proof" },
+];
+
+const logos = ["Northbeam", "Lumen Labs", "Cadence", "Halcyon", "Vellum", "Brightseed"];
+
+const bento = [
+  {
+    title: "Visual workflow builder",
+    body: "Drag, drop, ship. Connect 50+ tools and automate handoffs without writing a single line.",
+    span: "wide",
+    seed: "drift-flow",
+  },
+  { title: "API-deep when you need it", body: "Mono-clean REST + webhooks. Your platform team goes as far as they want.", span: "tall", seed: "drift-api" },
+  { title: "Single source of truth", body: "Every team sees the same live state. No more status-meeting archaeology.", span: "", seed: "drift-truth" },
+  { title: "AI Copilot", body: "Describe the automation in plain English. Driftwork builds the graph.", span: "", seed: "drift-ai" },
+  { title: "Audit logs & SSO", body: "SAML, granular permissions, and a 99.99% SLA on Business plans.", span: "wide", seed: "drift-sec" },
+];
+
+const tour = [
+  { tab: "Automate", head: "Put your busywork on autopilot", body: "Triggers, branches, and delays in a canvas your whole team can read. Test runs before you ship.", seed: "tour-automate" },
+  { tab: "Connect", head: "Every tool, one graph", body: "GitHub, Slack, Linear, Notion, Stripe — wire them once and let Driftwork keep them in sync.", seed: "tour-connect" },
+  { tab: "Observe", head: "See every run in real time", body: "Live run logs, retries, and alerts. Know the moment something drifts.", seed: "tour-observe" },
+];
+
+const metrics = [
+  { n: "12,000+", l: "teams onboarded" },
+  { n: "4.2M", l: "workflows run daily" },
+  { n: "99.99%", l: "uptime" },
+  { n: "11 hrs", l: "saved / person / week" },
+];
+
+const testimonials = [
+  { q: "We cut our release cycle from two weeks to two days. Driftwork is the first tool the whole team adopted without being asked.", a: "Priya Nadkarni", r: "VP Engineering, Northbeam", seed: "av-priya" },
+  { q: "Setup took an afternoon. The mono-deep API meant our platform team could go as far as they wanted.", a: "Marcus Webb", r: "Staff Engineer, Lumen Labs", seed: "av-marcus" },
+  { q: "Our ops finally have a single source of truth. Demo requests went up 30% after we standardized handoffs.", a: "Sofia Tran", r: "Head of Operations, Cadence", seed: "av-sofia" },
+];
+
+const integrations = ["GitHub", "Slack", "Linear", "Notion", "Stripe", "Figma", "Jira", "Segment", "Datadog", "Zapier", "HubSpot", "Vercel"];
+
+const tiers = [
+  { name: "Starter", price: { m: "$0", y: "$0" }, unit: "/mo", desc: "For small teams getting started.", feats: ["Up to 3 users", "100 automation runs/mo", "2 integrations", "Community support"], cta: "Start free", pop: false },
+  { name: "Team", price: { m: "$24", y: "$19" }, unit: "/user/mo", desc: "For teams shipping every day.", feats: ["Unlimited automations", "50+ integrations", "Shared workspaces", "Priority email support"], cta: "Start free trial", pop: true },
+  { name: "Business", price: { m: "$48", y: "$39" }, unit: "/user/mo", desc: "For scaling orgs with compliance needs.", feats: ["Advanced permissions", "Audit logs", "SSO / SAML", "99.99% SLA + dedicated CSM"], cta: "Book a demo", pop: false },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Driftwork — Workflow automation for product teams</title>
+    <meta name="description" content="Driftwork automates the work between the work — connect your tools, automate handoffs, and give every team a single source of truth. No-code to set up, API-deep when you need it." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="mesh" aria-hidden="true">
+      <span class="orb orb-1"></span>
+      <span class="orb orb-2"></span>
+      <span class="orb orb-3"></span>
+    </div>
+
+    <header class="nav" id="top">
+      <a class="brand" href="#top" aria-label="Driftwork home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Driftwork
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      </nav>
+      <div class="nav-cta">
+        <a href="#pricing" class="ghost">Sign in</a>
+        <a href="#pricing" class="btn">Start free</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      <a href="#pricing" class="btn">Start free</a>
+    </nav>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <a class="pill reveal" href="#tour">
+          <span class="dot"></span> New → AI Copilot just launched
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <h1 class="reveal">Ship faster.<br /><span class="grad-text">Drift less.</span></h1>
+        <p class="lede reveal">Driftwork connects your tools, automates handoffs, and gives every team a single source of truth. No-code to set up, API-deep when you need it.</p>
+        <div class="hero-cta reveal">
+          <a href="#pricing" class="btn btn-lg">Start free</a>
+          <a href="#tour" class="ghost ghost-lg">Book a demo</a>
+        </div>
+
+        <div class="glass-stage reveal">
+          <div class="glass-panel panel-main">
+            <div class="chrome"><span></span><span></span><span></span><em>app.driftwork.io</em></div>
+            <img src="https://picsum.photos/seed/drift-dash/900/520" alt="Driftwork workflow dashboard showing automation runs" loading="lazy" />
+          </div>
+          <div class="glass-panel panel-float-a">
+            <div class="mini-stat"><span class="mini-n">4.2M</span><span class="mini-l">runs today</span></div>
+            <div class="spark" aria-hidden="true"></div>
+          </div>
+          <div class="glass-panel panel-float-b">
+            <code class="term">
+              <span class="prompt">$</span> drift run sync<br />
+              <span class="ok">✓</span> 12 handoffs automated<br />
+              <span class="ok">✓</span> 0 drifted
+            </code>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRUST BAR -->
+      <section class="trust" aria-label="Trusted by">
+        <p>Trusted by 12,000+ teams shipping with Driftwork</p>
+        <ul>
+          {logos.map((l) => <li>{l}</li>)}
+        </ul>
+      </section>
+
+      <!-- BENTO FEATURES -->
+      <section class="section" id="features">
+        <div class="head reveal">
+          <span class="eyebrow">// Capabilities</span>
+          <h2>The workflow engine your team actually wants to use.</h2>
+        </div>
+        <div class="bento">
+          {bento.map((b) => (
+            <article class={`cell ${b.span} reveal`}>
+              <div class="cell-img" style={`background-image:url(https://picsum.photos/seed/${b.seed}/600/400)`} aria-hidden="true"></div>
+              <h3>{b.title}</h3>
+              <p>{b.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- PRODUCT TOUR -->
+      <section class="section tour" id="tour">
+        <div class="head reveal">
+          <span class="eyebrow">// Product tour</span>
+          <h2>Automate the work between the work.</h2>
+        </div>
+        <div class="tour-tabs reveal" role="tablist" aria-label="Product tour">
+          {tour.map((t, i) => (
+            <button class={`tour-tab ${i === 0 ? "active" : ""}`} data-idx={i} role="tab" aria-selected={i === 0 ? "true" : "false"}>{t.tab}</button>
+          ))}
+        </div>
+        <div class="tour-panels">
+          {tour.map((t, i) => (
+            <div class={`tour-panel ${i === 0 ? "active" : ""}`} data-idx={i} role="tabpanel">
+              <div class="tour-copy">
+                <h3>{t.head}</h3>
+                <p>{t.body}</p>
+                <a href="#pricing" class="ghost">Try it free →</a>
+              </div>
+              <div class="glass-panel tour-shot">
+                <div class="chrome"><span></span><span></span><span></span></div>
+                <img src={`https://picsum.photos/seed/${t.seed}/800/500`} alt={t.head} loading="lazy" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- METRICS -->
+      <section class="section metrics" id="proof">
+        <div class="metric-grid">
+          {metrics.map((m) => (
+            <div class="metric reveal">
+              <span class="metric-n grad-text" data-target={m.n}>{m.n}</span>
+              <span class="metric-l">{m.l}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section">
+        <div class="head reveal">
+          <span class="eyebrow">// What teams say</span>
+          <h2>Adopted without being asked.</h2>
+        </div>
+        <div class="quotes">
+          {testimonials.map((t) => (
+            <figure class="quote reveal">
+              <blockquote>“{t.q}”</blockquote>
+              <figcaption>
+                <img src={`https://picsum.photos/seed/${t.seed}/80/80`} alt={t.a} loading="lazy" />
+                <span><strong>{t.a}</strong><em>{t.r}</em></span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- INTEGRATIONS MARQUEE -->
+      <section class="marquee-wrap" aria-label="Integrations">
+        <p class="marquee-label">Fits into your stack — <span>50+ integrations</span></p>
+        <div class="marquee">
+          <div class="marquee-track">
+            {[...integrations, ...integrations].map((i) => <span class="chip">{i}</span>)}
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section class="section" id="pricing">
+        <div class="head reveal">
+          <span class="eyebrow">// Pricing</span>
+          <h2>Transparent pricing. Start free.</h2>
+          <div class="toggle">
+            <button id="toggleBtn" class="toggle-btn" aria-pressed="false">
+              <span class="t-opt active">Monthly</span>
+              <span class="t-opt">Annual <em>−20%</em></span>
+            </button>
+          </div>
+        </div>
+        <div class="tiers">
+          {tiers.map((t) => (
+            <article class={`tier reveal ${t.pop ? "pop" : ""}`}>
+              {t.pop && <span class="badge">Most popular</span>}
+              <h3>{t.name}</h3>
+              <p class="tier-desc">{t.desc}</p>
+              <p class="price"><span class="price-n" data-m={t.price.m} data-y={t.price.y}>{t.price.m}</span><span class="unit">{t.unit}</span></p>
+              <a href="#" class={`btn ${t.pop ? "" : "btn-soft"} full`}>{t.cta}</a>
+              <ul class="feats">
+                {t.feats.map((f) => (
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>{f}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+        <p class="addon">Add-ons: AI Copilot <strong>$12/user/mo</strong> · Advanced Analytics <strong>$99/mo flat</strong> · Enterprise self-host <strong>custom</strong></p>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="cta-band">
+        <div class="cta-inner reveal">
+          <h2>Ready to ship, not shuffle?</h2>
+          <p>Automate the work between the work. Free for up to 3 users — no card required.</p>
+          <div class="hero-cta">
+            <a href="#" class="btn btn-lg">Start free</a>
+            <a href="tel:+15875550142" class="ghost ghost-lg">Call +1 (587) 555-0142</a>
+          </div>
+          <p class="support">Support: Mon–Fri 6:00 AM – 8:00 PM MT · Enterprise 24/7 · Status updated in real time</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span> Driftwork</a>
+          <p>Automate the work between the work — so your team ships, not shuffles.</p>
+          <address>
+            Driftwork Technologies Inc.<br />
+            Suite 720, 318 11th Avenue SE, Calgary, AB T2G 0Y8<br />
+            <a href="mailto:hello@driftwork.io">hello@driftwork.io</a> · <a href="tel:+15875550142">+1 (587) 555-0142</a>
+          </address>
+        </div>
+        <div><h4>Product</h4><a href="#features">Features</a><a href="#tour">Product tour</a><a href="#pricing">Pricing</a><a href="#">Changelog</a></div>
+        <div><h4>Docs</h4><a href="#">API reference</a><a href="#">Guides</a><a href="#">Status</a><a href="#">Integrations</a></div>
+        <div><h4>Company</h4><a href="#">About</a><a href="#">Careers</a><a href="#">Blog</a><a href="#">Contact</a></div>
+      </div>
+      <div class="foot-base">
+        <span>© 2026 Driftwork Technologies Inc.</span>
+        <span class="status"><span class="dot"></span> All systems operational</span>
+      </div>
+    </footer>
+
+    <style is:global>
+      *,*::before,*::after{box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      body{margin:0}
+      img{display:block;max-width:100%}
+      a{text-decoration:none;color:inherit}
+      @media (prefers-reduced-motion: reduce){
+        *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+      }
+    </style>
+
+    <style>
+      :root{
+        --bg:#0B0A1A; --fg:#F4F3FF; --primary:#7C5CFF; --primary-fg:#FFFFFF;
+        --accent:#FF6FD8; --muted:#1A1832; --border:#2C2950;
+        --font-display:"Space Grotesk",system-ui,sans-serif;
+        --font-body:"Inter",system-ui,sans-serif;
+        --radius:18px; --max:1180px;
+      }
+      body{
+        background:var(--bg); color:var(--fg); font-family:var(--font-body);
+        line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+      }
+      h1,h2,h3,h4{font-family:var(--font-display);line-height:1.08;letter-spacing:-.02em;margin:0}
+      .grad-text{background:linear-gradient(100deg,var(--primary),var(--accent) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+      .eyebrow{font-family:var(--font-display);font-size:.8rem;letter-spacing:.04em;color:var(--accent);text-transform:lowercase}
+
+      /* mesh + orbs */
+      .mesh{position:fixed;inset:0;z-index:-1;overflow:hidden;background:
+        radial-gradient(60% 50% at 70% 0%, rgba(124,92,255,.22), transparent 70%),
+        radial-gradient(50% 40% at 10% 30%, rgba(255,111,216,.14), transparent 70%);}
+      .orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;animation:float 18s ease-in-out infinite}
+      .orb-1{width:420px;height:420px;background:#7C5CFF;top:-80px;right:-60px}
+      .orb-2{width:360px;height:360px;background:#FF6FD8;top:40%;left:-120px;animation-delay:-6s}
+      .orb-3{width:300px;height:300px;background:#5C8CFF;bottom:-60px;right:20%;animation-delay:-11s}
+      @keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-40px) scale(1.08)}}
+
+      /* nav */
+      .nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+        gap:1rem;padding:.85rem clamp(1rem,4vw,2.5rem);max-width:var(--max);margin:0 auto;
+        backdrop-filter:blur(14px);background:rgba(11,10,26,.55);border-bottom:1px solid transparent}
+      .brand{display:flex;align-items:center;gap:.55rem;font-family:var(--font-display);font-weight:700;font-size:1.15rem}
+      .brand-mark{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--primary),var(--accent));box-shadow:0 0 18px rgba(124,92,255,.6)}
+      .nav-links{display:flex;gap:1.6rem}
+      .nav-links a{font-size:.92rem;color:#C9C6E8;transition:color .2s}
+      .nav-links a:hover{color:var(--fg)}
+      .nav-cta{display:flex;align-items:center;gap:.8rem}
+      .ghost{font-size:.9rem;color:#C9C6E8;padding:.5rem .2rem;transition:color .2s}
+      .ghost:hover{color:var(--fg)}
+      .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;background:linear-gradient(120deg,var(--primary),var(--accent));
+        color:var(--primary-fg);font-weight:600;font-size:.92rem;padding:.7rem 1.2rem;border-radius:999px;border:0;cursor:pointer;
+        box-shadow:0 8px 26px rgba(124,92,255,.35);transition:transform .2s,box-shadow .2s}
+      .btn:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(255,111,216,.4)}
+      .btn-lg{padding:.95rem 1.7rem;font-size:1rem}
+      .btn-soft{background:var(--muted);color:var(--fg);border:1px solid var(--border);box-shadow:none}
+      .ghost-lg{padding:.95rem 1.4rem;border:1px solid var(--border);border-radius:999px}
+      .ghost-lg:hover{border-color:var(--primary)}
+      .full{width:100%}
+      .burger{display:none;flex-direction:column;gap:5px;background:0;border:0;cursor:pointer;padding:8px}
+      .burger span{width:24px;height:2px;background:var(--fg);border-radius:2px;transition:.3s}
+      .mobile-menu{display:none;flex-direction:column;gap:.3rem;padding:0 1.2rem 1rem;max-width:var(--max);margin:0 auto}
+      .mobile-menu.open{display:flex}
+      .mobile-menu a{padding:.7rem .4rem;border-bottom:1px solid var(--border);color:#C9C6E8}
+      .mobile-menu .btn{margin-top:.6rem;justify-content:center}
+
+      main{max-width:var(--max);margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+      .section{padding:clamp(4rem,9vw,7rem) 0}
+      .head{max-width:640px;margin:0 auto 3rem;text-align:center}
+      .head h2{font-size:clamp(1.8rem,4.5vw,2.8rem);margin-top:.7rem}
+
+      /* hero */
+      .hero{text-align:center;padding:clamp(3rem,7vw,5.5rem) 0 2rem}
+      .pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;color:#D6D3F2;
+        background:rgba(124,92,255,.12);border:1px solid var(--border);padding:.4rem .85rem;border-radius:999px;margin-bottom:1.6rem}
+      .pill:hover{border-color:var(--primary)}
+      .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:pulse 2s infinite}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+      h1{font-size:clamp(2.6rem,8vw,5rem);font-weight:700}
+      .lede{max-width:600px;margin:1.4rem auto 0;color:#C2BFE0;font-size:clamp(1rem,2vw,1.18rem)}
+      .hero-cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+
+      /* glass stage */
+      .glass-stage{position:relative;max-width:920px;margin:4rem auto 0}
+      .glass-panel{background:rgba(26,24,50,.55);border:1px solid rgba(244,243,255,.12);border-radius:var(--radius);
+        backdrop-filter:blur(16px);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+      .panel-main{overflow:hidden}
+      .chrome{display:flex;align-items:center;gap:6px;padding:.6rem .85rem;border-bottom:1px solid var(--border)}
+      .chrome span{width:11px;height:11px;border-radius:50%;background:var(--border)}
+      .chrome span:first-child{background:#ff5f57}.chrome span:nth-child(2){background:#febc2e}.chrome span:nth-child(3){background:#28c840}
+      .chrome em{margin-left:auto;font-style:normal;font-size:.72rem;color:#8e8ab8;font-family:var(--font-body)}
+      .panel-main img{width:100%;aspect-ratio:900/520;object-fit:cover;filter:saturate(1.05) contrast(1.02);mix-blend-mode:luminosity;opacity:.92}
+      .panel-float-a{position:absolute;top:-26px;right:-10px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.4rem;animation:bob 6s ease-in-out infinite}
+      .mini-n{font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--accent)}
+      .mini-l{font-size:.72rem;color:#A8A4D0}
+      .spark{height:24px;width:120px;background:linear-gradient(90deg,transparent,var(--primary),transparent);
+        clip-path:polygon(0 70%,12% 40%,25% 60%,40% 20%,55% 55%,70% 30%,85% 65%,100% 35%,100% 100%,0 100%);opacity:.6}
+      .panel-float-b{position:absolute;bottom:-30px;left:-14px;padding:1rem 1.1rem;animation:bob 7s ease-in-out infinite reverse}
+      .term{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.78rem;line-height:1.7;color:#D6D3F2;display:block}
+      .term .prompt{color:var(--accent)}.term .ok{color:#4ade80}
+      @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+      /* trust */
+      .trust{text-align:center;padding:2.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:4rem}
+      .trust p{font-size:.82rem;letter-spacing:.04em;color:#8e8ab8;margin:0 0 1.2rem;text-transform:uppercase}
+      .trust ul{list-style:none;display:flex;flex-wrap:wrap;gap:clamp(1.2rem,4vw,3rem);justify-content:center;padding:0;margin:0}
+      .trust li{font-family:var(--font-display);font-weight:600;font-size:1.05rem;color:#6f6b9a;transition:color .25s}
+      .trust li:hover{color:var(--fg)}
+
+      /* bento */
+      .bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+      .cell{position:relative;overflow:hidden;background:var(--muted);border:1px solid var(--border);border-radius:var(--radius);
+        padding:1.5rem;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .3s,border-color .3s}
+      .cell:hover{transform:translateY(-5px);border-color:var(--primary)}
+      .cell.wide{grid-column:span 2}.cell.tall{grid-row:span 2}
+      .cell-img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.16;
+        mix-blend-mode:screen;filter:saturate(1.4) hue-rotate(8deg)}
+      .cell::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,transparent 30%,rgba(124,92,255,.18))}
+      .cell h3,.cell p{position:relative;z-index:1}
+      .cell h3{font-size:1.18rem;margin-bottom:.4rem}
+      .cell p{color:#BBB7DD;font-size:.92rem;margin:0}
+
+      /* tour */
+      .tour-tabs{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+      .tour-tab{background:var(--muted);border:1px solid var(--border);color:#C2BFE0;font-family:var(--font-display);
+        font-weight:500;padding:.6rem 1.4rem;border-radius:999px;cursor:pointer;transition:.25s;min-height:44px}
+      .tour-tab.active{background:linear-gradient(120deg,var(--primary),var(--accent));color:#fff;border-color:transparent}
+      .tour-panel{display:none;grid-template-columns:1fr 1.2fr;gap:2.5rem;align-items:center}
+      .tour-panel.active{display:grid;animation:fade .5s ease}
+      @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+      .tour-copy h3{font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.8rem}
+      .tour-copy p{color:#BBB7DD;margin-bottom:1.2rem}
+      .tour-copy .ghost{color:var(--accent)}
+      .tour-shot{overflow:hidden}
+      .tour-shot img{width:100%;aspect-ratio:800/500;object-fit:cover;mix-blend-mode:luminosity;opacity:.9}
+
+      /* metrics */
+      .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center}
+      .metric{background:var(--muted);border:1px solid var(--border);border-radius:var(--radius);padding:2rem 1rem}
+      .metric-n{display:block;font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,5vw,3rem)}
+      .metric-l{font-size:.85rem;color:#A8A4D0}
+
+      /* quotes */
+      .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+      .quote{background:var(--muted);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem;margin:0;
+        transition:transform .3s,border-color .3s}
+      .quote:hover{transform:translateY(-5px);border-color:var(--accent)}
+      .quote blockquote{margin:0 0 1.4rem;font-size:1rem;color:#E4E2F5;line-height:1.65}
+      .quote figcaption{display:flex;align-items:center;gap:.8rem}
+      .quote figcaption img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:1px solid var(--border)}
+      .quote figcaption span{display:flex;flex-direction:column}
+      .quote strong{font-family:var(--font-display);font-size:.95rem}
+      .quote em{font-style:normal;font-size:.8rem;color:#9c98c4}
+
+      /* marquee */
+      .marquee-wrap{padding:3rem 0;text-align:center}
+      .marquee-label{font-size:.85rem;color:#8e8ab8;margin:0 0 1.5rem}
+      .marquee-label span{color:var(--accent);font-weight:600}
+      .marquee{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+        mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+      .marquee-track{display:flex;gap:1rem;width:max-content;animation:scroll 28s linear infinite}
+      .marquee-wrap:hover .marquee-track{animation-play-state:paused}
+      @keyframes scroll{to{transform:translateX(-50%)}}
+      .chip{font-family:var(--font-display);font-weight:500;white-space:nowrap;background:var(--muted);
+        border:1px solid var(--border);border-radius:999px;padding:.55rem 1.2rem;font-size:.9rem;color:#C2BFE0}
+
+      /* pricing */
+      .toggle{display:flex;justify-content:center;margin-top:1.6rem}
+      .toggle-btn{display:flex;background:var(--muted);border:1px solid var(--border);border-radius:999px;padding:4px;cursor:pointer}
+      .t-opt{font-size:.85rem;padding:.45rem 1rem;border-radius:999px;color:#A8A4D0;font-family:var(--font-display);display:flex;gap:.3rem;align-items:center}
+      .t-opt em{font-style:normal;color:var(--accent);font-size:.72rem}
+      .t-opt.active{background:linear-gradient(120deg,var(--primary),var(--accent));color:#fff}
+      .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;align-items:start}
+      .tier{position:relative;background:var(--muted);border:1px solid var(--border);border-radius:var(--radius);padding:2rem 1.6rem;transition:transform .3s}
+      .tier.pop{border-color:var(--primary);box-shadow:0 24px 60px rgba(124,92,255,.28);transform:scale(1.02)}
+      .tier.pop:hover,.tier:hover{transform:translateY(-5px) scale(1.01)}
+      .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(120deg,var(--primary),var(--accent));
+        color:#fff;font-size:.72rem;font-weight:600;padding:.3rem .9rem;border-radius:999px;white-space:nowrap}
+      .tier h3{font-size:1.3rem;margin-bottom:.3rem}
+      .tier-desc{color:#A8A4D0;font-size:.85rem;min-height:2.6em;margin:0 0 1rem}
+      .price{margin:0 0 1.2rem;display:flex;align-items:baseline;gap:.25rem}
+      .price-n{font-family:var(--font-display);font-weight:700;font-size:2.4rem}
+      .unit{color:#9c98c4;font-size:.85rem}
+      .feats{list-style:none;padding:0;margin:1.4rem 0 0;display:flex;flex-direction:column;gap:.7rem}
+      .feats li{display:flex;gap:.6rem;align-items:flex-start;font-size:.9rem;color:#D6D3F2}
+      .feats svg{color:var(--accent);flex-shrink:0;margin-top:3px}
+      .addon{text-align:center;color:#9c98c4;font-size:.85rem;margin-top:2rem}
+      .addon strong{color:var(--fg)}
+
+      /* cta band */
+      .cta-band{margin:2rem 0 4rem;border-radius:28px;background:
+        radial-gradient(120% 140% at 50% 0%, rgba(124,92,255,.4), transparent 60%),
+        linear-gradient(160deg,#14122b,#1f1640);border:1px solid var(--border);overflow:hidden;position:relative}
+      .cta-inner{text-align:center;padding:clamp(3rem,7vw,5rem) 1.5rem}
+      .cta-band h2{font-size:clamp(1.8rem,5vw,3rem)}
+      .cta-inner>p{color:#D6D3F2;max-width:480px;margin:1rem auto 0}
+      .support{font-size:.78rem;color:#9c98c4;margin-top:1.8rem!important}
+
+      /* footer */
+      .footer{border-top:1px solid var(--border);max-width:var(--max);margin:0 auto;padding:3rem clamp(1rem,4vw,2.5rem)}
+      .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2rem}
+      .foot-brand p{color:#9c98c4;font-size:.9rem;max-width:280px}
+      .foot-brand address{font-style:normal;color:#9c98c4;font-size:.82rem;line-height:1.7;margin-top:1rem}
+      .foot-brand address a:hover{color:var(--accent)}
+      .footer h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:#8e8ab8;margin-bottom:1rem}
+      .footer .foot-grid div a{display:block;color:#C2BFE0;font-size:.9rem;padding:.3rem 0;transition:color .2s}
+      .footer .foot-grid div a:hover{color:var(--fg)}
+      .foot-base{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:2.5rem;
+        padding-top:1.5rem;border-top:1px solid var(--border);font-size:.82rem;color:#8e8ab8}
+      .status{display:flex;align-items:center;gap:.5rem}
+
+      /* reveal */
+      .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+      .reveal.in{opacity:1;transform:none}
+
+      :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+      @media (max-width:900px){
+        .bento,.metric-grid,.quotes,.tiers{grid-template-columns:1fr 1fr}
+        .cell.wide,.cell.tall{grid-column:auto;grid-row:auto}
+        .tier.pop{transform:none}
+        .tour-panel.active{grid-template-columns:1fr}
+        .foot-grid{grid-template-columns:1fr 1fr}
+      }
+      @media (max-width:680px){
+        .nav-links,.nav-cta{display:none}
+        .burger{display:flex}
+        .nav{position:sticky}
+        .bento,.metric-grid,.quotes,.tiers{grid-template-columns:1fr}
+        .metric-grid{grid-template-columns:1fr 1fr}
+        .panel-float-a,.panel-float-b{display:none}
+        .foot-grid{grid-template-columns:1fr 1fr}
+        .foot-base{flex-direction:column}
+      }
+    </style>
+
+    <script>
+      // mobile nav
+      const burger = document.getElementById("burger");
+      const menu = document.getElementById("mobileMenu");
+      burger?.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        burger.setAttribute("aria-expanded", String(open));
+      });
+      menu?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => {
+        menu.classList.remove("open"); burger?.setAttribute("aria-expanded", "false");
+      }));
+
+      // tour tabs
+      const tabs = document.querySelectorAll(".tour-tab");
+      const panels = document.querySelectorAll(".tour-panel");
+      tabs.forEach((tab) => tab.addEventListener("click", () => {
+        const idx = tab.getAttribute("data-idx");
+        tabs.forEach((t) => { t.classList.remove("active"); t.setAttribute("aria-selected","false"); });
+        tab.classList.add("active"); tab.setAttribute("aria-selected","true");
+        panels.forEach((p) => p.classList.toggle("active", p.getAttribute("data-idx") === idx));
+      }));
+
+      // pricing toggle
+      const tBtn = document.getElementById("toggleBtn");
+      tBtn?.addEventListener("click", () => {
+        const annual = tBtn.getAttribute("aria-pressed") !== "true";
+        tBtn.setAttribute("aria-pressed", String(annual));
+        tBtn.querySelectorAll(".t-opt")[0].classList.toggle("active", !annual);
+        tBtn.querySelectorAll(".t-opt")[1].classList.toggle("active", annual);
+        document.querySelectorAll(".price-n").forEach((el) => {
+          el.textContent = annual ? el.getAttribute("data-y") : el.getAttribute("data-m");
+        });
+      });
+
+      // scroll reveal
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

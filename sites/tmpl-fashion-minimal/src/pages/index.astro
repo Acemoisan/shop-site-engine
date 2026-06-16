@@ -1,0 +1,587 @@
+---
+// Meridian Atelier — Minimal store template (fashion / apparel)
+// Fully self-contained Astro page. No imports, no Tailwind.
+const nav = [
+  { label: "New In", href: "#arrivals" },
+  { label: "Collection", href: "#collection" },
+  { label: "Lookbook", href: "#lookbook" },
+  { label: "Stockist", href: "#visit" },
+];
+
+const categories = [
+  { name: "Women", seed: "ma-women", href: "#collection" },
+  { name: "Men", seed: "ma-men", href: "#collection" },
+  { name: "Outerwear", seed: "ma-outer", href: "#collection" },
+  { name: "Accessories", seed: "ma-acc", href: "#collection" },
+];
+
+const products = [
+  { name: "The Atelier Wool Overcoat", price: "$480", front: "ma-p1a", back: "ma-p1b", swatches: ["#2b2926", "#9a8f7d", "#cfc7b6"], tag: "Bestseller" },
+  { name: "Heavyweight Boxy Tee — 320gsm", price: "$68", front: "ma-p2a", back: "ma-p2b", swatches: ["#fbfaf7", "#2b2926", "#a9b0a3"] },
+  { name: "Pleated Wide-Leg Trouser", price: "$165", front: "ma-p3a", back: "ma-p3b", swatches: ["#2b2926", "#9a8f7d"] },
+  { name: "Cashmere-Blend Crewneck", price: "$210", front: "ma-p4a", back: "ma-p4b", swatches: ["#cfc7b6", "#9a8f7d", "#2b2926"], tag: "New" },
+];
+
+const testimonials = [
+  { quote: "The overcoat is the best-made thing in my closet. Worth every dollar.", name: "Dana R.", city: "Calgary" },
+  { quote: "Finally a brand that nails fit and fabric without the logo noise.", name: "Priya S.", city: "Vancouver" },
+  { quote: "Copped it in two minutes flat. Quality is insane for the price.", name: "Marcus T.", city: "Toronto" },
+];
+
+const ugc = ["ma-ig1", "ma-ig2", "ma-ig3", "ma-ig4", "ma-ig5", "ma-ig6"];
+const ticker = ["Free shipping over $150", "Easy 30-day returns", "The Fall Edit has landed", "Members get early access", "Made to last"];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meridian Atelier — Quietly Considered Essentials</title>
+    <meta
+      name="description"
+      content="Meridian Atelier — a modern wardrobe made to last. Considered essentials in warm-neutral tones. Shop the Fall Edit at our Calgary flagship on 17th Ave SW."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#collection">Skip to products</a>
+
+    <!-- Ticker -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        {[...ticker, ...ticker].map((t) => <span class="ticker__item">{t}<i>·</i></span>)}
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <header class="nav" id="top">
+      <div class="wrap nav__inner">
+        <a class="brand" href="#top" aria-label="Meridian Atelier home">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__word">MERIDIAN<em>ATELIER</em></span>
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <div class="nav__actions">
+          <a class="search" href="#collection" aria-label="Search">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+          <button class="bag" id="bagBtn" aria-haspopup="dialog" aria-expanded="false">
+            Bag <span class="bag__count">2</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mini cart drawer -->
+    <div class="scrim" id="scrim" hidden></div>
+    <aside class="drawer" id="drawer" role="dialog" aria-label="Shopping bag" aria-modal="true" hidden>
+      <div class="drawer__head">
+        <h2>Your Bag</h2>
+        <button class="drawer__close" id="bagClose" aria-label="Close bag">✕</button>
+      </div>
+      <ul class="drawer__items">
+        <li><img src="https://picsum.photos/seed/ma-p1a/120/150" alt="" /><div><strong>Atelier Wool Overcoat</strong><span>Sand · M</span><span class="drawer__price">$480</span></div></li>
+        <li><img src="https://picsum.photos/seed/ma-p4a/120/150" alt="" /><div><strong>Cashmere-Blend Crewneck</strong><span>Stone · L</span><span class="drawer__price">$210</span></div></li>
+      </ul>
+      <div class="drawer__foot">
+        <div class="drawer__total"><span>Subtotal</span><span>$690</span></div>
+        <p class="drawer__note">Free shipping unlocked · Easy 30-day returns</p>
+        <a class="btn btn--solid drawer__checkout" href="#">Checkout</a>
+      </div>
+    </aside>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero__media">
+          <img src="https://picsum.photos/seed/ma-hero-fall/1600/1900" alt="Model wearing the Meridian Atelier Fall Edit in warm-neutral tones" />
+        </div>
+        <div class="wrap hero__inner">
+          <p class="eyebrow reveal">The Fall Edit · 2026</p>
+          <h1 class="reveal">Quietly Considered<br /><em>Essentials.</em></h1>
+          <p class="hero__sub reveal">Modern wardrobe, made to last. A small collection of warm-neutral pieces — honest fabric, true-to-color, nothing shouting.</p>
+          <div class="hero__cta reveal">
+            <a class="btn btn--solid" href="#collection">Shop the Collection</a>
+            <a class="btn btn--ghost" href="#lookbook">View the Lookbook</a>
+          </div>
+        </div>
+        <div class="hero__meta wrap" aria-hidden="true">
+          <span>320gsm cotton</span><span>Cashmere blends</span><span>Made to last</span>
+        </div>
+      </section>
+
+      <!-- Shop by category -->
+      <section class="cats" aria-label="Shop by category">
+        <div class="wrap">
+          <div class="cats__grid">
+            {categories.map((c) => (
+              <a class="cat" href={c.href}>
+                <span class="cat__img"><img src={`https://picsum.photos/seed/${c.seed}/600/760`} alt={`${c.name} category`} /></span>
+                <span class="cat__label">{c.name}<i aria-hidden="true">→</i></span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Collection grid -->
+      <section class="collection" id="collection">
+        <div class="wrap">
+          <header class="sec-head">
+            <div>
+              <p class="eyebrow">The Fall Edit</p>
+              <h2>Featured pieces</h2>
+            </div>
+            <div class="toolbar" role="group" aria-label="Filter products">
+              <button class="chip is-active">All</button>
+              <button class="chip">Tops</button>
+              <button class="chip">Outerwear</button>
+              <button class="chip">Trousers</button>
+            </div>
+          </header>
+
+          <div class="grid">
+            {products.map((p) => (
+              <article class="card">
+                <a class="card__media" href="#" aria-label={p.name}>
+                  <img class="card__front" src={`https://picsum.photos/seed/${p.front}/700/880`} alt={p.name} loading="lazy" />
+                  <img class="card__back" src={`https://picsum.photos/seed/${p.back}/700/880`} alt="" aria-hidden="true" loading="lazy" />
+                  {p.tag && <span class="card__tag">{p.tag}</span>}
+                  <span class="card__quick">Quick add +</span>
+                </a>
+                <div class="card__info">
+                  <div class="card__row">
+                    <h3>{p.name}</h3>
+                    <span class="card__price">{p.price}</span>
+                  </div>
+                  <div class="card__swatches" aria-label="Available colours">
+                    {p.swatches.map((s) => <span class="swatch" style={`--s:${s}`}></span>)}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- The Drop / arrivals — editorial split -->
+      <section class="drop" id="arrivals">
+        <div class="wrap drop__inner">
+          <div class="drop__copy reveal">
+            <p class="eyebrow">New Arrivals</p>
+            <h2>The OFF-GRID<br />capsule restocks Friday.</h2>
+            <p>Cargo, beanies and the heavyweight tee — back in limited runs. Members get a 24-hour head start before it goes live to everyone.</p>
+            <ul class="drop__list">
+              <li><span>OFF-GRID Cargo Pant</span><span>$148</span></li>
+              <li><span>Logo Beanie, Acid Wash</span><span>$42</span></li>
+              <li><span>Heavyweight Boxy Tee</span><span>$68</span></li>
+            </ul>
+            <a class="btn btn--solid" href="#newsletter">Get early access</a>
+          </div>
+          <figure class="drop__media reveal">
+            <img src="https://picsum.photos/seed/ma-drop-capsule/900/1100" alt="Flat-lay of the OFF-GRID capsule on a warm-neutral seamless background" />
+          </figure>
+        </div>
+      </section>
+
+      <!-- Lookbook -->
+      <section class="look" id="lookbook">
+        <div class="wrap">
+          <header class="sec-head sec-head--center">
+            <div>
+              <p class="eyebrow">Lookbook</p>
+              <h2>Cut from a different cloth</h2>
+            </div>
+          </header>
+          <div class="look__grid">
+            <figure class="look__a"><img src="https://picsum.photos/seed/ma-look1/900/1200" alt="Styling look one — overcoat with wide-leg trouser" /></figure>
+            <div class="look__note">
+              <p class="reveal">We design slowly. Each season is a handful of pieces meant to layer, to outlast trends, and to feel like the most honest version of your wardrobe.</p>
+              <p class="look__sig reveal">— The Meridian Studio, Calgary</p>
+            </div>
+            <figure class="look__b"><img src="https://picsum.photos/seed/ma-look2/760/600" alt="Detail shot of cashmere-blend knit" /></figure>
+            <figure class="look__c"><img src="https://picsum.photos/seed/ma-look3/760/600" alt="Ghost-mannequin shot of the boxy tee" /></figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Social proof -->
+      <section class="proof" aria-label="Customer reviews">
+        <div class="wrap">
+          <div class="proof__head">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <p>4.9 / 5 — from 1,200+ verified buyers</p>
+          </div>
+          <div class="proof__grid">
+            {testimonials.map((t) => (
+              <figure class="quote">
+                <blockquote>“{t.quote}”</blockquote>
+                <figcaption>{t.name} <span>· {t.city}</span></figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- UGC -->
+      <section class="ugc" aria-label="Customer gallery">
+        <div class="wrap ugc__head">
+          <p class="eyebrow">As worn</p>
+          <h2>@meridian.atelier</h2>
+        </div>
+        <div class="ugc__grid">
+          {ugc.map((s, i) => (
+            <a class="ugc__tile" href="#" aria-label={`Customer photo ${i + 1}`}>
+              <img src={`https://picsum.photos/seed/${s}/500/500`} alt={`Customer wearing Meridian Atelier, photo ${i + 1}`} loading="lazy" />
+              <span class="ugc__shop" aria-hidden="true">Shop the look</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- Newsletter + Visit -->
+      <section class="join" id="newsletter">
+        <div class="wrap join__inner">
+          <div class="join__copy">
+            <h2>Join the list.</h2>
+            <p>Early access to every drop, plus <strong>10% off your first order.</strong></p>
+            <form class="join__form" onsubmit="return false">
+              <label class="vh" for="email">Email address</label>
+              <input id="email" type="email" placeholder="you@email.com" required autocomplete="email" />
+              <button class="btn btn--solid" type="submit">Subscribe</button>
+            </form>
+            <p class="join__fine">No noise. Unsubscribe anytime.</p>
+          </div>
+
+          <div class="visit" id="visit">
+            <p class="eyebrow">Flagship & Showroom</p>
+            <address class="visit__nap">
+              <strong>Meridian Atelier Flagship</strong>
+              1108 17th Avenue SW<br />Calgary, AB T2T 0B6<br />
+              <a href="tel:+14035552174">(403) 555-2174</a>
+            </address>
+            <dl class="hours">
+              <div><dt>Mon–Fri</dt><dd>10am – 7pm</dd></div>
+              <div><dt>Saturday</dt><dd>11am – 6pm</dd></div>
+              <div><dt>Sunday</dt><dd>12pm – 5pm</dd></div>
+            </dl>
+            <a class="btn btn--ghost" href="https://maps.google.com/?q=1108+17th+Avenue+SW+Calgary+AB" target="_blank" rel="noopener">Get directions</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="foot">
+      <div class="wrap foot__grid">
+        <div class="foot__brand">
+          <span class="brand__word brand__word--lg">MERIDIAN<em>ATELIER</em></span>
+          <p>Modern wardrobe, made to last.</p>
+        </div>
+        <nav aria-label="Shop"><h3>Shop</h3><a href="#collection">New In</a><a href="#collection">Outerwear</a><a href="#collection">Knitwear</a><a href="#collection">Accessories</a></nav>
+        <nav aria-label="Help"><h3>Service</h3><a href="#visit">Shipping & Returns</a><a href="#visit">Size Guide</a><a href="tel:+14035552174">Contact</a><a href="#visit">Store Locator</a></nav>
+        <nav aria-label="Studio"><h3>Studio</h3><a href="#lookbook">Lookbook</a><a href="#newsletter">The List</a><a href="#">Sustainability</a></nav>
+      </div>
+      <div class="wrap foot__base">
+        <span>© 2026 Meridian Atelier. Calgary, AB.</span>
+        <span class="foot__pay" aria-hidden="true">VISA · MC · AMEX · APPLE PAY</span>
+      </div>
+    </footer>
+
+    <script>
+      // Mini-cart drawer
+      const bagBtn = document.getElementById("bagBtn");
+      const drawer = document.getElementById("drawer");
+      const scrim = document.getElementById("scrim");
+      const bagClose = document.getElementById("bagClose");
+      const open = () => { drawer.hidden = false; scrim.hidden = false; bagBtn.setAttribute("aria-expanded", "true"); requestAnimationFrame(() => { drawer.classList.add("is-open"); scrim.classList.add("is-open"); }); };
+      const close = () => { drawer.classList.remove("is-open"); scrim.classList.remove("is-open"); bagBtn.setAttribute("aria-expanded", "false"); setTimeout(() => { drawer.hidden = true; scrim.hidden = true; }, 320); };
+      bagBtn?.addEventListener("click", open);
+      bagClose?.addEventListener("click", close);
+      scrim?.addEventListener("click", close);
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+
+      // Filter chips (visual)
+      document.querySelectorAll(".chip").forEach((c) =>
+        c.addEventListener("click", () => {
+          document.querySelectorAll(".chip").forEach((x) => x.classList.remove("is-active"));
+          c.classList.add("is-active");
+        })
+      );
+
+      // Scroll reveal
+      const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+      if (!mq.matches) {
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }),
+          { threshold: 0.15 }
+        );
+        document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      }
+    </script>
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; }
+      h1, h2, h3, p, figure, blockquote, dl, dd { margin: 0; }
+      button { font: inherit; cursor: pointer; }
+    </style>
+
+    <style>
+      :root {
+        --bg: #fbfaf7;
+        --fg: #2b2926;
+        --primary: #2b2926;
+        --primary-fg: #fbfaf7;
+        --accent: #9a8f7d;
+        --muted: #efece5;
+        --border: #e2ddd3;
+        --sans: "Inter", system-ui, sans-serif;
+        --display: "Fraunces", Georgia, serif;
+        --maxw: 1280px;
+        --r: 4px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--sans);
+        font-weight: 300;
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: clamp(1.1rem, 4vw, 3rem); }
+      .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+      .eyebrow { font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+      .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+      .reveal.in { opacity: 1; transform: none; }
+
+      :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+      .skip { position: absolute; left: -999px; top: 0; z-index: 100; background: var(--primary); color: var(--primary-fg); padding: 0.7rem 1rem; }
+      .skip:focus { left: 0; }
+
+      h1, h2, h3 { font-family: var(--display); font-weight: 300; letter-spacing: -0.015em; }
+      h1 em, h2 em { font-style: italic; color: var(--accent); }
+
+      .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 1.6rem; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border-radius: 999px; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+      .btn--solid { background: var(--primary); color: var(--primary-fg); }
+      .btn--solid:hover { transform: translateY(-2px); background: #1d1c1a; }
+      .btn--ghost { background: transparent; color: var(--fg); border: 1px solid var(--border); }
+      .btn--ghost:hover { background: var(--muted); border-color: var(--accent); }
+
+      /* Ticker */
+      .ticker { background: var(--primary); color: var(--primary-fg); overflow: hidden; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; }
+      .ticker__track { display: inline-flex; white-space: nowrap; padding: 0.55rem 0; animation: marquee 32s linear infinite; }
+      .ticker__item { padding-inline: 1.6rem; opacity: 0.9; }
+      .ticker__item i { margin-left: 1.6rem; opacity: 0.4; font-style: normal; }
+      @keyframes marquee { to { transform: translateX(-50%); } }
+
+      /* Nav */
+      .nav { position: sticky; top: 0; z-index: 40; background: color-mix(in oklab, var(--bg) 88%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+      .nav__inner { display: flex; align-items: center; gap: 2rem; min-height: 68px; }
+      .brand { display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; margin-right: auto; }
+      .brand__mark { width: 26px; height: 26px; border: 1px solid var(--fg); border-radius: 50%; position: relative; }
+      .brand__mark::after { content: ""; position: absolute; inset: 6px; background: var(--accent); border-radius: 50%; }
+      .brand__word { font-family: var(--display); font-size: 1.02rem; letter-spacing: 0.04em; line-height: 1; }
+      .brand__word em { font-style: italic; color: var(--accent); margin-left: 0.35rem; font-size: 0.85em; }
+      .brand__word--lg { font-size: 1.5rem; }
+      .nav__links { display: none; gap: 1.8rem; }
+      .nav__links a { text-decoration: none; font-size: 0.85rem; letter-spacing: 0.06em; position: relative; padding: 0.4rem 0; }
+      .nav__links a::after { content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--accent); transition: width 0.3s ease; }
+      .nav__links a:hover::after { width: 100%; }
+      .nav__actions { display: flex; align-items: center; gap: 0.4rem; }
+      .search { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: var(--fg); border-radius: 50%; }
+      .search:hover { background: var(--muted); }
+      .bag { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 44px; padding: 0 1rem; background: transparent; border: 1px solid var(--border); border-radius: 999px; font-size: 0.8rem; letter-spacing: 0.06em; }
+      .bag:hover { border-color: var(--accent); }
+      .bag__count { background: var(--primary); color: var(--primary-fg); border-radius: 50%; width: 20px; height: 20px; display: grid; place-items: center; font-size: 0.68rem; }
+
+      /* Drawer */
+      .scrim { position: fixed; inset: 0; z-index: 50; background: rgba(43,41,38,0.32); opacity: 0; transition: opacity 0.32s ease; }
+      .scrim.is-open { opacity: 1; }
+      .drawer { position: fixed; top: 0; right: 0; z-index: 60; width: min(92vw, 400px); height: 100%; background: var(--bg); border-left: 1px solid var(--border); display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.32s cubic-bezier(0.16,1,0.3,1); }
+      .drawer.is-open { transform: none; }
+      .drawer__head { display: flex; align-items: center; justify-content: space-between; padding: 1.4rem; border-bottom: 1px solid var(--border); }
+      .drawer__head h2 { font-size: 1.1rem; }
+      .drawer__close { background: none; border: none; font-size: 1rem; width: 44px; height: 44px; }
+      .drawer__items { list-style: none; margin: 0; padding: 1rem 1.4rem; display: grid; gap: 1.1rem; flex: 1; overflow: auto; }
+      .drawer__items li { display: grid; grid-template-columns: 54px 1fr; gap: 0.9rem; align-items: start; }
+      .drawer__items img { border-radius: var(--r); width: 54px; height: 68px; object-fit: cover; }
+      .drawer__items strong { font-weight: 400; font-size: 0.9rem; display: block; }
+      .drawer__items span { display: block; font-size: 0.78rem; color: var(--accent); }
+      .drawer__price { color: var(--fg) !important; margin-top: 0.2rem; }
+      .drawer__foot { border-top: 1px solid var(--border); padding: 1.4rem; }
+      .drawer__total { display: flex; justify-content: space-between; font-size: 1rem; font-family: var(--display); }
+      .drawer__note { font-size: 0.76rem; color: var(--accent); margin: 0.5rem 0 1rem; }
+      .drawer__checkout { width: 100%; }
+
+      /* Hero */
+      .hero { position: relative; min-height: clamp(560px, 86vh, 880px); display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(2rem, 6vh, 4.5rem); overflow: hidden; }
+      .hero__media { position: absolute; inset: 0; z-index: -1; }
+      .hero__media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.8) contrast(1.02); }
+      .hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(251,250,247,0.55) 0%, rgba(251,250,247,0.1) 35%, rgba(43,41,38,0.42) 100%); }
+      .hero__inner { position: relative; }
+      .hero h1 { font-size: clamp(2.8rem, 9vw, 6.6rem); line-height: 0.96; color: var(--primary-fg); text-shadow: 0 1px 30px rgba(43,41,38,0.25); }
+      .hero h1 em { color: #f1ebdd; }
+      .hero .eyebrow { color: #f1ebdd; }
+      .hero__sub { color: var(--primary-fg); max-width: 42ch; margin-top: 1.2rem; font-size: clamp(0.95rem, 2vw, 1.1rem); }
+      .hero__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.8rem; }
+      .hero__cta .btn--ghost { color: var(--primary-fg); border-color: rgba(251,250,247,0.5); }
+      .hero__cta .btn--ghost:hover { background: rgba(251,250,247,0.12); }
+      .hero__meta { position: relative; display: flex; gap: clamp(1rem, 5vw, 3rem); margin-top: 2.2rem; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--primary-fg); opacity: 0.85; }
+
+      /* Categories */
+      .cats { padding: clamp(2.4rem, 6vw, 4rem) 0 0; }
+      .cats__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
+      .cat { position: relative; display: block; text-decoration: none; overflow: hidden; border-radius: var(--r); aspect-ratio: 4/5; }
+      .cat__img { position: absolute; inset: 0; }
+      .cat__img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.15) brightness(0.92); transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+      .cat:hover .cat__img img { transform: scale(1.06); }
+      .cat__label { position: absolute; left: 1rem; bottom: 1rem; display: inline-flex; align-items: center; gap: 0.4rem; background: var(--bg); color: var(--fg); padding: 0.5rem 0.9rem; border-radius: 999px; font-size: 0.82rem; letter-spacing: 0.04em; }
+      .cat__label i { color: var(--accent); transition: transform 0.3s ease; }
+      .cat:hover .cat__label i { transform: translateX(4px); }
+
+      /* Section head */
+      .sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: clamp(1.4rem, 4vw, 2.4rem); }
+      .sec-head h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); margin-top: 0.4rem; }
+      .sec-head--center { text-align: center; justify-content: center; }
+
+      /* Collection */
+      .collection { padding: clamp(3rem, 7vw, 5.5rem) 0; }
+      .toolbar { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+      .chip { background: transparent; border: 1px solid var(--border); border-radius: 999px; padding: 0.55rem 1.1rem; font-size: 0.76rem; letter-spacing: 0.06em; min-height: 40px; transition: all 0.2s ease; }
+      .chip:hover { border-color: var(--accent); }
+      .chip.is-active { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+
+      .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(0.7rem, 2vw, 1.6rem) clamp(0.7rem, 2vw, 1.4rem); }
+      .card__media { position: relative; display: block; aspect-ratio: 4/5; overflow: hidden; border-radius: var(--r); background: var(--muted); }
+      .card__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .card__front { transition: opacity 0.5s ease, transform 0.7s ease; }
+      .card__back { opacity: 0; transform: scale(1.04); transition: opacity 0.5s ease, transform 0.7s ease; }
+      .card:hover .card__front { opacity: 0; }
+      .card:hover .card__back { opacity: 1; transform: scale(1); }
+      .card__tag { position: absolute; top: 0.7rem; left: 0.7rem; background: var(--bg); color: var(--fg); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.3rem 0.6rem; border-radius: 999px; }
+      .card__quick { position: absolute; left: 0.7rem; right: 0.7rem; bottom: 0.7rem; text-align: center; background: var(--primary); color: var(--primary-fg); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.75rem; border-radius: 999px; opacity: 0; transform: translateY(8px); transition: opacity 0.3s ease, transform 0.3s ease; }
+      .card:hover .card__quick, .card__media:focus-visible .card__quick { opacity: 1; transform: none; }
+      .card__info { padding: 0.85rem 0.1rem 0; }
+      .card__row { display: flex; justify-content: space-between; gap: 0.6rem; align-items: baseline; }
+      .card__info h3 { font-family: var(--sans); font-weight: 400; font-size: 0.9rem; letter-spacing: 0; }
+      .card__price { font-family: var(--display); font-size: 0.95rem; white-space: nowrap; }
+      .card__swatches { display: flex; gap: 0.4rem; margin-top: 0.6rem; }
+      .swatch { width: 15px; height: 15px; border-radius: 50%; background: var(--s); border: 1px solid var(--border); cursor: pointer; transition: transform 0.2s ease; }
+      .swatch:hover { transform: scale(1.2); }
+
+      /* Drop */
+      .drop { padding: clamp(2.5rem, 6vw, 4.5rem) 0; background: var(--muted); }
+      .drop__inner { display: grid; gap: 2rem; align-items: center; }
+      .drop__copy h2 { font-size: clamp(1.8rem, 5vw, 3rem); margin: 0.6rem 0 1rem; line-height: 1.05; }
+      .drop__copy > p { max-width: 46ch; color: #58544d; }
+      .drop__list { list-style: none; margin: 1.4rem 0; padding: 0; max-width: 360px; }
+      .drop__list li { display: flex; justify-content: space-between; padding: 0.7rem 0; border-bottom: 1px solid var(--border); font-size: 0.92rem; }
+      .drop__list li span:last-child { font-family: var(--display); }
+      .drop__media img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: var(--r); }
+
+      /* Lookbook */
+      .look { padding: clamp(3rem, 7vw, 5.5rem) 0; }
+      .look__grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+      .look figure img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--r); }
+      .look__a img { aspect-ratio: 3/4; }
+      .look__note { display: flex; flex-direction: column; justify-content: center; gap: 1rem; padding: 1.5rem 0; }
+      .look__note p { font-family: var(--display); font-size: clamp(1.2rem, 3vw, 1.7rem); line-height: 1.35; }
+      .look__sig { font-family: var(--sans) !important; font-size: 0.82rem !important; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+      .look__b img, .look__c img { aspect-ratio: 4/3; }
+
+      /* Proof */
+      .proof { padding: clamp(3rem, 7vw, 5rem) 0; background: var(--primary); color: var(--primary-fg); }
+      .proof__head { text-align: center; margin-bottom: 2.4rem; }
+      .stars { color: var(--accent); font-size: 1.2rem; letter-spacing: 0.15em; }
+      .proof__head p { font-size: 0.85rem; letter-spacing: 0.06em; opacity: 0.8; margin-top: 0.4rem; }
+      .proof__grid { display: grid; grid-template-columns: 1fr; gap: 1.6rem; }
+      .quote { border-top: 1px solid rgba(251,250,247,0.18); padding-top: 1.4rem; }
+      .quote blockquote { font-family: var(--display); font-size: 1.15rem; line-height: 1.4; }
+      .quote figcaption { margin-top: 1rem; font-size: 0.82rem; letter-spacing: 0.06em; }
+      .quote figcaption span { color: var(--accent); }
+
+      /* UGC */
+      .ugc { padding: clamp(3rem, 7vw, 5rem) 0; }
+      .ugc__head { text-align: center; margin-bottom: 1.6rem; }
+      .ugc__head h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); margin-top: 0.4rem; }
+      .ugc__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+      .ugc__tile { position: relative; display: block; aspect-ratio: 1; overflow: hidden; }
+      .ugc__tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; filter: grayscale(0.1); }
+      .ugc__tile:hover img { transform: scale(1.07); }
+      .ugc__shop { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(43,41,38,0.45); color: var(--primary-fg); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0; transition: opacity 0.3s ease; }
+      .ugc__tile:hover .ugc__shop, .ugc__tile:focus-visible .ugc__shop { opacity: 1; }
+
+      /* Join + Visit */
+      .join { padding: clamp(3rem, 7vw, 5rem) 0; background: var(--muted); }
+      .join__inner { display: grid; gap: 2.5rem; }
+      .join__copy h2 { font-size: clamp(2rem, 6vw, 3.2rem); }
+      .join__copy > p { margin: 0.6rem 0 1.4rem; font-size: 1.05rem; }
+      .join__form { display: flex; gap: 0.6rem; flex-wrap: wrap; max-width: 460px; }
+      .join__form input { flex: 1; min-width: 200px; min-height: 48px; padding: 0 1.1rem; background: var(--bg); border: 1px solid var(--border); border-radius: 999px; font: inherit; }
+      .join__form input:focus-visible { border-color: var(--accent); outline-offset: 0; }
+      .join__fine { font-size: 0.78rem; color: var(--accent); margin-top: 0.9rem; }
+
+      .visit { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: clamp(1.4rem, 4vw, 2rem); }
+      .visit__nap { font-style: normal; margin: 0.8rem 0 1.2rem; line-height: 1.7; }
+      .visit__nap strong { display: block; font-weight: 500; font-family: var(--display); font-size: 1.1rem; margin-bottom: 0.3rem; }
+      .visit__nap a { color: var(--accent); text-underline-offset: 3px; }
+      .hours { margin-bottom: 1.3rem; border-top: 1px solid var(--border); }
+      .hours div { display: flex; justify-content: space-between; padding: 0.55rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+      .hours dt { color: #58544d; }
+
+      /* Footer */
+      .foot { background: var(--primary); color: var(--primary-fg); padding: clamp(2.8rem, 6vw, 4rem) 0 1.6rem; }
+      .foot__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 1rem; }
+      .foot__brand { grid-column: 1 / -1; }
+      .foot__brand p { opacity: 0.7; margin-top: 0.6rem; font-size: 0.9rem; }
+      .foot h3 { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.9rem; font-weight: 500; }
+      .foot nav { display: flex; flex-direction: column; gap: 0.6rem; }
+      .foot nav a { text-decoration: none; font-size: 0.88rem; opacity: 0.85; width: max-content; transition: opacity 0.2s ease; }
+      .foot nav a:hover { opacity: 1; color: var(--accent); }
+      .foot__base { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem; margin-top: 2.6rem; padding-top: 1.4rem; border-top: 1px solid rgba(251,250,247,0.16); font-size: 0.74rem; letter-spacing: 0.06em; opacity: 0.7; }
+
+      /* Responsive */
+      @media (min-width: 640px) {
+        .cats__grid { grid-template-columns: repeat(4, 1fr); }
+        .grid { grid-template-columns: repeat(2, 1fr); }
+        .ugc__grid { grid-template-columns: repeat(3, 1fr); }
+        .proof__grid { grid-template-columns: repeat(3, 1fr); }
+        .join__form { flex-wrap: nowrap; }
+      }
+      @media (min-width: 900px) {
+        .nav__links { display: flex; }
+        .grid { grid-template-columns: repeat(4, 1fr); }
+        .drop__inner { grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); }
+        .ugc__grid { grid-template-columns: repeat(6, 1fr); }
+        .join__inner { grid-template-columns: 1.1fr 0.9fr; align-items: start; }
+        .foot__grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+        .foot__brand { grid-column: auto; }
+        .look__grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: auto; }
+        .look__a { grid-row: span 2; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .ticker__track { animation: none; }
+        * { scroll-behavior: auto !important; }
+      }
+      html { scroll-behavior: smooth; }
+    </style>
+  </body>
+</html>

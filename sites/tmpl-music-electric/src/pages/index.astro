@@ -1,0 +1,573 @@
+---
+// Velvet Static — "electric" variant (dark / neon / kinetic synthwave)
+const nav = [
+  { label: "Music", href: "#music" },
+  { label: "Tour", href: "#tour" },
+  { label: "Merch", href: "#merch" },
+  { label: "About", href: "#about" },
+];
+
+const tour = [
+  { date: "Jul 18", mo: "JUL", day: "18", city: "Calgary, AB", venue: "Commonwealth Bar & Stage", status: "tickets" },
+  { date: "Jul 25", mo: "JUL", day: "25", city: "Edmonton, AB", venue: "The Starlite Room", status: "tickets" },
+  { date: "Aug 02", mo: "AUG", day: "02", city: "Vancouver, BC", venue: "Fox Cabaret", status: "soldout" },
+  { date: "Aug 09", mo: "AUG", day: "09", city: "Saskatoon, SK", venue: "Amigos Cantina", status: "tickets" },
+];
+
+const merch = [
+  { name: "'Afterglow' LP", detail: "translucent red vinyl", price: "$34", seed: "vsvinyl" },
+  { name: "'Afterglow' Cassette", detail: "limited run", price: "$14", seed: "vstape" },
+  { name: "Tour Tee", detail: "black, screen-printed", price: "$32", seed: "vstee" },
+  { name: "Riso Gig Poster", detail: "18x24, signed", price: "$25", seed: "vsposter" },
+  { name: "Digital Album", detail: "FLAC + MP3", price: "$9", seed: "vsdigital" },
+  { name: "VIP Soundcheck", detail: "early entry add-on", price: "$45", seed: "vsvip" },
+];
+
+const testimonials = [
+  { quote: "One of the tightest live sets I've seen all year — sweaty, loud, unforgettable.", who: "Dana R.", src: "BeatRoute" },
+  { quote: "'Afterglow' is the late-night record Calgary didn't know it needed.", who: "Marcus L.", src: "CJSW 90.9" },
+  { quote: "Saw them at Commonwealth and immediately bought the vinyl. Hooked.", who: "Priya N.", src: "fan" },
+];
+
+const videos = [
+  { title: "Afterglow (Official Video)", seed: "vsvid1", len: "3:48" },
+  { title: "Late Shift — Live at Commonwealth", seed: "vsvid2", len: "4:12" },
+  { title: "Neon Mornings (Visualizer)", seed: "vsvid3", len: "3:21" },
+];
+
+const tickerWords = ["AFTERGLOW", "OUT NOW", "VELVET STATIC", "ON TOUR", "LATE SHIFT", "TURN IT UP"];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Velvet Static — 'Afterglow' Out Now</title>
+    <meta name="description" content="Velvet Static — Calgary-born synthwave. New record 'Afterglow' out now. Live this summer across Western Canada. Listen, watch, and grab merch." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav" id="nav">
+      <nav class="nav-inner" aria-label="Primary">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true"></span>
+          VELVET&nbsp;STATIC
+        </a>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="menu">
+          {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+          <li><a class="nav-cta" href="#music">Listen ▸</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <img class="hero-img" src="https://picsum.photos/seed/vsstage9/1600/1200" alt="Velvet Static performing live under neon stage lights" />
+        <div class="hero-scan" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <p class="eyebrow"><span class="dot"></span> new record · out now</p>
+          <h1 class="hero-title">
+            <span class="line glitch" data-text="VELVET">VELVET</span>
+            <span class="line glitch alt" data-text="STATIC">STATIC</span>
+          </h1>
+          <p class="hero-sub">Loud nights, quiet mornings. <em>Calgary-born. Made for the late shift.</em></p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#music">Listen to 'Afterglow'</a>
+            <a class="btn btn-ghost" href="#tour">See tour dates</a>
+          </div>
+        </div>
+        <a class="scroll-cue" href="#music" aria-label="Scroll to music">
+          <span></span>
+        </a>
+      </section>
+
+      <!-- TICKER -->
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          {[...tickerWords, ...tickerWords].map((w) => <span class="ticker-item">{w}<i class="ticker-star">✦</i></span>)}
+        </div>
+      </div>
+
+      <!-- LATEST RELEASE -->
+      <section class="release" id="music">
+        <div class="release-art reveal">
+          <img src="https://picsum.photos/seed/vsalbum7/800/800" alt="'Afterglow' album cover artwork" />
+          <span class="release-badge">OUT NOW</span>
+        </div>
+        <div class="release-copy reveal">
+          <p class="kicker">Latest Release</p>
+          <h2 class="sec-title">Afterglow</h2>
+          <p class="release-meta">LP · 11 tracks · 2026 · Hightide Sound</p>
+          <p class="lede">The late-night record Calgary didn't know it needed — synths that hum like streetlights and drums built for the drive home.</p>
+          <div class="stream-buttons">
+            <a class="stream" href="#"><span class="sw" style="--c:#1DB954">●</span> Spotify</a>
+            <a class="stream" href="#"><span class="sw" style="--c:#fc3c44">●</span> Apple Music</a>
+            <a class="stream" href="#"><span class="sw" style="--c:#22e0ff">●</span> Bandcamp</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- TOUR -->
+      <section class="tour" id="tour">
+        <div class="sec-head">
+          <p class="kicker">On The Road</p>
+          <h2 class="sec-title">Tour Dates</h2>
+        </div>
+        <ul class="tour-list">
+          {tour.map((t) => (
+            <li class={`tour-row ${t.status === "soldout" ? "is-soldout" : ""}`}>
+              <span class="tour-date"><b>{t.day}</b>{t.mo}</span>
+              <span class="tour-city">{t.city}</span>
+              <span class="tour-venue">{t.venue}</span>
+              {t.status === "soldout"
+                ? <span class="tour-btn soldout">Sold Out</span>
+                : <a class="tour-btn" href="#">Tickets ▸</a>}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- VIDEO GRID -->
+      <section class="videos" id="videos">
+        <div class="sec-head">
+          <p class="kicker">Watch</p>
+          <h2 class="sec-title">Music &amp; Video</h2>
+        </div>
+        <div class="video-grid">
+          {videos.map((v) => (
+            <a class="video-card reveal" href="#" aria-label={`Play ${v.title}`}>
+              <img src={`https://picsum.photos/seed/${v.seed}/640/400`} alt={v.title} />
+              <span class="play" aria-hidden="true">▶</span>
+              <span class="video-len">{v.len}</span>
+              <span class="video-title">{v.title}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- MERCH -->
+      <section class="merch" id="merch">
+        <div class="sec-head">
+          <p class="kicker">Support The Band</p>
+          <h2 class="sec-title">Merch</h2>
+        </div>
+        <div class="merch-grid">
+          {merch.map((m) => (
+            <article class="merch-card reveal">
+              <div class="merch-img">
+                <img src={`https://picsum.photos/seed/${m.seed}/500/500`} alt={m.name} />
+                <a class="quick" href="#">Add ▸</a>
+              </div>
+              <div class="merch-info">
+                <h3>{m.name}</h3>
+                <p>{m.detail}</p>
+                <span class="price">{m.price}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- ABOUT + TESTIMONIALS -->
+      <section class="about" id="about">
+        <div class="about-photo reveal">
+          <img src="https://picsum.photos/seed/vsband3/900/1100" alt="Velvet Static band portrait" />
+        </div>
+        <div class="about-copy reveal">
+          <p class="kicker">The Band</p>
+          <h2 class="sec-title">Made for the late shift</h2>
+          <p class="lede">Velvet Static is a Calgary synthwave four-piece writing songs for the hours after last call. Formed in a basement off 9th Ave, they've grown into one of the city's loudest, brightest live acts.</p>
+          <div class="stats">
+            <div><b>4</b><span>records</span></div>
+            <div><b>120+</b><span>shows</span></div>
+            <div><b>1M+</b><span>streams</span></div>
+          </div>
+          <ul class="quotes">
+            {testimonials.map((q) => (
+              <li>
+                <p>"{q.quote}"</p>
+                <cite>— {q.who}, <span>{q.src}</span></cite>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <!-- MAILING LIST -->
+      <section class="signup">
+        <div class="signup-inner reveal">
+          <h2>Join the static.</h2>
+          <p>Tour announcements, new drops, and the occasional late-night demo. No spam — just the loud stuff.</p>
+          <form class="signup-form" onsubmit="return false">
+            <label class="sr-only" for="email">Email address</label>
+            <input id="email" type="email" placeholder="you@latenight.fm" required />
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </form>
+          <p class="signup-fine">Mon–Fri 10am–6pm MT · booking &amp; press inquiries</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="foot">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <p class="foot-name">VELVET STATIC</p>
+          <p class="foot-addr">
+            c/o Hightide Sound<br />
+            1219 9th Avenue SE<br />
+            Calgary, AB T2G 0T2
+          </p>
+          <p><a class="tel" href="tel:+14035550182">(403) 555-0182</a></p>
+          <p><a class="tel" href="mailto:booking@velvetstatic.band">booking@velvetstatic.band</a></p>
+        </div>
+        <div class="foot-social">
+          <p class="foot-label">Follow</p>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="#">YouTube</a></li>
+            <li><a href="#">Bandcamp</a></li>
+            <li><a href="#">Spotify</a></li>
+          </ul>
+        </div>
+        <div class="foot-social">
+          <p class="foot-label">Hours</p>
+          <p class="foot-addr">Mon–Fri 10am–6pm MT<br />Booking &amp; press only</p>
+          <a class="btn btn-ghost sm" href="#music">Listen now ▸</a>
+        </div>
+      </div>
+      <p class="foot-copy">© 2026 Velvet Static. Calgary, AB. Made for the late shift.</p>
+    </footer>
+
+    <script>
+      const toggle = document.querySelector(".nav-toggle");
+      const menu = document.querySelector(".nav-links");
+      toggle?.addEventListener("click", () => {
+        const open = menu?.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(!!open));
+      });
+      menu?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          menu.classList.remove("open");
+          toggle?.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      const nav = document.getElementById("nav");
+      const onScroll = () => nav?.classList.toggle("scrolled", window.scrollY > 40);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const els = document.querySelectorAll(".reveal");
+      if (reduce || !("IntersectionObserver" in window)) {
+        els.forEach((e) => e.classList.add("in"));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((en) => {
+            if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+          }),
+          { threshold: 0.15 }
+        );
+        els.forEach((e) => io.observe(e));
+      }
+    </script>
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      }
+      body { margin: 0; }
+    </style>
+
+    <style>
+      :root {
+        --bg: #0a0612;
+        --fg: #f2eaff;
+        --primary: #ff2d9b;
+        --primary-fg: #0a0612;
+        --accent: #22e0ff;
+        --muted: #1b1430;
+        --border: #33264f;
+        --display: "Syne", system-ui, sans-serif;
+        --body: "Space Grotesk", system-ui, sans-serif;
+        --glow-p: 0 0 28px rgba(255, 45, 155, .55);
+        --glow-a: 0 0 28px rgba(34, 224, 255, .45);
+      }
+
+      :global(body) {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--body);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; }
+      h1, h2, h3 { font-family: var(--display); line-height: .95; margin: 0; letter-spacing: -.01em; }
+
+      .sr-only, .skip {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+      }
+      .skip:focus {
+        position: fixed; top: 12px; left: 12px; width: auto; height: auto; clip: auto;
+        background: var(--primary); color: var(--primary-fg); padding: 10px 16px;
+        border-radius: 8px; z-index: 999; font-weight: 700;
+      }
+      a:focus-visible, button:focus-visible, input:focus-visible {
+        outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px;
+      }
+
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 48px; padding: 0 26px; border-radius: 999px;
+        font-family: var(--display); font-weight: 700; font-size: 1rem;
+        letter-spacing: .01em; cursor: pointer; border: 1px solid transparent;
+        transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      }
+      .btn-primary { background: var(--primary); color: var(--primary-fg); box-shadow: var(--glow-p); }
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(255,45,155,.8); }
+      .btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+      .btn-ghost:hover { border-color: var(--accent); color: var(--accent); box-shadow: var(--glow-a); transform: translateY(-2px); }
+      .btn.sm { min-height: 42px; font-size: .9rem; padding: 0 18px; }
+
+      .brand-mark {
+        width: 22px; height: 22px; display: inline-block; border-radius: 6px;
+        background: conic-gradient(from 200deg, var(--primary), var(--accent), var(--primary));
+        box-shadow: var(--glow-p); flex: none;
+      }
+
+      /* NAV */
+      .nav {
+        position: sticky; top: 0; z-index: 100;
+        transition: background .3s ease, backdrop-filter .3s ease, border-color .3s ease;
+        border-bottom: 1px solid transparent;
+      }
+      .nav.scrolled {
+        background: rgba(10, 6, 18, .82);
+        backdrop-filter: blur(14px);
+        border-bottom-color: var(--border);
+      }
+      .nav-inner {
+        max-width: 1240px; margin: 0 auto; padding: 16px 22px;
+        display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      }
+      .brand {
+        display: inline-flex; align-items: center; gap: 12px;
+        font-family: var(--display); font-weight: 800; letter-spacing: .04em; font-size: 1.05rem;
+      }
+      .nav-links { list-style: none; display: flex; align-items: center; gap: 26px; margin: 0; padding: 0; }
+      .nav-links a { font-weight: 500; font-size: .95rem; transition: color .2s; }
+      .nav-links a:not(.nav-cta):hover { color: var(--accent); }
+      .nav-cta {
+        background: var(--primary); color: var(--primary-fg); padding: 10px 18px;
+        border-radius: 999px; font-family: var(--display); font-weight: 700; box-shadow: var(--glow-p);
+      }
+      .nav-toggle { display: none; background: none; border: 0; cursor: pointer; width: 44px; height: 44px; flex-direction: column; gap: 5px; align-items: center; justify-content: center; }
+      .nav-toggle span { width: 24px; height: 2px; background: var(--fg); transition: .25s; }
+
+      /* HERO */
+      .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; }
+      .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.5) contrast(1.1) brightness(.7); mix-blend-mode: luminosity; }
+      .hero-bg {
+        position: absolute; inset: 0; z-index: 1;
+        background:
+          radial-gradient(120% 80% at 20% 0%, rgba(255,45,155,.42), transparent 55%),
+          radial-gradient(110% 90% at 90% 30%, rgba(34,224,255,.32), transparent 55%),
+          linear-gradient(180deg, rgba(10,6,18,.2) 0%, rgba(10,6,18,.55) 50%, var(--bg) 100%);
+      }
+      .hero-scan {
+        position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: .25;
+        background: repeating-linear-gradient(180deg, transparent 0 3px, rgba(0,0,0,.4) 3px 4px);
+      }
+      .hero-inner { position: relative; z-index: 3; max-width: 1240px; width: 100%; margin: 0 auto; padding: 0 22px 9vh; }
+      .eyebrow {
+        display: inline-flex; align-items: center; gap: 9px; text-transform: uppercase;
+        letter-spacing: .28em; font-size: .72rem; font-weight: 700; color: var(--accent); margin: 0 0 18px;
+      }
+      .eyebrow .dot, .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); box-shadow: var(--glow-p); animation: pulse 1.6s infinite; }
+      @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+      .hero-title { font-size: clamp(3.4rem, 16vw, 12rem); font-weight: 800; }
+      .hero-title .line { display: block; }
+      .hero-title .alt { color: transparent; -webkit-text-stroke: 2px var(--primary); text-shadow: var(--glow-p); }
+      .hero-sub { font-size: clamp(1rem, 2.4vw, 1.4rem); max-width: 44ch; margin: 22px 0 28px; color: rgba(242,234,255,.85); }
+      .hero-sub em { color: var(--accent); font-style: normal; }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; }
+      .scroll-cue { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 4; width: 26px; height: 42px; border: 2px solid var(--border); border-radius: 14px; display: flex; justify-content: center; padding-top: 8px; }
+      .scroll-cue span { width: 4px; height: 8px; border-radius: 2px; background: var(--accent); animation: cue 1.6s infinite; }
+      @keyframes cue { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(14px); opacity: 0; } }
+
+      .glitch { position: relative; }
+      .glitch::before, .glitch::after {
+        content: attr(data-text); position: absolute; inset: 0; pointer-events: none;
+      }
+      .glitch::before { color: var(--accent); transform: translate(-2px, 0); mix-blend-mode: screen; opacity: .0; animation: gl 6s infinite; }
+      .glitch::after { color: var(--primary); transform: translate(2px, 0); mix-blend-mode: screen; opacity: .0; animation: gl 6s infinite 3s; }
+      @keyframes gl { 0%, 92%, 100% { opacity: 0; } 93% { opacity: .8; transform: translate(-3px, 1px); } 96% { opacity: .6; transform: translate(3px, -1px); } }
+
+      /* TICKER */
+      .ticker { border-block: 1px solid var(--border); background: var(--primary); color: var(--primary-fg); overflow: hidden; padding: 14px 0; }
+      .ticker-track { display: inline-flex; white-space: nowrap; animation: marquee 28s linear infinite; will-change: transform; }
+      .ticker-item { font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: .08em; padding: 0 24px; display: inline-flex; align-items: center; gap: 24px; }
+      .ticker-star { color: var(--bg); font-style: normal; }
+      @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+      .ticker:hover .ticker-track { animation-play-state: paused; }
+
+      /* shared section bits */
+      section { padding: clamp(64px, 9vw, 120px) 22px; max-width: 1240px; margin: 0 auto; }
+      .kicker { text-transform: uppercase; letter-spacing: .26em; font-size: .72rem; font-weight: 700; color: var(--accent); margin: 0 0 14px; }
+      .sec-title { font-size: clamp(2.4rem, 6vw, 4.6rem); font-weight: 800; }
+      .sec-head { margin-bottom: 44px; }
+      .lede { color: rgba(242,234,255,.78); max-width: 52ch; font-size: 1.05rem; }
+
+      .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* RELEASE */
+      .release { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 70px); align-items: center; }
+      .release-art { position: relative; }
+      .release-art img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 30px 80px rgba(255,45,155,.25), var(--glow-a); }
+      .release-badge { position: absolute; top: 16px; left: 16px; background: var(--accent); color: var(--bg); font-family: var(--display); font-weight: 800; font-size: .8rem; letter-spacing: .12em; padding: 7px 14px; border-radius: 999px; }
+      .release-meta { color: var(--accent); font-size: .9rem; letter-spacing: .04em; margin: 4px 0 18px; }
+      .stream-buttons { display: flex; flex-direction: column; gap: 12px; margin-top: 26px; max-width: 320px; }
+      .stream { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 22px; border: 1px solid var(--border); border-radius: 12px; background: var(--muted); font-weight: 500; transition: border-color .2s, transform .2s, box-shadow .2s; }
+      .stream:hover { border-color: var(--accent); transform: translateX(6px); box-shadow: var(--glow-a); }
+      .stream .sw { color: var(--c); font-size: 1rem; }
+
+      /* TOUR */
+      .tour-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+      .tour-row {
+        display: grid; grid-template-columns: 90px 1fr 1.4fr auto; gap: 20px; align-items: center;
+        padding: 22px 14px; border-bottom: 1px solid var(--border);
+        transition: background .25s, padding .25s;
+      }
+      .tour-row:hover { background: var(--muted); padding-inline: 22px; }
+      .tour-date { font-family: var(--display); font-weight: 800; line-height: 1; display: flex; flex-direction: column; color: var(--accent); font-size: .78rem; letter-spacing: .1em; }
+      .tour-date b { font-size: 1.9rem; color: var(--fg); }
+      .tour-city { font-family: var(--display); font-weight: 700; font-size: 1.15rem; }
+      .tour-venue { color: rgba(242,234,255,.65); }
+      .tour-btn {
+        justify-self: end; min-height: 44px; display: inline-flex; align-items: center; padding: 0 20px;
+        border-radius: 999px; background: var(--primary); color: var(--primary-fg);
+        font-family: var(--display); font-weight: 700; font-size: .9rem; transition: box-shadow .2s, transform .2s;
+      }
+      .tour-btn:hover { box-shadow: var(--glow-p); transform: scale(1.04); }
+      .tour-btn.soldout { background: transparent; color: rgba(242,234,255,.4); border: 1px solid var(--border); cursor: default; }
+      .is-soldout .tour-city, .is-soldout .tour-date b { opacity: .55; }
+
+      /* VIDEOS */
+      .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+      .video-card { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); aspect-ratio: 16/10; display: block; }
+      .video-card img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.55) brightness(.62); transition: transform .5s, filter .4s; }
+      .video-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(10,6,18,.9)); }
+      .video-card:hover img { transform: scale(1.07); filter: saturate(.9) brightness(.75); }
+      .video-card .play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 2; width: 58px; height: 58px; border-radius: 50%; background: var(--primary); color: var(--primary-fg); display: grid; place-items: center; font-size: 1.1rem; box-shadow: var(--glow-p); transition: transform .25s; }
+      .video-card:hover .play { transform: translate(-50%,-50%) scale(1.12); }
+      .video-len { position: absolute; top: 12px; right: 12px; z-index: 2; background: rgba(10,6,18,.7); border: 1px solid var(--border); padding: 3px 9px; border-radius: 6px; font-size: .78rem; }
+      .video-title { position: absolute; left: 16px; bottom: 14px; z-index: 2; font-family: var(--display); font-weight: 700; font-size: 1.02rem; padding-right: 16px; }
+
+      /* MERCH */
+      .merch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+      .merch-card { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--muted); transition: transform .3s, border-color .3s, box-shadow .3s; }
+      .merch-card:hover { transform: translateY(-6px); border-color: var(--primary); box-shadow: 0 20px 50px rgba(255,45,155,.22); }
+      .merch-img { position: relative; aspect-ratio: 1; overflow: hidden; }
+      .merch-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.7) contrast(1.05); transition: transform .5s; }
+      .merch-card:hover .merch-img img { transform: scale(1.06); }
+      .quick { position: absolute; left: 50%; bottom: -50px; transform: translateX(-50%); background: var(--accent); color: var(--bg); font-family: var(--display); font-weight: 700; padding: 10px 22px; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; transition: bottom .3s ease; box-shadow: var(--glow-a); }
+      .merch-card:hover .quick { bottom: 16px; }
+      .merch-info { padding: 18px; display: flex; flex-direction: column; gap: 3px; }
+      .merch-info h3 { font-size: 1.1rem; }
+      .merch-info p { margin: 0; color: rgba(242,234,255,.6); font-size: .88rem; }
+      .merch-info .price { margin-top: 8px; font-family: var(--display); font-weight: 800; color: var(--accent); font-size: 1.3rem; }
+
+      /* ABOUT */
+      .about { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+      .about-photo img { width: 100%; border-radius: 16px; border: 1px solid var(--border); object-fit: cover; aspect-ratio: 4/5; filter: saturate(.65) contrast(1.08); box-shadow: 0 30px 70px rgba(34,224,255,.18); }
+      .stats { display: flex; gap: 30px; margin: 26px 0 30px; flex-wrap: wrap; }
+      .stats div { display: flex; flex-direction: column; }
+      .stats b { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 5vw, 3rem); color: var(--primary); line-height: 1; text-shadow: var(--glow-p); }
+      .stats span { text-transform: uppercase; letter-spacing: .18em; font-size: .72rem; color: rgba(242,234,255,.6); margin-top: 6px; }
+      .quotes { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+      .quotes li { border-left: 2px solid var(--primary); padding: 4px 0 4px 18px; }
+      .quotes p { margin: 0 0 6px; font-style: italic; color: rgba(242,234,255,.88); }
+      .quotes cite { font-style: normal; font-size: .85rem; color: rgba(242,234,255,.6); }
+      .quotes cite span { color: var(--accent); }
+
+      /* SIGNUP */
+      .signup { max-width: 100%; padding-inline: 0; }
+      .signup-inner {
+        max-width: 1240px; margin: 0 auto; padding: clamp(48px, 7vw, 80px) 32px;
+        background:
+          radial-gradient(80% 120% at 0% 0%, rgba(255,45,155,.3), transparent 60%),
+          radial-gradient(80% 120% at 100% 100%, rgba(34,224,255,.25), transparent 60%),
+          var(--muted);
+        border-block: 1px solid var(--border); text-align: center;
+      }
+      .signup-inner h2 { font-size: clamp(2rem, 6vw, 4rem); font-weight: 800; }
+      .signup-inner > p { max-width: 46ch; margin: 14px auto 0; color: rgba(242,234,255,.8); }
+      .signup-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 28px auto 14px; max-width: 520px; }
+      .signup-form input {
+        flex: 1 1 240px; min-height: 52px; padding: 0 20px; border-radius: 12px;
+        border: 1px solid var(--border); background: rgba(10,6,18,.6); color: var(--fg);
+        font-family: var(--body); font-size: 1rem;
+      }
+      .signup-form input::placeholder { color: rgba(242,234,255,.4); }
+      .signup-fine { font-size: .82rem; color: rgba(242,234,255,.55); letter-spacing: .02em; }
+
+      /* FOOTER */
+      .foot { border-top: 1px solid var(--border); padding: clamp(48px, 7vw, 80px) 22px 36px; max-width: 1240px; margin: 0 auto; }
+      .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+      .foot-brand .brand-mark { margin-bottom: 14px; }
+      .foot-name { font-family: var(--display); font-weight: 800; letter-spacing: .06em; font-size: 1.2rem; margin: 0 0 12px; }
+      .foot-addr { color: rgba(242,234,255,.62); margin: 0 0 14px; line-height: 1.7; }
+      .tel { color: var(--accent); font-weight: 500; transition: text-shadow .2s; }
+      .tel:hover { text-shadow: var(--glow-a); }
+      .foot-label { text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; color: var(--primary); font-weight: 700; margin: 0 0 14px; }
+      .foot-social ul { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 10px; }
+      .foot-social a { color: rgba(242,234,255,.8); transition: color .2s; }
+      .foot-social a:hover { color: var(--accent); }
+      .foot-copy { text-align: center; color: rgba(242,234,255,.45); font-size: .82rem; margin: 40px 0 0; border-top: 1px solid var(--border); padding-top: 24px; }
+
+      /* RESPONSIVE */
+      @media (max-width: 860px) {
+        .nav-toggle { display: flex; }
+        .nav-links {
+          position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+          background: rgba(10,6,18,.97); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border);
+          max-height: 0; overflow: hidden; transition: max-height .3s ease;
+        }
+        .nav-links.open { max-height: 380px; }
+        .nav-links li { width: 100%; }
+        .nav-links a { display: block; padding: 16px 22px; border-top: 1px solid var(--border); }
+        .nav-cta { margin: 14px 22px; }
+        .release, .about { grid-template-columns: 1fr; }
+        .about-photo { order: -1; }
+        .foot-grid { grid-template-columns: 1fr; gap: 30px; }
+        .tour-row { grid-template-columns: 64px 1fr auto; row-gap: 4px; }
+        .tour-venue { grid-column: 2 / 4; font-size: .9rem; }
+        .tour-btn { grid-row: 1; grid-column: 3; }
+      }
+      @media (max-width: 420px) {
+        .hero-title { font-size: clamp(3rem, 19vw, 5rem); }
+        .stats { gap: 22px; }
+      }
+    </style>
+  </body>
+</html>

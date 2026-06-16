@@ -1,0 +1,531 @@
+---
+const nav = [
+  { label: "Work", href: "#work" },
+  { label: "Services", href: "#services" },
+  { label: "Studio", href: "#studio" },
+  { label: "Contact", href: "#contact" },
+];
+
+const marquee = [
+  "BRAND IDENTITY",
+  "STRATEGY",
+  "WEBSITES",
+  "MOTION",
+  "PACKAGING",
+  "NAMING",
+  "ART DIRECTION",
+  "CAMPAIGNS",
+];
+
+const work = [
+  { client: "Meridian Foods", discipline: "Brand Identity", year: "2025", seed: "northbrut11", num: "01" },
+  { client: "Tisdale Outdoors", discipline: "Rebrand Sprint", year: "2025", seed: "northbrut22", num: "02" },
+  { client: "Loophole AI", discipline: "Identity + Web", year: "2024", seed: "northbrut33", num: "03" },
+  { client: "Cinder & Salt", discipline: "Packaging", year: "2024", seed: "northbrut44", num: "04" },
+];
+
+const services = [
+  { name: "Brand Identity System", desc: "Logo, type, color, guidelines.", price: "From $9,500" },
+  { name: "Brand Strategy & Positioning", desc: "Research, messaging, naming.", price: "From $6,000" },
+  { name: "Website Design & Build", desc: "Strategy-led, custom, responsive.", price: "From $14,000" },
+  { name: "Motion & Launch Toolkit", desc: "Social, animation, campaign assets.", price: "From $4,500" },
+  { name: "Packaging & Print", desc: "Physical brand expression.", price: "From $5,500" },
+  { name: "Rebrand Sprint", desc: "Fast 4-week identity refresh.", price: "Flat $12,000" },
+];
+
+const process = [
+  { n: "01", title: "Discovery", body: "We dig into your market, your customers, and the truth nobody's saying out loud." },
+  { n: "02", title: "Strategy", body: "Positioning, messaging, and a point of view sharp enough to cut through." },
+  { n: "03", title: "Design", body: "Identity, system, and assets built to be seen and remembered." },
+  { n: "04", title: "Launch", body: "We ship the brand into the world with the toolkit to keep it loud." },
+];
+
+const testimonials = [
+  { quote: "Northsignal didn't just redesign our logo — they reframed who we are. Inbound leads doubled in a quarter.", who: "Priya Anand", role: "CEO, Meridian Foods" },
+  { quote: "The most decisive creative partner we've worked with. They had a point of view and the work to back it up.", who: "Marcus Bell", role: "CMO, Tisdale Outdoors" },
+  { quote: "Smart, fast, fearless. Our investors noticed the new brand before we even pitched.", who: "Dana Okafor", role: "Founder, Loophole AI" },
+];
+
+const clients = ["MERIDIAN", "TISDALE", "LOOPHOLE", "CINDER&SALT", "BOREAL", "HALCYON", "DRIFTWOOD", "NORTHWIND"];
+const awards = ["AWWWARDS ×3", "D&AD PENCIL", "WEBBY 2025", "TYPE DIRECTORS"];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Northsignal Studio — Branding for companies with something to say</title>
+    <meta name="description" content="Northsignal is a Calgary branding & digital studio. We turn overlooked companies into category leaders. Strategy, identity, websites, motion." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#work">Skip to work</a>
+
+    <header class="nav">
+      <a href="#top" class="brand" aria-label="Northsignal Studio home">
+        <span class="brand-mark" aria-hidden="true">◣</span>NORTHSIGNAL
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      </nav>
+      <a href="#contact" class="nav-cta">Start a project →</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">MENU</button>
+    </header>
+    <nav class="mobile-menu" aria-label="Mobile" hidden>
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      <a href="#contact" class="m-cta">Start a project →</a>
+    </nav>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-h">
+        <p class="hero-kicker">BRANDING &amp; DIGITAL STUDIO · CALGARY, AB · EST. 2018</p>
+        <h1 id="hero-h" class="hero-h">
+          <span class="line"><span class="w">WE</span> <span class="w">BUILD</span></span>
+          <span class="line"><span class="w">BRANDS</span> <span class="w accent">PEOPLE</span></span>
+          <span class="line"><span class="w">DON'T</span> <span class="w">FORGET.</span></span>
+        </h1>
+        <div class="hero-foot">
+          <p class="hero-sub">Strategy, design, and the nerve to make it loud. We turn overlooked companies into category leaders.</p>
+          <a href="#contact" class="btn btn-accent">START A PROJECT</a>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          {[...marquee, ...marquee].map((m) => <span class="m-item">{m}<span class="m-dot">✺</span></span>)}
+        </div>
+      </div>
+
+      <!-- WORK -->
+      <section id="work" class="work" aria-labelledby="work-h">
+        <div class="sec-head">
+          <h2 id="work-h" class="sec-h">SELECTED<br />WORK</h2>
+          <p class="sec-meta">[ 2024—2025 / INDEX ]<br />Clients hire the portfolio. Here's ours.</p>
+        </div>
+        <div class="work-grid">
+          {work.map((w) => (
+            <a class="tile" href="#contact">
+              <div class="tile-img">
+                <img src={`https://picsum.photos/seed/${w.seed}/900/1100?grayscale`} alt={`${w.client} case study — ${w.discipline}`} loading="lazy" width="900" height="1100" />
+              </div>
+              <span class="tile-num">{w.num}</span>
+              <div class="tile-meta">
+                <span class="tile-client">{w.client}</span>
+                <span class="tile-disc">{w.discipline} · {w.year}</span>
+              </div>
+              <span class="tile-arrow" aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services" class="services" aria-labelledby="serv-h">
+        <div class="sec-head invert">
+          <h2 id="serv-h" class="sec-h">WHAT WE<br />MAKE</h2>
+          <p class="sec-meta">[ CAPABILITIES / PRICING ]<br />No retainers. One-time engagements. You own everything.</p>
+        </div>
+        <ul class="serv-list">
+          {services.map((s, i) => (
+            <li class="serv-row">
+              <span class="serv-i">{String(i + 1).padStart(2, "0")}</span>
+              <span class="serv-name">{s.name}</span>
+              <span class="serv-desc">{s.desc}</span>
+              <span class="serv-price">{s.price}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- AWARDS / CLIENTS STRIP -->
+      <section class="strip" aria-label="Clients and awards">
+        <div class="strip-row">
+          {awards.map((a) => <span class="badge">★ {a}</span>)}
+        </div>
+        <div class="clients-marquee" aria-hidden="true">
+          <div class="clients-track">
+            {[...clients, ...clients].map((c) => <span class="client">{c}</span>)}
+          </div>
+        </div>
+      </section>
+
+      <!-- MANIFESTO -->
+      <section id="studio" class="manifesto" aria-labelledby="man-h">
+        <p class="man-kicker">/ MANIFESTO</p>
+        <h2 id="man-h" class="man-h">
+          No fluff. <span class="accent">Just brands</span> people remember. We have a point of view — and the work to back it up.
+        </h2>
+        <div class="man-grid">
+          <p>Most studios decorate. We decide. Every project starts with a position sharp enough to make some people uncomfortable — because a brand that pleases everyone is invisible.</p>
+          <p>We're small on purpose: senior people on every project, no account-manager telephone game, no scope theatre. You get one team, one bill, and a brand you fully own at the end.</p>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="process" aria-labelledby="proc-h">
+        <h2 id="proc-h" class="sec-h proc-h">HOW IT GOES</h2>
+        <div class="proc-grid">
+          {process.map((p) => (
+            <article class="proc-card">
+              <span class="proc-n">{p.n}</span>
+              <h3 class="proc-t">{p.title}</h3>
+              <p class="proc-b">{p.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS SLIDER -->
+      <section class="quotes" aria-labelledby="q-h">
+        <h2 id="q-h" class="visually-hidden">Testimonials</h2>
+        <div class="quote-stage">
+          <span class="quote-mark" aria-hidden="true">”</span>
+          {testimonials.map((t, i) => (
+            <blockquote class={`quote ${i === 0 ? "active" : ""}`} data-i={i}>
+              <p class="quote-text">{t.quote}</p>
+              <footer class="quote-foot"><strong>{t.who}</strong> — {t.role}</footer>
+            </blockquote>
+          ))}
+        </div>
+        <div class="quote-dots" role="tablist" aria-label="Testimonial selector">
+          {testimonials.map((t, i) => (
+            <button class={`dot ${i === 0 ? "active" : ""}`} data-i={i} aria-label={`Show testimonial from ${t.who}`}></button>
+          ))}
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="contact" aria-labelledby="c-h">
+        <h2 id="c-h" class="contact-h">GOT SOMETHING<br />TO SAY? <span class="accent">SAY IT.</span></h2>
+        <div class="contact-grid">
+          <div class="contact-cta">
+            <a href="mailto:hello@northsignal.studio" class="btn btn-accent big">START A PROJECT →</a>
+            <a href="tel:+14035550192" class="btn btn-ghost big">CALL (403) 555-0192</a>
+          </div>
+          <address class="nap">
+            <p class="nap-line"><span class="nap-k">STUDIO</span> Northsignal Studio</p>
+            <p class="nap-line"><span class="nap-k">WHERE</span> 318 11 Ave SW, Suite 400, Calgary, AB T2R 0C7</p>
+            <p class="nap-line"><span class="nap-k">EMAIL</span> <a href="mailto:hello@northsignal.studio">hello@northsignal.studio</a></p>
+            <p class="nap-line"><span class="nap-k">HOURS</span> Mon–Fri 9:00 AM – 6:00 PM MT · Weekends by appointment</p>
+          </address>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="foot-big" aria-hidden="true">NORTHSIGNAL</div>
+      <div class="foot-row">
+        <span>© 2026 Northsignal Studio</span>
+        <span>318 11 Ave SW · Calgary, AB</span>
+        <a href="tel:+14035550192">(403) 555-0192</a>
+        <span>Branding for companies with something to say.</span>
+      </div>
+    </footer>
+
+    <a href="#contact" class="float-cta">START →</a>
+
+    <style is:global>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; }
+      :root {
+        --bg: #F4F2EC;
+        --fg: #0A0A0A;
+        --primary: #0A0A0A;
+        --primary-fg: #F4F2EC;
+        --accent: #FF3B00;
+        --muted: #E4E1D7;
+        --border: #0A0A0A;
+        --bw: 3px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+      }
+    </style>
+
+    <style>
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Space Mono", ui-monospace, monospace;
+        font-size: 16px;
+        line-height: 1.5;
+        overflow-x: hidden;
+      }
+      .visually-hidden, .skip {
+        position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+      }
+      .skip:focus {
+        position: fixed; top: 8px; left: 8px; width: auto; height: auto; clip: auto;
+        background: var(--accent); color: var(--bg); padding: 12px 16px; z-index: 999; font-weight: 700;
+      }
+      :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+      /* NAV */
+      .nav {
+        position: sticky; top: 0; z-index: 50;
+        display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        padding: 1rem clamp(1rem, 4vw, 3rem);
+        background: var(--bg);
+        border-bottom: var(--bw) solid var(--border);
+      }
+      .brand {
+        font-family: "Archivo Black", sans-serif; text-decoration: none; letter-spacing: -0.02em;
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem); display: inline-flex; align-items: center; gap: 0.4rem;
+      }
+      .brand-mark { color: var(--accent); }
+      .nav-links { display: none; gap: 1.5rem; }
+      .nav-links a { text-decoration: none; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.5rem 0; position: relative; }
+      .nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: var(--accent); transition: width 0.25s ease; }
+      .nav-links a:hover::after { width: 100%; }
+      .nav-cta {
+        display: none; text-decoration: none; font-weight: 700; font-size: 0.8rem; text-transform: uppercase;
+        background: var(--primary); color: var(--primary-fg); padding: 0.75rem 1.1rem; border: var(--bw) solid var(--border);
+        box-shadow: 4px 4px 0 var(--accent); transition: transform 0.12s ease, box-shadow 0.12s ease;
+      }
+      .nav-cta:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--accent); }
+      .nav-toggle {
+        font-family: "Space Mono", monospace; font-weight: 700; background: var(--primary); color: var(--primary-fg);
+        border: var(--bw) solid var(--border); padding: 0.6rem 0.9rem; cursor: pointer; min-height: 44px; letter-spacing: 0.1em;
+      }
+      .mobile-menu {
+        display: flex; flex-direction: column; background: var(--primary); border-bottom: var(--bw) solid var(--border);
+        position: sticky; top: 0; z-index: 49;
+      }
+      .mobile-menu a { color: var(--primary-fg); text-decoration: none; font-family: "Archivo Black", sans-serif; font-size: 1.4rem; padding: 1rem clamp(1rem, 4vw, 3rem); border-bottom: 1px solid #ffffff22; }
+      .mobile-menu .m-cta { color: var(--accent); }
+      .mobile-menu[hidden] { display: none; }
+
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer;
+        font-family: "Archivo Black", sans-serif; font-size: 0.95rem; letter-spacing: 0.02em;
+        padding: 1rem 1.6rem; border: var(--bw) solid var(--border); min-height: 44px;
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+      }
+      .btn-accent { background: var(--accent); color: #fff; box-shadow: 5px 5px 0 var(--primary); }
+      .btn-accent:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--primary); }
+      .btn-ghost { background: transparent; color: var(--fg); box-shadow: 5px 5px 0 var(--accent); }
+      .btn-ghost:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--accent); }
+      .btn.big { font-size: clamp(1rem, 2.2vw, 1.3rem); padding: 1.2rem 1.8rem; }
+
+      /* HERO */
+      .hero { padding: clamp(2.5rem, 7vw, 6rem) clamp(1rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem); }
+      .hero-kicker { font-weight: 700; font-size: 0.78rem; letter-spacing: 0.12em; border-bottom: var(--bw) solid var(--border); padding-bottom: 0.8rem; margin-bottom: clamp(1.2rem, 3vw, 2.2rem); }
+      .hero-h {
+        font-family: "Archivo Black", sans-serif; font-weight: 400;
+        font-size: clamp(2.7rem, 12vw, 9rem); line-height: 0.92; letter-spacing: -0.03em; text-transform: uppercase;
+      }
+      .hero-h .line { display: block; overflow: hidden; }
+      .hero-h .w { display: inline-block; transform: translateY(110%); animation: rise 0.7s cubic-bezier(.2,.8,.2,1) forwards; }
+      .hero-h .line:nth-child(1) .w:nth-child(1) { animation-delay: 0.05s; }
+      .hero-h .line:nth-child(1) .w:nth-child(2) { animation-delay: 0.12s; }
+      .hero-h .line:nth-child(2) .w:nth-child(1) { animation-delay: 0.19s; }
+      .hero-h .line:nth-child(2) .w:nth-child(2) { animation-delay: 0.26s; }
+      .hero-h .line:nth-child(3) .w:nth-child(1) { animation-delay: 0.33s; }
+      .hero-h .line:nth-child(3) .w:nth-child(2) { animation-delay: 0.40s; }
+      .hero-h .accent { color: var(--accent); -webkit-text-stroke: 0; }
+      @keyframes rise { to { transform: translateY(0); } }
+      .hero-foot { display: flex; flex-direction: column; gap: 1.5rem; margin-top: clamp(1.5rem, 4vw, 3rem); }
+      .hero-sub { font-size: clamp(0.95rem, 2vw, 1.15rem); max-width: 42ch; }
+
+      /* MARQUEE */
+      .marquee { background: var(--primary); color: var(--primary-fg); border-top: var(--bw) solid var(--border); border-bottom: var(--bw) solid var(--border); overflow: hidden; padding: 0.8rem 0; }
+      .marquee-track { display: inline-flex; white-space: nowrap; animation: scroll 28s linear infinite; }
+      .m-item { font-family: "Archivo Black", sans-serif; font-size: clamp(1.2rem, 3vw, 2rem); letter-spacing: 0.02em; padding: 0 0.5rem; display: inline-flex; align-items: center; }
+      .m-dot { color: var(--accent); margin: 0 1.5rem; }
+      @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+      /* SECTION HEADS */
+      .sec-head { display: flex; flex-direction: column; gap: 1rem; padding: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 4vw, 3rem) 1.5rem; }
+      .sec-h { font-family: "Archivo Black", sans-serif; font-weight: 400; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.03em; font-size: clamp(2.2rem, 8vw, 5.5rem); }
+      .sec-meta { font-size: 0.85rem; line-height: 1.6; max-width: 38ch; }
+
+      /* WORK */
+      .work-grid { display: grid; grid-template-columns: 1fr; border-top: var(--bw) solid var(--border); }
+      .tile { position: relative; text-decoration: none; display: block; padding: 1.5rem clamp(1rem, 4vw, 3rem); border-bottom: var(--bw) solid var(--border); overflow: hidden; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+      .tile-img { position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s ease; }
+      .tile-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.15); mix-blend-mode: multiply; }
+      .tile-img::after { content: ""; position: absolute; inset: 0; background: var(--accent); mix-blend-mode: screen; opacity: 0.25; }
+      .tile:hover .tile-img, .tile:focus-visible .tile-img { opacity: 1; }
+      .tile-num, .tile-meta, .tile-arrow { position: relative; z-index: 2; }
+      .tile-num { font-family: "Archivo Black", sans-serif; font-size: 0.9rem; color: var(--accent); display: block; }
+      .tile-meta { display: flex; flex-direction: column; gap: 0.2rem; margin-top: 0.4rem; }
+      .tile-client { font-family: "Archivo Black", sans-serif; font-size: clamp(1.6rem, 6vw, 3.5rem); text-transform: uppercase; line-height: 1; letter-spacing: -0.02em; transition: color 0.2s; }
+      .tile-disc { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; }
+      .tile-arrow { position: absolute; top: 1.5rem; right: clamp(1rem, 4vw, 3rem); font-size: 1.6rem; font-family: "Archivo Black", sans-serif; }
+      .tile:hover .tile-client, .tile:hover .tile-disc, .tile:hover .tile-arrow, .tile:hover .tile-num { color: var(--bg); }
+      .tile:hover { color: var(--bg); }
+
+      /* SERVICES */
+      .services { background: var(--primary); color: var(--primary-fg); border-top: var(--bw) solid var(--border); border-bottom: var(--bw) solid var(--border); }
+      .sec-head.invert .sec-meta, .sec-head.invert .sec-h { color: var(--primary-fg); }
+      .serv-list { list-style: none; border-top: var(--bw) solid var(--primary-fg); }
+      .serv-row {
+        display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "i name price" "i desc price";
+        gap: 0.1rem 1rem; align-items: baseline; padding: 1.4rem clamp(1rem, 4vw, 3rem);
+        border-bottom: 1px solid #ffffff22; transition: background 0.18s ease, color 0.18s ease;
+      }
+      .serv-row:hover { background: var(--accent); color: #fff; }
+      .serv-i { grid-area: i; font-family: "Archivo Black", sans-serif; font-size: 0.8rem; color: var(--accent); align-self: start; }
+      .serv-row:hover .serv-i { color: #fff; }
+      .serv-name { grid-area: name; font-family: "Archivo Black", sans-serif; font-size: clamp(1.1rem, 3vw, 1.9rem); text-transform: uppercase; letter-spacing: -0.01em; }
+      .serv-desc { grid-area: desc; font-size: 0.82rem; opacity: 0.75; }
+      .serv-price { grid-area: price; font-family: "Archivo Black", sans-serif; font-size: clamp(0.85rem, 2vw, 1.1rem); color: var(--accent); white-space: nowrap; }
+      .serv-row:hover .serv-price { color: #fff; }
+
+      /* STRIP */
+      .strip { padding: 2rem clamp(1rem, 4vw, 3rem); }
+      .strip-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem; }
+      .badge { border: var(--bw) solid var(--border); padding: 0.5rem 0.9rem; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.05em; }
+      .clients-marquee { overflow: hidden; border-top: var(--bw) solid var(--border); border-bottom: var(--bw) solid var(--border); padding: 1rem 0; }
+      .clients-track { display: inline-flex; white-space: nowrap; animation: scroll 22s linear infinite reverse; }
+      .client { font-family: "Archivo Black", sans-serif; font-size: clamp(1rem, 2.5vw, 1.6rem); padding: 0 1.5rem; color: var(--fg); position: relative; }
+      .client::after { content: "/"; color: var(--accent); margin-left: 1.5rem; }
+
+      /* MANIFESTO */
+      .manifesto { padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 3rem); border-top: var(--bw) solid var(--border); }
+      .man-kicker { font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 1.5rem; }
+      .man-h { font-family: "Archivo Black", sans-serif; font-weight: 400; font-size: clamp(1.7rem, 5vw, 4rem); line-height: 1.02; letter-spacing: -0.02em; max-width: 18ch; }
+      .man-h .accent { color: var(--accent); }
+      .man-grid { display: grid; gap: 1.5rem; margin-top: clamp(2rem, 4vw, 3rem); max-width: 70ch; }
+      .man-grid p { font-size: 0.95rem; line-height: 1.7; }
+
+      /* PROCESS */
+      .process { padding: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 4vw, 3rem); background: var(--muted); border-top: var(--bw) solid var(--border); }
+      .proc-h { margin-bottom: 2rem; }
+      .proc-grid { display: grid; grid-template-columns: 1fr; gap: 0; border: var(--bw) solid var(--border); }
+      .proc-card { padding: 1.6rem; border-bottom: var(--bw) solid var(--border); background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+      .proc-card:last-child { border-bottom: 0; }
+      .proc-card:hover { background: var(--primary); color: var(--primary-fg); }
+      .proc-n { font-family: "Archivo Black", sans-serif; font-size: 2.5rem; color: var(--accent); display: block; line-height: 1; }
+      .proc-t { font-family: "Archivo Black", sans-serif; font-weight: 400; font-size: 1.3rem; text-transform: uppercase; margin: 0.6rem 0 0.5rem; }
+      .proc-b { font-size: 0.85rem; line-height: 1.6; }
+
+      /* QUOTES */
+      .quotes { padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 3rem); border-top: var(--bw) solid var(--border); }
+      .quote-stage { position: relative; min-height: 12rem; max-width: 60ch; }
+      .quote-mark { position: absolute; top: -2.5rem; left: -0.5rem; font-family: "Archivo Black", sans-serif; font-size: clamp(5rem, 14vw, 11rem); color: var(--accent); line-height: 1; z-index: 0; }
+      .quote { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 0.4s ease; z-index: 1; }
+      .quote.active { opacity: 1; visibility: visible; position: relative; }
+      .quote-text { font-family: "Archivo Black", sans-serif; font-weight: 400; font-size: clamp(1.3rem, 3.5vw, 2.4rem); line-height: 1.15; letter-spacing: -0.01em; }
+      .quote-foot { margin-top: 1.5rem; font-weight: 700; font-size: 0.85rem; }
+      .quote-foot strong { color: var(--accent); }
+      .quote-dots { display: flex; gap: 0.6rem; margin-top: 2rem; }
+      .dot { width: 44px; height: 44px; border: var(--bw) solid var(--border); background: var(--bg); cursor: pointer; padding: 0; position: relative; }
+      .dot::after { content: ""; position: absolute; inset: 30%; background: transparent; }
+      .dot.active { background: var(--accent); }
+
+      /* CONTACT */
+      .contact { padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 3rem); background: var(--primary); color: var(--primary-fg); border-top: var(--bw) solid var(--border); }
+      .contact-h { font-family: "Archivo Black", sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(2.2rem, 9vw, 6rem); line-height: 0.9; letter-spacing: -0.03em; }
+      .contact-h .accent { color: var(--accent); }
+      .contact-grid { display: grid; gap: 2.5rem; margin-top: clamp(2rem, 5vw, 3.5rem); }
+      .contact-cta { display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
+      .nap { font-style: normal; display: grid; gap: 0.9rem; }
+      .nap-line { font-size: 0.9rem; display: grid; grid-template-columns: 5.5rem 1fr; gap: 0.8rem; padding-bottom: 0.9rem; border-bottom: 1px solid #ffffff22; }
+      .nap-k { font-weight: 700; color: var(--accent); letter-spacing: 0.05em; }
+      .nap a { color: var(--primary-fg); }
+
+      /* FOOTER */
+      .footer { border-top: var(--bw) solid var(--border); overflow: hidden; }
+      .foot-big { font-family: "Archivo Black", sans-serif; font-size: clamp(3rem, 18vw, 16rem); line-height: 0.85; letter-spacing: -0.04em; text-align: center; padding: 1rem 0 0; color: var(--fg); -webkit-text-stroke: 2px var(--border); color: transparent; }
+      .foot-row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; padding: 1.5rem clamp(1rem, 4vw, 3rem); border-top: var(--bw) solid var(--border); font-size: 0.78rem; font-weight: 700; }
+      .foot-row a { color: var(--accent); }
+
+      /* FLOAT CTA */
+      .float-cta {
+        position: fixed; bottom: 1.2rem; right: 1.2rem; z-index: 60; text-decoration: none;
+        font-family: "Archivo Black", sans-serif; font-size: 0.85rem; background: var(--accent); color: #fff;
+        padding: 1rem 1.2rem; border: var(--bw) solid var(--border); box-shadow: 4px 4px 0 var(--primary);
+        min-height: 44px; display: inline-flex; align-items: center; transition: transform 0.12s ease;
+      }
+      .float-cta:hover { transform: translate(-2px, -2px); }
+
+      /* SCROLL REVEAL */
+      .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* RESPONSIVE */
+      @media (min-width: 760px) {
+        .nav-links { display: flex; }
+        .nav-cta { display: inline-flex; }
+        .nav-toggle { display: none; }
+        .mobile-menu { display: none !important; }
+        .hero-foot { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+        .sec-head { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+        .work-grid { grid-template-columns: 1fr 1fr; }
+        .tile { border-right: var(--bw) solid var(--border); }
+        .tile:nth-child(2n) { border-right: 0; }
+        .tile { min-height: 18rem; }
+        .proc-grid { grid-template-columns: 1fr 1fr 1fr 1fr; }
+        .proc-card { border-bottom: 0; border-right: var(--bw) solid var(--border); }
+        .proc-card:last-child { border-right: 0; }
+        .contact-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+        .float-cta { display: none; }
+      }
+      @media (min-width: 1100px) {
+        .tile { min-height: 22rem; }
+      }
+    </style>
+
+    <script>
+      // Mobile menu
+      const toggle = document.querySelector(".nav-toggle");
+      const menu = document.querySelector(".mobile-menu");
+      if (toggle && menu) {
+        toggle.addEventListener("click", () => {
+          const open = menu.hasAttribute("hidden");
+          if (open) menu.removeAttribute("hidden");
+          else menu.setAttribute("hidden", "");
+          toggle.setAttribute("aria-expanded", String(open));
+        });
+        menu.querySelectorAll("a").forEach((a) =>
+          a.addEventListener("click", () => {
+            menu.setAttribute("hidden", "");
+            toggle.setAttribute("aria-expanded", "false");
+          })
+        );
+      }
+
+      // Testimonial slider
+      const quotes = Array.from(document.querySelectorAll(".quote"));
+      const dots = Array.from(document.querySelectorAll(".dot"));
+      let qi = 0;
+      let timer;
+      function show(i) {
+        quotes.forEach((q, n) => q.classList.toggle("active", n === i));
+        dots.forEach((d, n) => d.classList.toggle("active", n === i));
+        qi = i;
+      }
+      function next() { show((qi + 1) % quotes.length); }
+      dots.forEach((d) =>
+        d.addEventListener("click", () => {
+          show(Number(d.getAttribute("data-i")));
+          clearInterval(timer);
+          timer = setInterval(next, 5000);
+        })
+      );
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (quotes.length && !reduce) timer = setInterval(next, 5000);
+
+      // Scroll reveal
+      const reveals = document.querySelectorAll(".sec-head, .proc-card, .serv-row, .man-h, .man-grid");
+      reveals.forEach((el) => el.classList.add("reveal"));
+      if (!reduce && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+          { threshold: 0.12 }
+        );
+        reveals.forEach((el) => io.observe(el));
+      } else {
+        reveals.forEach((el) => el.classList.add("in"));
+      }
+    </script>
+  </body>
+</html>

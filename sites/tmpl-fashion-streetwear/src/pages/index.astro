@@ -1,0 +1,551 @@
+---
+// MERIDIAN / OFF-GRID — Streetwear drop landing page (self-contained Astro template)
+const nav = ["Shop", "The Drop", "Lookbook", "Stockists", "Journal"];
+
+const products = [
+  { name: "OFF-GRID Cargo Pant", price: "$148", tag: "DROP 04", seedA: "offgrid-cargo-a", seedB: "offgrid-cargo-b", colors: ["#1b1b1b", "#e7ff00", "#ff3b1f"], sizes: ["S", "M", "L", "XL"] },
+  { name: "Heavyweight Boxy Tee", price: "$68", tag: "320GSM", seedA: "boxy-tee-a", seedB: "boxy-tee-b", colors: ["#f2f2f2", "#0d0d0d", "#ff3b1f"], sizes: ["S", "M", "L", "XL"] },
+  { name: "Logo Beanie, Acid Wash", price: "$42", tag: "RESTOCK", seedA: "beanie-a", seedB: "beanie-b", colors: ["#e7ff00", "#1b1b1b", "#f2f2f2"], sizes: ["OS"] },
+  { name: "The Atelier Wool Overcoat", price: "$480", tag: "FLAGSHIP", seedA: "overcoat-a", seedB: "overcoat-b", colors: ["#0d0d0d", "#2e2e2e"], sizes: ["S", "M", "L"], sold: true },
+  { name: "Cashmere-Blend Crewneck", price: "$210", tag: "NEW", seedA: "crew-a", seedB: "crew-b", colors: ["#1b1b1b", "#f2f2f2", "#e7ff00"], sizes: ["S", "M", "L", "XL"] },
+  { name: "Pleated Wide-Leg Trouser", price: "$165", tag: "NEW", seedA: "trouser-a", seedB: "trouser-b", colors: ["#0d0d0d", "#2e2e2e", "#e7ff00"], sizes: ["28", "30", "32", "34"] },
+];
+
+const testimonials = [
+  { quote: "Copped the drop in two minutes flat. Quality is insane for the price.", name: "Marcus T.", city: "Toronto" },
+  { quote: "The overcoat is the best-made thing in my closet. Worth every dollar.", name: "Dana R.", city: "Calgary" },
+  { quote: "Finally a brand that nails fit and fabric without the logo noise.", name: "Priya S.", city: "Vancouver" },
+];
+
+const stats = [
+  { n: "200", l: "Pieces made. Once." },
+  { n: "04", l: "Drops this season" },
+  { n: "2min", l: "Avg. sellout time" },
+  { n: "10%", l: "Off your first order" },
+];
+
+const ugc = ["ugc-1", "ugc-2", "ugc-3", "ugc-4", "ugc-5", "ugc-6"];
+const ticker = ["DROP 04 — OFF-GRID", "200 MADE. ONCE.", "FREE SHIP OVER $150", "GET IT OR REGRET IT", "EARLY ACCESS OPEN", "30-DAY RETURNS"];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MERIDIAN / OFF-GRID — Drop 04. 200 Made. Once.</title>
+    <meta name="description" content="DROP 04 — OFF-GRID streetwear from Meridian Atelier. 200 pieces made, once. Early access, heavyweight essentials, free shipping over $150. Get it or regret it." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#shop">Skip to shop</a>
+
+    <!-- Ticker -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        {[...ticker, ...ticker].map((t) => (
+          <span class="ticker__item">{t}<span class="ticker__dot">●</span></span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <header class="nav">
+      <a href="#top" class="brand">
+        MERIDIAN<span class="brand__slash">/</span><em>OFF-GRID</em>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        {nav.map((n) => <a href="#shop">{n}</a>)}
+      </nav>
+      <div class="nav__right">
+        <button class="cart" aria-label="Open cart (2 items)">
+          BAG<span class="cart__count">2</span>
+        </button>
+        <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <nav class="mobile" id="mobile" aria-label="Mobile">
+      {nav.map((n) => <a href="#shop">{n}</a>)}
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="hero__media">
+        <img src="https://picsum.photos/seed/offgrid-hero/1600/1800" alt="Model wearing the OFF-GRID Drop 04 cargo set against concrete" loading="eager" />
+      </div>
+      <div class="hero__copy">
+        <span class="kicker"><span class="dot"></span>DROP 04 IS LIVE</span>
+        <h1>OFF<span class="slash">/</span>GRID.<br /><span class="outline">200 MADE.</span> ONCE.</h1>
+        <p>Modern wardrobe, made to last. Heavyweight, unmistakable, and gone before you blink. Get it or regret it.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#shop">Shop the Drop</a>
+          <a class="btn btn--ghost" href="#drop">See the countdown</a>
+        </div>
+      </div>
+      <div class="hero__sticker">EST. YYC<br />SS26</div>
+    </section>
+
+    <!-- Drop / Countdown -->
+    <section class="drop" id="drop">
+      <div class="drop__inner">
+        <div class="drop__head">
+          <h2>The Drop ends in</h2>
+          <p>Early access closes when the clock hits zero. No restocks on Drop 04.</p>
+        </div>
+        <div class="countdown" id="countdown" role="timer" aria-label="Time remaining in the drop">
+          <div class="cd"><span id="cd-d">00</span><small>Days</small></div>
+          <span class="cd__sep">:</span>
+          <div class="cd"><span id="cd-h">00</span><small>Hrs</small></div>
+          <span class="cd__sep">:</span>
+          <div class="cd"><span id="cd-m">00</span><small>Min</small></div>
+          <span class="cd__sep">:</span>
+          <div class="cd cd--accent"><span id="cd-s">00</span><small>Sec</small></div>
+        </div>
+        <div class="drop__bar"><span class="drop__fill"></span><b>78% claimed</b></div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+      {stats.map((s) => (
+        <div class="stat">
+          <span class="stat__n">{s.n}</span>
+          <span class="stat__l">{s.l}</span>
+        </div>
+      ))}
+    </section>
+
+    <!-- Shop grid -->
+    <section class="shop" id="shop">
+      <div class="shop__head">
+        <h2>Shop the Drop</h2>
+        <div class="filters" role="group" aria-label="Filter products">
+          <button class="chip chip--on">All</button>
+          <button class="chip">Tops</button>
+          <button class="chip">Bottoms</button>
+          <button class="chip">Accessories</button>
+        </div>
+      </div>
+      <div class="grid">
+        {products.map((p) => (
+          <article class={`card${p.sold ? " card--sold" : ""}`}>
+            <div class="card__media">
+              <img class="card__front" src={`https://picsum.photos/seed/${p.seedA}/700/860`} alt={`${p.name}, front`} loading="lazy" />
+              <img class="card__back" src={`https://picsum.photos/seed/${p.seedB}/700/860`} alt={`${p.name}, detail`} loading="lazy" aria-hidden="true" />
+              <span class="card__tag">{p.tag}</span>
+              {p.sold && <span class="card__sold">SOLD OUT</span>}
+              <div class="card__quick">
+                {p.sizes.map((s) => <span class="card__size">{s}</span>)}
+              </div>
+            </div>
+            <div class="card__body">
+              <div class="card__row">
+                <h3>{p.name}</h3>
+                <span class="card__price">{p.price}</span>
+              </div>
+              <div class="card__swatches" aria-label="Available colors">
+                {p.colors.map((c) => <span class="sw" style={`--c:${c}`}></span>)}
+              </div>
+              <button class="card__add" disabled={p.sold}>{p.sold ? "Join Waitlist" : "Quick Add +"}</button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Lookbook split -->
+    <section class="look">
+      <div class="look__img">
+        <img src="https://picsum.photos/seed/offgrid-look/1100/1300" alt="OFF-GRID styling on location, full look" loading="lazy" />
+      </div>
+      <div class="look__copy">
+        <span class="kicker"><span class="dot"></span>LOOKBOOK / SS26</span>
+        <h2>Cut from a different cloth.</h2>
+        <p>No logo noise. No filler. Drop 04 is built around four anchor pieces — wear them loud, layer them quiet. Shot on concrete, made to outlive the season.</p>
+        <ul class="look__list">
+          <li>320gsm heavyweight cotton — boxy, structured, broken-in from day one.</li>
+          <li>Triple-stitched seams. Field-tested hardware.</li>
+          <li>Numbered tags — 1 of 200, and never again.</li>
+        </ul>
+        <a class="btn btn--primary" href="#shop">Style the look</a>
+      </div>
+    </section>
+
+    <!-- Testimonials slider -->
+    <section class="voices">
+      <h2 class="voices__h">Word on the street</h2>
+      <div class="voices__track" id="voices">
+        {testimonials.map((t, i) => (
+          <figure class={`voice${i === 0 ? " is-active" : ""}`} data-i={i}>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>“{t.quote}”</blockquote>
+            <figcaption>{t.name} <span>— {t.city}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+      <div class="voices__dots" role="tablist" aria-label="Choose testimonial">
+        {testimonials.map((_, i) => (
+          <button class={`vdot${i === 0 ? " is-on" : ""}`} data-go={i} aria-label={`Testimonial ${i + 1}`}></button>
+        ))}
+      </div>
+    </section>
+
+    <!-- UGC mosaic -->
+    <section class="ugc">
+      <div class="ugc__head">
+        <h2>@meridian.offgrid</h2>
+        <a href="#newsletter" class="ugc__link">Tag us to get featured →</a>
+      </div>
+      <div class="ugc__grid">
+        {ugc.map((u, i) => (
+          <a class={`ugc__cell${i === 0 || i === 3 ? " ugc__cell--big" : ""}`} href="#shop" aria-label="Shop this look on Instagram">
+            <img src={`https://picsum.photos/seed/${u}/600/600`} alt="Community member wearing OFF-GRID" loading="lazy" />
+            <span class="ugc__shop">SHOP THE FIT</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Newsletter / CTA -->
+    <section class="news" id="newsletter">
+      <div class="news__inner">
+        <h2>Join the list.<br /><span class="outline">Get there first.</span></h2>
+        <p>Early access to every drop + 10% off your first order. No spam — just the heads-up before it sells out.</p>
+        <form class="news__form" id="news-form">
+          <label class="sr" for="email">Email address</label>
+          <input id="email" type="email" placeholder="you@email.com" required autocomplete="email" />
+          <button type="submit" class="btn btn--primary">Get Early Access</button>
+        </form>
+        <p class="news__fine">Free shipping over $150 · Easy 30-day returns</p>
+      </div>
+    </section>
+
+    <!-- Footer / NAP -->
+    <footer class="foot">
+      <div class="foot__brand">
+        MERIDIAN<span class="brand__slash">/</span><em>OFF-GRID</em>
+        <p>Modern wardrobe, made to last.</p>
+      </div>
+      <div class="foot__col">
+        <h3>Flagship</h3>
+        <address>
+          1108 17th Avenue SW<br />Calgary, AB T2T 0B6<br />
+          <a href="tel:+14035552174">(403) 555-2174</a>
+        </address>
+      </div>
+      <div class="foot__col">
+        <h3>Showroom Hours</h3>
+        <p>Mon–Fri 10am–7pm<br />Sat 11am–6pm<br />Sun 12pm–5pm</p>
+      </div>
+      <div class="foot__col">
+        <h3>Service</h3>
+        <p>Shipping & Returns<br />Size Guide<br />Stockists<br />Contact</p>
+      </div>
+      <div class="foot__bar">
+        <span>© 2026 Meridian Atelier. All rights reserved.</span>
+        <span>VISA · MC · AMEX · APPLE PAY</span>
+      </div>
+    </footer>
+
+    <script>
+      // Newsletter (demo — no backend)
+      document.getElementById("news-form")?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const btn = (e.currentTarget as HTMLElement).querySelector("button");
+        if (btn) btn.textContent = "You're on the list ✓";
+      });
+
+      // Nav toggle
+      const burger = document.getElementById("burger");
+      const mobile = document.getElementById("mobile");
+      burger?.addEventListener("click", () => {
+        const open = mobile?.classList.toggle("is-open");
+        burger.setAttribute("aria-expanded", String(!!open));
+      });
+
+      // Countdown to 3 days out
+      const target = Date.now() + 1000 * 60 * 60 * 72 + 1000 * 60 * 41;
+      const pad = (n: number) => String(n).padStart(2, "0");
+      const els = {
+        d: document.getElementById("cd-d"),
+        h: document.getElementById("cd-h"),
+        m: document.getElementById("cd-m"),
+        s: document.getElementById("cd-s"),
+      };
+      function tick() {
+        const diff = Math.max(0, target - Date.now());
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        if (els.d) els.d.textContent = pad(d);
+        if (els.h) els.h.textContent = pad(h);
+        if (els.m) els.m.textContent = pad(m);
+        if (els.s) els.s.textContent = pad(s);
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      // Testimonial slider
+      const voices = Array.from(document.querySelectorAll(".voice"));
+      const vdots = Array.from(document.querySelectorAll(".vdot"));
+      let vi = 0;
+      function show(i: number) {
+        vi = i;
+        voices.forEach((v, n) => v.classList.toggle("is-active", n === i));
+        vdots.forEach((d, n) => d.classList.toggle("is-on", n === i));
+      }
+      vdots.forEach((d) => d.addEventListener("click", () => show(Number((d as HTMLElement).dataset.go))));
+      if (voices.length) setInterval(() => show((vi + 1) % voices.length), 4500);
+
+      // Scroll reveal
+      const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+      if (!mq.matches && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          }),
+          { threshold: 0.12 }
+        );
+        document.querySelectorAll(".card, .stat, .look__copy, .look__img, .voices, .ugc__cell, .news__inner").forEach((el) => {
+          el.classList.add("reveal");
+          io.observe(el);
+        });
+      }
+    </script>
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      }
+    </style>
+
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --fg: #f2f2f2;
+        --primary: #e7ff00;
+        --primary-fg: #0d0d0d;
+        --accent: #ff3b1f;
+        --muted: #1b1b1b;
+        --border: #2e2e2e;
+        --display: "Archivo Black", system-ui, sans-serif;
+        --body: "Archivo", system-ui, sans-serif;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--body);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      h1, h2, h3 { font-family: var(--display); font-weight: 400; letter-spacing: -0.02em; line-height: 0.95; margin: 0; text-transform: uppercase; }
+      a { color: inherit; text-decoration: none; }
+      .sr, .skip { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+      .skip:focus { position: fixed; top: 8px; left: 8px; width: auto; height: auto; clip: auto; background: var(--primary); color: var(--primary-fg); padding: .6rem 1rem; z-index: 999; font-family: var(--display); }
+      :focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+
+      .kicker { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--display); font-size: .72rem; letter-spacing: .14em; color: var(--primary); text-transform: uppercase; }
+      .dot { width: 9px; height: 9px; background: var(--accent); border-radius: 50%; animation: pulse 1.4s infinite; }
+      @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
+      .outline { color: transparent; -webkit-text-stroke: 2px var(--fg); }
+      .slash { color: var(--accent); }
+
+      .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 1.5rem; font-family: var(--display); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; border: 2px solid var(--primary); cursor: pointer; transition: transform .15s, background .2s, color .2s; }
+      .btn--primary { background: var(--primary); color: var(--primary-fg); }
+      .btn--primary:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--accent); }
+      .btn--ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+      .btn--ghost:hover { border-color: var(--primary); color: var(--primary); }
+
+      /* Ticker */
+      .ticker { background: var(--primary); color: var(--primary-fg); overflow: hidden; border-bottom: 2px solid var(--bg); }
+      .ticker__track { display: flex; width: max-content; animation: marquee 24s linear infinite; }
+      .ticker__item { display: inline-flex; align-items: center; gap: 1.2rem; padding: .5rem 1.2rem; font-family: var(--display); font-size: .8rem; letter-spacing: .08em; white-space: nowrap; }
+      .ticker__dot { color: var(--accent); }
+      @keyframes marquee { to { transform: translateX(-50%); } }
+
+      /* Nav */
+      .nav { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem 5vw; background: rgba(13,13,13,.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+      .brand { font-family: var(--display); font-size: 1.05rem; letter-spacing: -.01em; }
+      .brand__slash { color: var(--accent); margin: 0 .15em; }
+      .brand em { font-style: normal; color: var(--primary); }
+      .nav__links { display: none; gap: 1.6rem; }
+      .nav__links a { font-family: var(--display); font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; position: relative; }
+      .nav__links a::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 0; height: 2px; background: var(--primary); transition: width .25s; }
+      .nav__links a:hover::after { width: 100%; }
+      .nav__right { display: flex; align-items: center; gap: .8rem; }
+      .cart { background: var(--fg); color: var(--bg); border: none; font-family: var(--display); font-size: .74rem; padding: .55rem .8rem; cursor: pointer; display: inline-flex; gap: .4rem; min-height: 40px; }
+      .cart__count { background: var(--accent); color: var(--fg); border-radius: 50%; width: 18px; height: 18px; display: grid; place-items: center; font-size: .65rem; }
+      .burger { display: grid; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+      .burger span { width: 26px; height: 3px; background: var(--fg); transition: .25s; }
+      .mobile { display: none; flex-direction: column; background: var(--muted); border-bottom: 1px solid var(--border); }
+      .mobile.is-open { display: flex; }
+      .mobile a { padding: 1rem 5vw; border-top: 1px solid var(--border); font-family: var(--display); text-transform: uppercase; font-size: .9rem; }
+
+      /* Hero */
+      .hero { position: relative; display: grid; gap: 0; padding: 0; }
+      .hero__media { position: relative; aspect-ratio: 4/5; overflow: hidden; }
+      .hero__media img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1) saturate(1.05); }
+      .hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,13,13,.1), rgba(13,13,13,.85)), radial-gradient(circle at 70% 20%, rgba(231,255,0,.18), transparent 50%); mix-blend-mode: multiply; }
+      .hero__copy { padding: 2.4rem 5vw 3rem; }
+      .hero__copy h1 { font-size: clamp(2.7rem, 11vw, 5.5rem); margin: 1rem 0; }
+      .hero__copy p { max-width: 46ch; color: #c9c9c9; font-size: 1.02rem; }
+      .hero__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.6rem; }
+      .hero__sticker { position: absolute; top: 1.2rem; right: 5vw; background: var(--accent); color: var(--fg); font-family: var(--display); font-size: .72rem; text-align: center; padding: .7rem; line-height: 1.2; transform: rotate(8deg); border: 2px solid var(--bg); }
+
+      /* Drop */
+      .drop { background: var(--accent); color: var(--fg); padding: 3rem 5vw; }
+      .drop__inner { max-width: 980px; margin: 0 auto; text-align: center; }
+      .drop__head h2 { font-size: clamp(1.6rem, 6vw, 2.6rem); }
+      .drop__head p { color: rgba(255,255,255,.85); margin: .6rem 0 0; }
+      .countdown { display: flex; align-items: flex-start; justify-content: center; gap: .4rem; margin: 1.8rem 0; flex-wrap: wrap; }
+      .cd { background: var(--bg); color: var(--primary); min-width: 84px; padding: .8rem .4rem; display: grid; gap: .2rem; }
+      .cd span { font-family: var(--display); font-size: clamp(2rem, 8vw, 3.2rem); line-height: 1; font-variant-numeric: tabular-nums; }
+      .cd small { font-family: var(--body); font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: #888; }
+      .cd--accent span { color: var(--accent); }
+      .cd__sep { font-family: var(--display); font-size: clamp(1.6rem, 6vw, 2.6rem); align-self: center; }
+      .drop__bar { position: relative; max-width: 520px; margin: 0 auto; height: 26px; background: rgba(0,0,0,.35); overflow: hidden; display: grid; place-items: center; }
+      .drop__fill { position: absolute; inset: 0; right: 22%; background: var(--primary); }
+      .drop__bar b { position: relative; font-family: var(--display); font-size: .72rem; color: var(--bg); mix-blend-mode: difference; }
+
+      /* Stats */
+      .stats { display: grid; grid-template-columns: repeat(2, 1fr); border-bottom: 1px solid var(--border); }
+      .stat { padding: 1.8rem 5vw; border-bottom: 1px solid var(--border); }
+      .stat:nth-child(odd) { border-right: 1px solid var(--border); }
+      .stat__n { display: block; font-family: var(--display); font-size: clamp(2.4rem, 9vw, 3.6rem); color: var(--primary); line-height: 1; }
+      .stat__l { color: #b3b3b3; font-size: .85rem; }
+
+      /* Shop */
+      .shop { padding: 3.5rem 5vw; }
+      .shop__head { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: end; margin-bottom: 2rem; }
+      .shop__head h2 { font-size: clamp(2rem, 8vw, 3.4rem); }
+      .filters { display: flex; gap: .5rem; flex-wrap: wrap; }
+      .chip { background: var(--muted); color: var(--fg); border: 1px solid var(--border); padding: .5rem 1rem; font-family: var(--display); font-size: .72rem; text-transform: uppercase; cursor: pointer; min-height: 40px; transition: .2s; }
+      .chip:hover { border-color: var(--primary); }
+      .chip--on { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+      .grid { display: grid; grid-template-columns: 1fr; gap: 1.6rem; }
+
+      .card { background: var(--muted); border: 1px solid var(--border); display: flex; flex-direction: column; transition: transform .25s, border-color .25s; }
+      .card:hover { transform: translateY(-4px); border-color: var(--primary); }
+      .card__media { position: relative; aspect-ratio: 5/6; overflow: hidden; }
+      .card__media img { width: 100%; height: 100%; object-fit: cover; transition: opacity .4s, transform .6s; }
+      .card__back { position: absolute; inset: 0; opacity: 0; }
+      .card:hover .card__front { opacity: 0; transform: scale(1.04); }
+      .card:hover .card__back { opacity: 1; transform: scale(1.04); }
+      .card--sold .card__media img { filter: grayscale(1) brightness(.6); }
+      .card__tag { position: absolute; top: .7rem; left: .7rem; background: var(--primary); color: var(--primary-fg); font-family: var(--display); font-size: .65rem; padding: .25rem .55rem; letter-spacing: .06em; }
+      .card__sold { position: absolute; top: .7rem; right: .7rem; background: var(--accent); color: var(--fg); font-family: var(--display); font-size: .65rem; padding: .25rem .55rem; }
+      .card__quick { position: absolute; left: 0; right: 0; bottom: 0; display: flex; gap: .4rem; padding: .7rem; background: linear-gradient(transparent, rgba(13,13,13,.9)); transform: translateY(100%); transition: transform .3s; }
+      .card:hover .card__quick { transform: translateY(0); }
+      .card__size { background: var(--bg); border: 1px solid var(--border); color: var(--fg); font-family: var(--display); font-size: .68rem; min-width: 34px; min-height: 34px; display: grid; place-items: center; cursor: pointer; transition: .15s; }
+      .card__size:hover { background: var(--primary); color: var(--primary-fg); }
+      .card__body { padding: 1rem; display: grid; gap: .7rem; }
+      .card__row { display: flex; justify-content: space-between; gap: .6rem; align-items: start; }
+      .card__row h3 { font-size: .94rem; }
+      .card__price { font-family: var(--display); color: var(--primary); white-space: nowrap; }
+      .card__swatches { display: flex; gap: .4rem; }
+      .sw { width: 18px; height: 18px; border-radius: 50%; background: var(--c); border: 1px solid var(--border); }
+      .card__add { background: transparent; border: 2px solid var(--fg); color: var(--fg); font-family: var(--display); font-size: .74rem; text-transform: uppercase; padding: .7rem; cursor: pointer; min-height: 44px; transition: .2s; }
+      .card__add:hover:not(:disabled) { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+      .card__add:disabled { border-color: var(--border); color: #777; cursor: not-allowed; }
+
+      /* Lookbook */
+      .look { display: grid; gap: 0; border-top: 1px solid var(--border); }
+      .look__img { aspect-ratio: 4/5; overflow: hidden; }
+      .look__img img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.08); }
+      .look__copy { padding: 3rem 5vw; }
+      .look__copy h2 { font-size: clamp(2.2rem, 8vw, 3.6rem); margin: 1rem 0; }
+      .look__copy p { color: #c2c2c2; max-width: 50ch; }
+      .look__list { list-style: none; padding: 0; margin: 1.4rem 0; display: grid; gap: .7rem; }
+      .look__list li { padding-left: 1.6rem; position: relative; color: #d6d6d6; font-size: .95rem; }
+      .look__list li::before { content: "→"; position: absolute; left: 0; color: var(--primary); font-family: var(--display); }
+
+      /* Voices */
+      .voices { padding: 4rem 5vw; background: var(--muted); border-top: 1px solid var(--border); text-align: center; }
+      .voices__h { font-size: clamp(1.8rem, 7vw, 3rem); margin-bottom: 2rem; }
+      .voices__track { position: relative; max-width: 760px; margin: 0 auto; min-height: 200px; }
+      .voice { position: absolute; inset: 0; opacity: 0; transform: translateY(14px); transition: opacity .5s, transform .5s; pointer-events: none; }
+      .voice.is-active { opacity: 1; transform: none; position: relative; pointer-events: auto; }
+      .stars { color: var(--primary); font-size: 1.3rem; letter-spacing: .2em; }
+      .voice blockquote { font-family: var(--display); font-size: clamp(1.2rem, 4.5vw, 2rem); line-height: 1.15; margin: 1rem 0; text-transform: none; }
+      .voice figcaption { color: var(--primary); font-family: var(--display); font-size: .85rem; }
+      .voice figcaption span { color: #999; }
+      .voices__dots { display: flex; gap: .6rem; justify-content: center; margin-top: 1.6rem; }
+      .vdot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--border); background: transparent; cursor: pointer; padding: 0; }
+      .vdot.is-on { background: var(--primary); border-color: var(--primary); }
+
+      /* UGC */
+      .ugc { padding: 4rem 5vw; }
+      .ugc__head { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem; }
+      .ugc__head h2 { font-size: clamp(1.6rem, 6vw, 2.6rem); color: var(--primary); }
+      .ugc__link { color: var(--accent); font-family: var(--display); font-size: .82rem; text-transform: uppercase; }
+      .ugc__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .6rem; }
+      .ugc__cell { position: relative; aspect-ratio: 1; overflow: hidden; }
+      .ugc__cell img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s, filter .4s; filter: grayscale(.3); }
+      .ugc__cell:hover img { transform: scale(1.08); filter: grayscale(0); }
+      .ugc__shop { position: absolute; inset: auto 0 0 0; padding: .6rem; background: linear-gradient(transparent, rgba(13,13,13,.9)); font-family: var(--display); font-size: .7rem; letter-spacing: .08em; opacity: 0; transition: opacity .3s; }
+      .ugc__cell:hover .ugc__shop { opacity: 1; }
+
+      /* Newsletter */
+      .news { padding: 4.5rem 5vw; background: var(--primary); color: var(--primary-fg); }
+      .news__inner { max-width: 720px; margin: 0 auto; text-align: center; }
+      .news h2 { font-size: clamp(2.2rem, 9vw, 4rem); }
+      .news .outline { -webkit-text-stroke: 2px var(--primary-fg); color: transparent; }
+      .news p { color: rgba(13,13,13,.8); max-width: 48ch; margin: 1rem auto; font-weight: 500; }
+      .news__form { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-top: 1.4rem; }
+      .news__form input { flex: 1 1 260px; min-height: 48px; padding: 0 1rem; background: var(--bg); color: var(--fg); border: 2px solid var(--bg); font-family: var(--body); font-size: 1rem; }
+      .news__form input::placeholder { color: #888; }
+      .news__form .btn { background: var(--bg); color: var(--primary); border-color: var(--bg); }
+      .news__form .btn:hover { box-shadow: 6px 6px 0 var(--accent); }
+      .news__fine { font-family: var(--display); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; margin-top: 1.4rem; }
+
+      /* Footer */
+      .foot { padding: 3.5rem 5vw 2rem; display: grid; gap: 2rem; border-top: 1px solid var(--border); }
+      .foot__brand { font-family: var(--display); font-size: 1.2rem; }
+      .foot__brand p { font-family: var(--body); color: #999; font-size: .9rem; margin: .6rem 0 0; text-transform: none; }
+      .foot__col h3 { font-size: .8rem; color: var(--primary); letter-spacing: .1em; margin-bottom: .8rem; }
+      .foot__col p, .foot__col address { color: #b3b3b3; font-style: normal; font-size: .92rem; line-height: 1.8; }
+      .foot__col a:hover { color: var(--primary); }
+      .foot__bar { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .8rem; justify-content: space-between; padding-top: 1.5rem; border-top: 1px solid var(--border); color: #777; font-size: .75rem; letter-spacing: .05em; }
+
+      /* Reveal */
+      .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* Responsive */
+      @media (min-width: 720px) {
+        .grid { grid-template-columns: repeat(2, 1fr); }
+        .stats { grid-template-columns: repeat(4, 1fr); }
+        .stat { border-bottom: none; }
+        .stat:not(:last-child) { border-right: 1px solid var(--border); }
+        .ugc__grid { grid-template-columns: repeat(3, 1fr); }
+        .ugc__cell--big { grid-row: span 2; }
+        .foot { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+      }
+      @media (min-width: 1024px) {
+        .nav__links { display: flex; }
+        .burger { display: none; }
+        .hero { grid-template-columns: 1.05fr 1fr; align-items: stretch; }
+        .hero__media { aspect-ratio: auto; min-height: 86vh; }
+        .hero__copy { display: flex; flex-direction: column; justify-content: center; padding: 4rem 4vw; }
+        .grid { grid-template-columns: repeat(3, 1fr); }
+        .look { grid-template-columns: 1fr 1fr; }
+        .look__img { aspect-ratio: auto; }
+        .look__copy { display: flex; flex-direction: column; justify-content: center; }
+      }
+    </style>
+  </body>
+</html>

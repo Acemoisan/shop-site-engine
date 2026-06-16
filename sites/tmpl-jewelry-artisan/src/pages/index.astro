@@ -1,0 +1,535 @@
+---
+const nav = [
+  { label: "Collection", href: "#collection" },
+  { label: "Our Craft", href: "#craft" },
+  { label: "Materials", href: "#materials" },
+  { label: "Atelier", href: "#atelier" },
+];
+
+const pieces = [
+  { name: "Solène Solitaire Ring", detail: "Recycled 18k gold · 0.5ct GIA lab-grown diamond", price: "$1,480", finance: "or $123/mo with Affirm", seed: "av-solene", span: true },
+  { name: "Aurelle Tennis Bracelet", detail: "18k gold · 2.0ct certified diamonds", price: "$3,950", finance: "or $329/mo with Affirm", seed: "av-aurelle" },
+  { name: "Marisol Pendant", detail: "Recycled gold · single sapphire", price: "$620", finance: "or $52/mo", seed: "av-marisol" },
+  { name: "Lune Signet Ring", detail: "Hand-engraved 14k gold", price: "$740", finance: "or $62/mo", seed: "av-lune" },
+  { name: "Vale Huggie Hoops", detail: "14k solid gold · everyday-fine", price: "$290", finance: "or $24/mo", seed: "av-vale" },
+  { name: "Étoile Diamond Studs", detail: "14k gold · 0.25ct pair", price: "$560", finance: "or $47/mo", seed: "av-etoile" },
+];
+
+const materials = [
+  { title: "Recycled 14k & 18k gold", body: "Reclaimed and refined, never freshly mined. Same purity, lighter footprint." },
+  { title: "GIA-certified stones", body: "Every diamond traceable, graded, and documented before it reaches the bench." },
+  { title: "Ethically sourced", body: "Conflict-free gemstones from partners we have visited and vetted by hand." },
+];
+
+const testimonials = [
+  { quote: "My engagement ring from Aurelle & Vale is the most-complimented thing I own. You can feel that a real person made it.", who: "Hannah & Devon R." },
+  { quote: "I came in for studs and left with a story about where the gold came from. That's why I keep coming back.", who: "Priya M." },
+  { quote: "The resize was free and done in two days. White-glove service, no fine print.", who: "Caroline T." },
+];
+
+const trust = ["Lifetime warranty", "Free lifetime resizing", "Insured shipping", "30-day returns"];
+
+const hours = [
+  { d: "Tue – Fri", t: "10:00 – 6:00" },
+  { d: "Saturday", t: "10:00 – 5:00" },
+  { d: "Sun & Mon", t: "By appointment" },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "JewelryStore",
+  name: "Aurelle & Vale — Fine Jewelry Atelier",
+  image: "https://picsum.photos/seed/av-hero/1200/800",
+  telephone: "+1-403-555-0192",
+  email: "atelier@aurellevale.ca",
+  priceRange: "$$$",
+  address: { "@type": "PostalAddress", streetAddress: "1124 17 Avenue SW", addressLocality: "Calgary", addressRegion: "AB", postalCode: "T2T 0B6", addressCountry: "CA" },
+  openingHours: ["Tu-Fr 10:00-18:00", "Sa 10:00-17:00"],
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aurelle &amp; Vale — Handcrafted Fine Jewelry Atelier · Calgary</title>
+    <meta name="description" content="Ethically sourced, individually hand-finished fine jewelry made in our Calgary atelier. Recycled 14k & 18k gold, certified stones, lifetime warranty on every piece." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <set:html value={`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav" id="top">
+      <div class="wrap nav-inner">
+        <a class="brand" href="#top" aria-label="Aurelle and Vale home">
+          <span class="brand-mark" aria-hidden="true">A&amp;V</span>
+          <span class="brand-name">Aurelle &amp; Vale</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="btn btn-sm" href="#atelier">Book a viewing</a>
+        <button class="burger" aria-label="Toggle menu" aria-expanded="false" id="burger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a class="btn" href="#atelier">Book a viewing</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="hero-copy reveal">
+            <p class="eyebrow">Handcrafted in Calgary · Est. 2014</p>
+            <h1>Crafted to be <em>lived</em> in.</h1>
+            <p class="lede">Ethically sourced, individually hand-finished fine jewelry — designed to be worn, loved, and passed on. Recycled 14k &amp; 18k gold. Certified stones. Lifetime warranty on every piece.</p>
+            <div class="hero-cta">
+              <a class="btn" href="#collection">Explore the collection</a>
+              <a class="btn btn-ghost" href="tel:+14035550192">(403) 555-0192</a>
+            </div>
+            <div class="hero-meta">
+              <span><strong>10+ yrs</strong> at the bench</span>
+              <span><strong>1 of 1</strong> hand-finished</span>
+            </div>
+          </div>
+          <div class="hero-media reveal">
+            <div class="hero-img main">
+              <img src="https://picsum.photos/seed/av-hero-ring/760/940" alt="Macro close-up of a hand-finished gold solitaire ring catching daylight" loading="eager" />
+            </div>
+            <div class="hero-img inset">
+              <img src="https://picsum.photos/seed/av-hands/420/420" alt="A jeweller's hands finishing a piece at the workbench" loading="lazy" />
+            </div>
+            <span class="hero-tag">Hand-finished daily</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRUST RIBBON -->
+      <div class="ribbon" role="list" aria-label="Our guarantees">
+        <div class="ribbon-track">
+          {[...trust, ...trust].map((t) => (
+            <span role="listitem"><i aria-hidden="true">✦</i>{t}</span>
+          ))}
+        </div>
+      </div>
+
+      <!-- COLLECTION -->
+      <section id="collection" class="section">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">The Signature Collection</p>
+            <h2>Pieces with a maker's fingerprint.</h2>
+            <p class="sub">Six everyday heirlooms, each finished by hand. Prices include lifetime warranty and resizing.</p>
+          </div>
+          <div class="bento">
+            {pieces.map((p) => (
+              <article class={`card reveal ${p.span ? "card-wide" : ""}`}>
+                <div class="card-img">
+                  <img src={`https://picsum.photos/seed/${p.seed}/700/700`} alt={p.name} loading="lazy" />
+                  <img class="swap" src={`https://picsum.photos/seed/${p.seed}-worn/700/700`} alt="" aria-hidden="true" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <h3>{p.name}</h3>
+                  <p class="card-detail">{p.detail}</p>
+                  <p class="card-price">{p.price} <span class="chip">{p.finance}</span></p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- CRAFT / DETAIL BAND -->
+      <section id="craft" class="craft">
+        <div class="craft-bg" aria-hidden="true"></div>
+        <div class="wrap craft-inner reveal">
+          <p class="eyebrow on-dark">Our Craft</p>
+          <h2>Every piece is hand-finished in our Calgary atelier. <em>No two are exactly alike.</em></h2>
+          <p class="craft-lede">We start with reclaimed gold, melt and pour it ourselves, and spend the hours a machine never would — filing, setting, and polishing until the metal feels alive. The small irregularities aren't flaws. They're the signature of a human hand.</p>
+          <div class="craft-steps">
+            <div><span>01</span><h4>Reclaim &amp; pour</h4><p>Recycled 14k &amp; 18k gold, refined in-house.</p></div>
+            <div><span>02</span><h4>Set by hand</h4><p>Certified stones seated under a loupe, one at a time.</p></div>
+            <div><span>03</span><h4>Finish &amp; sign</h4><p>Polished, hallmarked, and made to be passed on.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MATERIALS -->
+      <section id="materials" class="section section-muted">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">Materials &amp; Provenance</p>
+            <h2>Know exactly what you're wearing.</h2>
+          </div>
+          <div class="mat-row">
+            {materials.map((m) => (
+              <div class="mat-card reveal">
+                <span class="mat-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M12 7v10M7 9.5v5M17 9.5v5"/></svg>
+                </span>
+                <h3>{m.title}</h3>
+                <p>{m.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS SLIDER -->
+      <section class="section">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="eyebrow">In their words</p>
+            <h2>Worn, loved, and recommended.</h2>
+          </div>
+          <div class="slider reveal" id="slider">
+            <div class="slides" id="slides">
+              {testimonials.map((t) => (
+                <figure class="slide">
+                  <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                  <blockquote>“{t.quote}”</blockquote>
+                  <figcaption>— {t.who}</figcaption>
+                </figure>
+              ))}
+            </div>
+            <div class="dots" id="dots" role="tablist" aria-label="Testimonials">
+              {testimonials.map((_, i) => (
+                <button class={i === 0 ? "dot active" : "dot"} data-i={i} aria-label={`Show testimonial ${i + 1}`}></button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ATELIER / NAP -->
+      <section id="atelier" class="atelier">
+        <div class="wrap atelier-grid">
+          <div class="atelier-copy reveal">
+            <p class="eyebrow">Visit the Atelier</p>
+            <h2>Book a private viewing.</h2>
+            <p class="sub">See the work in person, try pieces on, and meet the hands behind them. Walk-ins welcome; appointments get our full attention.</p>
+            <dl class="hours">
+              {hours.map((h) => (<><dt>{h.d}</dt><dd>{h.t}</dd></>))}
+            </dl>
+            <address class="nap">
+              1124 17 Avenue SW, Calgary, AB T2T 0B6<br />
+              <a href="tel:+14035550192">(403) 555-0192</a> ·
+              <a href="mailto:atelier@aurellevale.ca">atelier@aurellevale.ca</a>
+            </address>
+            <div class="hero-cta">
+              <a class="btn" href="tel:+14035550192">Call to book</a>
+              <a class="btn btn-ghost" href="https://maps.google.com/?q=1124+17+Avenue+SW+Calgary" target="_blank" rel="noopener">Get directions</a>
+            </div>
+          </div>
+          <div class="atelier-media reveal">
+            <img src="https://picsum.photos/seed/av-atelier/720/880" alt="The Aurelle and Vale atelier bench in natural daylight" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <!-- BESPOKE CTA -->
+      <section class="bespoke">
+        <div class="wrap bespoke-inner reveal">
+          <p class="eyebrow on-dark">Bespoke</p>
+          <h2>Dreaming of something one-of-a-kind?</h2>
+          <p>Book a private design consultation and we'll commission a piece that's wholly yours — an engagement ring, an anniversary band, or an heirloom to start a new line.</p>
+          <a class="btn btn-light" href="#atelier">Book a design consultation</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-grid">
+        <div>
+          <span class="brand-name big">Aurelle &amp; Vale</span>
+          <p class="foot-tag">Heirlooms for the everyday, hand-finished in Calgary.</p>
+        </div>
+        <div>
+          <h4>Visit</h4>
+          <p>1124 17 Avenue SW<br />Calgary, AB T2T 0B6</p>
+          <p><a href="tel:+14035550192">(403) 555-0192</a></p>
+        </div>
+        <div>
+          <h4>Care</h4>
+          <p>Lifetime warranty · Free resizing<br />Insured shipping · 30-day returns</p>
+        </div>
+      </div>
+      <div class="wrap foot-bottom">
+        <span>© 2026 Aurelle &amp; Vale Fine Jewelry Atelier</span>
+        <span>Recycled gold · Certified stones</span>
+      </div>
+    </footer>
+
+    <script>
+      const burger = document.getElementById("burger");
+      const menu = document.getElementById("mobileMenu");
+      burger?.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        burger.setAttribute("aria-expanded", String(open));
+      });
+      menu?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          menu.classList.remove("open");
+          burger.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduce && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+          { threshold: 0.12 }
+        );
+        document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      }
+
+      const slides = document.getElementById("slides");
+      const dots = Array.from(document.querySelectorAll("#dots .dot"));
+      let idx = 0;
+      function go(i) {
+        idx = i;
+        slides.style.transform = `translateX(-${i * 100}%)`;
+        dots.forEach((d, k) => d.classList.toggle("active", k === i));
+      }
+      dots.forEach((d) => d.addEventListener("click", () => go(Number(d.dataset.i))));
+      if (!reduce) setInterval(() => go((idx + 1) % dots.length), 6000);
+    </script>
+
+    <style is:global>
+      *,*::before,*::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    </style>
+
+    <style>
+      :root {
+        --bg: #F4EDE3;
+        --fg: #33291F;
+        --primary: #8A5A3B;
+        --primary-fg: #F4EDE3;
+        --accent: #A98B5B;
+        --muted: #E6D9C6;
+        --border: #D6C4A8;
+        --shadow: 0 18px 40px -22px rgba(51,41,31,.45);
+        --display: "Fraunces", Georgia, serif;
+        --body: "Work Sans", system-ui, sans-serif;
+        --rad: 14px;
+        --maxw: 1180px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--body);
+        font-weight: 400;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { width: min(100% - 2.5rem, var(--maxw)); margin-inline: auto; }
+      .eyebrow {
+        font-size: .72rem; letter-spacing: .26em; text-transform: uppercase;
+        color: var(--primary); font-weight: 600; margin: 0 0 1rem;
+      }
+      .eyebrow.on-dark { color: var(--accent); }
+      h1, h2, h3, h4 { font-family: var(--display); font-weight: 500; line-height: 1.05; margin: 0; letter-spacing: -.01em; }
+      h1 em, h2 em { font-style: italic; font-weight: 400; color: var(--primary); }
+      .craft h2 em, .bespoke h2 em { color: var(--accent); }
+
+      a { color: inherit; }
+      .skip { position: absolute; left: -999px; top: 0; background: var(--primary); color: var(--primary-fg); padding: .6rem 1rem; z-index: 100; }
+      .skip:focus { left: 1rem; top: 1rem; border-radius: 8px; }
+      :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 48px; padding: .55rem 1.5rem; border-radius: 999px;
+        background: var(--primary); color: var(--primary-fg);
+        font-weight: 500; font-size: .95rem; text-decoration: none;
+        border: 1px solid var(--primary); cursor: pointer;
+        transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+      }
+      .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); background: #75492f; }
+      .btn-sm { min-height: 44px; padding: .4rem 1.2rem; font-size: .88rem; }
+      .btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+      .btn-ghost:hover { background: var(--muted); }
+      .btn-light { background: var(--bg); color: var(--fg); border-color: var(--bg); }
+
+      /* NAV */
+      .nav {
+        position: sticky; top: 0; z-index: 50;
+        background: color-mix(in oklab, var(--bg) 88%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-inner { display: flex; align-items: center; gap: 1.5rem; padding: .85rem 0; }
+      .brand { display: flex; align-items: center; gap: .65rem; text-decoration: none; margin-right: auto; }
+      .brand-mark {
+        font-family: var(--display); font-weight: 600; font-size: .85rem;
+        display: grid; place-items: center; width: 38px; height: 38px;
+        border: 1px solid var(--accent); border-radius: 50%; color: var(--primary);
+      }
+      .brand-name { font-family: var(--display); font-size: 1.15rem; font-weight: 500; }
+      .brand-name.big { font-size: 1.5rem; display: block; margin-bottom: .5rem; }
+      .nav-links { display: flex; gap: 1.6rem; }
+      .nav-links a { text-decoration: none; font-size: .92rem; position: relative; padding: .3rem 0; }
+      .nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--primary); transition: width .3s ease; }
+      .nav-links a:hover::after { width: 100%; }
+      .burger { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 10px; min-height: 44px; min-width: 44px; }
+      .burger span { width: 24px; height: 2px; background: var(--fg); transition: .3s; }
+      .mobile-menu { display: none; flex-direction: column; gap: .25rem; padding: 0 1.25rem; max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+      .mobile-menu.open { max-height: 380px; padding-bottom: 1.25rem; }
+      .mobile-menu a { text-decoration: none; padding: .75rem 0; border-bottom: 1px solid var(--border); }
+      .mobile-menu .btn { margin-top: .75rem; }
+
+      /* HERO */
+      .hero { padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3.5rem); }
+      .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+      .hero h1 { font-size: clamp(2.8rem, 7vw, 5rem); margin: .5rem 0 1.2rem; }
+      .lede { font-size: clamp(1.02rem, 1.6vw, 1.18rem); max-width: 46ch; color: color-mix(in oklab, var(--fg) 82%, transparent); }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: .8rem; margin: 1.8rem 0 1.6rem; }
+      .hero-meta { display: flex; gap: 2rem; font-size: .9rem; color: var(--primary); border-top: 1px solid var(--border); padding-top: 1.2rem; }
+      .hero-meta strong { font-family: var(--display); font-size: 1.3rem; display: block; color: var(--fg); }
+      .hero-media { position: relative; }
+      .hero-img { overflow: hidden; border-radius: var(--rad); box-shadow: var(--shadow); }
+      .hero-img.main img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: saturate(1.02) contrast(1.02); transition: transform 1.2s ease; }
+      .hero-media:hover .hero-img.main img { transform: scale(1.04); }
+      .hero-img.inset {
+        position: absolute; bottom: -28px; left: -28px; width: 42%;
+        border: 5px solid var(--bg); border-radius: var(--rad);
+      }
+      .hero-img.inset img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: sepia(.18); }
+      .hero-tag {
+        position: absolute; top: 1rem; right: 1rem; background: color-mix(in oklab, var(--fg) 80%, transparent);
+        color: var(--bg); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+        padding: .4rem .8rem; border-radius: 999px;
+      }
+
+      /* RIBBON */
+      .ribbon { background: var(--primary); color: var(--primary-fg); overflow: hidden; }
+      .ribbon-track { display: flex; gap: 3rem; padding: .9rem 0; width: max-content; animation: marquee 26s linear infinite; }
+      .ribbon-track span { display: inline-flex; align-items: center; gap: .6rem; font-size: .85rem; letter-spacing: .08em; white-space: nowrap; }
+      .ribbon-track i { color: var(--accent); font-style: normal; }
+      @keyframes marquee { to { transform: translateX(-50%); } }
+      @media (prefers-reduced-motion: reduce) { .ribbon-track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; } }
+
+      /* SECTIONS */
+      .section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
+      .section-muted { background: var(--muted); }
+      .sec-head { max-width: 40ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+      .sec-head h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+      .sec-head .sub, .atelier .sub { color: color-mix(in oklab, var(--fg) 78%, transparent); margin-top: 1rem; max-width: 50ch; }
+
+      /* BENTO */
+      .bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+      .card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--rad); overflow: hidden; transition: transform .35s ease, box-shadow .35s ease; }
+      .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+      .card-wide { grid-column: span 2; display: grid; grid-template-columns: 1.2fr 1fr; }
+      .card-img { position: relative; overflow: hidden; aspect-ratio: 1; }
+      .card-wide .card-img { aspect-ratio: auto; height: 100%; }
+      .card-img img { width: 100%; height: 100%; object-fit: cover; }
+      .card-img .swap { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease; filter: sepia(.25) saturate(1.1); }
+      .card:hover .swap { opacity: 1; }
+      .card-body { padding: 1.3rem; display: flex; flex-direction: column; gap: .35rem; }
+      .card-wide .card-body { justify-content: center; }
+      .card-body h3 { font-size: 1.25rem; }
+      .card-detail { font-size: .85rem; color: color-mix(in oklab, var(--fg) 72%, transparent); }
+      .card-price { font-family: var(--display); font-size: 1.1rem; margin-top: .35rem; }
+      .chip { display: inline-block; font-family: var(--body); font-size: .72rem; color: var(--primary); background: var(--muted); padding: .15rem .55rem; border-radius: 999px; margin-left: .35rem; }
+
+      /* CRAFT */
+      .craft { position: relative; color: var(--bg); padding: clamp(4rem, 9vw, 7rem) 0; overflow: hidden; }
+      .craft-bg { position: absolute; inset: 0; background-image: linear-gradient(180deg, rgba(40,30,20,.82), rgba(40,30,20,.92)), url("https://picsum.photos/seed/av-craftbg/1400/900"); background-size: cover; background-position: center; }
+      .craft-inner { position: relative; max-width: 60ch; }
+      .craft h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin-bottom: 1.4rem; }
+      .craft-lede { color: color-mix(in oklab, var(--bg) 85%, transparent); font-size: 1.05rem; }
+      .craft-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+      .craft-steps span { font-family: var(--display); font-size: 1.4rem; color: var(--accent); }
+      .craft-steps h4 { font-size: 1.05rem; margin: .4rem 0; }
+      .craft-steps p { font-size: .85rem; color: color-mix(in oklab, var(--bg) 75%, transparent); margin: 0; }
+
+      /* MATERIALS */
+      .mat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+      .mat-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--rad); padding: 1.8rem; }
+      .mat-icon { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--muted); color: var(--primary); margin-bottom: 1rem; }
+      .mat-card h3 { font-size: 1.2rem; margin-bottom: .5rem; }
+      .mat-card p { font-size: .9rem; color: color-mix(in oklab, var(--fg) 76%, transparent); margin: 0; }
+
+      /* SLIDER */
+      .slider { overflow: hidden; }
+      .slides { display: flex; transition: transform .6s cubic-bezier(.4,0,.2,1); }
+      .slide { flex: 0 0 100%; text-align: center; margin: 0; padding: 0 clamp(0rem, 6vw, 4rem); }
+      .stars { color: var(--accent); letter-spacing: .25em; margin-bottom: 1.2rem; }
+      .slide blockquote { font-family: var(--display); font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 400; line-height: 1.35; margin: 0 auto; max-width: 28ch; }
+      .slide figcaption { margin-top: 1.4rem; color: var(--primary); font-weight: 500; }
+      .dots { display: flex; gap: .6rem; justify-content: center; margin-top: 2rem; }
+      .dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--accent); background: transparent; cursor: pointer; padding: 0; min-height: 44px; min-width: 44px; position: relative; }
+      .dot::before { content: ""; position: absolute; inset: 0; margin: auto; width: 10px; height: 10px; border-radius: 50%; }
+      .dot.active::before { background: var(--primary); }
+
+      /* ATELIER */
+      .atelier { padding: clamp(3.5rem, 8vw, 6.5rem) 0; background: var(--muted); }
+      .atelier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+      .atelier h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+      .hours { display: grid; grid-template-columns: auto 1fr; gap: .5rem 1.5rem; margin: 1.8rem 0; max-width: 320px; }
+      .hours dt { font-weight: 500; }
+      .hours dd { margin: 0; text-align: right; color: var(--primary); }
+      .nap { font-style: normal; line-height: 1.8; margin-bottom: 1.6rem; }
+      .nap a { color: var(--primary); text-decoration: none; }
+      .nap a:hover { text-decoration: underline; }
+      .atelier-media img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: var(--rad); box-shadow: var(--shadow); filter: sepia(.12); }
+
+      /* BESPOKE */
+      .bespoke { background: var(--fg); color: var(--bg); text-align: center; padding: clamp(4rem, 9vw, 6.5rem) 0; }
+      .bespoke-inner { max-width: 52ch; margin-inline: auto; }
+      .bespoke h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin-bottom: 1.2rem; }
+      .bespoke p { color: color-mix(in oklab, var(--bg) 82%, transparent); margin-bottom: 2rem; }
+
+      /* FOOTER */
+      .footer { background: color-mix(in oklab, var(--fg) 92%, black); color: var(--bg); padding: clamp(3rem, 6vw, 4.5rem) 0 2rem; }
+      .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2rem; padding-bottom: 2.5rem; border-bottom: 1px solid color-mix(in oklab, var(--bg) 18%, transparent); }
+      .footer h4 { font-family: var(--body); font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: .9rem; }
+      .footer p { font-size: .9rem; color: color-mix(in oklab, var(--bg) 80%, transparent); margin: .3rem 0; line-height: 1.7; }
+      .footer a { color: inherit; text-decoration: none; }
+      .footer a:hover { color: var(--accent); }
+      .foot-tag { max-width: 30ch; }
+      .foot-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; padding-top: 1.5rem; font-size: .8rem; color: color-mix(in oklab, var(--bg) 65%, transparent); }
+
+      /* REVEAL */
+      .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        .nav-links, .nav-inner > .btn-sm { display: none; }
+        .burger { display: flex; }
+        .mobile-menu { display: flex; }
+        .hero-grid, .atelier-grid { grid-template-columns: 1fr; }
+        .hero-media { max-width: 460px; }
+        .bento { grid-template-columns: repeat(2, 1fr); }
+        .card-wide { grid-column: span 2; grid-template-columns: 1fr; }
+        .card-wide .card-img { aspect-ratio: 16/10; }
+        .craft-steps, .mat-row { grid-template-columns: 1fr; gap: 1.2rem; }
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 560px) {
+        .bento { grid-template-columns: 1fr; }
+        .card-wide { grid-column: span 1; }
+        .hero-meta { gap: 1.2rem; }
+        .footer-grid { grid-template-columns: 1fr; }
+        .hero-img.inset { width: 38%; left: -14px; bottom: -18px; }
+      }
+    </style>
+  </body>
+</html>

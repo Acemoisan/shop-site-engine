@@ -1,0 +1,492 @@
+---
+const nav = [
+  { label: "Work", href: "#work" },
+  { label: "Services", href: "#services" },
+  { label: "Studio", href: "#studio" },
+  { label: "Process", href: "#process" },
+  { label: "Contact", href: "#contact" },
+];
+
+const marquee = [
+  "Brand Identity", "Strategy", "Motion", "Packaging", "Digital", "Naming",
+  "Art Direction", "Campaign", "Editorial", "Type Design",
+];
+
+const work = [
+  { client: "Meridian Foods", discipline: "Brand Identity / Packaging", year: "2025", seed: "north-meridian", w: 900, h: 1100 },
+  { client: "Loophole AI", discipline: "Brand Strategy / Digital", year: "2025", seed: "north-loophole", w: 900, h: 700 },
+  { client: "Tisdale Outdoors", discipline: "Rebrand Sprint / Motion", year: "2024", seed: "north-tisdale", w: 900, h: 700 },
+  { client: "Aperture Films", discipline: "Identity / Editorial", year: "2024", seed: "north-aperture", w: 900, h: 1100 },
+];
+
+const services = [
+  { name: "Brand Identity System", desc: "Logo, type, color, guidelines.", price: "From $9,500" },
+  { name: "Brand Strategy & Positioning", desc: "Research, messaging, naming.", price: "From $6,000" },
+  { name: "Website Design & Build", desc: "Strategy-led, custom, responsive.", price: "From $14,000" },
+  { name: "Motion & Launch Toolkit", desc: "Social, animation, campaign assets.", price: "From $4,500" },
+  { name: "Packaging & Print", desc: "Physical brand expression.", price: "From $5,500" },
+  { name: "Rebrand Sprint", desc: "Fast 4-week identity refresh.", price: "Flat $12,000" },
+];
+
+const process = [
+  { n: "01", title: "Discovery", body: "We interrogate the business, the market, and the people. No assumptions survive." },
+  { n: "02", title: "Strategy", body: "Positioning, narrative, and the single idea everything else hangs from." },
+  { n: "03", title: "Design", body: "Identity systems built to flex — type, color, motion, and the details nobody else sweats." },
+  { n: "04", title: "Launch", body: "Rollout toolkit, guidelines, and the assets to make it loud on day one." },
+];
+
+const testimonials = [
+  { quote: "Northsignal didn't just redesign our logo — they reframed who we are. Inbound leads doubled in a quarter.", who: "Priya Anand", role: "CEO, Meridian Foods" },
+  { quote: "The most decisive creative partner we've worked with. They had a point of view and the work to back it up.", who: "Marcus Bell", role: "CMO, Tisdale Outdoors" },
+  { quote: "Smart, fast, fearless. Our investors noticed the new brand before we even pitched.", who: "Dana Okafor", role: "Founder, Loophole AI" },
+];
+
+const awards = ["Awwwards SOTD", "D&AD Pencil", "Webby Winner", "FWA", "Type Directors Club"];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Northsignal Studio — Branding & Digital for Companies With Something to Say</title>
+  <meta name="description" content="Northsignal is a branding and digital studio in Calgary. We turn overlooked companies into category leaders through strategy, identity, and motion-forward design." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" />
+</head>
+<body>
+  <a class="skip" href="#work">Skip to work</a>
+
+  <header class="nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Northsignal Studio home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Northsignal<span class="ast">*</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        {nav.map((i) => <a href={i.href}>{i.label}</a>)}
+      </nav>
+      <a class="btn btn-sm" href="#contact">Start a project</a>
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+      {nav.map((i) => <a href={i.href}>{i.label}</a>)}
+      <a class="btn" href="#contact">Start a project</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <p class="eyebrow reveal">Branding & digital studio · Calgary, AB</p>
+      <h1 class="hero-title" id="hero-title">
+        <span class="line"><span class="word">We</span> <span class="word">build</span> <span class="word">brands</span></span>
+        <span class="line"><span class="word">people</span> <span class="word italic">don't</span> <span class="word">forget.</span></span>
+      </h1>
+      <div class="hero-foot reveal">
+        <p>We turn overlooked companies into category leaders. Strategy, design, and the nerve to make it loud.</p>
+        <a class="btn btn-lg" href="#work">View selected work <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <section class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        {[...marquee, ...marquee].map((m) => <span class="marquee-item">{m}<i class="dot"></i></span>)}
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="work wrap" id="work" aria-labelledby="work-title">
+      <div class="sec-head">
+        <h2 id="work-title">Selected work</h2>
+        <p class="sec-meta">No fluff. Just brands people remember. <span>(04)</span></p>
+      </div>
+      <div class="work-grid">
+        {work.map((p, idx) => (
+          <a class="tile reveal" href="#contact" style={`--ar:${p.w}/${p.h}`}>
+            <div class="tile-img">
+              <img src={`https://picsum.photos/seed/${p.seed}/${p.w}/${p.h}`} alt={`${p.client} — ${p.discipline} project`} loading="lazy" width={p.w} height={p.h} />
+            </div>
+            <div class="tile-meta">
+              <span class="tile-idx">{String(idx + 1).padStart(2, "0")}</span>
+              <span class="tile-client">{p.client}</span>
+              <span class="tile-disc">{p.discipline}</span>
+              <span class="tile-year">{p.year}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services wrap" id="services" aria-labelledby="svc-title">
+      <div class="sec-head">
+        <h2 id="svc-title">Capabilities</h2>
+        <p class="sec-meta">Clear scope, honest pricing. <span>(06)</span></p>
+      </div>
+      <ul class="svc-list">
+        {services.map((s) => (
+          <li class="svc-row reveal">
+            <span class="svc-name">{s.name}</span>
+            <span class="svc-desc">{s.desc}</span>
+            <span class="svc-price">{s.price}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- STUDIO / MANIFESTO -->
+    <section class="studio" id="studio" aria-labelledby="studio-title">
+      <div class="wrap studio-grid">
+        <div class="studio-img reveal">
+          <img src="https://picsum.photos/seed/north-studio/1000/1200" alt="Inside the Northsignal studio" loading="lazy" width="1000" height="1200" />
+        </div>
+        <div class="studio-copy">
+          <h2 id="studio-title" class="reveal">A studio with a point of view.</h2>
+          <p class="reveal">We're a small, senior team of strategists and designers who'd rather make one decisive thing than ten safe ones. We don't do trends. We build identity systems engineered to outlast them.</p>
+          <p class="reveal">Every project starts with strategy and ends with a brand people actually feel. If we can't make it sharper, louder, and unmistakably yours — we'll tell you.</p>
+          <div class="stats reveal">
+            <div><strong data-count="120">0</strong><span>Brands shipped</span></div>
+            <div><strong data-count="14">0</strong><span>Awards won</span></div>
+            <div><strong data-count="9">0</strong><span>Years building</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section class="awards wrap" aria-label="Recognition">
+      <p class="awards-label">Recognised by</p>
+      <div class="awards-row">
+        {awards.map((a) => <span class="award">{a}</span>)}
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process wrap" id="process" aria-labelledby="proc-title">
+      <div class="sec-head">
+        <h2 id="proc-title">How we work</h2>
+        <p class="sec-meta">Four phases. Zero guesswork. <span>(04)</span></p>
+      </div>
+      <div class="proc-grid">
+        {process.map((p) => (
+          <div class="proc-step reveal">
+            <span class="proc-n">{p.n}</span>
+            <h3>{p.title}</h3>
+            <p>{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="quotes" aria-labelledby="quotes-title">
+      <div class="wrap">
+        <h2 id="quotes-title" class="vh">What clients say</h2>
+        <div class="quote-slider">
+          {testimonials.map((t, i) => (
+            <figure class={`quote ${i === 0 ? "active" : ""}`} data-slide={i}>
+              <span class="qmark" aria-hidden="true">”</span>
+              <blockquote>{t.quote}</blockquote>
+              <figcaption><strong>{t.who}</strong> — {t.role}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <div class="quote-dots" role="tablist" aria-label="Testimonials">
+          {testimonials.map((t, i) => (
+            <button class={`q-dot ${i === 0 ? "active" : ""}`} data-dot={i} aria-label={`Quote from ${t.who}`}></button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / CTA -->
+    <section class="contact wrap" id="contact" aria-labelledby="contact-title">
+      <p class="eyebrow">Let's talk</p>
+      <h2 class="contact-title" id="contact-title">Got something to say?<br />Let's make it loud.</h2>
+      <a class="contact-mail" href="mailto:hello@northsignal.studio">hello@northsignal.studio</a>
+      <div class="nap">
+        <div>
+          <h3>Studio</h3>
+          <address>318 11 Ave SW, Suite 400<br />Calgary, AB T2R 0C7</address>
+          <a href="https://maps.google.com/?q=318+11+Ave+SW+Calgary" target="_blank" rel="noopener">Get directions →</a>
+        </div>
+        <div>
+          <h3>Talk</h3>
+          <a class="tel" href="tel:+14035550192">(403) 555-0192</a>
+          <a class="tel" href="mailto:hello@northsignal.studio">hello@northsignal.studio</a>
+        </div>
+        <div>
+          <h3>Hours</h3>
+          <p>Mon–Fri 9:00 AM – 6:00 PM MT<br />Weekends by appointment</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="brand"><span class="brand-mark" aria-hidden="true"></span>Northsignal<span class="ast">*</span></span>
+      <p>© 2026 Northsignal Studio. Branding for companies with something to say.</p>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <a class="float-cta" href="#contact" aria-label="Start a project">Start a project</a>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('mobileMenu');
+    burger?.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+    menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }));
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+    }
+
+    // animated counters
+    const counters = document.querySelectorAll('[data-count]');
+    if (!reduce && counters.length) {
+      const cio = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const target = +el.dataset.count;
+          let cur = 0;
+          const step = Math.max(1, Math.round(target / 40));
+          const tick = () => { cur = Math.min(target, cur + step); el.textContent = cur + (target >= 100 ? '+' : ''); if (cur < target) requestAnimationFrame(tick); };
+          tick();
+          cio.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      counters.forEach((c) => cio.observe(c));
+    }
+
+    // testimonial slider
+    const quotes = document.querySelectorAll('.quote');
+    const dots = document.querySelectorAll('.q-dot');
+    let qi = 0;
+    function show(i) {
+      quotes.forEach((q, n) => q.classList.toggle('active', n === i));
+      dots.forEach((d, n) => d.classList.toggle('active', n === i));
+      qi = i;
+    }
+    dots.forEach((d) => d.addEventListener('click', () => show(+d.dataset.dot)));
+    if (quotes.length > 1 && !reduce) setInterval(() => show((qi + 1) % quotes.length), 6000);
+  </script>
+
+  <style is:global>
+    *,*::before,*::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+    body { margin: 0; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+  </style>
+
+  <style>
+    :root {
+      --bg: #0E0E10;
+      --fg: #F2F1EE;
+      --primary: #F2F1EE;
+      --primary-fg: #0E0E10;
+      --accent: #C8A86B;
+      --muted: #1A1A1D;
+      --border: #2A2A2E;
+      --sans: "Inter", system-ui, sans-serif;
+      --display: "Fraunces", Georgia, serif;
+      --pad: clamp(1.25rem, 5vw, 5rem);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .wrap { width: 100%; max-width: 1320px; margin-inline: auto; padding-inline: var(--pad); }
+    .vh { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+    .skip { position:absolute; left:-999px; top:0; background:var(--accent); color:var(--primary-fg); padding:.6rem 1rem; z-index:200; }
+    .skip:focus { left:0; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 100; background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-inner { display: flex; align-items: center; gap: 1.5rem; height: 70px; }
+    .brand { display:inline-flex; align-items:center; gap:.5rem; font-family: var(--display); font-weight: 600; font-size: 1.25rem; text-decoration: none; letter-spacing:-.02em; }
+    .brand-mark { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }
+    .ast { color: var(--accent); }
+    .nav-links { display: none; gap: 2rem; margin-left: auto; }
+    .nav-links a { text-decoration: none; font-size: .92rem; color: color-mix(in srgb, var(--fg) 72%, transparent); transition: color .25s; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav .btn-sm { margin-left: 0; }
+    @media (min-width: 880px) { .nav-links { display: flex; } .nav .btn-sm { margin-left: 1.5rem; } }
+
+    .btn { display: inline-flex; align-items: center; justify-content:center; gap:.5rem; background: var(--primary); color: var(--primary-fg); text-decoration: none; font-weight: 500; padding: .85rem 1.5rem; border-radius: 999px; border: 1px solid var(--primary); transition: transform .3s cubic-bezier(.2,.7,.2,1), background .3s, color .3s; min-height: 44px; }
+    .btn:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+    .btn-sm { padding: .6rem 1.1rem; font-size: .88rem; }
+    .btn-lg { padding: 1rem 1.9rem; font-size: 1.02rem; }
+    .nav .btn-sm { display: none; }
+    @media (min-width: 880px) { .nav .btn-sm { display: inline-flex; } }
+
+    .burger { display: inline-flex; flex-direction:column; gap:5px; justify-content:center; margin-left:auto; width:44px; height:44px; background:none; border:none; cursor:pointer; }
+    .burger span { display:block; width:24px; height:2px; background: var(--fg); margin-inline:auto; transition: transform .3s; }
+    @media (min-width: 880px) { .burger { display: none; } }
+    .mobile-menu { display: none; flex-direction: column; gap: .5rem; padding: 1rem var(--pad) 1.5rem; border-bottom: 1px solid var(--border); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { text-decoration: none; padding: .7rem 0; font-size: 1.1rem; font-family: var(--display); }
+    .mobile-menu .btn { margin-top: .5rem; }
+
+    /* HERO */
+    .hero { padding-top: clamp(3rem, 9vw, 7rem); padding-bottom: clamp(2.5rem, 6vw, 5rem); }
+    .eyebrow { font-size: .82rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.4rem; }
+    .hero-title { font-family: var(--display); font-weight: 400; font-size: clamp(3rem, 11vw, 9.5rem); line-height: .94; letter-spacing: -.03em; margin: 0; }
+    .hero-title .line { display: block; overflow: hidden; }
+    .hero-title .word { display: inline-block; transform: translateY(110%); animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
+    .hero-title .line:nth-child(1) .word:nth-child(1){animation-delay:.05s}
+    .hero-title .line:nth-child(1) .word:nth-child(2){animation-delay:.13s}
+    .hero-title .line:nth-child(1) .word:nth-child(3){animation-delay:.21s}
+    .hero-title .line:nth-child(2) .word:nth-child(1){animation-delay:.29s}
+    .hero-title .line:nth-child(2) .word:nth-child(2){animation-delay:.37s}
+    .hero-title .line:nth-child(2) .word:nth-child(3){animation-delay:.45s}
+    .hero-title .italic { font-style: italic; color: var(--accent); }
+    @keyframes rise { to { transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { .hero-title .word { transform: none; animation: none; } }
+    .hero-foot { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 2rem; margin-top: clamp(2rem, 5vw, 4rem); border-top: 1px solid var(--border); padding-top: 2rem; }
+    .hero-foot p { max-width: 40ch; font-size: 1.1rem; color: color-mix(in srgb, var(--fg) 78%, transparent); margin: 0; }
+
+    /* MARQUEE */
+    .marquee { border-block: 1px solid var(--border); overflow: hidden; padding: 1.1rem 0; background: var(--muted); }
+    .marquee-track { display: inline-flex; white-space: nowrap; animation: scroll 32s linear infinite; }
+    @keyframes scroll { to { transform: translateX(-50%); } }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    .marquee-item { display: inline-flex; align-items: center; font-family: var(--display); font-size: clamp(1.3rem, 3vw, 2rem); font-style: italic; padding-inline: 1.2rem; color: color-mix(in srgb, var(--fg) 85%, transparent); }
+    .marquee-item .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-left: 2.4rem; }
+
+    /* SECTION HEAD */
+    .sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: clamp(2rem,4vw,3.2rem); padding-top: clamp(3.5rem, 8vw, 6.5rem); }
+    .sec-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2.2rem, 6vw, 4.2rem); letter-spacing: -.03em; margin: 0; line-height: 1; }
+    .sec-meta { font-size: .95rem; color: color-mix(in srgb, var(--fg) 60%, transparent); margin: 0; }
+    .sec-meta span { color: var(--accent); }
+
+    /* WORK */
+    .work-grid { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 4vw, 3.5rem); }
+    @media (min-width: 760px) { .work-grid { grid-template-columns: 1fr 1fr; } }
+    .tile { text-decoration: none; display: block; }
+    .tile-img { position: relative; overflow: hidden; border: 1px solid var(--border); aspect-ratio: var(--ar, 4/3); background: var(--muted); }
+    .tile-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05) brightness(.82); transform: scale(1.04); transition: filter .6s, transform .8s cubic-bezier(.2,.7,.2,1); }
+    .tile-img::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--accent) 30%, transparent)); opacity: 0; transition: opacity .6s; mix-blend-mode: overlay; }
+    .tile:hover .tile-img img { filter: grayscale(0) contrast(1) brightness(1); transform: scale(1); }
+    .tile:hover .tile-img::after { opacity: 1; }
+    .tile-meta { display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: .4rem 1rem; padding-top: 1.1rem; border-top: 1px solid var(--border); margin-top: 1rem; }
+    .tile-idx { font-size: .8rem; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .tile-client { font-family: var(--display); font-size: 1.5rem; letter-spacing: -.02em; grid-column: 2; }
+    .tile-year { font-size: .85rem; color: color-mix(in srgb, var(--fg) 55%, transparent); font-variant-numeric: tabular-nums; }
+    .tile-disc { grid-column: 2; font-size: .9rem; color: color-mix(in srgb, var(--fg) 60%, transparent); }
+    .tile:hover .tile-client { color: var(--accent); transition: color .3s; }
+
+    /* SERVICES */
+    .svc-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+    .svc-row { display: grid; grid-template-columns: 1fr; gap: .3rem; padding: 1.6rem 0; border-bottom: 1px solid var(--border); transition: padding-left .4s, background .4s; position: relative; }
+    .svc-name { font-family: var(--display); font-size: clamp(1.4rem, 3.5vw, 2.1rem); letter-spacing: -.02em; }
+    .svc-desc { color: color-mix(in srgb, var(--fg) 62%, transparent); font-size: .98rem; }
+    .svc-price { color: var(--accent); font-weight: 500; font-variant-numeric: tabular-nums; }
+    @media (min-width: 720px) {
+      .svc-row { grid-template-columns: minmax(0,1.4fr) minmax(0,1.6fr) auto; align-items: center; gap: 2rem; }
+      .svc-row:hover { padding-left: 1.4rem; background: linear-gradient(90deg, var(--muted), transparent); }
+    }
+
+    /* STUDIO */
+    .studio { padding-block: clamp(4rem, 9vw, 8rem); }
+    .studio-grid { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+    @media (min-width: 880px) { .studio-grid { grid-template-columns: .85fr 1.15fr; } }
+    .studio-img { position: relative; overflow: hidden; border: 1px solid var(--border); }
+    .studio-img img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: sepia(.2) saturate(.85) brightness(.88); }
+    .studio-copy h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 5vw, 3.6rem); letter-spacing: -.03em; line-height: 1.05; margin: 0 0 1.4rem; }
+    .studio-copy p { font-size: 1.08rem; color: color-mix(in srgb, var(--fg) 80%, transparent); margin: 0 0 1.1rem; max-width: 52ch; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.6rem; border-top: 1px solid var(--border); padding-top: 2rem; }
+    .stats strong { display: block; font-family: var(--display); font-size: clamp(2rem, 5vw, 3.2rem); color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1; }
+    .stats span { font-size: .82rem; color: color-mix(in srgb, var(--fg) 60%, transparent); }
+
+    /* AWARDS */
+    .awards { padding-block: clamp(2.5rem, 5vw, 4rem); border-block: 1px solid var(--border); }
+    .awards-label { text-align: center; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: color-mix(in srgb, var(--fg) 55%, transparent); margin: 0 0 1.6rem; }
+    .awards-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2.5rem; }
+    .award { font-family: var(--display); font-style: italic; font-size: clamp(1.1rem, 2.6vw, 1.7rem); color: color-mix(in srgb, var(--fg) 78%, transparent); }
+    .award:hover { color: var(--accent); }
+
+    /* PROCESS */
+    .proc-grid { display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--border); }
+    @media (min-width: 720px) { .proc-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1080px) { .proc-grid { grid-template-columns: repeat(4, 1fr); } }
+    .proc-step { padding: 2rem 1.5rem 2.4rem 0; border-bottom: 1px solid var(--border); }
+    @media (min-width: 720px) { .proc-step { border-right: 1px solid var(--border); padding-left: 1.5rem; } .proc-step:nth-child(2n){border-right:none;} }
+    @media (min-width: 1080px) { .proc-step:nth-child(2n){border-right:1px solid var(--border);} .proc-step:last-child{border-right:none;} }
+    .proc-n { font-family: var(--display); font-size: 2.4rem; color: var(--accent); display: block; margin-bottom: .8rem; }
+    .proc-step h3 { font-family: var(--display); font-weight: 400; font-size: 1.4rem; margin: 0 0 .6rem; }
+    .proc-step p { font-size: .96rem; color: color-mix(in srgb, var(--fg) 68%, transparent); margin: 0; }
+
+    /* QUOTES */
+    .quotes { padding-block: clamp(4rem, 9vw, 8rem); background: var(--muted); border-block: 1px solid var(--border); margin-top: clamp(3rem,7vw,5rem); }
+    .quote-slider { position: relative; min-height: 13rem; }
+    .quote { position: absolute; inset: 0; margin: 0; opacity: 0; transform: translateY(14px); transition: opacity .6s, transform .6s; pointer-events: none; }
+    .quote.active { opacity: 1; transform: none; position: relative; pointer-events: auto; }
+    .qmark { font-family: var(--display); font-size: 5rem; color: var(--accent); line-height: .4; display: block; }
+    .quote blockquote { font-family: var(--display); font-weight: 400; font-size: clamp(1.5rem, 4vw, 2.8rem); line-height: 1.2; letter-spacing: -.02em; margin: 1rem 0 1.6rem; max-width: 22ch; }
+    @media (min-width:760px){ .quote blockquote { max-width: 28ch; } }
+    .quote figcaption { font-size: 1rem; color: color-mix(in srgb, var(--fg) 70%, transparent); }
+    .quote figcaption strong { color: var(--fg); }
+    .quote-dots { display: flex; gap: .6rem; margin-top: 2rem; }
+    .q-dot { width: 38px; height: 4px; border: none; background: var(--border); cursor: pointer; padding: 0; border-radius: 2px; transition: background .3s; }
+    .q-dot.active { background: var(--accent); }
+
+    /* CONTACT */
+    .contact { padding-block: clamp(4rem, 10vw, 9rem); text-align: center; }
+    .contact-title { font-family: var(--display); font-weight: 400; font-size: clamp(2.4rem, 8vw, 6.5rem); line-height: .98; letter-spacing: -.03em; margin: .5rem 0 2rem; }
+    .contact-mail { display: inline-block; font-family: var(--display); font-style: italic; font-size: clamp(1.4rem, 4vw, 2.6rem); color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .3s; }
+    .contact-mail:hover { border-color: var(--accent); }
+    .nap { display: grid; grid-template-columns: 1fr; gap: 2rem; text-align: left; margin-top: clamp(3rem, 6vw, 5rem); border-top: 1px solid var(--border); padding-top: 3rem; }
+    @media (min-width: 720px) { .nap { grid-template-columns: repeat(3, 1fr); } }
+    .nap h3 { font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin: 0 0 1rem; }
+    .nap address, .nap p { font-style: normal; color: color-mix(in srgb, var(--fg) 80%, transparent); margin: 0 0 .8rem; line-height: 1.7; }
+    .nap a { display: block; text-decoration: none; color: var(--fg); margin-bottom: .4rem; }
+    .nap a:hover { color: var(--accent); }
+    .nap .tel { font-family: var(--display); font-size: 1.3rem; }
+
+    /* FOOTER */
+    .footer { border-top: 1px solid var(--border); padding-block: 2.5rem; }
+    .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
+    .footer .brand { font-size: 1.1rem; }
+    .footer p { font-size: .85rem; color: color-mix(in srgb, var(--fg) 55%, transparent); margin: 0; }
+    .footer a { text-decoration: none; font-size: .85rem; color: color-mix(in srgb, var(--fg) 70%, transparent); }
+    .footer a:hover { color: var(--accent); }
+
+    /* FLOATING CTA */
+    .float-cta { position: fixed; bottom: 1.2rem; right: 1.2rem; z-index: 90; background: var(--accent); color: var(--primary-fg); text-decoration: none; font-weight: 600; font-size: .9rem; padding: .9rem 1.4rem; border-radius: 999px; box-shadow: 0 8px 30px rgba(0,0,0,.45); transition: transform .3s; min-height: 44px; display: inline-flex; align-items: center; }
+    .float-cta:hover { transform: translateY(-3px); }
+    @media (min-width: 880px) { .float-cta { display: none; } }
+  </style>
+</body>
+</html>

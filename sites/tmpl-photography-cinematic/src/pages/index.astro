@@ -1,0 +1,516 @@
+---
+const nav = [
+  { label: "Work", href: "#work" },
+  { label: "Series", href: "#series" },
+  { label: "Studio", href: "#about" },
+  { label: "Investment", href: "#investment" },
+  { label: "Inquire", href: "#contact" },
+];
+
+const work = [
+  { n: "01", title: "Nocturne", cat: "Editorial", seed: "noir-edit-1", w: 900, h: 1200 },
+  { n: "02", title: "The Long Vows", cat: "Weddings", seed: "noir-wed-2", w: 1200, h: 800 },
+  { n: "03", title: "Field & Fern", cat: "Brand", seed: "noir-brand-3", w: 900, h: 1100 },
+  { n: "04", title: "Dusk Index", cat: "Editorial", seed: "noir-edit-4", w: 1200, h: 900 },
+  { n: "05", title: "Bow Valley Elopement", cat: "Weddings", seed: "noir-wed-5", w: 900, h: 1300 },
+  { n: "06", title: "Interiors, After Dark", cat: "Brand", seed: "noir-brand-6", w: 1200, h: 800 },
+];
+
+const filters = ["All", "Editorial", "Weddings", "Brand"];
+
+const story = [
+  { seed: "story-a", t: "Hour Zero", c: "Shot on the last train of the night. No lights but the platform's." },
+  { seed: "story-b", t: "Low Key", c: "Two stops of underexposure, then everything pulled back from the shadow." },
+  { seed: "story-c", t: "The Quiet Part", c: "A face half-lit is a story you finish yourself." },
+];
+
+const investment = [
+  { name: "Weddings & Elopements", price: "$4,200", note: "Full-day documentary coverage, two photographers, online gallery.", featured: true },
+  { name: "Brand & Editorial", price: "$1,800", unit: "/day", note: "Half-day commercial shoot, usage license included." },
+  { name: "Couples & Engagement", price: "$650", note: "90 minutes, one location, 60+ edited images." },
+  { name: "Portraits & Headshots", price: "$375", note: "Studio or location, 45 minutes, 10 retouched finals." },
+];
+
+const testimonials = [
+  { q: "Elise is invisible in the best way — we forgot the camera was there and got back photos that actually feel like us.", a: "Maya & Jordan T." },
+  { q: "The brand shoot elevated our whole launch. Every frame looked intentional and on-message.", a: "Priya Sandhu, Field & Fern" },
+  { q: "Calm, fast, and wildly talented. The gallery made me cry the day it landed.", a: "Hannah Beaulieu" },
+];
+
+const press = ["VOGUE", "AVENUE", "WESTERN LIVING", "MONOCLE", "KINFOLK", "AYM AWARDS"];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NORTHLIGHT — Photography by Elise Roy | Calgary</title>
+    <meta name="description" content="NORTHLIGHT — stories told in shadow and light. Editorial, wedding & brand photography out of Calgary, available across Alberta. Inquiries open for the 2026 season." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#work">Skip to work</a>
+
+    <header class="nav" id="nav">
+      <a class="brand" href="#top" aria-label="Northlight home">NORTHLIGHT</a>
+      <nav class="nav-links" aria-label="Primary">
+        {nav.map((i) => <a href={i.href}>{i.label}</a>)}
+      </nav>
+      <a class="nav-cta" href="#contact">Inquire</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </header>
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      {nav.map((i) => <a href={i.href}>{i.label}</a>)}
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-img" role="img" aria-label="Moody dusk portrait in deep shadow"></div>
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="kicker reveal">Photography by Elise Roy — Calgary, AB</p>
+        <h1 class="reveal">Stories told in<br /><em>shadow</em> and light.</h1>
+        <p class="hero-sub reveal">I make quiet, honest pictures of people and places — unhurried, film-leaning, and built to outlast the trend cycle.</p>
+        <div class="hero-actions reveal">
+          <a class="btn btn-solid" href="#work">View the work</a>
+          <a class="btn btn-ghost" href="#contact">Inquire for 2026</a>
+        </div>
+      </div>
+      <div class="hero-foot" aria-hidden="true"><span>Scroll</span><span class="line"></span></div>
+    </section>
+
+    <!-- PRESS MARQUEE -->
+    <section class="marquee-wrap" aria-label="Featured in">
+      <div class="marquee">
+        <div class="marquee-track">
+          {[...press, ...press].map((p) => <span>{p}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK GRID -->
+    <section class="work" id="work">
+      <div class="sec-head reveal">
+        <p class="kicker">Selected Work — 2024 / 26</p>
+        <h2>The frames I'd choose first.</h2>
+        <div class="filters" role="tablist" aria-label="Filter work">
+          {filters.map((f, idx) => (
+            <button class={`filter ${idx === 0 ? "active" : ""}`} data-filter={f}>{f}</button>
+          ))}
+        </div>
+      </div>
+      <div class="grid">
+        {work.map((p) => (
+          <a class="card" href="#contact" data-cat={p.cat} style={`--ratio:${p.w}/${p.h}`}>
+            <img src={`https://picsum.photos/seed/${p.seed}/${p.w}/${p.h}?grayscale`} alt={`${p.title} — ${p.cat} series`} loading="lazy" width={p.w} height={p.h} />
+            <span class="card-num">{p.n}</span>
+            <div class="card-meta">
+              <span class="card-cat">{p.cat}</span>
+              <h3>{p.title}</h3>
+              <span class="card-view">View series →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- STORY / SELECTED SERIES -->
+    <section class="story" id="series">
+      <div class="story-head reveal">
+        <p class="kicker">01 — Selected Series</p>
+        <h2>Nocturne</h2>
+        <p>A body of work made entirely after sundown across a single winter in the city. Deep shadow, a little grain, and only the light that was already there.</p>
+      </div>
+      <div class="story-rail">
+        {story.map((s, i) => (
+          <figure class="story-frame reveal" style={`--d:${i * 90}ms`}>
+            <img src={`https://picsum.photos/seed/${s.seed}/800/1000?grayscale`} alt={s.c} loading="lazy" width="800" height="1000" />
+            <figcaption>
+              <span class="fc-idx">0{i + 1}</span>
+              <strong>{s.t}</strong>
+              <span class="fc-cap">{s.c}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="about-portrait reveal">
+        <img src="https://picsum.photos/seed/elise-portrait/900/1100?grayscale" alt="Elise Roy, photographer, self-portrait" loading="lazy" width="900" height="1100" />
+        <span class="vert-label">Elise Roy — Founder</span>
+      </div>
+      <div class="about-body reveal">
+        <p class="kicker">The Studio</p>
+        <h2>I work in the dark on purpose.</h2>
+        <p>NORTHLIGHT is a one-photographer studio in Inglewood. I shoot weddings, editorial, and brand work the same way: slowly, with available light, looking for the moment just before or just after the obvious one.</p>
+        <p>My frames lean film, high-contrast, and unhurried — pictures that remember how it felt rather than how it looked. Based in Calgary, available across Alberta and beyond.</p>
+        <ul class="about-stats">
+          <li><strong>12</strong><span>years behind the lens</span></li>
+          <li><strong>180+</strong><span>stories told</span></li>
+          <li><strong>9</strong><span>features in print</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- INVESTMENT -->
+    <section class="investment" id="investment">
+      <div class="sec-head reveal">
+        <p class="kicker">Investment</p>
+        <h2>Where it starts.</h2>
+        <p class="sec-lede">Every project is quoted to its scope. These are honest starting points so you know the register before we talk.</p>
+      </div>
+      <div class="tiers">
+        {investment.map((t) => (
+          <div class={`tier ${t.featured ? "tier-feat" : ""}`}>
+            {t.featured && <span class="tier-flag">Most requested</span>}
+            <h3>{t.name}</h3>
+            <p class="tier-price">{t.price}<small>{t.unit ? t.unit : ""}</small></p>
+            <p class="tier-note">{t.note}</p>
+            <a class="tier-link" href="#contact">Inquire →</a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="quotes" aria-label="Testimonials">
+      <div class="quotes-inner">
+        <p class="kicker reveal">Kind words</p>
+        {testimonials.map((t, i) => (
+          <blockquote class={`quote reveal ${i === 0 ? "q-lead" : ""}`} style={`--d:${i * 80}ms`}>
+            <p>“{t.q}”</p>
+            <cite>— {t.a}</cite>
+          </blockquote>
+        ))}
+      </div>
+    </section>
+
+    <!-- CONTACT / CTA -->
+    <section class="contact" id="contact">
+      <div class="contact-img" aria-hidden="true"></div>
+      <div class="contact-inner">
+        <p class="kicker reveal">Inquiries open — 2026 season</p>
+        <h2 class="reveal">Let's make something<br />that lasts.</h2>
+        <p class="contact-lede reveal">Limited weekend dates remain. Tell me the date, the place, and the feeling you're after.</p>
+        <div class="contact-grid reveal">
+          <a class="ci" href="mailto:hello@northlightstudio.ca">
+            <span class="ci-k">Email</span><span class="ci-v">hello@northlightstudio.ca</span>
+          </a>
+          <a class="ci" href="tel:+14035550192">
+            <span class="ci-k">Call</span><span class="ci-v">(403) 555-0192</span>
+          </a>
+          <div class="ci">
+            <span class="ci-k">Studio</span><span class="ci-v">1124 9 Avenue SE, Inglewood, Calgary AB</span>
+          </div>
+          <div class="ci">
+            <span class="ci-k">Hours</span><span class="ci-v">Tue–Sat, 10–6 by appointment</span>
+          </div>
+        </div>
+        <a class="btn btn-solid btn-big reveal" href="mailto:hello@northlightstudio.ca">Begin an inquiry</a>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <div class="foot-top">
+        <span class="brand">NORTHLIGHT</span>
+        <a href="https://instagram.com" class="ig">@northlight.studio</a>
+      </div>
+      <div class="foot-grid">
+        <p>Northlight Studio<br />1124 9 Avenue SE, Inglewood<br />Calgary, AB T2G 0S8</p>
+        <p>Tue–Sat, 10:00am–6:00pm<br />Sun–Mon closed (shoots & editing)<br /><a href="tel:+14035550192">(403) 555-0192</a></p>
+        <p class="foot-cta"><a href="#contact">Inquire for 2026 →</a></p>
+      </div>
+      <p class="foot-fine">© 2026 Northlight Studio — photography by Elise Roy. All frames belong to their makers.</p>
+    </footer>
+
+    <style is:global>
+      :root {
+        --bg: #0c0c0e;
+        --fg: #ededed;
+        --primary: #ededed;
+        --primary-fg: #0c0c0e;
+        --accent: #c2a26b;
+        --muted: #18181b;
+        --border: #2a2a2e;
+        --display: "Cormorant Garamond", Georgia, serif;
+        --body: "Jost", system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--body);
+        font-weight: 300;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; text-decoration: none; }
+      ::selection { background: var(--accent); color: var(--primary-fg); }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      }
+    </style>
+
+    <style>
+      .skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: var(--primary-fg); padding: .6rem 1rem; z-index: 200; }
+      .skip:focus { left: 1rem; top: 1rem; }
+      :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+      .kicker {
+        font-size: .72rem; letter-spacing: .32em; text-transform: uppercase;
+        color: var(--accent); font-weight: 400;
+      }
+      h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.04; letter-spacing: -.01em; }
+      h1 em, h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+
+      /* NAV */
+      .nav {
+        position: fixed; inset: 0 0 auto 0; z-index: 100;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 1.4rem clamp(1.2rem, 4vw, 3rem);
+        transition: background .4s ease, padding .4s ease, border-color .4s;
+        border-bottom: 1px solid transparent;
+      }
+      .nav.scrolled {
+        background: rgba(12,12,14,.82); backdrop-filter: blur(14px);
+        padding-top: 1rem; padding-bottom: 1rem; border-color: var(--border);
+      }
+      .brand { font-family: var(--display); font-size: 1.3rem; letter-spacing: .42em; font-weight: 600; padding-left: .42em; }
+      .nav-links { display: flex; gap: 2rem; }
+      .nav-links a { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; opacity: .82; transition: opacity .3s, color .3s; }
+      .nav-links a:hover { opacity: 1; color: var(--accent); }
+      .nav-cta {
+        font-size: .74rem; letter-spacing: .16em; text-transform: uppercase;
+        border: 1px solid var(--border); padding: .7rem 1.3rem; border-radius: 100px;
+        transition: background .3s, color .3s, border-color .3s;
+      }
+      .nav-cta:hover { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+      .burger { display: none; background: none; border: 0; flex-direction: column; gap: 5px; cursor: pointer; padding: 12px; }
+      .burger span { width: 24px; height: 1.5px; background: var(--fg); transition: transform .3s, opacity .3s; }
+      .burger[aria-expanded="true"] span:first-child { transform: translateY(6.5px) rotate(45deg); }
+      .burger[aria-expanded="true"] span:last-child { transform: translateY(-6.5px) rotate(-45deg); }
+      .mobile-menu {
+        position: fixed; inset: 0; z-index: 90; background: rgba(12,12,14,.97);
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.6rem;
+      }
+      .mobile-menu a { font-family: var(--display); font-size: 2rem; }
+
+      /* HERO */
+      .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; }
+      .hero-img {
+        position: absolute; inset: 0;
+        background-image: url("https://picsum.photos/seed/northlight-hero/1600/2000?grayscale");
+        background-size: cover; background-position: center 30%;
+        filter: contrast(1.12) brightness(.62) saturate(.9);
+        transform: scale(1.05);
+        animation: heroZoom 18s ease-out forwards;
+      }
+      @keyframes heroZoom { to { transform: scale(1); } }
+      .hero::after {
+        content: ""; position: absolute; inset: 0;
+        background:
+          linear-gradient(180deg, rgba(12,12,14,.55) 0%, transparent 30%, transparent 45%, rgba(12,12,14,.85) 100%),
+          radial-gradient(120% 80% at 70% 20%, transparent 40%, rgba(12,12,14,.5) 100%);
+      }
+      .hero-grain {
+        position: absolute; inset: 0; z-index: 1; opacity: .06; pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+      .hero-inner { position: relative; z-index: 2; padding: 0 clamp(1.2rem, 5vw, 4rem) clamp(4rem, 10vh, 7rem); max-width: 880px; }
+      .hero h1 { font-size: clamp(3rem, 11vw, 8rem); margin: 1rem 0 1.6rem; }
+      .hero-sub { font-size: clamp(1rem, 1.5vw, 1.18rem); max-width: 46ch; opacity: .82; font-weight: 300; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.2rem; }
+      .hero-foot { position: absolute; right: clamp(1.2rem, 5vw, 4rem); bottom: 2.5rem; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .8rem; font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; opacity: .6; }
+      .hero-foot .line { width: 1px; height: 56px; background: linear-gradient(var(--accent), transparent); animation: drop 2.2s ease-in-out infinite; transform-origin: top; }
+      @keyframes drop { 0%,100% { transform: scaleY(.4); opacity: .4; } 50% { transform: scaleY(1); opacity: 1; } }
+
+      .btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 1.6rem; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; border-radius: 100px; transition: transform .3s, background .3s, color .3s, border-color .3s; }
+      .btn:hover { transform: translateY(-2px); }
+      .btn-solid { background: var(--primary); color: var(--primary-fg); }
+      .btn-solid:hover { background: var(--accent); }
+      .btn-ghost { border: 1px solid var(--border); }
+      .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+      .btn-big { min-height: 56px; padding: 0 2.4rem; margin-top: 2.6rem; }
+
+      /* MARQUEE */
+      .marquee-wrap { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--muted); padding: 1.5rem 0; }
+      .marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+      .marquee-track { display: flex; gap: 4rem; width: max-content; animation: scroll 30s linear infinite; }
+      .marquee-track span { font-family: var(--display); font-size: 1.4rem; letter-spacing: .3em; opacity: .55; white-space: nowrap; }
+      @keyframes scroll { to { transform: translateX(-50%); } }
+
+      /* SECTION HEADS */
+      .sec-head, .story-head { padding: clamp(4rem, 9vw, 8rem) clamp(1.2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem); max-width: 760px; }
+      .sec-head h2, .story-head h2 { font-size: clamp(2.4rem, 6vw, 4.6rem); margin: 1rem 0 1.4rem; }
+      .sec-lede, .story-head p { opacity: .78; max-width: 52ch; font-size: 1.05rem; }
+
+      /* WORK GRID */
+      .filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.8rem; }
+      .filter { background: none; border: 1px solid var(--border); color: var(--fg); font-family: var(--body); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: .6rem 1.2rem; border-radius: 100px; cursor: pointer; min-height: 40px; transition: background .3s, color .3s, border-color .3s; }
+      .filter:hover { border-color: var(--accent); color: var(--accent); }
+      .filter.active { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+      .grid {
+        display: grid; gap: clamp(.5rem, 1.2vw, 1rem);
+        grid-template-columns: repeat(12, 1fr);
+        padding: 0 clamp(1.2rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
+      }
+      .card {
+        position: relative; overflow: hidden; grid-column: span 6;
+        aspect-ratio: var(--ratio); background: var(--muted);
+        transition: opacity .5s, transform .5s;
+      }
+      .card:nth-child(3n+1) { grid-column: span 5; }
+      .card:nth-child(3n+2) { grid-column: span 7; }
+      .card:nth-child(3n) { grid-column: span 12; }
+      .card.hide { display: none; }
+      .card img {
+        width: 100%; height: 100%; object-fit: cover;
+        filter: grayscale(1) contrast(1.1) brightness(.72);
+        transition: transform .9s cubic-bezier(.2,.7,.2,1), filter .7s;
+      }
+      .card:hover img { transform: scale(1.06); filter: grayscale(.1) contrast(1.05) brightness(.85); }
+      .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, rgba(12,12,14,.9)); }
+      .card-num { position: absolute; top: 1rem; left: 1.1rem; z-index: 2; font-family: var(--display); font-size: 1rem; letter-spacing: .2em; color: var(--accent); }
+      .card-meta { position: absolute; left: 1.2rem; bottom: 1.1rem; z-index: 2; }
+      .card-cat { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
+      .card-meta h3 { font-size: clamp(1.4rem, 3vw, 2.2rem); margin-top: .2rem; }
+      .card-view { display: inline-block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; opacity: 0; transform: translateY(8px); transition: opacity .4s, transform .4s; margin-top: .4rem; }
+      .card:hover .card-view { opacity: .85; transform: none; }
+
+      /* STORY RAIL */
+      .story { background: var(--muted); border-top: 1px solid var(--border); }
+      .story-rail {
+        display: flex; gap: clamp(1rem, 2vw, 1.6rem); overflow-x: auto; scroll-snap-type: x mandatory;
+        padding: 0 clamp(1.2rem, 5vw, 4rem) clamp(4rem, 8vw, 6rem); scrollbar-width: thin;
+      }
+      .story-rail::-webkit-scrollbar { height: 4px; }
+      .story-rail::-webkit-scrollbar-thumb { background: var(--accent); }
+      .story-frame { flex: 0 0 min(78vw, 380px); scroll-snap-align: start; }
+      .story-frame img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: grayscale(1) contrast(1.12) brightness(.75); }
+      .story-frame figcaption { padding-top: 1rem; display: grid; gap: .35rem; }
+      .fc-idx { font-family: var(--display); color: var(--accent); font-size: 1.1rem; }
+      .story-frame strong { font-family: var(--display); font-size: 1.5rem; font-weight: 500; }
+      .fc-cap { opacity: .68; font-size: .92rem; }
+
+      /* ABOUT */
+      .about { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; padding: clamp(4rem, 9vw, 8rem) clamp(1.2rem, 5vw, 4rem); }
+      .about-portrait { position: relative; }
+      .about-portrait img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: grayscale(1) contrast(1.1) brightness(.8); }
+      .vert-label { position: absolute; top: 0; right: -1.2rem; writing-mode: vertical-rl; font-size: .68rem; letter-spacing: .28em; text-transform: uppercase; color: var(--accent); }
+      .about-body h2 { font-size: clamp(2.2rem, 5vw, 4rem); margin: 1rem 0 1.4rem; }
+      .about-body p { opacity: .8; margin-bottom: 1rem; max-width: 46ch; }
+      .about-stats { list-style: none; display: flex; gap: 2.4rem; margin-top: 2rem; flex-wrap: wrap; border-top: 1px solid var(--border); padding-top: 1.8rem; }
+      .about-stats strong { display: block; font-family: var(--display); font-size: 2.6rem; color: var(--accent); }
+      .about-stats span { font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; opacity: .7; }
+
+      /* INVESTMENT */
+      .tiers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; padding: 0 clamp(1.2rem, 5vw, 4rem) clamp(4rem, 8vw, 6rem); }
+      .tier { border: 1px solid var(--border); padding: 2rem 1.6rem; display: flex; flex-direction: column; transition: border-color .4s, transform .4s, background .4s; position: relative; }
+      .tier:hover { border-color: var(--accent); transform: translateY(-4px); }
+      .tier-feat { background: var(--muted); border-color: var(--accent); }
+      .tier-flag { position: absolute; top: -.7rem; left: 1.6rem; background: var(--accent); color: var(--primary-fg); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; padding: .3rem .7rem; }
+      .tier h3 { font-size: 1.35rem; font-weight: 500; margin-bottom: .8rem; }
+      .tier-price { font-family: var(--display); font-size: 2.6rem; color: var(--accent); line-height: 1; }
+      .tier-price small { font-family: var(--body); font-size: .9rem; opacity: .7; }
+      .tier-note { opacity: .72; font-size: .92rem; margin: 1rem 0 1.6rem; flex: 1; }
+      .tier-link { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+
+      /* QUOTES */
+      .quotes { border-top: 1px solid var(--border); background: var(--muted); }
+      .quotes-inner { padding: clamp(4rem, 9vw, 8rem) clamp(1.2rem, 5vw, 4rem); max-width: 1000px; margin: 0 auto; }
+      .quote { margin-top: 2.4rem; padding-top: 2.4rem; border-top: 1px solid var(--border); }
+      .quote:first-of-type { border-top: 0; }
+      .quote p { font-family: var(--display); font-size: clamp(1.5rem, 3.5vw, 2.6rem); font-weight: 400; line-height: 1.25; }
+      .q-lead p { color: var(--fg); }
+      .quote cite { display: block; margin-top: 1rem; font-style: normal; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+
+      /* CONTACT */
+      .contact { position: relative; overflow: hidden; }
+      .contact-img { position: absolute; inset: 0; background-image: url("https://picsum.photos/seed/northlight-contact/1600/1100?grayscale"); background-size: cover; background-position: center; filter: contrast(1.1) brightness(.4); }
+      .contact::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,12,14,.7), rgba(12,12,14,.92)); }
+      .contact-inner { position: relative; z-index: 2; padding: clamp(5rem, 11vw, 9rem) clamp(1.2rem, 5vw, 4rem); max-width: 880px; }
+      .contact h2 { font-size: clamp(2.6rem, 8vw, 6rem); margin: 1rem 0 1.4rem; }
+      .contact-lede { opacity: .82; max-width: 44ch; font-size: 1.1rem; }
+      .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 2.6rem; }
+      .ci { background: var(--bg); padding: 1.4rem 1.6rem; display: flex; flex-direction: column; gap: .4rem; transition: background .3s; min-height: 44px; }
+      a.ci:hover { background: var(--muted); }
+      .ci-k { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
+      .ci-v { font-size: 1rem; }
+
+      /* FOOTER */
+      .foot { border-top: 1px solid var(--border); padding: clamp(3rem, 6vw, 5rem) clamp(1.2rem, 5vw, 4rem) 2.5rem; }
+      .foot-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding-bottom: 2.4rem; border-bottom: 1px solid var(--border); }
+      .foot-top .brand { font-size: 1.5rem; }
+      .ig { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+      .foot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; padding: 2.4rem 0; font-size: .92rem; opacity: .8; }
+      .foot-grid a { color: var(--accent); }
+      .foot-cta a { font-family: var(--display); font-size: 1.4rem; color: var(--fg); }
+      .foot-fine { font-size: .76rem; opacity: .5; letter-spacing: .04em; }
+
+      /* REVEAL */
+      .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform .9s ease; transition-delay: var(--d, 0ms); }
+      .reveal.in { opacity: 1; transform: none; }
+
+      @media (max-width: 900px) {
+        .nav-links, .nav-cta { display: none; }
+        .burger { display: flex; }
+        .about { grid-template-columns: 1fr; }
+        .about-portrait { max-width: 420px; }
+        .vert-label { right: -1rem; }
+        .tiers { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 600px) {
+        .card, .card:nth-child(3n+1), .card:nth-child(3n+2), .card:nth-child(3n) { grid-column: span 12; }
+        .tiers { grid-template-columns: 1fr; }
+        .contact-grid { grid-template-columns: 1fr; }
+        .foot-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+
+    <script>
+      const nav = document.getElementById("nav");
+      const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 40);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      const burger = document.getElementById("burger");
+      const menu = document.getElementById("mobileMenu");
+      burger.addEventListener("click", () => {
+        const open = burger.getAttribute("aria-expanded") === "true";
+        burger.setAttribute("aria-expanded", String(!open));
+        menu.hidden = open;
+      });
+      menu.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => { menu.hidden = true; burger.setAttribute("aria-expanded", "false"); })
+      );
+
+      const filters = document.querySelectorAll(".filter");
+      const cards = document.querySelectorAll(".card");
+      filters.forEach((f) =>
+        f.addEventListener("click", () => {
+          filters.forEach((x) => x.classList.remove("active"));
+          f.classList.add("active");
+          const val = f.dataset.filter;
+          cards.forEach((c) => {
+            const show = val === "All" || c.dataset.cat === val;
+            c.classList.toggle("hide", !show);
+          });
+        })
+      );
+
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

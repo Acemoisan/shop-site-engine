@@ -1,0 +1,705 @@
+---
+// Northlight — gallery variant. Self-contained Astro page, no imports.
+const nav = [
+  { label: "Work", href: "#work" },
+  { label: "Series", href: "#series" },
+  { label: "About", href: "#about" },
+  { label: "Investment", href: "#investment" },
+  { label: "Contact", href: "#contact" },
+];
+
+const filters = ["All", "Editorial", "Weddings", "Travel"];
+
+const grid = [
+  { seed: "nl-portrait-01", w: 700, h: 980, cat: "Editorial", title: "Field & Fern", year: "2025", tall: true },
+  { seed: "nl-couple-02", w: 700, h: 520, cat: "Weddings", title: "Maya & Jordan", year: "2025", tall: false },
+  { seed: "nl-travel-03", w: 700, h: 560, cat: "Travel", title: "Highwood Pass", year: "2024", tall: false },
+  { seed: "nl-editorial-04", w: 700, h: 940, cat: "Editorial", title: "Soft Issue", year: "2025", tall: true },
+  { seed: "nl-wedding-05", w: 700, h: 980, cat: "Weddings", title: "Inglewood Vows", year: "2024", tall: true },
+  { seed: "nl-travel-06", w: 700, h: 520, cat: "Travel", title: "Dawn, Banff", year: "2024", tall: false },
+  { seed: "nl-portrait-07", w: 700, h: 560, cat: "Editorial", title: "Studio No. 9", year: "2025", tall: false },
+  { seed: "nl-wedding-08", w: 700, h: 940, cat: "Weddings", title: "Last Light", year: "2025", tall: true },
+];
+
+const series = [
+  { n: "01", name: "Quiet Mornings", count: "24 frames", cat: "Editorial" },
+  { n: "02", name: "Two of Us", count: "31 frames", cat: "Weddings" },
+  { n: "03", name: "Northbound", count: "18 frames", cat: "Travel" },
+  { n: "04", name: "Field & Fern", count: "12 frames", cat: "Brand" },
+];
+
+const investment = [
+  { name: "Weddings & Elopements", price: "4,200", unit: "from", desc: "Full-day documentary coverage, two photographers, online gallery." },
+  { name: "Brand & Editorial", price: "1,800", unit: "from / day", desc: "Half-day commercial shoot, usage license included." },
+  { name: "Couples & Engagement", price: "650", unit: "from", desc: "90 minutes, one location, 60+ edited images." },
+  { name: "Portraits & Headshots", price: "375", unit: "from", desc: "Studio or location, 45 minutes, 10 retouched finals." },
+];
+
+const press = ["VOGUE PORTUGAL", "AVENUE", "FIELD & FERN", "WESTERN LIVING", "THE COORDINATE", "PRAIRIE MAG"];
+
+const testimonials = [
+  { quote: "Elise is invisible in the best way — we forgot the camera was there and got back photos that actually feel like us.", who: "Maya & Jordan T." },
+  { quote: "The brand shoot elevated our whole launch. Every frame looked intentional and on-message.", who: "Priya Sandhu, Field & Fern" },
+  { quote: "Calm, fast, and wildly talented. The gallery made me cry the day it landed.", who: "Hannah Beaulieu" },
+];
+
+const stats = [
+  { n: "140+", l: "weddings shot" },
+  { n: "9 yrs", l: "behind the lens" },
+  { n: "60k", l: "frames a year" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Northlight — Photography by Elise Roy | Calgary</title>
+    <meta
+      name="description"
+      content="Northlight — editorial, wedding & brand photography out of Calgary by Elise Roy. Quiet, honest pictures of people and places, available across Alberta."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#work">Skip to work</a>
+
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="Northlight home">
+          Northlight<span class="dot">.</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="inquire" href="#contact">Inquire</a>
+        <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a href="#contact" class="m-inquire">Inquire</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-h">
+        <div class="hero-meta">
+          <span class="kicker">Calgary, AB &middot; Est. 2017</span>
+          <span class="kicker">Available 2026 season</span>
+        </div>
+        <h1 id="hero-h" class="hero-title">Light,<br /><em>held</em> still.</h1>
+        <div class="hero-row">
+          <p class="hero-lede">
+            I make quiet, honest pictures of people and places — unhurried, film-leaning,
+            and built to outlast the trend cycle.
+          </p>
+          <a class="hero-cta" href="#work">
+            View the work
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+          </a>
+        </div>
+        <figure class="hero-img reveal">
+          <img
+            src="https://picsum.photos/seed/nl-hero-main/1600/900?grayscale"
+            width="1600" height="900" loading="eager"
+            alt="A figure backlit by soft window light in a quiet studio."
+          />
+        </figure>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          {Array(2).fill(0).map(() => (
+            <span>Editorial &mdash; Weddings &mdash; Brand &mdash; Travel &mdash; Portraits &mdash; Fine Art &mdash; </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- WORK / MASONRY -->
+      <section class="work" id="work" aria-labelledby="work-h">
+        <div class="sec-head">
+          <h2 id="work-h" class="sec-title">Selected Work</h2>
+          <div class="filters" role="tablist" aria-label="Filter work">
+            {filters.map((f, i) => (
+              <button class={`filter${i === 0 ? " is-active" : ""}`} data-filter={f}>{f}</button>
+            ))}
+          </div>
+        </div>
+        <div class="masonry" id="masonry">
+          {grid.map((g, i) => (
+            <figure class={`tile${g.tall ? " tall" : ""} reveal`} data-cat={g.cat}>
+              <div class="tile-img">
+                <img
+                  src={`https://picsum.photos/seed/${g.seed}/${g.w}/${g.h}`}
+                  width={g.w} height={g.h} loading="lazy"
+                  alt={`${g.title} — ${g.cat.toLowerCase()} photograph by Elise Roy.`}
+                />
+                <span class="tile-view">View &rarr;</span>
+              </div>
+              <figcaption class="tile-cap">
+                <span class="tile-no">{String(i + 1).padStart(2, "0")}</span>
+                <span class="tile-name">{g.title}</span>
+                <span class="tile-cat">{g.cat} &middot; {g.year}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- SERIES INDEX -->
+      <section class="series" id="series" aria-labelledby="series-h">
+        <h2 id="series-h" class="sec-title pad">Series Index</h2>
+        <ul class="series-list">
+          {series.map((s) => (
+            <li class="series-row reveal">
+              <span class="series-n">{s.n}</span>
+              <span class="series-name">{s.name}</span>
+              <span class="series-cat">{s.cat}</span>
+              <span class="series-count">{s.count}</span>
+              <span class="series-arrow" aria-hidden="true">&rarr;</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="about" id="about" aria-labelledby="about-h">
+        <figure class="about-img reveal">
+          <img
+            src="https://picsum.photos/seed/nl-elise-portrait/900/1100?grayscale"
+            width="900" height="1100" loading="lazy"
+            alt="Self-portrait of Elise Roy, photographer, holding a film camera."
+          />
+          <figcaption>Elise Roy &mdash; Inglewood studio</figcaption>
+        </figure>
+        <div class="about-text">
+          <span class="kicker">About</span>
+          <h2 id="about-h">A photographer who works quietly and sees clearly.</h2>
+          <p>
+            I&rsquo;m Elise. For nearly a decade I&rsquo;ve made pictures across Alberta and beyond —
+            weddings that feel like the day actually felt, brand work that says something, and
+            portraits people are relieved to look at.
+          </p>
+          <p>
+            My approach is simple: stay out of the way, chase good light, and trust the moment.
+            The result is unhurried and a little film-leaning — images built to outlast the
+            trend cycle.
+          </p>
+          <div class="stats">
+            {stats.map((s) => (
+              <div class="stat">
+                <span class="stat-n">{s.n}</span>
+                <span class="stat-l">{s.l}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- PRESS MARQUEE -->
+      <section class="press" aria-label="Featured in">
+        <span class="press-label">As seen in</span>
+        <div class="press-marquee">
+          <div class="press-track">
+            {press.concat(press).map((p) => <span class="press-item">{p}</span>)}
+          </div>
+        </div>
+      </section>
+
+      <!-- INVESTMENT -->
+      <section class="investment" id="investment" aria-labelledby="inv-h">
+        <div class="sec-head">
+          <h2 id="inv-h" class="sec-title">Investment</h2>
+          <p class="sec-note">Starting figures. Every shoot is quoted to the day &amp; the deliverables.</p>
+        </div>
+        <ul class="inv-grid">
+          {investment.map((p, i) => (
+            <li class="inv-card reveal">
+              <span class="inv-no">{String(i + 1).padStart(2, "0")}</span>
+              <h3 class="inv-name">{p.name}</h3>
+              <p class="inv-desc">{p.desc}</p>
+              <div class="inv-price">
+                <span class="inv-unit">{p.unit}</span>
+                <span class="inv-num">${p.price}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="quotes" aria-label="Client words">
+        <ul class="quote-list">
+          {testimonials.map((t) => (
+            <li class="quote reveal">
+              <blockquote>&ldquo;{t.quote}&rdquo;</blockquote>
+              <cite>&mdash; {t.who}</cite>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- CONTACT / CTA -->
+      <section class="contact" id="contact" aria-labelledby="contact-h">
+        <div class="contact-grid">
+          <div class="contact-lead">
+            <span class="kicker">Inquiries open</span>
+            <h2 id="contact-h">Let&rsquo;s make something that lasts.</h2>
+            <p>
+              Limited weekend dates for the 2026 season. Tell me a little about your day,
+              your brand, or the pictures you&rsquo;ve been imagining.
+            </p>
+            <a class="big-cta" href="mailto:hello@northlightstudio.ca">
+              hello@northlightstudio.ca
+            </a>
+          </div>
+          <div class="contact-card">
+            <dl class="nap">
+              <div><dt>Studio</dt><dd>1124 9 Avenue SE<br />Inglewood, Calgary, AB T2G 0S8</dd></div>
+              <div><dt>Call</dt><dd><a href="tel:+14035550192">(403) 555-0192</a></dd></div>
+              <div><dt>Hours</dt><dd>Tue&ndash;Sat, 10:00am&ndash;6:00pm<br />Sun&ndash;Mon: shoots &amp; editing</dd></div>
+              <div><dt>Instagram</dt><dd><a href="#">@northlight.studio</a></dd></div>
+            </dl>
+            <a class="map-link" href="#">View on map &rarr;</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="foot-top">
+        <span class="brand">Northlight<span class="dot">.</span></span>
+        <nav class="foot-nav" aria-label="Footer">
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        </nav>
+        <a class="inquire ghost" href="#contact">Inquire &rarr;</a>
+      </div>
+      <div class="foot-bottom">
+        <span>&copy; 2026 Northlight Studio &middot; Photography by Elise Roy</span>
+        <span>Calgary, AB &middot; Available across Alberta</span>
+      </div>
+    </footer>
+
+    <script is:inline>
+      // Mobile nav
+      const burger = document.getElementById("burger");
+      const menu = document.getElementById("mobileMenu");
+      burger?.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        burger.setAttribute("aria-expanded", String(open));
+      });
+      menu?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          menu.classList.remove("open");
+          burger.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      // Condense nav on scroll
+      const nav = document.getElementById("nav");
+      const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 40);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // Filter
+      const filters = document.querySelectorAll(".filter");
+      const tiles = document.querySelectorAll(".tile");
+      filters.forEach((btn) =>
+        btn.addEventListener("click", () => {
+          filters.forEach((b) => b.classList.remove("is-active"));
+          btn.classList.add("is-active");
+          const f = btn.dataset.filter;
+          tiles.forEach((t) => {
+            const show = f === "All" || t.dataset.cat === f;
+            t.classList.toggle("hide", !show);
+          });
+        })
+      );
+
+      // Scroll reveal
+      const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const els = document.querySelectorAll(".reveal");
+      if (mq.matches || !("IntersectionObserver" in window)) {
+        els.forEach((e) => e.classList.add("in"));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+        els.forEach((e) => io.observe(e));
+      }
+    </script>
+
+    <style is:global>
+      *,*::before,*::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; }
+      img { display: block; max-width: 100%; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+      }
+    </style>
+
+    <style>
+      :root {
+        --bg: #fafaf8;
+        --fg: #1a1a1a;
+        --primary: #1a1a1a;
+        --primary-fg: #fafaf8;
+        --accent: #6b6b6b;
+        --muted: #f0f0ec;
+        --border: #e4e4df;
+        --sans: "Inter", system-ui, sans-serif;
+        --display: "Archivo", system-ui, sans-serif;
+        --pad: clamp(1.25rem, 5vw, 5rem);
+        --ease: cubic-bezier(.22,.61,.36,1);
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .skip {
+        position: absolute; left: -999px; top: 0; z-index: 100;
+        background: var(--fg); color: var(--bg); padding: .75rem 1rem;
+      }
+      .skip:focus { left: 0; }
+
+      a { color: inherit; }
+      :focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+
+      .kicker {
+        font-family: var(--sans);
+        font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+        color: var(--accent); font-weight: 500;
+      }
+
+      .sec-title {
+        font-family: var(--display); font-weight: 600;
+        font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -.02em;
+        margin: 0; line-height: 1;
+      }
+      .sec-title.pad { padding: 0 var(--pad); }
+
+      /* NAV */
+      .nav {
+        position: sticky; top: 0; z-index: 50;
+        transition: background .35s var(--ease), border-color .35s var(--ease);
+        border-bottom: 1px solid transparent;
+      }
+      .nav.scrolled {
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-inner {
+        max-width: 1440px; margin: 0 auto;
+        display: flex; align-items: center; gap: 2rem;
+        padding: 1rem var(--pad);
+      }
+      .brand {
+        font-family: var(--display); font-weight: 700; font-size: 1.25rem;
+        text-decoration: none; letter-spacing: -.02em;
+      }
+      .brand .dot { color: var(--accent); }
+      .nav-links { display: none; gap: 1.6rem; margin-left: auto; }
+      .nav-links a {
+        font-size: .85rem; text-decoration: none; color: var(--fg);
+        position: relative; padding: .25rem 0;
+      }
+      .nav-links a::after {
+        content: ""; position: absolute; left: 0; bottom: -2px; height: 1px;
+        width: 0; background: var(--fg); transition: width .3s var(--ease);
+      }
+      .nav-links a:hover::after { width: 100%; }
+      .inquire {
+        font-size: .8rem; text-decoration: none; font-weight: 500;
+        background: var(--primary); color: var(--primary-fg);
+        padding: .7rem 1.2rem; border-radius: 999px;
+        transition: background .25s, transform .25s;
+        min-height: 44px; display: inline-flex; align-items: center;
+      }
+      .nav-links + .inquire { margin-left: 0; }
+      .inquire:hover { background: var(--accent); transform: translateY(-1px); }
+      .inquire.ghost {
+        background: transparent; color: var(--fg);
+        border: 1px solid var(--border);
+      }
+      .inquire.ghost:hover { background: var(--muted); }
+
+      .burger {
+        margin-left: auto; width: 44px; height: 44px; border: none;
+        background: transparent; display: flex; flex-direction: column;
+        justify-content: center; gap: 6px; cursor: pointer;
+      }
+      .burger span { height: 2px; width: 22px; background: var(--fg); transition: .3s; }
+      .burger[aria-expanded="true"] span:first-child { transform: translateY(4px) rotate(45deg); }
+      .burger[aria-expanded="true"] span:last-child { transform: translateY(-4px) rotate(-45deg); }
+
+      .mobile-menu {
+        display: none; flex-direction: column; padding: 0 var(--pad) 1.5rem;
+        background: var(--bg); border-bottom: 1px solid var(--border);
+      }
+      .mobile-menu.open { display: flex; }
+      .mobile-menu a {
+        padding: .9rem 0; text-decoration: none; border-bottom: 1px solid var(--border);
+        font-family: var(--display); font-size: 1.1rem;
+      }
+      .m-inquire { border-bottom: none !important; color: var(--accent); }
+
+      @media (min-width: 860px) {
+        .nav-links { display: flex; }
+        .inquire { display: inline-flex; }
+        .burger { display: none; }
+      }
+      @media (max-width: 859px) {
+        .nav-inner > .inquire { display: none; }
+      }
+
+      /* HERO */
+      .hero { padding: clamp(2rem, 6vw, 4.5rem) var(--pad) 0; max-width: 1440px; margin: 0 auto; }
+      .hero-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+      .hero-title {
+        font-family: var(--display); font-weight: 700;
+        font-size: clamp(3rem, 13vw, 9.5rem); line-height: .9;
+        letter-spacing: -.04em; margin: .4em 0 .3em;
+      }
+      .hero-title em { font-style: italic; font-weight: 500; color: var(--accent); }
+      .hero-row {
+        display: flex; flex-wrap: wrap; gap: 1.5rem 2rem;
+        align-items: flex-end; justify-content: space-between;
+        padding-bottom: 2.5rem;
+      }
+      .hero-lede { max-width: 38ch; font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--fg); margin: 0; }
+      .hero-cta {
+        display: inline-flex; align-items: center; gap: .6rem;
+        text-decoration: none; font-family: var(--display); font-weight: 600;
+        font-size: 1rem; border-bottom: 2px solid var(--fg); padding-bottom: .3rem;
+        white-space: nowrap; min-height: 44px;
+      }
+      .hero-cta svg { transition: transform .3s var(--ease); }
+      .hero-cta:hover svg { transform: translate(3px,-3px); }
+      .hero-img {
+        margin: 0; overflow: hidden; aspect-ratio: 16/9; border-radius: 2px;
+      }
+      .hero-img img {
+        width: 100%; height: 100%; object-fit: cover;
+        filter: grayscale(.4) contrast(1.02);
+        transition: filter 1.2s var(--ease), transform 8s var(--ease);
+      }
+      .hero-img:hover img { filter: grayscale(0); transform: scale(1.03); }
+
+      /* MARQUEE */
+      .marquee { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: .9rem 0; margin-top: clamp(2rem,5vw,4rem); }
+      .marquee-track {
+        display: flex; white-space: nowrap; width: max-content;
+        animation: scroll-x 28s linear infinite;
+        font-family: var(--display); font-weight: 600; letter-spacing: .04em;
+        font-size: clamp(1.1rem, 2.5vw, 1.6rem); color: var(--fg);
+      }
+      .marquee-track span { padding-right: .3rem; }
+      @keyframes scroll-x { to { transform: translateX(-50%); } }
+
+      /* WORK */
+      .work { padding: clamp(2.5rem,6vw,5rem) var(--pad); max-width: 1440px; margin: 0 auto; }
+      .sec-head {
+        display: flex; flex-wrap: wrap; gap: 1rem 2rem;
+        justify-content: space-between; align-items: flex-end;
+        margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border);
+      }
+      .sec-note { margin: 0; color: var(--accent); font-size: .9rem; max-width: 30ch; }
+      .filters { display: flex; flex-wrap: wrap; gap: .4rem; }
+      .filter {
+        font-family: var(--sans); font-size: .75rem; letter-spacing: .04em;
+        background: transparent; border: 1px solid var(--border);
+        color: var(--accent); padding: .55rem 1rem; border-radius: 999px;
+        cursor: pointer; transition: .25s; min-height: 40px;
+      }
+      .filter:hover { color: var(--fg); border-color: var(--fg); }
+      .filter.is-active { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+
+      .masonry { columns: 2; column-gap: clamp(.6rem, 1.5vw, 1.2rem); }
+      @media (min-width: 720px) { .masonry { columns: 3; } }
+      @media (min-width: 1100px) { .masonry { columns: 4; } }
+
+      .tile {
+        break-inside: avoid; margin: 0 0 clamp(.6rem,1.5vw,1.2rem);
+        display: inline-block; width: 100%;
+      }
+      .tile.hide { display: none; }
+      .tile-img {
+        position: relative; overflow: hidden; border-radius: 2px;
+        background: var(--muted);
+      }
+      .tile-img img {
+        width: 100%; height: auto; object-fit: cover;
+        filter: grayscale(.85) contrast(1.03);
+        transition: filter .6s var(--ease), transform 1s var(--ease);
+      }
+      .tile:hover .tile-img img { filter: grayscale(0); transform: scale(1.04); }
+      .tile-view {
+        position: absolute; left: 50%; top: 50%;
+        transform: translate(-50%,-50%) scale(.9);
+        background: var(--bg); color: var(--fg);
+        font-family: var(--display); font-weight: 600; font-size: .8rem;
+        padding: .5rem .9rem; border-radius: 999px;
+        opacity: 0; transition: opacity .35s var(--ease), transform .35s var(--ease);
+        pointer-events: none;
+      }
+      .tile:hover .tile-view { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+      .tile-cap { display: flex; align-items: baseline; gap: .5rem; padding: .65rem .1rem 0; flex-wrap: wrap; }
+      .tile-no { font-family: var(--display); font-size: .7rem; color: var(--accent); }
+      .tile-name { font-family: var(--display); font-weight: 600; font-size: .9rem; }
+      .tile-cat { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-left: auto; }
+
+      /* SERIES */
+      .series { padding: clamp(2.5rem,6vw,5rem) 0; border-top: 1px solid var(--border); }
+      .series-list { list-style: none; margin: 1.5rem 0 0; padding: 0; }
+      .series-row {
+        display: grid; grid-template-columns: 2.5rem 1fr auto; gap: .5rem 1rem;
+        align-items: center; padding: 1.4rem var(--pad);
+        border-bottom: 1px solid var(--border); cursor: pointer;
+        transition: background .3s var(--ease), padding-left .3s var(--ease);
+      }
+      .series-row:hover { background: var(--muted); padding-left: calc(var(--pad) + .6rem); }
+      .series-n { font-family: var(--display); font-size: .8rem; color: var(--accent); }
+      .series-name { font-family: var(--display); font-weight: 600; font-size: clamp(1.2rem,4vw,2rem); letter-spacing: -.02em; }
+      .series-cat { font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+      .series-count { display: none; }
+      .series-arrow { font-size: 1.1rem; color: var(--accent); transition: transform .3s var(--ease); }
+      .series-row:hover .series-arrow { transform: translateX(5px); color: var(--fg); }
+      @media (min-width: 720px) {
+        .series-row { grid-template-columns: 3rem 1.5fr 1fr 1fr 2rem; }
+        .series-count { display: block; color: var(--accent); font-size: .85rem; }
+      }
+
+      /* ABOUT */
+      .about {
+        display: grid; gap: clamp(1.5rem,4vw,3.5rem);
+        padding: clamp(2.5rem,6vw,5rem) var(--pad);
+        max-width: 1440px; margin: 0 auto; border-top: 1px solid var(--border);
+      }
+      @media (min-width: 820px) { .about { grid-template-columns: .8fr 1fr; align-items: center; } }
+      .about-img { margin: 0; }
+      .about-img img {
+        width: 100%; aspect-ratio: 9/11; object-fit: cover; border-radius: 2px;
+        filter: grayscale(.6) contrast(1.03);
+      }
+      .about-img figcaption {
+        font-size: .72rem; text-transform: uppercase; letter-spacing: .12em;
+        color: var(--accent); margin-top: .7rem;
+      }
+      .about-text h2 {
+        font-family: var(--display); font-weight: 600;
+        font-size: clamp(1.6rem,3.5vw,2.6rem); line-height: 1.05;
+        letter-spacing: -.02em; margin: .6rem 0 1rem;
+      }
+      .about-text p { color: var(--fg); max-width: 50ch; margin: 0 0 1rem; }
+      .stats { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+      .stat-n { display: block; font-family: var(--display); font-weight: 700; font-size: clamp(1.8rem,4vw,2.6rem); letter-spacing: -.02em; }
+      .stat-l { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+
+      /* PRESS */
+      .press {
+        border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+        padding: clamp(1.5rem,3vw,2.2rem) 0; overflow: hidden;
+        display: grid; gap: .8rem;
+      }
+      .press-label { padding: 0 var(--pad); font-size: .7rem; text-transform: uppercase; letter-spacing: .2em; color: var(--accent); }
+      .press-marquee { overflow: hidden; }
+      .press-track {
+        display: flex; gap: 3rem; width: max-content;
+        animation: scroll-x 32s linear infinite;
+      }
+      .press-item {
+        font-family: var(--display); font-weight: 600; font-size: clamp(1rem,2vw,1.4rem);
+        letter-spacing: .02em; color: var(--accent); white-space: nowrap;
+        transition: color .3s;
+      }
+      .press-item:hover { color: var(--fg); }
+
+      /* INVESTMENT */
+      .investment { padding: clamp(2.5rem,6vw,5rem) var(--pad); max-width: 1440px; margin: 0 auto; }
+      .inv-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+      @media (min-width: 720px) { .inv-grid { grid-template-columns: 1fr 1fr; } }
+      .inv-card {
+        background: var(--bg); padding: clamp(1.5rem,3vw,2.5rem);
+        display: flex; flex-direction: column; gap: .6rem;
+        transition: background .35s var(--ease);
+      }
+      .inv-card:hover { background: var(--muted); }
+      .inv-no { font-family: var(--display); font-size: .75rem; color: var(--accent); }
+      .inv-name { font-family: var(--display); font-weight: 600; font-size: clamp(1.2rem,2.2vw,1.6rem); margin: 0; letter-spacing: -.01em; }
+      .inv-desc { margin: 0; color: var(--accent); font-size: .92rem; max-width: 42ch; flex: 1; }
+      .inv-price { display: flex; align-items: baseline; gap: .5rem; margin-top: .6rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+      .inv-unit { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+      .inv-num { font-family: var(--display); font-weight: 700; font-size: clamp(1.6rem,3vw,2.2rem); letter-spacing: -.02em; }
+
+      /* QUOTES */
+      .quotes { background: var(--primary); color: var(--primary-fg); padding: clamp(2.5rem,7vw,6rem) var(--pad); }
+      .quote-list { list-style: none; margin: 0 auto; padding: 0; max-width: 1100px; display: grid; gap: clamp(2rem,5vw,4rem); }
+      @media (min-width: 820px) { .quote-list { grid-template-columns: repeat(3,1fr); } }
+      .quote blockquote {
+        margin: 0 0 1rem; font-family: var(--display); font-weight: 500;
+        font-size: clamp(1.05rem,1.6vw,1.3rem); line-height: 1.35; letter-spacing: -.01em;
+      }
+      .quote cite { font-style: normal; font-size: .8rem; letter-spacing: .04em; color: color-mix(in srgb, var(--primary-fg) 65%, transparent); }
+
+      /* CONTACT */
+      .contact { padding: clamp(2.5rem,6vw,5rem) var(--pad); max-width: 1440px; margin: 0 auto; }
+      .contact-grid { display: grid; gap: clamp(2rem,4vw,3.5rem); }
+      @media (min-width: 820px) { .contact-grid { grid-template-columns: 1.2fr .8fr; align-items: start; } }
+      .contact-lead h2 { font-family: var(--display); font-weight: 700; font-size: clamp(2rem,6vw,4rem); line-height: .98; letter-spacing: -.03em; margin: .7rem 0 1rem; }
+      .contact-lead p { color: var(--accent); max-width: 42ch; margin: 0 0 1.8rem; }
+      .big-cta {
+        display: inline-block; font-family: var(--display); font-weight: 600;
+        font-size: clamp(1.1rem,2.5vw,1.8rem); text-decoration: none;
+        border-bottom: 2px solid var(--fg); padding-bottom: .3rem; letter-spacing: -.01em;
+        transition: color .3s, border-color .3s;
+      }
+      .big-cta:hover { color: var(--accent); border-color: var(--accent); }
+      .contact-card { background: var(--muted); border: 1px solid var(--border); border-radius: 2px; padding: clamp(1.5rem,3vw,2rem); }
+      .nap { margin: 0; display: grid; gap: 1.2rem; }
+      .nap dt { font-size: .68rem; text-transform: uppercase; letter-spacing: .15em; color: var(--accent); margin-bottom: .25rem; }
+      .nap dd { margin: 0; font-size: .95rem; line-height: 1.5; }
+      .nap a { text-decoration: none; border-bottom: 1px solid var(--border); }
+      .nap a:hover { border-color: var(--fg); }
+      .map-link { display: inline-block; margin-top: 1.4rem; font-size: .85rem; text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--fg); padding-bottom: 2px; }
+
+      /* FOOTER */
+      .foot { border-top: 1px solid var(--border); padding: clamp(2rem,4vw,3rem) var(--pad); max-width: 1440px; margin: 0 auto; }
+      .foot-top { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; justify-content: space-between; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+      .foot-nav { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+      .foot-nav a { font-size: .85rem; text-decoration: none; color: var(--accent); }
+      .foot-nav a:hover { color: var(--fg); }
+      .foot-bottom { display: flex; flex-wrap: wrap; gap: .5rem 2rem; justify-content: space-between; padding-top: 1.5rem; font-size: .75rem; color: var(--accent); }
+
+      /* REVEAL */
+      .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+      .reveal.in { opacity: 1; transform: none; }
+    </style>
+  </body>
+</html>

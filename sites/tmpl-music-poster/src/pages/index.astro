@@ -1,0 +1,573 @@
+---
+// Velvet Static — gig-poster / riso-print variant. Self-contained showcase page.
+const nav = [
+  { label: "Music", href: "#release" },
+  { label: "Tour", href: "#tour" },
+  { label: "Merch", href: "#merch" },
+  { label: "About", href: "#about" },
+];
+
+const tour = [
+  { date: "Jul 18", city: "Calgary, AB", venue: "Commonwealth Bar & Stage", status: "Tickets", soldOut: false },
+  { date: "Jul 25", city: "Edmonton, AB", venue: "The Starlite Room", status: "Tickets", soldOut: false },
+  { date: "Aug 02", city: "Vancouver, BC", venue: "Fox Cabaret", status: "Sold Out", soldOut: true },
+  { date: "Aug 09", city: "Saskatoon, SK", venue: "Amigos Cantina", status: "Tickets", soldOut: false },
+];
+
+const merch = [
+  { name: "'Afterglow' LP", detail: "translucent red vinyl", price: "$34", seed: "vsvinyl" },
+  { name: "'Afterglow' Cassette", detail: "limited run", price: "$14", seed: "vstape" },
+  { name: "Tour Tee", detail: "black, screen-printed", price: "$32", seed: "vstee" },
+  { name: "Riso Gig Poster", detail: "18×24, signed", price: "$25", seed: "vsposter" },
+  { name: "Digital Album", detail: "FLAC + MP3", price: "$9", seed: "vsdigital" },
+  { name: "VIP Soundcheck", detail: "early entry add-on", price: "$45", seed: "vsvip" },
+];
+
+const reviews = [
+  { quote: "One of the tightest live sets I've seen all year — sweaty, loud, unforgettable.", who: "Dana R.", src: "BeatRoute" },
+  { quote: "'Afterglow' is the late-night record Calgary didn't know it needed.", who: "Marcus L.", src: "CJSW 90.9" },
+  { quote: "Saw them at Commonwealth and immediately bought the vinyl. Hooked.", who: "Priya N.", src: "fan" },
+];
+
+const marquee = ["AFTERGLOW", "OUT NOW", "ON TOUR", "TURN IT UP", "VELVET STATIC", "LATE SHIFT"];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Velvet Static — 'Afterglow' Out Now | Calgary Garage Rock</title>
+    <meta
+      name="description"
+      content="Velvet Static — Calgary-born garage rock. New record 'Afterglow' out now on translucent red vinyl. Live this summer across Western Canada."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#release">Skip to content</a>
+
+    <header class="nav" id="top">
+      <a class="brand" href="#top" aria-label="Velvet Static home">
+        <span class="brand-mark" aria-hidden="true">★</span> VELVET<span class="brand-thin">STATIC</span>
+      </a>
+      <nav aria-label="Primary">
+        <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul id="menu" class="menu">
+          {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+          <li><a class="nav-cta" href="#tour">Tickets</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-photo" aria-hidden="true">
+          <img src="https://picsum.photos/seed/vsstage42/1200/1400" alt="" />
+        </div>
+        <div class="hero-grain" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <p class="kicker">Calgary-born · made for the late shift</p>
+          <h1 id="hero-title" class="hero-title">
+            <span>VELVET</span><span class="outline">STATIC</span>
+          </h1>
+          <p class="hero-sub">New record <em>'Afterglow'</em> — out now. Loud nights, quiet mornings.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#release">Listen Now</a>
+            <a class="btn btn-ghost" href="#tour">Tour Dates →</a>
+          </div>
+        </div>
+        <div class="scroll-cue" aria-hidden="true"><span>SCROLL</span></div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          {[...marquee, ...marquee].map((m) => <span>{m}<i>✺</i></span>)}
+        </div>
+      </div>
+
+      <!-- LATEST RELEASE -->
+      <section class="release" id="release" aria-labelledby="release-title">
+        <div class="release-art reveal">
+          <img src="https://picsum.photos/seed/vsafterglow/800/800" alt="'Afterglow' album cover artwork by Velvet Static" />
+          <span class="badge">OUT NOW</span>
+        </div>
+        <div class="release-copy reveal">
+          <p class="eyebrow">Latest Release</p>
+          <h2 id="release-title">AFTER<br />GLOW</h2>
+          <p class="lede">Ten tracks recorded live to tape in a basement off 9th Ave. The late-night record Calgary didn't know it needed.</p>
+          <div class="streams">
+            <a class="stream" href="#" aria-label="Listen on Spotify"><span>▶</span> Spotify</a>
+            <a class="stream" href="#" aria-label="Listen on Apple Music"><span>♫</span> Apple Music</a>
+            <a class="stream" href="#" aria-label="Buy on Bandcamp"><span>◆</span> Bandcamp</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- TOUR -->
+      <section class="tour" id="tour" aria-labelledby="tour-title">
+        <div class="section-head">
+          <h2 id="tour-title">ON TOUR<br /><span class="under">this summer</span></h2>
+          <p>Turn it up. We're back on the road.</p>
+        </div>
+        <ul class="tour-list">
+          {tour.map((t) => (
+            <li class={t.soldOut ? "tour-row sold" : "tour-row"}>
+              <span class="t-date">{t.date}</span>
+              <span class="t-city">{t.city}</span>
+              <span class="t-venue">{t.venue}</span>
+              <a class="t-btn" href="#" aria-disabled={t.soldOut ? "true" : "false"}>{t.status}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- MERCH -->
+      <section class="merch" id="merch" aria-labelledby="merch-title">
+        <div class="section-head light">
+          <h2 id="merch-title">MERCH<br /><span class="under">the goods</span></h2>
+          <p>Wear it loud. Ships worldwide.</p>
+        </div>
+        <div class="merch-grid">
+          {merch.map((m) => (
+            <article class="card">
+              <div class="card-img">
+                <img src={`https://picsum.photos/seed/${m.seed}/500/500`} alt={`${m.name} — ${m.detail}`} loading="lazy" />
+                <span class="card-price">{m.price}</span>
+              </div>
+              <h3>{m.name}</h3>
+              <p>{m.detail}</p>
+              <a class="card-buy" href="#">Add to cart →</a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- ABOUT + REVIEWS -->
+      <section class="about" id="about" aria-labelledby="about-title">
+        <div class="about-photo reveal">
+          <img src="https://picsum.photos/seed/vsband77/700/820" alt="Velvet Static band portrait" loading="lazy" />
+        </div>
+        <div class="about-copy reveal">
+          <p class="eyebrow">The Band</p>
+          <h2 id="about-title">Four-piece. <span class="hi">One volume.</span></h2>
+          <p class="lede">Velvet Static formed in a Calgary garage and never quite left it. Sweaty rooms, distorted hooks, and a city that runs on the late shift.</p>
+          <div class="quotes">
+            {reviews.map((r) => (
+              <blockquote>
+                <p>"{r.quote}"</p>
+                <cite>— {r.who}, <span>{r.src}</span></cite>
+              </blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- MAILING LIST -->
+      <section class="signup" aria-labelledby="signup-title">
+        <div class="signup-inner">
+          <h2 id="signup-title">Get on the list.</h2>
+          <p>Tour drops, new records, soundcheck invites. No spam, just noise.</p>
+          <form class="signup-form" onsubmit="return false">
+            <label class="sr-only" for="email">Email address</label>
+            <input id="email" type="email" name="email" placeholder="you@email.com" required />
+            <button type="submit" class="btn btn-dark">Sign Up</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="foot-grid">
+        <div>
+          <p class="foot-brand">VELVET STATIC</p>
+          <address>
+            c/o Hightide Sound<br />
+            1219 9th Avenue SE<br />
+            Calgary, AB T2G 0T2
+          </address>
+        </div>
+        <div>
+          <p class="foot-h">Booking & Press</p>
+          <a class="foot-call" href="tel:+14035550182">(403) 555-0182</a><br />
+          <a href="mailto:booking@velvetstatic.band">booking@velvetstatic.band</a>
+          <p class="foot-hours">Mon–Fri 10am–6pm MT</p>
+        </div>
+        <div>
+          <p class="foot-h">Follow</p>
+          <ul class="socials">
+            <li><a href="#" aria-label="Instagram">IG</a></li>
+            <li><a href="#" aria-label="Bandcamp">BC</a></li>
+            <li><a href="#" aria-label="Spotify">SP</a></li>
+            <li><a href="#" aria-label="YouTube">YT</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="foot-fine">© 2026 Velvet Static. Made for the late shift. Riso-printed in Calgary.</p>
+    </footer>
+
+    <script is:inline>
+      const burger = document.querySelector(".burger");
+      const menu = document.getElementById("menu");
+      burger?.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        burger.setAttribute("aria-expanded", String(open));
+      });
+      menu?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          menu.classList.remove("open");
+          burger?.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      const nav = document.querySelector(".nav");
+      addEventListener("scroll", () => {
+        nav?.classList.toggle("shrink", scrollY > 40);
+      });
+
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("in")),
+          { threshold: 0.15 }
+        );
+        document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      }
+    </script>
+
+    <style is:global>
+      :root {
+        --bg: #f4f1e9;
+        --fg: #161310;
+        --primary: #e3322a;
+        --primary-fg: #f4f1e9;
+        --accent: #2440d6;
+        --muted: #e6e0d2;
+        --border: #161310;
+        --font-display: "Anton", system-ui, sans-serif;
+        --font-body: "Archivo", system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--font-body);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; }
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; }
+      }
+    </style>
+
+    <style>
+      .skip {
+        position: absolute; left: -999px; top: 0; z-index: 100;
+        background: var(--fg); color: var(--bg); padding: .75rem 1rem; font-weight: 700;
+      }
+      .skip:focus { left: 0; }
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);
+      }
+      :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+      /* NAV */
+      .nav {
+        position: sticky; top: 0; z-index: 50;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 1.1rem clamp(1rem, 4vw, 2.5rem);
+        background: var(--bg);
+        border-bottom: 3px solid var(--border);
+        transition: padding .25s ease;
+      }
+      .nav.shrink { padding: .55rem clamp(1rem, 4vw, 2.5rem); }
+      .brand {
+        font-family: var(--font-display); font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+        letter-spacing: .04em; text-decoration: none; display: flex; align-items: center; gap: .4rem;
+      }
+      .brand-mark { color: var(--primary); }
+      .brand-thin { color: var(--primary); margin-left: .15rem; }
+      .menu { list-style: none; display: flex; gap: clamp(1rem, 2.5vw, 2rem); align-items: center; }
+      .menu a {
+        text-decoration: none; font-weight: 700; text-transform: uppercase;
+        font-size: .82rem; letter-spacing: .1em; padding: .5rem .2rem;
+        position: relative;
+      }
+      .menu a:not(.nav-cta)::after {
+        content: ""; position: absolute; left: 0; bottom: .15rem; height: 3px; width: 0;
+        background: var(--accent); transition: width .2s ease;
+      }
+      .menu a:not(.nav-cta):hover::after { width: 100%; }
+      .nav-cta {
+        background: var(--primary); color: var(--primary-fg);
+        padding: .6rem 1.1rem; border: 2px solid var(--border);
+        box-shadow: 3px 3px 0 var(--border); transition: transform .12s, box-shadow .12s;
+      }
+      .nav-cta:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--border); }
+      .burger {
+        display: none; background: none; border: 2px solid var(--border);
+        width: 44px; height: 44px; cursor: pointer; flex-direction: column;
+        justify-content: center; gap: 5px; padding: 0 9px;
+      }
+      .burger span { height: 3px; background: var(--fg); display: block; }
+
+      /* HERO */
+      .hero {
+        position: relative; min-height: 92vh; display: flex; align-items: flex-end;
+        padding: clamp(2rem, 6vw, 5rem); overflow: hidden;
+        background: var(--primary);
+      }
+      .hero-photo { position: absolute; inset: 0; }
+      .hero-photo img {
+        width: 100%; height: 100%; object-fit: cover;
+        filter: grayscale(1) contrast(1.4) brightness(.85);
+        mix-blend-mode: multiply; opacity: .85;
+      }
+      .hero-grain {
+        position: absolute; inset: 0; pointer-events: none; opacity: .35;
+        background-image: radial-gradient(var(--fg) .5px, transparent .6px);
+        background-size: 4px 4px; mix-blend-mode: multiply;
+      }
+      .hero-inner { position: relative; z-index: 2; max-width: 70rem; }
+      .kicker {
+        font-weight: 700; text-transform: uppercase; letter-spacing: .25em;
+        font-size: clamp(.7rem, 1.5vw, .85rem); color: var(--bg);
+        background: var(--accent); display: inline-block; padding: .35rem .7rem;
+        border: 2px solid var(--border); transform: rotate(-2deg);
+      }
+      .hero-title {
+        font-family: var(--font-display); color: var(--bg);
+        font-size: clamp(4.5rem, 19vw, 16rem); line-height: .82; letter-spacing: -.01em;
+        margin: 1.2rem 0 .8rem; text-transform: uppercase; display: flex; flex-direction: column;
+        text-shadow: 6px 6px 0 var(--fg);
+      }
+      .hero-title .outline {
+        color: transparent; -webkit-text-stroke: 3px var(--bg);
+        text-shadow: none;
+      }
+      .hero-sub {
+        color: var(--bg); font-size: clamp(1rem, 2.4vw, 1.4rem); font-weight: 500;
+        max-width: 34rem;
+      }
+      .hero-sub em { font-style: normal; background: var(--fg); padding: 0 .35rem; }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.6rem; }
+      .btn {
+        font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+        letter-spacing: .08em; font-size: .9rem; text-decoration: none;
+        padding: .9rem 1.6rem; border: 3px solid var(--border); min-height: 44px;
+        display: inline-flex; align-items: center; transition: transform .12s, box-shadow .12s;
+      }
+      .btn-primary { background: var(--bg); color: var(--fg); box-shadow: 5px 5px 0 var(--fg); }
+      .btn-primary:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--fg); }
+      .btn-ghost { background: transparent; color: var(--bg); border-color: var(--bg); }
+      .btn-ghost:hover { background: var(--bg); color: var(--primary); }
+      .scroll-cue {
+        position: absolute; right: clamp(1rem, 4vw, 2.5rem); bottom: 1.5rem; z-index: 2;
+        writing-mode: vertical-rl; color: var(--bg); font-weight: 700; letter-spacing: .3em;
+        font-size: .7rem; animation: bob 1.8s ease-in-out infinite;
+      }
+      @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+
+      /* MARQUEE */
+      .marquee {
+        background: var(--accent); color: var(--bg); border-top: 3px solid var(--border);
+        border-bottom: 3px solid var(--border); overflow: hidden; padding: .6rem 0;
+      }
+      .marquee-track {
+        display: inline-flex; gap: 2.5rem; white-space: nowrap;
+        animation: scroll 24s linear infinite; font-family: var(--font-display);
+        font-size: clamp(1.4rem, 3.2vw, 2.4rem); letter-spacing: .03em; text-transform: uppercase;
+      }
+      .marquee-track span { display: inline-flex; align-items: center; gap: 2.5rem; }
+      .marquee-track i { color: var(--primary); font-style: normal; }
+      @keyframes scroll { to { transform: translateX(-50%); } }
+
+      /* RELEASE */
+      .release {
+        display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem);
+        align-items: center; padding: clamp(3rem, 8vw, 6rem) clamp(1.2rem, 5vw, 4rem);
+      }
+      .release-art { position: relative; }
+      .release-art img {
+        width: 100%; aspect-ratio: 1; object-fit: cover; border: 4px solid var(--border);
+        box-shadow: 14px 14px 0 var(--primary); filter: contrast(1.15) saturate(1.1);
+      }
+      .badge {
+        position: absolute; top: -1rem; right: -.6rem; background: var(--primary);
+        color: var(--primary-fg); font-family: var(--font-display); font-size: 1.2rem;
+        padding: .5rem 1rem; border: 3px solid var(--border); transform: rotate(6deg);
+        letter-spacing: .05em;
+      }
+      .eyebrow {
+        font-weight: 700; text-transform: uppercase; letter-spacing: .25em; color: var(--accent);
+        font-size: .8rem; margin-bottom: .5rem;
+      }
+      .release-copy h2, .section-head h2 {
+        font-family: var(--font-display); line-height: .85; text-transform: uppercase;
+        font-size: clamp(3rem, 9vw, 6.5rem); letter-spacing: -.01em; margin-bottom: 1rem;
+      }
+      .lede { font-size: clamp(1rem, 1.8vw, 1.2rem); max-width: 36rem; margin-bottom: 1.6rem; }
+      .streams { display: flex; flex-wrap: wrap; gap: .7rem; }
+      .stream {
+        text-decoration: none; font-weight: 700; padding: .8rem 1.3rem; min-height: 44px;
+        display: inline-flex; align-items: center; gap: .5rem; border: 3px solid var(--border);
+        background: var(--bg); box-shadow: 4px 4px 0 var(--border);
+        transition: transform .12s, box-shadow .12s, background .12s;
+      }
+      .stream span { color: var(--primary); }
+      .stream:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--border); background: var(--accent); color: var(--bg); }
+      .stream:hover span { color: var(--bg); }
+
+      /* TOUR */
+      .tour { background: var(--fg); color: var(--bg); padding: clamp(3rem, 8vw, 6rem) clamp(1.2rem, 5vw, 4rem); }
+      .section-head { margin-bottom: 2.5rem; }
+      .section-head h2 { color: var(--bg); }
+      .section-head .under { color: var(--primary); -webkit-text-stroke: 0; }
+      .section-head p { font-size: 1.1rem; opacity: .85; max-width: 30rem; }
+      .section-head.light h2 { color: var(--fg); }
+      .tour-list { list-style: none; }
+      .tour-row {
+        display: grid; grid-template-columns: 6rem 1fr 1.4fr auto; gap: 1.2rem;
+        align-items: center; padding: 1.3rem .4rem; border-top: 2px solid rgba(244,241,233,.25);
+        transition: background .18s, padding .18s; position: relative;
+      }
+      .tour-row:last-child { border-bottom: 2px solid rgba(244,241,233,.25); }
+      .tour-row:hover { background: rgba(36,64,214,.25); padding-left: 1.2rem; }
+      .t-date { font-family: var(--font-display); font-size: 1.5rem; color: var(--primary); }
+      .t-city { font-weight: 700; font-size: 1.15rem; }
+      .t-venue { opacity: .8; }
+      .t-btn {
+        text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+        background: var(--primary); color: var(--primary-fg); padding: .65rem 1.2rem;
+        border: 2px solid var(--bg); min-height: 44px; display: inline-flex; align-items: center;
+        white-space: nowrap; transition: transform .12s;
+      }
+      .t-btn:hover { transform: scale(1.05); }
+      .tour-row.sold .t-btn {
+        background: transparent; color: var(--bg); opacity: .55; pointer-events: none;
+        text-decoration: line-through;
+      }
+
+      /* MERCH */
+      .merch { padding: clamp(3rem, 8vw, 6rem) clamp(1.2rem, 5vw, 4rem); }
+      .merch-grid {
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;
+      }
+      .card {
+        border: 3px solid var(--border); background: var(--bg); padding: 0 0 1.2rem;
+        box-shadow: 6px 6px 0 var(--border); transition: transform .15s, box-shadow .15s;
+      }
+      .card:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--primary); }
+      .card-img { position: relative; overflow: hidden; border-bottom: 3px solid var(--border); }
+      .card-img img {
+        width: 100%; aspect-ratio: 1; object-fit: cover; filter: grayscale(.4) contrast(1.1);
+        transition: filter .2s, transform .3s;
+      }
+      .card:hover .card-img img { filter: grayscale(0) contrast(1.1); transform: scale(1.05); }
+      .card-price {
+        position: absolute; bottom: .6rem; right: .6rem; background: var(--accent); color: var(--bg);
+        font-family: var(--font-display); padding: .25rem .7rem; border: 2px solid var(--border);
+        font-size: 1.1rem;
+      }
+      .card h3 { font-family: var(--font-display); font-size: 1.4rem; margin: 1rem 1rem .2rem; text-transform: uppercase; }
+      .card p { margin: 0 1rem .8rem; opacity: .75; font-size: .9rem; }
+      .card-buy { margin: 0 1rem; font-weight: 700; text-decoration: none; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 2px; }
+      .card-buy:hover { color: var(--accent); border-color: var(--accent); }
+
+      /* ABOUT */
+      .about {
+        display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2rem, 5vw, 4rem);
+        align-items: center; padding: clamp(3rem, 8vw, 6rem) clamp(1.2rem, 5vw, 4rem);
+        background: var(--muted); border-top: 3px solid var(--border); border-bottom: 3px solid var(--border);
+      }
+      .about-photo img {
+        width: 100%; aspect-ratio: 7/8; object-fit: cover; border: 4px solid var(--border);
+        box-shadow: -12px 12px 0 var(--accent); filter: grayscale(1) contrast(1.3);
+      }
+      .about-copy h2 { font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 4.5rem); line-height: .9; text-transform: uppercase; margin-bottom: 1rem; }
+      .about-copy .hi { color: var(--primary); }
+      .quotes { display: grid; gap: 1.2rem; margin-top: 2rem; }
+      blockquote {
+        border-left: 5px solid var(--primary); padding: .3rem 0 .3rem 1.2rem;
+      }
+      blockquote p { font-size: 1.05rem; font-style: italic; }
+      blockquote cite { display: block; margin-top: .4rem; font-weight: 700; font-style: normal; }
+      blockquote cite span { color: var(--accent); }
+
+      /* SIGNUP */
+      .signup {
+        background: var(--primary); color: var(--primary-fg);
+        padding: clamp(3rem, 8vw, 5rem) clamp(1.2rem, 5vw, 4rem); text-align: center;
+      }
+      .signup-inner { max-width: 40rem; margin: 0 auto; }
+      .signup h2 { font-family: var(--font-display); font-size: clamp(2.6rem, 8vw, 5rem); text-transform: uppercase; }
+      .signup p { margin: .6rem 0 1.6rem; font-size: 1.1rem; }
+      .signup-form { display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; }
+      .signup-form input {
+        flex: 1; min-width: 220px; padding: .9rem 1.1rem; border: 3px solid var(--border);
+        font-family: var(--font-body); font-size: 1rem; background: var(--bg); color: var(--fg);
+      }
+      .btn-dark { background: var(--fg); color: var(--bg); border-color: var(--border); box-shadow: 4px 4px 0 var(--border); cursor: pointer; }
+      .btn-dark:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--border); }
+
+      /* FOOTER */
+      .footer { background: var(--fg); color: var(--bg); padding: clamp(2.5rem, 6vw, 4rem) clamp(1.2rem, 5vw, 4rem) 2rem; }
+      .foot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+      .foot-brand { font-family: var(--font-display); font-size: 1.8rem; letter-spacing: .04em; color: var(--primary); margin-bottom: .6rem; }
+      address { font-style: normal; opacity: .85; line-height: 1.7; }
+      .foot-h { font-weight: 700; text-transform: uppercase; letter-spacing: .12em; font-size: .8rem; color: var(--accent); margin-bottom: .6rem; }
+      .foot-call { font-family: var(--font-display); font-size: 1.6rem; text-decoration: none; }
+      .footer a { transition: color .15s; }
+      .footer a:hover { color: var(--primary); }
+      .foot-hours { opacity: .65; margin-top: .6rem; font-size: .85rem; }
+      .socials { list-style: none; display: flex; gap: .6rem; }
+      .socials a {
+        width: 44px; height: 44px; border: 2px solid var(--bg); display: flex;
+        align-items: center; justify-content: center; font-weight: 700; text-decoration: none;
+        transition: background .15s, color .15s;
+      }
+      .socials a:hover { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+      .foot-fine { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(244,241,233,.2); opacity: .6; font-size: .82rem; }
+
+      /* REVEAL */
+      .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* RESPONSIVE */
+      @media (max-width: 860px) {
+        .release, .about { grid-template-columns: 1fr; }
+        .about-photo { order: -1; }
+        .tour-row { grid-template-columns: 1fr auto; row-gap: .3rem; }
+        .t-venue { grid-column: 1 / -1; opacity: .7; }
+        .t-date { grid-row: 1; }
+      }
+      @media (max-width: 680px) {
+        .burger { display: flex; }
+        .menu {
+          position: absolute; top: 100%; left: 0; right: 0; flex-direction: column;
+          background: var(--bg); border-bottom: 3px solid var(--border); padding: 1rem;
+          gap: .3rem; align-items: stretch; transform: translateY(-120%); transition: transform .25s;
+          z-index: -1;
+        }
+        .menu.open { transform: translateY(0); }
+        .menu a { padding: .9rem .5rem; }
+        .nav-cta { text-align: center; }
+        .hero { align-items: center; padding-top: 5rem; }
+      }
+    </style>
+  </body>
+</html>
