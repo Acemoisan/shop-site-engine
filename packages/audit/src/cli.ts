@@ -6,6 +6,7 @@ import { runSeomatorProbe } from "./probes/seomator.js"
 import { inventoryFromHtml } from "./inventory.js"
 import { detectStack } from "./stack.js"
 import { assembleAudit } from "./collect.js"
+import { renderReport } from "./report.js"
 import type { FeatureKey, StackProbe } from "./types.js"
 
 async function main() {
@@ -41,10 +42,13 @@ async function main() {
 
   const data = assembleAudit({ url, fetchedAt, reachable: page.reachable, blocked, vertical, psi, seomator, inventory, stack })
 
-  const outFile = `audit-${new URL(url).hostname}.json`
-  await writeFile(outFile, JSON.stringify(data, null, 2))
+  const host = new URL(url).hostname
+  const jsonFile = `audit-${host}.json`
+  const htmlFile = `audit-${host}.html`
+  await writeFile(jsonFile, JSON.stringify(data, null, 2))
+  await writeFile(htmlFile, renderReport(data))
   console.log(JSON.stringify(data, null, 2))
-  console.error(`\n✔ ${data.grade.overall} (${data.grade.confidence}) → ${data.tier}  ·  written to ${outFile}`)
+  console.error(`\n✔ ${data.grade.overall} (${data.grade.confidence}) → ${data.tier}\n  JSON   → ${jsonFile}\n  Report → ${htmlFile}`)
 }
 
 main().catch((e) => { console.error(e); process.exit(1) })
