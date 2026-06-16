@@ -2,80 +2,152 @@ import { describe, it, expect } from "vitest"
 import { renderReport } from "../src/report.js"
 import type { AuditData, FeatureKey } from "../src/types.js"
 
-const inv = (over: Partial<Record<FeatureKey, boolean | "error">> = {}): Record<FeatureKey, boolean | "error"> => ({
-  mobileViewport: true, clickToCall: false, bookingLink: false, hours: true, addressOrMap: false,
-  reviews: true, localBusinessJsonLd: false, menuSchema: false, https: true, ogTags: true,
-  contactForm: false, favicon: true, ...over,
-})
+/** Build a minimal valid AuditData fixture with sensible defaults. */
+function makeAuditData(overrides: Partial<AuditData> = {}): AuditData {
+  const allTrue = (): Record<FeatureKey, boolean | "error"> => ({
+    mobileViewport: true, clickToCall: true, bookingLink: true, hours: true,
+    addressOrMap: true, reviews: true, localBusinessJsonLd: true, menuSchema: true,
+    https: true, ogTags: true, contactForm: true, favicon: true,
+  })
 
-const base: AuditData = {
-  url: "https://www.joescafe.ca",
-  fetchedAt: "2026-06-15T12:00:00.000Z",
-  reachable: true,
-  blocked: false,
-  vertical: "cafe",
-  psi: { status: "error", error: "no PSI_API_KEY" },
-  seomator: { status: "ok", score: 70, grade: "C", categories: {} },
-  inventory: inv(),
-  stack: { status: "ok", platform: "wordpress", legacy: true },
-  grade: { overall: "D", byCategory: { seo: "C", conversion: "D" }, confidence: "partial" },
-  tier: "rebuild",
-  fixes: { targeted: ["Add click-to-call (tap-to-dial) phone link"], general: [] },
+  const base: AuditData = {
+    url: "https://example.com",
+    fetchedAt: "2026-06-15T00:00:00Z",
+    reachable: true,
+    blocked: false,
+    psi: { status: "ok", mobile: { performance: 80, seo: 90, accessibility: 85, bestPractices: 90 } },
+    seomator: { status: "ok", score: 75, grade: "B" },
+    inventory: allTrue(),
+    stack: { status: "ok", platform: "wordpress", legacy: false },
+    grade: { overall: "B", byCategory: {}, confidence: "high" },
+    tier: "tune-up",
+    fixes: { targeted: [], general: [] },
+  }
+
+  return { ...base, ...overrides }
 }
 
 describe("renderReport", () => {
-  it("renders a self-contained branded HTML doc", () => {
-    const html = renderReport(base)
-    expect(html.startsWith("<!doctype html>")).toBe(true)
-    expect(html).toContain("Studio")
-    expect(html).toContain("joescafe.ca") // host, www stripped
-    expect(html).toContain("<style>") // inline CSS, no external build
-    expect(html).toContain("2026-06-15") // date from fetchedAt
+  it("normal graded report (grade B, some missing features)", () => {
+    const data = makeAuditData({
+      grade: { overall: "B", byCategory: {}, confidence: "high" },
+      inventory: {
+        mobileViewport: false,
+        clickToCall: false,
+        bookingLink: true,
+        hours: true,
+        addressOrMap: true,
+        reviews: true,
+        localBusinessJsonLd: true,
+        menuSchema: true,
+        https: true,
+        ogTags: true,
+        contactForm: true,
+        favicon: true,
+      },
+    })
+
+    const html = renderReport(data, "Test Shop")
+
+    // Self-contained checks
+    expect(html).toContain("<style>")
+    expect(html).not.toMatch(/<link[^>]+rel=["']stylesheet["']/i)
+    expect(html).not.toContain('http-equiv="refresh"')
+
+    // Structure
+    expect(html).toContain("Website &amp; Online Presence Audit")
+
+    // Grade letter appears (in badge)
+    expect(html).toContain(">B<")
+
+    // Copy for a missing feature (mobileViewport rank 1)
+    expect(html).toContain("The site isn't built to fit phone screens.")
+
+    // Soft CTA
+    expect(html).toContain("I build fast, mobile-first sites for Calgary shops")
   })
 
-  it("shows the grade and tier", () => {
-    const html = renderReport(base)
-    expect(html).toContain(">D</div>") // grade badge
-    expect(html).toContain("Rebuild recommended")
-  })
-
-  it("ranks missing features as top priorities, most impactful first", () => {
-    const html = renderReport(base)
-    // clickToCall (high priority, missing) should appear before favicon-type polish.
-    expect(html).toContain("Tap-to-call phone number")
-    // mobileViewport present here, so it should NOT be listed as a fix.
-    expect(html).not.toContain("Add mobile-responsive layout".toLowerCase())
-    // partial confidence note present
-    expect(html).toContain("preliminary")
-  })
-
-  it("handles an unreachable site (new-build path) without a letter grade", () => {
-    const html = renderReport({
-      ...base,
-      url: "https://gone.example",
+  it("reachable:false → new-build message, no feature issue copy", () => {
+    const data = makeAuditData({
       reachable: false,
-      inventory: inv(Object.fromEntries(Object.keys(inv()).map((k) => [k, "error"])) as any),
+      blocked: false,
       grade: { overall: "F", byCategory: {}, confidence: "partial" },
       tier: "new-build",
+      inventory: {
+        mobileViewport: false, clickToCall: false, bookingLink: false,
+        hours: false, addressOrMap: false, reviews: false,
+        localBusinessJsonLd: false, menuSchema: false, https: false,
+        ogTags: false, contactForm: false, favicon: false,
+      },
     })
-    // apostrophe is HTML-escaped, so match on an apostrophe-free substring
-    expect(html).toContain("find a working website")
-    expect(html).toContain("New build recommended")
+
+    const html = renderReport(data)
+
+    expect(html).toContain("couldn't find a working website")
+
+    // Should NOT contain any per-feature issue copy
+    expect(html).not.toContain("The site isn't built to fit phone screens.")
+    expect(html).not.toContain("The phone number isn't tap-to-call.")
+    expect(html).not.toContain("There's no obvious way to book online.")
   })
 
-  it("is honest about an A-grade site (no manufactured problems)", () => {
-    const html = renderReport({
-      ...base,
-      inventory: inv({ clickToCall: true, bookingLink: true, addressOrMap: true, localBusinessJsonLd: true, contactForm: true, menuSchema: true }),
-      grade: { overall: "A", byCategory: { seo: "A", conversion: "A" }, confidence: "high" },
-      tier: "care-or-decline",
+  it("blocked:true → blocked message, no grade-based issue list", () => {
+    const data = makeAuditData({
+      reachable: true,
+      blocked: true,
+      grade: { overall: "F", byCategory: {}, confidence: "partial" },
+      tier: "blocked-unknown",
+      inventory: {
+        mobileViewport: "error", clickToCall: "error", bookingLink: "error",
+        hours: "error", addressOrMap: "error", reviews: "error",
+        localBusinessJsonLd: "error", menuSchema: "error", https: "error",
+        ogTags: "error", contactForm: "error", favicon: "error",
+      },
     })
-    expect(html).toContain("already strong")
-    expect(html).toContain("In good shape")
+
+    const html = renderReport(data)
+
+    expect(html).toContain("blocked our automated check")
+
+    // No grade badge rendered for blocked
+    expect(html).not.toContain("At a Glance")
+    expect(html).not.toContain("Top 3 Issues")
+
+    // No feature issue copy
+    expect(html).not.toContain("The site isn't built to fit phone screens.")
   })
 
-  it("escapes hostile content", () => {
-    const html = renderReport({ ...base, url: "https://x.example/<script>alert(1)</script>" })
-    expect(html).not.toContain("<script>alert(1)</script>")
+  it("grade A with all features present → 'great shape', no manufactured issues", () => {
+    const data = makeAuditData({
+      grade: { overall: "A", byCategory: {}, confidence: "high" },
+      inventory: {
+        mobileViewport: true, clickToCall: true, bookingLink: true,
+        hours: true, addressOrMap: true, reviews: true,
+        localBusinessJsonLd: true, menuSchema: true, https: true,
+        ogTags: true, contactForm: true, favicon: true,
+      },
+    })
+
+    const html = renderReport(data)
+
+    expect(html).toContain("great shape")
+
+    // None of the feature-specific issue copy for features that are true
+    expect(html).not.toContain("The site isn't built to fit phone screens.")
+    expect(html).not.toContain("The phone number isn't tap-to-call.")
+    expect(html).not.toContain("There's no obvious way to book online.")
+    expect(html).not.toContain("Opening hours aren't shown on the site.")
+    expect(html).not.toContain("No address or map on the page.")
+    expect(html).not.toContain("No LocalBusiness structured data.")
+  })
+
+  it("esc() escapes XSS — shopName with <script> is not rendered unescaped", () => {
+    const data = makeAuditData()
+    const html = renderReport(data, "<script>alert('xss')</script>")
+
+    // The raw <script>alert must not appear verbatim
+    expect(html).not.toContain("<script>alert")
+    // But the escaped version should be present (or at least no raw angle bracket)
+    expect(html).not.toMatch(/<script>alert/)
   })
 })

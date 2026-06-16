@@ -36,9 +36,46 @@ The first test list (stripe, techcrunch, gymshark, squarespace, wix) was **not r
 - **neverssl.com** → `https:false` correctly detected (HTTP-only). Its SEOmator `error` at 8.8s was the **temp-file concurrency collision** (my manual validation overlapped the loop's batch on the same URL) — see fix below.
 
 ### Round 2 fix — commit `7527a9c`
+_(see also Round 3 below)_
 - **SEOmator temp filename made unique** (`seomator-<pid>-<seq>-<hash>.json`). Two concurrent audits of the same URL previously shared a temp file and clobbered each other. Now concurrency-safe (matters for future batch runs). Unit suite still 23/23.
 
 ### Open items (for the user, not blocking)
 - **Add `PSI_API_KEY`** for full performance/CWV grades + "high" confidence. The runner reads it from the environment automatically.
 - **Heavy-SPA SEOmator timeout is inherent** and acceptable — the target audience (small local sites) audits fine. Sites like stripe will show `seomator:error` and grade on inventory only (flagged partial).
 - **Task 11 remaining:** the `site-audit` skill + branded 1-page HTML report (presentation layer). Core collector mechanics are done + reviewed.
+
+---
+
+## 2026-06-16 ~00:24Z — Round 3 oversight (consistency check; 16→26 trials)
+
+### Code evolved since round 2 — commit `f441e14` (by the active dev session)
+- SEOmator timeout tightened to **45s** (secondary signal — degrade rather than hang); a `seomatorErrorMessage()` helper now surfaces "seomator timeout after Nms" distinctly from opaque failures.
+- **fetchHtml gained transient-failure retry** (3 attempts, injectable fetch/sleep for tests): a received HTTP response is terminal (no retry), but a thrown fetch (connection reset / DNS blip) retries — motivated by gymshark's CDN resetting the first handshake.
+- New tier **`blocked-unknown`**: a reachable-but-non-2xx page (blocked/challenge) is no longer graded as if trustworthy.
+- Unit suite grew **23 → 30** (added `fetchPage.test.ts` for retry; new collect/seomator cases). All green.
+
+### Loop health
+- The trial loop had **died** (~71 min gap, last batch 23:12 → relaunched 00:24, pid 22059). Relaunched per oversight protocol; first batch confirmed healthy (example C/tune-up, berkshire D/rebuild — matching priors). Another session is also running ad-hoc trials; append-only logs + per-invocation temp files keep data intact.
+
+### Consistency check (the headline) — rubric is deterministic ✓
+Repeat audits of the same site with stable probe inputs gave **identical grades/tiers**:
+- example.com ×3 → C/tune-up (SEOmator 94/93/93, ±1 jitter, grade stable)
+- berkshirehathaway ×2 → D/rebuild · info.cern.ch ×2 → D/rebuild · techcrunch ×2 → D/rebuild (wordpress legacy) · dead URL ×2 → F/new-build
+- Conclusion: the grade is a pure function of probe outputs — no rubric instability.
+
+### Two instabilities found — BOTH probe-level, already fixed/explained (not the rubric)
+1. **gymshark swung F/new-build ↔ D/rebuild across 5 runs.** Cause: its CDN intermittently resets the cold connection → "unreachable." Isolated fetch test with the new retry: **4/5 cold starts now succeed first try; 1/5 failed all 3 retries** (a full burst-block). So retry materially reduces flakiness but cannot fully beat an adversarial bot-protecting CDN. **Inherent to scraping such sites; outside the target profile** (small local shops don't run burst bot-blocking). Documented limitation — no further action.
+2. **neverssl flipped F↔D.** Cause: the temp-file collision (now fixed, `7527a9c`). With unique temp names it consistently gets SEOmator ok → D.
+
+### Verdict
+Core mechanics are sound and consistent. The grade is deterministic; observed variance was entirely network/concurrency flakiness, both addressed. No new failure modes (no crashes across 26 trials). PSI still needs a key (psi:error expected). Task 11 (skill + HTML report) remains the only unbuilt piece.
+
+---
+
+## 2026-06-16 ~00:58Z — Round 4: oversight wound down (user returned)
+
+**Off-ramp triggered — all conditions met:** the user explicitly said "stop the loop"; active hands-on work resumed; heavy recent commits. Oversight is ending — no further wakes scheduled.
+
+**Honest correction on the stop:** the earlier `TaskStop`/`pkill` only dropped harness tracking — it did NOT kill the detached bash loops. Two `loop.sh` processes had survived (pid 20899 = original launch, pid 22059 = round-3 relaunch) and kept firing batches (last at 00:57:38). Both were force-killed at the OS level this round (`kill -9` on the bash parents + their `sleep` children); `ps -ef` now shows no loop/sleep/runner processes. The loop is genuinely stopped.
+
+**Final state:** Collector mechanics complete + reviewed. **Task 11 (branded HTML report) built** — `fc64fd4`; every audit now writes `audit-<host>.json` + a self-contained `audit-<host>.html`. Unit suite **35/35 green** (8 files). Rubric confirmed deterministic in round 3. Outstanding for the user: add a `PSI_API_KEY` for full-confidence grades; merge branch `worktree-site-audit-build` into main work when ready.
