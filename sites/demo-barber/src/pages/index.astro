@@ -58,7 +58,7 @@ if (token) {
         name: c.name,
         tagline: c.tagline,
         vertical: "salon",
-        heroImage: c.hero_image || fallback.heroImage,
+        heroImage: (c.hero_image && typeof c.hero_image === "object" ? c.hero_image.filename : c.hero_image) || fallback.heroImage,
         phone: c.phone,
         address: c.address,
         mapUrl: c.map_url,
