@@ -10,6 +10,8 @@ export interface PageResult {
   error?: string
   /** Number of fetch attempts made (1 = succeeded first try). */
   attempts?: number
+  /** True if the result came from an http:// fallback after https:// failed. */
+  httpFallback?: boolean
 }
 
 // Realistic desktop-Chrome UA. The previous custom UA tripped bot protection
@@ -26,21 +28,14 @@ export interface FetchOpts {
   fetchImpl?: typeof fetch
   /** Injectable sleep (for tests). */
   sleep?: (ms: number) => Promise<void>
+  /** If an https:// URL is unreachable, retry once over http://. Default true. */
+  httpFallback?: boolean
 }
 
 const defaultSleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
 
-/**
- * Fetch a page's HTML with reachability semantics and transient-failure retry.
- *
- * A RECEIVED HTTP response (even 403/5xx) is a real, terminal state — the site
- * exists, so we return immediately without retrying. We only retry when fetch
- * THROWS (no response at all): cold-connection resets and transient DNS/network
- * blips. Observed in the wild: some CDNs (e.g. gymshark) reset the very first
- * undici handshake (~70ms "fetch failed") then serve 200 on the next attempt.
- * Without a retry, a healthy site is misclassified as "no website" (new-build).
- */
-export async function fetchHtml(url: string, timeoutMs = 15000, opts: FetchOpts = {}): Promise<PageResult> {
+/** One URL, with transient-failure retry. No protocol fallback (see fetchHtml). */
+async function attemptFetch(url: string, timeoutMs: number, opts: FetchOpts): Promise<PageResult> {
   const attempts = Math.max(1, opts.attempts ?? 3)
   const retryDelayMs = opts.retryDelayMs ?? 400
   const doFetch = opts.fetchImpl ?? fetch
@@ -72,4 +67,33 @@ export async function fetchHtml(url: string, timeoutMs = 15000, opts: FetchOpts 
   }
   // Exhausted all attempts with no response → truly unreachable.
   return { reachable: false, ok: false, status: null, finalUrl: url, html: "", error: lastError, attempts }
+}
+
+/**
+ * Fetch a page's HTML with reachability semantics, transient-failure retry, and
+ * an https→http fallback.
+ *
+ * A RECEIVED HTTP response (even 403/5xx) is a real, terminal state — the site
+ * exists, so we return immediately without retrying. We only retry when fetch
+ * THROWS (no response at all): cold-connection resets and transient DNS/network
+ * blips. Observed in the wild: some CDNs (e.g. gymshark) reset the very first
+ * undici handshake (~70ms "fetch failed") then serve 200 on the next attempt.
+ * Without a retry, a healthy site is misclassified as "no website" (new-build).
+ *
+ * If an https:// URL is unreachable after all retries, we try http:// once.
+ * Many of our target prospects (older local shops) have NO SSL — requesting
+ * https:// fails outright, which would falsely flag them as "no website". The
+ * fallback audits the real (http) site; HTTPS-missing is then correctly recorded
+ * as a fix (finalUrl is http://, so the inventory's https check reads false).
+ */
+export async function fetchHtml(url: string, timeoutMs = 15000, opts: FetchOpts = {}): Promise<PageResult> {
+  const primary = await attemptFetch(url, timeoutMs, opts)
+  if (primary.reachable || opts.httpFallback === false) return primary
+  if (!/^https:\/\//i.test(url)) return primary
+
+  const httpUrl = url.replace(/^https:\/\//i, "http://")
+  const fallback = await attemptFetch(httpUrl, timeoutMs, opts)
+  if (fallback.reachable) return { ...fallback, httpFallback: true }
+  // Both protocols failed → genuinely unreachable; keep the original (https) error.
+  return primary
 }

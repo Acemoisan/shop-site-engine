@@ -37,9 +37,43 @@ describe("fetchHtml retry semantics", () => {
     let calls = 0
     const fetchImpl = (async () => { calls++; throw new Error("ENOTFOUND") }) as unknown as typeof fetch
 
-    const r = await fetchHtml("https://dead.example", 15000, { attempts: 3, fetchImpl, sleep: noSleep })
+    const r = await fetchHtml("https://dead.example", 15000, { attempts: 3, httpFallback: false, fetchImpl, sleep: noSleep })
     expect(r.reachable).toBe(false)
     expect(r.error).toBe("ENOTFOUND")
     expect(calls).toBe(3)
+  })
+
+  it("falls back to http:// when https:// is unreachable (no-SSL prospects)", async () => {
+    const seen: string[] = []
+    const fetchImpl = (async (u: string) => {
+      seen.push(u)
+      if (u.startsWith("https://")) throw new Error("no TLS")
+      return res(200, "<html><body>http site</body></html>")
+    }) as unknown as typeof fetch
+
+    const r = await fetchHtml("https://oldshop.example", 15000, { attempts: 2, fetchImpl, sleep: noSleep })
+    expect(r.reachable).toBe(true)
+    expect(r.httpFallback).toBe(true)
+    expect(r.finalUrl).toContain("http://oldshop.example")
+    expect(seen.some((u) => u.startsWith("https://"))).toBe(true)
+    expect(seen.some((u) => u.startsWith("http://"))).toBe(true)
+  })
+
+  it("does NOT fall back when httpFallback is disabled", async () => {
+    const seen: string[] = []
+    const fetchImpl = (async (u: string) => { seen.push(u); throw new Error("no TLS") }) as unknown as typeof fetch
+
+    const r = await fetchHtml("https://oldshop.example", 15000, { attempts: 1, httpFallback: false, fetchImpl, sleep: noSleep })
+    expect(r.reachable).toBe(false)
+    expect(seen.every((u) => u.startsWith("https://"))).toBe(true)
+  })
+
+  it("does not fall back for a non-https URL", async () => {
+    const seen: string[] = []
+    const fetchImpl = (async (u: string) => { seen.push(u); throw new Error("down") }) as unknown as typeof fetch
+
+    const r = await fetchHtml("http://plain.example", 15000, { attempts: 1, fetchImpl, sleep: noSleep })
+    expect(r.reachable).toBe(false)
+    expect(seen).toEqual(["http://plain.example"]) // single attempt, no protocol switch
   })
 })
