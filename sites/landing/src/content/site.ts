@@ -22,7 +22,10 @@ export const site = {
   // Working inbox for go-live. Swap to a branded hello@studio0rbit.ca address
   // (with forwarding to this inbox) once the domain is set up.
   email: "aidan.c.moisan@gmail.com",
-  formEmail: "aidan.c.moisan@gmail.com", // contact form delivers here via FormSubmit
+  formEmail: "aidan.c.moisan@gmail.com", // inbox the contact form delivers to
+  // Web3Forms public access key (safe to expose; it's client-side). Get yours in
+  // ~30s at https://web3forms.com → enter aidan.c.moisan@gmail.com → copy the key.
+  web3formsKey: "a7f4a800-8a6e-442b-9b6f-ac15b3744ca7",
   nav: [
     { label: "What you get", href: "#benefits" },
     { label: "How it works", href: "#how" },

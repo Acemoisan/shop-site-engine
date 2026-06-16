@@ -19,16 +19,17 @@ const f = site.finalCta;
         </a>
       </div>
 
-      <!-- Contact form → Netlify Forms (native to our host, NO activation step).
-           The static HTML carries data-netlify + a hidden form-name so Netlify
-           detects the form on deploy; submissions show in the Netlify dashboard
-           (Forms tab) and can email you via Forms → notifications. Progressive
-           enhancement: JS posts via fetch for an inline success state; without JS
-           it falls back to a normal Netlify form POST. -->
+      <!-- Contact form → Web3Forms (host-agnostic backend, NO activation step).
+           Submissions are emailed instantly to the address tied to access_key.
+           Works on any static deploy (no Netlify form-detection / drag-drop quirk).
+           Progressive enhancement: JS posts JSON for an inline success state; with
+           JS off it falls back to a normal POST to the Web3Forms endpoint. -->
       <div>
-      <form id="auditForm" name="audit" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-email={site.email} class="rounded-2xl border border-background/15 bg-background/5 p-6 backdrop-blur-sm sm:p-8">
-        <input type="hidden" name="form-name" value="audit" />
-        <p class="hidden"><label>Leave this field empty: <input name="bot-field" /></label></p>
+      <form id="auditForm" method="POST" action="https://api.web3forms.com/submit" data-email={site.email} class="rounded-2xl border border-background/15 bg-background/5 p-6 backdrop-blur-sm sm:p-8">
+        <input type="hidden" name="access_key" value={site.web3formsKey} />
+        <input type="hidden" name="subject" value="New Studio0rbit audit request" />
+        <input type="hidden" name="from_name" value="Studio0rbit website" />
+        <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <h3 class="font-display text-lg font-semibold">{c.heading}</h3>
         <p class="mt-1 text-sm text-background/70">{c.body}</p>
         <div class="mt-5 grid gap-4">
@@ -62,14 +63,18 @@ const f = site.finalCta;
         var orig = btn ? btn.textContent : "";
         if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
         if (statusEl) { statusEl.classList.add("hidden"); statusEl.textContent = ""; }
-        var body = new URLSearchParams();
-        new FormData(form).forEach(function (v, k) { body.append(k, v); });
-        fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body.toString() })
-          .then(function (r) {
-            if (!r.ok) throw new Error("status " + r.status);
-            form.style.display = "none";
-            if (success) success.hidden = false;
-            success && success.scrollIntoView({ behavior: "smooth", block: "center" });
+        var data = {};
+        new FormData(form).forEach(function (v, k) { data[k] = v; });
+        fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(data) })
+          .then(function (r) { return r.json().catch(function () { return {}; }); })
+          .then(function (d) {
+            if (d && d.success) {
+              form.style.display = "none";
+              if (success) success.hidden = false;
+              success && success.scrollIntoView({ behavior: "smooth", block: "center" });
+            } else {
+              throw new Error((d && d.message) || "submit failed");
+            }
           })
           .catch(function () {
             if (btn) { btn.disabled = false; btn.textContent = orig; }
