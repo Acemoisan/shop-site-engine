@@ -90,7 +90,7 @@ const gallery = [
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
-  </head>
+</head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
 
@@ -619,7 +619,7 @@ const gallery = [
 
       /* Marquee */
       .marquee {
-        overflow: hidden; background: var(--primary); color: var(--primary-fg);
+        overflow: hidden; max-width: 100%; background: var(--primary); color: var(--primary-fg);
         padding: 0.85rem 0; white-space: nowrap;
       }
       .marquee-track { display: inline-flex; animation: scroll 26s linear infinite; }
@@ -833,6 +833,17 @@ const gallery = [
         .bean { grid-template-columns: 70px 1fr; }
         .footer-grid { grid-template-columns: 1fr; }
         .footer-base { flex-direction: column; }
+      }
+
+      /* Mobile overflow guard: keep decorative bleed inside the document width */
+      @media (max-width: 600px) {
+        /* The floating secondary hero image is offset right:-6% on desktop; on
+           mobile that ~1.5px bleed past the right edge widened the page (and
+           stretched the fixed .mobile-bar to match). Pull it flush inside its
+           container so it adds no document width. Desktop (>=768px) is untouched. */
+        .hero-img-b { right: 0; }
+        /* Let grid/flex copy columns shrink rather than force a minimum width. */
+        .hero-copy, .craft-copy, .visit-copy { min-width: 0; }
       }
     </style>
   </body>

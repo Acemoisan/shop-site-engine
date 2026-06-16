@@ -71,8 +71,9 @@ const jsonLd = {
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <set:html>{`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`}</set:html>
-  </head>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+  <style is:global>/* img-fit */img,svg,video,picture{max-width:100%}</style>
+</head>
   <body>
     <a class="skip" href="#collection">Skip to collection</a>
 
@@ -630,6 +631,7 @@ const jsonLd = {
         border-top: 1px solid var(--border);
         border-bottom: 1px solid var(--border);
         overflow: hidden;
+        max-width: 100%;
         background: var(--muted);
       }
       .ribbon-track {

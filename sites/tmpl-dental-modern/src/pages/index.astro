@@ -73,8 +73,8 @@ const jsonLd = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet" />
-    <set:html value={`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`} />
-  </head>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+</head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
 
@@ -457,6 +457,10 @@ const jsonLd = {
       .blob { position: absolute; border-radius: 50%; filter: blur(8px); z-index: 0; opacity: .5; }
       .blob-1 { width: 360px; height: 360px; background: radial-gradient(circle at 30% 30%, #c4d0ff, transparent 70%); top: -120px; right: -80px; }
       .blob-2 { width: 300px; height: 300px; background: radial-gradient(circle at 40% 40%, #ffd9c9, transparent 70%); bottom: -100px; left: -60px; }
+      @media (max-width: 600px) {
+        .blob-1 { width: 220px; height: 220px; right: -40px; }
+        .blob-2 { width: 200px; height: 200px; left: -40px; }
+      }
       .hero-grid { position: relative; z-index: 1; }
 
       /* TRUST */
@@ -486,7 +490,7 @@ const jsonLd = {
 
       /* BEFORE / AFTER */
       .ba-section { max-width: var(--maxw); }
-      .ba { position: relative; max-width: 860px; margin: 0 auto; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 6px solid #fff; user-select: none; }
+      .ba { position: relative; max-width: min(860px, 100%); margin: 0 auto; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 6px solid #fff; user-select: none; }
       .ba img { width: 100%; height: clamp(280px, 42vw, 460px); object-fit: cover; display: block; }
       .ba-before { position: absolute; inset: 0; width: 50%; overflow: hidden; border-right: 3px solid #fff; }
       .ba-before img { position: absolute; inset: 0; width: 860px; max-width: none; }
@@ -531,7 +535,7 @@ const jsonLd = {
       /* MARQUEE */
       .marquee-sec { padding: 40px 0 8px; text-align: center; }
       .marquee-lead { font-weight: 700; color: #515a78; margin-bottom: 22px; }
-      .marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+      .marquee { overflow: hidden; max-width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
       .marquee-track { display: flex; gap: 18px; width: max-content; animation: scroll 26s linear infinite; }
       @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; flex-wrap: wrap; justify-content: center; } }
       .ins { font-family: var(--display); font-size: 1.4rem; color: var(--fg); padding: 12px 26px; border: 1px solid var(--border); border-radius: 14px; background: #fff; white-space: nowrap; }
@@ -540,10 +544,11 @@ const jsonLd = {
       /* VISIT */
       .visit { }
       .visit-grid { display: grid; gap: clamp(30px, 5vw, 54px); grid-template-columns: 1fr; align-items: start; }
+      .visit-grid > * { min-width: 0; }
       @media (min-width: 880px) { .visit-grid { grid-template-columns: 1fr 1fr; } }
       .visit-info h2 { font-size: clamp(2rem, 4.4vw, 2.9rem); margin-top: 12px; }
       .visit-info .lede { color: #515a78; margin: 16px 0 24px; }
-      .nap-line { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 600; padding: 12px 0; border-bottom: 1px solid var(--border); }
+      .nap-line { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 600; padding: 12px 0; border-bottom: 1px solid var(--border); min-width: 0; overflow-wrap: anywhere; }
       .nap-line:hover { color: var(--primary); }
       .ni { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--muted); color: var(--primary); flex: none; }
       .hours { width: 100%; border-collapse: collapse; margin-top: 22px; }

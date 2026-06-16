@@ -58,7 +58,8 @@ const areas = [
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  </head>
+    <style is:global>/* img-fit */img,svg,video,picture{max-width:100%}</style>
+</head>
   <body>
     <a class="skip" href="#listings">Skip to listings</a>
 
@@ -499,13 +500,16 @@ const areas = [
       /* Valuation band */
       .band { background: var(--primary); color: var(--primary-fg); }
       .band__inner { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 4rem); padding-block: clamp(3rem, 7vw, 5.5rem); align-items: center; }
+      .band__inner > * { min-width: 0; }
       .band h2 { color: var(--primary-fg); font-size: clamp(2.2rem, 6vw, 3.6rem); }
       .band__copy p { color: color-mix(in srgb, var(--primary-fg) 82%, transparent); max-width: 36ch; margin: 1rem 0 0; }
       .vform { background: var(--bg); color: var(--fg); border-radius: var(--r); padding: clamp(1.4rem, 3vw, 2rem); box-shadow: var(--shadow); display: grid; gap: 0.9rem; }
+      .vform input { min-width: 0; width: 100%; }
       .vform label { display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: color-mix(in srgb, var(--fg) 55%, transparent); }
       .vform input { min-height: 46px; border: 1px solid var(--border); border-radius: 9px; padding: 0 0.85rem; font: inherit; color: var(--fg); background: var(--bg); }
       .vform input:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
       .vform__row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+      .vform__row > * { min-width: 0; }
       .vform__fine { font-size: 0.78rem; color: color-mix(in srgb, var(--fg) 55%, transparent); text-align: center; margin: 0; }
 
       /* Split / about */
@@ -536,7 +540,7 @@ const areas = [
       /* Press marquee */
       .press { padding-block: clamp(2.2rem, 5vw, 3.2rem); border-block: 1px solid var(--border); }
       .press__label { text-align: center; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.72rem; font-weight: 600; color: color-mix(in srgb, var(--fg) 50%, transparent); margin: 0 0 1.4rem; }
-      .marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+      .marquee { overflow: hidden; max-width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
       .marquee__track { display: flex; gap: 3rem; width: max-content; animation: scroll 26s linear infinite; }
       @keyframes scroll { to { transform: translateX(-50%); } }
       @media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; } }
@@ -554,9 +558,9 @@ const areas = [
 
       /* Testimonials slider */
       .tsec { background: var(--muted); border-block: 1px solid var(--border); }
-      .slider { overflow: hidden; max-width: 760px; }
-      .slider__track { display: flex; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-      .slide { flex: 0 0 100%; margin: 0; padding-right: 1rem; }
+      .slider { overflow: hidden; max-width: 100%; width: 760px; }
+      .slider__track { display: flex; max-width: 100%; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+      .slide { flex: 0 0 100%; min-width: 0; max-width: 100%; margin: 0; padding-right: 1rem; }
       .slide blockquote { font-family: var(--display); font-size: clamp(1.4rem, 3vw, 2.1rem); font-weight: 500; line-height: 1.28; margin: 0 0 1.3rem; }
       .slide figcaption { display: flex; flex-direction: column; }
       .slide figcaption strong { font-weight: 600; }

@@ -79,9 +79,7 @@ const jsonLd = {
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <set:html
-      set:html={`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`}
-    />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
   </head>
   <body>
     <a class="skip" href="#collection">Skip to content</a>

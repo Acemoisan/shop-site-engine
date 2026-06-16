@@ -1,0 +1,365 @@
+{
+  "width": 390,
+  "report": [
+    {
+      "slug": "tmpl-barber-vintage",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-barber-modern",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-barber-street",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-coffee-artisan",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-coffee-editorial",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-coffee-nordic",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-dining-luxe",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-dining-rustic",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-dining-contemporary",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-fitness-hardcore",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-fitness-boutique",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-fitness-performance",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-yoga-serene",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-yoga-earthy",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-yoga-spirit",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-medspa-clinical",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-medspa-glow",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-medspa-editorial",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-dental-friendly",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-dental-premium",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-dental-modern",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-law-classic",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-law-modern",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-law-boutique",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-realestate-luxury",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-realestate-bright",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-realestate-agent",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-auto-rugged",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-auto-premium",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-auto-retro",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-saas-gradient",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-saas-dark",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-saas-clean",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-agency-brutalist",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-agency-sleek",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-agency-playful",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-photography-gallery",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-photography-folio",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-photography-cinematic",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-architecture-swiss",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-architecture-warm",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-architecture-dramatic",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-tattoo-ornate",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-tattoo-traditional",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-tattoo-fineline",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-brewery-craft",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-brewery-industrial",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-brewery-hazy",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-fashion-luxe",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-fashion-streetwear",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-fashion-minimal",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-jewelry-elegant",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-jewelry-modernlux",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-jewelry-artisan",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-hotel-coastal",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-hotel-urban",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-hotel-lodge",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-music-electric",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-music-indie",
+      "docW": 391,
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "slug": "tmpl-music-poster",
+      "docW": 390,
+      "overflow": 0,
+      "offenders": []
+    }
+  ]
+}

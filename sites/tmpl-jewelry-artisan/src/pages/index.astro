@@ -58,8 +58,8 @@ const jsonLd = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <set:html value={`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`} />
-  </head>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+</head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
 
@@ -523,9 +523,13 @@ const jsonLd = {
         .craft-steps, .mat-row { grid-template-columns: 1fr; gap: 1.2rem; }
         .footer-grid { grid-template-columns: 1fr 1fr; }
       }
-      @media (max-width: 560px) {
+      @media (max-width: 600px) {
         .bento { grid-template-columns: 1fr; }
-        .card-wide { grid-column: span 1; }
+        .card { min-width: 0; }
+        .card-wide { grid-column: span 1; grid-template-columns: 1fr; }
+        .card-wide .card-img { aspect-ratio: 16/10; }
+        .card-img { min-width: 0; }
+        .card-img img { max-width: 100%; }
         .hero-meta { gap: 1.2rem; }
         .footer-grid { grid-template-columns: 1fr; }
         .hero-img.inset { width: 38%; left: -14px; bottom: -18px; }
