@@ -16,17 +16,41 @@ import CTA from "@studio0rbit/shared/components/CTA.astro";
 import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
 import LocalBusinessJsonLd from "@studio0rbit/shared/seo/LocalBusinessJsonLd.astro";
 
-// Content comes from Storyblok (client-editable). Falls back to the local
-// file if the token is missing or the fetch fails, so the build never breaks.
+// Local defaults — used as fallback if Storyblok is unavailable or a field is empty.
+let shop: ShopContent = fallback;
+let stats = [
+  { value: "Est. 2012", label: "Beltline barbers" },
+  { value: "4.9★", label: "200+ Google reviews" },
+  { value: "Walk-ins", label: "Welcome daily" },
+];
+let features = [
+  { icon: "scissors", title: "Master barbers", body: "Skilled hands and sharp eyes — every cut dialled in to you." },
+  { icon: "star", title: "Classic & modern", body: "From a clean side-part to a skin fade, we do it all." },
+  { icon: "clock", title: "In and out, sharp", body: "Respect for your time — quality work without the wait." },
+  { icon: "calendar", title: "Easy online booking", body: "Reserve your chair in seconds, or walk in any day." },
+  { icon: "coffee", title: "On the house", body: "Grab a coffee or a whisky while you wait." },
+  { icon: "mapPin", title: "Heart of 17th Ave", body: "Right in the Beltline — easy to find, easy to park." },
+];
+let testimonials = [
+  { quote: "Best fade in the city, hands down. Been coming for years.", name: "Mike D." },
+  { quote: "Walked in on a Saturday, barely waited, left looking sharp.", name: "Chris L." },
+  { quote: "These guys actually listen — exactly the cut I asked for.", name: "Andre P." },
+];
+let faqs = [
+  { q: "Do you take walk-ins?", a: "Yes — walk-ins are welcome every day we're open. Booking ahead guarantees your time." },
+  { q: "How do I book?", a: "Tap any 'Book' button to reserve online, or just drop by." },
+  { q: "Do you cut kids' hair?", a: "Absolutely — all ages are welcome in the chair." },
+  { q: "Is there parking?", a: "Street parking along 17th Ave plus nearby lots." },
+];
+let h = { featuresLabel: "Why us", featuresHeading: "A proper barber, done right", testimonialsLabel: "Reviews", testimonialsHeading: "Calgary keeps coming back", faqHeading: "Questions, answered", ctaHeading: "Ready when you are." };
+
+// Content comes from Storyblok (client-editable). Everything below is overridable in the CMS.
 const token = import.meta.env.STORYBLOK_TOKEN;
 const slug = import.meta.env.STORYBLOK_STORY ?? "ironside-barber";
-let shop: ShopContent = fallback;
 let source = "fallback (local file)";
 if (token) {
   try {
-    const res = await fetch(
-      `https://api.storyblok.com/v2/cdn/stories/${slug}?token=${token}&version=published`,
-    );
+    const res = await fetch(`https://api.storyblok.com/v2/cdn/stories/${slug}?token=${token}&version=published`);
     if (res.ok) {
       const { story } = await res.json();
       const c = story.content;
@@ -40,45 +64,31 @@ if (token) {
         mapUrl: c.map_url,
         serviceArea: c.service_area,
         bookingUrl: c.booking_url,
-        hours: (c.hours ?? []).map((h: any) => ({ day: h.day, open: h.open, close: h.close, closed: h.closed })),
-        services: (c.services ?? []).map((s: any) => ({ name: s.name, price: s.price, description: s.description })),
+        hours: (c.hours ?? []).map((x: any) => ({ day: x.day, open: x.open, close: x.close, closed: x.closed })),
+        services: (c.services ?? []).map((x: any) => ({ name: x.name, price: x.price, description: x.description })),
         reviewsBlurb: c.reviews_blurb,
         rating: typeof c.rating === "string" ? parseFloat(c.rating) : c.rating,
         url: fallback.url,
       };
+      if (c.stats?.length) stats = c.stats.map((x: any) => ({ value: x.value, label: x.label }));
+      if (c.features?.length) features = c.features.map((x: any) => ({ icon: x.icon, title: x.title, body: x.body }));
+      if (c.testimonials?.length) testimonials = c.testimonials.map((x: any) => ({ quote: x.quote, name: x.name }));
+      if (c.faqs?.length) faqs = c.faqs.map((x: any) => ({ q: x.question, a: x.answer }));
+      h = {
+        featuresLabel: c.features_label || h.featuresLabel,
+        featuresHeading: c.features_heading || h.featuresHeading,
+        testimonialsLabel: c.testimonials_label || h.testimonialsLabel,
+        testimonialsHeading: c.testimonials_heading || h.testimonialsHeading,
+        faqHeading: c.faq_heading || h.faqHeading,
+        ctaHeading: c.cta_heading || h.ctaHeading,
+      };
       source = "Storyblok";
     }
   } catch {
-    // keep fallback
+    // keep fallbacks
   }
 }
 console.log(`[demo-barber] content source: ${source}`);
-
-// Section content for the elaborate template (barber-specific; not yet in the CMS model).
-const stats = [
-  { value: "Est. 2012", label: "Beltline barbers" },
-  { value: `${shop.rating ?? 4.9}★`, label: "200+ Google reviews" },
-  { value: "Walk-ins", label: "Welcome daily" },
-];
-const features = [
-  { icon: "scissors", title: "Master barbers", body: "Skilled hands and sharp eyes — every cut dialled in to you." },
-  { icon: "star", title: "Classic & modern", body: "From a clean side-part to a skin fade, we do it all." },
-  { icon: "clock", title: "In and out, sharp", body: "Respect for your time — quality work without the wait." },
-  { icon: "calendar", title: "Easy online booking", body: "Reserve your chair in seconds, or walk in any day." },
-  { icon: "coffee", title: "On the house", body: "Grab a coffee or a whisky while you wait." },
-  { icon: "mapPin", title: "Heart of 17th Ave", body: "Right in the Beltline — easy to find, easy to park." },
-];
-const testimonials = [
-  { quote: "Best fade in the city, hands down. Been coming for years.", name: "Mike D." },
-  { quote: "Walked in on a Saturday, barely waited, left looking sharp.", name: "Chris L." },
-  { quote: "These guys actually listen — exactly the cut I asked for.", name: "Andre P." },
-];
-const faqs = [
-  { q: "Do you take walk-ins?", a: "Yes — walk-ins are welcome every day we're open. Booking ahead guarantees your time." },
-  { q: "How do I book?", a: "Tap any 'Book' button to reserve online, or just drop by." },
-  { q: "Do you cut kids' hair?", a: "Absolutely — all ages are welcome in the chair." },
-  { q: "Is there parking?", a: "Street parking along 17th Ave plus nearby lots." },
-];
 ---
 <html lang="en">
   <head>
@@ -98,13 +108,13 @@ const faqs = [
     />
     <Hero name={shop.name} tagline={shop.tagline} bookingUrl={shop.bookingUrl} heroImage={shop.heroImage} />
     <Stats items={stats} />
-    <Features label="Why us" heading="A proper barber, done right" items={features} />
+    <Features label={h.featuresLabel} heading={h.featuresHeading} items={features} />
     <Services services={shop.services} heading="Services" />
     <Hours hours={shop.hours} />
-    <Testimonials label="Reviews" heading="Calgary keeps coming back" items={testimonials} />
+    <Testimonials label={h.testimonialsLabel} heading={h.testimonialsHeading} items={testimonials} />
     <ContactNAP name={shop.name} phone={shop.phone} address={shop.address} mapUrl={shop.mapUrl} serviceArea={shop.serviceArea} />
-    <Faq items={faqs} />
-    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} />
+    <Faq heading={h.faqHeading} items={faqs} />
+    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} heading={h.ctaHeading} />
     <SiteFooter name={shop.name} address={shop.address} phone={shop.phone} />
   </body>
 </html>
