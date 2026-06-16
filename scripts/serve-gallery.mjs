@@ -8,7 +8,12 @@ import { readFile, stat } from "node:fs/promises";
 import { join, dirname, normalize, extname } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "gallery");
+// Serves ./gallery by default; pass a dir (or set DIR) to serve anything else,
+// e.g. `node scripts/serve-gallery.mjs sites/landing/dist` with PORT=4400.
+const REPO = join(dirname(fileURLToPath(import.meta.url)), "..");
+const ROOT = process.argv[2] || process.env.DIR
+  ? join(REPO, process.argv[2] || process.env.DIR)
+  : join(REPO, "gallery");
 const PORT = Number(process.env.PORT || 4300);
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8",

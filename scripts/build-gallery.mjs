@@ -12,14 +12,17 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const GALLERY = join(ROOT, "gallery");
-const sites = JSON.parse(readFileSync(join(ROOT, "docs", "templates-ports.json"), "utf8"));
+let sites = JSON.parse(readFileSync(join(ROOT, "docs", "templates-ports.json"), "utf8"));
 const indexOnly = process.argv.includes("--index-only");
+// Optional: pass one or more slugs to rebuild only those (index still covers all).
+const only = process.argv.slice(2).filter(a => a.startsWith("tmpl-"));
+const buildList = only.length ? sites.filter(s => only.includes(s.slug)) : sites;
 
 const results = [];
 if (!indexOnly) {
   mkdirSync(GALLERY, { recursive: true });
   let i = 0;
-  for (const s of sites) {
+  for (const s of buildList) {
     i++;
     const out = join(GALLERY, "g", s.slug);
     const hasPage = existsSync(join(ROOT, "sites", s.slug, "src", "pages", "index.astro"));
@@ -34,7 +37,7 @@ if (!indexOnly) {
       const msg = (e.stdout?.toString() || "") + (e.stderr?.toString() || e.message || "");
       results.push({ slug: s.slug, ok: false, reason: msg.split("\n").slice(-6).join("\n").slice(0, 600) });
     }
-    process.stdout.write(`[${i}/${sites.length}] ${s.slug} ${results.at(-1).ok ? "ok" : "FAIL"}\n`);
+    process.stdout.write(`[${i}/${buildList.length}] ${s.slug} ${results.at(-1).ok ? "ok" : "FAIL"}\n`);
   }
 }
 
@@ -96,7 +99,7 @@ writeFileSync(join(GALLERY, "index.html"), html);
 
 const ok = results.filter(r => r.ok).length;
 if (!indexOnly) {
-  console.log(`\nBuilt ${ok}/${sites.length} into gallery/.`);
+  console.log(`\nBuilt ${ok}/${buildList.length} into gallery/.`);
   const fails = results.filter(r => !r.ok);
   if (fails.length) { console.log(`\nFAILURES (${fails.length}):`); for (const f of fails) console.log(`- ${f.slug}: ${f.reason ?? "?"}`); }
 }
