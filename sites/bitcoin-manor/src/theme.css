@@ -1,0 +1,42 @@
+/* Bitcoin Manor — "laser/forge" dark token system.
+   Warm espresso canvas + bone text (laser-on-canvas), Bitcoin-orange primary,
+   LED-ember accent used only in the signature data readout. Grounded in their
+   3D-print / laser-engrave / LED-hardware maker world (see design spec). */
+:root {
+  --background: oklch(0.18 0.012 65);        /* #14110E espresso-black, warm */
+  --foreground: oklch(0.92 0.015 85);        /* #ECE6DA bone / canvas */
+  --card: oklch(0.225 0.012 65);             /* #1E1A16 raised warm panel */
+  --primary: oklch(0.74 0.16 60);            /* #F7931A Bitcoin orange */
+  --primary-foreground: oklch(0.18 0.012 65);/* ink on orange */
+  --muted: oklch(0.255 0.012 65);            /* hairline-fill warm charcoal */
+  --muted-foreground: oklch(0.70 0.022 80);  /* #9A8F7E warm taupe */
+  --accent: oklch(0.64 0.21 33);             /* #FF4D2E LED-ember (signature only) */
+  --accent-foreground: oklch(0.95 0.01 85);  /* bone on ember */
+  --border: oklch(0.30 0.012 65);            /* #2C2620 warm hairline */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Chakra Petch", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  --radius: 0.25rem;
+}
+
+/* Make the bespoke monospace data-readout font available as a utility without
+   editing shared base.css. Scoped, additive — never restyles a shared component. */
+.font-data { font-family: var(--font-mono); }
+
+/* Signature: simulated LED dot-matrix backing for the data readout. */
+.led-grid {
+  background-image: radial-gradient(currentColor 22%, transparent 23%);
+  background-size: 0.5rem 0.5rem;
+}
+
+/* Faint laser-cut grid for the hero canvas. */
+.laser-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklch, var(--border) 60%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--border) 60%, transparent) 1px, transparent 1px);
+  background-size: 2.5rem 2.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

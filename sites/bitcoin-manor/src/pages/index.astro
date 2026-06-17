@@ -1,0 +1,416 @@
+---
+import "@studio0rbit/shared/styles/base.css";
+import "../theme.css";
+import { shop as fallback } from "../content/shop";
+import type { ShopContent } from "@studio0rbit/shared";
+import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
+import Stats from "@studio0rbit/shared/components/Stats.astro";
+import Features from "@studio0rbit/shared/components/Features.astro";
+import Reviews from "@studio0rbit/shared/components/Reviews.astro";
+import Icon from "@studio0rbit/shared/components/Icon.astro";
+
+// ── Local fallbacks (used if Storyblok is down or a field is empty) ──────────
+let shop: ShopContent = fallback;
+
+// Deep-link targets into the client's existing WooCommerce store.
+const store = {
+  shop: "https://bitcoinmanor.com/bitcoin-merchandise-store/",
+  stacksworth: "https://bitcoinmanor.com/stacksworth/",
+  matrix: "https://bitcoinmanor.com/product/stacksworth-matrix-bitcoin-led-display/",
+  threeD: "https://bitcoinmanor.com/3d-printed-solutions-and-designs/",
+  laserCrafted: "https://bitcoinmanor.com/laser-crafted-collectibles/",
+  laserLayers: "https://bitcoinmanor.com/bitcoin-art-laser-layers/",
+  coldbox: "https://bitcoinmanor.com/product/special-edition-coldbox/",
+  kids: "https://bitcoinmanor.com/bitcoin-for-kids/",
+  sublimation: "https://bitcoinmanor.com/sublimation-art/",
+  events: "https://bitcoinmanor.com/local-bitcoin-events/",
+};
+const social = {
+  instagram: "https://www.instagram.com/bitcoinmanor/",
+  x: "https://x.com/BitcoinManor",
+  email: "support@bitcoinmanor.com",
+};
+
+let stats = [
+  { value: "In-house", label: "Designed & built by hand" },
+  { value: "Alberta", label: "Made in Canada" },
+  { value: "⚡ Lightning", label: "Payments accepted" },
+];
+
+// Signature LED readout — illustrative of what a Stacksworth Matrix shows.
+let readout = [
+  { k: "BLOCK", v: "871,402" },
+  { k: "FEES", v: "6 sat/vB" },
+  { k: "POOL", v: "OCEAN" },
+  { k: "PRICE", v: "LIVE ⚡" },
+];
+
+const hardware = {
+  label: "Stacksworth hardware",
+  name: "Stacksworth Matrix",
+  price: "$169 CAD",
+  tagline: "Bitcoin's pulse at a glance.",
+  body: "A dedicated Bitcoin LED display that brings real-time network data to life in your home, office or shop. Built on ESP32, hand-assembled in Alberta, with crisp red LEDs and automatic Wi-Fi updates.",
+  specs: ["Block height", "Live price", "Fees — sat/vB", "Mining pool", "Local time", "Auto Wi-Fi updates"],
+};
+
+let collections = [
+  { icon: "target", name: "3D-Printed Solutions", body: "Unique 3D-printed Bitcoin pieces, designed in-house and tailored to you.", href: store.threeD },
+  { icon: "sparkles", name: "Laser-Crafted Collectibles", body: "The art of precision: custom laser engraving, made to order.", href: store.laserCrafted },
+  { icon: "bolt", name: "Laser Layers: Proof of Work", body: "Born from paint, code and laser light — burned forever into canvas.", href: store.laserLayers },
+  { icon: "shield", name: "Special-Edition COLDbox", body: "House your Coinkite cold-storage gear in a commemorative design.", href: store.coldbox },
+  { icon: "heart", name: "Bitcoin for Kids", body: "Books, games and adventures that make Bitcoin click for curious kids.", href: store.kids },
+  { icon: "star", name: "Sublimation Art", body: "Show your love for Bitcoin with bold, vivid sublimation pieces.", href: store.sublimation },
+];
+
+let values = [
+  { icon: "pencil", title: "Designed in-house", body: "Every piece is conceived, modelled and finished by us — never drop-shipped." },
+  { icon: "bolt", title: "Bitcoin-native", body: "We accept Lightning and build for people who actually use the network." },
+  { icon: "wrench", title: "Made in Alberta", body: "3D-printed, laser-cut and hand-assembled in our Alberta workshop." },
+  { icon: "heart", title: "For every stacker", body: "From hardware nerds to kids learning their first block — there's gear for you." },
+];
+
+let h = {
+  heroKicker: "In-house Bitcoin gear · Alberta",
+  heroSubcopy: "Hand-built hardware, laser art, 3D-printed pieces and Bitcoin-for-kids — designed and made in-house, for people who live on the network.",
+  heroCta: "Shop the store",
+  valuesLabel: "Why Bitcoin Manor",
+  valuesHeading: "Bitcoin gear with a real maker behind it",
+  collectionsLabel: "Collections",
+  collectionsHeading: "Explore what we craft",
+  powQuote: "Born from paint, code and laser light — Bitcoin's untold stories, burned forever into canvas.",
+  eventsHeading: "Catch us in the wild",
+  eventsBody: "We bring Bitcoin Manor to meetups and events across Alberta. Want our gear at yours? Get in touch.",
+  contactHeading: "Start your Bitcoin journey",
+  contactBody: "Questions about a product, a custom build, or stocking our gear? Send a note — we read every one.",
+};
+
+// ── Storyblok override (client-editable; build survives Storyblok being down) ─
+const token = import.meta.env.STORYBLOK_TOKEN;
+const slug = import.meta.env.STORYBLOK_STORY ?? "bitcoin-manor";
+let source = "fallback (local file)";
+if (token) {
+  try {
+    const res = await fetch(`https://api.storyblok.com/v2/cdn/stories/${slug}?token=${token}&version=published`);
+    if (res.ok) {
+      const { story } = await res.json();
+      const c = story.content ?? {};
+      shop = {
+        ...fallback,
+        name: c.name || fallback.name,
+        tagline: c.tagline || fallback.tagline,
+        bookingUrl: c.booking_url || fallback.bookingUrl,
+        serviceArea: c.service_area || fallback.serviceArea,
+        reviewsBlurb: c.reviews_blurb || fallback.reviewsBlurb,
+        rating: c.rating ? (typeof c.rating === "string" ? parseFloat(c.rating) : c.rating) : fallback.rating,
+        url: fallback.url,
+      };
+      if (c.stats?.length) stats = c.stats.map((x: any) => ({ value: x.value, label: x.label }));
+      if (c.readout?.length) readout = c.readout.map((x: any) => ({ k: x.key, v: x.value }));
+      if (c.collections?.length) collections = c.collections.map((x: any) => ({ icon: x.icon || "target", name: x.name, body: x.body, href: x.href }));
+      if (c.values?.length) values = c.values.map((x: any) => ({ icon: x.icon, title: x.title, body: x.body }));
+      if (c.hardware_name) Object.assign(hardware, {
+        name: c.hardware_name, price: c.hardware_price || hardware.price,
+        tagline: c.hardware_tagline || hardware.tagline, body: c.hardware_body || hardware.body,
+        specs: c.hardware_specs?.length ? c.hardware_specs.map((s: any) => s.value || s) : hardware.specs,
+      });
+      h = {
+        heroKicker: c.hero_kicker || h.heroKicker,
+        heroSubcopy: c.hero_subcopy || h.heroSubcopy,
+        heroCta: c.hero_cta_label || h.heroCta,
+        valuesLabel: c.values_label || h.valuesLabel,
+        valuesHeading: c.values_heading || h.valuesHeading,
+        collectionsLabel: c.collections_label || h.collectionsLabel,
+        collectionsHeading: c.collections_heading || h.collectionsHeading,
+        powQuote: c.pow_quote || h.powQuote,
+        eventsHeading: c.events_heading || h.eventsHeading,
+        eventsBody: c.events_body || h.eventsBody,
+        contactHeading: c.contact_heading || h.contactHeading,
+        contactBody: c.contact_body || h.contactBody,
+      };
+      source = "Storyblok";
+    }
+  } catch {
+    // keep fallbacks
+  }
+}
+console.log(`[bitcoin-manor] content source: ${source}`);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://bitcoinmanor.com/#org",
+      name: shop.name,
+      url: shop.url,
+      email: social.email,
+      slogan: shop.tagline,
+      areaServed: "CA",
+      sameAs: [social.instagram, social.x],
+    },
+    {
+      "@type": "Store",
+      name: shop.name,
+      url: store.shop,
+      description: "In-house designed Bitcoin merchandise, hardware and art, made in Alberta.",
+      areaServed: "CA",
+      priceRange: "$$",
+    },
+    {
+      "@type": "Product",
+      name: hardware.name,
+      description: "Bitcoin LED display — shows block height, live price, fees (sat/vB), mining pool and local time. ESP32, hand-assembled in Alberta.",
+      brand: { "@type": "Brand", name: "Stacksworth" },
+      offers: {
+        "@type": "Offer",
+        price: "169.00",
+        priceCurrency: "CAD",
+        availability: "https://schema.org/InStock",
+        url: store.matrix,
+      },
+    },
+  ],
+};
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{shop.name} — {shop.tagline}</title>
+    <meta name="description" content="In-house Bitcoin gear made in Alberta: Stacksworth LED displays, laser art, 3D-printed pieces, COLDbox cases and Bitcoin-for-kids. Ships across Canada." />
+    <meta property="og:title" content={`${shop.name} — ${shop.tagline}`} />
+    <meta property="og:description" content="In-house Bitcoin gear, hardware and art — designed and built in Alberta." />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body id="top" class="bg-background text-foreground font-sans antialiased">
+    <SiteNav
+      name={shop.name}
+      bookingUrl={store.shop}
+      bookLabel="Shop"
+      links={[
+        { label: "Hardware", href: "#hardware" },
+        { label: "Collections", href: "#collections" },
+        { label: "Events", href: "#events" },
+        { label: "Contact", href: "#contact" },
+      ]}
+    />
+
+    <!-- ── Hero ───────────────────────────────────────────────────────── -->
+    <section class="relative overflow-hidden border-b border-border">
+      <div class="laser-grid pointer-events-none absolute inset-0 text-border opacity-40"></div>
+      <div class="pointer-events-none absolute inset-0" style="background: radial-gradient(70% 55% at 50% -5%, color-mix(in oklch, var(--primary) 20%, transparent), transparent 72%);"></div>
+      <div class="relative mx-auto max-w-6xl px-6 py-24 sm:py-32">
+        <p class="font-data text-xs uppercase tracking-[0.35em] text-primary">{h.heroKicker}</p>
+        <h1 class="mt-6 font-display text-5xl font-bold uppercase leading-[0.95] tracking-tight text-foreground sm:text-7xl">
+          Bitcoin<br />Manor
+        </h1>
+        <p class="mt-5 font-display text-xl font-medium tracking-tight text-primary sm:text-2xl">{shop.tagline}</p>
+        <p class="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">{h.heroSubcopy}</p>
+        <div class="mt-9 flex flex-wrap items-center gap-4">
+          <a href={store.shop} class="rounded-[var(--radius)] bg-primary px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">{h.heroCta}</a>
+          <a href="#hardware" class="rounded-[var(--radius)] border border-border px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-foreground transition hover:border-primary hover:text-primary">See Stacksworth</a>
+        </div>
+
+        <!-- Signature: LED dot-matrix data readout -->
+        <div class="mt-14 max-w-2xl rounded-[var(--radius)] border border-border bg-card/70 p-5 backdrop-blur-sm">
+          <div class="flex items-center justify-between border-b border-border pb-3">
+            <span class="font-data text-[0.7rem] uppercase tracking-[0.25em] text-muted-foreground">Stacksworth Matrix</span>
+            <span class="flex items-center gap-2 font-data text-[0.7rem] uppercase tracking-[0.25em] text-accent">
+              <span class="led-grid inline-block h-2 w-2 rounded-full bg-accent text-accent"></span>live
+            </span>
+          </div>
+          <dl class="mt-4 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
+            {readout.map((r) => (
+              <div>
+                <dt class="font-data text-[0.65rem] uppercase tracking-[0.2em] text-muted-foreground">{r.k}</dt>
+                <dd class="mt-1 font-data text-lg font-medium text-foreground">{r.v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <Stats items={stats} />
+
+    <!-- ── Stacksworth hardware ───────────────────────────────────────── -->
+    <section id="hardware" class="scroll-mt-20 border-b border-border">
+      <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 sm:py-28 lg:grid-cols-2">
+        <div>
+          <p class="font-data text-xs uppercase tracking-[0.3em] text-primary">{hardware.label}</p>
+          <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{hardware.name}</h2>
+          <p class="mt-2 font-display text-lg text-accent">{hardware.tagline}</p>
+          <p class="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">{hardware.body}</p>
+          <ul class="mt-7 grid grid-cols-2 gap-x-6 gap-y-3">
+            {hardware.specs.map((s) => (
+              <li class="flex items-center gap-2 text-sm text-foreground">
+                <Icon name="check" class="h-4 w-4 shrink-0 text-primary" />{s}
+              </li>
+            ))}
+          </ul>
+          <div class="mt-9 flex flex-wrap items-center gap-4">
+            <a href={store.matrix} class="rounded-[var(--radius)] bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">Buy the Matrix — {hardware.price}</a>
+            <a href={store.stacksworth} class="text-sm font-semibold uppercase tracking-wider text-muted-foreground transition hover:text-primary">View the lineup →</a>
+          </div>
+          <p class="mt-4 font-data text-xs text-muted-foreground">Spark — touch edition · <span class="text-accent">coming soon</span></p>
+        </div>
+
+        <!-- Faux Matrix display panel -->
+        <div class="rounded-[var(--radius)] border border-border bg-card p-6 shadow-sm">
+          <div class="rounded-[var(--radius)] border border-border bg-background p-6">
+            <div class="led-grid space-y-4 text-accent">
+              <div class="flex items-baseline justify-between">
+                <span class="font-data text-[0.65rem] uppercase tracking-[0.25em] text-muted-foreground">block height</span>
+                <span class="font-data text-2xl font-medium text-accent sm:text-3xl">871,402</span>
+              </div>
+              <div class="flex items-baseline justify-between">
+                <span class="font-data text-[0.65rem] uppercase tracking-[0.25em] text-muted-foreground">mempool</span>
+                <span class="font-data text-2xl font-medium text-primary sm:text-3xl">6 sat/vB</span>
+              </div>
+              <div class="flex items-baseline justify-between">
+                <span class="font-data text-[0.65rem] uppercase tracking-[0.25em] text-muted-foreground">mined by</span>
+                <span class="font-data text-2xl font-medium text-foreground sm:text-3xl">OCEAN</span>
+              </div>
+            </div>
+          </div>
+          <p class="mt-4 text-center font-data text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">real-time · auto Wi-Fi updates</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Collections ────────────────────────────────────────────────── -->
+    <section id="collections" class="scroll-mt-20">
+      <div class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+        <div class="max-w-2xl">
+          <p class="font-data text-xs uppercase tracking-[0.3em] text-primary">{h.collectionsLabel}</p>
+          <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{h.collectionsHeading}</h2>
+          <p class="mt-4 text-base text-muted-foreground">Everything is designed and created in-house. Tap a collection to shop it.</p>
+        </div>
+        <div class="mt-14 grid gap-px overflow-hidden rounded-[var(--radius)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          {collections.map((col) => (
+            <a href={col.href} class="group flex flex-col bg-card p-7 transition hover:bg-muted">
+              <div class="grid h-11 w-11 place-items-center rounded-[var(--radius)] bg-primary/10 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
+                <Icon name={col.icon} class="h-5 w-5" />
+              </div>
+              <h3 class="mt-5 font-display text-lg font-semibold text-foreground">{col.name}</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{col.body}</p>
+              <span class="mt-5 inline-flex items-center gap-1.5 font-data text-xs uppercase tracking-[0.2em] text-primary opacity-0 transition group-hover:opacity-100">Shop <Icon name="arrow" class="h-3.5 w-3.5" /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Features label={h.valuesLabel} heading={h.valuesHeading} items={values} />
+
+    <!-- ── Proof of Work band ─────────────────────────────────────────── -->
+    <section class="relative overflow-hidden border-y border-border bg-card">
+      <div class="led-grid pointer-events-none absolute inset-0 text-border opacity-30"></div>
+      <div class="relative mx-auto max-w-4xl px-6 py-20 text-center sm:py-24">
+        <p class="font-data text-xs uppercase tracking-[0.35em] text-accent">Laser Layers · Proof of Work</p>
+        <blockquote class="mx-auto mt-6 max-w-3xl font-display text-2xl font-medium leading-snug tracking-tight text-foreground sm:text-3xl">“{h.powQuote}”</blockquote>
+        <a href={store.laserLayers} class="mt-9 inline-block rounded-[var(--radius)] border border-primary px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary transition hover:bg-primary hover:text-primary-foreground">Discover your art piece</a>
+      </div>
+    </section>
+
+    <Reviews blurb={shop.reviewsBlurb} rating={shop.rating} />
+
+    <!-- ── Events / community ─────────────────────────────────────────── -->
+    <section id="events" class="scroll-mt-20">
+      <div class="mx-auto flex max-w-6xl flex-col items-start gap-6 px-6 py-16 sm:flex-row sm:items-center sm:justify-between">
+        <div class="max-w-xl">
+          <h2 class="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{h.eventsHeading}</h2>
+          <p class="mt-3 text-base text-muted-foreground">{h.eventsBody}</p>
+        </div>
+        <a href="#contact" class="shrink-0 rounded-[var(--radius)] border border-border px-6 py-3 text-sm font-semibold uppercase tracking-wider text-foreground transition hover:border-primary hover:text-primary">Bring us to your event</a>
+      </div>
+    </section>
+
+    <!-- ── Contact ────────────────────────────────────────────────────── -->
+    <section id="contact" class="scroll-mt-20 border-t border-border bg-card">
+      <div class="mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:py-28 lg:grid-cols-2">
+        <div>
+          <h2 class="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{h.contactHeading}</h2>
+          <p class="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">{h.contactBody}</p>
+          <dl class="mt-8 space-y-4 text-sm">
+            <div class="flex items-center gap-3">
+              <Icon name="bolt" class="h-5 w-5 text-primary" />
+              <a href={`mailto:${social.email}`} class="text-foreground transition hover:text-primary">{social.email}</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <Icon name="truck" class="h-5 w-5 text-primary" />
+              <span class="text-muted-foreground">{shop.serviceArea}</span>
+            </div>
+          </dl>
+          <div class="mt-8 flex items-center gap-3">
+            <a href={social.instagram} rel="me noopener" target="_blank" class="rounded-[var(--radius)] border border-border px-4 py-2 font-data text-xs uppercase tracking-[0.2em] text-muted-foreground transition hover:border-primary hover:text-primary">Instagram</a>
+            <a href={social.x} rel="me noopener" target="_blank" class="rounded-[var(--radius)] border border-border px-4 py-2 font-data text-xs uppercase tracking-[0.2em] text-muted-foreground transition hover:border-primary hover:text-primary">X / Twitter</a>
+          </div>
+        </div>
+
+        <!-- Netlify Forms — submissions captured in the Netlify dashboard; can email-notify support@bitcoinmanor.com -->
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="rounded-[var(--radius)] border border-border bg-background p-7">
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden"><label>Leave blank: <input name="bot-field" /></label></p>
+          <div class="grid gap-5">
+            <label class="block">
+              <span class="font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">Name</span>
+              <input type="text" name="name" required autocomplete="name"
+                class="mt-2 w-full rounded-[var(--radius)] border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Satoshi N." />
+            </label>
+            <label class="block">
+              <span class="font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">Email</span>
+              <input type="email" name="email" required autocomplete="email"
+                class="mt-2 w-full rounded-[var(--radius)] border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" placeholder="you@email.com" />
+            </label>
+            <label class="block">
+              <span class="font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">Message</span>
+              <textarea name="message" rows="4" required
+                class="mt-2 w-full rounded-[var(--radius)] border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Tell us what you're after…"></textarea>
+            </label>
+            <button type="submit" class="rounded-[var(--radius)] bg-primary px-6 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">Send message</button>
+            <p class="font-data text-[0.7rem] leading-relaxed text-muted-foreground">We only use your details to reply. No spam, no lists — Alberta PIPA respected.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ── Closing CTA ────────────────────────────────────────────────── -->
+    <section class="relative overflow-hidden border-t border-border">
+      <div class="pointer-events-none absolute inset-0" style="background: radial-gradient(60% 70% at 50% 120%, color-mix(in oklch, var(--primary) 18%, transparent), transparent 70%);"></div>
+      <div class="relative mx-auto max-w-4xl px-6 py-20 text-center sm:py-24">
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tight text-foreground sm:text-5xl">Stack gear, not regret.</h2>
+        <p class="mx-auto mt-4 max-w-md text-base text-muted-foreground">In-house Bitcoin hardware, art and collectibles — built in Alberta, shipped across Canada.</p>
+        <a href={store.shop} class="mt-9 inline-block rounded-[var(--radius)] bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">{h.heroCta}</a>
+      </div>
+    </section>
+
+    <!-- ── Footer ─────────────────────────────────────────────────────── -->
+    <footer class="border-t border-border bg-card">
+      <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-12 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p class="font-display text-lg font-bold uppercase tracking-wide text-foreground">{shop.name}</p>
+          <p class="mt-1 font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">{shop.tagline}</p>
+        </div>
+        <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <a href="#hardware" class="transition hover:text-primary">Hardware</a>
+          <a href="#collections" class="transition hover:text-primary">Collections</a>
+          <a href={store.shop} class="transition hover:text-primary">Store</a>
+          <a href="#contact" class="transition hover:text-primary">Contact</a>
+        </nav>
+        <div class="flex items-center gap-4 font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">
+          <a href={social.instagram} rel="me noopener" target="_blank" class="transition hover:text-primary">IG</a>
+          <a href={social.x} rel="me noopener" target="_blank" class="transition hover:text-primary">X</a>
+        </div>
+      </div>
+      <div class="border-t border-border">
+        <p class="mx-auto max-w-6xl px-6 py-5 font-data text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">© 2026 {shop.name} · Built in Alberta · ⚡ Lightning accepted</p>
+      </div>
+    </footer>
+  </body>
+</html>
