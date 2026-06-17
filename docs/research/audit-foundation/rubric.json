@@ -1,0 +1,2653 @@
+[
+  {
+    "id": "a11y-color-contrast",
+    "dimension": "a11y",
+    "title": "Text & control contrast meets AA",
+    "check": "Verify body text, link/CTA labels, and functional control boundaries meet WCAG AA contrast (4.5:1 normal text, 3:1 large text and non-text/UI boundaries) against their actual backgrounds, including text overlaid on hero imagery.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "signal": "a11y: color-contrast",
+    "claimRefs": [
+      467,
+      483,
+      502,
+      512,
+      514,
+      515,
+      516,
+      517,
+      518,
+      519,
+      520,
+      522,
+      523,
+      524,
+      525,
+      526
+    ]
+  },
+  {
+    "id": "a11y-image-alt",
+    "dimension": "a11y",
+    "title": "Images have appropriate alt text",
+    "check": "Verify every content/photographic image (hero, gallery, service photos) carries descriptive alt text and decorative images use alt=\"\" or a presentational role, with no images missing the alt attribute entirely.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "signal": "a11y: image-alt",
+    "claimRefs": [
+      468,
+      496,
+      535
+    ]
+  },
+  {
+    "id": "a11y-form-labels",
+    "dimension": "a11y",
+    "title": "Form inputs have associated labels",
+    "check": "Verify every contact/search/newsletter input has a persistent visible label programmatically associated via <label for>/id, aria-label, or aria-labelledby, with no placeholder-only fields.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "a11y: form-labels",
+    "claimRefs": [
+      469,
+      497,
+      507
+    ]
+  },
+  {
+    "id": "a11y-link-button-names",
+    "dimension": "a11y",
+    "title": "Links and buttons have accessible names",
+    "check": "Verify every link and button — especially icon-only ones (social icons, click-to-call, map pin, mobile menu toggle, FAQ toggle) — exposes a non-empty accessible name via visible text, aria-label, or alt/title on a child image/SVG.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "a11y: link-name",
+    "claimRefs": [
+      470,
+      471,
+      498,
+      504,
+      505,
+      511
+    ]
+  },
+  {
+    "id": "a11y-document-language",
+    "dimension": "a11y",
+    "title": "Document language is set and valid",
+    "check": "Verify the root <html> element carries a non-empty, well-formed BCP-47 lang attribute (e.g. en, en-CA).",
+    "necessity": "must-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "a11y: html-lang",
+    "claimRefs": [
+      472,
+      494,
+      495
+    ]
+  },
+  {
+    "id": "a11y-focus-visible",
+    "dimension": "a11y",
+    "title": "Visible keyboard focus indicators",
+    "check": "Verify every focusable control (nav links, CTAs, FAQ summaries, menu toggle, form fields) shows a perceivable focus indicator and the default outline is not removed without a replacement.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "signal": "a11y: focus-visible",
+    "claimRefs": [
+      473,
+      513,
+      528
+    ]
+  },
+  {
+    "id": "a11y-keyboard-operable",
+    "dimension": "a11y",
+    "title": "Keyboard operable, no traps",
+    "check": "Verify a keyboard-only walkthrough (Tab/Shift-Tab/Enter/Space/Esc) reaches and operates every interactive element including the collapsed mobile nav, with logical focus order, no traps, and the sticky header not obscuring focused targets.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      484,
+      513,
+      529,
+      534
+    ]
+  },
+  {
+    "id": "a11y-target-size",
+    "dimension": "a11y",
+    "title": "Adequate tap-target sizing",
+    "check": "Verify interactive targets (click-to-call, booking/CTA buttons, nav toggle, FAQ summaries, map link) are at least 24x24 CSS px or have 24px of clear spacing, with ~44px recommended for primary mobile actions.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      473,
+      506,
+      533
+    ]
+  },
+  {
+    "id": "a11y-reflow-resize",
+    "dimension": "a11y",
+    "title": "Reflow & text resize",
+    "check": "Verify the page reflows to a single column without two-dimensional scrolling at a 320px viewport (400% zoom), text resizes to 200% without loss of content, and zoom is not suppressed in the viewport meta.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      499,
+      531,
+      532,
+      527
+    ]
+  },
+  {
+    "id": "a11y-heading-structure",
+    "dimension": "a11y",
+    "title": "Logical heading outline",
+    "check": "Verify the page has exactly one H1 and a heading hierarchy that descends without skipping levels, and a non-empty document <title>.",
+    "necessity": "should-have",
+    "weight": 2,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "a11y: heading-order / document-title",
+    "claimRefs": [
+      474,
+      500,
+      501
+    ]
+  },
+  {
+    "id": "a11y-semantic-structure",
+    "dimension": "a11y",
+    "title": "Semantic structure for relationships & forms",
+    "check": "Verify content relationships are programmatically conveyed — hours expose day/value pairing via table or dl, form fields use correct autocomplete tokens, and validation errors are identified in text and announced (not color/border-only).",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      508,
+      509,
+      510
+    ]
+  },
+  {
+    "id": "a11y-reduced-motion",
+    "dimension": "a11y",
+    "title": "Respect reduced-motion preference",
+    "check": "Verify hover/scale/transition animations are gated behind @media (prefers-reduced-motion: reduce).",
+    "necessity": "nice-to-have",
+    "weight": 2,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      530
+    ]
+  },
+  {
+    "id": "a11y-overall-score",
+    "dimension": "a11y",
+    "title": "Automated accessibility baseline",
+    "check": "Capture the PSI/Lighthouse accessibility score as a coverage baseline, treating it as the automatable ~13-57% subset only — a high score is not WCAG AA conformance and must be paired with the manual checks above.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "psi.accessibility",
+    "claimRefs": [
+      466,
+      475,
+      476,
+      477,
+      478,
+      479,
+      480,
+      481,
+      482,
+      503
+    ]
+  },
+  {
+    "id": "a11y-claim-scoping",
+    "dimension": "a11y",
+    "title": "Honest accessibility claim & legal framing",
+    "check": "Verify reported a11y findings use defensible build-time/best-practice language ('passes automated checks plus a manual keyboard + screen-reader pass') rather than guaranteed 'WCAG AA compliant', and frame value as reducing Alberta Human Rights Act exposure — not legal compliance.",
+    "necessity": "should-have",
+    "weight": 2,
+    "verticals": [
+      "law",
+      "dental",
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      485,
+      486,
+      487,
+      488,
+      489,
+      490,
+      491,
+      492,
+      493,
+      521
+    ]
+  },
+  {
+    "id": "cont-pricing-granularity",
+    "dimension": "content",
+    "title": "Price signal at the right granularity",
+    "check": "Verify the site publishes a price signal matching its vertical's correct granularity (barber/cafe/spa = fixed itemized prices; trades/auto = ranges or 'starting at' + estimate CTA; auto also labor rate; dental = ranges for high-ticket elective; law = billing-model + optional fixed fee; retail = per-item when transactional) and never ships zero price signal nor a hard fixed price on site-dependent work.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "barber",
+      "cafe",
+      "spa",
+      "trades",
+      "dental",
+      "law",
+      "auto",
+      "retail"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      289
+    ]
+  },
+  {
+    "id": "cont-copy-depth",
+    "dimension": "content",
+    "title": "Sufficient real body copy",
+    "check": "Verify the page carries roughly 600-1,200 words of real body copy across hero/about/services/FAQ/area (homepage body ≥300-500 words) so it reads as credible and rankable rather than a thin brochure.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      242,
+      251
+    ]
+  },
+  {
+    "id": "cont-service-descriptions",
+    "dimension": "content",
+    "title": "Per-service descriptive copy",
+    "check": "Verify each service (or menu item) has real descriptive copy answering buyer questions, not a bare price-only list, and that owners' raw list has been expanded into selling prose.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "barber",
+      "spa",
+      "trades",
+      "dental",
+      "law",
+      "auto",
+      "fitness",
+      "cafe"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      243,
+      294
+    ]
+  },
+  {
+    "id": "cont-about-owner-story",
+    "dimension": "content",
+    "title": "About / owner-story block",
+    "check": "Verify a real About/owner-story block names the human(s) behind the business and pairs with a real photo as an E-E-A-T experience and trust signal.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      244,
+      295
+    ]
+  },
+  {
+    "id": "cont-service-area-copy",
+    "dimension": "content",
+    "title": "Localized service-area copy",
+    "check": "Verify neighborhood/service-area copy names the actual Calgary areas served with genuine local context rather than a generic city-name swap, and that multi-location sites use uniquely-authored per-location pages.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "trades",
+      "auto",
+      "law",
+      "dental",
+      "fitness",
+      "spa"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      245,
+      314
+    ]
+  },
+  {
+    "id": "cont-faq",
+    "dimension": "content",
+    "title": "FAQ with real questions",
+    "check": "Verify an FAQ block answers real, specific pre-visit questions (parking, walk-in vs appointment, payment/insurance, what to bring) for on-page conversion, voice and AI-search citation.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      246,
+      247
+    ]
+  },
+  {
+    "id": "cont-reviews-copy",
+    "dimension": "content",
+    "title": "Quoted reviews / testimonials",
+    "check": "Verify real reviews are surfaced as on-page quoted copy (actual words, not just a star number), serving as the top local trust signal and keyword-rich content.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      249,
+      300
+    ]
+  },
+  {
+    "id": "cont-trust-credentials",
+    "dimension": "content",
+    "title": "Credentials, licenses & association badges",
+    "check": "Verify trust/credential copy is present and vertical-appropriate (auto AMVIC licence + all-in pricing + written-estimate/warranty messaging; trades licensed/bonded/WCB/insured; law/dental compliant non-superlative claims; spa association membership; relevant accreditation badges) without compliance-violating superlatives or outcome guarantees.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "trades",
+      "auto",
+      "dental",
+      "law",
+      "spa",
+      "fitness"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      250,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      277,
+      278,
+      279,
+      280
+    ]
+  },
+  {
+    "id": "cont-compliant-claims",
+    "dimension": "content",
+    "title": "Lawful marketing claims",
+    "check": "Verify copy complies with the federal Competition Act and Alberta professional rules: testimonials genuine, no unproven performance guarantees, no drip pricing, and no 'specialist'/'best'/'top' superlatives or settlement-amount/outcome claims for regulated law and dental.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "law",
+      "dental",
+      "auto",
+      "trades",
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      269,
+      270,
+      271,
+      276,
+      280
+    ]
+  },
+  {
+    "id": "cont-real-photography",
+    "dimension": "content",
+    "title": "Authentic real photography",
+    "check": "Verify the site uses genuine business-specific photography (owner/staff, premises/storefront, work/results) over stock, meeting the minimum viable set of a storefront shot, an owner/team photo, and an interior/results shot.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      253,
+      254,
+      255,
+      261,
+      262,
+      263,
+      298
+    ]
+  },
+  {
+    "id": "cont-vertical-gallery",
+    "dimension": "content",
+    "title": "Vertical-specific results / product imagery",
+    "check": "Verify the conversion-driving visual for the vertical is present (trades before/after project galleries with city+scope captions; cafe real food photos of best-sellers; barber/spa results gallery + atmosphere; retail real product shots; fitness facility/member imagery), with required Alberta PIPA consent for any client before/after images.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "trades",
+      "cafe",
+      "barber",
+      "spa",
+      "dental",
+      "retail",
+      "fitness"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      256,
+      257,
+      258,
+      259,
+      260,
+      264,
+      265
+    ]
+  },
+  {
+    "id": "cont-menu-item-detail",
+    "dimension": "content",
+    "title": "Cafe menu item detail",
+    "check": "Verify the cafe menu renders in-page (not PDF) with name + fixed price per item, descriptions, and photos/dietary tags on best-sellers, plus MenuItem schema.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "cafe"
+    ],
+    "detection": "hybrid",
+    "signal": "menuSchema",
+    "claimRefs": [
+      248,
+      281,
+      282,
+      283
+    ]
+  },
+  {
+    "id": "cont-product-service-item-detail",
+    "dimension": "content",
+    "title": "Retail/service item detail & schema",
+    "check": "Verify priced items carry the right item-level fields and schema (retail: name+price+image+Offer/availability/condition, unique description, alt text; spa/barber: name+price+duration+description; auto: honest ranges + turnaround) with catalogue depth capped to the conversion-relevant subset.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "retail",
+      "spa",
+      "barber",
+      "auto",
+      "fitness",
+      "cafe"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      284,
+      285,
+      286,
+      287,
+      288,
+      290,
+      291,
+      292,
+      302
+    ]
+  },
+  {
+    "id": "cont-nap-consistency",
+    "dimension": "content",
+    "title": "Consistent NAP from one source",
+    "check": "Verify NAP is byte-for-byte consistent across page body, footer, LocalBusiness JSON-LD, and GBP, derived from one canonical source, with no call-tracking number breaking the crawled HTML (minor abbreviation differences ignored).",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      293,
+      303,
+      304,
+      305,
+      306,
+      315,
+      316
+    ]
+  },
+  {
+    "id": "cont-hours-accurate",
+    "dimension": "content",
+    "title": "Accurate, machine-readable hours",
+    "check": "Verify opening hours are published and accurate, rendered both as a human-readable table and as openingHoursSpecification JSON-LD (hh:mm:ss, per-day) that agree, with holiday/special hours authored as dated exceptions.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "hours",
+    "claimRefs": [
+      307,
+      308,
+      309,
+      310
+    ]
+  },
+  {
+    "id": "cont-location-framing",
+    "dimension": "content",
+    "title": "Correct location vs service-area framing",
+    "check": "Verify storefront verticals frame as 'located at Y' (full address + map + PostalAddress JSON-LD) while mobile/service-area verticals frame as 'serves area X' (named cities + areaServed JSON-LD), with the GBP address-hiding visibility risk flagged for SAB clients.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "barber",
+      "cafe",
+      "spa",
+      "dental",
+      "retail",
+      "fitness",
+      "law",
+      "auto",
+      "trades"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      311,
+      312,
+      313
+    ]
+  },
+  {
+    "id": "cont-seo-microcopy",
+    "dimension": "content",
+    "title": "Generated SEO/accessibility micro-content",
+    "check": "Verify image alt text, meta descriptions, and per-page title tags are present and populated, and that AI-generated content lands in the client's owned CMS as the live editable default.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      299,
+      301
+    ]
+  },
+  {
+    "id": "conv-click-to-call-tel-link",
+    "dimension": "conversion",
+    "title": "Phone number is a real tel: click-to-call link",
+    "check": "Verify the business phone is an href=\"tel:+1...\" anchor in E.164 format (not plain text or image) with a visible number plus icon, so a single mobile tap dials.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "clickToCall",
+    "claimRefs": [
+      330,
+      376,
+      331
+    ]
+  },
+  {
+    "id": "conv-single-dominant-cta-above-fold",
+    "dimension": "conversion",
+    "title": "One dominant primary CTA above the fold",
+    "check": "Verify exactly one visually dominant, high-contrast primary CTA sits above the fold in the hero/nav, with any secondary actions visually subordinate (ghost/text) rather than equal-weight competing buttons.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      320,
+      377,
+      388,
+      387
+    ]
+  },
+  {
+    "id": "conv-primary-cta-matches-vertical",
+    "dimension": "conversion",
+    "title": "Primary CTA matches the vertical's macro-conversion",
+    "check": "Verify the dominant CTA is the right type for the vertical: book for barber/spa/fitness/dental, click-to-call for trades/law (with quote/consult secondary), book-with-call for auto, order/reserve/view-menu for cafe, directions/shop for retail, free-trial for fitness.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      321,
+      322,
+      323,
+      324,
+      325,
+      327,
+      328,
+      348,
+      389,
+      391,
+      392,
+      393,
+      394,
+      395,
+      396,
+      360
+    ]
+  },
+  {
+    "id": "conv-sticky-mobile-cta",
+    "dimension": "conversion",
+    "title": "Persistent sticky mobile CTA in the thumb zone",
+    "check": "Verify a sticky/persistent CTA (bottom bar or sticky-nav button) echoes the primary action and stays reachable at every scroll depth on mobile, placed in the lower thumb zone with a >=44px high-contrast tap target.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      317,
+      318,
+      319,
+      334,
+      345,
+      398
+    ]
+  },
+  {
+    "id": "conv-cta-repeated-and-specific-copy",
+    "dimension": "conversion",
+    "title": "Primary CTA repeated through the page with specific copy",
+    "check": "Verify the primary action is echoed in nav, hero, and a closing CTA section (phone-first verticals also repeat the number in header/footer) and that CTA copy is action/outcome-specific per vertical, not generic 'Contact Us'/'Submit'.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      333,
+      397,
+      401
+    ]
+  },
+  {
+    "id": "conv-booking-inline-on-domain",
+    "dimension": "conversion",
+    "title": "Booking/order flow embedded on-domain, not an off-site redirect",
+    "check": "Verify the booking/order/reservation entry point is embedded inline (or a pop-up/modal) on the shop's own page and intent is collected on-site before any vendor hand-off, rather than redirecting off-site or using a mobile-broken raw iframe.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "barber",
+      "cafe",
+      "spa",
+      "fitness",
+      "dental"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      340,
+      344,
+      346,
+      347,
+      350,
+      382
+    ]
+  },
+  {
+    "id": "conv-booking-low-friction-guest",
+    "dimension": "conversion",
+    "title": "Low-friction guest booking flow",
+    "check": "Verify the booking path is a short service->time->confirm guest flow (no forced account creation before commitment, minimal pre-commit fields) with prices/durations visible next to the Book CTA.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "barber",
+      "spa",
+      "fitness",
+      "dental",
+      "cafe"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      341,
+      342,
+      343,
+      351
+    ]
+  },
+  {
+    "id": "conv-booking-paired-with-call",
+    "dimension": "conversion",
+    "title": "Booking widget paired with a parallel click-to-call path",
+    "check": "Verify appointment verticals expose both a prominent booking link and a tel: click-to-call as parallel paths (book primary, call secondary for barber/spa/dental; call primary, book secondary for trades/auto) rather than only one.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "barber",
+      "spa",
+      "fitness",
+      "dental",
+      "auto",
+      "trades"
+    ],
+    "detection": "deterministic",
+    "signal": "bookingLink",
+    "claimRefs": [
+      336,
+      337,
+      349,
+      390
+    ]
+  },
+  {
+    "id": "conv-contact-form-minimal-fields",
+    "dimension": "conversion",
+    "title": "Contact form is short with phone optional",
+    "check": "Verify the public contact form ships ~3 fields (Name, Email, Message) with phone optional (never required), defers long qualifying/intake questions to follow-up, and uses multi-step only if it must exceed ~5 fields.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "contactForm",
+    "claimRefs": [
+      352,
+      353,
+      362,
+      399,
+      381,
+      361
+    ]
+  },
+  {
+    "id": "conv-form-mobile-ux",
+    "dimension": "conversion",
+    "title": "Form is single-column with correct mobile input UX",
+    "check": "Verify the form is single-column with top-aligned labels (no placeholder-only labels), correct type/inputmode/autocomplete on email/phone/name, on-blur inline validation, and a hidden honeypot instead of a CAPTCHA.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      354,
+      355,
+      356,
+      357,
+      358
+    ]
+  },
+  {
+    "id": "conv-form-success-confirmation",
+    "dimension": "conversion",
+    "title": "Form submits successfully and confirms next steps",
+    "check": "Verify the form actually submits on mobile and returns a clear confirmation that sets expectations (response time) and re-exposes click-to-call, rather than failing silently or collapsing to a bare 'thanks'.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      359,
+      385
+    ]
+  },
+  {
+    "id": "conv-trust-cues-at-cta",
+    "dimension": "conversion",
+    "title": "Trust cues placed adjacent to the primary CTA",
+    "check": "Verify a compact star rating + review count and a named testimonial sit near the hero/closing CTA (and hours+NAP are co-located with the action), following a 2-3 cue hierarchy rather than isolated on a separate page or only in the footer.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      326,
+      339,
+      363,
+      364,
+      365,
+      368,
+      383,
+      384,
+      400
+    ]
+  },
+  {
+    "id": "conv-vertical-trust-badges-real-imagery",
+    "dimension": "conversion",
+    "title": "Vertical-specific trust badges and real photography",
+    "check": "Verify vertical-appropriate proof appears near the CTA (licensed/bonded/insured + warranty for trades; ASE/warranty for auto; credentials/before-after for dental/spa; Super Lawyers/bar/case-results for law; real work gallery for barber/spa/fitness) and that owner/staff/work photos are real, not stock, with local/years-in-business proof in Stats.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "trades",
+      "auto",
+      "dental",
+      "spa",
+      "law",
+      "barber",
+      "fitness"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      366,
+      369,
+      370,
+      371,
+      372,
+      373,
+      374,
+      375
+    ]
+  },
+  {
+    "id": "conv-secure-mobile-fast",
+    "dimension": "conversion",
+    "title": "Mobile-responsive, fast, and HTTPS-secure at the conversion point",
+    "check": "Verify the site is mobile-responsive and loads fast (so CTAs are usable), serves over HTTPS with security/privacy reassurance at the form, and publishes menu/price lists as HTML rather than a pinch-zoom PDF.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      378,
+      379,
+      386,
+      367,
+      380
+    ]
+  },
+  {
+    "id": "lseo-nap-crawlable-text",
+    "dimension": "localSeo",
+    "title": "Crawlable NAP as real text",
+    "check": "Verify the business name, full street address, and phone appear as crawlable HTML text (footer + contact), not baked into images, so a single canonical NAP is machine-readable.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "signal": "addressOrMap",
+    "claimRefs": [
+      64,
+      90,
+      91,
+      92,
+      133,
+      146
+    ]
+  },
+  {
+    "id": "lseo-click-to-call",
+    "dimension": "localSeo",
+    "title": "Click-to-call with text phone",
+    "check": "Verify a tel: click-to-call link exists AND the same phone number is also rendered as crawlable text (not only in the href or an image) so it contributes to NAP entity resolution.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "signal": "addressOrMap",
+    "claimRefs": [
+      64,
+      72,
+      134
+    ]
+  },
+  {
+    "id": "lseo-nap-gbp-consistency",
+    "dimension": "localSeo",
+    "title": "NAP matches GBP & citations",
+    "check": "Judge whether the site's rendered NAP plausibly matches the Google Business Profile and major directories exactly; flag any internal inconsistency the site reveals (this is foundational table-stakes, not a primary rank lever).",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      61,
+      71,
+      90,
+      91,
+      135,
+      146
+    ]
+  },
+  {
+    "id": "lseo-jsonld-present-valid",
+    "dimension": "localSeo",
+    "title": "LocalBusiness JSON-LD present",
+    "check": "Verify a LocalBusiness JSON-LD block exists with at minimum the two required properties name and a structured PostalAddress (streetAddress, addressLocality, addressRegion, postalCode, addressCountry).",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "localBusinessJsonLd",
+    "claimRefs": [
+      65,
+      73,
+      88,
+      126,
+      147
+    ]
+  },
+  {
+    "id": "lseo-jsonld-specific-subtype",
+    "dimension": "localSeo",
+    "title": "Most-specific @type subtype",
+    "check": "Verify the JSON-LD uses the most specific schema.org subtype for the vertical (e.g. HairSalon, CafeOrCoffeeShop, DaySpa, Dentist, AutoRepair, LegalService, Plumber, HealthClub, Store) rather than generic LocalBusiness.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "barber",
+      "cafe",
+      "spa",
+      "fitness",
+      "dental",
+      "law",
+      "auto",
+      "retail",
+      "trades"
+    ],
+    "detection": "deterministic",
+    "signal": "localBusinessJsonLd",
+    "claimRefs": [
+      74,
+      75,
+      76,
+      86,
+      127,
+      136
+    ]
+  },
+  {
+    "id": "lseo-jsonld-rich-fields",
+    "dimension": "localSeo",
+    "title": "Rich JSON-LD local fields",
+    "check": "Verify the JSON-LD goes beyond a name+address stub to include geo (GeoCoordinates >=5 decimals), telephone in +1-403 international format, url, and structured openingHoursSpecification (and priceRange where meaningful).",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "localBusinessJsonLd",
+    "claimRefs": [
+      78,
+      79,
+      80,
+      81,
+      83,
+      87,
+      88,
+      126
+    ]
+  },
+  {
+    "id": "lseo-no-self-aggregaterating",
+    "dimension": "localSeo",
+    "title": "No self-serving review schema",
+    "check": "Verify the LocalBusiness/Organization JSON-LD does NOT emit self-applied aggregateRating or review about the business itself (policy violation; ineligible for star results and risks a spammy-structured-data penalty) — treat its presence as a defect, not a credit.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "localBusinessJsonLd",
+    "claimRefs": [
+      77,
+      89,
+      106,
+      107,
+      108
+    ]
+  },
+  {
+    "id": "lseo-structured-hours",
+    "dimension": "localSeo",
+    "title": "Machine-readable hours",
+    "check": "Verify opening hours are encoded as structured openingHoursSpecification objects (dayOfWeek/opens/closes) powering 'open now' answers, not just a visual table or an image of hours.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "localBusinessJsonLd",
+    "claimRefs": [
+      80,
+      130,
+      131,
+      137
+    ]
+  },
+  {
+    "id": "lseo-onpage-geo-keywords",
+    "dimension": "localSeo",
+    "title": "On-page service+city targeting",
+    "check": "Verify title tags and H1/H2 headings include the service plus Calgary geo-targeting (quadrant NW/NE/SW/SE or named community) rather than generic 'near me' phrasing — the website's largest lever is local organic, not the 3-pack.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      63,
+      67,
+      69,
+      144
+    ]
+  },
+  {
+    "id": "lseo-service-location-pages",
+    "dimension": "localSeo",
+    "title": "Dedicated service/location pages",
+    "check": "Verify the IA matches the business: dedicated service pages where offerings are core, unique per-city service-area pages for SABs serving multiple cities, and one location page (own NAP + schema) per physical location — not a thin single page or duplicate doorway pages.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "trades",
+      "auto",
+      "dental",
+      "spa",
+      "law",
+      "fitness",
+      "retail",
+      "barber",
+      "cafe"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      66,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125
+    ]
+  },
+  {
+    "id": "lseo-sab-areaserved",
+    "dimension": "localSeo",
+    "title": "Service-area posture (SAB vs storefront)",
+    "check": "For service-area businesses (trades, mobile auto) verify areaServed/service-area copy and schema with the public street address omitted; for storefronts verify a visible address + geo is the primary signal and areaServed is not misused.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "trades",
+      "auto",
+      "spa",
+      "fitness",
+      "law",
+      "dental",
+      "barber",
+      "cafe",
+      "retail"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      70,
+      82,
+      115,
+      116,
+      117,
+      118,
+      119
+    ]
+  },
+  {
+    "id": "lseo-food-menu-schema",
+    "dimension": "localSeo",
+    "title": "Crawlable menu / FoodEstablishment fields",
+    "check": "For cafe/restaurant verify a crawlable HTML menu (hasMenu URL or Menu/MenuSection/MenuItem markup, not a PDF-only menu) plus food fields like servesCuisine/acceptsReservations; for other service verticals verify the service list is crawlable HTML, not a PDF.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "cafe",
+      "barber",
+      "spa",
+      "auto",
+      "dental",
+      "fitness"
+    ],
+    "detection": "deterministic",
+    "signal": "menuSchema",
+    "claimRefs": [
+      84,
+      85,
+      128,
+      129
+    ]
+  },
+  {
+    "id": "lseo-map-embed-sameas",
+    "dimension": "localSeo",
+    "title": "Embedded map & profile links",
+    "check": "Verify an embedded interactive Google Map (iframe/maps link) and hasMap/sameAs links to authoritative profiles (GBP/Maps, Facebook, Instagram, Yelp) reinforce location and entity reconciliation — a static map image alone does not count.",
+    "necessity": "nice-to-have",
+    "weight": 2,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "addressOrMap",
+    "claimRefs": [
+      83,
+      87,
+      132
+    ]
+  },
+  {
+    "id": "lseo-reviews-display-cta",
+    "dimension": "localSeo",
+    "title": "Live reviews display + review CTA",
+    "check": "Verify the site displays fresh social proof (preferably an async/lazy live GBP/third-party widget with reserved height, not stale static testimonials) and includes a direct Google review CTA / short link the owner can drive — without implying on-site star rich results.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      68,
+      97,
+      100,
+      101,
+      102,
+      104,
+      105,
+      109,
+      110,
+      111,
+      112,
+      113,
+      145
+    ]
+  },
+  {
+    "id": "lseo-booking-cta-integration",
+    "dimension": "localSeo",
+    "title": "Booking / appointment CTA",
+    "check": "Verify a conversion-complete booking/order/quote CTA appropriate to the vertical (Reserve-with-Google native button for cafe/dental/fitness where supported, GBP appointment link for barber/spa/auto, quote/request form for auto/trades) linking the right Canada-available provider.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      72,
+      138,
+      139,
+      140,
+      141,
+      142,
+      148,
+      149
+    ]
+  },
+  {
+    "id": "lseo-behavioral-conversion-fast",
+    "dimension": "localSeo",
+    "title": "Fast mobile-first conversion shell",
+    "check": "Verify the site is fast and mobile-first (good PSI SEO/Core Web Vitals, click-to-call, booking) and English-only is appropriate for Calgary, so it converts GBP-sent traffic and feeds behavioral/AI-discovery signals.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "psi.seo",
+    "claimRefs": [
+      62,
+      72,
+      131,
+      143
+    ]
+  },
+  {
+    "id": "lseo-citation-canonical-source",
+    "dimension": "localSeo",
+    "title": "Canonical citation source (no volume program)",
+    "check": "Judge that the site is the clean canonical NAP source for the Canadian tier-1 citation core (GBP, Bing, Apple, Yelp.ca, Facebook, YellowPages.ca, Canada411) and 2-4 relevant vertical directories — without selling an ongoing high-volume citation retainer.",
+    "necessity": "nice-to-have",
+    "weight": 2,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      93,
+      94,
+      95,
+      96,
+      98,
+      99,
+      114,
+      138
+    ]
+  },
+  {
+    "id": "perf-field-vs-lab-methodology",
+    "dimension": "perf",
+    "title": "Field-first grading with lab fallback",
+    "check": "Auditor prefers CrUX field p75 (URL-level, then origin-level) for the pass/fail grade and falls back to lab metrics only when field data is absent, labeling that case 'lab-only / no real-user data' rather than a blank or failed CWV section.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "psi.cwv.pass; psi.cwv.lcp; psi.cwv.inp; psi.cwv.cls; psi.performance",
+    "claimRefs": [
+      2,
+      8,
+      40,
+      45,
+      48,
+      51,
+      59
+    ]
+  },
+  {
+    "id": "perf-field-data-availability-state",
+    "dimension": "perf",
+    "title": "Record field-data availability state",
+    "check": "Auditor records which of three field-data states applies (URL-level, origin-level only, or none) and treats missing CrUX data as the expected norm for low-traffic single-location shops rather than a defect, never citing the undisclosed traffic threshold as a Google-stated fact.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "barber",
+      "cafe",
+      "spa",
+      "trades",
+      "fitness",
+      "dental",
+      "law",
+      "auto",
+      "retail"
+    ],
+    "detection": "deterministic",
+    "signal": "psi.cwv.pass (present => field data exists; absent => no field data)",
+    "claimRefs": [
+      0,
+      1,
+      2,
+      3,
+      46,
+      51
+    ]
+  },
+  {
+    "id": "perf-cwv-thresholds-and-individual-metrics",
+    "dimension": "perf",
+    "title": "Grade on individual CWV metrics at correct thresholds",
+    "check": "Auditor stores LCP, CLS, and the TBT/INP proxy individually against current good thresholds (LCP<=2.5s, INP<=200ms, CLS<=0.1 at p75) and grades off these rather than the blended Lighthouse 0-100 composite, with FID never appearing.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "psi.cwv.lcp; psi.cwv.inp; psi.cwv.cls; psi.performance",
+    "claimRefs": [
+      49,
+      56,
+      57,
+      58,
+      60
+    ]
+  },
+  {
+    "id": "perf-inp-not-lab-measurable",
+    "dimension": "perf",
+    "title": "Do not hard-grade INP in lab mode",
+    "check": "Auditor never reports a hard INP pass/fail from Lighthouse alone, labels INP as 'lab-estimated / not measurable in lab' (TBT as proxy), and does not penalize brochure-style shop sites on INP/TBT unless real CrUX field INP exists.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "psi.cwv.inp (field) present vs absent; psi.performance (TBT-derived) for lab-only",
+    "claimRefs": [
+      4,
+      50
+    ]
+  },
+  {
+    "id": "perf-lab-caveats-and-throttling",
+    "dimension": "perf",
+    "title": "Treat lab metrics as conservative worst-case",
+    "check": "When grading on lab data, auditor treats it as a pessimistic worst-case floor (Slow-4G + CPU throttle + cold cache, not the Calgary median), pins which tool/throttling was used (PSI ~1.2x vs local Lighthouse 4x), and does not hard-fail a page on lab LCP/CLS alone when no field data exists.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "psi.performance; psi.cwv.lcp; psi.cwv.cls (lab values when field absent)",
+    "claimRefs": [
+      5,
+      6,
+      7,
+      9,
+      42,
+      43,
+      44,
+      47
+    ]
+  },
+  {
+    "id": "perf-lab-run-stability",
+    "dimension": "perf",
+    "title": "Use medianed lab runs, no knife-edge grading",
+    "check": "Auditor uses a median of multiple lab passes (or PSI's internal median) and does not grade pass/fail on a single run sitting within ~+/-5-10 points of a threshold.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "psi.performance (PSI medians internally)",
+    "claimRefs": [
+      52
+    ]
+  },
+  {
+    "id": "perf-lcp-primary-failure",
+    "dimension": "perf",
+    "title": "LCP is the dominant mobile failure",
+    "check": "Auditor prioritizes mobile LCP as the most-failed and most load-bearing perf metric, recognizing the LCP element is almost always the hero image/main heading and that resource load delay (late-discovered hero) hurts more than raw image bytes.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "psi.cwv.lcp",
+    "claimRefs": [
+      10,
+      11,
+      30,
+      56
+    ]
+  },
+  {
+    "id": "perf-hero-image-optimized",
+    "dimension": "perf",
+    "title": "Hero image format, sizing, and weight",
+    "check": "Auditor verifies the hero/LCP image is served in a modern format (AVIF/WebP) with correctly sized responsive variants and reasonable weight, not an oversized JPEG/PNG.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      13,
+      29,
+      31
+    ]
+  },
+  {
+    "id": "perf-hero-eager-priority",
+    "dimension": "perf",
+    "title": "Hero loaded eagerly with high priority",
+    "check": "Auditor verifies the hero/LCP image is an eager <img> in the initial HTML (never loading='lazy') and ideally preloaded or marked fetchpriority='high', with lazy-loading reserved for below-the-fold images only.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      11,
+      12,
+      32,
+      33
+    ]
+  },
+  {
+    "id": "perf-reserved-dimensions-cls",
+    "dimension": "perf",
+    "title": "Explicit dimensions on images and embeds",
+    "check": "Auditor verifies every <img> and <iframe> has explicit width/height or aspect-ratio so space is reserved, since unreserved images/embeds are the dominant CLS cause on shop sites.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      16,
+      34,
+      57
+    ]
+  },
+  {
+    "id": "perf-fonts",
+    "dimension": "perf",
+    "title": "Web-font loading discipline",
+    "check": "Auditor verifies fonts use font-display:swap (or optional) with size-matched fallbacks and are self-hosted/preloaded rather than render-blocking Google Fonts links, mitigating both font-driven CLS and text-LCP delay.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      15,
+      35,
+      36
+    ]
+  },
+  {
+    "id": "perf-platform-bloat",
+    "dimension": "perf",
+    "title": "Platform / page-builder bloat",
+    "check": "Auditor identifies the site's platform and flags WordPress + page-builder (Elementor/Divi) builds shipping multi-MB pages as the strongest single predictor of a failing mobile CWV score.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      14,
+      18
+    ]
+  },
+  {
+    "id": "perf-third-party-embeds",
+    "dimension": "perf",
+    "title": "Third-party embeds controlled",
+    "check": "Auditor checks that booking/map/chat embeds and other third-party widgets are deliberately controlled (facade/link-out, or lazy-loaded with reserved space) rather than eagerly loading heavy iframe JS that competes for bandwidth and blocks the main thread.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "barber",
+      "spa",
+      "fitness",
+      "dental",
+      "cafe",
+      "auto"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      37,
+      38,
+      39
+    ]
+  },
+  {
+    "id": "perf-cdn-static-delivery",
+    "dimension": "perf",
+    "title": "Static delivery from a CDN / low TTFB",
+    "check": "Auditor checks the site serves pre-rendered HTML from a CDN/edge host (low TTFB) rather than a slow shared origin with no CDN, since high TTFB is the largest poor-LCP subpart.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      17,
+      28,
+      29
+    ]
+  },
+  {
+    "id": "perf-ignore-nonscoring-advisories",
+    "dimension": "perf",
+    "title": "Do not penalize non-scoring advisories",
+    "check": "Auditor does not deduct for Lighthouse Opportunities/Diagnostics that do not bear on the score (e.g. 'Remove unused CSS', 'efficient cache policy'), and ignores cache-policy flags on third-party cross-origin assets the owner cannot control.",
+    "necessity": "must-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      53,
+      54,
+      55
+    ]
+  },
+  {
+    "id": "perf-ranking-and-business-framing",
+    "dimension": "perf",
+    "title": "Honest ranking / business-impact framing",
+    "check": "Auditor frames CWV as a UX/conversion quality floor (faster mobile load reduces bounce and lifts conversions) and not as a local-pack ranking lever, since proximity/GBP/reviews dominate local ranking and Google says good CWV does not guarantee ranking.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ]
+  },
+  {
+    "id": "trust-https",
+    "dimension": "trust",
+    "title": "Served over HTTPS",
+    "check": "Verify the site's final resolved URL is https:// so the browser does not show a 'Not Secure' label and visitors are not blocked by future HTTPS-First interstitials.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "https",
+    "claimRefs": [
+      412,
+      413,
+      414,
+      415,
+      429,
+      433,
+      434
+    ]
+  },
+  {
+    "id": "trust-http-redirect",
+    "dimension": "trust",
+    "title": "HTTP upgrades to HTTPS",
+    "check": "Fetch the http:// URL and confirm it 301-redirects to https:// with no plaintext step in the chain, so the insecure version of the site is not left reachable.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "https",
+    "claimRefs": [
+      415,
+      418,
+      422
+    ]
+  },
+  {
+    "id": "trust-valid-cert",
+    "dimension": "trust",
+    "title": "Valid, matching TLS certificate",
+    "check": "Confirm the certificate is not expired, self-signed, or hostname-mismatched (and that www/non-www both resolve safely) so visitors never hit a full-page 'Your connection is not private' block.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      416,
+      417,
+      420,
+      421
+    ]
+  },
+  {
+    "id": "trust-secure-form-action",
+    "dimension": "trust",
+    "title": "Form and booking endpoints use HTTPS",
+    "check": "Verify any contact-form action URL and any outbound booking link target HTTPS endpoints, since an insecure form action triggers Chrome's autofill-disable and submission-block warning.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      447,
+      451,
+      454
+    ]
+  },
+  {
+    "id": "trust-hsts",
+    "dimension": "trust",
+    "title": "HSTS header present",
+    "check": "Check whether a Strict-Transport-Security response header is sent; a low-severity, non-visitor-facing hardening item recorded but never used as an outreach headline.",
+    "necessity": "nice-to-have",
+    "weight": 1,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "https",
+    "claimRefs": [
+      419
+    ]
+  },
+  {
+    "id": "trust-social-proof-present",
+    "dimension": "trust",
+    "title": "Any social proof visible",
+    "check": "Verify the page surfaces at least one social-proof element (star rating, review count, or testimonial), the baseline trust floor for a local business.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "reviews",
+    "claimRefs": [
+      402,
+      411,
+      435
+    ]
+  },
+  {
+    "id": "trust-rating-and-count",
+    "dimension": "trust",
+    "title": "Visible star rating with review volume",
+    "check": "Verify a numeric star rating (e.g. '4.8 stars') is shown alongside a review count (e.g. 'based on 240 reviews') so visitors can pass their threshold and volume checks on-page.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      403,
+      404,
+      465
+    ]
+  },
+  {
+    "id": "trust-named-testimonials",
+    "dimension": "trust",
+    "title": "Named, photo-attributed testimonials",
+    "check": "Verify testimonials carry a real-name byline (and ideally a customer photo) rather than anonymous quotes, which read as fabricated.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      406
+    ]
+  },
+  {
+    "id": "trust-live-third-party-reviews",
+    "dimension": "trust",
+    "title": "Live/linked third-party reviews",
+    "check": "Verify the page embeds or links through to a verifiable third-party review source (Google Business Profile / Yelp), which is publicly checkable and always-fresh versus static quotes.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      405,
+      410,
+      436,
+      437
+    ]
+  },
+  {
+    "id": "trust-review-jsonld",
+    "dimension": "trust",
+    "title": "AggregateRating/Review structured data",
+    "check": "Detect AggregateRating or Review JSON-LD/microdata, an invisible signal whose payoff is review-star rich snippets and higher organic CTR.",
+    "necessity": "should-have",
+    "weight": 2,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "reviews",
+    "claimRefs": [
+      407
+    ]
+  },
+  {
+    "id": "trust-trust-badges-neutral",
+    "dimension": "trust",
+    "title": "Third-party badges recorded, not credited",
+    "check": "Record presence of generic static seals (BBB, security/payment logos) and Google Verified/Guarantee badges, but treat generic badges as neutral-to-risky rather than a positive trust signal.",
+    "necessity": "niche",
+    "weight": 1,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      408,
+      409,
+      446
+    ]
+  },
+  {
+    "id": "trust-privacy-policy",
+    "dimension": "trust",
+    "title": "Privacy policy linked",
+    "check": "Scan the DOM for an anchor whose href or text matches a privacy-policy pattern; absence is a common small-business gap and a strong outreach hook.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "html: privacy-policy link",
+    "claimRefs": [
+      423,
+      424,
+      438,
+      430,
+      431,
+      432
+    ]
+  },
+  {
+    "id": "trust-form-without-privacy-policy",
+    "dimension": "trust",
+    "title": "Form/booking present but no privacy policy (PIPA gap)",
+    "check": "Flag when a contact form or booking link is detected but no privacy policy is linked, since collecting PII via US-hosted endpoints with no policy is a documented PIPA non-compliance finding.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      450,
+      452,
+      453,
+      455,
+      428
+    ]
+  },
+  {
+    "id": "trust-pipa-manual-review",
+    "dimension": "trust",
+    "title": "PIPA content flags for manual review",
+    "check": "Flag for manual review whether the privacy policy includes a near-form purpose notice, a named privacy officer, and disclosure of named US/offshore service providers, none reliably auto-detectable.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      426,
+      427,
+      451
+    ]
+  },
+  {
+    "id": "trust-cookie-and-bot-protection",
+    "dimension": "trust",
+    "title": "Cookie notice and form spam protection",
+    "check": "Detect a cookie/consent notice and anti-bot protection on the contact form (Turnstile/reCAPTCHA/honeypot), the lighter PIPA safeguards posture distinct from the privacy policy itself.",
+    "necessity": "should-have",
+    "weight": 2,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      425,
+      448,
+      449
+    ]
+  },
+  {
+    "id": "trust-nap-hours",
+    "dimension": "trust",
+    "title": "NAP, hours, and map present",
+    "check": "Verify consistent name/address/phone, click-to-call, accurate opening hours, and a map are present on the page, the baseline legitimacy signals consumers and the Local Pack rely on.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      439,
+      456,
+      457,
+      458,
+      463,
+      464
+    ]
+  },
+  {
+    "id": "trust-localbusiness-jsonld",
+    "dimension": "trust",
+    "title": "LocalBusiness JSON-LD",
+    "check": "Detect LocalBusiness structured data (name+address), an invisible-but-read-by-Google identity/trust signal whose absence is a silent gap.",
+    "necessity": "should-have",
+    "weight": 2,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      440
+    ]
+  },
+  {
+    "id": "trust-about-owner-identity",
+    "dimension": "trust",
+    "title": "About/owner identity surface",
+    "check": "Verify a genuine About/identity surface exists with named owner/team, real (non-stock) photography, and optionally years-in-business, all recognized E-E-A-T trust signals.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      445,
+      459,
+      460,
+      461
+    ]
+  },
+  {
+    "id": "trust-credentials-vertical",
+    "dimension": "trust",
+    "title": "Professional credentials (YMYL/licensed verticals)",
+    "check": "For licensed/risk-bearing verticals, verify display of credentials (licensed/bonded/insured/WCB, bar/college registration, association badges), a high-impact hiring-confidence cue.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "trades",
+      "auto",
+      "dental",
+      "law",
+      "spa"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      441,
+      442,
+      462
+    ]
+  },
+  {
+    "id": "vert-schema-subtype",
+    "dimension": "vertical",
+    "title": "Correct LocalBusiness schema subtype per vertical",
+    "check": "Verify the JSON-LD emits the most specific LocalBusiness subtype for the vertical (HairSalon, CafeOrCoffeeShop, DaySpa/BeautySalon, ExerciseGym/HealthClub, Dentist, Attorney/LegalService, AutoRepair, Store, or a HomeAndConstructionBusiness subtype) rather than generic LocalBusiness.",
+    "necessity": "must-have",
+    "weight": 3,
+    "verticals": [
+      "barber",
+      "cafe",
+      "spa",
+      "fitness",
+      "dental",
+      "law",
+      "auto",
+      "retail",
+      "trades"
+    ],
+    "detection": "hybrid",
+    "signal": "localBusinessJsonLd",
+    "claimRefs": [
+      552,
+      553,
+      554,
+      563,
+      564,
+      588
+    ]
+  },
+  {
+    "id": "vert-cafe-menu-schema-and-photos",
+    "dimension": "vertical",
+    "title": "Cafe menu markup and per-item food photography",
+    "check": "Verify the cafe site exposes a structured Menu (hasMenu/hasMenuSection/hasMenuItem + servesCuisine) and an on-page menu with per-item food photos rather than text-only.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "cafe"
+    ],
+    "detection": "deterministic",
+    "signal": "menuSchema",
+    "claimRefs": [
+      561,
+      589,
+      611
+    ]
+  },
+  {
+    "id": "vert-service-offercatalog-schema",
+    "dimension": "vertical",
+    "title": "Services modeled as Service/OfferCatalog with area/specialty props",
+    "check": "Verify service businesses model their offerings as Service + makesOffer/OfferCatalog (not Product) and emit the vertical-relevant recommended props: priceRange (all), areaServed (trades/auto/law), medicalSpecialty (dental).",
+    "necessity": "should-have",
+    "weight": 2,
+    "verticals": [
+      "law",
+      "trades",
+      "auto",
+      "spa",
+      "fitness",
+      "dental",
+      "barber"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      555,
+      556,
+      557,
+      558,
+      564
+    ]
+  },
+  {
+    "id": "vert-dental-conversion-and-anatomy",
+    "dimension": "vertical",
+    "title": "Dental new-patient appointment + intake conversion path",
+    "check": "Verify the dental site leads with a new-patient appointment-request CTA plus click-to-call, and provides the supporting anatomy (services, new-patient/insurance info, intake form with health-history + insurance upload, team bios, FAQ).",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "dental"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      536,
+      537,
+      538,
+      550,
+      599,
+      601
+    ]
+  },
+  {
+    "id": "vert-dental-credentials-insurance",
+    "dimension": "vertical",
+    "title": "Dental regulatory registration, insurance/direct-billing, consented before/after",
+    "check": "Verify the dental site displays ADA&C/CDSA registration (truthful, no uncertified specialty claims), lists accepted insurance/direct-billing, and any before/after gallery is consent-gated.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "dental"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      565,
+      566,
+      567,
+      593,
+      608
+    ]
+  },
+  {
+    "id": "vert-law-consultation-conversion",
+    "dimension": "vertical",
+    "title": "Law single consultation/case-evaluation CTA with short intake",
+    "check": "Verify the law-firm site has one specific consultation/case-evaluation CTA (not generic 'Contact Us') repeated in sticky header and mid-page, a short essential-fields intake form, and prominent click-to-call, with no e-commerce.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "law"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      539,
+      541,
+      542,
+      550,
+      602,
+      603
+    ]
+  },
+  {
+    "id": "vert-law-practice-area-pages",
+    "dimension": "vertical",
+    "title": "Law per-case-type practice-area pages with targeted CTA",
+    "check": "Verify the law-firm site has dedicated practice-area pages (e.g. personal injury, immigration, family) each with empathetic client-language messaging and its own intake/contact CTA, not a single broad page.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "law"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      540,
+      595
+    ]
+  },
+  {
+    "id": "vert-law-credentials-compliance",
+    "dimension": "vertical",
+    "title": "Law Society credential, prohibited-language and results disclaimer",
+    "check": "Verify the law-firm site shows Law Society of Alberta membership and attorney bar credentials, avoids prohibited terms ('specialist','expert','best','top','leading', advertised settlement amounts), and includes a past-results disclaimer where outcomes are referenced.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "law"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      568,
+      569,
+      570,
+      619
+    ]
+  },
+  {
+    "id": "vert-auto-dual-conversion",
+    "dimension": "vertical",
+    "title": "Auto dual conversion: schedule-service + quote/estimate request",
+    "check": "Verify the auto repair site has a dominant 'Schedule Service' CTA plus a quote/estimate request mechanism, backed by sticky click-to-call, and the homepage answers can-you-fix-it / can-I-trust-you / how-do-I-book.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "auto"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      543,
+      544,
+      550,
+      592,
+      604,
+      607
+    ]
+  },
+  {
+    "id": "vert-auto-credentials-trust",
+    "dimension": "vertical",
+    "title": "Auto AMVIC licence, certifications, warranty and pricing",
+    "check": "Verify the auto repair site displays its AMVIC licence number, technician/ASE/Red Seal certifications and warranty/financing, plus a transparent service menu with pricing and real shop photos.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "auto"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      545,
+      546,
+      571,
+      572,
+      573
+    ]
+  },
+  {
+    "id": "vert-fitness-trial-and-timetable",
+    "dimension": "vertical",
+    "title": "Fitness free-trial CTA + embedded bookable class timetable",
+    "check": "Verify the fitness site leads with a free-trial/intro-offer CTA and exposes an embedded, bookable class schedule/timetable plus membership/pricing packages, trainer profiles and waiver-at-booking.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "fitness"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      547,
+      548,
+      549,
+      550,
+      576,
+      577,
+      594,
+      605
+    ]
+  },
+  {
+    "id": "vert-trades-credentials",
+    "dimension": "vertical",
+    "title": "Trades WCB coverage, licensed-and-insured, quote request",
+    "check": "Verify the trades site shows WCB Alberta coverage (clearance/number), a 'licensed & insured' statement, and provides a quote/estimate request mechanism with areaServed/'serving [area]' framing.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "trades"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      574,
+      575,
+      592
+    ]
+  },
+  {
+    "id": "vert-spa-massage-credentials",
+    "dimension": "vertical",
+    "title": "Spa massage/RMT practitioner and facility credentials",
+    "check": "Verify a massage-offering spa displays its Calgary massage-practitioner/RMT credential and AHS facility approval; for esthetics-only services, voluntary certifications are surfaced honestly (not licensed in Alberta).",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "spa"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      578,
+      579,
+      582
+    ]
+  },
+  {
+    "id": "vert-booking-widget-by-vertical",
+    "dimension": "vertical",
+    "title": "Embedded booking widget for appointment-driven verticals",
+    "check": "Verify appointment-driven verticals provide a real booking path (embedded widget or hosted booking link, e.g. Jane App/NexHealth/Mindbody/Reserve-with-Google), not just a phone number.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "barber",
+      "spa",
+      "dental",
+      "fitness"
+    ],
+    "detection": "deterministic",
+    "signal": "bookingLink",
+    "claimRefs": [
+      590,
+      591,
+      606,
+      607
+    ]
+  },
+  {
+    "id": "vert-credential-badge-discipline",
+    "dimension": "vertical",
+    "title": "Governing-credential badges surfaced, limited to a few",
+    "check": "Verify regulated verticals surface their governing licence/credential as a trust badge while keeping the badge count to ~3-5 relevant logos, not a wall of irrelevant badges.",
+    "necessity": "must-have",
+    "weight": 3,
+    "verticals": [
+      "dental",
+      "law",
+      "auto",
+      "trades",
+      "spa",
+      "fitness"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      581,
+      582,
+      616
+    ]
+  },
+  {
+    "id": "vert-visual-proof-galleries",
+    "dimension": "vertical",
+    "title": "Vertical-appropriate visual-proof galleries and team bios",
+    "check": "Verify each vertical ships its conversion-critical visual proof: before/after gallery (spa/dental/auto/barber), categorized project/job gallery with location captions (trades/auto), team headshot bios (dental/law/fitness/barber/spa), and real (non-stock) photography throughout.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "spa",
+      "dental",
+      "auto",
+      "barber",
+      "trades",
+      "law",
+      "fitness"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      608,
+      609,
+      610,
+      612,
+      613,
+      614,
+      618,
+      619
+    ]
+  },
+  {
+    "id": "vis-credible-first-impression",
+    "dimension": "visual",
+    "title": "Clean, credible first impression",
+    "check": "Auditor verifies the homepage reads as professionally designed and modern at a glance (the ~50ms verdict), clearing the table-stakes 'looks legitimate, not amateur or dated' bar.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      150,
+      166,
+      167,
+      168,
+      169,
+      174,
+      181,
+      182,
+      183,
+      195,
+      212,
+      219
+    ]
+  },
+  {
+    "id": "vis-real-photography",
+    "dimension": "visual",
+    "title": "Real, authentic photography over stock",
+    "check": "Auditor verifies imagery shows the actual shop, staff, location, products, or work rather than generic staged stock photos or clip-art.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      151,
+      173,
+      190,
+      198,
+      213,
+      225
+    ]
+  },
+  {
+    "id": "vis-image-quality",
+    "dimension": "visual",
+    "title": "High-resolution, undistorted images",
+    "check": "Auditor verifies images are sharp and correctly proportioned, with no low-resolution, blurry, dark, pixelated, upscaled, or stretched/wrong-aspect-ratio imagery.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      152,
+      190,
+      225
+    ]
+  },
+  {
+    "id": "vis-hero-masthead",
+    "dimension": "visual",
+    "title": "Strong hero / visual masthead",
+    "check": "Auditor verifies an above-the-fold hero photo or strong brand visual carries the first impression, rather than flat blocks with default fonts.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      173,
+      208
+    ]
+  },
+  {
+    "id": "vis-typography-pairing",
+    "dimension": "visual",
+    "title": "Intentional type pairing, no default/novelty fonts",
+    "check": "Auditor verifies the site uses a deliberate display + body typeface pairing (web fonts declared) rather than bare browser-default Times/Arial or novelty fonts (Comic Sans, Papyrus), and keeps to 2-3 typefaces.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      153,
+      179,
+      189,
+      199,
+      218,
+      222
+    ]
+  },
+  {
+    "id": "vis-text-readability",
+    "dimension": "visual",
+    "title": "Readable body text (size, line-height, measure)",
+    "check": "Auditor verifies body copy is at least 16px with line-height >= 1.5 and line length in the ~45-75 character range, not tiny, tightly-leaded, or full-bleed text.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "computed font-size of body/paragraph text >= 16px, line-height >= 1.5, and text column max-width ~60-75ch",
+    "claimRefs": [
+      175,
+      176,
+      177
+    ]
+  },
+  {
+    "id": "vis-color-contrast",
+    "dimension": "visual",
+    "title": "WCAG AA color contrast",
+    "check": "Auditor verifies text meets WCAG AA contrast (>= 4.5:1 normal, >= 3:1 large), flagging low-contrast grey-on-white body copy.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "deterministic",
+    "signal": "computed contrast ratio of text vs background; flag body text < 4.5:1, large text < 3:1 (axe-core / contrast engine)",
+    "claimRefs": [
+      178,
+      197,
+      209,
+      210,
+      226
+    ]
+  },
+  {
+    "id": "vis-hierarchy-scannable",
+    "dimension": "visual",
+    "title": "Clear visual hierarchy and scannable content",
+    "check": "Auditor verifies a consistent modular type scale gives distinct heading vs body sizing, an emphasized headline and standout CTA, and content is chunked rather than a wall of text.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      154,
+      155,
+      180,
+      196,
+      216
+    ]
+  },
+  {
+    "id": "vis-whitespace-density",
+    "dimension": "visual",
+    "title": "Generous whitespace, low clutter",
+    "check": "Auditor verifies the layout has generous breathing room and low visual complexity rather than a cramped, cluttered, high-density layout.",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      155,
+      170,
+      187,
+      200,
+      220,
+      221,
+      224
+    ]
+  },
+  {
+    "id": "vis-palette-discipline",
+    "dimension": "visual",
+    "title": "Cohesive, restrained color palette",
+    "check": "Auditor verifies a coherent vertical-appropriate palette (~2 neutrals + 1 accent) rather than many clashing, rainbow, or washed-out colors, and consistent brand color across the site.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      156,
+      188,
+      199,
+      215,
+      223
+    ]
+  },
+  {
+    "id": "vis-dated-era-markers",
+    "dimension": "visual",
+    "title": "No dated era-markers or DIY chrome",
+    "check": "Auditor verifies the design is modern, flagging skeuomorphic styling (beveled/glossy buttons, heavy shadows, faux textures, busy gradients), autoplay hero carousels, builder watermarks ('Powered by Wix'), and unmodified default-template chrome.",
+    "necessity": "should-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      157,
+      160,
+      161,
+      194,
+      202,
+      214
+    ]
+  },
+  {
+    "id": "vis-mobile-responsive",
+    "dimension": "visual",
+    "title": "Responsive mobile layout and tap targets",
+    "check": "Auditor verifies a mobile viewport renders without horizontal scroll, overflow, or tiny text, and interactive elements (especially call/booking CTAs) meet ~44px tap-target minimums.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      158,
+      159,
+      196,
+      211,
+      217
+    ]
+  },
+  {
+    "id": "vis-no-broken-placeholder",
+    "dimension": "visual",
+    "title": "No typos, broken, or placeholder elements",
+    "check": "Auditor verifies the homepage is free of visible typos, Lorem ipsum, 'image coming soon', broken-image glyphs, dead/placeholder links, and stale content (old copyright year, off-season banners, expired promos).",
+    "necessity": "must-have",
+    "weight": 4,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      162,
+      164,
+      202
+    ]
+  },
+  {
+    "id": "vis-no-intrusive-interruptions",
+    "dimension": "visual",
+    "title": "No intrusive pop-ups or autoplay audio",
+    "check": "Auditor verifies the page does not block the hero with an immediate pop-up/interstitial/cookie wall or play audio/video on load, and that any motion respects prefers-reduced-motion.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      163,
+      165,
+      205
+    ]
+  },
+  {
+    "id": "vis-price-point-fit",
+    "dimension": "visual",
+    "title": "Design tier matches business price point and vertical",
+    "check": "Auditor verifies the visual polish fits the shop's price point and vertical register (premium/aesthetic services read calm and refined; trades/auto read clear and trustworthy), flagging a cheap/templated look on a premium business or over-luxe design on a budget shop.",
+    "necessity": "must-have",
+    "weight": 5,
+    "verticals": [
+      "spa",
+      "dental",
+      "law",
+      "barber",
+      "fitness",
+      "cafe",
+      "trades",
+      "auto",
+      "retail"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      184,
+      185,
+      186,
+      191,
+      192,
+      203,
+      230
+    ]
+  },
+  {
+    "id": "vis-brand-cohesion",
+    "dimension": "visual",
+    "title": "Consistent branding and present logo/favicon",
+    "check": "Auditor verifies uniform colors, fonts, spacing, and tone across the site, a present logo, and a custom favicon (a missing favicon is a flagged credibility gap).",
+    "necessity": "must-have",
+    "weight": 3,
+    "verticals": [
+      "*"
+    ],
+    "detection": "hybrid",
+    "claimRefs": [
+      193,
+      201,
+      215
+    ]
+  },
+  {
+    "id": "vis-per-vertical-feel",
+    "dimension": "visual",
+    "title": "Per-vertical visual differentiation",
+    "check": "Auditor verifies the look feels appropriate to its vertical (a barber feels different from a cafe from a law office) through color, type, radius, and imagery rather than generic sameness.",
+    "necessity": "should-have",
+    "weight": 3,
+    "verticals": [
+      "barber",
+      "cafe",
+      "spa",
+      "trades",
+      "fitness",
+      "dental",
+      "law",
+      "auto",
+      "retail"
+    ],
+    "detection": "judgment",
+    "claimRefs": [
+      171,
+      204,
+      207
+    ]
+  }
+]
