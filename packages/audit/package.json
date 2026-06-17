@@ -8,7 +8,8 @@
   "scripts": {
     "test": "vitest run",
     "site-audit": "tsx src/cli.ts",
-    "validate-claims": "tsx src/foundation/validate-cli.ts"
+    "validate-claims": "tsx src/foundation/validate-cli.ts",
+    "validate-rubric": "tsx src/foundation/rubric-cli.ts"
   },
   "dependencies": {
     "@seomator/seo-audit": "^3.0.1",
