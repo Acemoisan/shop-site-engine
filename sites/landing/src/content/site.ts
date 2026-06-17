@@ -13,7 +13,6 @@ export interface Tier {
 }
 export interface Step { n: string; title: string; body: string }
 export interface Benefit { title: string; body: string; icon: string }
-export interface Work { name: string; vertical: string; image: string; href: string }
 export interface Faq { q: string; a: string }
 
 export const site = {
@@ -26,6 +25,11 @@ export const site = {
   // Web3Forms public access key (safe to expose; it's client-side). Get yours in
   // ~30s at https://web3forms.com → enter aidan.c.moisan@gmail.com → copy the key.
   web3formsKey: "a7f4a800-8a6e-442b-9b6f-ac15b3744ca7",
+  // Local trust signals (NAP). Add a real click-to-call number to show it on the
+  // page — leave "" to hide the phone affordance until you have one.
+  phone: "",
+  location: "Calgary, AB",
+  serviceArea: "Serving Calgary & area",
   nav: [
     { label: "What you get", href: "#benefits" },
     { label: "How it works", href: "#how" },
@@ -37,23 +41,26 @@ export const site = {
   hero: {
     eyebrow: "Websites for Calgary shops",
     headline: "Built fast. Owned by you.",
-    sub: "A professional, mobile-first website that gets your shop found on Google and turns visitors into calls, bookings, and customers. One fair price — no monthly fees, ever.",
+    sub: "You own the site, the domain, everything — built once for one fair price, no monthly fees ever. A fast, mobile-first website that gets your Calgary shop found on Google and turns visitors into calls, bookings, and customers.",
     ctaPrimary: { label: "Get a free website audit", href: "#contact" },
     ctaSecondary: { label: "Browse templates", href: "/templates" },
     trust: [
-      "You own your domain, hosting & site",
-      "Edit it yourself, anytime",
-      "Live in days, not months",
+      "You own everything — domain, hosting & site",
+      "Approve the design before you pay",
+      "Calgary-based · live in days",
     ],
   },
 
   problem: {
     heading: "Your customers are looking. Can they find you?",
     body: "Most people search for local shops on their phone. If you have no website — or one that's slow, dated, or clumsy on mobile — they tap the next result instead. You lose the call, the booking, the sale, and you never even know it happened.",
+    // Stat sources (for our records — not credited on-page):
+    //  98%  → BrightLocal Local Consumer Review Survey 2023
+    //  53%  → Google/SOASTA "The Need for Mobile Speed" 2017 (mobile abandonment >3s)
     stats: [
-      { value: "Up to 1 in 3", label: "local small businesses still have no website" },
-      { value: "< 2 sec", label: "load time we target on mobile" },
-      { value: "$0/mo", label: "ongoing fees you pay us" },
+      { value: "98%", label: "of consumers use the internet to find local businesses" },
+      { value: "53%", label: "of mobile visitors leave a site that takes over 3 seconds to load" },
+      { value: "$0/mo", label: "ongoing fees you ever pay us" },
     ],
   },
 
@@ -75,6 +82,13 @@ export const site = {
   pricing: {
     heading: "One fair price. No surprises. No monthly bills.",
     note: "Your only ongoing cost is your domain (~$15/year) and any business tools you already use.",
+    guarantee: "See your design first — you approve it before you pay the balance. No deposit lost, no risk.",
+    compare: {
+      heading: "Pay once. Own it forever.",
+      body: "A typical “$99/month” website costs you about $3,600 over three years — and you never own it. Stop paying and it vanishes. Ours is one fixed price, then it’s yours: the site, the domain, the accounts. Forever.",
+      them: { label: "Subscription site", value: "~$3,600", sub: "over 3 years · you own nothing" },
+      us: { label: "Studio0rbit", value: "from $1,800", sub: "one time · you own everything" },
+    },
     tiers: [
       {
         name: "Starter",
@@ -91,7 +105,7 @@ export const site = {
         blurb: "Drives calls, bookings, and visits.",
         features: ["Everything in Starter", "4–6 sections / pages", "Online booking or ordering", "Reviews & full copywriting", "Conversion-focused layout"],
         featured: true,
-        cta: "Most popular",
+        cta: "Get started",
       },
       {
         name: "Pro",
@@ -107,10 +121,10 @@ export const site = {
   why: {
     heading: "Why shop owners pick us",
     points: [
-      { title: "You own everything", body: "No being held hostage by a subscription or an agency that won't hand over your site." },
-      { title: "No monthly fees to us", body: "One-time build, then it's yours. Margin comes from how efficiently we build — not from billing you forever." },
-      { title: "You can actually edit it", body: "Update hours, photos, and menus yourself in minutes with a visual editor." },
-      { title: "Fast & local", body: "Most sites go live in days. Built for Calgary shops by someone who gets it." },
+      { icon: "key", title: "You own everything", body: "No being held hostage by a subscription or an agency that won't hand over your site." },
+      { icon: "shield", title: "No monthly fees to us", body: "One-time build, then it's yours. Margin comes from how efficiently we build — not from billing you forever." },
+      { icon: "pencil", title: "You can actually edit it", body: "Update hours, photos, and menus yourself in minutes with a visual editor." },
+      { icon: "bolt", title: "Fast & local", body: "Most sites go live in days. Built for Calgary shops by someone who gets it." },
     ],
   },
 
@@ -118,22 +132,10 @@ export const site = {
     heading: "See what we build",
     sub: "60 example designs across 20 industries — three distinct directions each. Every one is fast, mobile-first, and yours to own. Click any to explore the full live page; yours is custom-built to your brand.",
     featured: [
-      "tmpl-dining-luxe",
       "tmpl-coffee-nordic",
-      "tmpl-saas-dark",
       "tmpl-barber-vintage",
-      "tmpl-jewelry-elegant",
-      "tmpl-agency-brutalist",
+      "tmpl-dining-luxe",
     ],
-  },
-
-  work: {
-    heading: "Recent work",
-    sub: "Real sites built on our engine. Every one is fast, mobile-first, and editable by its owner.",
-    items: [
-      { name: "Ironside Barber Co.", vertical: "Barber · Beltline", image: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1200&q=70&auto=format&fit=crop", href: "#" },
-      { name: "Maple & Steam Café", vertical: "Café · Kensington", image: "https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=1200&q=70&auto=format&fit=crop", href: "#" },
-    ] as Work[],
   },
 
   faqs: [
@@ -142,9 +144,24 @@ export const site = {
     { q: "Can I edit it myself?", a: "Yes — text, photos, hours, menus, and links, all through a simple visual editor. We train you at handover." },
     { q: "What if I need a design change later?", a: "Layout and design changes are a small one-time job. That's how we keep your price low and your monthly cost at zero." },
     { q: "How long does it take?", a: "Usually days. We move fast because our build system is built for it." },
+    { q: "Why not just build it myself on Wix or Squarespace?", a: "You can — but you'll pay monthly forever, spend your weekends fighting it, and most DIY sites end up slow and hard to find on Google. We do it once, properly, then hand you the keys to edit it yourself." },
+    { q: "What if something breaks after you hand it over?", a: "It's built static — no plugins to update, no security treadmill, almost nothing to break. If you ever want a change down the road, we quote it as a one-off. No contract, no retainer." },
     { q: "What about bookings and payments?", a: "Those run on your own Square, Stripe, or Shopify account — your money, your fees. We set up the connection." },
     { q: "Do you do maintenance?", a: "No ongoing contracts. Your site is low-maintenance by design. Need a change down the road? We quote it as a one-off." },
   ] as Faq[],
+
+  founder: {
+    name: "Aidan Moisan",
+    role: "Founder & developer · Studio0rbit",
+    // Optional headshot. Drop a square photo in public/ and set the path here
+    // (e.g. "/aidan.jpg") to replace the monogram — a real face converts best.
+    photo: "",
+    body: [
+      "You're not hiring a faceless agency or a logo — you're hiring me. I build your site once, on my own fast engine, hand you every login, and walk away.",
+      "No retainer, no lock-in, no monthly invoice. I'd rather earn the next shop's business by doing genuinely good work than by billing you forever. That's the whole idea behind Studio0rbit.",
+    ],
+    signature: "— Aidan, Calgary",
+  },
 
   finalCta: {
     heading: "Let's get your shop found.",
@@ -154,8 +171,8 @@ export const site = {
 
   contact: {
     heading: "Get your free audit",
-    body: "Tell us about your shop and we'll send back a short, specific plan — what's working, what isn't, and what we'd build.",
-    // Note: form posts nowhere yet — wire to an email/Formspree endpoint before go-live.
+    body: "Tell us about your shop and we'll send back a short, specific plan — what's working, what isn't, and what we'd build. You'll hear back within one business day.",
+    reassure: "No spam, no sales calls — one helpful reply from a real person.",
     pipaNote: "We use your details only to prepare your audit and reply. Handled per Alberta's PIPA.",
   },
 } as const;

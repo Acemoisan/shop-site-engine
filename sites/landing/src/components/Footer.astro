@@ -14,7 +14,10 @@ import { site } from "../content/site";
         <a href={n.href} class="transition hover:text-foreground">{n.label}</a>
       ))}
       <a href={`mailto:${site.email}`} class="transition hover:text-foreground">Contact</a>
+      {site.phone && (
+        <a href={`tel:${site.phone.replace(/[^0-9+]/g, "")}`} class="transition hover:text-foreground">{site.phone}</a>
+      )}
     </nav>
-    <p class="text-xs text-muted-foreground">© {site.brand} · Websites for {site.city} shops</p>
+    <p class="text-xs text-muted-foreground">© {site.brand} · {site.location} · {site.serviceArea}</p>
   </div>
 </footer>

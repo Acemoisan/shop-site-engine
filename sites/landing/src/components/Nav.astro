@@ -1,5 +1,6 @@
 ---
 import { site } from "../content/site";
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 <header class="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
   <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -14,8 +15,11 @@ import { site } from "../content/site";
         <a href={n.href} class="tracking-wide transition hover:text-foreground">{n.label}</a>
       ))}
     </div>
-    <a href="#contact" class="rounded-[var(--radius)] bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90">
-      Free audit
-    </a>
+    <div class="flex items-center gap-3">
+      <ThemeToggle />
+      <a href="#contact" class="rounded-[var(--radius)] bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90">
+        Free audit
+      </a>
+    </div>
   </nav>
 </header>

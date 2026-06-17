@@ -4,7 +4,7 @@ import Icon from "./Icon.astro";
 const c = site.contact;
 const f = site.finalCta;
 ---
-<section id="contact" class="scroll-mt-20 bg-foreground text-background">
+<section id="contact" class="scroll-mt-20 bg-ink text-ink-foreground">
   <div class="relative overflow-hidden">
     <div class="pointer-events-none absolute inset-0">
       <div class="absolute left-[10%] top-[-30%] h-[40rem] w-[40rem] rounded-full opacity-25 blur-3xl"
@@ -13,10 +13,21 @@ const f = site.finalCta;
     <div class="relative mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:py-28 lg:grid-cols-2 lg:items-center">
       <div>
         <h2 class="font-display text-3xl font-bold tracking-tight sm:text-4xl">{f.heading}</h2>
-        <p class="mt-4 max-w-md text-lg text-background/75">{f.body}</p>
+        <p class="mt-4 max-w-md text-lg text-ink-foreground/75">{f.body}</p>
+        <ul class="mt-6 space-y-2.5 text-sm text-ink-foreground/80">
+          <li class="flex items-center gap-2.5"><Icon name="check" class="h-4 w-4 shrink-0 text-accent" /> Your mobile speed score &amp; how you rank on Google</li>
+          <li class="flex items-center gap-2.5"><Icon name="check" class="h-4 w-4 shrink-0 text-accent" /> The top 3 fixes costing you calls right now</li>
+          <li class="flex items-center gap-2.5"><Icon name="check" class="h-4 w-4 shrink-0 text-accent" /> A clear quote — no obligation, no pressure</li>
+        </ul>
         <a href={`mailto:${site.email}?subject=Free%20website%20audit`} class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent transition hover:opacity-80">
           <Icon name="arrow" class="h-4 w-4" /> Or email us directly at {site.email}
         </a>
+        {site.phone && (
+          <a href={`tel:${site.phone.replace(/[^0-9+]/g, "")}`} class="mt-2 flex items-center gap-2 text-sm font-medium text-accent transition hover:opacity-80">
+            <Icon name="phone" class="h-4 w-4" /> Call or text {site.phone}
+          </a>
+        )}
+        <p class="mt-5 text-sm text-ink-foreground/55">{site.location} · {site.serviceArea}</p>
       </div>
 
       <!-- Contact form → Web3Forms (host-agnostic backend, NO activation step).
@@ -25,27 +36,33 @@ const f = site.finalCta;
            Progressive enhancement: JS posts JSON for an inline success state; with
            JS off it falls back to a normal POST to the Web3Forms endpoint. -->
       <div>
-      <form id="auditForm" method="POST" action="https://api.web3forms.com/submit" data-email={site.email} class="rounded-2xl border border-background/15 bg-background/5 p-6 backdrop-blur-sm sm:p-8">
+      <form id="auditForm" method="POST" action="https://api.web3forms.com/submit" data-email={site.email} class="rounded-2xl border border-ink-foreground/15 bg-ink-foreground/[0.06] p-6 backdrop-blur-sm sm:p-8">
         <input type="hidden" name="access_key" value={site.web3formsKey} />
         <input type="hidden" name="subject" value="New Studio0rbit audit request" />
         <input type="hidden" name="from_name" value="Studio0rbit website" />
         <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <h3 class="font-display text-lg font-semibold">{c.heading}</h3>
-        <p class="mt-1 text-sm text-background/70">{c.body}</p>
+        <p class="mt-1 text-sm text-ink-foreground/75">{c.body}</p>
         <div class="mt-5 grid gap-4">
-          <input name="name" required placeholder="Your name" class="rounded-[var(--radius)] border border-background/20 bg-background/10 px-4 py-3 text-sm text-background placeholder:text-background/50 focus:border-accent focus:outline-none" />
-          <input name="business" required placeholder="Shop / business name" class="rounded-[var(--radius)] border border-background/20 bg-background/10 px-4 py-3 text-sm text-background placeholder:text-background/50 focus:border-accent focus:outline-none" />
-          <input name="email" type="email" required placeholder="Email" class="rounded-[var(--radius)] border border-background/20 bg-background/10 px-4 py-3 text-sm text-background placeholder:text-background/50 focus:border-accent focus:outline-none" />
-          <input name="website" placeholder="Current website (if any)" class="rounded-[var(--radius)] border border-background/20 bg-background/10 px-4 py-3 text-sm text-background placeholder:text-background/50 focus:border-accent focus:outline-none" />
-          <textarea name="message" rows="3" placeholder="What do you need? (a new site, bookings, online ordering...)" class="rounded-[var(--radius)] border border-background/20 bg-background/10 px-4 py-3 text-sm text-background placeholder:text-background/50 focus:border-accent focus:outline-none"></textarea>
+          <label class="sr-only" for="cf-name">Your name</label>
+          <input id="cf-name" name="name" required autocomplete="name" placeholder="Your name" class="rounded-[var(--radius)] border border-ink-foreground/25 bg-ink-foreground/15 px-4 py-3 text-sm text-ink-foreground placeholder:text-ink-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" />
+          <label class="sr-only" for="cf-business">Shop or business name</label>
+          <input id="cf-business" name="business" required autocomplete="organization" placeholder="Shop / business name" class="rounded-[var(--radius)] border border-ink-foreground/25 bg-ink-foreground/15 px-4 py-3 text-sm text-ink-foreground placeholder:text-ink-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" />
+          <label class="sr-only" for="cf-email">Email address</label>
+          <input id="cf-email" name="email" type="email" required autocomplete="email" placeholder="Email" class="rounded-[var(--radius)] border border-ink-foreground/25 bg-ink-foreground/15 px-4 py-3 text-sm text-ink-foreground placeholder:text-ink-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" />
+          <label class="sr-only" for="cf-website">Current website, if any</label>
+          <input id="cf-website" name="website" autocomplete="url" placeholder="Current website (optional)" class="rounded-[var(--radius)] border border-ink-foreground/25 bg-ink-foreground/15 px-4 py-3 text-sm text-ink-foreground placeholder:text-ink-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" />
+          <label class="sr-only" for="cf-message">What do you need?</label>
+          <textarea id="cf-message" name="message" rows="3" placeholder="What do you need? (optional — a new site, bookings, online ordering...)" class="rounded-[var(--radius)] border border-ink-foreground/25 bg-ink-foreground/15 px-4 py-3 text-sm text-ink-foreground placeholder:text-ink-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"></textarea>
           <button type="submit" class="rounded-[var(--radius)] bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90">{f.cta.label}</button>
-          <p class="text-xs leading-relaxed text-background/55">{c.pipaNote}</p>
+          <p class="text-center text-xs font-medium text-ink-foreground/70">{c.reassure}</p>
+          <p class="text-xs leading-relaxed text-ink-foreground/55">{c.pipaNote}</p>
           <p id="formStatus" role="status" aria-live="polite" class="hidden text-sm font-medium text-accent"></p>
         </div>
       </form>
       <div id="formSuccess" hidden class="rounded-2xl border border-accent/40 bg-accent/10 p-8 text-center">
-        <p class="font-display text-xl font-semibold text-background">Thanks — your request is in! ✦</p>
-        <p class="mt-2 text-sm text-background/80">We'll review your shop and reply within one business day.</p>
+        <p class="font-display text-xl font-semibold text-ink-foreground">Thanks — your request is in! ✦</p>
+        <p class="mt-2 text-sm text-ink-foreground/80">We'll review your shop and reply within one business day.</p>
         <a href="/templates" class="mt-4 inline-block text-sm font-medium text-accent transition hover:opacity-80">While you wait, browse our templates →</a>
       </div>
       </div>

@@ -2,6 +2,8 @@
 import "../../styles/base.css";
 import "../../theme.css";
 import { site } from "../../content/site";
+import Head from "../../components/Head.astro";
+import ThemeToggle from "../../components/ThemeToggle.astro";
 import templates from "../../data/templates.json";
 
 // Group templates by industry, preserving the manifest order.
@@ -17,16 +19,10 @@ const description = `Browse ${(templates as any[]).length} example website desig
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#5b4fe6" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <Head title={title} description={description} path="/templates" />
   </head>
   <body class="bg-background font-sans text-foreground antialiased">
+    <a href="#main" class="skip-link">Skip to content</a>
     <header class="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
       <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="/" class="flex items-center gap-2 font-display text-lg font-bold tracking-tight text-foreground">
@@ -35,8 +31,9 @@ const description = `Browse ${(templates as any[]).length} example website desig
           </span>
           {site.brand}
         </a>
-        <div class="flex items-center gap-5 text-sm font-medium">
-          <a href="/" class="text-muted-foreground transition hover:text-foreground">← Back to site</a>
+        <div class="flex items-center gap-4 text-sm font-medium sm:gap-5">
+          <a href="/" class="hidden text-muted-foreground transition hover:text-foreground sm:inline">← Back to site</a>
+          <ThemeToggle />
           <a href="/#contact" class="rounded-[var(--radius)] bg-primary px-4 py-2 font-semibold text-primary-foreground shadow-sm transition hover:opacity-90">Free audit</a>
         </div>
       </nav>
@@ -57,9 +54,22 @@ const description = `Browse ${(templates as any[]).length} example website desig
       </div>
     </section>
 
-    <main class="mx-auto max-w-7xl px-6 pb-24">
+    <div class="sticky top-[61px] z-30 border-b border-border bg-background/90 backdrop-blur-md">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-2 px-6 py-3">
+        <label for="catFilter" class="text-sm font-medium text-muted-foreground">Filter by industry</label>
+        <select id="catFilter" class="rounded-[var(--radius)] border border-border bg-card px-3 py-2 text-sm font-medium text-foreground focus:border-primary focus:outline-none">
+          <option value="__all">All industries ({groups.length})</option>
+          {groups.map((g) => (
+            <option value={g.title}>{g.title} ({g.items.length})</option>
+          ))}
+        </select>
+        <span id="catCount" class="text-sm text-muted-foreground" aria-live="polite">Showing all {(templates as any[]).length} designs</span>
+      </div>
+    </div>
+
+    <main id="main" class="mx-auto max-w-7xl px-6 pb-24">
       {groups.map((g) => (
-        <section class="mt-14">
+        <section class="tg-group mt-14" data-group={g.title} data-count={g.items.length}>
           <h2 class="flex items-center gap-3 border-b border-border pb-3 font-display text-sm font-semibold uppercase tracking-[0.12em] text-foreground/80">
             {g.title}
             <span class="rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">{g.items.length}</span>
@@ -68,7 +78,7 @@ const description = `Browse ${(templates as any[]).length} example website desig
             {g.items.map((t) => (
               <a class="tg-card group" href={`/templates/g/${t.slug}/`} target="_blank" rel="noopener" aria-label={`Open ${t.brandName} (${t.variant}) template`}>
                 <div class="tg-thumb">
-                  <iframe class="tg-frame" src={`/templates/g/${t.slug}/`} loading="lazy" tabindex="-1" title={`${t.brandName} preview`} aria-hidden="true"></iframe>
+                  <img class="tg-shot" src={`/templates/shots/${t.slug}.jpg`} width="1440" height="900" loading="lazy" decoding="async" alt={`Preview of the ${t.brandName} ${t.categoryTitle} template (${t.variant})`} />
                   <span class="tg-open">Open ↗</span>
                 </div>
                 <div class="p-4">
@@ -85,11 +95,11 @@ const description = `Browse ${(templates as any[]).length} example website desig
       ))}
     </main>
 
-    <footer class="border-t border-border bg-foreground text-background">
+    <footer class="border-t border-border bg-ink text-ink-foreground">
       <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-12 text-center sm:flex-row sm:text-left">
         <div>
           <p class="font-display text-xl font-bold">See one you like?</p>
-          <p class="mt-1 text-background/70">We'll tailor it to your shop, your brand, your content — and you own it.</p>
+          <p class="mt-1 text-ink-foreground/70">We'll tailor it to your shop, your brand, your content — and you own it.</p>
         </div>
         <a href="/#contact" class="rounded-[var(--radius)] bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90">Start with a free audit</a>
       </div>
@@ -100,12 +110,36 @@ const description = `Browse ${(templates as any[]).length} example website desig
       .tg-card { display: block; overflow: hidden; border: 1px solid var(--border); border-radius: 1rem; background: var(--card); box-shadow: 0 1px 2px rgba(0,0,0,.04); transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
       .tg-card:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(0,0,0,.12); border-color: color-mix(in oklab, var(--primary) 45%, var(--border)); }
       .tg-thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--muted); border-bottom: 1px solid var(--border); }
-      /* Render the live page at desktop width and scale it down as a thumbnail. */
-      .tg-frame { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform: scale(0.212); transform-origin: top left; pointer-events: none; }
+      /* Static poster screenshot of the live page (see scripts/shoot-gallery.mjs). */
+      .tg-shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .4s ease; }
+      .tg-card:hover .tg-shot { transform: scale(1.03); }
       .tg-open { position: absolute; right: .6rem; bottom: .6rem; opacity: 0; transform: translateY(4px); transition: opacity .18s ease, transform .18s ease; background: var(--primary); color: var(--primary-foreground); font-size: 11px; font-weight: 600; padding: .25rem .55rem; border-radius: 999px; }
       .tg-card:hover .tg-open { opacity: 1; transform: translateY(0); }
       .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-      @media (max-width: 640px) { .tg-frame { transform: scale(0.30); } }
     </style>
+    <script is:inline>
+      (function () {
+        var sel = document.getElementById("catFilter");
+        var count = document.getElementById("catCount");
+        if (!sel) return;
+        var groups = Array.prototype.slice.call(document.querySelectorAll(".tg-group"));
+        var total = groups.reduce(function (n, g) { return n + (parseInt(g.dataset.count, 10) || 0); }, 0);
+        function apply() {
+          var val = sel.value;
+          var shown = 0;
+          groups.forEach(function (g) {
+            var match = val === "__all" || g.dataset.group === val;
+            g.hidden = !match;
+            if (match) shown += parseInt(g.dataset.count, 10) || 0;
+          });
+          if (count) {
+            count.textContent = val === "__all"
+              ? "Showing all " + total + " designs"
+              : "Showing " + shown + " " + val + " design" + (shown === 1 ? "" : "s");
+          }
+        }
+        sel.addEventListener("change", apply);
+      })();
+    </script>
   </body>
 </html>

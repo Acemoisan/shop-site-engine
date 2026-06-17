@@ -1,5 +1,11 @@
 /* Studio0rbit brand tokens (OKLCH) — the agency/service site palette.
-   Deep-space ink + electric-indigo "orbit" primary + bright cyan accent. */
+   Deep-space ink + electric-indigo "orbit" primary + bright cyan accent.
+
+   Two themes, one engine: the light palette lives in :root, the dark palette
+   overrides it under [data-theme="dark"] (set on <html> by the no-FOUC script in
+   Head.astro). Every component uses semantic token utilities, so flipping these
+   variables re-themes the whole page. The "ink" pair is theme-constant: the dark
+   hero/contact/footer bookends stay deep-space in BOTH modes for a cohesive look. */
 :root {
   --background: oklch(0.99 0.004 280);
   --foreground: oklch(0.20 0.03 280);
@@ -11,7 +17,34 @@
   --accent: oklch(0.80 0.15 200);             /* bright orbit cyan */
   --accent-foreground: oklch(0.22 0.04 240);
   --border: oklch(0.91 0.008 280);
+
+  /* Theme-constant deep-space ink (dark hero/contact/footer bookends). */
+  --ink: oklch(0.18 0.03 280);
+  --ink-foreground: oklch(0.97 0.01 280);
+
   --font-sans: "Inter", system-ui, sans-serif;
   --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
   --radius: 0.9rem;
+
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --background: oklch(0.17 0.022 280);        /* deep space surface */
+  --foreground: oklch(0.96 0.01 280);
+  --card: oklch(0.215 0.026 280);
+  --primary: oklch(0.64 0.20 277);            /* lift indigo for dark bg */
+  --primary-foreground: oklch(0.99 0.01 280);
+  --muted: oklch(0.225 0.022 280);
+  --muted-foreground: oklch(0.72 0.02 280);
+  --accent: oklch(0.82 0.14 200);
+  --accent-foreground: oklch(0.18 0.04 240);
+  --border: oklch(0.30 0.02 280);
+
+  /* Ink stays deep-space; lift it just slightly so it reads against the dark
+     surface around it. */
+  --ink: oklch(0.145 0.025 280);
+  --ink-foreground: oklch(0.97 0.01 280);
+
+  color-scheme: dark;
 }

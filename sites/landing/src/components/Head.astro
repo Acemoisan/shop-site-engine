@@ -1,0 +1,63 @@
+---
+// Shared document head for every landing route. Centralises SEO (canonical, Open
+// Graph, Twitter card), icons, fonts, the theme-color, and the no-FOUC dark-mode
+// bootstrap so the two pages can't drift apart.
+interface Props {
+  title: string;
+  description: string;
+  path?: string;            // route path for canonical + og:url, e.g. "/" or "/templates"
+  jsonLd?: Record<string, any>;
+}
+const { title, description, path = "/", jsonLd } = Astro.props;
+const site = Astro.site ?? new URL("https://studio0rbit-audit.netlify.app");
+const canonical = new URL(path, site).href;
+const ogImage = new URL("/og.png", site).href;
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="Studio0rbit" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- Icons -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<meta name="theme-color" content="#0c0c1a" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#5b4fe6" media="(prefers-color-scheme: light)" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<!-- Apply saved/system theme before first paint to avoid a flash. -->
+<script is:inline>
+  (function () {
+    try {
+      var saved = localStorage.getItem("theme");
+      var dark = saved ? saved === "dark"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (dark) document.documentElement.setAttribute("data-theme", "dark");
+    } catch (e) {}
+  })();
+</script>
+
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

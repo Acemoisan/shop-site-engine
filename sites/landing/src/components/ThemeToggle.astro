@@ -1,0 +1,28 @@
+---
+import Icon from "./Icon.astro";
+// Light/dark toggle. The actual theme is applied pre-paint by the inline script
+// in Head.astro (no FOUC); this button just flips [data-theme] on <html> and
+// persists the choice. Sun shows in dark mode (tap to go light) and vice-versa.
+---
+<button
+  id="themeToggle"
+  type="button"
+  aria-label="Toggle dark mode"
+  title="Toggle dark mode"
+  class="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition hover:border-primary/50 hover:text-foreground"
+>
+  <Icon name="sun" class="hidden h-[18px] w-[18px] [html[data-theme=dark]_&]:block" />
+  <Icon name="moon" class="block h-[18px] w-[18px] [html[data-theme=dark]_&]:hidden" />
+</button>
+<script is:inline>
+  (function () {
+    var btn = document.getElementById("themeToggle");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var root = document.documentElement;
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+    });
+  })();
+</script>

@@ -16,6 +16,11 @@ const total = byScore.length;
         <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Templates</p>
         <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{t.heading}</h2>
         <p class="mt-4 text-muted-foreground">{t.sub}</p>
+        <dl class="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+          <div><dt class="font-display text-2xl font-bold text-foreground">{total}</dt><dd class="text-xs text-muted-foreground">live, real designs</dd></div>
+          <div><dt class="font-display text-2xl font-bold text-foreground">20</dt><dd class="text-xs text-muted-foreground">industries covered</dd></div>
+          <div><dt class="font-display text-2xl font-bold text-foreground">$0<span class="text-base">/mo</span></dt><dd class="text-xs text-muted-foreground">to keep any of them</dd></div>
+        </dl>
       </div>
       <a href="/templates" class="group inline-flex shrink-0 items-center gap-2 rounded-[var(--radius)] bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90">
         Browse all {total} templates
@@ -27,7 +32,7 @@ const total = byScore.length;
       {featured.map((f) => (
         <a class="tpl-card group" href={`/templates/g/${f.slug}/`} target="_blank" rel="noopener" aria-label={`Open ${f.brandName} template`}>
           <div class="tpl-thumb">
-            <iframe class="tpl-frame" src={`/templates/g/${f.slug}/`} loading="lazy" tabindex="-1" title={`${f.brandName} preview`} aria-hidden="true"></iframe>
+            <img class="tpl-shot" src={`/templates/shots/${f.slug}.jpg`} width="1440" height="900" loading="lazy" decoding="async" alt={`Preview of the ${f.brandName} ${f.categoryTitle} template`} />
             <span class="tpl-open">Open ↗</span>
           </div>
           <div class="flex items-center justify-between gap-2 p-4">
@@ -49,13 +54,14 @@ const total = byScore.length;
   </div>
 
   <style>
-    .tpl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+    .tpl-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    @media (min-width: 640px) { .tpl-grid { grid-template-columns: repeat(3, 1fr); } }
     .tpl-card { display: block; overflow: hidden; border: 1px solid var(--border); border-radius: 1rem; background: var(--card); box-shadow: 0 1px 2px rgba(0,0,0,.04); transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
     .tpl-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.13); border-color: color-mix(in oklab, var(--primary) 50%, var(--border)); }
     .tpl-thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--muted); border-bottom: 1px solid var(--border); }
-    .tpl-frame { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform: scale(0.205); transform-origin: top left; pointer-events: none; }
+    .tpl-shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .4s ease; }
+    .tpl-card:hover .tpl-shot { transform: scale(1.03); }
     .tpl-open { position: absolute; right: .6rem; bottom: .6rem; opacity: 0; transform: translateY(4px); transition: opacity .18s ease, transform .18s ease; background: var(--primary); color: var(--primary-foreground); font-size: 11px; font-weight: 600; padding: .25rem .55rem; border-radius: 999px; }
     .tpl-card:hover .tpl-open { opacity: 1; transform: translateY(0); }
-    @media (max-width: 640px) { .tpl-frame { transform: scale(0.30); } }
   </style>
 </section>

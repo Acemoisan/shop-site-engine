@@ -34,6 +34,28 @@ const p = site.pricing;
         </div>
       ))}
     </div>
+    <p class="mx-auto mt-6 max-w-xl text-center text-sm font-medium text-foreground/80">
+      <Icon name="shield" class="mr-1.5 inline h-4 w-4 -translate-y-0.5 text-primary" />{p.guarantee}
+    </p>
+
+    <!-- Total-cost-of-ownership: our sharpest contrast vs. the subscription crowd -->
+    <div class="mx-auto mt-12 max-w-3xl rounded-2xl border border-border bg-card p-8 shadow-sm">
+      <h3 class="text-center font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">{p.compare.heading}</h3>
+      <p class="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">{p.compare.body}</p>
+      <div class="mt-7 grid gap-4 sm:grid-cols-2">
+        <div class="rounded-[var(--radius)] border border-border bg-muted/60 p-5 text-center">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{p.compare.them.label}</p>
+          <p class="mt-2 font-display text-3xl font-bold text-foreground/60 line-through decoration-muted-foreground/40">{p.compare.them.value}</p>
+          <p class="mt-1 text-xs text-muted-foreground">{p.compare.them.sub}</p>
+        </div>
+        <div class="rounded-[var(--radius)] border-2 border-primary bg-primary/5 p-5 text-center">
+          <p class="text-xs font-semibold uppercase tracking-wider text-primary">{p.compare.us.label}</p>
+          <p class="mt-2 font-display text-3xl font-bold text-primary">{p.compare.us.value}</p>
+          <p class="mt-1 text-xs text-muted-foreground">{p.compare.us.sub}</p>
+        </div>
+      </div>
+    </div>
+
     <p class="mt-8 text-center text-sm text-muted-foreground">{p.note}</p>
   </div>
 </section>
