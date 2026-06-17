@@ -11,7 +11,8 @@
 - **Region:** Alberta, Canada (Stacksworth Matrix is "hand-assembled in Alberta"). Ships across Canada. *(No public street address — online brand.)*
 
 ## Audit seed (from the live audit, 2026-06-17)
-- **Grade D → rebuild.** Legacy WordPress, `performance: D`, **LCP ≈ 38.8s** (catastrophic), missing click-to-call, hours, address/map, LocalBusiness JSON-LD, contact form. `seo: A`, has booking/shop link, reviews, HTTPS, OG tags. Rating **4.8★**.
+- **Grade D → rebuild.** Legacy WordPress + page-builder (a platform that passes Core Web Vitals only ~43% of the time industry-wide). Mobile **PageSpeed performance 64–67/100**. Lab LCP measured ~38–41s on Google's *throttled worst-case* test — an **indicative lab figure, not real-user data** (the site has **no CrUX field data**), so NOT what customers actually experience on a modern phone. Missing click-to-call, hours, address/map, LocalBusiness JSON-LD, contact form. `seo: A`, reviews, HTTPS, OG tags. Rating **4.8★**.
+  - **Honesty note (per our `site-audit` rules + `docs/research/audit-foundation`):** quote the **PageSpeed score + architecture**, never the lab LCP as a felt load time. The defensible win is **score 67→85 (same throttled test) + static vs heavy-WordPress architecture**, not a "Xs → Ys" real-world multiplier.
 - Report: `packages/audit/audit-bitcoinmanor.com.html` + `.json`.
 
 ## Scope decision (important)

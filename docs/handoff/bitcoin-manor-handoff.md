@@ -7,7 +7,9 @@
 **Existing store (unchanged):** <https://bitcoinmanor.com/> (WordPress + WooCommerce). The new site **deep-links into this store** for all purchases — we did not touch their cart/checkout.
 
 ## What was delivered
-A fast, distinctive **brand/landing site** that replaces a 38.8s-LCP legacy-WordPress homepage. Static Astro (CWV-pass target), dark "laser/forge" crypto-maker design, the Stacksworth Matrix as the hero product, a collections grid deep-linking into the store, a working contact form, real 4.8★ social proof, and **Organization + Store + Product** structured data. See the audit (`packages/audit/audit-bitcoinmanor.com.html`) and spec (`docs/superpowers/specs/2026-06-17-bitcoin-manor-design.md`).
+A fast, distinctive **brand/landing site** that replaces a heavy legacy-WordPress + page-builder homepage. Built on static Astro using the client's own product photography (pulled from their existing site), dark "laser/forge" crypto-maker design, the Stacksworth Matrix as the hero product, a collections grid deep-linking into the store, a working contact form, real 4.8★ social proof, and **Organization + Store + Product** structured data. See the audit (`packages/audit/audit-bitcoinmanor.com.html`) and spec (`docs/superpowers/specs/2026-06-17-bitcoin-manor-design.md`).
+
+**Measured improvement (stated honestly):** mobile **PageSpeed performance 67 → 85** (same throttled lab test). *We do not quote a "Xs → Ys" load-time multiplier:* the old site's ~40s lab LCP is Google's **throttled worst-case lab figure, not real-user data** (the site has no CrUX field data), and our audit report itself labels CWV as "indicative lab measurements, not Google's official field verdict." The real wins are the PageSpeed score, accessibility (A), structured data, a working contact form, and the client's real imagery on a fast static stack.
 
 ## 1. Accounts & ownership
 The client owns everything. Transfer by **invite / password reset to the owner email** — never plaintext passwords. **Currently both Netlify and Storyblok sit under the operator account `aidan.c.moisan@gmail.com`** (used to stand the site up autonomously). Transfer steps below.
