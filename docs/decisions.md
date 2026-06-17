@@ -6,6 +6,17 @@ Running log of decisions for the Calgary local-shop website service. Newest firs
 
 ---
 
+## 2026-06-16 — Lead pipeline: manual-first, free-tier (Phase 3)
+
+- **Start the lead pipeline by hand, not with code.** v1 = one **Outscraper free-tier** (500 records/mo) Google Maps export per vertical×area → qualify in a spreadsheet → audit the top ~20 with the **existing** `packages/audit` tool. Goal: prove the **scrape → website-presence → audit** loop and validate demand for **$0** before building anything.
+- **Grab ALL shops, not no-website-only.** ~25% of Canadian small businesses lack a site (shrinking ~1–2pp/yr); the other ~75% are mostly weak/dated sites the audit tool monetizes as rebuild/tune-up. Website-presence is a **column, not a filter**.
+- **Outscraper is the workhorse; Playwright stays a rare per-shop deep-dive.** Scraping public data isn't illegal (hiQ v. LinkedIn / CFAA) but breaches Google's ToS — letting Outscraper do the bulk scraping puts that ToS risk on the vendor, not us.
+- **Review-response analysis deferred to v2.** Owner-reply data (a verified strong signal — 63% of businesses never reply; replies are a Google local-ranking factor) is added only after scraping is proven.
+- **Build the thin `packages/leads` tool only on a trigger** (≥3 pulls AND >30 min/pull; OR paying past free tier and wanting the audit batch-loop; OR dedupe-over-time pain). YAGNI until then.
+- Spec: [superpowers/specs/2026-06-16-prospect-pull-manual-design.md](superpowers/specs/2026-06-16-prospect-pull-manual-design.md) · Plan: [superpowers/plans/2026-06-16-prospect-pull-manual.md](superpowers/plans/2026-06-16-prospect-pull-manual.md).
+
+---
+
 ## 2026-06-15 — SHIPPED: capability built, service live (closes the open loops)
 
 Reality has caught up to the plan. Recording it so earlier "reopened/pending/proposed" entries below are read as **history, not live uncertainty**:

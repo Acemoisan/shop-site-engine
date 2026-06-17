@@ -102,6 +102,7 @@ Capability is built and the service is **live**. The phase checkboxes below are 
 - **Remaining:** run the Calgary prospect scrape + send first outreach batch (Phase 3 + Phase 4 outreach); ongoing design elevation.
 
 ## Progress log
+- **2026-06-16:** 🧭 **Phase 3 lead pipeline scoped — manual-first, free-tier.** Decided to prove the **scrape → website-presence → audit** loop by hand before writing any code: one Outscraper **free-tier** (500 records/mo) Google Maps export per vertical×area, **grab-all (not no-website-only)**, qualify to ~50–100, audit the top ~20 with the **existing** `packages/audit` tool. Review-response analysis **deferred to v2**. A thin `packages/leads` tool is built only on a defined trigger. Spec: [specs/2026-06-16-prospect-pull-manual-design.md](superpowers/specs/2026-06-16-prospect-pull-manual-design.md) · Plan: [plans/2026-06-16-prospect-pull-manual.md](superpowers/plans/2026-06-16-prospect-pull-manual.md). **Pending execution** (needs an Outscraper free account).
 - **2026-06-15:** Phase 0 engine built and verified — pnpm monorepo, Astro + Tailwind v4 + OKLCH token theming, 7 shared section components + LocalBusiness JSON-LD. **Two demos live & screenshotted** (barber, café) proving new shop = `theme.css` + `content.ts` only. CLAUDE.md + client handoff guide written. Fixed a Tailwind v4 monorepo `@source` bug.
 - **2026-06-15:** ✅ **Storyblok wired (barber).** Created `shop`/`shop_hours`/`shop_service` content types via Management API, pre-filled the barber story, connected the site to fetch from Storyblok CDN (read token in `.env`, local fallback). **Edit→publish→rebuild loop verified** (changed tagline in Storyblok → appeared in build). Client self-edit requirement proven.
 - **2026-06-15:** ✅ **All 5 demos CMS-wired** (barber, café, spa, electrician, fitness) from one Storyblok space, each with local fallback; custom heroes editable via `hero_kicker`/`hero_subcopy`/`hero_cta_label`. Screenshot-verified desktop + mobile.
@@ -120,6 +121,7 @@ The v0 components prove the engine but look plain. The design system is *the* di
 
 ## Open items to resolve along the way
 - ✅ Price points set & published live: $1,800 / $3,500 (Growth) / $6,000 one-time (revisit anchors with real sales data).
-- ⚠️ Reconfirm before Phase 3 scrape: Outscraper/Targetron pricing, Calgary build-price anchors; Figma MCP seat rules if adopted.
+- Phase 3 is **manual-first / free-tier** (no code until the build trigger is hit) — see [prospecting-playbook.md](gtm/prospecting-playbook.md) "Build trigger" + the v1 spec.
+- ⚠️ Reconfirm before any **paid** Phase 3 scrape: Outscraper/Targetron pricing, Calgary build-price anchors; Figma MCP seat rules if adopted. (v1 stays in the free tier.)
 - Privacy: reference **Alberta PIPA** (not PIPEDA) on any site collecting form/booking data.
 - Test a no-code (Framer) build by hand for comparison (owner, parallel).

@@ -1,0 +1,9 @@
+# Prospect data is PII (Alberta PIPA) — never commit it. Keep the folders only.
+*
+!.gitignore
+!inbox/
+!triaged/
+inbox/*
+triaged/*
+!inbox/.gitkeep
+!triaged/.gitkeep
