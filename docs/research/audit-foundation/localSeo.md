@@ -1,92 +1,71 @@
-# Local SEO & Discovery — Audit Knowledge Base
+# Local SEO & Discovery — Audit Briefing
 
-How a build-and-handoff Calgary shop site contributes to (and is limited within) local discovery: GBP, NAP consistency, the local pack, LocalBusiness schema, reviews, citations, and AI-search visibility.
+What a build-and-handoff shop site can and cannot move on Google's local pack, local-organic, and AI "near me" results — and the schema/NAP/review/booking facts the audit should grade against.
 
 ## Necessary (must / should-have)
 
-**The ranking-weight ceiling (verified, high-impact).** In the most-cited local ranking survey (Whitespark/BrightLocal 2025), Google Business Profile (~32%) and reviews (~20%) dominate the *local pack*, while on-page/website signals are only ~15%. Proximity to the searcher is a dominant, fixed factor set by the GBP address that no website change can alter. The honest reframe: the website's real leverage is in *local organic* ("near me", city+service queries) where on-page is the LARGEST category (~33%, plus links ~24%, GBP drops to ~7%). Frame client expectations accordingly — the site reinforces the pack indirectly and wins local organic directly.
+Lead with the high-impact, must-have foundations:
 
-**NAP as crawlable text (verified, high-impact).** Exact-match Name/Address/Phone must render as real text (footer + contact), never inside an image, and must mirror the GBP listing and the LocalBusiness JSON-LD byte-for-byte. This is the one piece of the citation ecosystem fully controlled at build time and shipped in every site. Consistent NAP is associated with materially higher local-pack appearance _(provisional)_ and inconsistent contact data erodes consumer trust/conversion _(provisional)_. Treat NAP as foundational table-stakes (citation signals are only ~6–9% weight), not a rank-climbing lever.
-
-**LocalBusiness JSON-LD, done correctly (mixed, high-impact).** Schema requires only `name` + `address`; everything else (geo, telephone, hours, priceRange) is recommended but "the more properties, the higher quality the result" _(provisional)_. Most prospect sites lack JSON-LD entirely (common-but-missing) — a concrete differentiator. The single biggest correctness fix: **never emit self-serving `aggregateRating`/`review` for the business itself** — Google has made self-controlled review markup (including embedded GBP/Facebook review widgets) ineligible for star rich results since 2019, and mismatched/fake values risk a site-wide "spammy structured data" manual penalty (verified). On-page star display is fine; marking it up as self-`aggregateRating` is not.
-
-**Reviews — acquisition, not just display (verified, high-impact).** Review signals are the ~16–20% local-pack category and rising. Practical levers, all owner-runnable and fitting the no-retainer model:
-- Getting a business from 0–9 to ~10+ reviews is the high-leverage milestone; above that, count shows diminishing returns (verified).
-- Velocity and recency outweigh lifetime count; rankings can decline if inflow stalls — set up an *ongoing* request habit, not a one-time burst (verified).
-- Star rating gates conversion sharply: a large majority of consumers only use 4.0+ businesses, so protecting rating matters as much as count (verified).
-- The most effective CTA is a direct Google review short link (`g.page`) via SMS ~1–2h post-service (95%+ open), post-service email, and an in-store QR with the plain URL printed alongside (verified).
-
-**GBP address posture by business model (verified, high-impact).** Pure service-area businesses (staff travel to customer — most trades) MUST hide the street address in GBP and define service areas; showing a non-visitable address violates Google guidelines. Storefront/hybrid businesses customers can visit (auto, spa, fitness, law, dental, barber, cafe, retail) MUST keep a visible, accurate address. Of the target verticals, only trades are SAB-default.
-
-**Single-page vs multi-page decision rule (verified, high-impact).** A single page suffices for exactly one customer-facing location in one primary city. A small multi-page local-SEO IA is structurally *required* when (a) there are multiple physical locations, or (b) a SAB genuinely serves multiple distinct cities/suburbs. Most single-shop Calgary clients stay single-page.
-
-**Other should-haves (verified):** Service+city in title tags and H1/H2 (e.g. "Barber in Calgary") is a cheap one-time on-page win. Behavioral signals (~9%) — calls, clicks, direction requests — are improved indirectly by a fast, mobile-first, conversion-complete static site _(provisional)_. Responding to reviews within 24–48h is a free dual rank+trust lever. Claim/clean GBP first, then import to Bing Places (auto-sync), then Apple Business Connect, then Yelp.ca/YellowPages/Facebook.
+- **Know the ceiling.** On-page/website signals are only ~15% of the local *pack* (GBP ~32%, reviews ~20% dominate), but the LARGEST category (~33%) of local *organic* results — so the website's honest ROI is "near me" / city+service organic ranking, not the 3-pack. Proximity is fixed by the GBP address and the site contributes zero to it.
+- **Ship exact-match, crawlable NAP.** Name/Address/Phone must be real text (footer + contact section), byte-identical to GBP, and mirrored into LocalBusiness JSON-LD — never baked into an image. This is the one piece of the citation ecosystem we fully control and ship in every site. Consistent NAP is associated with ~40% higher odds of appearing in the local pack and is a must-have, though it is foundational table-stakes (~6–9% direct weight), not a rank-climbing lever. NAP consistency across Google/Apple/Bing/Canadian directories is a must-have foundation _(provisional)_.
+- **Ship policy-safe LocalBusiness JSON-LD.** Required properties are only `name` + `address` (full `PostalAddress`); everything else is recommended-but-quality-raising. Use the most-specific subtype per vertical, structure the address (`Calgary`/`AB`/`CA`), and emit `geo` (≥5dp), `telephone` (+1-403 E.164), `url`, and `openingHoursSpecification`.
+- **Hard guardrail — never self-markup reviews.** Self-applied `aggregateRating`/`review` about your own business is ineligible for star rich results AND risks a "spammy structured data" manual action that can strip all rich snippets site-wide. This includes embedded Google/Facebook review widgets supplying ratings. On-page star *display* is fine; marking it up as self-`aggregateRating` is the single biggest correctness defect.
+- **Set review expectations at handoff.** Reviews are the 3rd-largest pack category (~16–20%, growing) and materially move rank, but they are a GBP/ongoing-operations signal the static site cannot generate. Recency/velocity outweigh lifetime count, and signals decay if inflow stops _(provisional)_. Hand off an owner-runnable review-request flow (Google short link + QR + SMS/email templates); ask ALL customers unconditionally.
+- **Booking CTA every appointment vertical.** A free GBP appointment link (customer leaves Google to your booking page) is universally available in Canada and is the safe default booking CTA for barber/spa/fitness/dental/auto.
+- **Title/H1 service + city.** Templating "<service> in Calgary" / quadrant + community into title tags and H1/H2 is a cheap, fully-controllable, zero-maintenance on-page win.
 
 ## Niche / situational
 
-- **Schema sub-type per vertical** _(provisional)_: use the most-specific LocalBusiness subtype, not generic `LocalBusiness` (must-have, common-but-missing). barber → `HairSalon` (no `BarberShop` type exists); cafe → `CafeOrCoffeeShop`; spa → `DaySpa`; fitness → `HealthClub`/`ExerciseGym`; dental → `Dentist`; auto → `AutoRepair`; retail → `Store`/subtype; **law → `LegalService` (NOT `Attorney`)**; trades → the specific `HomeAndConstructionBusiness` subtype (`Plumber`, `Electrician`, `HVACBusiness`, etc.). Make `@type` a per-shop content field.
-- **Service-area schema/copy** _(provisional)_: trades (SAB) emit `areaServed` and may omit the public address; storefronts keep `PostalAddress` + `geo`. Hybrids (e.g. auto shop with mobile service) can carry both.
-- **Service / city / location pages** (verified): multi-service verticals (trades, dental, law, auto) raise the local-organic ceiling with one page per service; SABs serving multiple suburbs need genuinely unique city pages (~40–60% unique content) — duplicate "swap the city name" pages are doorway pages and get filtered/penalized. Cap at genuine priority zones (~3–6 suburbs for a Calgary trades client, not a programmatic matrix).
-- **Food-specific schema (cafe)** _(provisional)_: `hasMenu` (URL, not just inline), `servesCuisine`, `acceptsReservations`; prefer a crawlable HTML menu over a PDF-only menu (an AI-search/SEO anti-pattern).
-- **Vertical directories** _(provisional)_: pick 2–4 relevant ones at launch — restaurant/cafe: TripAdvisor/OpenTable/Zomato; dental: RateMDs/Healthgrades; trades: HomeStars/BBB; auto: CarGurus; etc.
-- **Calgary geo-targeting** _(provisional)_: wire quadrant (NW/NE/SW/SE) and named community (Kensington, Beltline, Inglewood) into titles, headings, NAP copy, and schema — more distinctive than generic "near me".
-- **English-only default** _(provisional)_: no bilingual requirement for Alberta private businesses; skip the overhead, reallocate to reviews/NAP/geo.
-- **Retail free local listings** _(provisional)_: Google's free local listings + local inventory app are live in Canada — a retail-template default.
-- **Legit product/service review schema** (verified): `aggregateRating` CAN earn stars when about specific Products/Services (retail product pages, some menus), not the business as a whole.
+- **Multi-page IA is a tier-up, not a default.** Single page suffices for one location + one primary city. Break the single-page rule only when (a) multiple physical locations, or (b) a service-area business genuinely serving multiple distinct cities/suburbs. Each location/service-area page must be genuinely unique (~40–60% unique content) or it is a doorway page; cap service-area pages at real priority zones (~3–6 suburbs, not a programmatic city matrix).
+- **Vertical schema add-ons.** `hasMenu`/`servesCuisine`/`acceptsReservations` for cafe; `areaServed` for trades; `hasOfferCatalog`/`makesOffer` for service-menu verticals (nice-to-have entity enrichment, not a rich-result trigger). `priceRange` ($–$$$$, <100 chars) is meaningful for cafe/spa/retail/auto, low-signal for dental/law.
+- **Nice-to-have enrichers:** `hasMap` (Google Maps URL), `sameAs` (GBP/Facebook/Instagram/Yelp for entity reconciliation), special/holiday hours via `validFrom`/`validThrough`.
+- **Off-site / out of scope:** third-party citation consistency (~6% pack), paid data-aggregator subscriptions (Data Axle/Foursquare cover Canada but are recurring; Localeze is US-only) — name as client tasks, never sell as one-time work.
+- **English-only** is the correct Calgary default; no Alberta bilingual obligation — reallocate effort to reviews/NAP/geo.
+- **Legitimate review schema** only applies to Products/Services the business sells (third-party reviewed) — relevant to retail product pages or per-service pages, not a single-page brochure.
 
 ## Always reused vs rare
 
-**Always reused (every site, every vertical):**
-- The ~15% on-page ceiling and proximity-is-fixed framing (always-present).
-- Crawlable NAP text + matching JSON-LD (always-present).
-- Reviews weight as a ranking category (always-present).
-- Storefront address-visible posture (always-present for the visitable verticals).
-- English-only default _(provisional, always-present)_.
+**Always reused (ships in every build):**
+- Crawlable text NAP + click-to-call `tel:` + visible hours.
+- LocalBusiness JSON-LD with name/address/geo/telephone/url/openingHoursSpecification, NO self-`aggregateRating`.
+- Most-specific `@type` per vertical; Calgary `AB`/`CA` structured address.
+- Booking/appointment-link CTA; on-page reviews display linking out to the GBP/Yelp profile.
+- Calgary quadrant (NW/NE/SW/SE) + community geo-targeting in titles/headings/copy/schema.
 
-**Rare / out-of-scope situational:**
-- Citation *volume* management, paid aggregator subscriptions (Data Axle/Foursquare cover Canada; Localeze is US-only) — explicitly out of the one-time model.
-- `priceRange`, `hasMap`, `sameAs`, `makesOffer`/`hasOfferCatalog`, special/holiday hours — cheap nice-to-haves, not defaults.
-- AI-search citation weight (~13%, rising) _(provisional)_ — supports clean NAP + schema, not a volume program.
-- Multi-location/SAB JSON-LD `areaServed` mode — rare, only when the decision rule triggers a tier-up.
+**Rare (specific triggers only):**
+- Multi-location / multi-suburb page sets and per-location LocalBusiness schema (multi-location or multi-city SAB only).
+- `areaServed` + hidden GBP address (pure service-area trades only).
+- Food-menu schema and Reserve-with-Google native buttons (cafe/dining only).
+- Retail free local listings / local inventory feed (retail only).
+- Special/holiday hours; legitimate product/service review schema.
 
 ## Most vs least common
 
-**Most common (always-present / common):** the ranking-weight reality; NAP-as-text; service+city title tags; review velocity/recency/rating dynamics; the review short-link CTA; storefront address visibility; GBP→Bing→Apple claim sequence; review-response habit.
+**Most common in the wild:** visible hours, address/map presence, and a click-to-call link are commonly present. Chasing citation VOLUME is a common (low-impact) practitioner habit to avoid.
 
-**Common-but-missing (the differentiators — prospects routinely lack these):** LocalBusiness JSON-LD at all; the correct most-specific `@type`; structured `openingHoursSpecification` (vs a visual-only hours table); dedicated service/location pages; vertical-specific directory listings; Calgary quadrant/community geo-targeting; retail free local listings; the barber/spa booking-link correction below.
+**Common but missing (the differentiator gaps):** LocalBusiness JSON-LD at all, structured `openingHoursSpecification` vs a cosmetic table, specific `@type` subtypes, structured `PostalAddress`, `areaServed` for trades, the tier-1 Canadian citation core (GBP, Bing Places, Apple Business Connect, Yelp.ca, Facebook, YellowPages.ca, Canada411, 411.ca), per-location pages/schema, and Calgary quadrant/community targeting. Most prospect sites lack these — concrete outreach hooks.
 
-**Rare:** citation-volume chasing (low-impact, the work *not* to sell); aggregator subscriptions; `sameAs`/`hasMap`/`priceRange`/`hasOfferCatalog`; special-hours schema; product/service review stars.
+**Least common / rare:** self-`aggregateRating` (a defect when present), holiday-hours schema, retail inventory feeds, and legitimate product-review schema.
 
 ## What works vs what doesn't
 
-**Works:**
-- Shipping crawlable NAP + a correct, policy-safe LocalBusiness JSON-LD with `geo` (≥5 decimal places) _(provisional)_, E.164-style `+1-403…` phone _(provisional)_, structured `openingHoursSpecification` _(provisional)_, `addressCountry: "CA"`, `addressRegion: "AB"`.
-- Driving 0→10 reviews, then steady recent inflow, via the free `g.page` short-link CTA (SMS/email/QR).
-- A fast static site converting GBP traffic (click-to-call, booking) to feed behavioral signals _(provisional)_.
-- Live, async/lazy-loaded, height-reserved GBP review widgets for fresh on-site social proof (verified) — but they earn no rich-snippet stars and don't replace off-site review acquisition.
+**Works (universal):** GBP completeness + correct primary category + steady recent reviews are the highest-leverage 2025 levers, outweighing citation count and proximity. A fast, mobile, conversion-complete static site (CWV LCP<2.5s/INP<200ms/CLS<0.1, click-to-call, booking) converts GBP traffic and feeds the ~9% behavioral category _(provisional)_. Structured NAP/hours/services also drive AI "near me" citation, since LLMs use structured data, not live geo _(provisional)_.
 
-**Doesn't work / prohibited:**
-- Self-`aggregateRating`/review markup for the business — ineligible for stars, penalty surface (verified). The audit's `localBusinessJsonLd` check should *flag* a self-review block as a defect, not credit it.
-- Review *gating* (routing happy customers to Google, diverting unhappy to private forms) — violates Google policy AND the FTC 2024 fake-review rule (penalties up to ~$51,744/violation); CTA flows must ask ALL customers unconditionally (verified). Incentivizing reviews is likewise banned.
-- Keyword-stuffing review text to rank — a controlled test produced flat/worse results (verified).
-- Chasing citation volume / hundreds of low-DA directories — the classic retainer that doesn't move rank for a small shop (verified-leaning) _(provisional)_.
-- PDF-only menus/price lists — invisible to crawlers and LLMs _(provisional)_.
+**Doesn't work / banned:** review GATING (routing happy customers to Google, diverting unhappy ones) violates Google policy AND the FTC 2024 fake-review rule (~$51,744/violation) — ask everyone unconditionally; incentivizing reviews is likewise banned. Keyword-stuffing review text produced flat/worse rankings in controlled tests. Citation-volume blasts don't move rankings for a small shop. PDF-only menus/price lists are crawler- and LLM-invisible (ship HTML lists with prices). Self-`aggregateRating` shows no stars and risks a penalty.
 
 **Per-vertical notes:**
-- **Trades** (SAB): hide GBP address; emphasize `areaServed` schema, reviews, citations, and unique service-area (suburb) pages — proximity is weak, so on-site/off-site work does more proportional lifting. Use a `Plumber`/`Electrician`/`HVACBusiness` `@type`. Booking default is GBP appointment link / click-to-call + quote form.
-- **Barber & spa**: Reserve-with-Google for beauty & wellness is **US-only**, Canada on the 2026 roadmap — so the build default is a plain GBP appointment *link* to Booksy/Fresha/Square, NOT a native in-listing Book button _(provisional)_. This is the most important Calgary-specific correction vs generic US advice.
-- **Cafe**: `CafeOrCoffeeShop` (or `Restaurant`) `@type`, `hasMenu`/`servesCuisine`/`acceptsReservations`, crawlable HTML menu; OpenTable's Reserve-with-Google IS live in Canada for reservations-taking dining _(provisional)_.
-- **Dental**: `Dentist` `@type` (also a MedicalBusiness — keep LocalBusiness fields); native GBP Book Now achievable via PM vendors like NexHealth _(provisional)_; no review-policy exemption for health (YMYL scrutiny).
-- **Fitness**: `HealthClub`/`ExerciseGym`; class booking via Mindbody/Square; default to a "Book a class" link, native Google class booking as an upgrade _(provisional)_.
-- **Auto**: NOT a native Reserve-with-Google appointment vertical _(provisional)_; default to GBP completeness + click-to-call + quote/appointment-request form + quadrant geo-targeting. `AutoRepair` `@type`.
-- **Retail**: `Store`/subtype; Google free local listings + local inventory app (Canada-eligible) _(provisional)_; product `Review`/`Offer` schema is legitimate on product pages.
-- **Law**: `LegalService` `@type` (not `Attorney`); multi-service pages raise the organic ceiling; lean on provincial Law Society listings over US-leaning Avvo _(provisional)_.
+- **Trades:** service-area default — HIDE the GBP street address (showing a non-visitable address violates guidelines), use `areaServed` + specific `@type` (Plumber/Electrician/HVACBusiness). Hiding the pin weakens proximity, so compensate with reviews, NAP-consistent citations (HomeStars/BBB), and unique service+city landing pages. Schema relative importance is HIGHER here.
+- **Cafe:** `CafeOrCoffeeShop` (`Restaurant` if full-service), `FoodEstablishment` props (`hasMenu` URL > inline, `servesCuisine`, `acceptsReservations`). OpenTable Reserve-with-Google native "Reserve a table" button is live in Canada; low-volume cafes can use a plain booking/menu link.
+- **Dental:** `@type` `Dentist` (both MedicalBusiness + LocalBusiness); storefront — keep visible address. No YMYL exemption from the self-review prohibition. Native "Book Now" achievable via PM providers (e.g., NexHealth); secondary review platforms RateMDs/Healthgrades.
+- **Law:** `@type` `LegalService` (NOT `Attorney`, which is an individual). Storefront — visible address.
+- **Auto:** `AutoRepair`; storefront — visible address. NOT a native Reserve-with-Google vertical — default to GBP completeness + click-to-call + quote/appointment-request form + quadrant targeting _(provisional)_.
+- **Barber/spa/fitness:** `HairSalon` (no BarberShop type exists) / `DaySpa` / `HealthClub` or `ExerciseGym`; storefront — visible address. Beauty/wellness native Reserve-with-Google is NOT live in Canada, so the realistic default is a Square/Mindbody booking-link CTA, not an in-Google button.
+- **Retail:** `Store` subtype; free Google local listings + local inventory app are available in Canada (build default) — pairs with Product+Offer schema.
 
 ## Audit takeaways
 
-- **Make `localBusinessJsonLd` quality-graded, not binary.** Decompose into: specific subtype vs generic `LocalBusiness`; structured `PostalAddress` present; `geo` + `openingHoursSpecification` present; and an explicit FAIL/WARN if self-serving `aggregateRating`/`review` is detected. A bare name+address stub or a self-review block should not earn a green check _(provisional)_.
-- **Fix the schema detector's blind spots** _(provisional)_: the current `@type` regex misses `Dentist`, `LegalService`, `AutoRepair`, `HealthClub`, `DaySpa`, `Plumber`, etc. — match `LocalBusiness` plus its subtype allowlist (or parse JSON-LD). Likewise split `menuSchema` to credit a crawlable HTML menu/service list with prices (not just inline `Menu`), and flag PDF-only menus.
-- **Split "hours" and "address/map" into structured vs cosmetic** _(provisional)_: grade `openingHoursSpecification` and crawlable postal-address text (Alberta `T#X #X#` + "AB") above a visual-only table or a map link/image. The current text/regex checks over-credit cosmetic signals.
-- **Flag NAP presence vs NAP consistency as different things** _(provisional)_: an on-page audit can only assert NAP is present and crawlable, not that it matches GBP/citations — surface GBP cross-check as a manual follow-up, not an implied green check.
-- **Score reviews as acquisition, not decoration:** check for a review-request CTA / Google short link, not just a testimonials block — and treat review *recency/velocity* and a 4.0+ rating as outreach talking points. The website cannot generate the ~20% review signal; the handoff sets up the owner to.
-- **Tier the build by location model:** detect single-location-one-city (single-page OK) vs multi-location or multi-suburb SAB (multi-page IA required, with unique city pages and per-location schema/GBP cross-linking).
+- **Decompose `localBusinessJsonLd` from binary to quality-graded:** specific subtype vs generic, structured `PostalAddress`, presence of `geo` + `openingHoursSpecification`, and — critically — FAIL/warn on self-serving `aggregateRating`/`review` rather than crediting it. The narrow `@type` regex misses Dentist/LegalService/AutoRepair/HealthClub/DaySpa/Plumber etc., systematically false-negativing dental/law/trades/auto/spa/fitness — fix to resolve `@type` against the LocalBusiness subtype tree.
+- **Split hours and address/map checks by quality:** `hoursVisible` (text) vs `hoursStructured` (`openingHoursSpecification`); separate crawlable postal-address text (Alberta `T#X #X#` + `AB`) from a maps iframe embed from a map-image-only false pass. Grade structured/crawlable higher for local + AI discovery.
+- **Repurpose the menu check** to "crawlable menu/service list with prices" = `menu`/`hasMenu` URL OR inline Menu schema OR a visible HTML list — only against food verticals; flag PDF-only menus as not crawlable. `clickToCall` is good UX but isn't evidence the phone is crawlable NAP — add a separate visible-phone-as-NAP check.
+- **Note the on-page audit's blind spot:** it inspects the site in isolation and cannot verify site NAP matches GBP — the highest-leverage NAP failure mode. Flag NAP-consistency as a manual/GBP-API follow-up, not implied by a green check _(provisional)_.
+- **Frame scope and expectations honestly:** sell consistent on-site NAP + quality JSON-LD + GBP claim/Bing import/Apple Business Connect + tier-1 Canadian + 2–4 vertical directories + an owner-run review flow as the one-time deliverable; explicitly decline recurring citation-volume/aggregator retainers. Promise local-organic gains, not proximity-driven 3-pack jumps.

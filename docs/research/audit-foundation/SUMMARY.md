@@ -1,103 +1,102 @@
-# Audit Foundation — Master Summary
+# Local-Shop Website Audit — Master Knowledge Summary
 
-This is the cross-dimension synthesis behind the Studio0rbit website audit. It distills eight per-dimension briefings — performance, local SEO, visual/brand, content/IA, conversion/UX, trust/compliance, accessibility, and per-vertical anatomy — into one working reference: what every Calgary local-shop site needs, what only some need, what recurs vs. what's a one-off, and where our audit should put its weight. Where a point rests mainly on not-yet-verified findings, it is tagged _(provisional)_; the trust, conversion, content, a11y, and vertical dimensions are provisional in their entirety, so treat magnitudes there as directional and structural principles as robust.
+This is the verified knowledge foundation behind our Calgary local-shop website audit, synthesized across eight dimension briefings (performance, local SEO, visual/brand, content/IA, conversion/UX, trust/compliance, accessibility, and per-vertical anatomy). Of ~620 underlying claims, roughly 556 are now **verified** and ~64 remain **provisional** — no dimension is whole-cloth provisional anymore. Individual provisional points are tagged _(provisional)_ here only where their underlying claim is still marked provisional in the dimension briefings; everything untagged is verified.
 
 ## 1. Necessary on every local-shop site
 
-The universal floor — these appear as must-haves across multiple dimensions and should anchor the rubric:
+These are the universal floor — present (or expected) on essentially every vertical, independent of business type.
 
-- **HTTPS, by default.** Hard trust gate; plain-HTTP wears a "Not Secure" label now and a full-page interstitial from ~Oct 2026. Already the highest-yield single check (trust); near pass/fail, never 1/12 of an average (vertical).
-- **Crawlable NAP + hours, from one canonical source.** Name/Address/Phone and hours must render as real text (footer + contact), feed the LocalBusiness JSON-LD byte-for-byte, and mirror the Google Business Profile. This is the single most-shared fact across local SEO, content, trust, and conversion. Accuracy is load-bearing: 62% avoid a business after finding wrong info; "openness" is a Google ranking factor.
-- **Real `tel:` click-to-call (E.164 href), above the fold.** Universal, and PRIMARY for high-intent verticals (trades, auto, dental, law). Plain-text/image numbers forfeit the call — a top-ROI defect.
-- **A single dominant primary CTA in the first viewport**, mapped to the vertical's macro-conversion, with secondaries de-emphasized. ~70% of small-business homepages lack a clear above-fold CTA.
-- **Real social proof near the decision point.** Star rating + specific review count + named/photo testimonials, co-located with the CTA — not isolated in a footer or separate page. Reviews are the universal top trust signal across trust, conversion, and vertical dimensions.
-- **Correct, policy-safe LocalBusiness JSON-LD** with the most-specific subtype, structured `PostalAddress`, `geo`, and `openingHoursSpecification` — and **never** a self-serving `aggregateRating`/`review` block (ineligible for stars since 2019; penalty surface).
-- **Real, business-specific photography** (storefront/exterior + owner/team + interior/work shot), not stock. The owner/team photo is the highest-trust single asset; this is the strongest visual differentiator and a content/trust/visual triple-point.
-- **Mobile-first, responsive, fast.** ~59–60% of sessions are mobile; up to ~88% of "near me" searches are mobile. Slow/broken mobile makes every CTA effectively invisible — perf is a conversion blocker, not just an SEO metric.
-- **Performance: LCP-first.** The hero is almost always the LCP element; ship it eager + `fetchpriority="high"` (never lazy), modern format + `srcset`, explicit dimensions on all images/iframes (CLS), self-hosted preloaded fonts. Grade on CrUX p75 (LCP≤2.5s/INP≤200ms/CLS≤0.1) when present, else lab-only with the worst-case caveat.
-- **Accessibility "top six," eliminated by construction:** AA color contrast (≥4.5:1 / ≥3:1), image alt, form labels, accessible names on icon-only links/buttons, document `lang`, and a visible focus ring. ~96% of auto-detectable failures live here; a clean build is a real differentiator. _(provisional)_
-- **A short, low-friction form** (3-field minimum, optional phone, correct mobile input attributes) — wherever a form ships at all.
-- **A footer-linked privacy policy whenever a data-collection surface exists** (form OR booking link). Static hosts ship PII to US endpoints, triggering Alberta PIPA disclosure. "Form present + no privacy policy" is the most defensible compliance finding for Calgary outreach. _(provisional)_
-- **Service + city in titles / H1-H2** ("Barber in Calgary") — the cheap, always-applicable on-page win.
-- **Copy depth and the core copy blocks:** hero value prop, About/owner story, services/menu with real descriptions, hours, NAP, testimonial quotes, FAQ, closing CTA (~600–1,200 words for a one-page shop). _(provisional)_
+**Identity & discovery foundations**
+- **Crawlable, byte-identical NAP** (name/address/phone as real text, never baked into an image) in the footer and contact section, mirrored into `LocalBusiness` JSON-LD. One canonical content source (the typed `ShopContent` object) must fan out to body, footer, and JSON-LD so the surfaces can never drift. NAP consistency across site/GBP is the single most important citation rule; it can only be verified against GBP, not on-page alone _(provisional)_.
+- **Policy-safe `LocalBusiness` JSON-LD** — `name` + structured `PostalAddress` required; emit `geo`, `telephone` (E.164 +1-403), `url`, and `openingHoursSpecification`. Use the most-specific subtype per vertical. **Never self-mark `aggregateRating`/`review`** — it earns no stars and risks a site-wide spam penalty.
+- **Published, correct hours** as a visible table that agrees with structured `openingHoursSpecification`; "openness" is a ranking factor and wrong hours are a top trust-and-conversion failure.
+- **Title/H1 `<service> in Calgary` + quadrant/community** geo-targeting — cheap, fully controllable, zero-maintenance.
+
+**Conversion plumbing**
+- **A real `tel:` anchor in E.164** (`href="tel:+1..."`), above the fold and in the sticky mobile header — the single highest-ROI defect to fix for call-driven shops.
+- **Exactly one visually dominant above-fold CTA** mapped to the vertical's macro-conversion, with secondaries de-emphasized; repeated nav → hero → closing, paired with a sticky thumb-zone CTA (≥44px target).
+- **Minimal contact form**: Name + Email + optional Phone + Message (3–4 fields, single column), correct mobile input `type`/`inputmode`/`autocomplete`, on-blur validation, a confirmation that sets expectations, and **guest booking — never an account gate**. Phone optional, never blocking.
+- **Hours + NAP co-located with the CTA**, not buried in the footer.
+- **A compact star rating + specific review count near the CTA/hero** (count beats bare stars; recency matters) plus a named testimonial near the decision point. This is the universal top trust signal — reviews outweigh credential badges.
+
+**Trust & safety**
+- **HTTPS** (and the form endpoint itself HTTPS); plain-`http://` is the most common, most screenshot-able transport failure on our target segment. Broken certs are worse than no cert.
+- **Footer-linked privacy policy** — the most reliably auto-detectable PIPA artifact; "form present + privacy policy absent" is our single most defensible compliance finding.
+
+**Content spine**
+- **Hero value prop, about/owner story (with a genuine photo), services-or-menu with real descriptions, hours, NAP, quoted reviews, FAQ, closing CTA.** The About/owner block and quoted (not just starred) testimonials are the biggest gaps vs. a bare structural inventory.
+- **A price signal on every vertical** (never "no price at all") — granularity flexes per vertical.
+- **Real, business-specific photography** over stock (owner/staff photo is the highest-trust single image), and AI-generated SEO/a11y micro-content (alt text, meta descriptions, per-page titles) that owners never supply.
+
+**Visual & accessibility floor**
+- **AA contrast** (4.5:1 body / 3:1 large), **body ≥16px, line-height ≥1.5, line length ~45–75ch, modular type scale ≥1.2** with display+body pairing — low-contrast text is the #1 web defect (~84% of pages) and the most consequential automatable criterion. Contrast must be re-validated **per theme** (each shop swaps the OKLCH palette).
+- **The WebAIM top six**, guaranteed by construction: `<html lang>`, document title, image `alt`, form labels, link names, button names — ~96% of auto-detectable WCAG failures.
+- **Real hero masthead, generous whitespace, restrained palette, familiar section order** (hero → services/menu → reviews → hours/NAP → CTA), responsive mobile-legible layout, favicon + logo, no broken/template chrome.
+- **Fast static output** — LCP ≤2.5s / INP ≤200ms / CLS ≤0.1, explicit width/height on all media, hero eager with `fetchpriority="high"` (never lazy), self-hosted preloaded fonts.
 
 ## 2. Niche / vertical-specific
 
-What matters only for some verticals — drives the per-vertical masking and re-weighting of the rubric:
+**Primary conversion action diverges by vertical** — the audit's flat `bookingLink` is too narrow; generalize to "primary conversion action":
+- **Barber / spa / fitness (salon-type):** online **Book** to a scheduler (online booking ~78% preferred); show price + duration next to the CTA. Spa skews more phone-heavy (~57% still phone) _(provisional)_; fitness's entry macro is a **free-trial/intro offer**, funnelling to recurring membership, with an embedded bookable class timetable as the core engine.
+- **Trades / auto:** **click-to-call primary** (urgent, high-ticket) _(provisional)_ + a **quote/estimate-request mechanism** as a co-must-have _(provisional)_; categorizable before/after project galleries with location captions (double as local-SEO).
+- **Dental:** new-patient appointment **request** (not instant-confirm) + click-to-call; consent-gated before/after gallery; insurance/direct-billing block; team/doctor bios.
+- **Law:** a single **"Free Consultation / Case Review"** as both sticky click-to-call and one short intake form; per-case-type practice-area pages are the organizing structure _(provisional)_; attorney headshots/bios, no galleries.
+- **Cafe / restaurant:** menu-view → order/reserve → directions; **HTML menu, never PDF**, with per-item name + price + description and photo slots for best-sellers.
+- **Retail:** branches on model — foot-traffic shops default to **Get Directions / Visit**, online-sellers to **Shop/Buy**; per-product image + price slots.
 
-- **Primary-conversion action varies by vertical** (the single biggest per-vertical knob): online booking widget (barber, spa, fitness, dental), reservation/order (cafe), consultation request (law), appointment + quote/estimate (auto, trades), free-trial→membership (fitness). The generic "bookingLink" item is too narrow.
-- **Embeds are a per-shop perf risk only for booking/map verticals** (barber, spa, fitness, dental, cafe, auto); law/retail/trades typically carry just a map. Use link-out / facade / lazy with reserved space.
-- **Schema subtype is per-vertical, not per-shop:** HairSalon (barber), CafeOrCoffeeShop (cafe), DaySpa (spa), HealthClub/ExerciseGym (fitness), Dentist (dental), AutoRepair (auto), Store (retail), LegalService — not Attorney (law), and the specific HomeAndConstructionBusiness subtype (trades). `menuSchema` is meaningful ONLY for cafe/restaurant — dead weight (and a live denominator bug) for the other eight.
-- **Governing-credential layer for regulated verticals:** AMVIC# (auto), Law Society of Alberta (law), ADA&C/CDSA registration (dental), WCB + insurance + trade certs (trades), Calgary massage/RMT licence (spa, massage-offering). Esthetics and fitness have NO governing licence — voluntary certs only.
-- **Advertising-copy constraints (regulated):** law (no "specialist"/"expert"/superlatives/advertised settlements; results disclaimer if outcomes are referenced), dental (no "best"/specialty claims, before/after needs PIPA consent), auto (AMVIC all-in pricing + licence display).
-- **Service-area (SAB) posture:** trades (and mobile auto) hide the GBP street address, emit `areaServed`, and need genuinely unique suburb pages; storefront verticals keep a visible address. Of the nine, only trades is SAB-default.
-- **Media slots are vertical-specific:** before/after (spa, dental, auto body, barber-as-portfolio), categorized project gallery (trades, auto), per-item food photos (cafe), per-product photos (retail), facility/ambiance (cafe, spa, fitness, dental), team headshots+bios (dental, law, fitness, barber, spa) — and explicitly **no gallery, yes headshots** for law.
-- **Cafe-only content/SEO:** crawlable HTML menu (never PDF) with per-item price, `hasMenu`/`servesCuisine`/`acceptsReservations`; OpenTable Reserve-with-Google is live in Canada.
-- **Pricing granularity by vertical:** full fixed prices (barber/cafe/spa), ranges/"starting at" (trades/auto/dental elective), billing-model explainer (law). "No price signal at all" is a defect everywhere; a hard fixed price on variable work is a defect for trades/auto/dental.
-- **Multi-location / multi-suburb** flips the build from single-page to a multi-page IA with uniquely-authored per-location pages — a real trap, but low prevalence (most Calgary clients are single-location).
-- **Calgary-specific correction:** Reserve-with-Google for beauty/wellness is US-only (Canada on the 2026 roadmap), so barber/spa default to a plain GBP appointment *link* (Booksy/Fresha/Square), not a native Book button. _(provisional)_
+**Two-layer trust model:** a *governing-credential* slot (auto = AMVIC licence, law = Law Society of Alberta, dental = ADA&C/CDSA, trades = WCB + licensed/bonded/insured, massage = Calgary practitioner licence) **plus** a *conversion-proof* slot (reviews, direct-billing, warranty, consented before/after). Esthetics and fitness have **no** governing licence — voluntary certs only. Regulated verticals carry advertising constraints: law (no "specialist"/superlatives/advertised outcomes), dental (truthful, no guarantees), auto (AMVIC name + all-in pricing).
+
+**Vertical schema add-ons:** correct most-specific `@type` (`HairSalon`, `CafeOrCoffeeShop`, `DaySpa`, `Dentist`, `LegalService`, `AutoRepair`, `Store`, trades `HomeAndConstructionBusiness` subtypes) plus conditional `priceRange` (all), `hasMenu`/`servesCuisine` (cafe only — dead weight elsewhere, mask it out), `areaServed` (trades/auto/law), `makesOffer` (service verticals), `medicalSpecialty` (dental).
+
+**Pricing granularity:** fixed itemized list for barber/cafe/spa; ranges / "starting at" + estimate CTA for trades/dental/auto; billing-model explainer for law. Flag any hard fixed price on site-dependent work.
+
+**Per-vertical media gaps** (concrete findings): missing before/after (spa/dental/auto/barber), text-only menu without food photos (cafe), no categorized project gallery (trades/auto), stock instead of real headshots (law/dental).
+
+**Other niche items:** multi-location / multi-suburb page sets (uniquely authored, not city-swapped); SAB address-hiding + `areaServed` for mobile trades; embed facades / lazy iframes; DNI call tracking; honeypot vs CAPTCHA; cookie/consent banners (Quebec/GDPR-driven, not PIPA); dark themes (brand-fit, not a quality bar).
 
 ## 3. Always reused vs rare
 
-**Always reused — recurs on (nearly) every build:**
-- The static-HTML-on-edge-CDN architecture (structurally fixes CDN/caching/TTFB/HTTPS) plus the fixed per-build perf checklist (hero via Image + priority, self-hosted fonts, link-out embeds).
-- Crawlable NAP + matching JSON-LD, click-to-call, hours, map — already shipped shared components.
-- One dominant primary CTA echoed across nav/hero/closing, with a co-located rating+count and NAP/hours.
-- Centrally-owned a11y guarantees: token-pair contrast validation, `<html lang>`, shared `:focus-visible` ring, global `prefers-reduced-motion` reset, default hero scrim, required CMS alt fields. _(provisional)_
-- The universal copy blocks and the single-canonical-content-source pattern (body + footer + JSON-LD can't drift). _(provisional)_
-- Per-vertical theming is mechanically always present; its *expression* is vertical-specific.
+**Always reused (ships in every build, lives in `packages/shared`):** crawlable NAP + `tel:` + visible hours; `LocalBusiness` JSON-LD (no self-rating); the one-dominant-CTA + sticky pattern repeated nav/hero/closing; rating+count and a named testimonial near the CTA; the minimal correctly-attributed form with confirmation; HTTPS; footer-linked privacy policy; the content spine (hero/about/services/hours/NAP/reviews/FAQ/CTA); real photography; AA-contrast tokens, `<html lang>`/`<title>`, `:focus-visible` ring, `prefers-reduced-motion` guard, required `alt` slots, a strong default hero scrim; and the per-theme contrast gate (the one thing that varies per shop and silently breaks AA). The hero-image perf checklist collapses to: Astro `Image` for the hero + `fetchpriority`, self-hosted fonts, facade/link-out embeds.
 
-**Rare — one-offs / upsell flags / situational:**
-- Facade pattern for heavy embeds, explicit `<link rel=preload>` for non-standard heroes.
-- Citation-volume programs, aggregator subscriptions, `sameAs`/`hasMap`/`priceRange`/special-hours schema, AggregateRating/Review JSON-LD.
-- Live embedded/linked Google reviews (highest-trust tier, usually absent — a strong upsell flag).
-- Broken-cert interstitials, mixed-content, cookie banners, decorative BBB/security badges, DNI call tracking, multi-step/long intake forms.
-- Builder watermarks, visible typos/placeholder chrome, custom illustration, dark themes.
-- The manual a11y pass (keyboard, screen-reader, alt-quality, reflow) — run once per finished site. _(provisional)_
+**Rare (specific triggers only):** multi-location/multi-suburb page sets and per-location schema; embed facade pattern (high-leverage but uncommon); DNI; live third-party review embeds; honeypot/CAPTCHA tuning; broken-cert/mixed-content/HSTS handling; credential/licensing strips; food-menu schema and Reserve-with-Google; retail inventory feeds; holiday-hours schema; legitimate product/service review schema; the manual a11y check set; skip links; builder watermarks.
 
 ## 4. Most vs least common
 
-**Most commonly PRESENT (owner already holds, or shipped by default):** NAP, hours, a basic service/menu list with prices, a (often unclaimed) GBP, HTTPS on managed builders. ~64% of owners maintain a GBP.
+**Most common in the wild (table-stakes, usually present):** visible hours, address/map, a click-to-call link, basic reviews, a contact form, and an above-fold CTA — but often a *weak* one. Owners reliably supply NAP + hours + a raw service/menu list with prices + some GBP photos. Most-common **failure modes**: platform/page-builder bloat (the single strongest predictor of a failing mobile PSI score — WordPress 43% CWV pass vs Shopify 75%, Duda 84%), unoptimized/late hero images, render-blocking embeds, no-HTTPS on self-managed stacks, low-contrast text (~84%), missing alt (~53%), missing form labels (~51%).
 
-**Most commonly LACKING — the differentiator gap (the rubric's richest hunting ground):**
-- No above-fold/single-dominant CTA; phone as plain text not `tel:`; review count + named/photo testimonials near the CTA; sticky mobile CTA; guest-checkout booking; correct mobile input attributes.
-- LocalBusiness JSON-LD at all (most prospects lack it); the correct most-specific subtype; structured `openingHoursSpecification` vs a visual-only table; dedicated service/location pages; Calgary quadrant/community geo-targeting.
-- Real photography (vs stock); per-service descriptive copy, About/owner story, polished marketing copy, alt text/meta/titles — the high-leverage AI-generate defaults.
-- Privacy policy (~two-thirds of small businesses lack one); a review-request CTA / `g.page` short link (acquisition, not decoration).
-- Modern image formats (WebP ~7–12%, AVIF ~0.3%), LCP-image preload (~2.1%), and CrUX field data itself (most single-location shops fall below the threshold — an expected default, not an anomaly).
-- The a11y top six fail near-universally (~84% low contrast, ~53% missing alt, ~51% missing labels). _(provisional)_
+**Common-but-missing (the differentiator gold — present in our playbook, absent on most prospects):** `LocalBusiness` JSON-LD at all, structured `openingHoursSpecification` vs a cosmetic table, specific `@type` subtypes, quadrant/community targeting; a clear above-fold primary CTA (~70% of SMB homepages lack one), a genuine `tel:` anchor, rating+count placed *near the CTA*, guest booking, the hero+sticky pairing; a privacy policy (~two-thirds of small businesses lack one) _(provisional)_, graded review sub-signals; real authentic photography, generous whitespace, body ≥16px, line-height ≥1.5, a real type pairing, a custom favicon; the About/owner-story block, quoted testimonials, per-service descriptions, SEO micro-content.
 
-**Most common FAILURE driver (and best outreach signal):** WordPress + page-builder bloat — passes CWV only ~43% vs Squarespace ~68% / Wix ~71–75% / Shopify ~75% / Duda ~84%. It's also the highest-yield target for the transport-security dimension (self-managed WP/cPanel skip auto-SSL/redirect). _(provisional)_
-
-**Near-universal but low-value (do NOT deduct):** "remove unused CSS," third-party "efficient cache policy" flags, decorative trust badges, missing HSTS, FAQ rich-result hopes. Treat as advisory/neutral. _(provisional)_
+**Least common / rare (often defects when present, or upsell flags):** self-`aggregateRating`, holiday-hours schema, retail inventory feeds; DNI, live review embeds, multi-step forms; HSTS, broken certs, mixed content; builder watermarks, visible typos/lorem; custom illustration, dark themes; the budget-shop-over-designing mismatch.
 
 ## 5. What works vs what doesn't
 
-**Works:**
-- Static HTML on an edge CDN; hero via Astro Image + eager + `fetchpriority="high"`; explicit dimensions; self-hosted preloaded fonts; link-out/facade embeds.
-- One high-contrast primary CTA with specific outcome copy ("Book Your Appointment," "Schedule a Free Case Review") over generic "Contact Us"/"Submit"; persistent sticky mobile CTA in the thumb zone; short single-column forms with optional phone and correct mobile keyboards; guest flows; on-domain booking embeds.
-- Real photos (owner/team highest-trust) + quoted testimonials + rating-with-count flanking the CTA; verifiable, recent Google reviews surfaced via a "see all on Google" link; driving 0→10 reviews then steady recent inflow via the free `g.page` CTA (ask ALL customers — gating violates Google + FTC rules).
-- Generous whitespace, restrained palette (~2 neutrals + 1 accent), display+body type pairing, ≥16px body, ≥1.5 line-height, AA contrast, modular type scale, familiar category-prototypical layout order. Build-time token contrast gate via real sRGB luminance (not OKLCH L).
-- A privacy policy link at/near the form, naming the specific US/offshore providers; Cloudflare Turnstile over reCAPTCHA; honeypot over CAPTCHA.
+**Works (ship these):**
+- **Static, pre-rendered HTML from a CDN edge** — structurally beats every page-builder on CWV; fast load is a credible, demonstrable differentiator (most competitor sites average ~15s mobile loads).
+- **GBP completeness + correct primary category + steady recent reviews** — the highest-leverage 2025–26 local levers, outweighing citation count and proximity; the site's honest ROI is local-organic / "near me", not the proximity-driven 3-pack.
+- **Real photos + quoted/named testimonials + verifiable Google reviews** (live link/widget) over stock imagery, anonymous quotes, and decaying static testimonial walls.
+- **One dominant CTA + real `tel:` + rating-and-count flanking the action + a 3–4-field form with a confirmation.**
+- **A complete GBP the site corroborates** (2.7× more likely considered reputable), consistent NAP, AA-contrast tokens, semantic HTML.
+- **Cloudflare Turnstile over Google reCAPTCHA** for a PIPA shop; honeypot over visible CAPTCHA for low-volume spam.
 
-**Doesn't work:**
-- Blanket `loading="lazy"` (lazy-loads the hero); grading on the composite Lighthouse score or non-scored diagnostics; hard-failing on a single lab LCP with no field data.
-- Plain-text/image phone numbers; multiple equal-weight CTAs; account-creation gates; required phone / long forms; placeholder-only labels; raw iframe booking embeds on mobile; off-site redirects before commitment; PDF menus/price lists.
-- Stock/staged/blurry/stretched imagery; default/novelty fonts; wall-of-text; cramped no-hierarchy layouts; autoplay hero sliders (~1% clicked); skeuomorphic styling; builder watermarks; intrusive pop-ups; stale visible content.
-- Self-`aggregateRating` markup; review gating/incentivizing; keyword-stuffed review text; citation-volume chasing; city-name find-and-replace area pages (doorway pages); `mailto:` form actions; on-site card forms; decorative BBB/security seals.
-- **Honesty on the pitch:** sell perf as a **conversion lever + organic tiebreaker**, NOT a local-pack ranking driver (GBP/reviews/proximity dominate the map pack); sell HTTPS and a11y as credibility/penalty-avoidance, not ranking or "WCAG AA compliant." Frame the site's local leverage as *local organic* (where on-page is the largest category) — the ~15% on-page ceiling and fixed proximity cap what the website alone can move.
+**Doesn't work (flag or avoid):**
+- **Review gating / incentivizing** (FTC fake-review rule ~$51,744/violation + Google policy), **self-`aggregateRating`** (no stars, penalty risk), keyword-stuffed review text, citation-volume blasts.
+- **PDF menus/price-lists** (crawler- and LLM-invisible, break mobile), **plain-text/image phone numbers**, **multiple equal-weight CTAs** (decision paralysis), required phone fields and long forms, placeholder-only labels, account-creation gates, off-site redirects mid-flow.
+- **Stock/staged photography, low-res/stretched images, default/novelty fonts, wall-of-text, cramped no-whitespace layouts, autoplay hero sliders** (~1% click-through), skeuomorphic chrome, builder watermarks, intrusive pop-ups, stale visible content.
+- **BBB/Norton/McAfee security seals** (mixed-to-negative; one test found *removing* a BBB seal lifted conversion 5.3%), on-site card forms (PCI scope), `mailto:` form actions.
+- **Lazy-loading the hero**, render-blocking third-party embeds (the primary way a static site still fails CWV), overselling HTTPS or page speed as an SEO/ranking *guarantee*.
+- **Honesty traps to avoid:** never claim "AA compliant" off a Lighthouse score (engines evaluate only ~30–40% of criteria; ~57% by issue volume is the upper bound); never hard-fail an image-optimized static site on lab LCP alone or report a lab INP pass/fail; never report a blank CWV section (no CrUX field data) as a failure — it is the expected default for single-location shops.
 
 ## Top cross-cutting audit priorities
 
-Ranked by customer impact — what the audit should weight most heavily. The headline output:
+Ranked by customer impact — this is the headline. Each surfaces repeatedly across multiple dimensions, so fixing it pays off in conversion, trust, and discovery at once.
 
-1. **HTTPS + transport security (hard gate).** Cheapest, highest-yield, near pass/fail; the Oct-2026 interstitial raises the stakes. Extend the boolean to a cluster: http→https redirect gap, insecure `<form action>`, cert errors. _(trust/vertical)_
-2. **Mobile-first performance, LCP-weighted.** Mobile is the majority of local traffic and a conversion blocker; LCP (the hero) is the metric shop sites fail most. Branch the rubric on CrUX-vs-lab data availability; store the three CWV individually; weight LCP > CLS; ignore non-scored noise. _(perf/conversion)_
-3. **Vertical-correct primary conversion path above the fold.** The right macro-action (call vs book vs order vs consultation vs trial) as a single dominant CTA, with co-located rating+count and NAP/hours, plus a real `tel:` anchor. Vertical-mask and re-weight the inventory; `tel:` and reviews weight highest for high-intent verticals. _(conversion/vertical)_
-4. **Real photography + surfaced social proof.** Owner/team photo + real shots + star rating with specific count + named/photo testimonials near decision points — the strongest trust-and-visual lever and the most common gap. Score reviews as acquisition (review-request CTA / `g.page`), not decoration. _(visual/trust/content/vertical)_
-5. **Crawlable NAP/hours from one canonical source + correct, policy-safe LocalBusiness JSON-LD.** Quality-graded (specific subtype, structured address/hours/geo), with a FAIL on self-serving `aggregateRating`. Flag NAP *presence* on-page; surface GBP parity as manual follow-up. _(localSeo/content/trust)_
-6. **PIPA privacy posture, gated on a data-collection surface.** Footer privacy policy naming offshore providers wherever a form or booking link exists — the most defensible Calgary compliance finding. _(trust)_
-7. **Visual/brand credibility, vertical register-fit.** The 50ms first impression and credibility halo. Anchor the deterministic floor on AA contrast + ≥16px body + ≥1.5 line-height + modular scale; vision-LLM scores the subjective half (flagged lower-confidence); flag premium businesses stuck on cheap/dated templates as the top outreach target. _(visual/a11y)_
-8. **Accessibility top six (risk-reduction + reach, never a compliance claim).** Contrast, alt, labels, link/button names, lang, focus — a graded "automated-detectable issues" dimension; the highest-leverage engine fix is a strong default hero scrim over client photos. _(a11y)_
-9. **Content depth + completeness.** Word-count floor, About/owner story, real per-service descriptions, quoted testimonials, vertical-correct pricing granularity, compliance-gated copy (law/dental superlatives, AMVIC all-in pricing). Intake as generate-then-confirm. _(content)_
-10. **Builder/platform detection as a prospecting multiplier.** WordPress + page-builder predicts CWV, HTTPS, and bloat failures simultaneously — the single strongest "flag this prospect" signal feeding priorities 1, 2, and 6. _(perf/trust)_
+1. **Make the phone a real, prominent `tel:` anchor.** A genuine E.164 `tel:` link, above the fold and in the sticky mobile header — not plain text, not footer-only. Highest-ROI single defect for the call-driven verticals (trades, auto, dental, law) and the strongest outreach angle.
+2. **One dominant, vertical-correct above-fold CTA** mapped to the macro-conversion (book / quote / request / order / visit), secondaries de-emphasized, repeated nav→hero→closing + sticky. ~70% of SMB homepages lack a clear above-fold CTA.
+3. **Surface social proof at the decision point** — a star rating + *specific recent count* and a named testimonial beside the CTA/hero, not the footer. Reviews are the universal top trust signal across every vertical.
+4. **HTTPS + a form-gated privacy policy.** Fix transport security (and catch broken certs distinctly), and treat "form present + privacy policy absent" as the precise PIPA finding. Visible "Not Secure" is screenshot-able harm with a near-term Chrome escalation deadline.
+5. **Mobile speed via static architecture, centered on the hero image.** Eager hero with `fetchpriority="high"`, modern format + dimensions, self-hosted fonts, facade/link-out embeds — pitched as a conversion lever (bounce rises 123% from 1s→10s), not a ranking guarantee. Use WordPress+page-builder detection as a prospecting signal.
+6. **AA contrast, validated per theme.** The #1 web defect, the one visual metric tools score reliably, and a per-shop regression because each theme swaps the OKLCH palette — gate the `theme.css` token matrix at build time with `culori`.
+7. **Quality `LocalBusiness` JSON-LD with the correct per-vertical `@type`** — structured address, `geo`, `openingHoursSpecification`, conditional properties — and **no self-`aggregateRating`**. Grade quality, not mere presence.
+8. **Real photography + the About/owner-story + quoted testimonials.** The biggest content gaps vs. a bare inventory; the owner photo carries disproportionate trust (up to ~52% for in-home trades), and authentic imagery is now an explicit consumer expectation.
+9. **Per-vertical correctness across the board** — mask non-applicable schema/items (e.g. `menuSchema` only for cafe), apply per-vertical pricing granularity and the two-layer trust model, and flag vertical-specific media gaps. A flat 12-item average mis-scores; vertical weighting plus universal `https`/`mobileViewport` gates is the fix _(provisional)_.
+10. **Honest framing throughout.** Sell local-organic gains (not 3-pack jumps), conversion (not ranking guarantees), and "WCAG 2.2 AA best practices at handoff" / risk-reduction (not "legally compliant") — defensibility is itself a competitive edge.
