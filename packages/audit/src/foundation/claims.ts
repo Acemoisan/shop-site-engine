@@ -74,3 +74,35 @@ export function validateClaim(obj: unknown): ValidationResult {
 
   return { ok: errors.length === 0, errors }
 }
+
+export interface ClaimBaseReport {
+  ok: boolean
+  total: number
+  byDimension: Record<string, number>
+  missingDimensions: Dimension[]
+  uncitedVerified: number
+  refutedIncluded: number
+  invalid: { index: number; errors: string[] }[]
+}
+
+export function validateClaimBase(claims: unknown): ClaimBaseReport {
+  const arr = Array.isArray(claims) ? claims : []
+  const invalid: { index: number; errors: string[] }[] = []
+  const byDimension: Record<string, number> = {}
+  let uncitedVerified = 0
+  let refutedIncluded = 0
+
+  arr.forEach((c, i) => {
+    const res = validateClaim(c)
+    if (!res.ok) invalid.push({ index: i, errors: res.errors })
+    const rec = c as Partial<Claim>
+    if (inSet(DIMENSIONS, rec?.dimension)) byDimension[rec.dimension] = (byDimension[rec.dimension] ?? 0) + 1
+    if (rec?.confidence === "verified" && (!Array.isArray(rec.evidence) || rec.evidence.length === 0)) uncitedVerified++
+    if (rec?.confidence === "refuted") refutedIncluded++
+  })
+
+  const missingDimensions = DIMENSIONS.filter((d) => !byDimension[d])
+  const ok =
+    invalid.length === 0 && missingDimensions.length === 0 && uncitedVerified === 0 && refutedIncluded === 0
+  return { ok, total: arr.length, byDimension, missingDimensions, uncitedVerified, refutedIncluded, invalid }
+}
