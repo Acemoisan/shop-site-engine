@@ -54,13 +54,14 @@ const hardware = {
   specs: ["Block height", "Live price", "Fees — sat/vB", "Mining pool", "Local time", "Auto Wi-Fi updates"],
 };
 
+let heroImage = "/img/hero.webp";
 let collections = [
-  { icon: "target", name: "3D-Printed Solutions", body: "Unique 3D-printed Bitcoin pieces, designed in-house and tailored to you.", href: store.threeD },
-  { icon: "sparkles", name: "Laser-Crafted Collectibles", body: "The art of precision: custom laser engraving, made to order.", href: store.laserCrafted },
-  { icon: "bolt", name: "Laser Layers: Proof of Work", body: "Born from paint, code and laser light — burned forever into canvas.", href: store.laserLayers },
-  { icon: "shield", name: "Special-Edition COLDbox", body: "House your Coinkite cold-storage gear in a commemorative design.", href: store.coldbox },
-  { icon: "heart", name: "Bitcoin for Kids", body: "Books, games and adventures that make Bitcoin click for curious kids.", href: store.kids },
-  { icon: "star", name: "Sublimation Art", body: "Show your love for Bitcoin with bold, vivid sublimation pieces.", href: store.sublimation },
+  { icon: "target", img: "/img/node.webp", name: "3D-Printed Solutions", body: "Unique 3D-printed Bitcoin pieces, designed in-house and tailored to you.", href: store.threeD },
+  { icon: "sparkles", img: "/img/coasters.webp", name: "Laser-Crafted Collectibles", body: "The art of precision: custom laser engraving, made to order.", href: store.laserCrafted },
+  { icon: "bolt", img: "/img/foil.webp", name: "Laser Layers: Proof of Work", body: "Born from paint, code and laser light — burned forever into canvas.", href: store.laserLayers },
+  { icon: "shield", img: "/img/coldbox.webp", name: "Special-Edition COLDbox", body: "House your Coinkite cold-storage gear in a commemorative design.", href: store.coldbox },
+  { icon: "heart", img: "/img/kids.webp", name: "Bitcoin for Kids", body: "Books, games and adventures that make Bitcoin click for curious kids.", href: store.kids },
+  { icon: "star", img: null, name: "Sublimation Art", body: "Show your love for Bitcoin with bold, vivid sublimation pieces.", href: store.sublimation },
 ];
 
 let values = [
@@ -107,7 +108,8 @@ if (token) {
       };
       if (c.stats?.length) stats = c.stats.map((x: any) => ({ value: x.value, label: x.label }));
       if (c.readout?.length) readout = c.readout.map((x: any) => ({ k: x.key, v: x.value }));
-      if (c.collections?.length) collections = c.collections.map((x: any) => ({ icon: x.icon || "target", name: x.name, body: x.body, href: x.href }));
+      if (c.hero_image) heroImage = (typeof c.hero_image === "object" ? c.hero_image.filename : c.hero_image) || heroImage;
+      if (c.collections?.length) collections = c.collections.map((x: any, i: number) => ({ icon: x.icon || "target", img: (x.image && (x.image.filename || x.image)) || x.img || collections[i]?.img || null, name: x.name, body: x.body, href: x.href }));
       if (c.values?.length) values = c.values.map((x: any) => ({ icon: x.icon, title: x.title, body: x.body }));
       if (c.hardware_name) Object.assign(hardware, {
         name: c.hardware_name, price: c.hardware_price || hardware.price,
@@ -185,6 +187,9 @@ const jsonLd = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="/img/logo.png" />
+    <link rel="preload" as="image" href="/img/hero.webp" fetchpriority="high" />
+    <meta property="og:image" content="/img/hero.webp" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body id="top" class="bg-background text-foreground font-sans antialiased">
@@ -202,8 +207,10 @@ const jsonLd = {
 
     <!-- ── Hero ───────────────────────────────────────────────────────── -->
     <section class="relative overflow-hidden border-b border-border">
-      <div class="laser-grid pointer-events-none absolute inset-0 text-border opacity-40"></div>
-      <div class="pointer-events-none absolute inset-0" style="background: radial-gradient(70% 55% at 50% -5%, color-mix(in oklch, var(--primary) 20%, transparent), transparent 72%);"></div>
+      <img src={heroImage} alt="Bitcoin Manor's stall at a local Calgary Bitcoin event" width="1280" height="598" fetchpriority="high" decoding="async" class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-35" />
+      <div class="pointer-events-none absolute inset-0" style="background: linear-gradient(105deg, var(--background) 8%, color-mix(in oklch, var(--background) 82%, transparent) 52%, color-mix(in oklch, var(--background) 50%, transparent) 100%);"></div>
+      <div class="laser-grid pointer-events-none absolute inset-0 text-border opacity-25"></div>
+      <div class="pointer-events-none absolute inset-0" style="background: radial-gradient(70% 55% at 50% -5%, color-mix(in oklch, var(--primary) 18%, transparent), transparent 72%);"></div>
       <div class="relative mx-auto max-w-6xl px-6 py-24 sm:py-32">
         <p class="font-data text-xs uppercase tracking-[0.35em] text-primary">{h.heroKicker}</p>
         <h1 class="mt-6 font-display text-5xl font-bold uppercase leading-[0.95] tracking-tight text-foreground sm:text-7xl">
@@ -260,25 +267,10 @@ const jsonLd = {
           <p class="mt-4 font-data text-xs text-muted-foreground">Spark — touch edition · <span class="text-accent">coming soon</span></p>
         </div>
 
-        <!-- Faux Matrix display panel -->
-        <div class="rounded-[var(--radius)] border border-border bg-card p-6 shadow-sm">
-          <div class="rounded-[var(--radius)] border border-border bg-background p-6">
-            <div class="led-grid space-y-4 text-accent">
-              <div class="flex items-baseline justify-between">
-                <span class="font-data text-[0.65rem] uppercase tracking-[0.25em] text-muted-foreground">block height</span>
-                <span class="font-data text-2xl font-medium text-accent sm:text-3xl">871,402</span>
-              </div>
-              <div class="flex items-baseline justify-between">
-                <span class="font-data text-[0.65rem] uppercase tracking-[0.25em] text-muted-foreground">mempool</span>
-                <span class="font-data text-2xl font-medium text-primary sm:text-3xl">6 sat/vB</span>
-              </div>
-              <div class="flex items-baseline justify-between">
-                <span class="font-data text-[0.65rem] uppercase tracking-[0.25em] text-muted-foreground">mined by</span>
-                <span class="font-data text-2xl font-medium text-foreground sm:text-3xl">OCEAN</span>
-              </div>
-            </div>
-          </div>
-          <p class="mt-4 text-center font-data text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">real-time · auto Wi-Fi updates</p>
+        <!-- Real Stacksworth Matrix product photo -->
+        <div class="rounded-[var(--radius)] border border-border bg-card p-4 shadow-sm sm:p-6">
+          <img src="/img/matrix.webp" alt="Stacksworth Matrix Bitcoin LED display showing an all-time-high price in red LEDs" width="900" height="1200" loading="lazy" decoding="async" class="w-full rounded-[var(--radius)] border border-border" />
+          <p class="mt-4 text-center font-data text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">real-time network data · auto Wi-Fi updates</p>
         </div>
       </div>
     </section>
@@ -293,13 +285,21 @@ const jsonLd = {
         </div>
         <div class="mt-14 grid gap-px overflow-hidden rounded-[var(--radius)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {collections.map((col) => (
-            <a href={col.href} class="group flex flex-col bg-card p-7 transition hover:bg-muted">
-              <div class="grid h-11 w-11 place-items-center rounded-[var(--radius)] bg-primary/10 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
-                <Icon name={col.icon} class="h-5 w-5" />
+            <a href={col.href} class="group flex flex-col bg-card transition hover:bg-muted">
+              {col.img ? (
+                <div class="aspect-[4/3] overflow-hidden border-b border-border bg-[#f4f1ea]">
+                  <img src={col.img} alt={col.name} width="600" height="450" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-300 group-hover:scale-105" />
+                </div>
+              ) : (
+                <div class="flex aspect-[4/3] items-center justify-center border-b border-border bg-background">
+                  <Icon name={col.icon} class="h-10 w-10 text-primary/70" />
+                </div>
+              )}
+              <div class="flex flex-1 flex-col p-7">
+                <h3 class="font-display text-lg font-semibold text-foreground">{col.name}</h3>
+                <p class="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{col.body}</p>
+                <span class="mt-5 inline-flex items-center gap-1.5 font-data text-xs uppercase tracking-[0.2em] text-primary opacity-0 transition group-hover:opacity-100">Shop <Icon name="arrow" class="h-3.5 w-3.5" /></span>
               </div>
-              <h3 class="mt-5 font-display text-lg font-semibold text-foreground">{col.name}</h3>
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{col.body}</p>
-              <span class="mt-5 inline-flex items-center gap-1.5 font-data text-xs uppercase tracking-[0.2em] text-primary opacity-0 transition group-hover:opacity-100">Shop <Icon name="arrow" class="h-3.5 w-3.5" /></span>
             </a>
           ))}
         </div>
