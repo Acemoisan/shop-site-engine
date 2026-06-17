@@ -1,6 +1,8 @@
 # Audit Specialist Team — Design (sub-project #3)
 
-**Date:** 2026-06-17 · **Status:** approved design, pre-plan
+> **⛔ DESCOPED 2026-06-17 — NOT BUILT.** Superseded by the `client-pipeline` direction: Audit mode runs on the existing `site-audit` + `packages/audit` collector, so the rubric/specialist machinery had no consumer and was pruned. The verified knowledge was folded into the `site-audit` skill. Kept as decision history only — see [decisions.md](../../decisions.md) 2026-06-17.
+
+**Date:** 2026-06-17 · **Status:** ~~approved design, pre-plan~~ → **DESCOPED**
 **Program:** Audit-suite upgrade ([2026-06-16 design](2026-06-16-audit-suite-research-foundation-design.md)) — sub-project #3 of 6.
 **Depends on:** #1 Knowledge Foundation (`claims.json`, 620 claims / 556 verified) · #2 Rubric System (`rubric.json`, 130 weighted criteria + `scoreRubric`).
 **Feeds:** #4 Orchestration/verify/synthesis, then #5 build hand-off, #6 roleplay.

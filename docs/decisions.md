@@ -6,6 +6,15 @@ Running log of decisions for the Calgary local-shop website service. Newest firs
 
 ---
 
+## 2026-06-17 — Audit suite descoped: pruned the research-grounded machinery, kept the knowledge
+
+- **Halted the audit-suite upgrade (sub-projects #2–#6) and pruned the inert machinery.** The new `client-pipeline` orchestrator routes Audit mode through the existing `site-audit` skill + `packages/audit` collector (grade/tier + branded report + scoping note). The research-grounded layer — `rubric.json` (130 criteria), `src/foundation/*` (claims/criteria/score), and the just-started specialist team (sub-project #3) — had **zero consumers** and duplicated the legacy `src/rubric.ts` scorer the collector actually uses. Removed the source/tests/generators; the collector's 38 tests stay green.
+- **Kept the research knowledge** in `docs/research/audit-foundation/` (`claims.json`, `SUMMARY.md`, 8 dimension briefings, `rubric.json` as a reference checklist) — verified "what makes a good local-shop site" base, not wasted.
+- **Folded the verified top priorities + honesty rules into the `site-audit` skill** so the research is applied in every audit (sharper ranking, defensible framing) without the machinery.
+- **Rationale:** the audit is sales infrastructure, not the product; the existing collector already serves the pipeline's two needs (outreach hook + build scoping). A 130-criterion model added cost and a second, drift-prone scorer without changing the pitch/scoping decision. Lean repo over dormant dead code (the "nothing long-term" model).
+
+---
+
 ## 2026-06-16 — Lead pipeline: manual-first, free-tier (Phase 3)
 
 - **Start the lead pipeline by hand, not with code.** v1 = one **Outscraper free-tier** (500 records/mo) Google Maps export per vertical×area → qualify in a spreadsheet → audit the top ~20 with the **existing** `packages/audit` tool. Goal: prove the **scrape → website-presence → audit** loop and validate demand for **$0** before building anything.

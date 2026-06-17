@@ -47,6 +47,27 @@ Two-layer rule: **the collector computes the facts (grade, tier, inventory); you
    - **The performance win is the headline.** A static Astro build gets LCP < 2.5s / CWV pass — name the concrete before→after (e.g. "LCP 4.2s → under 2.5s").
    - **Output:** a short internal scoping note (template + content plan + gap list + package/price/effort) AND the client-facing next step (send the 1-page report; offer a quick before/after using the chosen template).
 
+## Verified priorities & honesty rules (knowledge base)
+
+The research knowledge base (`docs/research/audit-foundation/SUMMARY.md`, 556 verified claims) distils to these. Use the ranking in step 5 and the honesty rules in step 6 — they make audits sharper and defensible. Read `SUMMARY.md` for depth/citations.
+
+**Rank findings by this verified customer-impact order:**
+1. **Real, prominent `tel:` anchor** (E.164, above fold + sticky mobile header) — highest-ROI single defect for call-driven verticals (trades/auto/dental/law).
+2. **One dominant, vertical-correct above-fold CTA** (book / quote / request / order / visit), secondaries de-emphasized, repeated nav→hero→closing + sticky. ~70% of SMB homepages lack a clear one.
+3. **Social proof at the decision point** — star rating + *specific recent count* + a named testimonial near the CTA/hero, not the footer.
+4. **HTTPS + a form-gated privacy policy (Alberta PIPA)** — "form present + privacy policy absent" is the single most defensible compliance finding; visible "Not Secure" is screenshot-able harm.
+5. **Mobile speed via static architecture, centred on the hero image** — eager hero `fetchpriority="high"`, modern format + dimensions, self-hosted fonts, facade embeds. WordPress + page-builder detection is the strongest prospecting signal.
+6. **AA contrast** (the #1 web defect; the one visual metric tools score reliably).
+7. **Quality `LocalBusiness` JSON-LD** — correct per-vertical `@type`, structured address/`geo`/hours; grade quality not mere presence; **never self-`aggregateRating`**.
+8. **Real photography + About/owner story + quoted testimonials** — the biggest content gaps vs a bare inventory.
+9. **Per-vertical correctness** — mask non-applicable schema/items (e.g. `menuSchema` cafe-only), per-vertical pricing + the two-layer trust model.
+
+**Honesty rules (never violate — these are how we stay defensible):**
+- Never claim "AA compliant" off a Lighthouse score (engines cover only ~30–40% of criteria); say "WCAG 2.2 AA best-practices at handoff".
+- Never hard-fail an image-optimized static site on **lab LCP alone**, and never report a lab INP pass/fail as field truth. Describe CWV as *indicative lab data*, never "Google's verdict".
+- Never report a **blank CWV section** (no CrUX field data) as a failure — it's the expected default for a single-location shop.
+- Sell **local-organic / "near me"** gains (not 3-pack jumps) and **conversion** lifts (not ranking guarantees).
+
 ## Rules
 
 - **Honesty:** if `grade.overall` is `A` *and* the site looks good, say so and recommend care/decline — do **not** manufacture problems.
