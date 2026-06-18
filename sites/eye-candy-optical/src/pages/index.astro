@@ -1,0 +1,420 @@
+---
+import "@studio0rbit/shared/styles/base.css";
+import "../theme.css";
+import { shop, email, locations, frames, web3formsKey, pipaNote } from "../content/shop";
+import SeoHead from "@studio0rbit/shared/seo/SeoHead.astro";
+import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
+import Stats from "@studio0rbit/shared/components/Stats.astro";
+import Features from "@studio0rbit/shared/components/Features.astro";
+import Faq from "@studio0rbit/shared/components/Faq.astro";
+import Icon from "@studio0rbit/shared/components/Icon.astro";
+
+const heroImage = "/img/hero-portrait.webp";
+
+// Real promo from the client's own homepage — never invented.
+const promo = { label: "Now on", text: "Oakley Meta collection — from $611", note: "reg. $679" };
+
+const stats = [
+  { value: "Two", label: "Calgary studios — Beltline & Oakridge" },
+  { value: "On-site", label: "Eye exams & lens fitting" },
+  { value: "Designer", label: "Frames the chains don't carry" },
+];
+
+const experience = [
+  { icon: "eye", title: "Eye exams on-site", body: "Comprehensive exams at both studios — your prescription sorted in a single visit." },
+  { icon: "glasses", title: "A curated frame wall", body: "From Oakley performance to independent acetate, hand-picked rather than mass-stocked." },
+  { icon: "sparkles", title: "Lenses cut to order", body: "Anti-reflective, polarized, blue-light and progressive lenses, fit precisely to you." },
+  { icon: "mapPin", title: "Two neighbourhoods", body: "Find us in the Beltline on 17th Ave SW and at Oakbay Plaza in Oakridge." },
+];
+
+const faqs = [
+  { q: "Do I need an appointment for an eye exam?", a: "Booking ahead means we'll have a room and an optician ready for you — call either studio and we'll find a time. You're welcome to walk in and browse frames anytime." },
+  { q: "Do you carry prescription and non-prescription frames?", a: "Both. Every frame on our wall can be fit with prescription, sunglass, blue-light or progressive lenses — or worn just as it is." },
+  { q: "Which location should I visit?", a: "Whichever's closer — both studios carry the full experience. The Beltline studio is on 17th Avenue SW; Oakridge is at Oakbay Plaza on 90th Avenue SW." },
+  { q: "Can I bring my own prescription?", a: "Absolutely — bring a current prescription and we'll fit it to any frame you love. If it's expired, we can book you an exam on-site." },
+];
+
+// Snellen-style decreasing rows — the quiet optical signature.
+const acuity = ["E", "F P", "T O Z", "L P E D", "P E C F D"];
+
+const title = "Eye Candy Optical — Designer Eyewear & Eye Exams in Calgary";
+const description =
+  "Independent eyewear boutique with two Calgary studios — Beltline (17th Ave SW) and Oakridge. A curated wall of designer frames, on-site eye exams, and lenses cut precisely to you.";
+
+const openingSpec = (loc: typeof locations[number]) =>
+  loc.hours
+    .filter((h) => !h.closed)
+    .map((h) => {
+      const days = h.day.includes("Tue")
+        ? ["Tuesday", "Wednesday", "Thursday", "Friday"]
+        : ["Saturday"];
+      const [open, close] = h.time
+        .replace(/am/g, "")
+        .replace(/pm/g, "")
+        .split("–")
+        .map((s) => s.trim());
+      const to24 = (t: string, pm: boolean) => {
+        let n = parseInt(t, 10);
+        if (pm && n !== 12) n += 12;
+        return `${String(n).padStart(2, "0")}:00`;
+      };
+      return {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: days.map((d) => `https://schema.org/${d}`),
+        opens: to24(open, false),
+        closes: to24(close, true),
+      };
+    });
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${shop.url}/#org`,
+      name: shop.name,
+      url: shop.url,
+      email,
+      slogan: shop.tagline,
+      areaServed: "Calgary, Alberta",
+    },
+    ...locations.map((loc) => ({
+      "@type": ["Optician", "LocalBusiness"],
+      "@id": `${shop.url}/#${loc.key}`,
+      name: `${shop.name} — ${loc.label}`,
+      parentOrganization: { "@id": `${shop.url}/#org` },
+      url: shop.url,
+      image: new URL(heroImage, shop.url).href,
+      telephone: loc.phone,
+      email: loc.email,
+      priceRange: "$$$",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: loc.street,
+        addressLocality: "Calgary",
+        addressRegion: "AB",
+        postalCode: loc.city.split(" ").slice(-2).join(" "),
+        addressCountry: "CA",
+      },
+      hasMap: loc.mapUrl,
+      openingHoursSpecification: openingSpec(loc),
+    })),
+  ],
+};
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SeoHead
+      title={title}
+      description={description}
+      canonicalPath="/"
+      image={heroImage}
+      siteName="Eye Candy Optical"
+      themeColor="#1C7D6B"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" as="image" href={heroImage} fetchpriority="high" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body id="top" class="bg-background text-foreground font-sans antialiased">
+    <!-- ── Announcement (replaces their garish Wix SALE marquee, refined) ── -->
+    <div class="bg-accent text-accent-foreground">
+      <a href="#frames" class="mx-auto flex max-w-6xl items-center justify-center gap-2 px-6 py-2 text-center font-data text-xs tracking-wide">
+        <span class="font-semibold uppercase">{promo.label}</span>
+        <span>{promo.text}</span>
+        <span class="opacity-70">({promo.note})</span>
+        <Icon name="arrow" class="h-3.5 w-3.5" />
+      </a>
+    </div>
+
+    <SiteNav
+      name="Eye Candy"
+      bookingUrl="#book"
+      bookLabel="Book an exam"
+      links={[
+        { label: "Frames", href: "#frames" },
+        { label: "Experience", href: "#features" },
+        { label: "Studios", href: "#locations" },
+      ]}
+    />
+
+    <main>
+    <!-- ── Hero ───────────────────────────────────────────────────────── -->
+    <section class="relative overflow-hidden">
+      <div class="optic-grid pointer-events-none absolute inset-0 opacity-60"></div>
+      <div class="relative mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <p class="font-data text-xs uppercase tracking-[0.3em] text-primary">Designer eyewear · Two Calgary studios</p>
+          <h1 class="mt-6 font-display text-5xl font-semibold leading-[0.98] tracking-tight text-foreground sm:text-7xl">
+            Frames worth a<br /><span class="italic text-primary">second look.</span>
+          </h1>
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            Eye Candy Optical is Calgary's independent eyewear boutique — a curated wall of designer frames, on-site eye exams, and lenses cut precisely to you, at two neighbourhood studios.
+          </p>
+          <div class="mt-9 flex flex-wrap items-center gap-4">
+            <a href="#book" class="rounded-[var(--radius)] bg-primary px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">Book an eye exam</a>
+            <a href="#frames" class="rounded-[var(--radius)] border border-border px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-foreground transition hover:border-primary hover:text-primary">See the frames</a>
+          </div>
+          <ul class="mt-10 flex flex-wrap gap-x-10 gap-y-4">
+            <li class="flex items-center gap-2.5 text-sm text-muted-foreground">
+              <Icon name="eye" class="h-5 w-5 text-primary" />On-site eye exams
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-muted-foreground">
+              <Icon name="mapPin" class="h-5 w-5 text-primary" />Beltline &amp; Oakridge
+            </li>
+          </ul>
+        </div>
+
+        <!-- Signature: the "lens" — portrait seen through an AR-coated ring -->
+        <div class="relative mx-auto w-full max-w-sm">
+          <img
+            src={heroImage}
+            alt="A customer wearing round tortoiseshell designer frames from Eye Candy Optical"
+            width="1000"
+            height="1000"
+            fetchpriority="high"
+            decoding="async"
+            class="lens-ring aspect-square w-full rounded-full object-cover"
+          />
+          <img
+            src="/img/frame-sport-gold.webp"
+            alt="Oakley Sphaera performance sunglasses with 24K Prizm lenses"
+            width="680"
+            height="680"
+            loading="lazy"
+            decoding="async"
+            class="lens-ring-sm absolute -bottom-5 -left-3 h-28 w-28 rounded-full bg-card object-cover sm:h-36 sm:w-36"
+          />
+          <div class="absolute -right-2 top-8 rounded-full border border-border bg-card px-3 py-1.5 font-data text-xs font-medium tracking-wide text-primary shadow-sm">20 / 20</div>
+        </div>
+      </div>
+
+      <!-- Quiet Snellen acuity rule -->
+      <div class="relative border-t border-border">
+        <div class="mx-auto flex max-w-3xl flex-col items-center gap-1 px-6 py-7 text-center font-data text-muted-foreground/45">
+          {acuity.map((row, i) => (
+            <p style={`font-size:${1.5 - i * 0.22}rem; letter-spacing:${0.5 - i * 0.08}em`} class="leading-none">{row}</p>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Stats items={stats} />
+
+    <!-- ── Frame wall ─────────────────────────────────────────────────── -->
+    <section id="frames" class="scroll-mt-24">
+      <div class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+        <div class="max-w-2xl">
+          <p class="font-data text-xs uppercase tracking-[0.3em] text-primary">The frame wall</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">A wall worth browsing</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+            Designer optical, performance sun and boutique shapes — hand-picked, not mass-stocked. Every frame can be fit with the lenses you need. Come try a few on; staff styling is part of the visit.
+          </p>
+        </div>
+        <div class="mt-16 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-5">
+          {frames.map((f) => (
+            <div class="flex flex-col items-center text-center">
+              <div class="aspect-square w-full max-w-[10rem] overflow-hidden rounded-full bg-card lens-ring-sm">
+                <img src={f.img} alt={f.name} width="680" height="680" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-300 hover:scale-105" />
+              </div>
+              <p class="mt-6 font-data text-[0.7rem] uppercase tracking-[0.2em] text-accent">{f.kind}</p>
+              <h3 class="mt-1.5 font-display text-lg font-semibold text-foreground">{f.name}</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Features label="The experience" heading="More than a frame in a box" items={experience} />
+
+    <!-- ── Locations ──────────────────────────────────────────────────── -->
+    <section id="locations" class="scroll-mt-24 border-y border-border bg-muted">
+      <div class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+        <div class="max-w-2xl">
+          <p class="font-data text-xs uppercase tracking-[0.3em] text-primary">Find us</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">Two Calgary studios</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground">Drop by either neighbourhood — both carry the full frame wall, on-site exams and lens fitting.</p>
+        </div>
+        <div class="mt-14 grid gap-6 lg:grid-cols-2">
+          {locations.map((loc) => (
+            <div class="flex flex-col rounded-[var(--radius)] border border-border bg-card p-8 shadow-sm">
+              <p class="font-data text-xs uppercase tracking-[0.25em] text-accent">{loc.neighbourhood}</p>
+              <h3 class="mt-2 font-display text-2xl font-semibold text-foreground">{loc.label}</h3>
+              <a href={loc.mapUrl} target="_blank" rel="noopener" class="mt-4 flex items-start gap-3 text-sm text-muted-foreground transition hover:text-primary">
+                <Icon name="mapPin" class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                <span>{loc.street}<br />{loc.city}</span>
+              </a>
+              <a href={`tel:${loc.phone.replace(/[^0-9]/g, "")}`} class="mt-3 flex items-center gap-3 text-sm font-semibold text-foreground transition hover:text-primary">
+                <Icon name="phone" class="h-5 w-5 text-primary" />{loc.phone}
+              </a>
+              <div class="mt-6 border-t border-border pt-5">
+                <ul class="space-y-2 text-sm">
+                  {loc.hours.map((h) => (
+                    <li class="flex justify-between">
+                      <span class="text-muted-foreground">{h.day}</span>
+                      <span class={h.closed ? "text-muted-foreground" : "font-medium text-foreground"}>{h.time}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="mt-7 flex flex-wrap gap-3">
+                <a href={loc.mapUrl} target="_blank" rel="noopener" class="rounded-[var(--radius)] border border-border px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-foreground transition hover:border-primary hover:text-primary">Get directions</a>
+                <a href={`tel:${loc.phone.replace(/[^0-9]/g, "")}`} class="rounded-[var(--radius)] bg-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">Call this studio</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Faq heading="Good to know" items={faqs} />
+
+    <!-- ── Book / Contact ─────────────────────────────────────────────── -->
+    <section id="book" class="scroll-mt-24 border-t border-border">
+      <div class="mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:py-28 lg:grid-cols-2">
+        <div>
+          <p class="font-data text-xs uppercase tracking-[0.3em] text-primary">Book an eye exam</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">See us clearly</h2>
+          <p class="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
+            Call the studio that's closest, or send a note and we'll get back to you. New prescriptions, frame styling, repairs and adjustments — both studios can help.
+          </p>
+          <dl class="mt-8 space-y-4">
+            {locations.map((loc) => (
+              <div class="flex items-center gap-3 text-sm">
+                <Icon name="phone" class="h-5 w-5 text-primary" />
+                <dt class="w-28 text-muted-foreground">{loc.label}</dt>
+                <dd><a href={`tel:${loc.phone.replace(/[^0-9]/g, "")}`} class="font-semibold text-foreground transition hover:text-primary">{loc.phone}</a></dd>
+              </div>
+            ))}
+            <div class="flex items-center gap-3 text-sm">
+              <Icon name="mail" class="h-5 w-5 text-primary" />
+              <dt class="w-28 text-muted-foreground">Email</dt>
+              <dd><a href={`mailto:${email}`} class="font-semibold text-foreground transition hover:text-primary">{email}</a></dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Contact form → Web3Forms (host-agnostic backend; works on file-digest
+             deploys where Netlify Forms can't register). Progressive enhancement:
+             JS posts JSON for an inline success state; no-JS falls back to a normal
+             POST to the same endpoint. Verified working on the live landing site. -->
+        <div>
+        <form id="contactForm" method="POST" action="https://api.web3forms.com/submit" data-email={email} class="rounded-[var(--radius)] border border-border bg-card p-7 shadow-sm">
+          <input type="hidden" name="access_key" value={web3formsKey} />
+          <input type="hidden" name="subject" value="New enquiry from eyecandyeyewear.com" />
+          <input type="hidden" name="from_name" value="Eye Candy Optical website" />
+          <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <div class="grid gap-5">
+            <label class="block">
+              <span class="font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">Name</span>
+              <input type="text" name="name" required autocomplete="name" class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60" placeholder="Your name" />
+            </label>
+            <label class="block">
+              <span class="font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">Email</span>
+              <input type="email" name="email" required autocomplete="email" class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60" placeholder="you@email.com" />
+            </label>
+            <label class="block">
+              <span class="font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">Preferred studio</span>
+              <select name="studio" class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60">
+                <option>17th Avenue · Beltline</option>
+                <option>Oakridge · Oakbay Plaza</option>
+                <option>Either is fine</option>
+              </select>
+            </label>
+            <label class="block">
+              <span class="font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">Message</span>
+              <textarea name="message" rows="4" required class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60" placeholder="Eye exam, frame styling, a repair…"></textarea>
+            </label>
+            <button type="submit" class="rounded-[var(--radius)] bg-primary px-6 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">Send message</button>
+            <p id="contactStatus" role="status" aria-live="polite" class="hidden text-sm font-medium text-primary"></p>
+            <p class="font-data text-[0.7rem] leading-relaxed text-muted-foreground">{pipaNote}</p>
+          </div>
+        </form>
+        <div id="contactSuccess" hidden class="rounded-[var(--radius)] border border-primary/40 bg-primary/5 p-8 text-center">
+          <p class="font-display text-2xl font-semibold text-foreground">Thanks — your note is on its way.</p>
+          <p class="mt-2 text-sm text-muted-foreground">We'll reply within one business day. Need us sooner? Call either studio above.</p>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Closing CTA ────────────────────────────────────────────────── -->
+    <section class="relative overflow-hidden border-t border-border bg-primary text-primary-foreground">
+      <div class="mx-auto max-w-4xl px-6 py-20 text-center sm:py-24">
+        <h2 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">See clearly. Look the part.</h2>
+        <p class="mx-auto mt-4 max-w-md text-base text-primary-foreground/80">Designer frames, expert eye exams and lenses cut to you — at two Calgary studios.</p>
+        <div class="mt-9 flex flex-wrap justify-center gap-4">
+          <a href="#book" class="rounded-[var(--radius)] bg-card px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary transition hover:opacity-90">Book an eye exam</a>
+          <a href="#frames" class="rounded-[var(--radius)] border border-primary-foreground/40 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider transition hover:bg-primary-foreground/10">Browse the frame wall</a>
+        </div>
+      </div>
+    </section>
+    </main>
+
+    <!-- ── Footer ─────────────────────────────────────────────────────── -->
+    <footer class="border-t border-border bg-card">
+      <div class="mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="sm:col-span-2 lg:col-span-2">
+          <p class="font-display text-2xl font-semibold tracking-tight text-foreground">Eye Candy Optical</p>
+          <p class="mt-2 max-w-xs text-sm text-muted-foreground">Independent designer eyewear and on-site eye exams — two studios in Calgary.</p>
+          <a href={`mailto:${email}`} class="mt-4 inline-block font-data text-xs uppercase tracking-[0.15em] text-muted-foreground transition hover:text-primary">{email}</a>
+        </div>
+        {locations.map((loc) => (
+          <div>
+            <p class="font-data text-[0.7rem] uppercase tracking-[0.2em] text-accent">{loc.label}</p>
+            <p class="mt-2 text-sm text-muted-foreground">{loc.street}<br />{loc.city}</p>
+            <a href={`tel:${loc.phone.replace(/[^0-9]/g, "")}`} class="mt-2 inline-block text-sm font-semibold text-foreground transition hover:text-primary">{loc.phone}</a>
+          </div>
+        ))}
+      </div>
+      <div class="border-t border-border">
+        <p class="mx-auto max-w-6xl px-6 py-5 font-data text-[0.7rem] uppercase tracking-[0.15em] text-muted-foreground">© 2026 Eye Candy Optical · Calgary, Alberta</p>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        var form = document.getElementById("contactForm");
+        if (!form) return;
+        var statusEl = document.getElementById("contactStatus");
+        var success = document.getElementById("contactSuccess");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var btn = form.querySelector("button[type=submit]");
+          var orig = btn ? btn.textContent : "";
+          if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+          if (statusEl) { statusEl.classList.add("hidden"); statusEl.textContent = ""; }
+          var data = {};
+          new FormData(form).forEach(function (v, k) { data[k] = v; });
+          fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(data) })
+            .then(function (r) { return r.json().catch(function () { return {}; }); })
+            .then(function (d) {
+              if (d && d.success) {
+                form.style.display = "none";
+                if (success) { success.hidden = false; success.scrollIntoView({ behavior: "smooth", block: "center" }); }
+              } else {
+                throw new Error((d && d.message) || "submit failed");
+              }
+            })
+            .catch(function () {
+              if (btn) { btn.disabled = false; btn.textContent = orig; }
+              if (statusEl) {
+                var mail = form.getAttribute("data-email") || "";
+                statusEl.textContent = "Couldn't send just now — please email us at " + mail + " or call a studio.";
+                statusEl.classList.remove("hidden");
+              }
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>

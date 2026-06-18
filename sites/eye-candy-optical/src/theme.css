@@ -1,0 +1,51 @@
+/* Eye Candy Optical — "The Lens" light editorial token system.
+   Cool porcelain gallery canvas + slate ink (deliberately NOT warm cream),
+   a single brand colour drawn from the optical world — the deep emerald flash
+   of an anti-reflective lens coating — and a restrained cognac/acetate accent
+   used only for prices & sale tags (echoes tortoiseshell frames). See design spec. */
+:root {
+  --background: oklch(0.984 0.003 220);        /* #F9FBFC cool porcelain */
+  --foreground: oklch(0.235 0.018 250);        /* #1E232C slate ink */
+  --card: oklch(1 0 0);                         /* #FFFFFF lifts off porcelain */
+  --primary: oklch(0.505 0.085 175);            /* #1C7D6B AR-coating emerald */
+  --primary-foreground: oklch(0.99 0.004 175); /* near-white on emerald */
+  --muted: oklch(0.955 0.005 220);              /* #EFF2F4 cool panel */
+  --muted-foreground: oklch(0.46 0.014 250);    /* #5C6470 mid slate (AA on porcelain) */
+  --accent: oklch(0.585 0.1 60);                /* #B07B3F cognac / acetate (prices & sale) */
+  --accent-foreground: oklch(0.99 0.004 60);    /* near-white on cognac */
+  --border: oklch(0.905 0.005 220);             /* #E1E5E8 cool hairline */
+  --font-sans: "Hanken Grotesk", system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
+  --radius: 0.625rem;
+}
+
+/* Optometry-data utility face — eyebrows, prices, NAP, captions. Additive,
+   scoped: never restyles a shared component, just makes the face available. */
+.font-data { font-family: var(--font-mono); font-feature-settings: "tnum" 1; }
+
+/* Signature: the "lens" — an anti-reflective emerald ring around a circular
+   image, as if seen through a coated lens. Additive utility, used in-page only. */
+.lens-ring {
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 0 0 7px var(--card),
+    0 0 0 8px color-mix(in oklch, var(--primary) 55%, transparent),
+    0 24px 48px -24px color-mix(in oklch, var(--foreground) 45%, transparent);
+}
+.lens-ring-sm {
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 0 0 5px var(--card),
+    0 0 0 6px color-mix(in oklch, var(--primary) 45%, transparent);
+}
+
+/* Faint Snellen/optical grid wash for quiet section backings. */
+.optic-grid {
+  background-image: radial-gradient(color-mix(in oklch, var(--primary) 18%, transparent) 1px, transparent 1.6px);
+  background-size: 1.4rem 1.4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

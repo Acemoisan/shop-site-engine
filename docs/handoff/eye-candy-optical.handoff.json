@@ -1,0 +1,89 @@
+{
+  "client": "Eye Candy Optical",
+  "slug": "eye-candy-optical",
+  "date": "2026-06-17",
+  "statusTag": "LIVE",
+  "lead": [
+    "Your new **Eye Candy Optical** site is **live**. We rebuilt your homepage as a fast, static site — using **your own product photography**.",
+    "On Google's PageSpeed test it went from **64→88** on mobile, earned **A for accessibility**, added proper search structured data, and now has a working contact form. It's a one-time build — **you own every account.** Everything you need is below."
+  ],
+  "stats": [
+    {
+      "n": "64→88",
+      "l": "PageSpeed (mobile)"
+    },
+    {
+      "n": "A",
+      "l": "Accessibility"
+    }
+  ],
+  "links": [
+    {
+      "k": "Live site (staging)",
+      "label": "eye-candy-optical-yyc.netlify.app",
+      "href": "https://eye-candy-optical-yyc.netlify.app"
+    },
+    {
+      "k": "Your 1-page audit",
+      "label": "before → after report",
+      "href": "https://eye-candy-optical-yyc.netlify.app"
+    }
+  ],
+  "ownershipIntro": "Right now both accounts sit under our setup email so we could build it for you. Transfer is by invite — never a shared password.",
+  "accounts": [
+    {
+      "name": "Hosting — Netlify",
+      "ref": "site “eye-candy-optical-yyc” (free)",
+      "own": "→ we invite your owner email as Admin, then we step off. You own the live site."
+    },
+    {
+      "name": "Contact form — Web3Forms",
+      "ref": "free; submissions emailed instantly",
+      "own": "→ generate your own key at web3forms.com using info@eyecandyeyewear.com and we paste it in, so enquiries go straight to you."
+    },
+    {
+      "name": "Domain — eyecandyeyewear.com",
+      "ref": "already yours (currently on Wix)",
+      "own": "→ stays yours; we point it at the new site when you approve (see cutover below)."
+    },
+    {
+      "name": "Site code",
+      "ref": "standalone repo we maintain",
+      "own": "→ no GitHub needed on your side; handed over on request. One-time build, no retainer."
+    }
+  ],
+  "editSteps": [
+    "This site was built **without a separate CMS login** (your request) — so there’s nothing new to learn and no monthly CMS seat.",
+    "All your content (frames, prices, hours, studio details, FAQs) lives in one file in the site’s code.",
+    "To change anything — a price, a new frame photo, holiday hours — send the update to us and we publish it; it’s a quick edit + redeploy.",
+    "Prefer to self-edit later? We can add a simple CMS (Storyblok) as a one-time add-on so you can edit and publish yourself.",
+    "Your real Google reviews can be added on the page anytime — just send a few and we’ll feature them."
+  ],
+  "finishingSteps": [
+    {
+      "title": "1 · Point your domain (eyecandyeyewear.com) at the new site",
+      "body": "Your web address stays exactly the same — we just aim it at the new site. Zero downtime: the old Wix site stays live until you approve this staging link, then we cut over and your email keeps working untouched. Only after it’s confirmed live do you cancel Wix and stop paying that monthly fee. We need two things from you: where the domain is registered, and where your email is hosted (so we preserve it)."
+    },
+    {
+      "title": "2 · Send leads to your own inbox",
+      "body": "The contact form is live now (verified). Generate a free Web3Forms key at web3forms.com using info@eyecandyeyewear.com, send it to us, and we’ll swap it in so every enquiry lands directly in your inbox instead of ours."
+    },
+    {
+      "title": "3 · Optional — one-click future updates",
+      "body": "If you’d like to update content yourself later, we can wire a simple CMS (Storyblok) so a Publish click rebuilds the site in ~1 minute. One-time add-on; not needed for launch."
+    }
+  ],
+  "goingLive": {
+    "intro": "The site is on a free `*.netlify.app` address so you can review it. When you’re ready to launch on your own domain:",
+    "options": [
+      "Point your domain at the new site in your host’s Domain settings."
+    ],
+    "note": "In Netlify: Domain management → Add a domain → follow the DNS steps. HTTPS is automatic."
+  },
+  "notes": [
+    "**Real photos, your own.** The images come from your existing site — swap any of them in your CMS.",
+    "**No fake details.** We didn’t invent contact info you don’t publish; the trust signals are real photos, reviews, and your socials.",
+    "**Honest on speed.** We quote the PageSpeed score (64→88) and the move to a fast static stack — not a “seconds” figure, since Google’s lab numbers aren’t real-user data."
+  ],
+  "footer": "Eye Candy Optical · Beltline (17th Ave SW) & Oakridge (Oakbay Plaza), Calgary · Built by Studio0rbit · one-time build, no retainer"
+}
