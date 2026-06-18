@@ -5,16 +5,24 @@
   "statusTag": "LIVE",
   "lead": [
     "Your new **Eye Candy Optical** site is **live** — rebuilt as a fast, static site using **your own product photography**, with both studios, real hours, and a working contact form front and centre.",
-    "The honest picture: your old site's *technical SEO was already strong*, so we kept it clean (a perfect **100** on Google's SEO check) while fixing what was actually costing you visits. On Google's PageSpeed test your mobile score climbed into the **90s**, and the page went from a heavy Wix build to pre-built static files that load fast on phones. Accessibility went from **B to A**. It's a one-time build — **you own every account.**"
+    "The honest picture: your old site's *technical SEO was already strong*, so we kept it clean (a perfect **100** on Google's SEO check) while fixing what was actually costing you visits. On Google's PageSpeed test your mobile score rose from a median **73 to 88** (across repeated runs), and the page went from a heavy Wix build to pre-built static files that load fast on phones. Accessibility went from **B to A**. It's a one-time build — **you own every account.**"
   ],
   "stats": [
     {
-      "n": "64→90",
-      "l": "PageSpeed (mobile)"
+      "n": "73 → 88",
+      "l": "Mobile PageSpeed · median of 3"
     },
     {
-      "n": "A",
-      "l": "Accessibility"
+      "n": "C → A",
+      "l": "Overall audit grade"
+    },
+    {
+      "n": "B → A",
+      "l": "Accessibility · Lighthouse"
+    },
+    {
+      "n": "Wix → static",
+      "l": "Architecture"
     }
   ],
   "links": [

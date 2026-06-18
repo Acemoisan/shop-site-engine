@@ -48,10 +48,15 @@ export function buildHandoffData(facts) {
   const scoreStr = before != null && after != null ? `${before}→${after}` : null;
 
   // --- stats (only the ones we can stand behind) ---
-  const stats = [];
-  if (scoreStr) stats.push({ n: scoreStr, l: "PageSpeed (mobile)" });
-  if (a11y) stats.push({ n: a11y, l: "Accessibility" });
-  if (f.rating) stats.push({ n: `${f.rating}★`, l: "Reviews shown" });
+  // FACTS `stats` wins when present (e.g. median-of-3 PageSpeed, a grade jump);
+  // otherwise derive a sensible default from the saved audits.
+  const stats = f.stats ?? (() => {
+    const s = [];
+    if (scoreStr) s.push({ n: scoreStr, l: "PageSpeed (mobile)" });
+    if (a11y) s.push({ n: a11y, l: "Accessibility" });
+    if (f.rating) s.push({ n: `${f.rating}★`, l: "Reviews shown" });
+    return s;
+  })();
 
   // --- lead / results paragraphs ---
   const imagery = f.usedClientImagery === false ? "" : " — using **your own product photography**";

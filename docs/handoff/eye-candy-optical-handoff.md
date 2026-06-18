@@ -14,9 +14,9 @@ Reproduce anytime: `cd packages/audit && node --import tsx src/diff.ts https://w
 | Metric (tool) | Before (Wix) | After (static) |
 |---|---|---|
 | **Overall audit grade** (rubric 1.1.0) | **C** | **A** |
-| Mobile PageSpeed — Google | 64–79* | 90 |
+| Mobile PageSpeed — Google (median of 3) | 73* | 88 |
 | Desktop PageSpeed — Google | 96 | 99 |
-| Accessibility — Lighthouse | 89 (B) | 90–93 (A) |
+| Accessibility — Lighthouse | 89 (B) | 93 (A) |
 | Lighthouse SEO | 100 | 100 *(already strong — kept clean)* |
 | @seomator on-page audit | 93 / A | 95 / A |
 | Published hours (both studios) | ✗ | ✓ |
@@ -25,7 +25,7 @@ Reproduce anytime: `cd packages/audit && node --import tsx src/diff.ts https://w
 | Footer map | blank box | real dual-location section |
 | Platform | Wix (JS-heavy) | static files on CDN |
 
-\* PageSpeed **lab** scores vary run-to-run (we measured the old site at 64 and 79 on two runs; lab LCP swung ~10s↔4.5s). We quote the **score band + architecture**, never a single "seconds faster" figure — that's the honest read of lab data.
+\* PageSpeed **lab** scores vary run-to-run (single runs of the old site ranged 64–79), so these are the **median of 3 runs** — the defensible number. We quote the score + architecture, never a single "seconds faster" figure (no real-user CrUX data). Reproduce with the diff command above.
 
 **Why it's actually better (not just a number):**
 - **Speed by rebuild, not plugin** — static files on a CDN vs Wix's per-visit JS bundle. The mobile PageSpeed score lands in the 90s, and the audit grade moves C→A under our (lab-CWV-honest) rubric.

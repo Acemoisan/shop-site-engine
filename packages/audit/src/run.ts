@@ -14,11 +14,14 @@ export const ALL_FEATURE_KEYS: FeatureKey[] = [
   "contactForm", "favicon",
 ]
 
-/** Collect a full audit for one URL. `key` defaults to PSI_API_KEY from env. */
+/** Collect a full audit for one URL. `key` defaults to PSI_API_KEY from env.
+ *  `samples` = how many PSI runs to median (defaults to PSI_SAMPLES env or 1);
+ *  bump it (e.g. 3) where you make before/after claims, since lab scores vary. */
 export async function runAudit(
   url: string,
   vertical?: string,
   key: string = process.env.PSI_API_KEY ?? "",
+  samples: number = Number(process.env.PSI_SAMPLES) || 1,
 ): Promise<AuditData> {
   const fetchedAt = new Date().toISOString()
   const page = await fetchHtml(url)
@@ -36,7 +39,7 @@ export async function runAudit(
     : { status: "error", error: unavailable }
 
   const [psi, seomator] = await Promise.all([
-    inspectable && key ? runPsiProbe(url, key) : Promise.resolve({ status: "error" as const, error: inspectable ? "no PSI_API_KEY" : unavailable }),
+    inspectable && key ? runPsiProbe(url, key, samples) : Promise.resolve({ status: "error" as const, error: inspectable ? "no PSI_API_KEY" : unavailable }),
     inspectable ? runSeomatorProbe(url) : Promise.resolve({ status: "error" as const, error: unavailable }),
   ])
 

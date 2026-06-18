@@ -93,7 +93,7 @@ PSI_API_KEY=$PSI_API_KEY node --import tsx src/diff.ts <oldUrl> <newUrl> [vertic
 # or diff already-saved audits (warns if their rubric versions differ):
 node --import tsx src/diff.ts --saved <oldHost> <newHost>
 ```
-It writes `audit-diff-<old>-vs-<new>.md` with: grade + per-category deltas, the measured metric table (perf/LCP/a11y/SEO/seomator with ▲▼), and conversion features split into **Gained / Dropped / Unchanged** — drops are flagged 🟡 *intentional* (e.g. removed fabricated reviews, vertical-irrelevant) vs 🔴 *likely regression*. Use its table to populate the handoff scorecard (`stats`/`notes` in the FACTS file).
+Fresh diffs **median 3 PageSpeed runs** (lab scores swing run-to-run — a single run is a fluke; quote the median). The collector itself defaults to 1 run; set `PSI_SAMPLES=3` to median any audit (worth it for a site near a grade boundary). It writes `audit-diff-<old>-vs-<new>.md` with: grade + per-category deltas, the measured metric table (perf/LCP/a11y/SEO/seomator with ▲▼), and conversion features split into **Gained / Dropped / Unchanged** — drops are flagged 🟡 *intentional* (e.g. removed fabricated reviews, vertical-irrelevant) vs 🔴 *likely regression*. Use its table to populate the handoff scorecard (`stats`/`notes` in the FACTS file).
 
 **Rubric honesty (v1.1.0, `rubric.ts`).** Two fixes so the grade reflects real quality: (1) a **lab CWV "fail" no longer hard-caps** a site that's actually fast (perf grade A/B) — it only caps when the site is *also* slow (perf C/D/F + CWV fail); (2) **conversion ignores vertical-irrelevant features** (e.g. Menu schema off a non-cafe). Audits now stamp `rubricVersion` so the diff tool can warn on version skew.
 

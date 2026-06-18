@@ -71,12 +71,49 @@ const toScores = (p: ParsedPsi): ScoreSet => ({
   performance: p.performance, seo: p.seo, accessibility: p.accessibility, bestPractices: p.bestPractices,
 })
 
-export async function runPsiProbe(url: string, key: string): Promise<PsiProbe> {
+const median = (nums: number[]): number | null => {
+  const a = nums.filter((n): n is number => typeof n === "number").sort((x, y) => x - y)
+  if (!a.length) return null
+  const mid = Math.floor(a.length / 2)
+  return a.length % 2 ? a[mid] : (a[mid - 1] + a[mid]) / 2
+}
+
+// Collapse N PSI samples into one median result. PageSpeed scores swing run-to-run
+// (a single run can be a fluke), so the median is the defensible number to quote.
+// failedAudits come from the run whose performance is closest to the median.
+function medianParsed(samples: ParsedPsi[]): ParsedPsi {
+  const med = (f: (p: ParsedPsi) => number | null) => median(samples.map(f).filter((n): n is number => n != null))
+  const performance = Math.round(med((p) => p.performance) ?? 0)
+  const rep = samples.reduce((best, s) =>
+    Math.abs(s.performance - performance) < Math.abs(best.performance - performance) ? s : best, samples[0])
+  const r = (n: number | null) => (n == null ? 0 : Math.round(n))
+  return {
+    performance,
+    seo: r(med((p) => p.seo)),
+    accessibility: r(med((p) => p.accessibility)),
+    bestPractices: r(med((p) => p.bestPractices)),
+    lcpMs: med((p) => p.lcpMs),
+    inpMs: med((p) => p.inpMs),
+    cls: med((p) => p.cls),
+    failedAudits: rep.failedAudits,
+  }
+}
+
+// Run a strategy `samples` times in parallel and median the results. A sample
+// that fails is dropped; only if ALL fail do we surface the error.
+async function fetchPsiMedian(url: string, strategy: "mobile" | "desktop", key: string, samples: number): Promise<ParsedPsi> {
+  const settled = await Promise.allSettled(Array.from({ length: Math.max(1, samples) }, () => fetchPsi(url, strategy, key)))
+  const ok = settled.flatMap((s) => (s.status === "fulfilled" ? [s.value] : []))
+  if (!ok.length) throw (settled.find((s) => s.status === "rejected") as PromiseRejectedResult)?.reason ?? new Error("PSI failed")
+  return ok.length === 1 ? ok[0] : medianParsed(ok)
+}
+
+export async function runPsiProbe(url: string, key: string, samples = 1): Promise<PsiProbe> {
   // Mobile and desktop run independently: one strategy timing out must NOT
   // discard a good result from the other (the grade reads mobile primarily).
   const [m, d] = await Promise.allSettled([
-    fetchPsi(url, "mobile", key),
-    fetchPsi(url, "desktop", key),
+    fetchPsiMedian(url, "mobile", key, samples),
+    fetchPsiMedian(url, "desktop", key, samples),
   ])
   const mobile = m.status === "fulfilled" ? m.value : null
   const desktop = d.status === "fulfilled" ? d.value : null

@@ -46,8 +46,11 @@ async function load(beforeArg: string, afterArg: string, saved: boolean, vertica
       warn.push(`Rubric mismatch: before=${b.rubricVersion ?? "unknown"} vs after=${a.rubricVersion ?? "unknown"} — grades aren't strictly comparable. Re-run fresh for an apples-to-apples grade.`)
     return [b, a, warn]
   }
-  // Fresh: re-run both so the comparison is always same-version, same-day.
-  const [b, a] = await Promise.all([runAudit(beforeArg, vertical), runAudit(afterArg, vertical)])
+  // Fresh: re-run both so the comparison is always same-version, same-day, and
+  // median several PSI runs (lab scores swing run-to-run) for a defensible number.
+  const key = process.env.PSI_API_KEY ?? ""
+  const samples = Number(process.env.PSI_SAMPLES) || 3
+  const [b, a] = await Promise.all([runAudit(beforeArg, vertical, key, samples), runAudit(afterArg, vertical, key, samples)])
   return [b, a, warn]
 }
 
@@ -86,7 +89,7 @@ function build(before: AuditData, after: AuditData, warn: string[]): string {
   md += numRow("Best practices", mobile(before, "bestPractices"), mobile(after, "bestPractices"))
   md += numRow("Lab LCP (ms, lower better)", before.psi.cwv?.lcpMs != null ? Math.round(before.psi.cwv.lcpMs) : null, after.psi.cwv?.lcpMs != null ? Math.round(after.psi.cwv.lcpMs) : null, true)
   md += numRow("seomator score", before.seomator.score ?? null, after.seomator.score ?? null)
-  md += `\n> Speed numbers are PageSpeed **lab** scores, not real-user (CrUX) field data — quote the score + architecture, not a "seconds faster" claim.\n\n`
+  md += `\n> Speed numbers are PageSpeed **lab** scores (fresh diffs median 3 runs to dampen run-to-run variance), not real-user (CrUX) field data — quote the score + architecture, not a "seconds faster" claim.\n\n`
 
   // --- inventory: gained / dropped / unchanged ---
   const gained: string[] = [], dropped: string[] = [], same: string[] = []
