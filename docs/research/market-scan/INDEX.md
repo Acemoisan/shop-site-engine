@@ -4,7 +4,7 @@
 
 **How this works:** Each loop run picks NEW competitors/angles from the queue below (never repeat a covered one), runs deep research, and writes a numbered scan file (`scan-NNN.md`) with verified, cited findings. Then it updates the "Covered" list and "Queue" here so the next run (which may start with fresh context) knows what's done.
 
-**Sibling docs:** strategic analysis lives in [`../2026-06-16-competitive-landscape.md`](../2026-06-16-competitive-landscape.md); raw links in [`../../references/links.md`](../../references/links.md).
+**Sibling docs:** ⭐ **synthesis of all scans → [`../2026-06-17-competitive-mass-review.md`](../2026-06-17-competitive-mass-review.md)**; earlier strategic analysis in [`../2026-06-16-competitive-landscape.md`](../2026-06-16-competitive-landscape.md); raw links in [`../../references/links.md`](../../references/links.md).
 
 ---
 
