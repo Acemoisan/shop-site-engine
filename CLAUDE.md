@@ -8,7 +8,16 @@ A pnpm-workspace monorepo that produces custom shop sites from one shared engine
 - `packages/shared` — the reusable engine: section components, design tokens, content types, SEO.
 - `sites/<slug>` — one thin Astro app per shop. It supplies a **theme** (`src/theme.css`) and **content** (`src/content/shop.ts`), and composes shared components in `src/pages/index.astro`.
 
-**Business model context:** one-time fee, NO maintenance contract. The client owns all accounts and self-edits content. Build accordingly — nothing that requires us long-term. See `docs/roadmap.md` and `docs/decisions.md`.
+**Business model context:** **$1,500 flat one-time fee + add-on menu** (no tiers), NO maintenance contract. The client owns all accounts and self-edits content. **Deliver-first billing: build → invoice at delivery → ownership transfers only after payment clears** (default Interac e-Transfer). Build accordingly — nothing that requires us long-term. See `docs/gtm/packaging.md`, `docs/gtm/payment-and-terms.md`, `docs/roadmap.md`, `docs/decisions.md`.
+
+## Autonomous delivery model
+
+We run a **fully autonomous AI delivery pipeline.** The **operator does outreach + final validation only**; the agent runs everything between. The orchestrator is the **`client-pipeline` skill** — invoke it to run a client end to end.
+
+- **Two modes, one skill.** **Audit** (outreach: prospect URL → `site-audit` → branded report the operator sends) and **Deliver** (post-conversion: intake → spec → build → Storyblok → verify → deploy → handoff).
+- **No mid-build review gates.** The agent never asks the operator to approve specs, designs, or plans — it uses sensible agency defaults and **documents decisions** (intake, spec, handoff).
+- **Exactly two operator-validation gates** (the operator "validating the output state"): **Gate 1** = audit before it reaches a prospect; **Gate 2** = live site before links reach a client — **and Gate 2 is payment-gated: the operator confirms payment cleared before account/domain ownership transfers** (`docs/gtm/payment-and-terms.md`). See `docs/onboarding/operator-validation-checklist.md`.
+- **Interrupt the operator ONLY for** a missing `[BLOCKER]` intake field or an irreversible money/credential/auth action (real domain purchase, paid plan, missing auth) — batched into one message.
 
 ## AI-heavy architecture: always be building skills
 
@@ -16,6 +25,7 @@ This project is a **production capability**, not a pile of one-off sites. The pi
 
 - **Prefer skills + scripts over manual steps.** A skill with a runnable script (see `storyblok-shop-cms/setup-shop.mjs`) turns a 30-minute manual setup into one command.
 - **Existing skills:**
+  - `client-pipeline` — **the orchestrator.** Ties the six building-block skills below into one autonomous run (Audit + Deliver modes, the operator boundary, and the two validation gates). Invoke it to take a client from outreach to handoff; it delegates the mechanics to the skills below.
   - `storyblok-shop-cms` — wiring Storyblok into a shop site, content model, Management API recipes, and the client editing/upload/publish model. Use it before hand-rolling CMS work.
   - `shop-templates` — how templates are structured, the shared section-component library + props, the token theming system, the shared-vs-custom hero patterns, and how to add a new vertical.
   - `create-shop-site` — end-to-end runbook to build a new client shop from scratch (scaffold → theme tokens → content → Storyblok wiring → verify).
@@ -59,6 +69,7 @@ Tailwind v4 auto-scans only the importing site's directory. Classes used **only 
 | `CTA.astro` | `phone, bookingUrl?, heading?` | Closing call/book CTA |
 | `SiteFooter.astro` | `name, address, phone` | Footer |
 | `Icon.astro` | `name, class?` | Inline-SVG icon set (no dependency) |
+| `seo/SeoHead.astro` | `title, description, canonicalPath?, image?, siteName?, type?, themeColor?` | Per-shop SEO `<head>`: canonical + **absolute-URL** OG/Twitter + robots + theme-color (resolves absolute URLs from `Astro.site`) |
 | `seo/LocalBusinessJsonLd.astro` | `shop` | `LocalBusiness` JSON-LD (name+address required) |
 
 Content shape is the `ShopContent` type in `packages/shared/src/types/shop.ts`. Full props + usage live in the `shop-templates` skill.
@@ -68,11 +79,11 @@ Each `sites/<slug>/src/pages/index.astro` declares **local fallbacks** (the `sho
 
 ## New-shop checklist
 
-1. Create `sites/<slug>/` with `package.json` (name = slug, deps: astro, @tailwindcss/vite, tailwindcss, `@studio0rbit/shared`: workspace:*), `astro.config.mjs` (Tailwind Vite plugin), `tsconfig.json`.
+1. Create `sites/<slug>/` with `package.json` (name = slug, deps: astro, @tailwindcss/vite, tailwindcss, `@astrojs/sitemap`, `@studio0rbit/shared`: workspace:*), `astro.config.mjs` (set `site:` + `integrations: [sitemap()]` + Tailwind Vite plugin), `tsconfig.json`, and `public/robots.txt` (Allow `/` + `Sitemap:` line).
 2. Write `src/theme.css` — the shop's OKLCH palette + fonts + radius.
 3. Write `src/content/shop.ts` — typed `ShopContent`.
-4. Write `src/pages/index.astro` — import `base.css` then `theme.css`, compose sections, set Services heading.
-5. `pnpm install` then `pnpm --filter <slug> build`; **view a screenshot** before declaring done.
+4. Write `src/pages/index.astro` — import `base.css` then `theme.css`, add **`seo/SeoHead`** in `<head>` (title/description/canonical + absolute OG/Twitter) and `LocalBusinessJsonLd`, compose sections, set Services heading.
+5. `pnpm install` then `pnpm --filter <slug> build`; **view a screenshot** AND confirm canonical + `og:image` are absolute `https://` URLs and `dist/` has `sitemap-index.xml` + `robots.txt` before declaring done.
 
 ## Design-quality bar (do NOT ship "plain")
 
@@ -84,7 +95,9 @@ The v0 components are intentionally minimal scaffolding. Real client builds must
 - **Per-vertical feeling:** a barber should feel different from a café from a law office — driven by tokens (color, radius, font) AND imagery, not just text.
 - **Motion & polish:** subtle transitions, hover states, sticky nav where appropriate.
 - **Mobile-first & accessible:** WCAG AA contrast, tap targets, responsive layout. Static output for Core Web Vitals (LCP<2.5s/INP<200ms/CLS<0.1).
-- **Conversion-complete:** every site ships NAP, click-to-call, hours, map, reviews, a booking/order CTA, and `LocalBusiness` JSON-LD.
+- **Conversion-complete:** every site ships NAP, click-to-call, hours, map, reviews, a booking/order CTA, `LocalBusiness` JSON-LD, and the **SEO baseline** (`SeoHead`: canonical + absolute-URL OG/Twitter + robots; `@astrojs/sitemap` + `robots.txt`). We sell SEO — these ship on every build, no exceptions.
+  - **Component coverage is rule-driven, not memory-driven** (`docs/onboarding/component-taxonomy.md`). Tier 0 always ships; Tier 1 (reviews, active socials, SMS) is **default-if-exists — check every time, omit only with a recorded reason**; Tier 2 (booking, gallery) mirrors the client's existing tool; Tier 3 (payments, newsletter, chat) is opt-in. Inputs come from the **mandatory footprint discovery** in `site-audit` (real socials via `stack.socials`, Google rating, booking tool) → the intake's *Existing footprint* block → diffed at Gate 2. This is what stops reviews/socials silently slipping (the Eye Candy miss).
+- **Privacy-compliant (mandatory):** every site ships a PIPA privacy notice with the **cross-border (US providers: Web3Forms + Cloudflare Pages) disclosure** — *(name whichever host the site is actually on; legacy sites on Netlify name Netlify)* — a footer "Privacy" link + page/section, plus a short purpose line by the contact form. This is the one genuine legal must in our stack (no credit/badge is ever required). Text + rationale: `docs/onboarding/privacy-notice-template.md`, `docs/research/2026-06-17-attribution-and-disclosure-review.md`.
 
 When elevating design, extend the token set (add imagery slots, more semantic tokens) and the component library — keep the "one engine, themed per shop" rule intact.
 
@@ -97,4 +110,4 @@ The AI build pipeline is: **design → build → screenshot-verify → deploy.**
 - **`frontend-design`** (Anthropic) — design stage; clears the design-quality bar above. *Install:* `/plugin install frontend-design@claude-plugins-official`.
 - **`playwright`** (installed) — verify stage; screenshots + responsive checks per the discipline below.
 - **`context7`** (installed) — pull current Astro / Tailwind v4 docs (v4 is recent; training data lags the `@theme`/`@source` API this repo depends on).
-- **`cloudflare`** — deploy stage; manages Cloudflare Pages (our recommended host, see `docs/deployment.md`). *Optional:* `/plugin install cloudflare@claude-plugins-official`.
+- **`cloudflare`** — deploy stage; manages **Cloudflare Pages, our standard host** (unlimited bandwidth, no pause-on-overage — see `docs/research/2026-06-18-host-reassessment.md`). **Netlify is the supported alternative** (its post-2025 credit free tier pauses sites on overage; only use it for legacy/grandfathered accounts). See `docs/service-stack-inventory.md` and `docs/deployment.md`. *Install:* `/plugin install cloudflare@claude-plugins-official`.

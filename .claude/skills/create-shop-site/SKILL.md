@@ -27,6 +27,7 @@ We sell **one flat-fee website ($1,500)**, not tiers. Every client site ships th
 | 8 | `Faq` | common questions |
 | 9 | `CTA` | closing call/book |
 | 10 | `SiteFooter` | — |
+| — | `seo/SeoHead` | required in `<head>` — canonical + absolute-URL OG/Twitter + robots + theme-color |
 | — | `seo/LocalBusinessJsonLd` | required on every site (the "found on Google" promise) |
 
 `Stats` is the one optional band (use when the shop has strong numbers; omit otherwise) — it does not change the deal.
@@ -55,9 +56,10 @@ If the client already has a site (most do), **pull their real assets before writ
 
 ### 1. Scaffold `sites/<slug>/`
 Copy the chosen demo's `package.json`, `astro.config.mjs`, `tsconfig.json`. Only `package.json`'s `name` changes (= slug). Standard contents:
-- `package.json` deps: `astro ^5`, `@tailwindcss/vite ^4`, `tailwindcss ^4`, `@studio0rbit/shared: workspace:*`; scripts `dev/build/preview`.
-- `astro.config.mjs`: `vite: { plugins: [tailwindcss()] }`.
+- `package.json` deps: `astro ^5`, `@tailwindcss/vite ^4`, `tailwindcss ^4`, `@astrojs/sitemap ^3`, `@studio0rbit/shared: workspace:*`; scripts `dev/build/preview`.
+- `astro.config.mjs`: set `site: "https://<shop-domain>"` (drives canonical/OG/sitemap absolute URLs), `integrations: [sitemap()]`, `vite: { plugins: [tailwindcss()] }`.
 - `tsconfig.json`: `{ "extends": "astro/tsconfigs/base", "include": [".astro/types.d.ts", "**/*"], "exclude": ["dist"] }`.
+- `public/robots.txt`: `User-agent: * / Allow: /` + a `Sitemap:` line pointing at `<site>/sitemap-index.xml`.
 
 ### 2. Theme tokens — `src/theme.css`
 Brainstorm the palette with `frontend-design` (it names the AI-slop clichés to avoid), then express it as OKLCH custom properties in `:root`:
@@ -68,7 +70,9 @@ Pick a **display + body font pairing**; add the matching Google Fonts `<link>` i
 Export a typed `ShopContent` (name, tagline, vertical, phone, address, mapUrl, serviceArea, bookingUrl, hours[], services[], optional heroImage/reviewsBlurb/rating/geo, url). This is the **local fallback**. Keep section arrays (stats/features/testimonials/faqs) and the `h` headings object as inline `let` fallbacks in `index.astro`.
 
 ### 4. Compose — `src/pages/index.astro`
-Import `@studio0rbit/shared/styles/base.css` then `../theme.css`. Compose the **standard component set** (see "The standard build" above — same sections every time); the per-vertical choices are hero style + the `Services` heading ("Menu"/"Treatments"/"Memberships"/…). Add `LocalBusinessJsonLd`. Only add a section beyond the canonical set if a paid **add-on** calls for it. Then add the **Storyblok fetch + fallback block** (copy from the nearest demo): read `STORYBLOK_TOKEN`/`STORYBLOK_STORY`, fetch the published story, map fields, override only when present. **Every visible string/array must map to a Storyblok field** — including custom-hero `hero_kicker`/`hero_subcopy`/`hero_cta_label`.
+Import `@studio0rbit/shared/styles/base.css` then `../theme.css`. Compose the **standard component set** (see "The standard build" above — same sections every time); the per-vertical choices are hero style + the `Services` heading ("Menu"/"Treatments"/"Memberships"/…). In `<head>`, add **`seo/SeoHead`** (`title`, `description`, `canonicalPath="/"`, `image={shop.heroImage}`, `siteName={shop.name}`, `themeColor` = brand primary in hex) — it emits canonical + absolute-URL OG/Twitter + robots + theme-color. Then add `LocalBusinessJsonLd`. **SeoHead's absolute URLs come from `site:` in astro.config.mjs — set it or canonical/og:image fall back to a bogus origin.** Only add a section beyond the canonical set if a paid **add-on** calls for it. Then add the **Storyblok fetch + fallback block** (copy from the nearest demo): read `STORYBLOK_TOKEN`/`STORYBLOK_STORY`, fetch the published story, map fields, override only when present. **Every visible string/array must map to a Storyblok field** — including custom-hero `hero_kicker`/`hero_subcopy`/`hero_cta_label`.
+
+**Privacy notice (mandatory — the one legal must).** Ship a PIPA privacy notice with the **cross-border (US: Web3Forms + Cloudflare Pages — name the actual host) disclosure**: a short purpose line by the contact form (a Storyblok-editable `privacy_note` field) **plus** a "Privacy" footer link to a `/privacy` page or section carrying the full notice (incl. a named privacy contact). Text to drop in: `docs/onboarding/privacy-notice-template.md`. No tool requires a credit/badge — but this disclosure is required because we use US providers.
 
 ### 5. Wire Storyblok
 Per `storyblok-shop-cms`: run `setup-shop.mjs` (idempotent — ensures the shared `shop` model exists), create a story of type `shop` with this slug, populate + Publish it, then write `sites/<slug>/.env` (gitignored):
@@ -79,16 +83,17 @@ STORYBLOK_STORY=<this shop's slug>
 Remember: Storyblok number fields (rating) validate as **strings** on write — send `"4.9"`.
 
 ### 6. Verify (do NOT skip)
-`pnpm install` then `pnpm --filter <slug> build`. Confirm the build log prints `content source: Storyblok`. Then `pnpm --filter <slug> preview` and **screenshot at mobile (390px) + desktop (1280px)** with Playwright. Confirm in the built HTML: `LocalBusiness` JSON-LD present, phone is `tel:` click-to-call, map link works. A green build can still render unstyled — the screenshot is the real gate.
+`pnpm install` then `pnpm --filter <slug> build`. Confirm the build log prints `content source: Storyblok` and `sitemap-index.xml created`. Then `pnpm --filter <slug> preview` and **screenshot at mobile (390px) + desktop (1280px)** with Playwright. Confirm in the built HTML: `LocalBusiness` JSON-LD present, phone is `tel:` click-to-call, map link works, **`<link rel="canonical">` and `og:image` are ABSOLUTE `https://` URLs (not relative `/paths`)**. Confirm `dist/` contains `sitemap-index.xml` and `robots.txt`. Confirm the **PIPA privacy notice** renders: cross-border (US providers) line by the form + a "Privacy" footer link/page. A green build can still render unstyled — the screenshot is the real gate.
 
 ## File checklist
 ```
 sites/<slug>/
-  package.json   astro.config.mjs   tsconfig.json
+  package.json   astro.config.mjs   tsconfig.json   # astro.config sets site: + sitemap()
   .env                     # gitignored: STORYBLOK_TOKEN + STORYBLOK_STORY
+  public/robots.txt        # Allow: / + Sitemap: <site>/sitemap-index.xml
   src/theme.css            # OKLCH tokens + fonts + radius
   src/content/shop.ts      # ShopContent local fallback
-  src/pages/index.astro    # sections + Storyblok fetch/fallback + JSON-LD
+  src/pages/index.astro    # SeoHead + sections + Storyblok fetch/fallback + JSON-LD
 ```
 
 ## Common mistakes
@@ -97,4 +102,6 @@ sites/<slug>/
 - Forgetting the fonts `<link>` → display font falls back to serif/sans default.
 - Custom hero text hardcoded → not client-editable.
 - `rating` sent as a number to Storyblok → `422`. Send a string; parse with `parseFloat` in Astro.
+- Forgetting `site:` in astro.config.mjs → canonical/`og:image`/sitemap resolve against a bogus fallback origin (we sell SEO — this can't ship).
+- Passing a relative `/path` as SeoHead `image` without `site:` set → scrapers ignore a relative `og:image`. SeoHead resolves it absolute *from `site:`* — so set `site:`.
 - Declaring done on a passing build without a screenshot.

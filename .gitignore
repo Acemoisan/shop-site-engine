@@ -11,3 +11,7 @@ dist/
 # Template gallery build artifacts (regenerable via scripts/build-gallery.mjs)
 gallery/
 gallery-shots/
+
+# Local deploy credentials (never commit)
+/secrets/
+.env.netlify

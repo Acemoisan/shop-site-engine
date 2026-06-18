@@ -15,7 +15,7 @@ Storyblok (Publish) → webhook → host Build Hook → host rebuilds
 ```
 
 ## Clients need NO GitHub
-Site **code** lives in a Git repo **we** own; the client never touches it. The client only ever uses: **Storyblok** (edit content), a **host account** (Cloudflare Pages / Netlify — free, theirs, rarely opened), and a **domain** registrar (~$15/yr, annual renewal). Content changes flow Storyblok → webhook → rebuild and never touch Git. The deployed site is static files on a CDN, so it keeps serving even if rebuilds ever stop.
+Site **code** lives in a Git repo **we** own; the client never touches it. The client only ever uses: **Storyblok** (edit content), a **host account** (**Cloudflare Pages** — standard; Netlify is the alternative — free, theirs, rarely opened), and a **domain** registrar (~$15/yr, annual renewal). Content changes flow Storyblok → webhook → rebuild and never touch Git. The deployed site is static files on a CDN, so it keeps serving even if rebuilds ever stop.
 
 ## Production model: one repo per client (not the dev monorepo)
 The `sites/*` monorepo is our **development** capability. For a client **launch**, give their site its **own standalone repo** (just their site) so each client is isolated and hands-off.
@@ -33,9 +33,40 @@ The `sites/*` monorepo is our **development** capability. For a client **launch*
 6. **Point the domain** at the host (client owns the registrar).
 7. **Hand over logins:** Storyblok + host + domain. **No GitHub.** Done.
 
+## Domain cutover (pointing a client's existing domain at the new site)
+Most real clients already have a domain (often with an old Wix/WordPress/Squarespace site on it). **You don't transfer the domain or migrate the old site — you just re-point the domain's DNS at the new host.** A domain is a pointer separate from the host. **The client keeps their exact web address and their registrar account** — we never do a registrar-to-registrar transfer (that's the slow, scary 5–7-day process; avoid it entirely).
+
+**The sales framing (for the reluctant client who "doesn't want the hassle"):**
+- *Same web address* — no lost customers, no reprinted cards.
+- *Zero downtime* — old site stays live until we flip; we verify the new one on the host link (`*.netlify.app` / `*.pages.dev`) and they approve **before** cutover.
+- *Stop paying monthly* — Wix/Squarespace is ~$15–40/mo forever; after us it's ~$15/**year** (domain only).
+- *They own it* — domain, content, host account; and they can leave the host too (static files are portable).
+- *They touch nothing technical* — **we do the DNS cutover.**
+
+**Two DNS methods (pick B when a live site/email is on the domain):**
+- **A — move nameservers to the host (cleanest, best for the root/apex domain):** add the custom domain in the host → set the host's nameservers at the registrar → the host manages DNS + auto-issues HTTPS. Cloudflare Pages especially: CNAME-flattening makes the bare `shop.ca` "just work." Use when we hold the registrar login and email is **not** bundled on this domain.
+- **B — keep current DNS, add records (safest when the site is live / email is bundled):** leave DNS where it is and add only the records **the host shows you** when you add the custom domain:
+  - **Cloudflare Pages:** add the domain in *Pages → your project → Custom domains*; CF tells you the record. On an external registrar add `CNAME www → <project>.pages.dev` and a root `CNAME`/`ALIAS` → `<project>.pages.dev` (most registrars now flatten a root CNAME).
+  - **Netlify:** `A` record root → `75.2.60.5`, `CNAME www → <slug>.netlify.app`.
+
+**Where the client clicks (the DNS panel, by registrar):**
+- **GoDaddy:** *My Products → Domain → DNS → Manage Zones / Records.*
+- **Namecheap:** *Domain List → Manage → Advanced DNS → Host Records.*
+- **Squarespace Domains (was Google Domains):** *Domains → the domain → DNS Settings.*
+- **Cloudflare (as registrar/DNS):** *dashboard → the domain → DNS → Records.*
+- **Wix / Squarespace site-builder domains:** edit DNS inside *that platform's* domain panel (it can point out to our host — fine), **or** transfer the domain out to a real registrar first.
+
+> ⚠️ **Email is the one real risk.** If mail runs on the same domain (`name@theirshop.ca`), a **nameserver** switch (Method A) can break it. **Never touch MX records**; prefer **Method B** whenever email is bundled.
+
+> ⚠️ **Platform-locked / freshly-moved domains.** A domain bought *through* Wix/Squarespace/GoDaddy: change DNS inside that platform's panel, or transfer it to a real registrar first. A newly registered/transferred domain has a **60-day ICANN transfer lock** — catch this at **intake**, not launch day.
+
+**Order of operations:** build + deploy to the host → client approves on the host link → add custom domain in the host → update DNS (records or nameservers) → **preserve MX** → wait for propagation (minutes, up to 48h) → confirm HTTPS cert auto-issued → **then** client cancels the old subscription.
+
+**Capture at intake (so cutover is frictionless):** where the domain is registered, where email is hosted, and whether the domain was bought through their old site platform.
+
 ## Fast paths for OUR demos (no client handoff)
 - **Netlify Drop** (fastest): build, then drag `sites/<slug>/dist` onto https://app.netlify.com/drop → instant URL. Manual re-drop to update.
-- **Cloudflare Wrangler** (scriptable): `npx wrangler login` (run via `! ` in the session prompt so output lands here), then `npx wrangler pages deploy sites/<slug>/dist --project-name=<slug>`.
+- **Cloudflare Pages (token, headless — verified 2026-06-18):** creds live in `secrets/cloudflare.env` (gitignored: API token scoped `Account → Cloudflare Pages → Edit`, + `CLOUDFLARE_ACCOUNT_ID`). From repo root: `set -a; source secrets/cloudflare.env; set +a`, then `npx wrangler pages project create <slug> --production-branch=main` (first time) and `npx wrangler pages deploy sites/<slug>/dist --project-name=<slug> --branch=main`. No GitHub/login prompt; mirrors the Netlify token flow. First proof: `sites/maw` → `maw-cnt.pages.dev`. (`wrangler whoami` ERRORs on this token — harmless; deploy uses the explicit account ID. Use the `<project>.pages.dev` URL, not the per-deploy hash subdomain.) Details: memory `cloudflare-credentials`.
 - **Git-connected monorepo** (per-site host settings): Base dir `sites/<slug>` · Build `pnpm --filter <slug> build` · Publish `sites/<slug>/dist` · Env `STORYBLOK_TOKEN`.
 
 ## Contact form handling (static sites have no backend)
