@@ -1,0 +1,20 @@
+{
+  "_comment": "The facts a Deliver run already produces. `node scripts/build-handoff.mjs docs/handoff/bitcoin-manor.facts.json` auto-derives the before→after PageSpeed from the saved audit JSONs and writes bitcoin-manor.handoff.json + bitcoin-manor-handoff.html. Any handoff field added here overrides the generated default.",
+  "client": "Bitcoin Manor",
+  "slug": "bitcoin-manor",
+  "date": "2026-06-17",
+  "statusTag": "LIVE",
+  "liveUrl": "https://bitcoin-manor-yyc.netlify.app",
+  "netlifySite": "bitcoin-manor-yyc",
+  "storyblokSpace": "293262123963428",
+  "storySlug": "bitcoin-manor",
+  "storeUrl": "https://bitcoinmanor.com/bitcoin-merchandise-store/",
+  "storeLabel": "bitcoinmanor.com (unchanged)",
+  "oldAuditHost": "bitcoinmanor.com",
+  "newAuditHost": "bitcoin-manor-yyc.netlify.app",
+  "rating": "4.8",
+  "formInbox": "support@bitcoinmanor.com",
+  "usedClientImagery": true,
+  "host": "Netlify",
+  "cms": "Storyblok"
+}

@@ -4,57 +4,101 @@
   "date": "2026-06-17",
   "statusTag": "LIVE",
   "lead": [
-    "Your new **Bitcoin Manor** site is **live**. We rebuilt your homepage as a fast, static brand site — using **your own product photography**, pulled straight from your existing store — and it links directly into your shop for every purchase, so **nothing about your checkout changes.**",
-    "On Google's PageSpeed test it went from **67 → 85** on mobile, earned an **A for accessibility**, added proper search structured data, and now has a working contact form your old page didn't. It's a one-time build — **you own every account.** Everything you need is below."
+    "Your new **Bitcoin Manor** site is **live**. We rebuilt your homepage as a fast, static site — using **your own product photography**, and it links directly into your shop for every purchase, so **nothing about your checkout changes.**",
+    "On Google's PageSpeed test it went from **64→89** on mobile, earned **A for accessibility**, added proper search structured data, and now has a working contact form. It's a one-time build — **you own every account.** Everything you need is below."
   ],
   "stats": [
-    { "n": "67→85", "l": "PageSpeed (mobile)" },
-    { "n": "A", "l": "Accessibility" },
-    { "n": "4.8★", "l": "Reviews shown" }
+    {
+      "n": "64→89",
+      "l": "PageSpeed (mobile)"
+    },
+    {
+      "n": "A",
+      "l": "Accessibility"
+    },
+    {
+      "n": "4.8★",
+      "l": "Reviews shown"
+    }
   ],
-  "linksTitle": "Your Site & Edit Links",
   "links": [
-    { "k": "Live site", "label": "bitcoin-manor-yyc.netlify.app", "href": "https://bitcoin-manor-yyc.netlify.app" },
-    { "k": "Edit content", "label": "Storyblok → “bitcoin-manor”", "href": "https://app.storyblok.com/#/me/spaces/293262123963428" },
-    { "k": "Hosting / deploys", "label": "Netlify dashboard", "href": "https://app.netlify.com/projects/bitcoin-manor-yyc" },
-    { "k": "Form messages", "label": "Netlify → Forms → “contact”" },
-    { "k": "Your store", "label": "bitcoinmanor.com (unchanged)", "href": "https://bitcoinmanor.com/bitcoin-merchandise-store/" }
+    {
+      "k": "Live site",
+      "label": "bitcoin-manor-yyc.netlify.app",
+      "href": "https://bitcoin-manor-yyc.netlify.app"
+    },
+    {
+      "k": "Edit content",
+      "label": "Storyblok → “bitcoin-manor”",
+      "href": "https://app.storyblok.com/#/me/spaces/293262123963428"
+    },
+    {
+      "k": "Hosting / deploys",
+      "label": "Netlify dashboard",
+      "href": "https://app.netlify.com/projects/bitcoin-manor-yyc"
+    },
+    {
+      "k": "Form messages",
+      "label": "Netlify → Forms → “contact”"
+    },
+    {
+      "k": "Your store",
+      "label": "bitcoinmanor.com (unchanged)",
+      "href": "https://bitcoinmanor.com/bitcoin-merchandise-store/"
+    }
   ],
-  "ownershipTitle": "What You Own & How To Take It",
   "ownershipIntro": "Right now both accounts sit under our setup email so we could build it for you. Transfer is by invite — never a shared password.",
   "accounts": [
-    { "name": "Hosting — Netlify", "ref": "site “bitcoin-manor-yyc”", "own": "→ invite your email as Admin, we step off" },
-    { "name": "CMS — Storyblok (free Starter plan)", "ref": "space “Bitcoin Manor” · #293262123963428", "own": "→ invite your email as collaborator, reset password" },
-    { "name": "Contact form — Netlify Forms", "ref": "transfers with the Netlify site", "own": "→ already capturing messages, verified working" },
-    { "name": "Domain & store — bitcoinmanor.com", "ref": "already yours (WordPress / WooCommerce)", "own": "→ unchanged; point it at the new site when ready (below)" }
+    {
+      "name": "Hosting — Netlify",
+      "ref": "site “bitcoin-manor-yyc”",
+      "own": "→ invite your email as Admin, we step off"
+    },
+    {
+      "name": "CMS — Storyblok (free Starter plan)",
+      "ref": "space #293262123963428",
+      "own": "→ invite your email as collaborator, reset password"
+    },
+    {
+      "name": "Contact form — Netlify Forms",
+      "ref": "transfers with the Netlify site",
+      "own": "→ already capturing messages, verified working"
+    },
+    {
+      "name": "Domain & store",
+      "ref": "already yours (existing site)",
+      "own": "→ unchanged; point it at the new site when ready (below)"
+    }
   ],
-  "editTitle": "Editing Your Site",
   "editSteps": [
     "Sign in to [app.storyblok.com](https://app.storyblok.com) with your email (after the invite above).",
-    "Open the **Bitcoin Manor** space → the **bitcoin-manor** story.",
-    "Edit any text, price, link, image, or the product cards — sections can be added, reordered, or removed.",
+    "Open your space → the **bitcoin-manor** story.",
+    "Edit any text, price, link, or image — sections can be added, reordered, or removed.",
     "Click **Publish** (not just Save). See the next box about edits going live.",
     "Use **History** to restore any earlier version."
   ],
-  "finishingTitle": "Two One-Time Finishing Steps",
   "finishingSteps": [
-    { "title": "1 · Make Storyblok edits go live automatically", "body": "Today the site is a published build, so an edit shows up after a quick redeploy (Netlify → Deploys → “Trigger deploy”). To make Publish auto-update the site in ~1 minute, we connect the site’s repo + a build hook + a Storyblok webhook — ~10 minutes, then it’s hands-off." },
-    { "title": "2 · Get emailed when someone uses the form", "body": "Messages are already saved in Netlify → Forms. To also be emailed, go to Forms → Settings & notifications → Add notification → Email, and enter the inbox you want (e.g. support@bitcoinmanor.com). We left the destination for you to choose." }
+    {
+      "title": "1 · Make edits go live automatically",
+      "body": "Today the site is a published build, so an edit shows up after a quick redeploy (Netlify → Deploys → “Trigger deploy”). To make Publish auto-update the site in ~1 minute, we connect the site’s repo + a build hook + a Storyblok webhook — ~10 minutes, then it’s hands-off."
+    },
+    {
+      "title": "2 · Get emailed when someone uses the form",
+      "body": "Messages are already saved in Netlify → Forms. To also be emailed, go to Forms → Settings & notifications → Add notification → Email, and enter the inbox you want (e.g. support@bitcoinmanor.com). We left the destination for you to choose."
+    }
   ],
-  "goingLiveTitle": "Going Live On Your Domain",
   "goingLive": {
-    "intro": "The site is on a free `*.netlify.app` address so you can review it. When you’re ready, the cleanest option:",
+    "intro": "The site is on a free `*.netlify.app` address so you can review it. When you’re ready to launch on your own domain:",
     "options": [
-      "Point **bitcoinmanor.com** (or **www**) at the new site, and move the WooCommerce store to **shop.bitcoinmanor.com** that the “Shop” buttons link to.",
+      "Point your domain at the new site, and move your existing store to a subdomain (e.g. **shop.yourdomain.com**) that the “Shop” buttons link to.",
       "Or keep the store where it is and launch the new site on a subdomain."
     ],
     "note": "In Netlify: Domain management → Add a domain → follow the DNS steps. HTTPS is automatic."
   },
-  "notesTitle": "Good To Know",
   "notes": [
-    "**Real photos, your own.** The hero, the Matrix shot, and the product cards use your existing images — swap any of them in Storyblok.",
-    "**No fake details.** We didn’t invent a phone number or address; the trust signals are real photos, reviews, and your socials. Add click-to-call anytime if you want a public number.",
-    "**Honest on speed.** We quote the PageSpeed score (67→85) and the move to a fast static stack — not a “seconds” figure, since Google’s lab numbers aren’t real-user data."
+    "**Real photos, your own.** The images come from your existing site — swap any of them in your CMS.",
+    "**No fake details.** We didn’t invent contact info you don’t publish; the trust signals are real photos, reviews, and your socials.",
+    "**Honest on speed.** We quote the PageSpeed score (64→89) and the move to a fast static stack — not a “seconds” figure, since Google’s lab numbers aren’t real-user data."
   ],
   "footer": "— Studio0rbit · Calgary · Built for you —"
 }
