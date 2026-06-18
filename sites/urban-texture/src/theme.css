@@ -1,0 +1,22 @@
+/* Urban Texture Hair Studio — luxury salon, laid-back.
+   Warm espresso charcoal + antique brushed gold on warm cream.
+   Anchored on the salon's real materials: hammered-gold stools, charcoal
+   wash chairs, white-oak cabinetry, warm concrete floor. Avoids the
+   cream+terracotta+Playfair AI default — gold is a true muted brass, not
+   peach; display is Cormorant Garamond (editorial, not the overused
+   Playfair); charcoal carries a warm brown undertone, never pure black. */
+:root {
+  --background: oklch(0.971 0.008 75);          /* warm cream */
+  --foreground: oklch(0.255 0.012 60);          /* warm espresso charcoal */
+  --card: oklch(0.992 0.004 75);                /* near-white warm card */
+  --primary: oklch(0.285 0.014 55);             /* deep espresso charcoal */
+  --primary-foreground: oklch(0.975 0.012 80);  /* warm cream on charcoal */
+  --muted: oklch(0.945 0.012 72);               /* soft sand panel */
+  --muted-foreground: oklch(0.46 0.014 60);     /* readable warm grey */
+  --accent: oklch(0.72 0.085 78);               /* antique brushed gold */
+  --accent-foreground: oklch(0.255 0.02 70);    /* charcoal on gold */
+  --border: oklch(0.89 0.012 72);               /* warm hairline */
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --radius: 0.5rem;
+}

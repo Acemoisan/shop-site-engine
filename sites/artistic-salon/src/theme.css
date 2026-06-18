@@ -1,0 +1,21 @@
+/* Artistic Salon — warm clay/terracotta accent on a soft ivory base with an
+   espresso-brown foreground; a muted sage drawn from the salon's signature
+   plant wall. Deliberately fixes the client's old orange-on-orange contrast
+   fail: terracotta appears only as accent/CTA on light or dark grounds — never
+   foreground-on-background. High-contrast editorial serif for an upscale,
+   35-years-established salon feel. All pairings clear WCAG AA. */
+:root {
+  --background: oklch(0.978 0.010 75);        /* soft warm ivory */
+  --foreground: oklch(0.265 0.022 50);        /* deep espresso brown (AA on bg) */
+  --card: oklch(0.995 0.005 75);              /* near-white card */
+  --primary: oklch(0.525 0.140 42);           /* warm clay / terracotta — AA-normal as text on bg/muted/card (≥4.97) */
+  --primary-foreground: oklch(0.985 0.010 75);
+  --muted: oklch(0.952 0.014 70);             /* warm sand panel */
+  --muted-foreground: oklch(0.455 0.025 48);  /* readable warm grey-brown (AA on bg & muted) */
+  --accent: oklch(0.520 0.062 145);           /* muted sage (from the plant wall) — AA-normal on bg & as ground for white */
+  --accent-foreground: oklch(0.985 0.010 75);
+  --border: oklch(0.892 0.014 65);            /* warm hairline */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --radius: 0.5rem;
+}

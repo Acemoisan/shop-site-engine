@@ -1,0 +1,21 @@
+/* Gallery T Hair Studio — "gallery wall" editorial.
+   Gallery-white walls + ink black + a single warm brass/ochre accent
+   (echoes the brushed-metal planters and warm tungsten light in their own
+   B&W studio photography). Monochrome-leaning, one metallic note — deliberately
+   NOT the cream/terracotta AI default. Display: Cormorant Garamond (gallery-placard
+   high-contrast serif); body: Inter; labels set in tracked-out Inter caps. */
+:root {
+  --background: oklch(0.985 0.002 100);        /* gallery wall — near-white, faint warm */
+  --foreground: oklch(0.18 0.004 90);          /* ink / charcoal */
+  --card: oklch(1 0 0);                        /* clean white plinth */
+  --primary: oklch(0.22 0.006 75);             /* near-black ink — the dominant brand voice */
+  --primary-foreground: oklch(0.985 0.002 100);
+  --muted: oklch(0.955 0.004 95);              /* soft paper grey */
+  --muted-foreground: oklch(0.44 0.006 80);
+  --accent: oklch(0.66 0.09 70);               /* warm brass / ochre — the single metallic note */
+  --accent-foreground: oklch(0.18 0.01 70);
+  --border: oklch(0.89 0.004 90);
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Cormorant Garamond", "Cormorant", Georgia, serif;
+  --radius: 0.25rem;                           /* gallery frames are square-ish, restrained */
+}

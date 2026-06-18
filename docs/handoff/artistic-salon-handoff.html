@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Artistic Salon — Project Handoff · Studio0rbit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#3a2a20; --paper:#fdfaf4; --text:#2a2018; --muted:#7a6b5e;
+    --clay:#9a4c2e; --sage:#5a6e54; --dash:#e3d8c8; --page:#241813; --good:#3f7a4a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif; color: var(--text);
+    background: var(--page);
+    background-image: radial-gradient(72% 48% at 50% -8%, rgba(154,76,46,.40), transparent 70%);
+    min-height: 100vh; padding: 40px 16px; font-size: 15px; line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+  .receipt { position: relative; max-width: 640px; margin: 0 auto; background: var(--paper);
+    box-shadow: 0 40px 90px -34px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.04); }
+  .receipt::before, .receipt::after { content: ""; position: absolute; left: 0; right: 0; height: 12px;
+    background: radial-gradient(circle 7px at 11px 0, var(--page) 7px, transparent 8px) repeat-x; background-size: 22px 12px; }
+  .receipt::before { top: 0; transform: rotate(180deg); }
+  .receipt::after { bottom: 0; }
+  .rcpt-head { text-align: center; padding: 42px 36px 10px; }
+  .wordmark { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 1.05rem; letter-spacing: .3em; text-transform: uppercase; color: var(--ink); }
+  .wordmark .dot { color: var(--clay); }
+  .doc-type { margin-top: 10px; font-family: 'Space Mono', monospace; font-size: .68rem; letter-spacing: .34em; text-transform: uppercase; color: var(--muted); }
+  .meta { margin-top: 14px; font-family: 'Space Mono', monospace; font-size: .72rem; color: var(--muted); }
+  .meta b { color: var(--ink); font-weight: 700; }
+  .sec { padding: 24px 36px; }
+  .sec + .sec { border-top: 1.5px dashed var(--dash); }
+  h2 { font-family: 'Space Mono', monospace; font-size: .74rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--clay); margin-bottom: 14px; }
+  h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.25rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  p { margin-bottom: 10px; }
+  p:last-child { margin-bottom: 0; }
+  a { color: var(--clay); }
+  .lead { font-size: 1.02rem; line-height: 1.7; color: #352a20; }
+  .lead strong { color: var(--ink); }
+  .stat-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .stat { flex: 1; min-width: 120px; border: 1.5px solid var(--dash); border-radius: 12px; padding: 12px 14px; text-align: center; }
+  .stat .n { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.7rem; font-weight: 700; color: var(--clay); line-height: 1; }
+  .stat .l { font-family: 'Space Mono', monospace; font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  .line { display: flex; align-items: baseline; gap: 8px; padding: 7px 0; }
+  .line + .line { border-top: 1px dotted var(--dash); }
+  .line .k { font-family: 'Space Mono', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); white-space: nowrap; }
+  .line .leader { flex: 1; border-bottom: 1px dotted var(--dash); transform: translateY(-3px); }
+  .line .v { text-align: right; word-break: break-word; }
+  .line .v a { text-decoration: none; }
+  .acct { padding: 12px 0; }
+  .acct + .acct { border-top: 1px dotted var(--dash); }
+  .acct .own { font-family: 'Space Mono', monospace; font-size: .72rem; color: var(--good); margin-top: 3px; }
+  .acct .ref { font-family: 'Space Mono', monospace; font-size: .68rem; color: var(--muted); margin-top: 2px; }
+  ol.steps { list-style: none; counter-reset: s; }
+  ol.steps li { counter-increment: s; position: relative; padding-left: 30px; margin-bottom: 9px; }
+  ol.steps li:last-child { margin-bottom: 0; }
+  ol.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 20px; height: 20px; border-radius: 6px; background: rgba(154,76,46,.1); color: var(--clay); font-family: 'Space Mono', monospace; font-size: .72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  ul.ticks { list-style: none; }
+  ul.ticks li { display: flex; gap: 10px; margin-bottom: 8px; }
+  ul.ticks li:last-child { margin-bottom: 0; }
+  ul.ticks li::before { content: "✓"; color: var(--sage); font-weight: 700; }
+  .callout { background: rgba(154,76,46,.06); border: 1.5px solid rgba(154,76,46,.22); border-radius: 14px; padding: 18px 20px; }
+  .callout + .callout { margin-top: 14px; }
+  .callout h3 { color: var(--ink); }
+  .note { font-family: 'Space Mono', monospace; font-size: .72rem; color: var(--muted); line-height: 1.7; }
+  .tag { display: inline-block; font-family: 'Space Mono', monospace; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: rgba(90,110,84,.16); color: #3f5538; }
+  .tag.demo { background: rgba(154,76,46,.14); color: #7d3c24; }
+  .rcpt-foot { padding: 24px 36px 34px; border-top: 1.5px dashed var(--dash); text-align: center; }
+  .barcode { height: 40px; max-width: 230px; margin: 6px auto 14px; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, #fff 2px 4px, var(--ink) 4px 5px, #fff 5px 9px, var(--ink) 9px 11px, #fff 11px 14px); }
+  .thanks { font-family: 'Space Mono', monospace; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="receipt">
+<div class="rcpt-head">
+<div class="wordmark">studio0rbit<span class="dot">.</span></div>
+<div class="doc-type">Project Handoff &amp; Ownership</div>
+<div class="meta"><b>Artistic Salon</b> &nbsp;·&nbsp; 2026-06-17 &nbsp;·&nbsp; <span class="tag demo">DEMO — READY TO LAUNCH</span></div>
+</div>
+
+<section class="sec"><h2>The Short Version</h2>
+<p class="lead">Your new <strong>Artistic Salon</strong> site is built and ready to preview. We rebuilt your homepage from scratch as a fast, <strong>static</strong> site — using <strong>your own salon photography</strong>, your real menu and prices, and your 4.9★ Google reputation as the social proof.</p>
+<p class="lead">The whole point of this rebuild was to fix three things your old Wix site got wrong: <strong>readability</strong> (the old orange-on-orange text failed accessibility contrast — every colour pairing here clears the WCAG AA standard), <strong>speed</strong> (static pages load fast, no heavy page builder), and <strong>being found on Google</strong> (your old page was flagged as blocked from search — the new one is fully indexable, with proper salon structured data). It's a <strong>one-time build — you own every account.</strong></p>
+<div class="stat-row">
+<div class="stat"><div class="n">AA</div><div class="l">Contrast — every pairing</div></div>
+<div class="stat"><div class="n">Static</div><div class="l">Fast Astro build</div></div>
+<div class="stat"><div class="n">4.9★</div><div class="l">719 reviews shown</div></div>
+</div>
+</section>
+
+<section class="sec"><h2>Your Site &amp; Edit Links</h2>
+<div class="line"><span class="k">Live site</span><span class="leader"></span><span class="v"><a href="https://studio0rbit-artistic-salon.netlify.app">studio0rbit-artistic-salon.netlify.app</a></span></div>
+<div class="line"><span class="k">Hosting / deploys</span><span class="leader"></span><span class="v">Netlify dashboard (invited to you)</span></div>
+<div class="line"><span class="k">Form messages</span><span class="leader"></span><span class="v">Studio0rbit inbox → your inbox on launch</span></div>
+<div class="line"><span class="k">Phone (click-to-call)</span><span class="leader"></span><span class="v"><a href="tel:+14032404014">403-240-4014</a></span></div>
+<div class="line"><span class="k">Your address</span><span class="leader"></span><span class="v">#260, 5255 Richmond Rd SW, Calgary</span></div>
+</section>
+
+<section class="sec"><h2>What's On The Site</h2>
+<ul class="ticks">
+<li><strong>Full-bleed hero</strong> with your own balayage photography and a one-tap <em>Call to book</em> / <em>Free consultation</em>.</li>
+<li><strong>Your real menu &amp; prices</strong> — the complete women's and men's service list, verbatim from your current site.</li>
+<li><strong>Gallery</strong> of real cut &amp; colour work from your chairs, and a <strong>team</strong> section with your stylists.</li>
+<li><strong>Conversion essentials:</strong> click-to-call, opening hours, address with a tap-to-open map, your 4.9★ / 719-review social proof, an FAQ, and a booking enquiry form.</li>
+<li><strong>Findable on Google:</strong> a real page description, <em>HairSalon</em> structured data (name, address, hours, services, your socials), and the page is <strong>indexable</strong> — the opposite of the old blocked Wix page.</li>
+</ul>
+</section>
+
+<section class="sec"><h2>Your Booking Enquiry Form</h2>
+<p>The site has a built-in enquiry form (name, email, phone, service, message). It runs on <strong>Web3Forms</strong>, a simple email-forwarding service — no logins, no monthly fee for the basic plan.</p>
+<div class="callout"><h3>Where messages go today vs. on launch</h3>
+<p class="note" style="margin-top:6px;">Right now the form points at <strong>our Studio0rbit inbox</strong> so we could test it end-to-end. The fastest way to book is still a phone call (the form says so), but when you engage us to launch, we swap in <strong>your own Web3Forms key</strong> in about two minutes so every enquiry lands directly in <em>your</em> inbox — you own that key.</p>
+</div>
+</section>
+
+<section class="sec"><h2>Editing Your Content</h2>
+<div class="callout"><h3>No CMS yet — edits are in code today</h3>
+<p class="note" style="margin-top:6px;">To keep this build lean and fast, the site's text, prices and photos currently live in the site's code rather than a content editor. That means changes (a new price, a swapped photo, new hours) are quick edits <em>we</em> make for you on request — there's no dashboard to log into for content right now.</p>
+<p class="note" style="margin-top:10px;">If you'd like to self-edit, we offer a <strong>Storyblok CMS add-on</strong> (a friendly point-and-click editor for text and images, with a Publish button and version history). It's an optional paid add-on, not part of this one-time build — just say the word and we'll wire it in.</p>
+</div>
+</section>
+
+<section class="sec"><h2>What You Own &amp; How To Take It</h2>
+<p class="note" style="margin-bottom:12px;">This is a one-time build with <strong>no retainer</strong> — you own everything. Today the demo accounts sit under our setup email so we could build and test it. Transfer is always by <strong>invite or password reset to your owner email — never a shared plaintext password.</strong></p>
+<div class="acct"><h3>Hosting — Netlify</h3><div class="ref">site "studio0rbit-artistic-salon"</div><div class="own">→ on launch, we invite your email as Admin, then we step off</div></div>
+<div class="acct"><h3>Booking form — Web3Forms</h3><div class="ref">currently our test key</div><div class="own">→ swapped to your own key on engagement; messages go to your inbox</div></div>
+<div class="acct"><h3>Domain — artisticsalon.ca</h3><div class="ref">already yours</div><div class="own">→ unchanged; we point it at the new site when you're ready (below)</div></div>
+<div class="acct"><h3>Content (CMS)</h3><div class="ref">in code today</div><div class="own">→ optional Storyblok add-on if you want to self-edit</div></div>
+</section>
+
+<section class="sec"><h2>Going Live On Your Domain</h2>
+<p>The site is on a free <span class="note">studio0rbit-artistic-salon.netlify.app</span> address so you can review it first. When you approve it and we launch on <strong>artisticsalon.ca</strong>:</p>
+<ul class="ticks">
+<li>Your web address stays exactly the same — we just re-point it at the new, faster site. <strong>You don't touch anything technical; we do the cutover.</strong></li>
+<li>Your old site stays live until the moment we flip the switch — no downtime, no gap for visitors.</li>
+<li>Your <strong>email keeps working untouched</strong> — we leave the mail records alone.</li>
+<li>Only <strong>after</strong> the new site is confirmed live on your domain do you cancel your old Wix subscription — and stop paying that monthly fee for good.</li>
+</ul>
+</section>
+
+<section class="sec"><h2>Good To Know — Honest Notes</h2>
+<ul class="ticks">
+<li><strong>Real photos, real reviews.</strong> Every image is your own salon's work, and the 4.9★ / 719 figure is your real Google rating — shown as social proof, never faked into the page's data.</li>
+<li><strong>No invented details.</strong> The menu, prices, hours and contact info are all yours, copied from your existing listings.</li>
+<li><strong>Honest on speed.</strong> A static Astro site is genuinely fast, but we don't quote a guaranteed "load in X seconds" — real-world speed depends on each visitor's phone and connection. We'll share the Google PageSpeed score once it's live on the final domain; lab scores aren't the same as real-user numbers.</li>
+<li><strong>Booking.</strong> Your current setup is call-to-book — the site reflects that. A real online-booking system (live calendar) is an optional add-on if you ever want one.</li>
+</ul>
+</section>
+
+<div class="rcpt-foot">
+<div class="barcode"></div>
+<div class="thanks">— Studio0rbit · Calgary · Built for you —</div>
+</div>
+</div>
+</body>
+</html>

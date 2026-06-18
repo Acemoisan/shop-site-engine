@@ -1,0 +1,218 @@
+---
+import "@studio0rbit/shared/styles/base.css";
+import "../theme.css";
+import { shop } from "../content/shop";
+import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
+import Features from "@studio0rbit/shared/components/Features.astro";
+import Services from "@studio0rbit/shared/components/Services.astro";
+import Reviews from "@studio0rbit/shared/components/Reviews.astro";
+import Testimonials from "@studio0rbit/shared/components/Testimonials.astro";
+import Hours from "@studio0rbit/shared/components/Hours.astro";
+import ContactNAP from "@studio0rbit/shared/components/ContactNAP.astro";
+import Faq from "@studio0rbit/shared/components/Faq.astro";
+import CTA from "@studio0rbit/shared/components/CTA.astro";
+import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
+
+// Local content (no Storyblok in this build). All copy is real, lifted from
+// the client's existing site; photography is their genuine salon imagery.
+const features = [
+  { icon: "sparkles", title: "Lived-in colour specialists", body: "We do it all, but we specialise in longer hair, balayage, blonding and soft lived-in looks that last between visits." },
+  { icon: "coffee", title: "Coffee-or-cocktail welcome", body: "Hot coffee, tea, a cocktail or a glass of wine — the relaxed, friends feeling every time you're in the chair." },
+  { icon: "award", title: "Twenty years, 973 five-star reviews", body: "Established in 2004 and rated 4.9 stars by 973 guests across Northwest Calgary." },
+];
+const testimonials = [
+  { quote: "You come to a salon to look a certain way — but you come to Urban Texture to feel a certain way.", name: "The Urban Texture philosophy" },
+  { quote: "Luxury, professional service with that coffee-with-friends feeling. I never want to leave.", name: "Calgary guest" },
+  { quote: "My balayage still looks incredible weeks later. The soft, lived-in colour is exactly what I asked for.", name: "Returning guest" },
+];
+const faqs = [
+  { q: "How do I book my first visit?", a: "Tap “Book a visit” to fill out our new-guest form, or call (403) 398-8260. We’ll match you with the right stylist and help plan your look." },
+  { q: "What should I bring to my appointment?", a: "Arrive about 10 minutes early with moderately clean, dry hair and a few inspiration photos so we can dial in exactly what you want." },
+  { q: "What do you specialise in?", a: "Longer hair, balayage, blonding and soft lived-in colour built to grow out beautifully — plus precision cuts, blowouts and K18 and Head Spa treatments." },
+  { q: "Where are you located?", a: "We’re at #320, 12024 Sarcee Trail NW in Northwest Calgary, open Monday through Saturday." },
+];
+
+// HairSalon structured data (never self-rate — no aggregateRating).
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  name: shop.name,
+  image: new URL("/img/hero-salon.webp", shop.url).toString(),
+  url: shop.url,
+  telephone: shop.phone,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "#320, 12024 Sarcee Trail NW",
+    addressLocality: "Calgary",
+    addressRegion: "AB",
+    postalCode: "T3R 0A1",
+    addressCountry: "CA",
+  },
+  priceRange: "$$",
+  openingHoursSpecification: [
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"], opens: "09:00", closes: "21:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "09:00", closes: "17:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "16:00" },
+  ],
+  sameAs: [
+    "https://www.instagram.com/urbantexturehairstudio/",
+    "https://web.facebook.com/urbantexture",
+  ],
+};
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Urban Texture Hair Studio — Luxury balayage & lived-in colour, NW Calgary</title>
+    <meta name="description" content="A luxury salon with laid-back vibes in Northwest Calgary. Balayage, blonding, lived-in colour, precision cuts and K18 treatments. 4.9★ across 973 reviews. Book your visit." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body id="top" class="bg-background text-foreground font-sans">
+    <SiteNav
+      name={shop.name}
+      bookingUrl={shop.bookingUrl}
+      bookLabel="Book a visit"
+      links={[
+        { label: "Studio", href: "#studio" },
+        { label: "Services", href: "#services" },
+        { label: "Hours", href: "#hours" },
+        { label: "Visit", href: "#visit" },
+      ]}
+    />
+
+    <!-- Custom luxury hero: real salon interior + gold kicker + social proof.
+         Text stays editable via the variables above if wired to a CMS later. -->
+    <section class="relative flex min-h-[88vh] items-center overflow-hidden">
+      <img src={shop.heroImage} alt="Inside Urban Texture Hair Studio — hammered-gold stools and charcoal wash chairs" loading="eager" class="absolute inset-0 h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/55 to-foreground/20"></div>
+      <div class="relative z-10 mx-auto w-full max-w-6xl px-6 py-28">
+        <div class="max-w-xl text-primary-foreground">
+          <p class="text-xs font-medium uppercase tracking-[0.4em] text-accent">Est. 2004 · Northwest Calgary</p>
+          <h1 class="mt-6 font-display text-6xl font-medium leading-[0.95] sm:text-8xl">A luxury salon, with laid-back vibes.</h1>
+          <p class="mt-7 max-w-md text-lg font-light leading-relaxed text-primary-foreground/85">You go to a salon to look a certain way. You come to Urban Texture to <em class="not-italic font-medium text-accent">feel</em> a certain way — balayage, blonding and lived-in colour, over coffee or a cocktail with friends.</p>
+          <div class="mt-9 flex flex-wrap items-center gap-5">
+            <a href={shop.bookingUrl} class="rounded-[var(--radius)] bg-accent px-9 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-accent-foreground shadow-lg transition hover:scale-[1.03] hover:opacity-95">Book a visit</a>
+            <a href={`tel:${shop.phone}`} class="text-sm font-medium tracking-wide text-primary-foreground underline-offset-4 transition hover:underline">Call (403) 398-8260</a>
+          </div>
+          <p class="mt-8 flex items-center gap-3 text-sm text-primary-foreground/85">
+            <span class="text-base tracking-[0.15em] text-accent">★★★★★</span>
+            <span><span class="font-semibold text-primary-foreground">4.9</span> from <span class="font-semibold text-primary-foreground">973</span> Google reviews</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <Features label="Why Urban Texture" heading="Looks that last. A feeling that lingers." items={features} />
+
+    <!-- Philosophy + real studio imagery -->
+    <section id="studio" class="scroll-mt-20 bg-muted">
+      <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 sm:py-28 lg:grid-cols-2">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Our philosophy</p>
+          <h2 class="mt-3 font-display text-4xl font-medium leading-tight text-foreground sm:text-5xl">A studio built for the way it feels to be here.</h2>
+          <p class="mt-6 text-lg leading-relaxed text-muted-foreground">We understand how much it matters to feel relaxed during your time with us. So our studio offers a luxury, professional service while still keeping that coffee-or-cocktail-with-friends feeling — every single visit.</p>
+          <p class="mt-4 text-lg leading-relaxed text-muted-foreground">We do it all, but we specialise in longer hair, balayage, blonding and soft lived-in looks that last and keep looking beautiful between appointments.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <img src="/img/stations.webp" alt="Styling stations at Urban Texture Hair Studio" loading="lazy" class="col-span-2 h-64 w-full rounded-[var(--radius)] object-cover shadow-sm" />
+          <img src="/img/work-balayage.webp" alt="Soft lived-in balayage by Urban Texture" loading="lazy" class="h-72 w-full rounded-[var(--radius)] object-cover shadow-sm" />
+          <img src="/img/team.webp" alt="The Urban Texture Hair Studio team" loading="lazy" class="h-72 w-full rounded-[var(--radius)] object-cover shadow-sm" />
+        </div>
+      </div>
+    </section>
+
+    <Services services={shop.services} heading="Services" />
+    <Reviews blurb={shop.reviewsBlurb} rating={shop.rating} />
+    <Testimonials label="In their words" heading="Loved across Calgary" items={testimonials} />
+    <Hours hours={shop.hours} />
+    <ContactNAP name={shop.name} phone={shop.phone} address={shop.address} mapUrl={shop.mapUrl} serviceArea={shop.serviceArea} />
+
+    <!-- Booking enquiry form → Web3Forms. Progressive enhancement: JS posts JSON
+         for an inline success state; with JS off it POSTs straight to Web3Forms. -->
+    <section id="book-form" class="scroll-mt-20 bg-muted px-6 py-20 sm:py-28">
+      <div class="mx-auto max-w-xl">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Book a visit</p>
+        <h2 class="mt-3 font-display text-4xl font-medium leading-tight text-foreground sm:text-5xl">Tell us about your hair.</h2>
+        <p class="mt-4 text-lg leading-relaxed text-muted-foreground">Send a note and we’ll get you booked with the right stylist. Prefer to call? <a href={`tel:${shop.phone}`} class="font-medium text-foreground underline underline-offset-4">(403) 398-8260</a>.</p>
+
+        <form id="bookForm" method="POST" action="https://api.web3forms.com/submit" data-phone="(403) 398-8260" class="mt-8 rounded-[var(--radius)] border border-border bg-card p-6 shadow-sm sm:p-8">
+          <input type="hidden" name="access_key" value="a7f4a800-8a6e-442b-9b6f-ac15b3744ca7" />
+          <input type="hidden" name="subject" value="Urban Texture Hair Studio — website enquiry" />
+          <input type="hidden" name="from_name" value="Urban Texture Hair Studio website" />
+          <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <div class="grid gap-4">
+            <label class="sr-only" for="bf-name">Your name</label>
+            <input id="bf-name" name="name" required autocomplete="name" placeholder="Your name" class="rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50" />
+            <label class="sr-only" for="bf-email">Email address</label>
+            <input id="bf-email" name="email" type="email" required autocomplete="email" placeholder="Email" class="rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50" />
+            <label class="sr-only" for="bf-phone">Phone number</label>
+            <input id="bf-phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone (optional)" class="rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50" />
+            <label class="sr-only" for="bf-service">What are you interested in?</label>
+            <select id="bf-service" name="service" class="rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-sm text-foreground focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50">
+              <option value="">What are you interested in? (optional)</option>
+              <option value="Balayage / blonding">Balayage / blonding</option>
+              <option value="Custom colour">Custom colour</option>
+              <option value="Haircut">Haircut</option>
+              <option value="Blowout / styling">Blowout / styling</option>
+              <option value="Treatment (K18 / Head Spa)">Treatment (K18 / Head Spa)</option>
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
+            <label class="sr-only" for="bf-message">Tell us about your hair</label>
+            <textarea id="bf-message" name="message" rows="3" placeholder="Tell us about your hair and what you're after (optional)" class="rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"></textarea>
+            <button type="submit" class="rounded-[var(--radius)] bg-primary px-5 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-primary-foreground transition hover:opacity-90">Send enquiry</button>
+            <p id="bookStatus" role="status" aria-live="polite" class="hidden text-sm font-medium text-foreground"></p>
+          </div>
+        </form>
+        <div id="bookSuccess" hidden class="mt-8 rounded-[var(--radius)] border border-accent/40 bg-accent/10 p-8 text-center">
+          <p class="font-display text-2xl font-medium text-foreground">Thank you — your note is in.</p>
+          <p class="mt-2 text-sm text-muted-foreground">We’ll be in touch soon to get you booked. See you in the chair.</p>
+        </div>
+      </div>
+    </section>
+
+    <Faq heading="Questions, answered" items={faqs} />
+    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} heading="Ready for your best hair?" />
+    <SiteFooter name={shop.name} address={shop.address} phone={shop.phone} />
+
+    <script is:inline>
+      (function () {
+        var form = document.getElementById("bookForm");
+        if (!form) return;
+        var statusEl = document.getElementById("bookStatus");
+        var success = document.getElementById("bookSuccess");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var btn = form.querySelector("button[type=submit]");
+          var orig = btn ? btn.textContent : "";
+          if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+          if (statusEl) { statusEl.classList.add("hidden"); statusEl.textContent = ""; }
+          var data = {};
+          new FormData(form).forEach(function (v, k) { data[k] = v; });
+          fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(data) })
+            .then(function (r) { return r.json().catch(function () { return {}; }); })
+            .then(function (d) {
+              if (d && d.success) {
+                form.style.display = "none";
+                if (success) success.hidden = false;
+                success && success.scrollIntoView({ behavior: "smooth", block: "center" });
+              } else {
+                throw new Error((d && d.message) || "submit failed");
+              }
+            })
+            .catch(function () {
+              if (btn) { btn.disabled = false; btn.textContent = orig; }
+              if (statusEl) {
+                var phone = form.getAttribute("data-phone") || "";
+                statusEl.textContent = "Couldn't send just now — please call us at " + phone + ".";
+                statusEl.classList.remove("hidden");
+              }
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>

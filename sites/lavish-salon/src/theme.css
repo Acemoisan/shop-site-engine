@@ -1,0 +1,21 @@
+/* Lavish Salon — editorial monochrome gallery.
+   Pulled from the brand's real identity: marble-white walls, ink-black accents,
+   terrazzo, and the warm champagne/brass of their rose-gold tools.
+   High-contrast italic serif display (their wordmark mood) on a clean grotesque body.
+   Near-zero radius for an architectural, gallery-like feel — not the rounded
+   blush-pink "beauty salon" default. */
+:root {
+  --background: oklch(0.992 0.002 100);     /* gallery off-white */
+  --foreground: oklch(0.18 0.004 80);       /* near-ink */
+  --card: oklch(1 0 0);                      /* pure white card */
+  --primary: oklch(0.20 0.005 80);          /* ink — buttons, wordmark */
+  --primary-foreground: oklch(0.985 0.003 100);
+  --muted: oklch(0.965 0.004 90);           /* soft marble grey */
+  --muted-foreground: oklch(0.46 0.006 80);
+  --accent: oklch(0.74 0.055 70);           /* warm champagne / brass */
+  --accent-foreground: oklch(0.22 0.02 70);
+  --border: oklch(0.90 0.004 90);
+  --font-sans: "Archivo", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --radius: 0.125rem;
+}

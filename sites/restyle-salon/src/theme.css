@@ -1,0 +1,25 @@
+/* Restyle Salon — Premium / Editorial.
+   Brand cue: deep burgundy wine (from the real logo mark) on warm ivory,
+   with a champagne / rose-gold accent. High-contrast serif display +
+   clean sans body. Dark editorial hero handled inline in index.astro.
+   Deliberately NOT the generic lilac-gradient "spa" look. */
+:root {
+  --background: oklch(0.984 0.006 60);        /* warm ivory */
+  --foreground: oklch(0.24 0.02 20);          /* near-black warm ink */
+  --card: oklch(0.998 0.003 60);              /* clean off-white card */
+
+  --primary: oklch(0.40 0.12 12);             /* deep burgundy / wine (logo) */
+  --primary-foreground: oklch(0.985 0.006 60);
+
+  --muted: oklch(0.955 0.008 50);             /* soft warm stone */
+  --muted-foreground: oklch(0.46 0.02 25);
+
+  --accent: oklch(0.74 0.07 55);              /* champagne / rose-gold */
+  --accent-foreground: oklch(0.26 0.04 30);
+
+  --border: oklch(0.90 0.01 45);
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --radius: 0.5rem;
+}

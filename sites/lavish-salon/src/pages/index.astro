@@ -1,0 +1,307 @@
+---
+import "@studio0rbit/shared/styles/base.css";
+import "../theme.css";
+import { shop } from "../content/shop";
+import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
+import Features from "@studio0rbit/shared/components/Features.astro";
+import Services from "@studio0rbit/shared/components/Services.astro";
+import Hours from "@studio0rbit/shared/components/Hours.astro";
+import ContactNAP from "@studio0rbit/shared/components/ContactNAP.astro";
+import Faq from "@studio0rbit/shared/components/Faq.astro";
+import CTA from "@studio0rbit/shared/components/CTA.astro";
+import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
+
+// NO Storyblok in this build — local content only (src/content/shop.ts + inline arrays below).
+const tel = shop.phone.replace(/[^0-9+]/g, "");
+
+let features = [
+  { icon: "scissors", title: "Cuts & precision styling", body: "Shapes tailored to your hair and how you actually wear it — finished so you can recreate it at home." },
+  { icon: "sparkles", title: "Colour specialists", body: "Balayage, dimensional highlights, full colour and corrections with premium professional lines." },
+  { icon: "heart", title: "Premium product partners", body: "Evo, Redken, Oribe and amika on the shelf and at the chair — and Style Recycling for sustainability." },
+];
+let faqs = [
+  { q: "How do I book an appointment?", a: "Book online any time through our Phorest booking page, or call or text us at (403) 244-5162 during opening hours." },
+  { q: "Where is Lavish Salon located?", a: "We're at 9919 Fairmount Dr SE #143 in Calgary's Fairmount community, in the SE. Free parking on site." },
+  { q: "Do you offer colour corrections and extensions?", a: "Yes — our colour specialists handle balayage, full colour and corrections, and we fit custom-matched hair extensions for length and volume." },
+  { q: "What products do you use?", a: "We work with Evo, Redken, Oribe and amika, and we take part in Style Recycling to keep our salon more sustainable." },
+];
+const h = {
+  heroKicker: "Calgary · Fairmount SE",
+  heroSubcopy: "An editorial salon for cuts, colour, extensions and styling — 4.8★ across 780+ reviews. Book in a couple of taps.",
+  heroCtaLabel: "Book now",
+  featuresLabel: "Why Lavish",
+  featuresHeading: "Beautiful hair, the way it should feel",
+  ctaHeading: "Great hair is just a click away",
+};
+
+// HairSalon JSON-LD — structured NAP + geo + opening hours (the audit flagged this
+// missing on their current site). Never self-rate: no aggregateRating.
+const dayMap: Record<string, string> = {
+  Monday: "Mo", Tuesday: "Tu", Wednesday: "We", Thursday: "Th", Friday: "Fr", Saturday: "Sa", Sunday: "Su",
+};
+const to24 = (t: string) => {
+  const m = t.trim().match(/(\d+):(\d+)\s*(am|pm)/i);
+  if (!m) return t;
+  let hh = parseInt(m[1], 10);
+  const mm = m[2];
+  const ap = m[3].toLowerCase();
+  if (ap === "pm" && hh !== 12) hh += 12;
+  if (ap === "am" && hh === 12) hh = 0;
+  return `${String(hh).padStart(2, "0")}:${mm}`;
+};
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  name: shop.name,
+  image: new URL(shop.heroImage!, shop.url).toString(),
+  url: shop.url,
+  telephone: shop.phone,
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "9919 Fairmount Dr SE #143",
+    addressLocality: "Calgary",
+    addressRegion: "AB",
+    postalCode: "T2J 0S3",
+    addressCountry: "CA",
+  },
+  ...(shop.geo && { geo: { "@type": "GeoCoordinates", latitude: shop.geo.lat, longitude: shop.geo.lng } }),
+  hasMap: shop.mapUrl,
+  openingHoursSpecification: shop.hours
+    .filter((d) => !d.closed)
+    .map((d) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: dayMap[d.day],
+      opens: to24(d.open),
+      closes: to24(d.close),
+    })),
+  sameAs: [
+    "https://www.instagram.com/lavishsaloncalgary/",
+    "https://www.facebook.com/Lavishsalonyyc",
+    "https://www.tiktok.com/@lavishsaloncalgary",
+  ],
+};
+
+const web3formsKey = "a7f4a800-8a6e-442b-9b6f-ac15b3744ca7";
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{shop.name} — Hair salon in Fairmount SE, Calgary</title>
+    <meta name="description" content="Lavish Salon is an editorial Calgary hair salon for cuts, colour, extensions and styling. Rated 4.8★ across 780+ reviews. Book online in a couple of taps." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body id="top" class="bg-background text-foreground font-sans">
+    <SiteNav
+      name={shop.name}
+      bookingUrl={shop.bookingUrl}
+      bookLabel="Book now"
+      links={[
+        { label: "Services", href: "#services" },
+        { label: "Hours", href: "#hours" },
+        { label: "Visit", href: "#visit" },
+        { label: "Book", href: "#book-form" },
+      ]}
+    />
+
+    <!-- Custom editorial hero — spaced wordmark + italic emphasis on the real interior photo. -->
+    <section class="relative overflow-hidden bg-primary text-primary-foreground">
+      <img
+        src={shop.heroImage}
+        alt="Inside Lavish Salon — the marble reception and retail wall"
+        width="1800"
+        height="1200"
+        fetchpriority="high"
+        class="absolute inset-0 h-full w-full object-cover opacity-45"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/55 to-primary/20"></div>
+      <div class="relative mx-auto flex min-h-[88vh] max-w-5xl flex-col justify-end px-6 pb-20 pt-36 sm:pb-28">
+        <p class="text-xs uppercase tracking-[0.45em] text-accent sm:text-sm">{h.heroKicker}</p>
+        <h1 class="mt-6 max-w-3xl font-display text-5xl font-medium leading-[1.02] sm:text-7xl md:text-8xl">
+          Great hair is <em class="italic">just a click</em> away.
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-primary-foreground/80">{h.heroSubcopy}</p>
+        <div class="mt-9 flex flex-wrap items-center gap-4">
+          <a href={shop.bookingUrl} class="inline-block rounded-[var(--radius)] bg-accent px-8 py-4 text-sm font-semibold uppercase tracking-wider text-accent-foreground transition hover:opacity-90">{h.heroCtaLabel}</a>
+          <a href={`tel:${tel}`} class="inline-block rounded-[var(--radius)] border border-primary-foreground/40 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:bg-primary-foreground/10">Call {shop.phone}</a>
+        </div>
+        <p class="mt-7 text-sm uppercase tracking-[0.25em] text-primary-foreground/70">★★★★★ &nbsp;4.8 · 780+ Google reviews</p>
+      </div>
+    </section>
+
+    <Features label={h.featuresLabel} heading={h.featuresHeading} items={features} />
+
+    <!-- Editorial split: real stylist-at-work photo beside the brand story. -->
+    <section class="bg-muted px-6 py-20">
+      <div class="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-2">
+        <img
+          src="/img/stylist-blowdry.webp"
+          alt="A Lavish stylist blow-drying a client's hair"
+          width="900"
+          height="1350"
+          loading="lazy"
+          class="w-full rounded-[var(--radius)] object-cover shadow-sm"
+        />
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-accent">The salon</p>
+          <h2 class="mt-4 font-display text-4xl font-medium leading-tight text-foreground sm:text-5xl">A calm, modern space in Fairmount SE</h2>
+          <p class="mt-5 text-lg leading-relaxed text-muted-foreground">From the marble reception to the chair, every detail is considered. Our team works with premium lines — Evo, Redken, Oribe and amika — and we take part in Style Recycling to keep things sustainable.</p>
+          <a href={shop.bookingUrl} class="mt-8 inline-block rounded-[var(--radius)] bg-primary px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">Book your visit</a>
+        </div>
+      </div>
+    </section>
+
+    <Services services={shop.services} heading="Services" />
+
+    <!-- Editorial social-proof band. We only have ONE honest, attributable signal
+         (4.8★ / 780+ Google reviews) — so instead of faking customer quotes we
+         present that stat as a large editorial pull-figure and frame it with real,
+         verifiable detail (rating, review count, what clients come back for, and
+         the premium product partners). Type + whitespace + brass carry the section. -->
+    <section class="bg-primary px-6 py-24 text-primary-foreground sm:py-32">
+      <div class="mx-auto max-w-5xl">
+        <p class="text-xs uppercase tracking-[0.4em] text-accent">Reviews</p>
+        <div class="mt-10 grid items-end gap-y-12 gap-x-10 md:grid-cols-[auto_1fr]">
+          <div class="md:pr-12 md:border-r md:border-primary-foreground/15">
+            <p class="font-display text-[7rem] leading-[0.85] font-medium text-accent sm:text-[9rem]">4.8</p>
+            <p class="mt-4 text-lg tracking-[0.3em] text-accent">★★★★★</p>
+            <p class="mt-3 text-sm uppercase tracking-[0.2em] text-primary-foreground/70">out of 5 on Google</p>
+          </div>
+          <div>
+            <h2 class="font-display text-4xl font-medium leading-[1.08] sm:text-5xl">
+              <em class="italic">Loved</em> across Calgary — and the reviews show it.
+            </h2>
+            <p class="mt-6 max-w-xl text-lg leading-relaxed text-primary-foreground/80">
+              More than <span class="text-accent">780 verified Google reviews</span> and a
+              4.8-star average — the kind of consistency you only get from a team that
+              genuinely loves the work, appointment after appointment.
+            </p>
+            <dl class="mt-10 grid grid-cols-2 gap-x-8 gap-y-8 border-t border-primary-foreground/15 pt-8 sm:grid-cols-4">
+              <div>
+                <dt class="font-display text-3xl font-medium text-accent">780+</dt>
+                <dd class="mt-1 text-xs uppercase tracking-[0.18em] text-primary-foreground/65">Google reviews</dd>
+              </div>
+              <div>
+                <dt class="font-display text-3xl font-medium text-accent">5</dt>
+                <dd class="mt-1 text-xs uppercase tracking-[0.18em] text-primary-foreground/65">Service specialties</dd>
+              </div>
+              <div>
+                <dt class="font-display text-3xl font-medium text-accent">4</dt>
+                <dd class="mt-1 text-xs uppercase tracking-[0.18em] text-primary-foreground/65">Premium product lines</dd>
+              </div>
+              <div>
+                <dt class="font-display text-3xl font-medium text-accent">SE</dt>
+                <dd class="mt-1 text-xs uppercase tracking-[0.18em] text-primary-foreground/65">Fairmount, Calgary</dd>
+              </div>
+            </dl>
+            <div class="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm uppercase tracking-[0.16em] text-primary-foreground/55">
+              <span>Evo</span><span class="text-accent/60">·</span>
+              <span>Redken</span><span class="text-accent/60">·</span>
+              <span>Oribe</span><span class="text-accent/60">·</span>
+              <span>amika</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Hours hours={shop.hours} />
+    <ContactNAP name={shop.name} phone={shop.phone} address={shop.address} mapUrl={shop.mapUrl} serviceArea={shop.serviceArea} />
+
+    <!-- Booking / enquiry form → Web3Forms (host-agnostic, no activation step).
+         Progressive enhancement: JS posts JSON for an inline success state;
+         with JS off it falls back to a normal POST. -->
+    <section id="book-form" class="scroll-mt-20 bg-primary px-6 py-20 text-primary-foreground sm:py-28">
+      <div class="mx-auto grid max-w-5xl gap-12 lg:grid-cols-2 lg:items-start">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-accent">Book or ask</p>
+          <h2 class="mt-4 font-display text-4xl font-medium leading-tight sm:text-5xl">Great hair is just a click away</h2>
+          <p class="mt-5 max-w-md text-lg leading-relaxed text-primary-foreground/80">Book instantly online, or send us a note and we'll get back to you. Prefer to talk? Call or text — we'd love to hear from you.</p>
+          <a href={shop.bookingUrl} class="mt-7 inline-block rounded-[var(--radius)] bg-accent px-8 py-4 text-sm font-semibold uppercase tracking-wider text-accent-foreground transition hover:opacity-90">Book online now</a>
+          <a href={`tel:${tel}`} class="mt-5 block text-sm font-semibold uppercase tracking-wider text-accent transition hover:opacity-80">Call or text {shop.phone}</a>
+          <p class="mt-3 text-sm text-primary-foreground/65">{shop.address}</p>
+        </div>
+
+        <form id="bookForm" method="POST" action="https://api.web3forms.com/submit" data-email="lavishsaloncalgary@gmail.com" class="rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] p-6 backdrop-blur-sm sm:p-8">
+          <input type="hidden" name="access_key" value={web3formsKey} />
+          <input type="hidden" name="subject" value="Lavish Salon — website enquiry" />
+          <input type="hidden" name="from_name" value="Lavish Salon website" />
+          <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <h3 class="font-display text-2xl font-medium">Send us a message</h3>
+          <p class="mt-1 text-sm text-primary-foreground/75">We'll reply as soon as we can.</p>
+          <div class="mt-5 grid gap-4">
+            <label class="sr-only" for="f-name">Your name</label>
+            <input id="f-name" name="name" required autocomplete="name" placeholder="Your name" class="rounded-[var(--radius)] border border-primary-foreground/25 bg-primary-foreground/15 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" />
+            <label class="sr-only" for="f-email">Email address</label>
+            <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="Email" class="rounded-[var(--radius)] border border-primary-foreground/25 bg-primary-foreground/15 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" />
+            <label class="sr-only" for="f-phone">Phone</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone (optional)" class="rounded-[var(--radius)] border border-primary-foreground/25 bg-primary-foreground/15 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" />
+            <label class="sr-only" for="f-service">Service of interest</label>
+            <select id="f-service" name="service" class="rounded-[var(--radius)] border border-primary-foreground/25 bg-primary-foreground/15 px-4 py-3 text-sm text-primary-foreground focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60">
+              <option value="">Service of interest (optional)</option>
+              <option value="Cuts">Cuts</option>
+              <option value="Colour">Colour</option>
+              <option value="Styling">Styling</option>
+              <option value="Hair Treatments">Hair Treatments</option>
+              <option value="Hair Extensions">Hair Extensions</option>
+            </select>
+            <label class="sr-only" for="f-message">Message</label>
+            <textarea id="f-message" name="message" rows="3" placeholder="How can we help? (optional)" class="rounded-[var(--radius)] border border-primary-foreground/25 bg-primary-foreground/15 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"></textarea>
+            <button type="submit" class="rounded-[var(--radius)] bg-accent px-5 py-3 text-sm font-semibold uppercase tracking-wider text-accent-foreground transition hover:opacity-90">Send message</button>
+            <p class="text-center text-xs text-primary-foreground/65">For instant booking, use the online booking button.</p>
+            <p id="formStatus" role="status" aria-live="polite" class="hidden text-sm font-medium text-accent"></p>
+          </div>
+        </form>
+        <div id="formSuccess" hidden class="rounded-[var(--radius)] border border-accent/40 bg-accent/10 p-8 text-center lg:col-start-2">
+          <p class="font-display text-2xl font-medium">Thanks — your message is in.</p>
+          <p class="mt-2 text-sm text-primary-foreground/80">We'll get back to you as soon as we can. For an immediate slot, book online any time.</p>
+        </div>
+      </div>
+    </section>
+
+    <Faq heading="Questions, answered" items={faqs} />
+    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} heading={h.ctaHeading} />
+    <SiteFooter name={shop.name} address={shop.address} phone={shop.phone} />
+
+    <script is:inline>
+      (function () {
+        var form = document.getElementById("bookForm");
+        if (!form) return;
+        var statusEl = document.getElementById("formStatus");
+        var success = document.getElementById("formSuccess");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var btn = form.querySelector("button[type=submit]");
+          var orig = btn ? btn.textContent : "";
+          if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+          if (statusEl) { statusEl.classList.add("hidden"); statusEl.textContent = ""; }
+          var data = {};
+          new FormData(form).forEach(function (v, k) { data[k] = v; });
+          fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(data) })
+            .then(function (r) { return r.json().catch(function () { return {}; }); })
+            .then(function (d) {
+              if (d && d.success) {
+                form.style.display = "none";
+                if (success) success.hidden = false;
+                success && success.scrollIntoView({ behavior: "smooth", block: "center" });
+              } else {
+                throw new Error((d && d.message) || "submit failed");
+              }
+            })
+            .catch(function () {
+              if (btn) { btn.disabled = false; btn.textContent = orig; }
+              if (statusEl) {
+                var email = form.getAttribute("data-email") || "";
+                statusEl.textContent = "Couldn't send just now — please email us at " + email + ".";
+                statusEl.classList.remove("hidden");
+              }
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>

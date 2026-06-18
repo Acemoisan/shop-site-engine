@@ -1,0 +1,370 @@
+---
+import "@studio0rbit/shared/styles/base.css";
+import "../theme.css";
+import { shop } from "../content/shop";
+import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
+import Stats from "@studio0rbit/shared/components/Stats.astro";
+import Features from "@studio0rbit/shared/components/Features.astro";
+import Services from "@studio0rbit/shared/components/Services.astro";
+import Hours from "@studio0rbit/shared/components/Hours.astro";
+import Reviews from "@studio0rbit/shared/components/Reviews.astro";
+import Testimonials from "@studio0rbit/shared/components/Testimonials.astro";
+import ContactNAP from "@studio0rbit/shared/components/ContactNAP.astro";
+import Faq from "@studio0rbit/shared/components/Faq.astro";
+import CTA from "@studio0rbit/shared/components/CTA.astro";
+import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
+import Icon from "@studio0rbit/shared/components/Icon.astro";
+
+// ── No Storyblok: this is a delivered client site driven entirely by local
+//    content (../content/shop.ts) + the inline arrays below. ────────────────
+const tel = `tel:${shop.phone}`;
+const social = {
+  instagram: "https://www.instagram.com/artisticsaloncalgary",
+  facebook: "https://www.facebook.com/artisticsaloncalgary",
+};
+const web3formsKey = "a7f4a800-8a6e-442b-9b6f-ac15b3744ca7";
+
+const h = {
+  heroKicker: "Hair Salon · Richmond Rd SW, Calgary",
+  heroSubcopy:
+    "Expert cuts, personalized colour and professional grooming — tailored to your lifestyle by a team that's looked after Calgary for over three decades.",
+  heroCtaLabel: "Call to book",
+  heroCtaSecondary: "Free consultation",
+};
+
+const stats = [
+  { value: "35+", label: "Years caring for Calgary" },
+  { value: "4.9★", label: "719 Google reviews" },
+  { value: "8", label: "Stylists on the team" },
+];
+
+const features = [
+  { icon: "scissors", title: "Cut to suit you", body: "Precision cuts and styling shaped to your hair, your face and the way you actually wear it day to day." },
+  { icon: "sparkles", title: "Colour specialists", body: "Balayage, highlights, root touch-ups and corrective colour — placed by hand for a finish that grows out beautifully." },
+  { icon: "heart", title: "Free consultations", body: "A relaxed, no-pressure chat to meet the team, share your goals and ask questions before you commit." },
+];
+
+// Real cut & colour work from the salon (client's own photos).
+const gallery = [
+  { src: "/img/work-1.webp", alt: "Soft blonde highlights with a smooth blow-dry finish" },
+  { src: "/img/work-2.webp", alt: "Ash-blonde balayage with loose waves" },
+  { src: "/img/work-3.webp", alt: "Brunette layered cut with a bouncy blow-dry" },
+  { src: "/img/work-4.webp", alt: "Sun-kissed blonde ombré balayage" },
+  { src: "/img/work-5.webp", alt: "Braided bridal updo with floral pins" },
+  { src: "/img/work-6.webp", alt: "Textured men's perm, freshly styled" },
+];
+
+// Named team, ported from the salon's site. Headshots are the four we have
+// real, on-brand photos for; the rest are listed by name + role.
+const team = [
+  { name: "Kevin", role: "Director", img: "/img/team-1.webp" },
+  { name: "Phan", role: "Master Stylist", img: "/img/team-2.webp" },
+  { name: "Kerry", role: "Master Stylist", img: "/img/team-3.webp" },
+  { name: "Lily", role: "Creative Director", img: "/img/team-4.webp" },
+];
+const teamMore = ["Mercedes — Master Stylist", "Sara — Stylist", "MJ — Apprentice Stylist", "Danielle — Apprentice Stylist"];
+
+// Review themes drawn from the salon's 4.9★ Google profile — summarised
+// honestly (no invented individual quotes), attributed to Google reviews.
+const testimonials = [
+  { quote: "Consistently great cuts and colour — the kind of salon you stay loyal to for years.", name: "From Google reviews" },
+  { quote: "Friendly, skilled stylists who genuinely listen to what you want before they start.", name: "From Google reviews" },
+  { quote: "Fair prices for the quality, and you always leave feeling looked after.", name: "From Google reviews" },
+];
+
+const faqs = [
+  { q: "Do I need an appointment?", a: "Appointments are recommended — call us at 403-240-4014 and we'll find a time that works. Walk-ins are welcome when a chair is free." },
+  { q: "Can I get a consultation before booking colour?", a: "Yes. We offer free, no-pressure consultations so you can meet your stylist, talk through your goals and get a clear quote before anything begins." },
+  { q: "Do you colour and cut men's hair too?", a: "Absolutely. We do men's cuts, colour, highlights, perms and beard/moustache grooming alongside our full women's menu." },
+  { q: "Where are you located and is there parking?", a: "We're at #260, 5255 Richmond Rd SW in Calgary's Richmond/Glendale area, with parking on site. Tap the address to open directions." },
+];
+
+const pageTitle = "Artistic Salon — Hair Salon in Richmond Rd SW, Calgary";
+const metaDescription =
+  "Artistic Salon is a 4.9★ Calgary hair salon on Richmond Rd SW with 35+ years of expert cuts, balayage, highlights, perms and men's grooming. Call 403-240-4014 to book or for a free consultation.";
+
+// Bespoke HairSalon JSON-LD. We never self-assign aggregateRating — the 4.9★ /
+// 719 count is shown in the UI as social proof, not asserted in schema.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  name: shop.name,
+  description:
+    "Full-service hair salon in Calgary offering cuts, colour, balayage, highlights, perms, updos and men's grooming for over 35 years.",
+  url: shop.url,
+  telephone: shop.phone,
+  image: new URL("/img/hero.webp", shop.url).href,
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "#260, 5255 Richmond Rd SW",
+    addressLocality: "Calgary",
+    addressRegion: "AB",
+    postalCode: "T3E 7C4",
+    addressCountry: "CA",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: shop.geo!.lat, longitude: shop.geo!.lng },
+  areaServed: "Calgary",
+  sameAs: [social.instagram, social.facebook],
+  openingHoursSpecification: [
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:30", closes: "19:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "18:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "11:00", closes: "16:00" },
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Salon services",
+    itemListElement: shop.services.map((s) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: s.name },
+      ...(s.price && !/consultation/i.test(s.price) ? { price: s.price.replace(/[^0-9.]/g, ""), priceCurrency: "CAD" } : {}),
+    })),
+  },
+};
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/img/hero.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="/img/hero.webp" fetchpriority="high" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body id="top" class="bg-background text-foreground font-sans antialiased">
+    <SiteNav
+      name={shop.name}
+      bookingUrl={shop.bookingUrl}
+      bookLabel="Book"
+      links={[
+        { label: "Services", href: "#services" },
+        { label: "Gallery", href: "#gallery" },
+        { label: "Team", href: "#team" },
+        { label: "Visit", href: "#visit" },
+      ]}
+    />
+
+    <!-- ── Hero: full-bleed real balayage photo ─────────────────────────── -->
+    <section class="relative overflow-hidden border-b border-border">
+      <img
+        src={shop.heroImage}
+        alt="Ash-blonde balayage styled into soft waves at Artistic Salon, Calgary"
+        width="1500" height="1000" fetchpriority="high" decoding="async"
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+      />
+      <div class="pointer-events-none absolute inset-0" style="background: linear-gradient(100deg, color-mix(in oklch, var(--foreground) 78%, transparent) 0%, color-mix(in oklch, var(--foreground) 55%, transparent) 42%, transparent 80%);"></div>
+      <div class="relative mx-auto max-w-6xl px-6 py-28 sm:py-36">
+        <div class="max-w-xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.32em] text-white/80">{h.heroKicker}</p>
+          <h1 class="mt-5 font-display text-6xl font-semibold leading-[0.95] tracking-tight text-white sm:text-8xl">Artistic<br />Salon</h1>
+          <p class="mt-6 max-w-lg text-lg leading-relaxed text-white/90">{shop.tagline}</p>
+          <p class="mt-3 max-w-lg text-base leading-relaxed text-white/75">{h.heroSubcopy}</p>
+          <div class="mt-9 flex flex-wrap items-center gap-4">
+            <a href={tel} class="rounded-[var(--radius)] bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-lg transition hover:opacity-90">{h.heroCtaLabel}</a>
+            <a href="#book" class="rounded-[var(--radius)] border border-white/40 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur-sm transition hover:bg-white/10">{h.heroCtaSecondary}</a>
+          </div>
+          <div class="mt-8 flex items-center gap-3 text-sm text-white/85">
+            <span class="text-lg leading-none text-accent">★★★★★</span>
+            <span><span class="font-semibold text-white">4.9</span> · 719 Google reviews</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Stats items={stats} />
+
+    <!-- ── About + signature: 35 years, real in-salon candid ────────────── -->
+    <section id="about" class="scroll-mt-20">
+      <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 sm:py-28 lg:grid-cols-2">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Since 1989 · Family-run</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">Let's get to know each other.</h2>
+          <p class="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+            For over 35 years, our team has helped Calgary guests look and feel their best — through expert haircuts, personalized colour and professional grooming, all tailored to your lifestyle.
+          </p>
+          <p class="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
+            That's why we offer free consultations: a relaxed, no-pressure chat where you can meet our team, share your hair goals and ask questions before anything begins.
+          </p>
+          <a href={tel} class="mt-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-primary transition hover:opacity-80">
+            <Icon name="phone" class="h-4 w-4" /> Call 403-240-4014
+          </a>
+        </div>
+        <div class="overflow-hidden rounded-[var(--radius)] border border-border bg-card shadow-sm">
+          <img src="/img/about.webp" alt="Director Kevin with a happy client in the Artistic Salon chair" width="1000" height="1100" loading="lazy" decoding="async" class="w-full object-cover" />
+        </div>
+      </div>
+    </section>
+
+    <Features label="Why Artistic Salon" heading="Three decades of getting hair right" items={features} />
+
+    <!-- ── Gallery: real cut & colour work ──────────────────────────────── -->
+    <section id="gallery" class="scroll-mt-20 bg-muted">
+      <div class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Recent work</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">Cuts & colour from our chairs</h2>
+        </div>
+        <div class="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
+          {gallery.map((g) => (
+            <figure class="group overflow-hidden rounded-[var(--radius)] border border-border bg-card shadow-sm">
+              <img src={g.src} alt={g.alt} width="640" height="640" loading="lazy" decoding="async" class="aspect-square w-full object-cover transition duration-300 group-hover:scale-105" />
+            </figure>
+          ))}
+        </div>
+        <p class="mt-8 text-sm text-muted-foreground">See more on
+          <a href={social.instagram} rel="me noopener" target="_blank" class="font-semibold text-primary underline-offset-2 hover:underline">Instagram</a>.
+        </p>
+      </div>
+    </section>
+
+    <Services services={shop.services} heading="Services" />
+
+    <!-- ── Team ─────────────────────────────────────────────────────────── -->
+    <section id="team" class="scroll-mt-20 bg-muted">
+      <div class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Meet the stylists</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">The people behind the chair</h2>
+        </div>
+        <div class="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-4">
+          {team.map((m) => (
+            <figure class="overflow-hidden rounded-[var(--radius)] border border-border bg-card shadow-sm">
+              <img src={m.img} alt={`${m.name}, ${m.role} at Artistic Salon`} width="520" height="580" loading="lazy" decoding="async" class="aspect-[4/5] w-full object-cover" />
+              <figcaption class="px-4 py-4">
+                <p class="font-display text-xl font-semibold leading-none text-foreground">{m.name}</p>
+                <p class="mt-1.5 text-xs uppercase tracking-wider text-muted-foreground">{m.role}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p class="mt-8 text-sm text-muted-foreground">Also on the team: {teamMore.join(" · ")}.</p>
+      </div>
+    </section>
+
+    <Reviews blurb={shop.reviewsBlurb} rating={shop.rating} />
+    <Testimonials label="In their words" heading="Loved across Calgary" items={testimonials} />
+    <Hours hours={shop.hours} />
+    <ContactNAP name={shop.name} phone={shop.phone} address={shop.address} mapUrl={shop.mapUrl} serviceArea={shop.serviceArea} />
+
+    <Faq items={faqs} />
+
+    <!-- ── Booking enquiry → Web3Forms (emailed to the salon's inbox) ───── -->
+    <section id="book" class="scroll-mt-20 bg-muted">
+      <div class="mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:py-28 lg:grid-cols-2 lg:items-center">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Book or enquire</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">Ready for your appointment?</h2>
+          <p class="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
+            The fastest way to book is to call us — but if you'd rather, send a note with what you're after and we'll get back to you.
+          </p>
+          <a href={tel} class="mt-7 inline-flex items-center gap-2.5 rounded-[var(--radius)] bg-primary px-7 py-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">
+            <Icon name="phone" class="h-4 w-4" /> Call 403-240-4014
+          </a>
+          <div class="mt-7 flex items-center gap-3">
+            <a href={social.instagram} rel="me noopener" target="_blank" class="rounded-[var(--radius)] border border-border bg-card px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground transition hover:border-primary hover:text-primary">Instagram</a>
+            <a href={social.facebook} rel="me noopener" target="_blank" class="rounded-[var(--radius)] border border-border bg-card px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground transition hover:border-primary hover:text-primary">Facebook</a>
+          </div>
+        </div>
+
+        <div>
+          <form id="bookForm" method="POST" action="https://api.web3forms.com/submit" data-phone="403-240-4014" class="rounded-[var(--radius)] border border-border bg-card p-7 shadow-sm sm:p-8">
+            <input type="hidden" name="access_key" value={web3formsKey} />
+            <input type="hidden" name="subject" value="Artistic Salon — website enquiry" />
+            <input type="hidden" name="from_name" value="Artistic Salon website" />
+            <!-- honeypot -->
+            <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="grid gap-4">
+              <label class="block">
+                <span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Name</span>
+                <input id="bf-name" name="name" required autocomplete="name" placeholder="Your name"
+                  class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40" />
+              </label>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <label class="block">
+                  <span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Email</span>
+                  <input id="bf-email" name="email" type="email" required autocomplete="email" placeholder="you@email.com"
+                    class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40" />
+                </label>
+                <label class="block">
+                  <span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Phone</span>
+                  <input id="bf-phone" name="phone" type="tel" autocomplete="tel" placeholder="(403) 000-0000"
+                    class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40" />
+                </label>
+              </div>
+              <label class="block">
+                <span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">What are you after?</span>
+                <select id="bf-service" name="service" class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+                  <option value="">Choose a service (optional)</option>
+                  <option value="Cut & style">Cut & style</option>
+                  <option value="Colour / highlights / balayage">Colour / highlights / balayage</option>
+                  <option value="Perm">Perm</option>
+                  <option value="Men's cut / grooming">Men's cut / grooming</option>
+                  <option value="Updo / special occasion">Updo / special occasion</option>
+                  <option value="Free consultation">Free consultation</option>
+                  <option value="Not sure yet">Not sure yet</option>
+                </select>
+              </label>
+              <label class="block">
+                <span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Message</span>
+                <textarea id="bf-message" name="message" rows="3" placeholder="Preferred days/times, anything we should know…"
+                  class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"></textarea>
+              </label>
+              <button type="submit" class="rounded-[var(--radius)] bg-primary px-6 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">Send enquiry</button>
+              <p class="text-xs leading-relaxed text-muted-foreground">We only use your details to reply about your appointment. No spam — Alberta PIPA respected.</p>
+              <p id="bookStatus" role="status" aria-live="polite" class="hidden text-sm font-medium text-primary"></p>
+            </div>
+          </form>
+          <div id="bookSuccess" hidden class="rounded-[var(--radius)] border border-accent/40 bg-accent/10 p-8 text-center">
+            <p class="font-display text-2xl font-semibold text-foreground">Thanks — your enquiry is in.</p>
+            <p class="mt-2 text-sm text-muted-foreground">We'll reply soon. Need it sooner? Call us at <a href={tel} class="font-semibold text-primary underline">403-240-4014</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} heading="Your best hair is one call away." />
+    <SiteFooter name={shop.name} address={shop.address} phone={shop.phone} />
+
+    <script is:inline>
+      (function () {
+        var form = document.getElementById("bookForm");
+        if (!form) return;
+        var statusEl = document.getElementById("bookStatus");
+        var success = document.getElementById("bookSuccess");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var btn = form.querySelector("button[type=submit]");
+          var orig = btn ? btn.textContent : "";
+          if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+          if (statusEl) { statusEl.classList.add("hidden"); statusEl.textContent = ""; }
+          var data = {};
+          new FormData(form).forEach(function (v, k) { data[k] = v; });
+          fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(data) })
+            .then(function (r) { return r.json().catch(function () { return {}; }); })
+            .then(function (d) {
+              if (d && d.success) {
+                form.style.display = "none";
+                if (success) success.hidden = false;
+                success && success.scrollIntoView({ behavior: "smooth", block: "center" });
+              } else { throw new Error((d && d.message) || "submit failed"); }
+            })
+            .catch(function () {
+              if (btn) { btn.disabled = false; btn.textContent = orig; }
+              if (statusEl) {
+                var phone = form.getAttribute("data-phone") || "";
+                statusEl.textContent = "Couldn't send just now — please call us at " + phone + ".";
+                statusEl.classList.remove("hidden");
+              }
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>

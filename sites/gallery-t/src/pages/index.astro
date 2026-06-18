@@ -1,0 +1,258 @@
+---
+import "@studio0rbit/shared/styles/base.css";
+import "../theme.css";
+import { shop } from "../content/shop";
+import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
+import Features from "@studio0rbit/shared/components/Features.astro";
+import Reviews from "@studio0rbit/shared/components/Reviews.astro";
+import Testimonials from "@studio0rbit/shared/components/Testimonials.astro";
+import Hours from "@studio0rbit/shared/components/Hours.astro";
+import ContactNAP from "@studio0rbit/shared/components/ContactNAP.astro";
+import Faq from "@studio0rbit/shared/components/Faq.astro";
+import CTA from "@studio0rbit/shared/components/CTA.astro";
+import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
+
+// NO STORYBLOK — local content + inline arrays only (Phase A source).
+const tel = shop.phone.replace(/[^0-9+]/g, "");
+// Pretty phone for display: +14033749114 → 403-374-9114
+const phoneDisplay = shop.phone.replace(/^\+1/, "").replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+
+const features = [
+  { icon: "scissors", title: "Korean-trained stylists", body: "A studio that specialises in Korean perms, magic-straight and precision colour — not a one-size cut." },
+  { icon: "sparkles", title: "A vintage-inspired room", body: "A relaxed, art-filled space accented with antiques. Free parking, walk-ins welcome by appointment." },
+  { icon: "star", title: "4.8★ across 385 reviews", body: "Northwest Calgary keeps coming back. Hospitality-led care from the chair to checkout." },
+];
+
+// Curated "gallery wall" — the studio's own work, captioned like gallery plates.
+const gallery = [
+  { src: "/img/work-cut.webp", plate: "Plate I", title: "Cut & finish", medium: "Precision cut · in the chair" },
+  { src: "/img/work-curl.webp", plate: "Plate II", title: "Styling", medium: "Iron-set waves · detail" },
+];
+
+const testimonials = [
+  { quote: "Hands down the best salon in NW Calgary. My Korean perm held beautifully for months.", name: "Google review" },
+  { quote: "They actually listen. The balayage is exactly what I asked for and the room is gorgeous.", name: "Google review" },
+  { quote: "Booked for my wedding updo — felt looked-after the whole time. Worth every minute.", name: "Google review" },
+];
+
+const faqs = [
+  { q: "Do I need an appointment?", a: "We recommend booking ahead so we can give you the right time in the chair. Walk-ins are welcome when we have a spot — call first to check." },
+  { q: "Why don't you list prices?", a: "Pricing depends on hair length, condition and the service — colour, perms and straightening especially. We quote you up front at a quick consultation so there are no surprises." },
+  { q: "Do you specialise in Korean perms and straightening?", a: "Yes. Korean perms, magic-straight and precision colour are studio specialties alongside cuts, balayage and bridal styling." },
+  { q: "Where are you and is there parking?", a: "We're in Ranchlands, NW Calgary at #14 735 Ranchlands Blvd NW — with free parking right out front." },
+];
+
+const h = {
+  heroKicker: "Hair Studio · Ranchlands, NW Calgary",
+  heroSubcopy: "A relaxed, art-filled room for cuts, Korean perms, colour and bridal styling — by stylists Calgary trusts.",
+  heroCtaLabel: "Book your appointment",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  name: shop.name,
+  url: shop.url,
+  telephone: shop.phone,
+  image: new URL("/img/hero-interior.webp", Astro.site ?? "https://gallery-t.example.com").toString(),
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "#14 735 Ranchlands Blvd NW",
+    addressLocality: "Calgary",
+    addressRegion: "AB",
+    postalCode: "T3G 3A9",
+    addressCountry: "CA",
+  },
+  ...(shop.geo && { geo: { "@type": "GeoCoordinates", latitude: shop.geo.lat, longitude: shop.geo.lng } }),
+  openingHoursSpecification: [
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday"], opens: "10:00", closes: "18:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "17:00" },
+  ],
+  sameAs: [
+    "https://www.instagram.com/gallerythairstudio/",
+    "https://www.facebook.com/Gallerythair",
+  ],
+};
+// NOTE: no aggregateRating — we never self-rate; the 4.8★/385 is shown as social proof only.
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{shop.name} — Hair salon in Ranchlands, NW Calgary</title>
+    <meta name="description" content="Gallery T Hair Studio — cuts, Korean perms, colour, balayage and bridal styling in Ranchlands, NW Calgary. 4.8★ from 385 reviews. Book online or call 403-374-9114." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body id="top" class="bg-background text-foreground font-sans antialiased">
+    <SiteNav
+      name={shop.name}
+      bookingUrl={shop.bookingUrl}
+      bookLabel="Book"
+      links={[{ label: "Work", href: "#work" }, { label: "Services", href: "#services" }, { label: "Hours", href: "#hours" }, { label: "Visit", href: "#visit" }]}
+    />
+
+    <!-- HERO — custom "gallery wall": real interior photo + framed placard + dominant Book CTA -->
+    <section class="relative min-h-[88vh] overflow-hidden">
+      <img src={shop.heroImage} alt="Inside Gallery T Hair Studio — a stylist at work in the Ranchlands salon" loading="eager" fetchpriority="high" class="absolute inset-0 h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/45 to-black/75"></div>
+      <div class="relative z-10 mx-auto flex min-h-[88vh] max-w-6xl flex-col justify-end px-6 pb-16 pt-32 text-primary-foreground sm:pb-20">
+        <p class="text-xs font-medium uppercase tracking-[0.4em] text-accent">{h.heroKicker}</p>
+        <h1 class="mt-5 max-w-3xl font-display text-5xl font-medium leading-[0.95] sm:text-7xl lg:text-8xl">{shop.tagline}</h1>
+        <p class="mt-5 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">{h.heroSubcopy}</p>
+        <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a href={shop.bookingUrl} class="inline-flex items-center justify-center rounded-[var(--radius)] bg-accent px-8 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-accent-foreground shadow-lg transition hover:scale-[1.02] hover:opacity-95">{h.heroCtaLabel}</a>
+          <a href={`tel:${tel}`} class="inline-flex items-center justify-center rounded-[var(--radius)] border border-white/40 px-8 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm transition hover:bg-white/10">Call {phoneDisplay}</a>
+        </div>
+        <div class="mt-8 flex items-center gap-3 text-sm text-white/80">
+          <span class="text-accent" aria-hidden="true">★★★★★</span>
+          <span><span class="font-semibold text-white">4.8</span> · 385 Google reviews</span>
+        </div>
+      </div>
+    </section>
+
+    <Features label="The studio" heading="A salon that feels like a gallery" items={features} />
+
+    <!-- Curated work gallery — the studio's own B&W documentary photography, captioned as plates -->
+    <section id="work" class="scroll-mt-20 bg-muted">
+      <div class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Selected work</p>
+        <h2 class="mt-3 max-w-2xl font-display text-3xl font-medium tracking-tight text-foreground sm:text-5xl">From the chair</h2>
+        <div class="mt-12 grid gap-6 sm:grid-cols-2">
+          {gallery.map((g) => (
+            <figure class="group overflow-hidden rounded-[var(--radius)] border border-border bg-card">
+              <div class="aspect-[4/5] overflow-hidden">
+                <img src={g.src} alt={g.title} loading="lazy" class="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-[1.03] group-hover:grayscale-0" />
+              </div>
+              <figcaption class="flex items-baseline justify-between gap-4 px-5 py-4">
+                <span class="font-display text-lg text-foreground">{g.title}</span>
+                <span class="text-xs uppercase tracking-[0.18em] text-muted-foreground">{g.plate} · {g.medium}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Services — on-page menu, gallery-plate styling. Korean perm/straightening
+         flagged as studio specialties; one shared consultation footnote instead of
+         six repeated price strings so it reads curated, not blank. -->
+    <section id="services" class="scroll-mt-20">
+      <div class="mx-auto max-w-4xl px-6 py-20 sm:py-28">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">The menu</p>
+        <h2 class="mt-3 font-display text-3xl font-medium tracking-tight text-foreground sm:text-5xl">Services & specialties</h2>
+        <p class="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">Cuts, colour, perms and bridal styling — each priced to your hair at a quick consultation, so there are no surprises at checkout.</p>
+        <ul class="mt-12 divide-y divide-border border-y border-border">
+          {shop.services.map((s, i) => (
+            <li class="grid grid-cols-[auto_1fr] items-baseline gap-x-5 gap-y-1 py-6 sm:grid-cols-[auto_1fr_auto]">
+              <span class="font-display text-sm tabular-nums text-accent">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <span class="font-display text-xl text-foreground sm:text-2xl">{s.name}</span>
+                  {(s.name.includes("Korean")) && <span class="rounded-full border border-accent/50 px-2.5 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-accent">Studio specialty</span>}
+                </div>
+                <p class="mt-1 text-sm leading-relaxed text-muted-foreground">{s.description}</p>
+              </div>
+              <span class="col-start-2 text-xs uppercase tracking-[0.16em] text-muted-foreground sm:col-start-3 sm:text-right">Quoted on consultation</span>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+          <a href={shop.bookingUrl} class="inline-flex items-center justify-center rounded-[var(--radius)] bg-accent px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-accent-foreground transition hover:opacity-95">Book your appointment</a>
+          <a href={`tel:${tel}`} class="inline-flex items-center gap-2 text-sm font-semibold text-foreground transition hover:text-accent">Or call {phoneDisplay} for a quote →</a>
+        </div>
+      </div>
+    </section>
+    <Reviews blurb={shop.reviewsBlurb} rating={shop.rating} />
+    <Testimonials label="In their words" heading="Loved across NW Calgary" items={testimonials} />
+    <Hours hours={shop.hours} />
+    <ContactNAP name={shop.name} phone={shop.phone} address={shop.address} mapUrl={shop.mapUrl} serviceArea={shop.serviceArea} />
+
+    <!-- Booking enquiry → Web3Forms (host-agnostic; no activation step). Progressive
+         enhancement: JS posts JSON for an inline success state; with JS off it falls
+         back to a normal POST to the Web3Forms endpoint. -->
+    <section id="enquire" class="scroll-mt-20 bg-primary text-primary-foreground">
+      <div class="mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:py-28 lg:grid-cols-2 lg:items-center">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Get in touch</p>
+          <h2 class="mt-3 font-display text-4xl font-medium tracking-tight sm:text-5xl">Ask us anything</h2>
+          <p class="mt-4 max-w-md text-base leading-relaxed text-primary-foreground/75">Not sure which service you need, or want a quote before you book? Send a note and we'll reply — or book instantly online.</p>
+          <a href={shop.bookingUrl} class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent transition hover:opacity-80">Book online instead →</a>
+          <a href={`tel:${tel}`} class="mt-3 flex items-center gap-2 text-sm font-semibold text-accent transition hover:opacity-80">Call or text {phoneDisplay}</a>
+          <p class="mt-5 text-sm text-primary-foreground/55">{shop.address}</p>
+        </div>
+        <div>
+          <form id="enquireForm" method="POST" action="https://api.web3forms.com/submit" data-email="gallerythair@gmail.com" class="rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] p-6 backdrop-blur-sm sm:p-8">
+            <input type="hidden" name="access_key" value="a7f4a800-8a6e-442b-9b6f-ac15b3744ca7" />
+            <input type="hidden" name="subject" value="Gallery T Hair Studio — website enquiry" />
+            <input type="hidden" name="from_name" value="Gallery T Hair Studio website" />
+            <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <h3 class="font-display text-2xl text-primary-foreground">Send an enquiry</h3>
+            <div class="mt-5 grid gap-4">
+              <label class="sr-only" for="ef-name">Your name</label>
+              <input id="ef-name" name="name" required autocomplete="name" placeholder="Your name" class="rounded-[var(--radius)] border border-primary-foreground/25 bg-primary-foreground/15 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" />
+              <label class="sr-only" for="ef-email">Email</label>
+              <input id="ef-email" name="email" type="email" required autocomplete="email" placeholder="Email" class="rounded-[var(--radius)] border border-primary-foreground/25 bg-primary-foreground/15 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" />
+              <label class="sr-only" for="ef-phone">Phone</label>
+              <input id="ef-phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone (optional)" class="rounded-[var(--radius)] border border-primary-foreground/25 bg-primary-foreground/15 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" />
+              <label class="sr-only" for="ef-message">How can we help?</label>
+              <textarea id="ef-message" name="message" rows="3" required placeholder="What are you after? (a cut, colour, perm, bridal styling…)" class="rounded-[var(--radius)] border border-primary-foreground/25 bg-primary-foreground/15 px-4 py-3 text-sm text-primary-foreground placeholder:text-primary-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"></textarea>
+              <button type="submit" class="rounded-[var(--radius)] bg-accent px-5 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-accent-foreground transition hover:opacity-90">Send enquiry</button>
+              <p class="text-xs leading-relaxed text-primary-foreground/55">We'll only use your details to reply to this enquiry. Calgary salon · Alberta PIPA respected.</p>
+              <p id="enquireStatus" role="status" aria-live="polite" class="hidden text-sm font-medium text-accent"></p>
+            </div>
+          </form>
+          <div id="enquireSuccess" hidden class="rounded-[var(--radius)] border border-accent/40 bg-accent/10 p-8 text-center">
+            <p class="font-display text-2xl text-primary-foreground">Thank you — your note is in.</p>
+            <p class="mt-2 text-sm text-primary-foreground/80">We'll get back to you soon. To lock in a time now, book online any time.</p>
+            <a href={shop.bookingUrl} class="mt-4 inline-block text-sm font-semibold text-accent transition hover:opacity-80">Book online →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Faq heading="Good to know" items={faqs} />
+    <CTA phone={shop.phone} bookingUrl={shop.bookingUrl} heading="Your chair is waiting." />
+    <SiteFooter name={shop.name} address={shop.address} phone={shop.phone} />
+
+    <script is:inline>
+      (function () {
+        var form = document.getElementById("enquireForm");
+        if (!form) return;
+        var statusEl = document.getElementById("enquireStatus");
+        var success = document.getElementById("enquireSuccess");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var btn = form.querySelector("button[type=submit]");
+          var orig = btn ? btn.textContent : "";
+          if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+          if (statusEl) { statusEl.classList.add("hidden"); statusEl.textContent = ""; }
+          var data = {};
+          new FormData(form).forEach(function (v, k) { data[k] = v; });
+          fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(data) })
+            .then(function (r) { return r.json().catch(function () { return {}; }); })
+            .then(function (d) {
+              if (d && d.success) {
+                form.style.display = "none";
+                if (success) success.hidden = false;
+                success && success.scrollIntoView({ behavior: "smooth", block: "center" });
+              } else {
+                throw new Error((d && d.message) || "submit failed");
+              }
+            })
+            .catch(function () {
+              if (btn) { btn.disabled = false; btn.textContent = orig; }
+              if (statusEl) {
+                var email = form.getAttribute("data-email") || "";
+                statusEl.textContent = "Couldn't send just now — please email us at " + email + ".";
+                statusEl.classList.remove("hidden");
+              }
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>

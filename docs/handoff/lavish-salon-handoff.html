@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lavish Salon — Project Handoff · Studio0rbit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#1b1714; --paper:#fbfaf7; --card:#ffffff; --text:#26221d; --muted:#7c766c;
+    --brass:#b39668; --brass-deep:#8a7044; --dash:#e2ddd3; --page:#14110e; --good:#5f7a52;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Archivo', system-ui, sans-serif; color: var(--text);
+    background: var(--page);
+    background-image: radial-gradient(70% 46% at 50% -6%, rgba(179,150,104,.30), transparent 72%);
+    min-height: 100vh; padding: 40px 16px; font-size: 15px; line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+  .doc { position: relative; max-width: 660px; margin: 0 auto; background: var(--paper);
+    box-shadow: 0 40px 90px -34px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.04); }
+  .head { text-align: center; padding: 46px 40px 14px; }
+  .wordmark { font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 1.0rem; letter-spacing: .34em; text-transform: uppercase; color: var(--ink); }
+  .wordmark .dot { color: var(--brass-deep); }
+  .doc-type { margin-top: 12px; font-size: .66rem; letter-spacing: .36em; text-transform: uppercase; color: var(--muted); }
+  .meta { margin-top: 16px; font-size: .74rem; color: var(--muted); }
+  .meta b { color: var(--ink); font-weight: 600; }
+  .tag { display: inline-block; font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; padding: 3px 11px; border-radius: 999px; background: rgba(179,150,104,.18); color: var(--brass-deep); }
+  .sec { padding: 26px 40px; }
+  .sec + .sec { border-top: 1.5px dashed var(--dash); }
+  h2 { font-family: 'Archivo', sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--brass-deep); margin-bottom: 16px; }
+  h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.3rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; line-height: 1.2; }
+  p { margin-bottom: 10px; }
+  p:last-child { margin-bottom: 0; }
+  a { color: var(--brass-deep); }
+  .lead { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.32rem; line-height: 1.5; color: #2f2a24; }
+  .lead em { font-style: italic; color: var(--ink); }
+  .lead strong { color: var(--ink); font-weight: 600; }
+  .stat-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+  .stat { flex: 1; min-width: 120px; border: 1.5px solid var(--dash); padding: 14px 14px; text-align: center; background: var(--card); }
+  .stat .n { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; color: var(--brass-deep); line-height: 1; }
+  .stat .l { font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  .line { display: flex; align-items: baseline; gap: 8px; padding: 8px 0; }
+  .line + .line { border-top: 1px dotted var(--dash); }
+  .line .k { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); white-space: nowrap; }
+  .line .leader { flex: 1; border-bottom: 1px dotted var(--dash); transform: translateY(-3px); }
+  .line .v { text-align: right; word-break: break-word; }
+  .line .v a { text-decoration: none; }
+  .acct { padding: 13px 0; }
+  .acct + .acct { border-top: 1px dotted var(--dash); }
+  .acct .ref { font-size: .68rem; color: var(--muted); margin-top: 2px; }
+  .acct .own { font-size: .72rem; color: var(--good); margin-top: 4px; font-weight: 600; }
+  ol.steps { list-style: none; counter-reset: s; }
+  ol.steps li { counter-increment: s; position: relative; padding-left: 32px; margin-bottom: 10px; }
+  ol.steps li:last-child { margin-bottom: 0; }
+  ol.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 21px; height: 21px; background: rgba(179,150,104,.14); color: var(--brass-deep); font-size: .72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  ul.ticks { list-style: none; }
+  ul.ticks li { display: flex; gap: 10px; margin-bottom: 9px; }
+  ul.ticks li:last-child { margin-bottom: 0; }
+  ul.ticks li::before { content: "✦"; color: var(--brass); font-weight: 700; }
+  .callout { background: rgba(179,150,104,.07); border: 1.5px solid rgba(179,150,104,.26); padding: 18px 20px; }
+  .callout + .callout { margin-top: 14px; }
+  .callout h3 { color: var(--ink); }
+  .note { font-size: .76rem; color: var(--muted); line-height: 1.55; }
+  .mono { font-feature-settings: "tnum"; }
+  .foot { padding: 26px 40px 36px; border-top: 1.5px dashed var(--dash); text-align: center; }
+  .rule { height: 1px; max-width: 220px; margin: 6px auto 16px; background: linear-gradient(90deg, transparent, var(--brass), transparent); }
+  .thanks { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; letter-spacing: .04em; color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<div class="head">
+<div class="wordmark">studio0rbit<span class="dot">.</span></div>
+<div class="doc-type">Project Handoff &amp; Ownership</div>
+<div class="meta"><b>Lavish Salon</b> &nbsp;·&nbsp; 2026-06-17 &nbsp;·&nbsp; <span class="tag">Ready for review</span></div>
+</div>
+
+<section class="sec">
+<h2>The Short Version</h2>
+<p class="lead">Your new <strong>Lavish Salon</strong> site is built and live on a preview link. It's an <em>editorial, monochrome</em> design — built around your real salon photos, your 4.8-star reputation, and a clean path straight to your Phorest booking page.</p>
+<p class="lead">It's a <strong>fast, static site</strong>: every page is pre-built, so it loads quickly, ranks better, and has proper <strong>HairSalon</strong> search data, click-to-call, opening hours, a map, and a working contact form. It's a one-time build — <strong>you own every account.</strong> Everything you need is below.</p>
+<div class="stat-row">
+<div class="stat"><div class="n">4.8★</div><div class="l">Reviews shown</div></div>
+<div class="stat"><div class="n">Static</div><div class="l">Fast Astro build</div></div>
+<div class="stat"><div class="n">Tap&nbsp;to&nbsp;book</div><div class="l">Phorest + call</div></div>
+</div>
+</section>
+
+<section class="sec">
+<h2>Your Site &amp; Links</h2>
+<div class="line"><span class="k">Live site</span><span class="leader"></span><span class="v"><a href="https://studio0rbit-lavish-salon.netlify.app">studio0rbit-lavish-salon.netlify.app</a></span></div>
+<div class="line"><span class="k">Online booking</span><span class="leader"></span><span class="v"><a href="https://phorest.com/book/salons/lavishsalon">Phorest (unchanged)</a></span></div>
+<div class="line"><span class="k">Call / text</span><span class="leader"></span><span class="v mono"><a href="tel:+14032445162">(403) 244-5162</a></span></div>
+<div class="line"><span class="k">Address</span><span class="leader"></span><span class="v">9919 Fairmount Dr SE #143, Calgary</span></div>
+<div class="line"><span class="k">Form messages</span><span class="leader"></span><span class="v">Web3Forms → our inbox (for now — see below)</span></div>
+</section>
+
+<section class="sec">
+<h2>What's On The Page</h2>
+<ul class="ticks">
+<li><strong>Editorial hero</strong> with your real salon interior, your wordmark, and a one-tap <em>Book now</em> button.</li>
+<li><strong>Services</strong> — Cuts, Colour, Styling, Treatments, Extensions (no invented prices; we can add your real pricing any time).</li>
+<li><strong>Reviews section</strong> built around your genuine 4.8★ / 780+ Google rating — no fabricated quotes.</li>
+<li><strong>Hours, map, click-to-call NAP</strong>, an enquiry form, FAQ, and a closing booking call-to-action.</li>
+<li><strong>Search structured data</strong> (<span class="mono">HairSalon</span> schema with your address, geo, and opening hours) so Google reads your details correctly.</li>
+</ul>
+</section>
+
+<section class="sec">
+<h2>Your Contact Form</h2>
+<div class="callout">
+<h3>How messages reach you</h3>
+<p class="note" style="margin-top:6px;">The enquiry form runs on <strong>Web3Forms</strong> — a lightweight form service that needs no server and no GitHub. <strong>Right now it delivers to our Studio0rbit inbox</strong> so it's tested and working from day one. When you're ready to go live, we swap in <strong>your own free Web3Forms key</strong> (a 2-minute change) so every enquiry lands straight in your salon's email. Instant bookings still go through Phorest as usual — the form is just for questions and notes.</p>
+</div>
+</section>
+
+<section class="sec">
+<h2>Editing The Site Today</h2>
+<div class="callout">
+<h3>No content system yet — edits are made in code</h3>
+<p class="note" style="margin-top:6px;">This build ships <strong>without a CMS</strong>, which keeps it lean and fast. Today, changes to text, images, hours, or services are quick code edits we make for you on request. If you'd like to edit the site yourself — change copy, swap photos, update hours from your phone — that's our <strong>Storyblok CMS add-on</strong>: we wire in a simple visual editor where you click a block, type, and hit Publish. Just say the word and we'll quote it.</p>
+</div>
+<p class="note" style="margin-top:12px;">Either way, the site is engineered so the content layer can be added later without a rebuild.</p>
+</section>
+
+<section class="sec">
+<h2>What You Own &amp; How To Take It</h2>
+<p class="note" style="margin-bottom:14px;">Right now the accounts sit under our setup email so we could build it for you. Transfer is always by <strong>invite or password-reset to your own email</strong> — <strong>never a shared plaintext password.</strong></p>
+<div class="acct">
+<h3>Hosting — Netlify</h3>
+<div class="ref">site "studio0rbit-lavish-salon"</div>
+<div class="own">→ we invite your email as Admin, then step off the account</div>
+</div>
+<div class="acct">
+<h3>Contact form — Web3Forms</h3>
+<div class="ref">free; one access key per inbox</div>
+<div class="own">→ you create a free key on your email; we swap it in</div>
+</div>
+<div class="acct">
+<h3>Booking — Phorest</h3>
+<div class="ref">already yours</div>
+<div class="own">→ unchanged; the site just links to it</div>
+</div>
+<div class="acct">
+<h3>Domain</h3>
+<div class="ref">your existing web address</div>
+<div class="own">→ stays yours; we point it at the new site when you're ready (below)</div>
+</div>
+<div class="acct">
+<h3>Content system — Storyblok (optional add-on)</h3>
+<div class="ref">not set up in this build</div>
+<div class="own">→ added only if you want self-editing; the space would be created on your email</div>
+</div>
+</section>
+
+<section class="sec">
+<h2>Next Steps</h2>
+<ol class="steps">
+<li>Review the site on the preview link above and tell us anything you'd like changed.</li>
+<li>When you're happy, we create your free Web3Forms key so enquiries come to <strong>your</strong> inbox.</li>
+<li>We point your existing domain at the new site (your address stays the same — see below).</li>
+<li>We invite your email to the Netlify account as Admin and step off, so it's fully yours.</li>
+<li>Optional: add the Storyblok CMS add-on so you can edit copy and photos yourself.</li>
+</ol>
+</section>
+
+<section class="sec">
+<h2>Going Live On Your Domain</h2>
+<p class="note">The site is on a free <span class="mono">studio0rbit-lavish-salon.netlify.app</span> address so you can review it safely. When you're ready to launch on your own web address:</p>
+<ul class="ticks" style="margin-top:10px;">
+<li>Your web address <strong>stays exactly the same</strong> — a domain is separate from the site behind it. We just re-route it to the new site.</li>
+<li><strong>No downtime, no risk to your email.</strong> Your old site stays live until we flip the switch, and your email keeps working untouched.</li>
+<li>You only cancel any old Wix/Squarespace/WordPress subscription <strong>after</strong> the new site is confirmed live on your domain.</li>
+</ul>
+<p class="note" style="margin-top:10px;">You don't touch anything technical — we do the cutover. HTTPS (the padlock) is automatic.</p>
+</section>
+
+<section class="sec">
+<h2>Good To Know — Honest On Speed</h2>
+<ul class="ticks">
+<li><strong>Real photos, your own.</strong> The imagery comes from your existing site and Google profile — we can swap any of it.</li>
+<li><strong>No fake details.</strong> We didn't invent reviews, prices, or contact info. The trust signals — the 4.8★, the 780+ review count, your product partners — are all real and verifiable.</li>
+<li><strong>Honest on speed.</strong> A static Astro site is genuinely fast, and we'll share its Google PageSpeed score after launch. We quote that score and the move to a fast static stack — <em>not</em> a "loads in X seconds" promise, because Google's lab numbers aren't real-world user data.</li>
+</ul>
+</section>
+
+<div class="foot">
+<div class="rule"></div>
+<div class="thanks">— Studio0rbit · Calgary · Built for Lavish —</div>
+</div>
+
+</div>
+</body>
+</html>
