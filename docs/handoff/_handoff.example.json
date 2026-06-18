@@ -1,0 +1,42 @@
+{
+  "_comment": "Template for `node scripts/render-handoff.mjs <this>.json`. Copy to <slug>.handoff.json and fill. All fields optional except `client`; omit a section's key to drop it. Inline text supports **bold**, [label](url), and `code`. Real example: bitcoin-manor.handoff.json.",
+  "client": "Client Name",
+  "slug": "client-slug",
+  "date": "YYYY-MM-DD",
+  "statusTag": "LIVE",
+  "lead": [
+    "A plain-language **results** paragraph — what was delivered and why it's better.",
+    "A second paragraph: honest measured win + that the client **owns every account**."
+  ],
+  "stats": [
+    { "n": "67→85", "l": "PageSpeed (mobile)" },
+    { "n": "A", "l": "Accessibility" }
+  ],
+  "links": [
+    { "k": "Live site", "label": "slug.netlify.app", "href": "https://slug.netlify.app" },
+    { "k": "Edit content", "label": "Storyblok", "href": "https://app.storyblok.com/#/me/spaces/SPACE_ID" },
+    { "k": "Hosting", "label": "Netlify dashboard", "href": "https://app.netlify.com/projects/slug" }
+  ],
+  "ownershipIntro": "Accounts sit under our setup email so we could build it; transfer is by invite — never a shared password.",
+  "accounts": [
+    { "name": "Hosting — Netlify", "ref": "site “slug”", "own": "→ invite your email as Admin, we step off" },
+    { "name": "CMS — Storyblok", "ref": "space #SPACE_ID", "own": "→ invite your email, reset password" }
+  ],
+  "editSteps": [
+    "Sign in to [app.storyblok.com](https://app.storyblok.com) with your email.",
+    "Open your space → your story, edit any field, then click **Publish**."
+  ],
+  "finishingSteps": [
+    { "title": "1 · Auto-publish", "body": "Connect repo + build hook + Storyblok webhook so Publish updates the live site in ~1 min." }
+  ],
+  "goingLive": {
+    "intro": "The site is on a free `*.netlify.app` address. To launch on the real domain:",
+    "options": ["Point the domain at the new site in Netlify → Domain management."],
+    "note": "HTTPS is automatic."
+  },
+  "notes": [
+    "**Real photos, your own** — swap any in Storyblok.",
+    "**Honest on speed** — we quote the PageSpeed score, not a lab “seconds” figure."
+  ],
+  "footer": "— Studio0rbit · Calgary · Built for you —"
+}
