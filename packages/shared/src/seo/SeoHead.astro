@@ -1,0 +1,54 @@
+---
+// Shared per-shop SEO head. Emits title, description, an ABSOLUTE canonical URL,
+// Open Graph + Twitter card tags (image resolved to an absolute URL — relative
+// og:image paths are silently ignored by scrapers), robots, and theme-color.
+//
+// Absolute URLs derive from `Astro.site`, so every site MUST set `site:` in its
+// astro.config.mjs (see create-shop-site). A fallback origin keeps the build from
+// crashing if `site:` is missing, but it will be wrong — set `site:` per shop.
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;   // route path for canonical + og:url, e.g. "/" or "/menu"
+  image?: string;           // absolute URL or site-root path (e.g. "/og.png"); resolved absolute
+  siteName?: string;        // og:site_name — defaults to title
+  type?: string;            // og:type — defaults to "website"
+  themeColor?: string;      // <meta name="theme-color"> — brand primary in hex
+}
+const {
+  title,
+  description,
+  canonicalPath = "/",
+  image = "/og.png",
+  siteName,
+  type = "website",
+  themeColor,
+} = Astro.props;
+
+// `site:` is the source of truth for absolute URLs. Fallback keeps builds green
+// but is intentionally generic — set `site:` in astro.config.mjs for each shop.
+const site = Astro.site ?? new URL("https://example.com");
+const canonical = new URL(canonicalPath, site).href;
+// Resolve og:image to an absolute URL whether passed as a full URL or a root path.
+const ogImage = /^https?:\/\//.test(image) ? image : new URL(image, site).href;
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content={siteName ?? title} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<meta name="robots" content="index, follow" />
+{themeColor && <meta name="theme-color" content={themeColor} />}

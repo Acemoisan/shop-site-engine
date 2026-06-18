@@ -12,6 +12,7 @@ import Reviews from "@studio0rbit/shared/components/Reviews.astro";
 import CTA from "@studio0rbit/shared/components/CTA.astro";
 import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
 import LocalBusinessJsonLd from "@studio0rbit/shared/seo/LocalBusinessJsonLd.astro";
+import SeoHead from "@studio0rbit/shared/seo/SeoHead.astro";
 
 // Local defaults — used as fallback if Storyblok is unavailable or a field is empty.
 let shop: ShopContent = fallback;
@@ -51,12 +52,22 @@ if (token) {
   }
 }
 console.log(`[demo-cafe] content source: ${source}`);
+
+// SEO meta. Description falls back to tagline + service area when no review blurb.
+const metaDescription = `${shop.name} — ${shop.tagline} ${shop.reviewsBlurb ?? `Visit us in ${shop.serviceArea ?? "Calgary"}.`}`.trim();
 ---
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{shop.name} — {shop.tagline}</title>
+    <SeoHead
+      title={`${shop.name} — ${shop.tagline}`}
+      description={metaDescription}
+      canonicalPath="/"
+      image={shop.heroImage}
+      siteName={shop.name}
+      themeColor="#7a4f2b"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />

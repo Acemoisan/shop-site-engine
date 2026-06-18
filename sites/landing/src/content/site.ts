@@ -2,15 +2,6 @@
 // Kept as a typed object so it can later be driven by Storyblok using the same
 // fetch-with-fallback pattern as the demo sites.
 
-export interface Tier {
-  name: string;
-  price: string;
-  cadence: string;
-  blurb: string;
-  features: string[];
-  featured?: boolean;
-  cta: string;
-}
 export interface Step { n: string; title: string; body: string }
 export interface Benefit { title: string; body: string; icon: string }
 export interface Faq { q: string; a: string }
@@ -40,8 +31,8 @@ export const site = {
 
   hero: {
     eyebrow: "Websites for Calgary shops",
-    headline: "Built fast. Owned by you.",
-    sub: "You own the site, the domain, everything — built once for one fair price, no monthly fees ever. A fast, mobile-first website that gets your Calgary shop found on Google and turns visitors into calls, bookings, and customers.",
+    headline: "Beautifully built. Owned by you.",
+    sub: "A beautifully designed, fast website you own outright — built once for one fair price, no monthly fees ever. Mobile-first and made to get your Calgary shop found on Google and turn visitors into calls, bookings, and customers.",
     ctaPrimary: { label: "Get a free website audit", href: "#contact" },
     ctaSecondary: { label: "Browse templates", href: "/templates" },
     trust: [
@@ -67,7 +58,7 @@ export const site = {
   benefits: [
     { icon: "search", title: "Found on Google", body: "Local SEO and a complete business profile so '[your service] near me' finds you — not your competitor." },
     { icon: "bolt", title: "Fast on every phone", body: "Loads in under two seconds. No clunky, dated layouts that bounce customers." },
-    { icon: "target", title: "Built to convert", body: "Click-to-call, hours, map, reviews, and online booking or ordering exactly where they count." },
+    { icon: "target", title: "Designed to convert", body: "A polished, custom design — not a tired template — with click-to-call, hours, map, reviews, and booking exactly where they count." },
     { icon: "pencil", title: "Yours to edit", body: "Change text, photos, hours, and menus yourself in a simple visual editor. No code, no waiting on us." },
     { icon: "key", title: "Truly yours", body: "You own the domain, the hosting, and the site. No subscription to us. Ever." },
     { icon: "shield", title: "Low-maintenance by design", body: "No plugins to update, no security treadmill. Built to just keep working." },
@@ -80,42 +71,44 @@ export const site = {
   ] as Step[],
 
   pricing: {
-    heading: "One fair price. No surprises. No monthly bills.",
-    note: "Your only ongoing cost is your domain (~$15/year) and any business tools you already use.",
+    heading: "One website. One fair price.",
+    // Single flat fee — every local-business site ships the same core components.
+    // No tiers (they bloat the build & the decision); bigger needs are add-ons.
+    offer: {
+      name: "The whole website",
+      price: "$1,500",
+      cadence: "one-time · you own everything",
+      blurb: "Everything a local shop needs to get found and win customers — custom-designed, built on our fast engine, and handed over completely. No tiers, no monthly fees.",
+      includes: [
+        "Custom design — built for your brand, not a tired template",
+        "Mobile-first & fast — loads in under two seconds",
+        "Found on Google — local SEO + LocalBusiness markup",
+        "Everything customers need: services, hours, map, click-to-call, reviews",
+        "Online booking or ordering button, wired to your tools",
+        "Self-edit visual CMS — change text, photos & hours yourself",
+        "Full handover — domain, hosting & site, all in your name",
+      ],
+      cta: "Get my free audit",
+    },
+    addons: {
+      heading: "Bigger needs? Add them on.",
+      note: "Each quoted up front as a one-time add-on — no surprises. Something unusual? We'll give you a custom quote.",
+      items: [
+        "Online store / e-commerce",
+        "Extra pages or sections",
+        "Full professional copywriting",
+        "Multi-location setup",
+        "Photo sourcing & editing",
+      ],
+    },
+    note: "Your only ongoing cost is your domain (~$15/year) and any business tools you already use. Need a change later? We do it as a one-off — pay per change, never a subscription.",
     guarantee: "See your design first — you approve it before you pay the balance. No deposit lost, no risk.",
     compare: {
       heading: "Pay once. Own it forever.",
       body: "A typical “$99/month” website costs you about $3,600 over three years — and you never own it. Stop paying and it vanishes. Ours is one fixed price, then it’s yours: the site, the domain, the accounts. Forever.",
       them: { label: "Subscription site", value: "~$3,600", sub: "over 3 years · you own nothing" },
-      us: { label: "Studio0rbit", value: "from $1,800", sub: "one time · you own everything" },
+      us: { label: "Studio0rbit", value: "$1,500", sub: "one time · you own everything" },
     },
-    tiers: [
-      {
-        name: "Starter",
-        price: "$1,800",
-        cadence: "one-time, from",
-        blurb: "A clean, credible online presence.",
-        features: ["Up to 3 sections", "Mobile-first & fast", "Found on Google (local SEO)", "Edit it yourself", "Full account handover"],
-        cta: "Get started",
-      },
-      {
-        name: "Growth",
-        price: "$3,500",
-        cadence: "one-time, from",
-        blurb: "Drives calls, bookings, and visits.",
-        features: ["Everything in Starter", "4–6 sections / pages", "Online booking or ordering", "Reviews & full copywriting", "Conversion-focused layout"],
-        featured: true,
-        cta: "Get started",
-      },
-      {
-        name: "Pro",
-        price: "$6,000",
-        cadence: "one-time, from",
-        blurb: "Online ordering, e-commerce, or multi-location.",
-        features: ["Everything in Growth", "E-commerce or online ordering", "Product / menu structured data", "Multi-location ready", "Extra integrations"],
-        cta: "Let's talk",
-      },
-    ] as Tier[],
   },
 
   why: {
@@ -150,17 +143,25 @@ export const site = {
     { q: "Do you do maintenance?", a: "No ongoing contracts. Your site is low-maintenance by design. Need a change down the road? We quote it as a one-off." },
   ] as Faq[],
 
+  // Kept for JSON-LD structured data (a real person behind the business). Not
+  // rendered as a page section right now — the testimonials section took its slot.
   founder: {
     name: "Aidan Moisan",
     role: "Founder & developer · Studio0rbit",
-    // Optional headshot. Drop a square photo in public/ and set the path here
-    // (e.g. "/aidan.jpg") to replace the monogram — a real face converts best.
-    photo: "",
-    body: [
-      "You're not hiring a faceless agency or a logo — you're hiring me. I build your site once, on my own fast engine, hand you every login, and walk away.",
-      "No retainer, no lock-in, no monthly invoice. I'd rather earn the next shop's business by doing genuinely good work than by billing you forever. That's the whole idea behind Studio0rbit.",
+  },
+
+  testimonials: {
+    heading: "What Calgary shop owners say",
+    sub: "Real results from real local businesses.",
+    // ⚠️ PLACEHOLDER reviews — these are SAMPLE quotes for layout only.
+    // Replace every entry with a REAL client quote (with their permission) before
+    // publishing. Do NOT deploy these as-is — they are not real reviews yet.
+    placeholder: true,
+    items: [
+      { quote: "The new site paid for itself in the first month — we're getting booking requests from people who'd never have found us before. And I can update the menu myself in two minutes.", name: "Sample Name", business: "Sample Café", area: "Kensington", rating: 5 },
+      { quote: "Fast, painless, and exactly what we asked for. No monthly bill, no being locked in. We own everything and it just works.", name: "Sample Name", business: "Sample Barbershop", area: "Beltline", rating: 5 },
+      { quote: "Our phone actually rings now. Customers tell us the site looks more professional than shops twice our size.", name: "Sample Name", business: "Sample Studio", area: "Inglewood", rating: 5 },
     ],
-    signature: "— Aidan, Calgary",
   },
 
   finalCta: {
@@ -173,6 +174,6 @@ export const site = {
     heading: "Get your free audit",
     body: "Tell us about your shop and we'll send back a short, specific plan — what's working, what isn't, and what we'd build. You'll hear back within one business day.",
     reassure: "No spam, no sales calls — one helpful reply from a real person.",
-    pipaNote: "We use your details only to prepare your audit and reply. Handled per Alberta's PIPA.",
+    pipaNote: "We use your details only to prepare your audit and reply. Handled per Alberta's PIPA. This form is processed by Web3Forms and the site is hosted on Netlify (both US-based), so your information may be stored or accessed outside Canada.",
   },
 } as const;

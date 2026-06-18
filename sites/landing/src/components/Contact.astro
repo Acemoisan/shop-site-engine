@@ -52,6 +52,15 @@ const f = site.finalCta;
           <input id="cf-email" name="email" type="email" required autocomplete="email" placeholder="Email" class="rounded-[var(--radius)] border border-ink-foreground/25 bg-ink-foreground/15 px-4 py-3 text-sm text-ink-foreground placeholder:text-ink-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" />
           <label class="sr-only" for="cf-website">Current website, if any</label>
           <input id="cf-website" name="website" autocomplete="url" placeholder="Current website (optional)" class="rounded-[var(--radius)] border border-ink-foreground/25 bg-ink-foreground/15 px-4 py-3 text-sm text-ink-foreground placeholder:text-ink-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" />
+          <label class="sr-only" for="cf-interest">What are you looking for?</label>
+          <select id="cf-interest" name="interest" class="rounded-[var(--radius)] border border-ink-foreground/25 bg-ink-foreground/15 px-4 py-3 text-sm text-ink-foreground focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60">
+            <option value="">What are you looking for? (optional)</option>
+            <option value="Website ($1,500)">A new website ($1,500 flat)</option>
+            <option value="Website + online store">Website + online store / ordering</option>
+            <option value="Website + booking">Website + online booking</option>
+            <option value="Touch-up">A fix / touch-up to my current site</option>
+            <option value="Not sure">Not sure yet — help me choose</option>
+          </select>
           <label class="sr-only" for="cf-message">What do you need?</label>
           <textarea id="cf-message" name="message" rows="3" placeholder="What do you need? (optional — a new site, bookings, online ordering...)" class="rounded-[var(--radius)] border border-ink-foreground/25 bg-ink-foreground/15 px-4 py-3 text-sm text-ink-foreground placeholder:text-ink-foreground/60 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"></textarea>
           <button type="submit" class="rounded-[var(--radius)] bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90">{f.cta.label}</button>
