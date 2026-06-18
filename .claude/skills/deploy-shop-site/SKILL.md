@@ -64,6 +64,15 @@ Most real clients already have a domain (often with an old Wix/WordPress/Squares
 
 **Capture at intake (so cutover is frictionless):** where the domain is registered, where email is hosted, and whether the domain was bought through their old site platform.
 
+## Search Console readiness (do this at cutover — it's how real SEO gets proven later)
+Lighthouse/seomator measure the *site*; **Google Search Console (GSC)** measures the *outcome* — real impressions, clicks, queries, average position, and real-user CWV. It's the only free source of ranking/traffic truth, and the **single most valuable handoff add-on** because the GSC property + its history **survive the domain cutover** (same domain = same property), so the pre-cutover numbers become the honest "before."
+
+Every site is already GSC-ready — make it trivial to verify and start clean:
+- **Verify ownership** the moment the domain is on the new site. Two easy ways: (1) drop the GSC **"HTML tag" token** into `SeoHead`'s `gscVerification` prop (renders `<meta name="google-site-verification">`) and redeploy; or (2) add the GSC **DNS TXT** record at the registrar (cleaner, host-agnostic). Verify under the **client's** Google account so they own the property.
+- **Submit the sitemap:** in GSC → Sitemaps, enter `sitemap-index.xml` (we ship it on every build + reference it in `robots.txt`). This gets pages indexed fast and starts GSC data clean.
+- **If the client already has a Wix GSC property**, keep it — verify the new site under the same property so history carries over; don't start a fresh one.
+- **Don't promise instant results.** GSC data accrues over weeks — it's a "check back in ~6 weeks" artifact, not a launch-day metric. A one-time **baseline snapshot now + a paid "6-week results check"** is the honest, no-retainer way to show real ranking/traffic movement (a clean technical score is never a ranking).
+
 ## Fast paths for OUR demos (no client handoff)
 - **Netlify Drop** (fastest): build, then drag `sites/<slug>/dist` onto https://app.netlify.com/drop → instant URL. Manual re-drop to update.
 - **Cloudflare Pages (token, headless — verified 2026-06-18):** creds live in `secrets/cloudflare.env` (gitignored: API token scoped `Account → Cloudflare Pages → Edit`, + `CLOUDFLARE_ACCOUNT_ID`). From repo root: `set -a; source secrets/cloudflare.env; set +a`, then `npx wrangler pages project create <slug> --production-branch=main` (first time) and `npx wrangler pages deploy sites/<slug>/dist --project-name=<slug> --branch=main`. No GitHub/login prompt; mirrors the Netlify token flow. First proof: `sites/maw` → `maw-cnt.pages.dev`. (`wrangler whoami` ERRORs on this token — harmless; deploy uses the explicit account ID. Use the `<project>.pages.dev` URL, not the per-deploy hash subdomain.) Details: memory `cloudflare-credentials`.

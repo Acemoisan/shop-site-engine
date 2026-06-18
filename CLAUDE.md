@@ -69,7 +69,7 @@ Tailwind v4 auto-scans only the importing site's directory. Classes used **only 
 | `CTA.astro` | `phone, bookingUrl?, heading?` | Closing call/book CTA |
 | `SiteFooter.astro` | `name, address, phone` | Footer |
 | `Icon.astro` | `name, class?` | Inline-SVG icon set (no dependency) |
-| `seo/SeoHead.astro` | `title, description, canonicalPath?, image?, siteName?, type?, themeColor?` | Per-shop SEO `<head>`: canonical + **absolute-URL** OG/Twitter + robots + theme-color (resolves absolute URLs from `Astro.site`) |
+| `seo/SeoHead.astro` | `title, description, canonicalPath?, image?, siteName?, type?, themeColor?, gscVerification?` | Per-shop SEO `<head>`: canonical + **absolute-URL** OG/Twitter + robots + theme-color (resolves absolute URLs from `Astro.site`); `gscVerification` drops in a Google Search Console token at cutover |
 | `seo/LocalBusinessJsonLd.astro` | `shop` | `LocalBusiness` JSON-LD (name+address required) |
 
 Content shape is the `ShopContent` type in `packages/shared/src/types/shop.ts`. Full props + usage live in the `shop-templates` skill.

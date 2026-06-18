@@ -71,6 +71,7 @@ All content (frames, prices, hours, studio details, FAQs) lives in **one file**:
 - [ ] Custom domain added in Netlify · DNS: A root → `75.2.60.5`, CNAME `www` → `eye-candy-optical-yyc.netlify.app`
 - [ ] **MX left untouched** — mail still flows · HTTPS cert issued
 - [ ] Set `site:` in `astro.config.mjs` is already the production domain ✓
+- [ ] **Search Console:** verify the domain under the *client's* Google account (drop the GSC token into `SeoHead`'s `gscVerification` prop, or add a DNS TXT) + submit `sitemap-index.xml` — starts real search-data tracking and keeps any existing Wix-era history. Baseline snapshot now; offer a paid 6-week results check.
 - [ ] Client told it's safe to cancel Wix
 
 ## 6. Operator sign-off (Gate 2)

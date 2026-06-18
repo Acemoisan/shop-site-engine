@@ -14,6 +14,9 @@ interface Props {
   siteName?: string;        // og:site_name — defaults to title
   type?: string;            // og:type — defaults to "website"
   themeColor?: string;      // <meta name="theme-color"> — brand primary in hex
+  gscVerification?: string; // Google Search Console "HTML tag" token — drop in at
+                            // cutover so the client owns the property + sees real
+                            // search data from day one. Renders only when set.
 }
 const {
   title,
@@ -23,6 +26,7 @@ const {
   siteName,
   type = "website",
   themeColor,
+  gscVerification,
 } = Astro.props;
 
 // `site:` is the source of truth for absolute URLs. Fallback keeps builds green
@@ -52,3 +56,4 @@ const ogImage = /^https?:\/\//.test(image) ? image : new URL(image, site).href;
 
 <meta name="robots" content="index, follow" />
 {themeColor && <meta name="theme-color" content={themeColor} />}
+{gscVerification && <meta name="google-site-verification" content={gscVerification} />}
