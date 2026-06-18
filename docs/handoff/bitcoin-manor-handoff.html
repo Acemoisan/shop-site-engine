@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitcoin Manor — Project Handoff · Studio0rbit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#14111f; --paper:#ffffff; --text:#1b1730; --muted:#726e89;
+    --indigo:#5b4de3; --cyan:#1fbed4; --dash:#cdc9dd; --page:#0e0b16; --good:#0f9d63;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif; color: var(--text);
+    background: var(--page);
+    background-image: radial-gradient(72% 48% at 50% -8%, rgba(91,77,227,.45), transparent 70%);
+    min-height: 100vh; padding: 40px 16px; font-size: 15px; line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+  .receipt {
+    position: relative; max-width: 640px; margin: 0 auto; background: var(--paper);
+    box-shadow: 0 40px 90px -34px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.05);
+  }
+  .receipt::before, .receipt::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 12px;
+    background: radial-gradient(circle 7px at 11px 0, var(--page) 7px, transparent 8px) repeat-x;
+    background-size: 22px 12px;
+  }
+  .receipt::before { top: 0; transform: rotate(180deg); }
+  .receipt::after { bottom: 0; }
+  .rcpt-head { text-align: center; padding: 42px 36px 10px; }
+  .wordmark { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: .3em; text-transform: uppercase; color: var(--ink); }
+  .wordmark .dot { color: var(--indigo); }
+  .doc-type { margin-top: 10px; font-family: 'Space Mono', monospace; font-size: .68rem; letter-spacing: .34em; text-transform: uppercase; color: var(--muted); }
+  .meta { margin-top: 14px; font-family: 'Space Mono', monospace; font-size: .72rem; color: var(--muted); }
+  .meta b { color: var(--ink); font-weight: 700; }
+  .sec { padding: 24px 36px; }
+  .sec + .sec { border-top: 1.5px dashed var(--dash); }
+  h2 { font-family: 'Space Grotesk', sans-serif; font-size: .76rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--indigo); margin-bottom: 14px; }
+  h3 { font-family: 'Space Grotesk', sans-serif; font-size: .95rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  p { margin-bottom: 10px; }
+  p:last-child { margin-bottom: 0; }
+  a { color: var(--indigo); }
+  /* Lead / results message */
+  .lead { font-size: 1.02rem; line-height: 1.7; color: #2a2640; }
+  .lead strong { color: var(--ink); }
+  .stat-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .stat { flex: 1; min-width: 120px; border: 1.5px solid var(--dash); border-radius: 12px; padding: 12px 14px; text-align: center; }
+  .stat .n { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--indigo); }
+  .stat .l { font-family: 'Space Mono', monospace; font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+  /* Itemized link rows (receipt line items with dotted leaders) */
+  .line { display: flex; align-items: baseline; gap: 8px; padding: 7px 0; }
+  .line + .line { border-top: 1px dotted var(--dash); }
+  .line .k { font-family: 'Space Mono', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); white-space: nowrap; }
+  .line .leader { flex: 1; border-bottom: 1px dotted var(--dash); transform: translateY(-3px); }
+  .line .v { text-align: right; word-break: break-word; }
+  .line .v a { text-decoration: none; }
+  /* Account blocks */
+  .acct { padding: 12px 0; }
+  .acct + .acct { border-top: 1px dotted var(--dash); }
+  .acct .own { font-family: 'Space Mono', monospace; font-size: .72rem; color: var(--good); margin-top: 3px; }
+  .acct .ref { font-family: 'Space Mono', monospace; font-size: .68rem; color: var(--muted); margin-top: 2px; }
+  /* Numbered steps */
+  ol.steps { list-style: none; counter-reset: s; }
+  ol.steps li { counter-increment: s; position: relative; padding-left: 30px; margin-bottom: 9px; }
+  ol.steps li:last-child { margin-bottom: 0; }
+  ol.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 20px; height: 20px; border-radius: 6px; background: rgba(91,77,227,.1); color: var(--indigo); font-family: 'Space Mono', monospace; font-size: .72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  ul.ticks { list-style: none; }
+  ul.ticks li { display: flex; gap: 10px; margin-bottom: 8px; }
+  ul.ticks li::before { content: "✓"; color: var(--cyan); font-weight: 700; }
+  .callout { background: rgba(91,77,227,.06); border: 1.5px solid rgba(91,77,227,.22); border-radius: 14px; padding: 18px 20px; }
+  .callout h3 { color: var(--ink); }
+  .note { font-family: 'Space Mono', monospace; font-size: .72rem; color: var(--muted); }
+  .tag { display: inline-block; font-family: 'Space Mono', monospace; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: rgba(31,190,212,.14); color: #0b7c8c; }
+  .rcpt-foot { padding: 24px 36px 34px; border-top: 1.5px dashed var(--dash); text-align: center; }
+  .barcode { height: 40px; max-width: 230px; margin: 6px auto 14px; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, #fff 2px 4px, var(--ink) 4px 5px, #fff 5px 9px, var(--ink) 9px 11px, #fff 11px 14px); }
+  .thanks { font-family: 'Space Mono', monospace; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="receipt">
+
+  <div class="rcpt-head">
+    <div class="wordmark">studio0rbit<span class="dot">.</span></div>
+    <div class="doc-type">Project Handoff &amp; Ownership</div>
+    <div class="meta"><b>Bitcoin Manor</b> &nbsp;·&nbsp; 2026-06-17 &nbsp;·&nbsp; <span class="tag">LIVE</span></div>
+  </div>
+
+  <!-- ── Results message ─────────────────────────────────────── -->
+  <section class="sec">
+    <h2>The Short Version</h2>
+    <p class="lead">Your new <strong>Bitcoin Manor</strong> site is <strong>live</strong>. We rebuilt your homepage as a fast, static brand site — using <strong>your own product photography</strong>, pulled straight from your existing store — and it links directly into your shop for every purchase, so <strong>nothing about your checkout changes.</strong></p>
+    <p class="lead">On Google's PageSpeed test it went from <strong>67 → 85</strong> on mobile, earned an <strong>A for accessibility</strong>, added proper search structured data, and now has a working contact form your old page didn't. It's a one-time build — <strong>you own every account.</strong> Everything you need is below.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="n">67→85</div><div class="l">PageSpeed (mobile)</div></div>
+      <div class="stat"><div class="n">A</div><div class="l">Accessibility</div></div>
+      <div class="stat"><div class="n">4.8★</div><div class="l">Reviews shown</div></div>
+    </div>
+  </section>
+
+  <!-- ── Live site & links ───────────────────────────────────── -->
+  <section class="sec">
+    <h2>Your Site &amp; Edit Links</h2>
+    <div class="line"><span class="k">Live site</span><span class="leader"></span><span class="v"><a href="https://bitcoin-manor-yyc.netlify.app">bitcoin-manor-yyc.netlify.app</a></span></div>
+    <div class="line"><span class="k">Edit content</span><span class="leader"></span><span class="v"><a href="https://app.storyblok.com/#/me/spaces/293262123963428">Storyblok → “bitcoin-manor”</a></span></div>
+    <div class="line"><span class="k">Hosting / deploys</span><span class="leader"></span><span class="v"><a href="https://app.netlify.com/projects/bitcoin-manor-yyc">Netlify dashboard</a></span></div>
+    <div class="line"><span class="k">Form messages</span><span class="leader"></span><span class="v">Netlify → Forms → “contact”</span></div>
+    <div class="line"><span class="k">Your store</span><span class="leader"></span><span class="v"><a href="https://bitcoinmanor.com/bitcoin-merchandise-store/">bitcoinmanor.com (unchanged)</a></span></div>
+  </section>
+
+  <!-- ── Ownership ───────────────────────────────────────────── -->
+  <section class="sec">
+    <h2>What You Own &amp; How To Take It</h2>
+    <p class="note" style="margin-bottom:12px;">Right now both accounts sit under our setup email so we could build it for you. Transfer is by invite — never a shared password.</p>
+    <div class="acct">
+      <h3>Hosting — Netlify</h3>
+      <div class="ref">site “bitcoin-manor-yyc”</div>
+      <div class="own">→ invite your email as Admin, we step off</div>
+    </div>
+    <div class="acct">
+      <h3>CMS — Storyblok (free Starter plan)</h3>
+      <div class="ref">space “Bitcoin Manor” · #293262123963428</div>
+      <div class="own">→ invite your email as collaborator, reset password</div>
+    </div>
+    <div class="acct">
+      <h3>Contact form — Netlify Forms</h3>
+      <div class="ref">transfers with the Netlify site</div>
+      <div class="own">→ already capturing messages, verified working</div>
+    </div>
+    <div class="acct">
+      <h3>Domain &amp; store — bitcoinmanor.com</h3>
+      <div class="ref">already yours (WordPress / WooCommerce)</div>
+      <div class="own">→ unchanged; point it at the new site when ready (below)</div>
+    </div>
+  </section>
+
+  <!-- ── Editing ─────────────────────────────────────────────── -->
+  <section class="sec">
+    <h2>Editing Your Site</h2>
+    <ol class="steps">
+      <li>Sign in to <a href="https://app.storyblok.com">app.storyblok.com</a> with your email (after the invite above).</li>
+      <li>Open the <b>Bitcoin Manor</b> space → the <b>bitcoin-manor</b> story.</li>
+      <li>Edit any text, price, link, image, or the product cards — sections can be added, reordered, or removed.</li>
+      <li>Click <b>Publish</b> (not just Save). See the next box about edits going live.</li>
+      <li>Use <b>History</b> to restore any earlier version.</li>
+    </ol>
+  </section>
+
+  <!-- ── Two finishing steps ─────────────────────────────────── -->
+  <section class="sec">
+    <h2>Two One-Time Finishing Steps</h2>
+    <div class="callout" style="margin-bottom:14px;">
+      <h3>1 · Make Storyblok edits go live automatically</h3>
+      <p class="note" style="margin-top:6px;">Today the site is a published build, so an edit shows up after a quick redeploy (Netlify → Deploys → “Trigger deploy”). To make Publish auto-update the site in ~1 minute, we connect the site’s repo + a build hook + a Storyblok webhook — ~10 minutes, then it’s hands-off.</p>
+    </div>
+    <div class="callout">
+      <h3>2 · Get emailed when someone uses the form</h3>
+      <p class="note" style="margin-top:6px;">Messages are already saved in Netlify → Forms. To also be emailed, go to Forms → Settings &amp; notifications → Add notification → Email, and enter the inbox you want (e.g. support@bitcoinmanor.com). We left the destination for you to choose.</p>
+    </div>
+  </section>
+
+  <!-- ── Going live on your domain ───────────────────────────── -->
+  <section class="sec">
+    <h2>Going Live On Your Domain</h2>
+    <p>The site is on a free <span class="note">*.netlify.app</span> address so you can review it. When you’re ready, the cleanest option:</p>
+    <ul class="ticks">
+      <li>Point <b>bitcoinmanor.com</b> (or <b>www</b>) at the new site, and move the WooCommerce store to <b>shop.bitcoinmanor.com</b> that the “Shop” buttons link to.</li>
+      <li>Or keep the store where it is and launch the new site on a subdomain.</li>
+    </ul>
+    <p class="note" style="margin-top:8px;">In Netlify: Domain management → Add a domain → follow the DNS steps. HTTPS is automatic.</p>
+  </section>
+
+  <!-- ── Swappable / honest notes ────────────────────────────── -->
+  <section class="sec">
+    <h2>Good To Know</h2>
+    <ul class="ticks">
+      <li><b>Real photos, your own.</b> The hero, the Matrix shot, and the product cards use your existing images — swap any of them in Storyblok.</li>
+      <li><b>No fake details.</b> We didn’t invent a phone number or address; the trust signals are real photos, reviews, and your socials. Add click-to-call anytime if you want a public number.</li>
+      <li><b>Honest on speed.</b> We quote the PageSpeed score (67→85) and the move to a fast static stack — not a “seconds” figure, since Google’s lab numbers aren’t real-user data.</li>
+    </ul>
+  </section>
+
+  <div class="rcpt-foot">
+    <div class="barcode"></div>
+    <div class="thanks">— Studio0rbit · Calgary · Built for you —</div>
+  </div>
+
+</div>
+</body>
+</html>

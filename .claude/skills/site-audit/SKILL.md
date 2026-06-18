@@ -68,6 +68,26 @@ The research knowledge base (`docs/research/audit-foundation/SUMMARY.md`, 556 ve
 - Never report a **blank CWV section** (no CrUX field data) as a failure — it's the expected default for a single-location shop.
 - Sell **local-organic / "near me"** gains (not 3-pack jumps) and **conversion** lifts (not ranking guarantees).
 
+## Audit toolchain (the exact tools we run)
+Every grade traces to these — all orchestrated by `packages/audit` (`src/cli.ts` → `collect.ts`):
+
+| Layer | Tool | What it gives us |
+|---|---|---|
+| Performance + Core Web Vitals | **Google PageSpeed Insights API** (`googleapis.com/pagespeedonline/v5/runPagespeed`, runs **Lighthouse** server-side) — `probes/psi.ts` | mobile/desktop performance score, LCP/CLS (**lab**), failed-audit list. Needs `PSI_API_KEY` (free, 25k/day). |
+| SEO | **`@seomator/seo-audit` CLI** (local npm package) — `probes/seomator.ts` | SEO score + grade + category breakdown |
+| On-page feature inventory | **direct HTML fetch** (`probes/fetchPage.ts`, browser UA, https→http fallback) + `inventory.ts` | presence of click-to-call, hours, address/map, LocalBusiness JSON-LD, contact form, OG tags, favicon, HTTPS, reviews, booking |
+| Platform / stack | `stack.ts` (HTML + header fingerprints) | WordPress / Shopify / Wix / Squarespace + a "legacy/page-builder" flag (the strongest prospecting signal) |
+| Visual review | **Playwright** (Chromium) — `screenshot.mjs` | full-page mobile + desktop screenshots for the look the collector can't see |
+| Report | `report.ts` → `audit-<host>.html` | branded, **receipt-styled** (Studio0rbit palette) 1-page report you can send as-is |
+
+**Trust:** PageSpeed Insights / Lighthouse is Google's own, industry-standard tool — legitimate and well-known. **But lab ≠ field:** quote the **PageSpeed score + architecture**, never a lab LCP as a felt "Xs load time." Small sites usually have **no CrUX real-user data at all** (the report footnotes CWV as "indicative lab measurements, not Google's official field verdict"). Reconciliation in `docs/research/audit-foundation/claims.json` + `docs/research/2026-06-15-engagement-scoping-rubric.md`.
+
+## Reuse the prospect's existing content & images (automation)
+A live prospect site **is a content source** — pull their real assets instead of shipping placeholders (the single biggest lift from "fast restructure" to "obviously their brand"):
+- **Images:** extract `<img>`/`wp-content` URLs from the homepage + key product/category pages (`curl -sL <url> | grep -oE 'https://host/wp-content/uploads/[^"]+\.(jpg|png|webp)'`), download the full-res ones, then **re-encode to right-sized WebP with `sharp`** (hero ~80–150KB, cards ~25–70KB) so the speed win survives. **Verify each picture and reject stock/placeholder images** (don't trust the filename).
+- **Copy:** lift real product names, descriptions, prices, taglines, contact, and socials via `WebFetch` on their pages.
+- **Proven on Bitcoin Manor (2026-06-17):** the hero, the Stacksworth Matrix product shot, and every collection card use the client's own photos pulled from their WordPress media. Worth codifying as a reusable content-importer.
+
 ## Rules
 
 - **Honesty:** if `grade.overall` is `A` *and* the site looks good, say so and recommend care/decline — do **not** manufacture problems.

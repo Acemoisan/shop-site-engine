@@ -48,7 +48,7 @@ const FEATURE_COPY: Record<FeatureKey, FeatureCopy & { rank: number }> = {
 }
 
 function gradeColor(grade: string): string {
-  if (grade === "A" || grade === "B") return "#16a34a"
+  if (grade === "A" || grade === "B") return "#0f9d63"
   if (grade === "C") return "#d97706"
   return "#dc2626"
 }
@@ -85,103 +85,96 @@ export function renderReport(data: AuditData, shopName?: string): string {
   const audUrl = esc(data.url)
   const platform = data.stack.platform ? esc(data.stack.platform) : null
 
-  // --- CSS ---
+  // --- CSS: receipt aesthetic in the Studio0rbit palette
+  //     (deep-space ink page, electric-indigo + orbit-cyan, Space Grotesk/Mono). ---
   const css = `
+    :root {
+      --ink:#14111f; --paper:#ffffff; --text:#1b1730; --muted:#726e89;
+      --indigo:#5b4de3; --cyan:#1fbed4; --dash:#cdc9dd; --page:#0e0b16;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #f3f4f6;
-      color: #111827;
-      padding: 32px 16px;
-      font-size: 15px;
-      line-height: 1.6;
+      font-family: 'Inter', system-ui, sans-serif; color: var(--text);
+      background: var(--page);
+      background-image: radial-gradient(72% 48% at 50% -8%, rgba(91,77,227,.45), transparent 70%);
+      min-height: 100vh; padding: 40px 16px; font-size: 15px; line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
     }
-    .card {
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 2px 16px rgba(0,0,0,.08);
-      max-width: 680px;
-      margin: 0 auto 24px;
-      padding: 36px 40px;
+    .receipt {
+      position: relative; max-width: 600px; margin: 0 auto; background: var(--paper);
+      box-shadow: 0 40px 90px -34px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.05);
     }
-    h1 { font-size: 1.5rem; font-weight: 700; color: #111827; margin-bottom: 4px; }
-    h2 { font-size: 1.15rem; font-weight: 700; color: #111827; margin-bottom: 12px; }
-    h3 { font-size: 1rem; font-weight: 700; color: #111827; margin-bottom: 4px; }
-    .subtitle { color: #6b7280; font-size: 0.875rem; }
-    .divider { border: none; border-top: 1px solid #e5e7eb; margin: 24px 0; }
-    /* Snapshot */
-    .snapshot { display: flex; align-items: flex-start; gap: 20px; }
+    .receipt::before, .receipt::after {
+      content: ""; position: absolute; left: 0; right: 0; height: 12px;
+      background: radial-gradient(circle 7px at 11px 0, var(--page) 7px, transparent 8px) repeat-x;
+      background-size: 22px 12px;
+    }
+    .receipt::before { top: 0; transform: rotate(180deg); }
+    .receipt::after { bottom: 0; }
+    .rcpt-head { text-align: center; padding: 42px 36px 6px; }
+    .wordmark { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: .3em; text-transform: uppercase; color: var(--ink); }
+    .wordmark .dot { color: var(--indigo); }
+    .doc-type { margin-top: 10px; font-family: 'Space Mono', monospace; font-size: .68rem; letter-spacing: .34em; text-transform: uppercase; color: var(--muted); }
+    .rcpt-sec { padding: 24px 36px; }
+    .rcpt-sec + .rcpt-sec { border-top: 1.5px dashed var(--dash); }
+    h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.01em; }
+    h2 { font-family: 'Space Grotesk', sans-serif; font-size: .76rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--indigo); margin-bottom: 14px; }
+    h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .subtitle { color: var(--muted); font-size: .76rem; font-family: 'Space Mono', monospace; }
+    .subtitle a { color: var(--indigo); text-decoration: none; }
+    .divider { border: none; border-top: 1.5px dashed var(--dash); margin: 22px 0; }
+    /* Snapshot / grade */
+    .snapshot { display: flex; align-items: center; gap: 20px; }
     .grade-badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 72px;
-      height: 72px;
-      border-radius: 12px;
-      font-size: 2.25rem;
-      font-weight: 900;
-      color: #ffffff;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      width: 78px; height: 78px; border-radius: 16px;
+      font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700;
+      color: #fff; flex-shrink: 0;
     }
     .snapshot-body { flex: 1; }
     .tier-pill {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 2px 10px;
-      border-radius: 999px;
-      background: #f3f4f6;
-      color: #374151;
-      margin-bottom: 6px;
+      display: inline-block; font-family: 'Space Mono', monospace; font-size: .66rem;
+      font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      padding: 3px 11px; border-radius: 999px;
+      background: rgba(91,77,227,.1); color: var(--indigo); margin-bottom: 9px;
     }
-    .verdict { font-size: 1rem; font-weight: 600; color: #111827; margin-bottom: 4px; }
-    .confidence { font-size: 0.8125rem; color: #6b7280; }
-    /* Issues */
-    .issue { border-left: 4px solid #dc2626; padding-left: 16px; margin-bottom: 20px; }
-    .issue-problem { font-weight: 700; color: #111827; margin-bottom: 2px; }
-    .issue-cost { color: #374151; margin-bottom: 4px; font-size: 0.9375rem; }
-    .issue-fix { font-size: 0.875rem; color: #16a34a; font-weight: 600; }
+    .verdict { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .confidence { font-size: .8rem; color: var(--muted); }
+    /* Issues = receipt line items */
+    .issue { position: relative; padding-left: 18px; margin-bottom: 20px; }
+    .issue:last-child { margin-bottom: 0; }
+    .issue::before { content: ""; position: absolute; left: 0; top: 4px; bottom: 4px; width: 3px; border-radius: 3px; background: var(--indigo); }
+    .issue-problem { font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+    .issue-cost { color: #423d57; margin-bottom: 5px; font-size: .93rem; }
+    .issue-fix { font-family: 'Space Mono', monospace; font-size: .8rem; color: #0f9d63; font-weight: 700; }
     /* Bullets */
-    .bullet-list { list-style: none; padding: 0; }
+    .bullet-list { list-style: none; }
     .bullet-list li { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
-    .bullet-list li::before { content: "✓"; color: #16a34a; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-    /* CTA */
-    .cta-box {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-radius: 8px;
-      padding: 20px 24px;
-    }
-    .cta-box p { color: #166534; }
-    /* Status boxes */
-    .info-box {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      border-radius: 8px;
-      padding: 20px 24px;
-      color: #1e3a5f;
-    }
-    .warn-box {
-      background: #fffbeb;
-      border: 1px solid #fde68a;
-      border-radius: 8px;
-      padding: 20px 24px;
-      color: #78350f;
-    }
-    /* Footer */
-    .footer-note { font-size: 0.8125rem; color: #6b7280; line-height: 1.5; }
-    .footer-note + .footer-note { margin-top: 8px; }
-    a { color: #2563eb; }
+    .bullet-list li:last-child { margin-bottom: 0; }
+    .bullet-list li::before { content: "✓"; color: var(--cyan); font-weight: 700; flex-shrink: 0; }
+    /* Boxes */
+    .cta-box { background: rgba(91,77,227,.06); border: 1.5px solid rgba(91,77,227,.22); border-radius: 14px; padding: 22px 24px; }
+    .cta-box h2 { color: var(--ink); }
+    .cta-box p { color: #423d57; }
+    .info-box { background: #f2f6ff; border: 1.5px solid #cfdcff; border-radius: 14px; padding: 22px 24px; color: #27345f; }
+    .warn-box { background: #fff8ec; border: 1.5px solid #f3dca0; border-radius: 14px; padding: 22px 24px; color: #6b4a12; }
+    /* Footer / fine print + faux receipt barcode */
+    .footer-note { font-family: 'Space Mono', monospace; font-size: .7rem; color: var(--muted); line-height: 1.6; }
+    .footer-note + .footer-note { margin-top: 7px; }
+    .rcpt-foot { padding: 24px 36px 34px; border-top: 1.5px dashed var(--dash); text-align: center; }
+    .barcode { height: 40px; max-width: 230px; margin: 6px auto 14px; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, #fff 2px 4px, var(--ink) 4px 5px, #fff 5px 9px, var(--ink) 9px 11px, #fff 11px 14px); }
+    .thanks { font-family: 'Space Mono', monospace; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); }
+    a { color: var(--indigo); }
   `
 
-  // Helper for section card
+  // Helper: a receipt section (continuous paper, dashed dividers between).
   function card(content: string): string {
-    return `<div class="card">${content}</div>`
+    return `<section class="rcpt-sec">${content}</section>`
   }
 
-  // --- Header card ---
+  // --- Header section (site name + audited URL; brand wordmark lives in the frame) ---
   const headerCard = card(`
-    <h1>${title}</h1>
+    <h1>${esc(displayName)}</h1>
     <p class="subtitle">Audited: <a href="${audUrl}">${audUrl}</a></p>
   `)
 
@@ -330,7 +323,7 @@ export function renderReport(data: AuditData, shopName?: string): string {
   if (data.grade.confidence === "partial") {
     footerNotes.push(`<p class="footer-note">Preliminary read from on-page checks + an SEO scan; a full audit with Google PageSpeed data sharpens the grade.</p>`)
   }
-  footerNotes.push(`<p class="footer-note">Performance/Core Web Vitals figures are indicative lab measurements, not Google's official field verdict.</p>`)
+  footerNotes.push(`<p class="footer-note">Performance/Core Web Vitals figures are indicative lab measurements (Google PageSpeed / Lighthouse), not Google's official field verdict.</p>`)
 
   const smallPrintParts: string[] = []
   if (platform) smallPrintParts.push(`Detected platform: ${platform}`)
@@ -356,10 +349,23 @@ function buildDoc(title: string, css: string, cards: string[]): string {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>${css}</style>
 </head>
 <body>
+<div class="receipt">
+<div class="rcpt-head">
+<div class="wordmark">studio0rbit<span class="dot">.</span></div>
+<div class="doc-type">Website &amp; Online-Presence Audit</div>
+</div>
 ${cards.join("\n")}
+<div class="rcpt-foot">
+<div class="barcode"></div>
+<div class="thanks">— Studio0rbit · Calgary —</div>
+</div>
+</div>
 </body>
 </html>`
 }
