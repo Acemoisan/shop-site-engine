@@ -83,7 +83,9 @@ export function renderReport(data: AuditData, shopName?: string): string {
 
   const title = `${esc(displayName)} — Website &amp; Online Presence Audit`
   const audUrl = esc(data.url)
-  const platform = data.stack.platform ? esc(data.stack.platform) : null
+  const platform = data.stack.platform
+    ? esc(data.stack.platform + (data.stack.builder ? ` (${data.stack.builder})` : ""))
+    : null
 
   // --- CSS: receipt aesthetic in the Studio0rbit palette
   //     (deep-space ink page, electric-indigo + orbit-cyan, Space Grotesk/Mono). ---
@@ -327,6 +329,8 @@ export function renderReport(data: AuditData, shopName?: string): string {
 
   const smallPrintParts: string[] = []
   if (platform) smallPrintParts.push(`Detected platform: ${platform}`)
+  if (data.stack.booking?.length) smallPrintParts.push(`Booking: ${esc(data.stack.booking.join(", "))}`)
+  if (data.stack.payments?.length) smallPrintParts.push(`Payments: ${esc(data.stack.payments.join(", "))}`)
   if (data.seomator.status === "ok" && data.seomator.score != null) {
     smallPrintParts.push(`SEOmator score: ${data.seomator.score}`)
   }
@@ -349,9 +353,7 @@ function buildDoc(title: string, css: string, cards: string[]): string {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<!-- Self-contained: no external stylesheets/fonts so the report renders offline and survives email clients that strip remote CSS. Font-families degrade to system stacks (system-ui / sans-serif / monospace). -->
 <style>${css}</style>
 </head>
 <body>

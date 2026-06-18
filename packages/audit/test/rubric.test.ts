@@ -30,8 +30,13 @@ describe("computeGrade", () => {
     expect(computeGrade(base()).overall).toBe("A")
   })
 
-  it("CWV failure caps overall at C", () => {
-    expect(computeGrade(base({ cwvPass: false })).overall).toBe("C")
+  it("CWV failure does NOT cap a site that's actually fast (perf A/B)", () => {
+    // v1.1.0: a lab CWV "fail" on a fast static site is noise, not a verdict.
+    expect(computeGrade(base({ cwvPass: false })).overall).toBe("A")
+  })
+
+  it("CWV failure caps overall at C only when the site is ALSO slow (perf C/D/F)", () => {
+    expect(computeGrade(base({ cwvPass: false, psiMobilePerf: 60 })).overall).toBe("C")
   })
 
   it("structural flag forces at most D (foundation-strength override)", () => {
