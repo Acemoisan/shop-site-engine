@@ -4,12 +4,12 @@
   "date": "2026-06-17",
   "statusTag": "LIVE",
   "lead": [
-    "Your new **Eye Candy Optical** site is **live**. We rebuilt your homepage as a fast, static site — using **your own product photography**.",
-    "On Google's PageSpeed test it went from **64→88** on mobile, earned **A for accessibility**, added proper search structured data, and now has a working contact form. It's a one-time build — **you own every account.** Everything you need is below."
+    "Your new **Eye Candy Optical** site is **live** — rebuilt as a fast, static site using **your own product photography**, with both studios, real hours, and a working contact form front and centre.",
+    "The honest picture: your old site's *technical SEO was already strong*, so we kept it clean (a perfect **100** on Google's SEO check) while fixing what was actually costing you visits. On Google's PageSpeed test, mobile went from **64 → 90**, and your largest image now paints in about **2.9 seconds instead of 10**. Accessibility went from **B to A**. It's a one-time build — **you own every account.**"
   ],
   "stats": [
     {
-      "n": "64→88",
+      "n": "64→90",
       "l": "PageSpeed (mobile)"
     },
     {
@@ -81,9 +81,11 @@
     "note": "In Netlify: Domain management → Add a domain → follow the DNS steps. HTTPS is automatic."
   },
   "notes": [
-    "**Real photos, your own.** The images come from your existing site — swap any of them in your CMS.",
-    "**No fake details.** We didn’t invent contact info you don’t publish; the trust signals are real photos, reviews, and your socials.",
-    "**Honest on speed.** We quote the PageSpeed score (64→88) and the move to a fast static stack — not a “seconds” figure, since Google’s lab numbers aren’t real-user data."
+    "**Speed by rebuild, not plugin.** Wix runs a heavy JavaScript bundle on every visit; your new site is pre-built static files on a CDN — same content, a fraction of the work for the phone. That's the 64→90 jump, and you can re-run it yourself at pagespeed.web.dev.",
+    "**A look that matches your frames.** A premium editorial design — porcelain canvas, an 'anti-reflective lens' emerald, lens-shaped product framing, a real display/body type system — instead of the generic Wix template. Your $600 frames now look the part.",
+    "**The gaps we closed.** Published opening hours for both studios, a working contact form (verified — it emails on submit), proper Optician + LocalBusiness structured data per location, and a real two-location section replacing the blank map box in your old footer.",
+    "**Honest on speed & SEO.** We quote Google's PageSpeed score and the move to a static stack — not a 'seconds faster' or 'rank #1' promise (Google's lab numbers aren't real-user data, and a clean technical score isn't a ranking). Your SEO was already good; we kept it that way.",
+    "**Still on the list (easy adds).** Your real Google reviews (we don't invent them), your social handles, and an online booking tool if you'd like one."
   ],
   "footer": "Eye Candy Optical · Beltline (17th Ave SW) & Oakridge (Oakbay Plaza), Calgary · Built by Studio0rbit · one-time build, no retainer"
 }

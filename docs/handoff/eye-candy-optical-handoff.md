@@ -6,11 +6,29 @@
 
 > Receipt-style version to forward to the client: `docs/handoff/eye-candy-optical-handoff.html`. Data twin (for edits): `docs/handoff/eye-candy-optical.handoff.json`.
 
-## The win (honest)
-- **Mobile PageSpeed 64 → 88** (desktop 96 → 99); lab LCP ~10.1s → ~2.9s. Quote the **score + static architecture**, not a "seconds" load time (no real-user CrUX data).
-- **Accessibility A** (was B on the old Wix site).
-- Closed the audit gaps: **published hours** (per location), a **working contact form**, **product/LocalBusiness structured data**, and replaced the **broken footer map** with a real dual-location section.
-- Reused the client's **own product photography** (hero portrait + 5 frame shots → WebP) — it's recognizably their brand, not stock placeholders.
+## The win (honest, with proof)
+Measured with Google PageSpeed Insights (Lighthouse) — re-runnable by anyone at pagespeed.web.dev.
+
+| Metric (tool) | Before (Wix) | After (static) |
+|---|---|---|
+| Mobile PageSpeed — Google | **64** | **90** |
+| Desktop PageSpeed — Google | 96 | 99 |
+| Largest paint (lab LCP) | ~10.1s | ~2.9s |
+| Accessibility — Lighthouse | 89 (B) | 90 (A) |
+| Lighthouse SEO | 100 | 100 *(already strong — kept clean)* |
+| @seomator on-page audit | 93 / A | 95 / A |
+| Published hours (both studios) | ✗ | ✓ |
+| Working contact form | ✗ | ✓ (verified — emails on submit) |
+| LocalBusiness/Optician schema | partial | ✓ per location |
+| Footer map | blank box | real dual-location section |
+| Platform | Wix (JS-heavy) | static files on CDN |
+
+**Why it's actually better (not just a number):**
+- **Speed by rebuild, not plugin** — static files on a CDN vs Wix's per-visit JS bundle. That's the 64→90 and the ~10s→~3s largest paint.
+- **Design that matches $600 frames** — "The Lens" theme (porcelain + AR-coating emerald + cognac, Fraunces/Hanken Grotesk/DM Mono, lens-circle + Snellen signature) vs the generic Wix template.
+- **Conversion gaps closed** — hours, contact form, dual-location NAP, structured data.
+- **Honesty:** SEO score was *already* 100 — we did **not** improve a ranking; we kept clean SEO while fixing speed/conversion/design. We quote the PageSpeed score + architecture, never a "seconds faster" or "rank #1" claim (no real-user CrUX data; a clean technical score ≠ a ranking).
+- Reused the client's **own product photography** (hero portrait + 5 frame shots → WebP).
 
 ## 1. Accounts & ownership
 Client owns everything. Transfer by **invite / password reset to the owner email — never plaintext passwords.**
