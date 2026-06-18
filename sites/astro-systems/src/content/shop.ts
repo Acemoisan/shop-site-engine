@@ -134,6 +134,39 @@ export const processSteps: Step[] = [
   },
 ];
 
+export interface Gear {
+  img: string;
+  name: string;
+  body: string;
+}
+
+// Real product photos pulled from the client's own site (astrosystems.ca),
+// re-encoded to WebP. Small studio shots of the actual gear they install —
+// kept at native size so they stay crisp (never upscaled). Cartoon clip-art
+// from the old site (the CRT TV, camcorder, etc.) was deliberately rejected.
+export const gear: Gear[] = [
+  {
+    img: "/img/media-centre.webp",
+    name: "Central media centre",
+    body: "The structured-wiring panels and modules everything runs back to.",
+  },
+  {
+    img: "/img/wall-plate.webp",
+    name: "In-room wall plates",
+    body: "Coax, data and phone jacks placed exactly where you need them.",
+  },
+  {
+    img: "/img/ceiling-speaker.webp",
+    name: "In-ceiling speakers",
+    body: "Flush-mounted audio that blends into any room.",
+  },
+  {
+    img: "/img/security-keypad.webp",
+    name: "Security keypads",
+    body: "Arm, disarm and monitor your home from the wall.",
+  },
+];
+
 export interface Faq {
   q: string;
   a: string;

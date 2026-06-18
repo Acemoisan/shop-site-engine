@@ -7,7 +7,7 @@
   "liveUrl": "https://astro-systems.pages.dev",
   "hostSite": "astro-systems",
   "formInbox": "your inbox (currently ours — swap below)",
-  "usedClientImagery": false,
+  "usedClientImagery": true,
   "host": "Cloudflare Pages",
   "cms": "none (static)",
 
@@ -25,9 +25,9 @@
 
   "notes": [
     "**The big win is trust, not speed.** Your old page was fast only because it was nearly empty and stuck in the 90s — and it ran over insecure HTTP, so every browser warned visitors it was \"Not Secure.\" The new site is served over **HTTPS automatically**, works on every phone, and looks like the modern smart-home company you actually are. We're not quoting a \"seconds faster\" number, because that wouldn't be honest.",
-    "**A look that matches the work.** A premium home-technology design — deep navy, a copper \"wiring\" accent, a clean type system, and a connected-home graphic — instead of the clip-art splash page. It reads as current and trustworthy.",
+    "**Your brand, kept.** Your **ASTRO SYSTEMS logo** sits in the header and footer, and we reused your real product photos (the wiring panels, wall plates, ceiling speakers and security keypad) in a \"gear we install\" section — paired with a premium navy + copper home-technology design instead of the clip-art splash page.",
     "**The gaps we closed.** HTTPS, a mobile-responsive layout, tap-to-call (phone + toll-free), a working **\"Request a quote\" form** (emails on submit), proper ElectricalContractor + LocalBusiness structured data, Open Graph link previews, and a privacy notice.",
-    "**Real content, no invented details.** Every word is migrated from your own five service pages; we didn't fabricate reviews, hours, prices, or an address. Imagery is custom graphic design — **adding real project photos is an easy next step.**",
+    "**Real content, no invented details.** Every word is migrated from your own five service pages, and the images are your own; we didn't fabricate reviews, hours, prices, or an address. Your product photos are small originals shown crisply — **higher-resolution or new project photos are an easy next step.**",
     "**Still on the list (easy adds).** Real project photography, your Google Business Profile + reviews if you set them up, and self-serve content editing (a simple CMS) if you'd like it."
   ],
 

@@ -1,10 +1,15 @@
 ---
 interface Link { label: string; href: string }
-interface Props { name: string; bookingUrl?: string; links?: Link[]; bookLabel?: string }
+// `logoSrc` (optional) shows the client's real logo image in place of the text
+// wordmark — additive; when omitted it falls back to the `name` text mark.
+interface Props { name: string; bookingUrl?: string; links?: Link[]; bookLabel?: string; logoSrc?: string; logoAlt?: string; logoClass?: string }
 const {
   name,
   bookingUrl,
   bookLabel = "Book",
+  logoSrc,
+  logoAlt,
+  logoClass = "h-9 w-auto",
   links = [
     { label: "Services", href: "#services" },
     { label: "Hours", href: "#hours" },
@@ -14,7 +19,9 @@ const {
 ---
 <header class="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md">
   <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-    <a href="#top" class="font-display text-xl font-bold uppercase tracking-wide text-foreground">{name}</a>
+    {logoSrc
+      ? <a href="#top" class="flex items-center"><img src={logoSrc} alt={logoAlt ?? name} class={logoClass} width="260" height="87" decoding="async" /></a>
+      : <a href="#top" class="font-display text-xl font-bold uppercase tracking-wide text-foreground">{name}</a>}
     <div class="flex items-center gap-7 text-sm font-medium">
       {links.map((l) => (
         <a href={l.href} class="hidden tracking-wide text-muted-foreground transition hover:text-primary sm:inline">{l.label}</a>

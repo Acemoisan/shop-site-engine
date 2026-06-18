@@ -30,7 +30,7 @@
 - **Address / map:** none public → **service-area (Calgary & area)** treatment, no map pin
 - **Hours:** none published → shown as **"By appointment — call or request a quote"** (no fabricated hours)
 - **Socials:** none found → omitted (add later if provided)
-- **Logo / imagery:** only 1990s clip-art GIFs (not reusable). Wordmark set in type; the one salvageable brand cue is the blue "ASTRO" colour, echoed in the palette. **Imagery = bespoke graphic design (copper-on-navy circuit motif), not stock photos** — real project photography is the photo-sourcing add-on.
+- **Logo / imagery:** **their real "ASTRO SYSTEMS" oval logo (`head_alt.gif`, 650px) was pulled, cropped to the mark, made transparent, and placed in the nav + footer.** Their real product photos were also reused — `master_panel`, `wall_plate1`, `wall_spkr`, `cpanel` → WebP at native size in a "gear we install" band (small but crisp; **not** upscaled). Cartoon clip-art (CRT TV, camcorder, computer, remote) was rejected. The bespoke copper-on-navy circuit motif **supplements** their real assets (hero diagram + OG card). **Higher-resolution product/project photography** is the remaining photo-sourcing add-on (their originals are ~100px).
 - **Sister business:** central-vacuum cross-link to `vacuumwholesalers.com` — preserved as an optional footer cross-promo link.
 
 ## [PENDING — ASK] fields — batched for the operator when the client responds
@@ -49,5 +49,5 @@
 - **Design direction:** "Wired" — a premium home-technology-integrator look that is the deliberate opposite of the clip-art splash. **Deep midnight-navy ink** + **clean warm-white canvas**, **confident electric-blue primary** (echoes their ASTRO wordmark), **copper accent** (literal copper wire → warmth + premium, used for eyebrows/CTAs/highlights). Type: **Sora** display (geometric, precise, contemporary), **Inter** body, **DM Mono** for data/eyebrows/NAP. Signature = a subtle **circuit-trace** motif (a tasteful nod to the old "wires radiating from the house" splash idea).
 - **Content/copy:** migrated and lightly modernized from their real 5 service pages (intro/structured wiring, entertainment, networking, security, options/automation, benefits). "Established 1974" used as the central trust anchor. No fabricated numbers, prices, reviews, or hours.
 - **Social proof:** no reviews exist → replaced the testimonials slot with an honest **"Calgary homes & builders since 1974"** credibility band (no fake reviews).
-- **Imagery:** bespoke graphic/SVG (circuit motif + icon-driven system cards), no stock photos — keeps it honest and fast; real photography is a flagged add-on.
+- **Imagery:** **their real logo + real product photos first** (logo in nav/footer; media-centre, wall-plate, ceiling-speaker, keypad in a "gear we install" band), with a bespoke circuit-motif hero/OG to supplement. No stock filler. Their product originals are only ~100px, so they're shown small-but-crisp; **higher-resolution photography is the flagged add-on.**
 - **Package/price:** $1,500 flat rebuild. Add-ons noted above.

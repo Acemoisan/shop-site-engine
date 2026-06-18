@@ -3,7 +3,7 @@ import "@studio0rbit/shared/styles/base.css";
 import "../theme.css";
 import {
   shop, email, tollFree, established, centralVacUrl,
-  systems, benefits, processSteps, faqs, web3formsKey, pipaNote,
+  systems, gear, benefits, processSteps, faqs, web3formsKey, pipaNote,
 } from "../content/shop";
 import SeoHead from "@studio0rbit/shared/seo/SeoHead.astro";
 import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
@@ -109,6 +109,9 @@ const hubNodes = [
 
     <SiteNav
       name="Astro Systems"
+      logoSrc="/img/astro-logo.png"
+      logoAlt="Astro Systems — fully integrated home wiring"
+      logoClass="h-9 w-auto sm:h-10"
       bookingUrl="#quote"
       bookLabel="Request a quote"
       links={[
@@ -159,9 +162,9 @@ const hubNodes = [
             <circle cx="50" cy="50" r="2" fill="var(--primary)" />
           </svg>
           <!-- Centre hub -->
-          <div class="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-2xl border border-background/15 bg-[color:color-mix(in_oklch,var(--primary)_30%,var(--foreground))] shadow-2xl">
-            <Icon name="home" class="h-7 w-7 text-background" />
-            <span class="mt-1 font-data text-[0.55rem] uppercase tracking-[0.15em] text-background/80">Media centre</span>
+          <div class="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-1 rounded-2xl border border-background/15 bg-[color:color-mix(in_oklch,var(--primary)_30%,var(--foreground))] text-center shadow-2xl">
+            <Icon name="cpu" class="h-6 w-6 text-background" />
+            <span class="max-w-[3.75rem] font-data text-[0.5rem] uppercase leading-[1.15] tracking-[0.18em] text-background/80">Media centre</span>
           </div>
           <!-- Surrounding system nodes -->
           {hubNodes.map((n) => (
@@ -209,6 +212,31 @@ const hubNodes = [
             <a href="#quote" class="mt-5 inline-flex items-center gap-2 font-data text-xs font-semibold uppercase tracking-wider text-primary transition hover:gap-3">Request a quote <Icon name="arrow" class="h-4 w-4" /></a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ── Real equipment (the client's own product photos) ─────────────── -->
+    <section class="border-t border-border bg-muted">
+      <div class="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+        <div class="max-w-2xl">
+          <p class="font-data text-xs uppercase tracking-[0.3em] text-accent">The gear we install</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Quality components, professionally fit</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground">From the central wiring panels to the plates, speakers and keypads in your rooms — the actual hardware behind an Astro Systems home.</p>
+        </div>
+        <div class="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-4">
+          {gear.map((g) => (
+            <figure class="flex flex-col overflow-hidden rounded-[var(--radius)] border border-border bg-card shadow-sm">
+              <div class="flex h-40 items-center justify-center bg-white p-4">
+                <img src={g.img} alt={g.name} loading="lazy" decoding="async" class="max-h-full max-w-full object-contain" />
+              </div>
+              <figcaption class="border-t border-border p-5">
+                <h3 class="font-display text-base font-semibold text-foreground">{g.name}</h3>
+                <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">{g.body}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p class="mt-6 font-data text-[0.7rem] uppercase tracking-[0.15em] text-muted-foreground">Product photos from Astro Systems' catalogue · higher-resolution shots can be added anytime</p>
       </div>
     </section>
 
@@ -358,8 +386,8 @@ const hubNodes = [
     <footer class="border-t border-border bg-card">
       <div class="mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div class="sm:col-span-2">
-          <p class="font-display text-2xl font-semibold tracking-tight text-foreground">Astro Systems</p>
-          <p class="mt-2 max-w-xs text-sm text-muted-foreground">Fully integrated home wiring for Calgary homes — structured cabling for audio, video, networking, security and automation since {established}.</p>
+          <img src="/img/astro-logo.png" alt="Astro Systems" width="260" height="87" class="h-10 w-auto" />
+          <p class="mt-4 max-w-xs text-sm text-muted-foreground">Fully integrated home wiring for Calgary homes — structured cabling for audio, video, networking, security and automation since {established}.</p>
           <a href={`mailto:${email}`} class="mt-4 inline-block font-data text-xs uppercase tracking-[0.15em] text-muted-foreground transition hover:text-primary">{email}</a>
         </div>
         <div>
