@@ -15,7 +15,7 @@
 | Account | Action | Owner = client |
 |---|---|---|
 | **Domain registrar** | Registered in the client's own account (or transferred to them). Confirm they can log in. | ✅ |
-| **Hosting** (Cloudflare Pages / Netlify / Vercel free tier) | Connected under the client's own account; deploy works. | ✅ |
+| **Hosting** (Cloudflare Pages — standard; Netlify alt) | Connected under the client's own account; deploy works. | ✅ |
 | **Storyblok** (free Starter) | Space owned by the client's login; we're removed as collaborator after training. | ✅ |
 | **Code repo** (GitHub) | Transferred to the client's account (or handed as a downloadable archive if they prefer no GitHub). | ✅ |
 | **Bookings/payments** (Square/Stripe/Shopify/ChowNow) | Their own business accounts — we only configured the embed. | ✅ |

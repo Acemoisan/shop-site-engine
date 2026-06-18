@@ -38,7 +38,7 @@ Four phases, each codified as a repeatable workflow so it's the same every time:
 1. **Scout** — find Calgary shops with no website or a weak one *(scrape still to run)*.
 2. **Audit** — our **AI site-audit tool** turns any URL into a branded 1-page audit with before/after previews. Already run on real Calgary prospects. This is our outreach hook: lead with a useful free audit, not a cold pitch.
 3. **Communicate** — the landing page does the explaining and takes the free-audit request; the design gallery does the convincing.
-4. **Close** — pricing tiers (**$1,800 / $3,500 / $6,000** one-time) plus a ready proposal & terms kit.
+4. **Close** — one simple price (**$1,500 flat one-time + an à-la-carte add-on menu**, no tiers) plus a ready proposal & terms kit.
 
 ## The repo
 

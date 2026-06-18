@@ -17,9 +17,9 @@ YOUR GOAL
 [1–2 lines restating their #1 goal, e.g. "More online bookings and showing
 up when people search 'barber [neighbourhood]'."]
 
-RECOMMENDED PACKAGE: [Starter / Growth / Pro] — $[one-time]
-Includes:
-  • [pull the tier's deliverables from packaging.md, tailored to them]
+YOUR WEBSITE: $1,500 one-time (flat — no tiers; you own everything)
+Includes (every site ships the same core):
+  • [pull the core deliverables from packaging.md, tailored to them]
   • Mobile-first, fast-loading, found on Google (LocalBusiness markup + GBP guidance)
   • Self-edit visual editor (you change text/photos/hours/menu yourself)
   • Full handover: you own your domain, hosting, editor, and site
@@ -44,7 +44,7 @@ INVESTMENT: $[total] one-time — 50% to start, 50% at launch
 
 | Line | Amount |
 |---|---|
-| Base package ([tier]) | $____ |
+| Website (flat fee) | $1,500 |
 | Add-on: [____] | $____ |
 | Add-on: [____] | $____ |
 | Content migration + 301 redirects *(rebuilds only — never skip)* | $____ |

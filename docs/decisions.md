@@ -6,6 +6,27 @@ Running log of decisions for the Calgary local-shop website service. Newest firs
 
 ---
 
+## 2026-06-18 — Standard host switched: Netlify → Cloudflare Pages
+
+- **Cloudflare Pages is now the standard host** for demos and client launches; **Netlify is demoted to the supported alternative.** Our currently-live sites (landing, Bitcoin Manor, Eye Candy, salons) stay on the **grandfathered legacy Netlify account** until rebuilt — only *new* client accounts go to Cloudflare.
+- **Why:** Netlify moved new accounts to a **credit-based free plan (Sept 2025)** — ~300 credits/mo ≈ ~15 GB, and **the site pauses on overage** (which also blocks contact-form submissions; no add-on credits on free; April-2026 costs rose; June-2026 reports of credits not renewing). That breaks our core promise of a **free-forever, hands-off, client-owned** site. **Cloudflare Pages** has **unlimited bandwidth at every tier and never pauses** — the right fit for a static brochure site we never touch again. Full analysis: [docs/research/2026-06-18-host-reassessment.md](research/2026-06-18-host-reassessment.md).
+- **Vercel rejected:** its **Hobby (free) plan prohibits commercial use** (client sites would need Pro at $20/seat/mo) — a non-starter for the model.
+- **US-jurisdiction concern (raised alongside):** switching hosts does **not** change it — Netlify, Cloudflare, and Web3Forms are all US-based. The legal requirement is the **Alberta PIPA cross-border disclosure**, which we already ship; for contact-form data the practical risk is negligible. **Keep Web3Forms + disclosure** (a Canadian-only/self-hosted form handler would re-introduce per-client lock-in for ~zero benefit). The disclosure text now names **Cloudflare Pages** for new builds (legacy sites name Netlify).
+- **Deploy flow validated** on `sites/maw` → `maw-cnt.pages.dev`: a scoped API token (`Account → Cloudflare Pages → Edit`) + account ID in `secrets/cloudflare.env`, then `wrangler pages deploy` — same shape as the Netlify token flow, **no GitHub required.** Runbook in the `deploy-shop-site` skill + memory `cloudflare-credentials`.
+- **Also added:** a host-agnostic, per-registrar **domain-cutover runbook** in `deploy-shop-site` (you re-point DNS, never transfer the registrar), and trimmed the triple-repeated domain section out of the handoff generator.
+
+---
+
+## 2026-06-17 — Pricing: dropped tiers for a single $1,500 flat fee + add-on menu
+
+- **Dropped good-better-best tiers in favour of ONE flat fee.** The offer is now a **single $1,500 one-time flat fee + a published à-la-carte add-on menu + a "custom quote" escape hatch** — no Starter/Growth/Pro, no $1,800 / $3,500 / $6,000. Every local-business site ships the **same core component set**; divergent needs (e-commerce, booking beyond the one included, extra pages, full copywriting, multi-location, photo sourcing) ride on add-ons, and true outliers get a custom quote.
+- **This supersedes** the 2026-06-15 "Prices committed — $1,800 / $3,500 / $6,000 three tiers" decision (in the SHIPPED entry below) **and** the [2026-06-17 pricing-strategy research](research/2026-06-17-pricing-strategy.md) verdict ("keep 3 tiers, don't lower prices") — that research is now marked **superseded**.
+- **Why (research-backed):** the [single-fee vs tiers study](research/2026-06-17-single-fee-vs-tiers.md) reached verdict **CONFIRM (single flat fee)** — under adversarial verification every pro-tier conversion/revenue claim was refuted (13 of 25 killed); the lone durable pro-tier point (no upward-migration path) is solved by the add-on menu. Tiers also add per-build scope variance, which works *against* the pipeline's consistency/speed moat (our codebase confirms tiers add zero build value today and would only add branching). A single fixed scope = one recipe, every site = maximum consistency.
+- **$1,500 anchor:** Calgary band low-end / = the closest owns-everything-+-CMS comparable (Agency7 8-page+CMS ~$1,497), above the $299–999 budget-template floor, far below $7,500+ custom agencies. Reasoned positioning, not an evidence-locked band — sanity-check against live quotes before locking. Touch-ups stay per-change pay-as-you-go (no subscription, no maintenance contract).
+- Authority doc: [docs/gtm/packaging.md](gtm/packaging.md) ("One flat fee — no tiers"). The live landing site (`sites/landing`) is migrated to $1,500 flat.
+
+---
+
 ## 2026-06-17 — Audit suite descoped: pruned the research-grounded machinery, kept the knowledge
 
 - **Halted the audit-suite upgrade (sub-projects #2–#6) and pruned the inert machinery.** The new `client-pipeline` orchestrator routes Audit mode through the existing `site-audit` skill + `packages/audit` collector (grade/tier + branded report + scoping note). The research-grounded layer — `rubric.json` (130 criteria), `src/foundation/*` (claims/criteria/score), and the just-started specialist team (sub-project #3) — had **zero consumers** and duplicated the legacy `src/rubric.ts` scorer the collector actually uses. Removed the source/tests/generators; the collector's 38 tests stay green.
@@ -32,7 +53,7 @@ Reality has caught up to the plan. Recording it so earlier "reopened/pending/pro
 
 - **Code-first is LOCKED and validated** (closes the "code-vs-no-code reopened" thread at the entries below). Evidence: the Astro + Tailwind v4 + OKLCH-token engine ships, **5 CMS-wired demos** + **60 template exploration sites** are built, and the **live landing page** runs on it. No-code (Framer/Wix/Webflow) remains a per-client handoff fallback only.
 - **Service is LIVE:** landing page at **https://studio0rbit-audit.netlify.app/** (Netlify, `sites/landing`).
-- **Prices committed (no longer "proposed"):** the live site publishes **$1,800 / $3,500 (Growth) / $6,000** one-time, matching `docs/gtm/packaging.md`. Revisit anchors with real sales data, not as an open question.
+- **Prices committed (no longer "proposed"):** ~~the live site publishes **$1,800 / $3,500 (Growth) / $6,000** one-time, matching `docs/gtm/packaging.md`.~~ **SUPERSEDED 2026-06-17 → a single $1,500 flat fee + add-on menu (no tiers); see the 2026-06-17 pricing entry above.** Revisit the anchor with real sales data, not as an open question.
 - **Toolchain table below ("Status: proposed, not yet committed") is now COMMITTED** — validated by the shipped engine.
 - **Site-audit tool exists** (`packages/audit` + `site-audit` skill), run on a real prospect ("chopchop") — the "AI site-audit tool" build item is done.
 - Still genuinely open: run the Calgary prospect scrape + first outreach batch (roadmap Phase 3–4); reconfirm scraper pricing.

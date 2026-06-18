@@ -36,15 +36,15 @@ Most people search for local shops on their phone. If you have no website — or
 3. **You own it** — we hand over every account, show you how to edit it, and walk away. It's yours.
 
 ## Pricing
-**Heading:** One fair price. No surprises. No monthly bills.
-| Starter | Growth ⭐ | Pro |
-|---|---|---|
-| A clean, credible presence | Drives calls & bookings | Online ordering / store |
-| from **$1,800** | from **$3,500** | from **$6,000** |
-| Mobile-first, found on Google, edit it yourself | Everything in Starter + booking/ordering, reviews, full copy | Everything in Growth + e-commerce or online ordering, multi-location |
+**Heading:** One fair price. No tiers, no surprises, no monthly bills.
+
+**The whole website — $1,500 one-time.** You own everything.
+Every site includes: custom design, mobile-first + fast on Google (`LocalBusiness` markup + GBP guidance), contact/hours/map/click-to-call/gallery, reviews, one booking or ordering embed, a self-edit visual editor, owner-approved copy, and a full account handover.
+
+**Add only what you need** (à la carte, quoted up front — not tiers): online store / e-commerce · extra pages or sections · full professional copywriting · multi-location · photo sourcing & editing. Anything unusual → a custom quote.
 
 *Your only ongoing cost is your domain (~$15/year) and any business tools you already use.*
-**CTA:** Not sure which fits? Get a free audit →
+**CTA:** Want to see what yours would look like? Get a free audit →
 
 ## Why us
 **Heading:** Why shop owners pick us

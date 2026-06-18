@@ -15,7 +15,7 @@ This is the living plan we track against. Phases are sequenced but the capabilit
 | **Production capability** | **Code-first: Astro + Tailwind v4 + shadcn/ui + Storyblok**, OKLCH design tokens, monorepo, `CLAUDE.md` design system. This is what AI accelerates and what we can multiply. |
 | **Client self-edit** | Hard requirement. Storyblok free visual editor closes the gap (verified). Client owns all accounts → clean walk-away. |
 | **No-code** | Deliberate per-client **handoff fallback** (Framer brochure / Wix e-comm / Webflow SEO), hand-built when dead-simple single-account self-edit beats our reuse. Not part of the automated pipeline (can't drive GUIs). |
-| **Positioning** | **Mid-market productized** (~$3k–$8k one-time, tiered). Design system is the differentiator. |
+| **Positioning** | **Quality-led productized** — a **single $1,500 flat one-time fee + add-on menu + custom-quote escape hatch** (no tiers; superseded the earlier ~$3k–$8k tiered idea 2026-06-17, see [decisions.md](decisions.md)). Design system + AI pipeline is the differentiator. |
 | **Verticals** | Architecture supports **all** (token theming + per-vertical component kits). Demo order: barber/salon + restaurant/café first, then trades, then retail. |
 
 See [decisions.md](decisions.md) and the [editability & handoff verification](research/2026-06-15-editability-and-handoff-verification.md) for the evidence.
@@ -69,7 +69,7 @@ See [decisions.md](decisions.md) and the [editability & handoff verification](re
 
 - [ ] **AI site-audit tool:** fetch a prospect's site → identify improvements → generate a 1-page audit (value-first outreach hook).
 - [ ] **Scoping rubric:** new build vs full rebuild vs targeted fix — a decision tree + fast-assessment checklist.
-- [ ] **Packaging:** mid-market tiers (Starter / Growth / Pro), one-time prices, defined deliverables per tier. Reconfirm Calgary price anchors.
+- [ ] **Packaging:** a single **$1,500 flat one-time fee + published add-on menu + custom-quote escape hatch** (no tiers — superseded the original Starter/Growth/Pro spec 2026-06-17; see [decisions.md](decisions.md)), defined core deliverables + add-on list. Reconfirm Calgary price anchors.
 
 **Success criteria:** can audit any URL and produce a credible improvement list; can scope+quote a prospect fast and consistently.
 
@@ -110,7 +110,7 @@ Capability is built and the service is **live**. The phase checkboxes below are 
 - **2026-06-15:** ✅ **60 template exploration sites** (`sites/tmpl-*`, 20 industries × 3 variants) built as a design-harvesting library — bespoke layouts to mine new components back into `packages/shared`. Viewable via the gallery on `:4300`.
 - **2026-06-15:** ✅ **Site-audit tool** (`packages/audit` + `site-audit` skill) built — fetch a prospect URL → PSI/Lighthouse + heuristic findings → branded 1-page audit + before/after preview. **Run on a real prospect ("chopchop").**
 - **2026-06-15:** ✅ **GTM kit** drafted in `docs/gtm/` (packaging, outreach, prospecting playbook, proposal & terms, landing-page copy, vertical content kits).
-- **2026-06-15:** ✅ **Service landing page LIVE — https://studio0rbit-audit.netlify.app/** (`sites/landing`, Netlify). Working Web3Forms free-audit form (→ aidan.c.moisan@gmail.com, verified delivering), integrated `/templates` gallery, pricing tiers $1,800 / $3,500 (Growth) / $6,000. Phase 4 infra achieved; first outreach batch still to send.
+- **2026-06-15:** ✅ **Service landing page LIVE — https://studio0rbit-audit.netlify.app/** (`sites/landing`, Netlify). Working Web3Forms free-audit form (→ aidan.c.moisan@gmail.com, verified delivering), integrated `/templates` gallery. *(Pricing originally published as 3 tiers $1,800 / $3,500 / $6,000; **superseded 2026-06-17 → a single $1,500 flat fee + add-ons**, and the live site has since been migrated.)* Phase 4 infra achieved; first outreach batch still to send.
 - **Owner feedback:** demos were too plain/basic — **design elevation is an ongoing priority** (see below). Booking-link → client-account flow documented in the handoff guide.
 
 ## ⭐ Next focus (roadmap revisit): make sites genuinely impressive
@@ -121,7 +121,7 @@ The v0 components prove the engine but look plain. The design system is *the* di
 - **To revisit together:** how we generate exciting designs fast (Figma + Figma MCP, design references, component variants).
 
 ## Open items to resolve along the way
-- ✅ Price points set & published live: $1,800 / $3,500 (Growth) / $6,000 one-time (revisit anchors with real sales data).
+- ✅ Price set & published live: a **single $1,500 flat one-time fee + add-on menu + custom-quote escape hatch** (no tiers). *(Superseded the original $1,800 / $3,500 / $6,000 three-tier publish 2026-06-17 — see [decisions.md](decisions.md) + [single-fee vs tiers](research/2026-06-17-single-fee-vs-tiers.md). Revisit the anchor with real sales data.)*
 - Phase 3 is **manual-first / free-tier** (no code until the build trigger is hit) — see [prospecting-playbook.md](gtm/prospecting-playbook.md) "Build trigger" + the v1 spec.
 - ⚠️ Reconfirm before any **paid** Phase 3 scrape: Outscraper/Targetron pricing, Calgary build-price anchors; Figma MCP seat rules if adopted. (v1 stays in the free tier.)
 - Privacy: reference **Alberta PIPA** (not PIPEDA) on any site collecting form/booking data.

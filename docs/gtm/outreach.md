@@ -91,9 +91,9 @@ Short, fast, scope-focused. 5–7 questions:
 4. Do you have a logo, photos, and copy — or need help creating them?
 5. Do you own your domain already? (and email on it?)
 6. Timeline / any launch date?
-7. Rough budget sense (or present the tiers and let them pick).
+7. Anything beyond the standard site? (e-commerce, extra pages, multi-location — flags any add-ons on top of the $1,500 flat fee.)
 
-→ Map to a [package or tune-up](packaging.md), confirm scope boundary (content self-edit vs structural = paid), send quote + deposit terms.
+→ Map to the **$1,500 flat-fee build (or a tune-up) + any add-ons** per [packaging.md](packaging.md), confirm scope boundary (content self-edit vs structural = paid), send quote + deposit terms.
 
 ## Expectation-setting (say up front, avoids friction later)
 

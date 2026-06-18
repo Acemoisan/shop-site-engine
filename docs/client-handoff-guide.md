@@ -19,7 +19,7 @@ You will have up to **three** logins. Keep them in a password manager. You'll us
 | Account | What it's for | How often you touch it |
 |---|---|---|
 | **Storyblok** (content editor) | Edit text, photos, hours, prices, menu | Whenever you want to change something |
-| **Hosting** (Netlify / Cloudflare Pages) | Where your site lives on the internet | Almost never |
+| **Hosting** (Cloudflare Pages / Netlify) | Where your site lives on the internet | Almost never |
 | **Domain registrar** | Your web address (e.g. yourshop.ca) | Once a year (renewal) |
 
 > At handoff we transfer each of these into your name/email so you're the owner, not us.

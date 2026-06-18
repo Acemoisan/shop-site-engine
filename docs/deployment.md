@@ -4,24 +4,26 @@
 
 Each shop site builds to static files (`sites/<slug>/dist/`) and hosts on a free static host. Under our model the **client owns their hosting account**; for our own demos we use ours.
 
+> **Standard host: Cloudflare Pages** *(switched from Netlify 2026-06-18 — see `docs/research/2026-06-18-host-reassessment.md`)*. Cloudflare's free tier has **unlimited bandwidth and never pauses**, so a client-owned static site stays free-forever and hands-off; deploy is a scoped API-token flow (no GitHub needed). **Netlify is the supported alternative** — our currently-live sites (landing, Bitcoin Manor, Eye Candy, salons) run on it from a grandfathered legacy account, but Netlify's post-2025 credit free tier **pauses new accounts on overage** (which also blocks form submissions), so we don't put new client accounts on it. See `docs/service-stack-inventory.md` for the full tool inventory.
+
 Build first: `pnpm build` (or `pnpm --filter <slug> build`). Output is `sites/<slug>/dist/`.
 
-## Option A — Netlify Drop (fastest, no CLI, good for demos)
+## Option A — Cloudflare Pages via Wrangler token (STANDARD; headless, repeatable)
+Creds live in `secrets/cloudflare.env` (gitignored: API token scoped `Account → Cloudflare Pages → Edit`, + `CLOUDFLARE_ACCOUNT_ID`). From repo root:
+```
+set -a; source secrets/cloudflare.env; set +a
+npx wrangler pages project create <slug> --production-branch=main   # first time only
+npx wrangler pages deploy sites/<slug>/dist --project-name=<slug> --branch=main
+```
+- Pro: scriptable, no GitHub/login prompt, unlimited bandwidth, never pauses, custom domains easy. First proof: `sites/maw` → `maw-cnt.pages.dev` (2026-06-18). Quirks (`wrangler whoami` errors harmlessly; use the `<project>.pages.dev` URL) in memory `cloudflare-credentials`.
+
+## Option B — Netlify Drop (quick demo only, no CLI)
 1. Go to **https://app.netlify.com/drop** (sign in with a free account).
-2. Drag the folder `sites/demo-barber/dist` onto the page → instant public URL.
-3. Repeat with `sites/demo-cafe/dist`.
-- Pro: zero setup. Con: manual re-drop to update (fine for demos).
+2. Drag the folder `sites/<slug>/dist` onto the page → instant public URL.
+- Pro: zero setup. Con: manual re-drop to update; Netlify's credit free tier pauses on overage — **demos only, not client launches.**
 
-## Option B — Cloudflare Pages via Wrangler (repeatable, recommended for real sites)
-1. Authenticate once (run in the session prompt so output lands here):
-   `! npx wrangler login`
-2. Deploy a site:
-   `npx wrangler pages deploy sites/demo-barber/dist --project-name=demo-barber`
-   `npx wrangler pages deploy sites/demo-cafe/dist --project-name=demo-cafe`
-- Pro: scriptable, custom domains easy, free tier generous.
-
-## Option C — Git-connected (best for client-owned, auto-deploy on edit)
-Requires the repo pushed to GitHub, then connect the repo in Cloudflare Pages / Netlify with:
+## Option C — Git-connected (auto-deploy on edit; for the client's standalone repo)
+Requires the repo pushed to GitHub, then connect the repo in Cloudflare Pages (standard) / Netlify with:
 - Build command: `pnpm --filter <slug> build`
 - Output dir: `sites/<slug>/dist`
 - This is the setup a client inherits: a Storyblok publish triggers a rebuild + redeploy automatically.
@@ -44,7 +46,7 @@ Storyblok (Publish) → webhook → host Build Hook → host rebuilds
 ## ❓ Do clients need a GitHub account? — NO.
 The site **code** lives in a Git repo that **we** own; the client never touches it. The client only ever uses:
 - **Storyblok** — edit content (free, theirs)
-- **Hosting account** (Cloudflare Pages / Netlify) — free, theirs, but they basically never open it
+- **Hosting account** (Cloudflare Pages — standard; Netlify alt) — free, theirs, but they basically never open it
 - **Domain** registrar — theirs, once-a-year renewal
 
 Content changes flow Storyblok → webhook → rebuild and **never touch Git**. GitHub is purely *our* build source. The deployed site is static files on a CDN, so it keeps serving even if rebuilds ever stopped — no single point of failure for the client.
@@ -55,7 +57,7 @@ This monorepo (`sites/*`) is our **development capability** — where we build/i
 ## Per-client launch runbook (one-time, ~15 min, then zero maintenance)
 1. Finalize the client's site (theme + content + Storyblok space wired — see the `storyblok-shop-cms` skill).
 2. Create a **standalone GitHub repo** (ours) containing just their site; push it.
-3. Create the client's **host account** (Cloudflare Pages or Netlify) under *their* email; connect the repo:
+3. Create the client's **host account** (Cloudflare Pages — standard; Netlify only for a grandfathered legacy account) under *their* email; connect the repo:
    - Build command: `pnpm install && pnpm build` · Output dir: `dist` · Node 20+.
    - Env var: **`STORYBLOK_TOKEN`** = their Storyblok preview/public **delivery** token.
 4. Create a **Build Hook** in the host (a URL that triggers a deploy).
