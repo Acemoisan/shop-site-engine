@@ -9,12 +9,14 @@
 ## The win (honest, with proof)
 Measured with Google PageSpeed Insights (Lighthouse) — re-runnable by anyone at pagespeed.web.dev.
 
+Reproduce anytime: `cd packages/audit && node --import tsx src/diff.ts https://www.eyecandyeyewear.com/ https://eye-candy-optical-yyc.netlify.app/ optical`
+
 | Metric (tool) | Before (Wix) | After (static) |
 |---|---|---|
-| Mobile PageSpeed — Google | **64** | **90** |
+| **Overall audit grade** (rubric 1.1.0) | **C** | **A** |
+| Mobile PageSpeed — Google | 64–79* | 90 |
 | Desktop PageSpeed — Google | 96 | 99 |
-| Largest paint (lab LCP) | ~10.1s | ~2.9s |
-| Accessibility — Lighthouse | 89 (B) | 90 (A) |
+| Accessibility — Lighthouse | 89 (B) | 90–93 (A) |
 | Lighthouse SEO | 100 | 100 *(already strong — kept clean)* |
 | @seomator on-page audit | 93 / A | 95 / A |
 | Published hours (both studios) | ✗ | ✓ |
@@ -23,8 +25,10 @@ Measured with Google PageSpeed Insights (Lighthouse) — re-runnable by anyone a
 | Footer map | blank box | real dual-location section |
 | Platform | Wix (JS-heavy) | static files on CDN |
 
+\* PageSpeed **lab** scores vary run-to-run (we measured the old site at 64 and 79 on two runs; lab LCP swung ~10s↔4.5s). We quote the **score band + architecture**, never a single "seconds faster" figure — that's the honest read of lab data.
+
 **Why it's actually better (not just a number):**
-- **Speed by rebuild, not plugin** — static files on a CDN vs Wix's per-visit JS bundle. That's the 64→90 and the ~10s→~3s largest paint.
+- **Speed by rebuild, not plugin** — static files on a CDN vs Wix's per-visit JS bundle. The mobile PageSpeed score lands in the 90s, and the audit grade moves C→A under our (lab-CWV-honest) rubric.
 - **Design that matches $600 frames** — "The Lens" theme (porcelain + AR-coating emerald + cognac, Fraunces/Hanken Grotesk/DM Mono, lens-circle + Snellen signature) vs the generic Wix template.
 - **Conversion gaps closed** — hours, contact form, dual-location NAP, structured data.
 - **Honesty:** SEO score was *already* 100 — we did **not** improve a ranking; we kept clean SEO while fixing speed/conversion/design. We quote the PageSpeed score + architecture, never a "seconds faster" or "rank #1" claim (no real-user CrUX data; a clean technical score ≠ a ranking).
@@ -50,8 +54,9 @@ All content (frames, prices, hours, studio details, FAQs) lives in **one file**:
 
 ## 4. Swappable placeholders / follow-ups
 - **Web3Forms key** (`web3formsKey` in `shop.ts`): currently the operator's working key → swap to the client's own. **[BLOCKER to finalize]**
-- **Google reviews:** none shown (we don't fabricate). Drop real quotes/rating in and we'll feature them.
-- **Socials:** the old site only had Wix placeholder icons → omitted. Add real handles when provided.
+- **Google reviews:** ✅ **added 2026-06-18** — a "Word of mouth" section + hero badge now feature **3 real, verbatim Google reviews** (Nathan Vienneau, Hugo Clemente, Lore Redes) and the headline **4.9★ · 100+ reviews** across both studios (verified on the public Google/Birdeye listings; nothing fabricated). Edit/rotate quotes in `reviews`/`reviewSummary` in `shop.ts`. *(If the client wants a live auto-updating Google rating widget, that's a paid add-on — the current implementation is static + honest.)*
+- **Privacy notice:** ✅ **completed 2026-06-18** — full Alberta-PIPA `/privacy` page (cross-border Web3Forms/Netlify disclosure) + footer "Privacy" link + a link by the contact form. This is the one legal must in our stack; previously only the inline form line shipped.
+- **Socials:** the old site showed only Wix placeholder icons → omitted. **A real Facebook page exists: facebook.com/EyeCandyEyewearCalgary** — confirm it's theirs and we'll add it (quick add). No verified Instagram found.
 - **Booking:** the old Wix booking page was empty; CTAs drive to call + form. A real booking embed is an add-on.
 
 ## 5. Domain cutover (Wix → new site)

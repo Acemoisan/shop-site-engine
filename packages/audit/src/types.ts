@@ -54,6 +54,9 @@ export interface GradeResult {
 export interface AuditData {
   url: string
   fetchedAt: string
+  /** Rubric version that produced `grade` — lets the diff tool warn when two
+   *  audits were graded by different rubric versions (avoids stale comparisons). */
+  rubricVersion?: string
   reachable: boolean
   /** True when the server responded but not with a usable 2xx page (e.g. a 403
    *  bot-challenge or 5xx). The site exists, but we could NOT inspect the real

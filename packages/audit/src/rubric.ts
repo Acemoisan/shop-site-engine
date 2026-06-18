@@ -1,6 +1,13 @@
 import type { Grade, GradeResult, Tier, FeatureKey } from "./types.js"
 
-export const RUBRIC_VERSION = "1.0.0"
+// 1.1.0 — two honesty/accuracy fixes:
+//  • lab CWV no longer hard-caps a site that's actually fast (perf grade A/B).
+//    A throttled-lab LCP just over 2.5s on an image-optimized static site is
+//    noise, not a verdict (see site-audit honesty rules). It still caps a site
+//    that is ALSO slow (perf C/D/F + CWV fail = a consistent, real signal).
+//  • conversion ignores vertical-irrelevant features (e.g. Menu schema off a
+//    non-cafe), so an optician isn't docked for lacking a restaurant feature.
+export const RUBRIC_VERSION = "1.1.0"
 
 const GRADE_POINTS: Record<Grade, number> = { A: 4, B: 3, C: 2, D: 1, F: 0 }
 const POINTS_GRADE: Grade[] = ["F", "D", "C", "B", "A"]
@@ -19,8 +26,16 @@ export interface GradeInputs {
   psiA11y?: number
   cwvPass?: boolean
   seomatorScore?: number
+  vertical?: string
   inventory: Record<FeatureKey, boolean | "error">
   structuralFlags: { notMobile: boolean; deadPlatform: boolean; brokenIa: boolean }
+}
+
+// Features that only make sense for some verticals — excluded from the
+// conversion score elsewhere so a shop isn't penalised for a feature it
+// would never have.
+const VERTICAL_ONLY: Partial<Record<FeatureKey, (v?: string) => boolean>> = {
+  menuSchema: (v) => v === "cafe" || v === "restaurant",
 }
 
 const avg = (ns: number[]) => ns.reduce((a, b) => a + b, 0) / ns.length
@@ -36,15 +51,23 @@ export function computeGrade(inp: GradeInputs): GradeResult {
 
   if (inp.psiA11y != null) { byCategory.accessibility = scoreToGrade(inp.psiA11y); available++ }
 
-  const present = Object.values(inp.inventory).filter((v) => v === true).length
-  const counted = Object.values(inp.inventory).filter((v) => v !== "error").length
+  // Only count features relevant to this vertical (e.g. Menu schema is cafe-only).
+  const relevant = (Object.keys(inp.inventory) as FeatureKey[]).filter(
+    (k) => !VERTICAL_ONLY[k] || VERTICAL_ONLY[k]!(inp.vertical),
+  )
+  const present = relevant.filter((k) => inp.inventory[k] === true).length
+  const counted = relevant.filter((k) => inp.inventory[k] !== "error").length
   if (counted) { byCategory.conversion = scoreToGrade(Math.round((present / counted) * 100)); available++ }
 
   const cats = Object.values(byCategory)
   const overallPoints = cats.length ? cats.reduce((s, g) => s + GRADE_POINTS[g], 0) / cats.length : 0
   let overall = POINTS_GRADE[Math.round(overallPoints)]
 
-  if (inp.cwvPass === false && GRADE_POINTS[overall] > GRADE_POINTS["C"]) overall = "C"
+  // Lab CWV "fail" only caps the grade when the site is ALSO slow on the
+  // performance score (grade C/D/F). A fast site (perf A/B) is never hard-failed
+  // on lab LCP alone — that lab number isn't Google's real-user verdict.
+  const perfFastEnough = byCategory.performance === "A" || byCategory.performance === "B"
+  if (inp.cwvPass === false && !perfFastEnough && GRADE_POINTS[overall] > GRADE_POINTS["C"]) overall = "C"
 
   const structural = inp.structuralFlags.notMobile || inp.structuralFlags.deadPlatform || inp.structuralFlags.brokenIa
   if (structural && GRADE_POINTS[overall] > GRADE_POINTS["D"]) overall = "D"

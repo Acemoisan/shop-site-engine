@@ -16,18 +16,18 @@
 
   "lead": [
     "Your new **Eye Candy Optical** site is **live** — rebuilt as a fast, static site using **your own product photography**, with both studios, real hours, and a working contact form front and centre.",
-    "The honest picture: your old site's *technical SEO was already strong*, so we kept it clean (a perfect **100** on Google's SEO check) while fixing what was actually costing you visits. On Google's PageSpeed test, mobile went from **64 → 90**, and your largest image now paints in about **2.9 seconds instead of 10**. Accessibility went from **B to A**. It's a one-time build — **you own every account.**"
+    "The honest picture: your old site's *technical SEO was already strong*, so we kept it clean (a perfect **100** on Google's SEO check) while fixing what was actually costing you visits. On Google's PageSpeed test your mobile score climbed into the **90s**, and the page went from a heavy Wix build to pre-built static files that load fast on phones. Accessibility went from **B to A**. It's a one-time build — **you own every account.**"
   ],
 
   "stats": [
-    { "n": "64 → 90", "l": "Mobile PageSpeed · Google" },
-    { "n": "10.1s → 2.9s", "l": "Largest paint · lab" },
-    { "n": "B → A", "l": "Accessibility" },
+    { "n": "→ 90", "l": "Mobile PageSpeed · Google" },
+    { "n": "C → A", "l": "Overall audit grade" },
+    { "n": "B → A", "l": "Accessibility · Lighthouse" },
     { "n": "Wix → static", "l": "Architecture" }
   ],
 
   "notes": [
-    "**Speed by rebuild, not plugin.** Wix runs a heavy JavaScript bundle on every visit; your new site is pre-built static files on a CDN — same content, a fraction of the work for the phone. That's the 64→90 jump, and you can re-run it yourself at pagespeed.web.dev.",
+    "**Speed by rebuild, not plugin.** Wix runs a heavy JavaScript bundle on every visit; your new site is pre-built static files on a CDN — same content, a fraction of the work for the phone. That's the jump into the 90s on Google's mobile PageSpeed test, which you can re-run yourself at pagespeed.web.dev.",
     "**A look that matches your frames.** A premium editorial design — porcelain canvas, an 'anti-reflective lens' emerald, lens-shaped product framing, a real display/body type system — instead of the generic Wix template. Your $600 frames now look the part.",
     "**The gaps we closed.** Published opening hours for both studios, a working contact form (verified — it emails on submit), proper Optician + LocalBusiness structured data per location, and a real two-location section replacing the blank map box in your old footer.",
     "**Honest on speed & SEO.** We quote Google's PageSpeed score and the move to a static stack — not a 'seconds faster' or 'rank #1' promise (Google's lab numbers aren't real-user data, and a clean technical score isn't a ranking). Your SEO was already good; we kept it that way.",

@@ -1,5 +1,5 @@
 import type { AuditData, PsiProbe, SeomatorProbe, StackProbe, FeatureKey } from "./types.js"
-import { computeGrade, mapTier, type GradeInputs } from "./rubric.js"
+import { computeGrade, mapTier, RUBRIC_VERSION, type GradeInputs } from "./rubric.js"
 
 export interface AssembleInput {
   url: string
@@ -48,6 +48,7 @@ export function assembleAudit(input: AssembleInput): AuditData {
     psiA11y: input.psi.status === "ok" ? input.psi.mobile?.accessibility : undefined,
     cwvPass: input.psi.status === "ok" ? input.psi.cwv?.pass : undefined,
     seomatorScore: input.seomator.status === "ok" ? input.seomator.score : undefined,
+    vertical: input.vertical,
     inventory: input.inventory,
     structuralFlags,
   }
@@ -60,6 +61,7 @@ export function assembleAudit(input: AssembleInput): AuditData {
   return {
     url: input.url,
     fetchedAt: input.fetchedAt,
+    rubricVersion: RUBRIC_VERSION,
     reachable: input.reachable,
     blocked,
     vertical: input.vertical,
