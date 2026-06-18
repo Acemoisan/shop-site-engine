@@ -1,0 +1,93 @@
+{
+  "client": "Astro Systems",
+  "slug": "astro-systems",
+  "date": "2026-06-18",
+  "statusTag": "LIVE",
+  "lead": [
+    "Your new **Astro Systems** site is **live** — rebuilt as a fast, **secure** site that finally works on phones, with your five systems, a clear way to request a quote, and tap-to-call front and centre.",
+    "The honest picture: your old site was tiny so it already loaded quickly — but it ran over plain HTTP (browsers flagged it **\"Not Secure\"**), didn't work on a phone, and gave visitors no real way to reach you. We fixed exactly that. On our own website audit the site went from a **D to an A**, with the parts that actually cost you customers — accessibility, mobile, and the ability to convert a visitor — all jumping to **A**. It's a one-time build — **you own every account.**"
+  ],
+  "stats": [
+    {
+      "n": "D → A",
+      "l": "Overall website audit grade"
+    },
+    {
+      "n": "Not Secure → HTTPS",
+      "l": "Security"
+    },
+    {
+      "n": "F → A",
+      "l": "Conversion (call / quote / structure)"
+    },
+    {
+      "n": "1990s → modern",
+      "l": "Mobile-first rebuild"
+    }
+  ],
+  "links": [
+    {
+      "k": "Live site (staging)",
+      "label": "astro-systems.pages.dev",
+      "href": "https://astro-systems.pages.dev"
+    },
+    {
+      "k": "Privacy notice",
+      "label": "astro-systems.pages.dev/privacy",
+      "href": "https://astro-systems.pages.dev/privacy"
+    }
+  ],
+  "ownershipIntro": "Right now the accounts sit under our setup so we could build it for you. Transfer is by invite or a fresh key you create — never a shared password.",
+  "accounts": [
+    {
+      "name": "Hosting — Cloudflare Pages",
+      "ref": "project “astro-systems” (free, HTTPS included)",
+      "own": "→ we invite your owner email, then we step off. You own the live site."
+    },
+    {
+      "name": "Contact form — Web3Forms",
+      "ref": "free; quote requests emailed instantly",
+      "own": "→ generate your own key at web3forms.com using info@astrosystems.ca and we paste it in, so requests go straight to you."
+    },
+    {
+      "name": "Domain — astrosystems.ca",
+      "ref": "already yours (currently on the old HTTP site)",
+      "own": "→ stays yours; we point it at the new (secure) site when you approve (see cutover below)."
+    },
+    {
+      "name": "Site code",
+      "ref": "standalone repo we maintain",
+      "own": "→ no GitHub needed on your side; handed over on request. One-time build, no retainer."
+    }
+  ],
+  "editSteps": [
+    "This site was built **without a separate CMS login** — so there’s nothing new to learn and no monthly CMS seat.",
+    "All your content (the five systems, copy, phone numbers, FAQs) lives in one file in the site’s code.",
+    "To change anything — wording, a new phone number, a holiday note — send the update to us and we publish it; it’s a quick edit + redeploy.",
+    "Want real project photos on the page? Send them over and we’ll place them.",
+    "Prefer to self-edit later? We can add a simple CMS (Storyblok) as a one-time add-on so you can edit and publish yourself."
+  ],
+  "finishingSteps": [
+    {
+      "title": "1 · Point your domain (astrosystems.ca) at the new site",
+      "body": "Your web address stays exactly the same — we just aim it at the new, secure site. **Zero downtime:** the old site stays live until you approve this link, then we cut over. This also gives astrosystems.ca **HTTPS for the first time**, ending the \"Not Secure\" warning. The move is two small DNS records at your registrar — **we do it for you in about 5 minutes** once you tell us where the domain is registered and where your email is hosted (so we preserve your @astrosystems.ca email untouched)."
+    },
+    {
+      "title": "2 · Send quote requests to your own inbox",
+      "body": "The form is live now. Generate a free Web3Forms key at web3forms.com using info@astrosystems.ca, send it to us, and we’ll swap it in so every quote request lands directly in your inbox instead of ours."
+    },
+    {
+      "title": "3 · Optional — add real photos & self-serve editing",
+      "body": "Two easy add-ons whenever you’re ready: real project photography placed throughout the site, and a simple CMS so you can edit and publish content yourself. Neither is needed for launch."
+    }
+  ],
+  "goingLive": null,
+  "notes": [
+    "**The big win is trust, not speed.** Your old page was fast only because it was nearly empty and stuck in the 90s — and it ran over insecure HTTP, so every browser warned visitors it was \"Not Secure.\" The new site is served over **HTTPS automatically**, works on every phone, and looks like the modern smart-home company you actually are. We're not quoting a \"seconds faster\" number, because that wouldn't be honest.",
+    "**A look that matches the work.** A premium home-technology design — deep navy, a copper \"wiring\" accent, a clean type system, and a connected-home graphic — instead of the clip-art splash page. It reads as current and trustworthy.",
+    "**The gaps we closed.** HTTPS, a mobile-responsive layout, tap-to-call (phone + toll-free), a working **\"Request a quote\" form** (emails on submit), proper ElectricalContractor + LocalBusiness structured data, Open Graph link previews, and a privacy notice.",
+    "**Real content, no invented details.** Every word is migrated from your own five service pages; we didn't fabricate reviews, hours, prices, or an address. Imagery is custom graphic design — **adding real project photos is an easy next step.**",
+    "**Still on the list (easy adds).** Real project photography, your Google Business Profile + reviews if you set them up, and self-serve content editing (a simple CMS) if you'd like it."
+  ],
+  "footer": "Astro Systems · Calgary, Alberta · Built by Studio0rbit · one-time build, no retainer"
+}

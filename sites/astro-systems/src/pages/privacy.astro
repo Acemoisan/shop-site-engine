@@ -1,0 +1,93 @@
+---
+import "@studio0rbit/shared/styles/base.css";
+import "../theme.css";
+import { shop, email } from "../content/shop";
+import SeoHead from "@studio0rbit/shared/seo/SeoHead.astro";
+import Icon from "@studio0rbit/shared/components/Icon.astro";
+
+// Mandatory in our stack: Alberta PIPA cross-border disclosure (Web3Forms +
+// Cloudflare Pages are US-based). Standard text per
+// docs/onboarding/privacy-notice-template.md. Privacy contact = the client's
+// public inbox. Editable here alongside the rest of the content.
+const updated = "June 2026";
+
+const items = [
+  {
+    h: "What we collect",
+    b: "When you use our quote-request form we collect the information you submit — typically your name, email, phone, project type, and message. Our host may also log standard technical data (e.g. IP address) to serve the site.",
+  },
+  {
+    h: "Why we collect it",
+    b: "We use it only to receive and respond to your enquiry and prepare a quote. We do not sell it or use it for unrelated purposes without your consent.",
+  },
+  {
+    h: "Consent",
+    b: "Submitting the form means you consent to this use.",
+  },
+  {
+    h: "Service providers outside Canada",
+    b: "Our form is processed by Web3Forms and our website is hosted on Cloudflare Pages, both based in the United States. As a result, your information may be stored, processed, or accessed outside Canada and may be subject to the laws of that country.",
+  },
+  {
+    h: "Access to our policies",
+    b: "To learn more about how we use these service providers, contact us using the details below.",
+  },
+  {
+    h: "Privacy contact",
+    b: `Questions, or to access or correct your information: Astro Systems — ${email}.`,
+  },
+  {
+    h: "Retention",
+    b: "We keep enquiry messages only as long as needed to respond and for reasonable follow-up, then delete them.",
+  },
+];
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SeoHead
+      title="Privacy Notice — Astro Systems"
+      description="How Astro Systems handles your personal information, in line with Alberta's Personal Information Protection Act (PIPA)."
+      canonicalPath="/privacy"
+      siteName="Astro Systems"
+      themeColor="#0E1730"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-background text-foreground font-sans antialiased">
+    <main class="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+      <a href="/" class="inline-flex items-center gap-2 font-data text-xs uppercase tracking-[0.2em] text-muted-foreground transition hover:text-primary">
+        <Icon name="arrow" class="h-3.5 w-3.5 rotate-180" />Back to Astro Systems
+      </a>
+
+      <p class="mt-10 font-data text-xs uppercase tracking-[0.3em] text-accent">Privacy</p>
+      <h1 class="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">Privacy notice</h1>
+      <p class="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
+        We respect your privacy and handle personal information in line with Alberta's <em>Personal Information Protection Act</em> (PIPA).
+      </p>
+
+      <div class="mt-12 space-y-8">
+        {items.map((it, i) => (
+          <section>
+            <h2 class="flex items-baseline gap-3 font-display text-xl font-semibold text-foreground">
+              <span class="font-data text-sm text-accent">{String(i + 1).padStart(2, "0")}</span>
+              {it.h}
+            </h2>
+            <p class="mt-2 leading-relaxed text-muted-foreground">{it.b}</p>
+          </section>
+        ))}
+      </div>
+
+      <p class="mt-14 border-t border-border pt-6 font-data text-[0.7rem] uppercase tracking-[0.15em] text-muted-foreground">
+        Last updated: {updated} · <a href="/" class="transition hover:text-primary">{shop.name}</a>
+      </p>
+    </main>
+  </body>
+</html>

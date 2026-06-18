@@ -1,0 +1,420 @@
+---
+import "@studio0rbit/shared/styles/base.css";
+import "../theme.css";
+import {
+  shop, email, tollFree, established, centralVacUrl,
+  systems, benefits, processSteps, faqs, web3formsKey, pipaNote,
+} from "../content/shop";
+import SeoHead from "@studio0rbit/shared/seo/SeoHead.astro";
+import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
+import Stats from "@studio0rbit/shared/components/Stats.astro";
+import Features from "@studio0rbit/shared/components/Features.astro";
+import Faq from "@studio0rbit/shared/components/Faq.astro";
+import Icon from "@studio0rbit/shared/components/Icon.astro";
+
+const tel = (p: string) => `tel:+1${p.replace(/[^0-9]/g, "")}`;
+const phoneDisplay = "(403) 243-8800";
+const tollFreeDisplay = "(888) 662-5727";
+
+const stats = [
+  { value: established, label: "Wiring Calgary homes since" },
+  { value: "50+ yrs", label: "In structured home wiring" },
+  { value: "One network", label: "Entertainment, data & security, unified" },
+];
+
+const title = "Astro Systems — Fully Integrated Home Wiring in Calgary";
+const description =
+  "Calgary's structured home-wiring specialists since 1974. Whole-home audio & video, networking, security and home automation — all wired to one tidy network, built to expand. Request a quote.";
+
+// Hand-rolled JSON-LD: a service-area contractor (no public storefront), with
+// the five systems as a service catalogue (replaces generic "menu" schema).
+const ogImage = new URL("/og.png", shop.url).href;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["ElectricalContractor", "HomeAndConstructionBusiness", "LocalBusiness"],
+  "@id": `${shop.url}/#business`,
+  name: shop.name,
+  url: shop.url,
+  email,
+  telephone: "+14032438800",
+  slogan: shop.tagline,
+  foundingDate: established,
+  image: ogImage,
+  areaServed: { "@type": "City", name: "Calgary" },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Calgary",
+    addressRegion: "AB",
+    addressCountry: "CA",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+18886625727",
+    contactType: "sales",
+    areaServed: "CA",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Home wiring systems",
+    itemListElement: systems.map((s) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: s.name, description: s.body },
+    })),
+  },
+};
+
+// Hero "connected home" diagram — node coordinates in a 0–100 square so the SVG
+// connector lines and the HTML icon chips share one coordinate system and stay
+// aligned at any size. Centre hub at 50,50.
+const hubNodes = [
+  { x: 50, y: 11, icon: "monitor", label: "A/V" },
+  { x: 88, y: 35, icon: "wifi", label: "Network" },
+  { x: 78, y: 84, icon: "shield", label: "Security" },
+  { x: 22, y: 84, icon: "cpu", label: "Automation" },
+  { x: 12, y: 35, icon: "speaker", label: "Audio" },
+];
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SeoHead
+      title={title}
+      description={description}
+      canonicalPath="/"
+      image="/og.png"
+      siteName={shop.name}
+      themeColor="#0E1730"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body id="top" class="bg-background text-foreground font-sans antialiased">
+    <!-- ── Top utility bar (navy) — heritage + tap-to-call ── -->
+    <div class="bg-foreground text-background">
+      <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-1 px-6 py-2 text-center font-data text-xs sm:flex-row sm:text-left">
+        <span class="tracking-wide"><span class="text-[color:var(--accent)]">●</span> Serving Calgary &amp; area since {established}</span>
+        <span class="flex items-center gap-4">
+          <a href={tel(shop.phone)} class="flex items-center gap-1.5 transition hover:text-[color:var(--accent)]"><Icon name="phone" class="h-3.5 w-3.5" />{phoneDisplay}</a>
+          <a href={tel(tollFree)} class="hidden items-center gap-1.5 transition hover:text-[color:var(--accent)] sm:flex">Toll-free {tollFreeDisplay}</a>
+        </span>
+      </div>
+    </div>
+
+    <SiteNav
+      name="Astro Systems"
+      bookingUrl="#quote"
+      bookLabel="Request a quote"
+      links={[
+        { label: "Systems", href: "#systems" },
+        { label: "Why Astro", href: "#why" },
+        { label: "Process", href: "#process" },
+        { label: "Contact", href: "#quote" },
+      ]}
+    />
+
+    <main>
+    <!-- ── Hero (navy + circuit motif + connected-home diagram) ─────────── -->
+    <section class="relative overflow-hidden bg-foreground text-background">
+      <div class="node-dots pointer-events-none absolute inset-0 opacity-40"></div>
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_60%_at_75%_10%,color-mix(in_oklch,var(--primary)_42%,transparent),transparent_70%)]"></div>
+      <div class="relative mx-auto grid max-w-6xl items-center gap-14 px-6 py-20 sm:py-28 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <p class="font-data text-xs uppercase tracking-[0.3em] text-[color:var(--accent)]">Structured home wiring · Calgary</p>
+          <h1 class="mt-6 font-display text-4xl font-semibold leading-[1.04] tracking-tight sm:text-6xl">
+            One home.<br />Every system, <span class="text-[color:var(--accent)]">wired to work together.</span>
+          </h1>
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-background/75">
+            Astro Systems has been wiring Calgary homes since {established}. Audio, video, networking, security and automation — run back to one central media centre, built to grow with you.
+          </p>
+          <div class="mt-9 flex flex-wrap items-center gap-4">
+            <a href="#quote" class="rounded-[var(--radius)] bg-primary px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">Request a quote</a>
+            <a href={tel(shop.phone)} class="flex items-center gap-2 rounded-[var(--radius)] border border-background/25 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-background transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">
+              <Icon name="phone" class="h-4 w-4" />Call {phoneDisplay}
+            </a>
+          </div>
+          <ul class="mt-10 flex flex-wrap gap-x-8 gap-y-4">
+            <li class="flex items-center gap-2.5 text-sm text-background/70"><Icon name="award" class="h-5 w-5 text-[color:var(--accent)]" />Since {established}</li>
+            <li class="flex items-center gap-2.5 text-sm text-background/70"><Icon name="mapPin" class="h-5 w-5 text-[color:var(--accent)]" />Calgary &amp; area</li>
+            <li class="flex items-center gap-2.5 text-sm text-background/70"><Icon name="wrench" class="h-5 w-5 text-[color:var(--accent)]" />Built to expand</li>
+          </ul>
+        </div>
+
+        <!-- Signature: the connected-home node graph (a modern reinterpretation
+             of their old "wires radiating from the house" splash). -->
+        <div class="relative mx-auto aspect-square w-full max-w-md">
+          <svg viewBox="0 0 100 100" class="absolute inset-0 h-full w-full" aria-hidden="true">
+            {hubNodes.map((n) => (
+              <line x1="50" y1="50" x2={n.x} y2={n.y} stroke="color-mix(in oklch, var(--accent) 55%, transparent)" stroke-width="0.6" stroke-linecap="round" />
+            ))}
+            {hubNodes.map((n) => (
+              <circle cx={n.x} cy={n.y} r="1.1" fill="var(--accent)" />
+            ))}
+            <circle cx="50" cy="50" r="2" fill="var(--primary)" />
+          </svg>
+          <!-- Centre hub -->
+          <div class="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-2xl border border-background/15 bg-[color:color-mix(in_oklch,var(--primary)_30%,var(--foreground))] shadow-2xl">
+            <Icon name="home" class="h-7 w-7 text-background" />
+            <span class="mt-1 font-data text-[0.55rem] uppercase tracking-[0.15em] text-background/80">Media centre</span>
+          </div>
+          <!-- Surrounding system nodes -->
+          {hubNodes.map((n) => (
+            <div
+              class="absolute flex flex-col items-center gap-1"
+              style={`left:${n.x}%; top:${n.y}%; transform:translate(-50%,-50%)`}
+            >
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-background/15 bg-background/10 backdrop-blur-sm">
+                <Icon name={n.icon} class="h-6 w-6 text-[color:var(--accent)]" />
+              </div>
+              <span class="font-data text-[0.6rem] uppercase tracking-[0.12em] text-background/65">{n.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Stats items={stats} />
+
+    <!-- ── Systems (the core) ───────────────────────────────────────────── -->
+    <section id="systems" class="scroll-mt-24">
+      <div class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+        <div class="max-w-2xl">
+          <p class="font-data text-xs uppercase tracking-[0.3em] text-accent">What we wire</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">Five systems, one tidy network</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+            Everything runs back to a central media centre, then out to the rooms through modules and panels. Start with what you need today and add the rest whenever you like.
+          </p>
+        </div>
+        <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {systems.map((s) => (
+            <div class="flex flex-col rounded-[var(--radius)] border border-border bg-card p-7 shadow-sm transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-md">
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Icon name={s.icon} class="h-6 w-6" />
+              </div>
+              <p class="mt-6 font-data text-[0.7rem] uppercase tracking-[0.2em] text-accent">{s.kind}</p>
+              <h3 class="mt-1.5 font-display text-xl font-semibold text-foreground">{s.name}</h3>
+              <p class="mt-2.5 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+            </div>
+          ))}
+          <!-- Closing prompt card -->
+          <div class="flex flex-col justify-center rounded-[var(--radius)] border border-dashed border-primary/40 bg-primary/5 p-7">
+            <h3 class="font-display text-xl font-semibold text-foreground">Not sure where to start?</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-muted-foreground">Tell us about your home or build and we'll map out the right systems and a quote.</p>
+            <a href="#quote" class="mt-5 inline-flex items-center gap-2 font-data text-xs font-semibold uppercase tracking-wider text-primary transition hover:gap-3">Request a quote <Icon name="arrow" class="h-4 w-4" /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Features label="Why Astro" heading="Wiring that earns its keep" items={benefits} />
+
+    <!-- ── Process ──────────────────────────────────────────────────────── -->
+    <section id="process" class="scroll-mt-24 border-y border-border bg-muted">
+      <div class="circuit-grid">
+      <div class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+        <div class="max-w-2xl">
+          <p class="font-data text-xs uppercase tracking-[0.3em] text-accent">How it works</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">Simple to plan, easy to grow</h2>
+        </div>
+        <div class="mt-14 grid gap-6 md:grid-cols-3">
+          {processSteps.map((step) => (
+            <div class="relative rounded-[var(--radius)] border border-border bg-card p-8 shadow-sm">
+              <span class="font-display text-5xl font-bold text-primary/15">{step.n}</span>
+              <h3 class="mt-3 font-display text-xl font-semibold text-foreground">{step.title}</h3>
+              <p class="mt-2.5 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ── Credibility band (honest — no fabricated reviews) ────────────── -->
+    <section class="relative overflow-hidden bg-foreground text-background">
+      <div class="node-dots pointer-events-none absolute inset-0 opacity-30"></div>
+      <div class="relative mx-auto max-w-4xl px-6 py-20 text-center sm:py-24">
+        <Icon name="award" class="mx-auto h-9 w-9 text-[color:var(--accent)]" />
+        <p class="mt-6 font-display text-2xl font-medium leading-snug sm:text-3xl">
+          Calgary homeowners and builders have trusted Astro Systems with their home wiring since {established}.
+        </p>
+        <p class="mx-auto mt-5 max-w-xl text-base text-background/70">
+          We've researched the market to bring you the best products from the most reputable manufacturers — installed with decades of experience and solid workmanship. Ask about our wired show homes.
+        </p>
+      </div>
+    </section>
+
+    <Faq heading="Good to know" items={faqs} />
+
+    <!-- ── Request a quote / Contact ────────────────────────────────────── -->
+    <section id="quote" class="scroll-mt-24 border-t border-border">
+      <div class="mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:py-28 lg:grid-cols-2">
+        <div>
+          <p class="font-data text-xs uppercase tracking-[0.3em] text-accent">Request a quote</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">Let's wire your home</h2>
+          <p class="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
+            Building new or upgrading what you have — tell us a little about your home and we'll get back to you with advice and a quote. Prefer to talk? Give us a call.
+          </p>
+          <dl class="mt-8 space-y-4">
+            <div class="flex items-center gap-3 text-sm">
+              <Icon name="phone" class="h-5 w-5 text-primary" />
+              <dt class="w-24 text-muted-foreground">Phone</dt>
+              <dd><a href={tel(shop.phone)} class="font-semibold text-foreground transition hover:text-primary">{phoneDisplay}</a></dd>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <Icon name="phone" class="h-5 w-5 text-primary" />
+              <dt class="w-24 text-muted-foreground">Toll-free</dt>
+              <dd><a href={tel(tollFree)} class="font-semibold text-foreground transition hover:text-primary">{tollFreeDisplay}</a></dd>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <Icon name="mail" class="h-5 w-5 text-primary" />
+              <dt class="w-24 text-muted-foreground">Email</dt>
+              <dd><a href={`mailto:${email}`} class="font-semibold text-foreground transition hover:text-primary">{email}</a></dd>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <Icon name="mapPin" class="h-5 w-5 text-primary" />
+              <dt class="w-24 text-muted-foreground">Service area</dt>
+              <dd class="font-semibold text-foreground">{shop.serviceArea}</dd>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <Icon name="clock" class="h-5 w-5 text-primary" />
+              <dt class="w-24 text-muted-foreground">Hours</dt>
+              <dd class="font-semibold text-foreground">By appointment — call or request a quote</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Quote form → Web3Forms (host-agnostic backend). Progressive
+             enhancement: JS posts JSON for an inline success state; no-JS falls
+             back to a normal POST to the same endpoint. -->
+        <div>
+        <form id="contactForm" method="POST" action="https://api.web3forms.com/submit" data-email={email} class="rounded-[var(--radius)] border border-border bg-card p-7 shadow-sm">
+          <input type="hidden" name="access_key" value={web3formsKey} />
+          <input type="hidden" name="subject" value="New quote request from astrosystems.ca" />
+          <input type="hidden" name="from_name" value="Astro Systems website" />
+          <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <div class="grid gap-5">
+            <label class="block">
+              <span class="font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">Name</span>
+              <input type="text" name="name" required autocomplete="name" class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60" placeholder="Your name" />
+            </label>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="block">
+                <span class="font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">Email</span>
+                <input type="email" name="email" required autocomplete="email" class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60" placeholder="you@email.com" />
+              </label>
+              <label class="block">
+                <span class="font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">Phone</span>
+                <input type="tel" name="phone" autocomplete="tel" class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60" placeholder="(403) 000-0000" />
+              </label>
+            </div>
+            <label class="block">
+              <span class="font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">Project</span>
+              <select name="project" class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60">
+                <option>New home / construction</option>
+                <option>Upgrading an existing home</option>
+                <option>I'm a home builder</option>
+                <option>Not sure yet</option>
+              </select>
+            </label>
+            <label class="block">
+              <span class="font-data text-xs uppercase tracking-[0.2em] text-muted-foreground">What are you looking to wire?</span>
+              <textarea name="message" rows="4" required class="mt-2 w-full rounded-[var(--radius)] border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60" placeholder="Whole-home audio, networking, security, automation…"></textarea>
+            </label>
+            <button type="submit" class="rounded-[var(--radius)] bg-primary px-6 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">Send quote request</button>
+            <p id="contactStatus" role="status" aria-live="polite" class="hidden text-sm font-medium text-primary"></p>
+            <p class="font-data text-[0.7rem] leading-relaxed text-muted-foreground">{pipaNote} <a href="/privacy" class="underline transition hover:text-primary">Privacy notice</a>.</p>
+          </div>
+        </form>
+        <div id="contactSuccess" hidden class="rounded-[var(--radius)] border border-primary/40 bg-primary/5 p-8 text-center">
+          <p class="font-display text-2xl font-semibold text-foreground">Thanks — your request is on its way.</p>
+          <p class="mt-2 text-sm text-muted-foreground">We'll get back to you with advice and a quote. Need us sooner? Call {phoneDisplay}.</p>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Closing CTA (navy) ───────────────────────────────────────────── -->
+    <section class="relative overflow-hidden bg-primary text-primary-foreground">
+      <div class="mx-auto max-w-4xl px-6 py-20 text-center sm:py-24">
+        <h2 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">Wire it once. Enjoy it for decades.</h2>
+        <p class="mx-auto mt-4 max-w-md text-base text-primary-foreground/80">Structured wiring for entertainment, networking, security and automation — designed for your home and built to grow.</p>
+        <div class="mt-9 flex flex-wrap justify-center gap-4">
+          <a href="#quote" class="rounded-[var(--radius)] bg-card px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary transition hover:opacity-90">Request a quote</a>
+          <a href={tel(shop.phone)} class="flex items-center gap-2 rounded-[var(--radius)] border border-primary-foreground/40 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider transition hover:bg-primary-foreground/10">
+            <Icon name="phone" class="h-4 w-4" />Call {phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </section>
+    </main>
+
+    <!-- ── Footer ───────────────────────────────────────────────────────── -->
+    <footer class="border-t border-border bg-card">
+      <div class="mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="sm:col-span-2">
+          <p class="font-display text-2xl font-semibold tracking-tight text-foreground">Astro Systems</p>
+          <p class="mt-2 max-w-xs text-sm text-muted-foreground">Fully integrated home wiring for Calgary homes — structured cabling for audio, video, networking, security and automation since {established}.</p>
+          <a href={`mailto:${email}`} class="mt-4 inline-block font-data text-xs uppercase tracking-[0.15em] text-muted-foreground transition hover:text-primary">{email}</a>
+        </div>
+        <div>
+          <p class="font-data text-[0.7rem] uppercase tracking-[0.2em] text-accent">Contact</p>
+          <a href={tel(shop.phone)} class="mt-2 block text-sm font-semibold text-foreground transition hover:text-primary">{phoneDisplay}</a>
+          <a href={tel(tollFree)} class="mt-1 block text-sm text-muted-foreground transition hover:text-primary">Toll-free {tollFreeDisplay}</a>
+          <p class="mt-2 text-sm text-muted-foreground">{shop.serviceArea}</p>
+        </div>
+        <div>
+          <p class="font-data text-[0.7rem] uppercase tracking-[0.2em] text-accent">Also from us</p>
+          <a href={centralVacUrl} target="_blank" rel="noopener" class="mt-2 block text-sm text-muted-foreground transition hover:text-primary">Central vacuum systems →</a>
+        </div>
+      </div>
+      <div class="border-t border-border">
+        <div class="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-5 font-data text-[0.7rem] uppercase tracking-[0.15em] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 Astro Systems · Calgary, Alberta</p>
+          <a href="/privacy" class="transition hover:text-primary">Privacy</a>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        var form = document.getElementById("contactForm");
+        if (!form) return;
+        var statusEl = document.getElementById("contactStatus");
+        var success = document.getElementById("contactSuccess");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var btn = form.querySelector("button[type=submit]");
+          var orig = btn ? btn.textContent : "";
+          if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+          if (statusEl) { statusEl.classList.add("hidden"); statusEl.textContent = ""; }
+          var data = {};
+          new FormData(form).forEach(function (v, k) { data[k] = v; });
+          fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(data) })
+            .then(function (r) { return r.json().catch(function () { return {}; }); })
+            .then(function (d) {
+              if (d && d.success) {
+                form.style.display = "none";
+                if (success) { success.hidden = false; success.scrollIntoView({ behavior: "smooth", block: "center" }); }
+              } else {
+                throw new Error((d && d.message) || "submit failed");
+              }
+            })
+            .catch(function () {
+              if (btn) { btn.disabled = false; btn.textContent = orig; }
+              if (statusEl) {
+                var mail = form.getAttribute("data-email") || "";
+                statusEl.textContent = "Couldn't send just now — please email us at " + mail + " or call " + "(403) 243-8800.";
+                statusEl.classList.remove("hidden");
+              }
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>

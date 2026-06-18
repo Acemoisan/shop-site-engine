@@ -1,0 +1,44 @@
+/* Astro Systems — "Wired" token system.
+   Premium home-technology-integrator look: deep midnight-navy ink on a faintly
+   warm near-white canvas, a confident electric blue (pulled from their own ASTRO
+   wordmark) as the brand colour, and a copper accent (literal copper wire →
+   warmth + premium craft) for eyebrows, highlights and the "since 1974" cues.
+   The deliberate opposite of the clip-art splash. See design spec. */
+:root {
+  --background: oklch(0.985 0.005 85);          /* #FAF8F4 faintly warm white */
+  --foreground: oklch(0.215 0.055 262);         /* #0E1730 midnight navy ink */
+  --card: oklch(1 0 0);                          /* #FFFFFF lifts off the canvas */
+  --primary: oklch(0.5 0.19 262);               /* #2456D6 electric ASTRO blue */
+  --primary-foreground: oklch(0.99 0.01 262);   /* near-white on blue */
+  --muted: oklch(0.965 0.006 255);              /* #EEF1F6 cool panel */
+  --muted-foreground: oklch(0.47 0.022 260);    /* #5A6376 mid slate (AA on canvas) */
+  --accent: oklch(0.52 0.115 52);               /* #97602E deep copper (AA as text) */
+  --accent-foreground: oklch(0.99 0.01 52);     /* near-white on copper */
+  --border: oklch(0.9 0.007 255);               /* #DFE3EA cool hairline */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Sora", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
+  --radius: 0.5rem;
+}
+
+/* Technical-data utility face — eyebrows, NAP, phone, spec captions. Additive,
+   scoped: never restyles a shared component, just makes the face available. */
+.font-data { font-family: var(--font-mono); font-feature-settings: "tnum" 1; }
+
+/* Signature: a faint blueprint circuit grid for quiet section backings. */
+.circuit-grid {
+  background-image:
+    linear-gradient(color-mix(in oklch, var(--primary) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklch, var(--primary) 7%, transparent) 1px, transparent 1px);
+  background-size: 2.25rem 2.25rem;
+}
+
+/* Signature: copper "wiring node" dot field — used on the dark navy hero. */
+.node-dots {
+  background-image: radial-gradient(color-mix(in oklch, var(--accent) 60%, transparent) 1.5px, transparent 2px);
+  background-size: 1.7rem 1.7rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

@@ -9,9 +9,10 @@ export function inventoryFromHtml(html: string, url: string): Record<FeatureKey,
     hours: /(hours|monday|tuesday|open today|opening times|mon[\s\-–:])/i.test(lower),
     addressOrMap: /(google\.[a-z.]+\/maps|maps\.app|<address|street|avenue|\bave\b|\bst\b\s)/i.test(lower),
     reviews: /(review|testimonial|★|rating|\bstars?\b|google reviews)/i.test(lower),
-    // Accepts a single-string @type OR the first entry of a @type array, and
-    // recognises common per-vertical LocalBusiness subtypes (e.g. Optician).
-    localBusinessJsonLd: /"@type"\s*:\s*\[?\s*"[a-z]*(business|restaurant|salon|barber|cafe|store|shop|optician|optometrist|dentist|clinic|medicalbusiness|healthandbeauty)"/i.test(html),
+    // Accepts a single-string @type OR a LocalBusiness subtype appearing ANYWHERE
+    // in a @type array (e.g. ["ElectricalContractor","LocalBusiness"]) — not just
+    // the first element. Recognises per-vertical subtypes incl. trades/contractors.
+    localBusinessJsonLd: /"@type"\s*:\s*\[?(?:\s*"[^"]*"\s*,)*\s*"[a-z]*(business|restaurant|salon|barber|cafe|store|shop|optician|optometrist|dentist|clinic|medicalbusiness|healthandbeauty|contractor|construction)"/i.test(html),
     menuSchema: /"@type"\s*:\s*"menu"/i.test(html),
     https: url.startsWith("https://"),
     ogTags: /<meta[^>]+property=["']og:/i.test(html),

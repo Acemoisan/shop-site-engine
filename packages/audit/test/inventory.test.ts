@@ -31,6 +31,14 @@ describe("inventoryFromHtml", () => {
     expect(inv.favicon).toBe(true)
   })
 
+  it("detects a LocalBusiness subtype anywhere in a @type array (trades/contractor)", () => {
+    const html = `<html><head>
+      <script type="application/ld+json">{"@type":["ElectricalContractor","HomeAndConstructionBusiness","LocalBusiness"],"name":"Astro"}</script>
+    </head><body></body></html>`
+    const inv = inventoryFromHtml(html, "https://astro.example")
+    expect(inv.localBusinessJsonLd).toBe(true)
+  })
+
   it("detects absent features and http", () => {
     const inv = inventoryFromHtml("<html><body>nothing</body></html>", "http://bare.example")
     expect(inv.mobileViewport).toBe(false)
