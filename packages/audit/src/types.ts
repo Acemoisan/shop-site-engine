@@ -42,6 +42,16 @@ export interface StackProbe {
   status: ProbeStatus
   error?: string
   platform?: string
+  /** WordPress page-builder (elementor | divi | wpbakery | beaver | gutenberg). */
+  builder?: string
+  /** Embedded online-booking/scheduling tools (e.g. calendly, square-appointments). */
+  booking?: string[]
+  /** Embedded payment/checkout tools (e.g. stripe, square, paypal). */
+  payments?: string[]
+  /** Chat widgets + third-party form/email-capture embeds. */
+  embeds?: string[]
+  /** Real owned social profiles + discarded placeholders (see `footprint.ts`). */
+  socials?: import("./footprint.js").SocialsResult
   legacy?: boolean
 }
 
