@@ -5,7 +5,7 @@
   "date": "2026-06-17",
   "statusTag": "LIVE",
   "liveUrl": "https://eye-candy-optical-yyc.netlify.app",
-  "netlifySite": "eye-candy-optical-yyc",
+  "hostSite": "eye-candy-optical-yyc",
   "oldAuditHost": "www.eyecandyeyewear.com",
   "newAuditHost": "eye-candy-optical-yyc.netlify.app",
   "a11yGrade": "A",
@@ -57,7 +57,7 @@
   ],
 
   "finishingSteps": [
-    { "title": "1 · Point your domain (eyecandyeyewear.com) at the new site", "body": "Your web address stays exactly the same — we just aim it at the new site. Zero downtime: the old Wix site stays live until you approve this staging link, then we cut over and your email keeps working untouched. Only after it’s confirmed live do you cancel Wix and stop paying that monthly fee. We need two things from you: where the domain is registered, and where your email is hosted (so we preserve it)." },
+    { "title": "1 · Point your domain (eyecandyeyewear.com) at the new site", "body": "Your web address stays exactly the same — we just aim it at the new site. **Zero downtime:** the old Wix site stays live until you approve this link, then we cut over and your email keeps working untouched. The actual move is two small DNS records at your registrar — **we do it for you in about 5 minutes** once you tell us where the domain is registered and where your email is hosted (so we preserve it). Only after it’s confirmed live do you cancel Wix and stop paying that monthly fee." },
     { "title": "2 · Send leads to your own inbox", "body": "The contact form is live now (verified). Generate a free Web3Forms key at web3forms.com using info@eyecandyeyewear.com, send it to us, and we’ll swap it in so every enquiry lands directly in your inbox instead of ours." },
     { "title": "3 · Optional — one-click future updates", "body": "If you’d like to update content yourself later, we can wire a simple CMS (Storyblok) so a Publish click rebuilds the site in ~1 minute. One-time add-on; not needed for launch." }
   ],

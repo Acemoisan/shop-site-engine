@@ -13,13 +13,13 @@
     { "n": "A", "l": "Accessibility" }
   ],
   "links": [
-    { "k": "Live site", "label": "slug.netlify.app", "href": "https://slug.netlify.app" },
+    { "k": "Live site", "label": "slug.pages.dev", "href": "https://slug.pages.dev" },
     { "k": "Edit content", "label": "Storyblok", "href": "https://app.storyblok.com/#/me/spaces/SPACE_ID" },
-    { "k": "Hosting", "label": "Netlify dashboard", "href": "https://app.netlify.com/projects/slug" }
+    { "k": "Hosting", "label": "Cloudflare Pages dashboard", "href": "https://dash.cloudflare.com" }
   ],
   "ownershipIntro": "Accounts sit under our setup email so we could build it; transfer is by invite — never a shared password.",
   "accounts": [
-    { "name": "Hosting — Netlify", "ref": "site “slug”", "own": "→ invite your email as Admin, we step off" },
+    { "name": "Hosting — Cloudflare Pages", "ref": "project “slug”", "own": "→ invite your email as Admin, we step off" },
     { "name": "CMS — Storyblok", "ref": "space #SPACE_ID", "own": "→ invite your email, reset password" }
   ],
   "editSteps": [
@@ -30,8 +30,8 @@
     { "title": "1 · Auto-publish", "body": "Connect repo + build hook + Storyblok webhook so Publish updates the live site in ~1 min." }
   ],
   "goingLive": {
-    "intro": "The site is on a free `*.netlify.app` address. To launch on the real domain:",
-    "options": ["Point the domain at the new site in Netlify → Domain management."],
+    "intro": "The site is on a free `*.pages.dev` address. To launch on the real domain:",
+    "options": ["Point the domain at the new site in your host → Custom domains (we do this for you)."],
     "note": "HTTPS is automatic."
   },
   "notes": [

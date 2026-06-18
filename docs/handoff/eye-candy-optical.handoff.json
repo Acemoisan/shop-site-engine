@@ -70,7 +70,7 @@
   "finishingSteps": [
     {
       "title": "1 · Point your domain (eyecandyeyewear.com) at the new site",
-      "body": "Your web address stays exactly the same — we just aim it at the new site. Zero downtime: the old Wix site stays live until you approve this staging link, then we cut over and your email keeps working untouched. Only after it’s confirmed live do you cancel Wix and stop paying that monthly fee. We need two things from you: where the domain is registered, and where your email is hosted (so we preserve it)."
+      "body": "Your web address stays exactly the same — we just aim it at the new site. **Zero downtime:** the old Wix site stays live until you approve this link, then we cut over and your email keeps working untouched. The actual move is two small DNS records at your registrar — **we do it for you in about 5 minutes** once you tell us where the domain is registered and where your email is hosted (so we preserve it). Only after it’s confirmed live do you cancel Wix and stop paying that monthly fee."
     },
     {
       "title": "2 · Send leads to your own inbox",
@@ -81,13 +81,7 @@
       "body": "If you’d like to update content yourself later, we can wire a simple CMS (Storyblok) so a Publish click rebuilds the site in ~1 minute. One-time add-on; not needed for launch."
     }
   ],
-  "goingLive": {
-    "intro": "The site is on a free `*.netlify.app` address so you can review it. When you’re ready to launch on your own domain:",
-    "options": [
-      "Point your domain at the new site in your host’s Domain settings."
-    ],
-    "note": "In Netlify: Domain management → Add a domain → follow the DNS steps. HTTPS is automatic."
-  },
+  "goingLive": null,
   "notes": [
     "**Speed by rebuild, not plugin.** Wix runs a heavy JavaScript bundle on every visit; your new site is pre-built static files on a CDN — same content, a fraction of the work for the phone. That's the jump into the 90s on Google's mobile PageSpeed test, which you can re-run yourself at pagespeed.web.dev.",
     "**A look that matches your frames.** A premium editorial design — porcelain canvas, an 'anti-reflective lens' emerald, lens-shaped product framing, a real display/body type system — instead of the generic Wix template. Your $600 frames now look the part.",
