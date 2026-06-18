@@ -253,9 +253,9 @@ rendering + any future resync). `registry.md` is the human index.
 
 Every delivery produces a **source export** — a zip of the client's
 `sites/<slug>/` (theme + content + pages + public) plus, for CMS clients, a Storyblok
-content export. Included in the handoff package (or escrowed and offered on request —
-operator's choice, but the option must exist). This makes three otherwise-unanswered
-cases survivable:
+content export. **Included in every handoff package by default** (operator decision,
+2026-06-18) — it ships with the deliverable, not on request. This makes three
+otherwise-unanswered cases survivable:
 - **Client leaves us entirely** (and has no GitHub): they hold portable source, not
   just the static `dist/` on their host.
 - **We go inactive:** their site keeps serving (static on their host) and they have
