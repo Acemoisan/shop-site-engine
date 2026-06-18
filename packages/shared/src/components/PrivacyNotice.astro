@@ -1,0 +1,77 @@
+---
+// Shared PIPA privacy notice — the ONE legal must in our stack. Our forms run on
+// Web3Forms (US) and we host on Netlify (US), so Alberta PIPA s.13.1/13.2 require
+// a cross-border disclosure on every client site that collects enquiries.
+//
+// One source of truth for the legal text. Each site renders this on a thin
+// `src/pages/privacy.astro` shell (its own <head> + base.css/theme.css) and adds
+// a footer "Privacy" link. Props let the business name / contact / providers vary.
+// See docs/onboarding/privacy-notice-template.md.
+interface Props {
+  businessName: string;
+  email: string;
+  contactName?: string;      // who fields privacy questions; defaults to the business
+  formProvider?: string;     // default Web3Forms
+  hostProvider?: string;     // default Netlify
+  updated?: string;          // e.g. "June 2026"
+  region?: string;           // default Alberta
+}
+const {
+  businessName,
+  email,
+  contactName,
+  formProvider = "Web3Forms",
+  hostProvider = "Netlify",
+  updated,
+  region = "Alberta",
+} = Astro.props;
+
+const items = [
+  {
+    h: "What we collect",
+    b: "When you use our contact form we collect the information you submit — typically your name, email, phone (if provided), and message. Our host may also log standard technical data (e.g. IP address) to serve the site.",
+  },
+  {
+    h: "Why we collect it",
+    b: "We use it only to receive and respond to your enquiry. We do not sell it or use it for unrelated purposes without your consent.",
+  },
+  { h: "Consent", b: "Submitting the form means you consent to this use." },
+  {
+    h: "Service providers outside Canada",
+    b: `Our contact form is processed by ${formProvider} and our website is hosted on ${hostProvider}, both based in the United States. As a result, your information may be stored, processed, or accessed outside Canada and may be subject to the laws of that country.`,
+  },
+  {
+    h: "Access to our policies",
+    b: "To learn more about how we use these service providers, contact us using the details below.",
+  },
+  {
+    h: "Privacy contact",
+    b: `Questions, or to access or correct your information: ${contactName ?? businessName} — ${email}.`,
+  },
+  {
+    h: "Retention",
+    b: "We keep enquiry messages only as long as needed to respond and for reasonable follow-up, then delete them.",
+  },
+];
+---
+<p class="max-w-xl text-base leading-relaxed text-muted-foreground">
+  We respect your privacy and handle personal information in line with {region}'s <em>Personal Information Protection Act</em> (PIPA).
+</p>
+
+<div class="mt-12 space-y-8">
+  {items.map((it, i) => (
+    <section>
+      <h2 class="flex items-baseline gap-3 font-display text-xl font-semibold text-foreground">
+        <span class="font-data text-sm text-accent">{String(i + 1).padStart(2, "0")}</span>
+        {it.h}
+      </h2>
+      <p class="mt-2 leading-relaxed text-muted-foreground">{it.b}</p>
+    </section>
+  ))}
+</div>
+
+{updated && (
+  <p class="mt-14 border-t border-border pt-6 font-data text-[0.7rem] uppercase tracking-[0.15em] text-muted-foreground">
+    Last updated: {updated} · {businessName}
+  </p>
+)}

@@ -1,0 +1,38 @@
+---
+import "@studio0rbit/shared/styles/base.css";
+import "../theme.css";
+import SeoHead from "@studio0rbit/shared/seo/SeoHead.astro";
+import PrivacyNotice from "@studio0rbit/shared/components/PrivacyNotice.astro";
+import Icon from "@studio0rbit/shared/components/Icon.astro";
+
+// PIPA cross-border notice (Web3Forms + Netlify are US-based). Shared component
+// holds the legal text; this page is the themed shell. See create-shop-site.
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SeoHead
+      title="Privacy Notice — Bitcoin Manor"
+      description="How Bitcoin Manor handles your personal information, in line with Alberta's Personal Information Protection Act (PIPA)."
+      canonicalPath="/privacy"
+      siteName="Bitcoin Manor"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-background text-foreground font-sans antialiased">
+    <main class="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+      <a href="/" class="inline-flex items-center gap-2 font-data text-xs uppercase tracking-[0.2em] text-muted-foreground transition hover:text-primary">
+        <Icon name="arrow" class="h-3.5 w-3.5 rotate-180" />Back to Bitcoin Manor
+      </a>
+      <p class="mt-10 font-data text-xs uppercase tracking-[0.3em] text-primary">Privacy</p>
+      <h1 class="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">Privacy notice</h1>
+      <div class="mt-5">
+        <PrivacyNotice businessName="Bitcoin Manor" email="support@bitcoinmanor.com" updated="June 2026" />
+      </div>
+    </main>
+  </body>
+</html>

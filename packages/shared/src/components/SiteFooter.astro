@@ -1,9 +1,9 @@
 ---
-interface Props { name: string; address: string; phone: string }
-const { name, address, phone } = Astro.props;
+interface Props { name: string; address: string; phone: string; privacyUrl?: string }
+const { name, address, phone, privacyUrl } = Astro.props;
 const year = new Date().getFullYear();
 ---
 <footer class="px-6 py-10 text-center text-sm text-muted-foreground">
   <p>{name} · {address} · <a href={`tel:${phone}`} class="underline">{phone}</a></p>
-  <p class="mt-2">© {year} {name}</p>
+  <p class="mt-2">© {year} {name}{privacyUrl && <> · <a href={privacyUrl} class="underline">Privacy</a></>}</p>
 </footer>

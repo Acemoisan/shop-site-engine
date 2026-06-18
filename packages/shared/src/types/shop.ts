@@ -16,4 +16,16 @@ export interface ShopContent {
   rating?: number;
   geo?: { lat: number; lng: number };
   url: string;
+  // Real, owned, active social profiles only — link what the business itself
+  // endorses; never link template/placeholder handles. Feeds footer links +
+  // the `sameAs` array in LocalBusiness/Organization JSON-LD.
+  socials?: ShopSocials;
+}
+export interface ShopSocials {
+  facebook?: string;
+  instagram?: string;
+  x?: string;
+  tiktok?: string;
+  linkedin?: string;
+  youtube?: string;
 }

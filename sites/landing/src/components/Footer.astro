@@ -14,6 +14,7 @@ import { site } from "../content/site";
         <a href={n.href} class="transition hover:text-foreground">{n.label}</a>
       ))}
       <a href={`mailto:${site.email}`} class="transition hover:text-foreground">Contact</a>
+      <a href="/privacy" class="transition hover:text-foreground">Privacy</a>
       {site.phone && (
         <a href={`tel:${site.phone.replace(/[^0-9+]/g, "")}`} class="transition hover:text-foreground">{site.phone}</a>
       )}

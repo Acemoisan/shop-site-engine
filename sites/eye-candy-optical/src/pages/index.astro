@@ -1,7 +1,7 @@
 ---
 import "@studio0rbit/shared/styles/base.css";
 import "../theme.css";
-import { shop, email, locations, frames, web3formsKey, pipaNote } from "../content/shop";
+import { shop, email, locations, frames, reviews, reviewSummary, socials, web3formsKey, pipaNote } from "../content/shop";
 import SeoHead from "@studio0rbit/shared/seo/SeoHead.astro";
 import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
 import Stats from "@studio0rbit/shared/components/Stats.astro";
@@ -77,6 +77,7 @@ const jsonLd = {
       email,
       slogan: shop.tagline,
       areaServed: "Calgary, Alberta",
+      sameAs: Object.values(socials),
     },
     ...locations.map((loc) => ({
       "@type": ["Optician", "LocalBusiness"],
@@ -142,6 +143,7 @@ const jsonLd = {
       links={[
         { label: "Frames", href: "#frames" },
         { label: "Experience", href: "#features" },
+        { label: "Reviews", href: "#reviews" },
         { label: "Studios", href: "#locations" },
       ]}
     />
@@ -169,6 +171,9 @@ const jsonLd = {
             </li>
             <li class="flex items-center gap-2.5 text-sm text-muted-foreground">
               <Icon name="mapPin" class="h-5 w-5 text-primary" />Beltline &amp; Oakridge
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-muted-foreground">
+              <span class="text-accent" aria-hidden="true">★</span>Rated {reviewSummary.rating} on Google
             </li>
           </ul>
         </div>
@@ -235,6 +240,40 @@ const jsonLd = {
     </section>
 
     <Features label="The experience" heading="More than a frame in a box" items={experience} />
+
+    <!-- ── Reviews ────────────────────────────────────────────────────── -->
+    <section id="reviews" class="scroll-mt-24">
+      <div class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div class="max-w-2xl">
+            <p class="font-data text-xs uppercase tracking-[0.3em] text-primary">Word of mouth</p>
+            <h2 class="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">Calgary keeps coming back</h2>
+            <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+              Real reviews from both studios — for the styling, the fit and the after-care.
+            </p>
+          </div>
+          <a href={reviewSummary.url} target="_blank" rel="noopener" class="group inline-flex shrink-0 items-center gap-3 rounded-[var(--radius)] border border-border bg-card px-5 py-3 shadow-sm transition hover:border-primary">
+            <span class="font-display text-3xl font-semibold text-foreground">{reviewSummary.rating}</span>
+            <span class="flex flex-col leading-tight">
+              <span class="text-accent" aria-hidden="true">★★★★★</span>
+              <span class="font-data text-[0.7rem] uppercase tracking-[0.15em] text-muted-foreground">{reviewSummary.count} Google reviews</span>
+            </span>
+          </a>
+        </div>
+        <div class="mt-14 grid items-start gap-6 sm:grid-cols-3">
+          {reviews.map((r) => (
+            <figure class="flex flex-col rounded-[var(--radius)] border border-border bg-card p-7 shadow-sm">
+              <p class="text-accent" aria-label="5 out of 5 stars">★★★★★</p>
+              <blockquote class="mt-4 leading-relaxed text-foreground">“{r.quote}”</blockquote>
+              <figcaption class="mt-6 flex items-center gap-2 font-data text-xs uppercase tracking-[0.15em]">
+                <span class="font-semibold text-primary">{r.name}</span>
+                <span class="text-muted-foreground">· Google review</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
 
     <!-- ── Locations ──────────────────────────────────────────────────── -->
     <section id="locations" class="scroll-mt-24 border-y border-border bg-muted">
@@ -336,7 +375,7 @@ const jsonLd = {
             </label>
             <button type="submit" class="rounded-[var(--radius)] bg-primary px-6 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">Send message</button>
             <p id="contactStatus" role="status" aria-live="polite" class="hidden text-sm font-medium text-primary"></p>
-            <p class="font-data text-[0.7rem] leading-relaxed text-muted-foreground">{pipaNote}</p>
+            <p class="font-data text-[0.7rem] leading-relaxed text-muted-foreground">{pipaNote} <a href="/privacy" class="underline transition hover:text-primary">Privacy notice</a>.</p>
           </div>
         </form>
         <div id="contactSuccess" hidden class="rounded-[var(--radius)] border border-primary/40 bg-primary/5 p-8 text-center">
@@ -367,6 +406,14 @@ const jsonLd = {
           <p class="font-display text-2xl font-semibold tracking-tight text-foreground">Eye Candy Optical</p>
           <p class="mt-2 max-w-xs text-sm text-muted-foreground">Independent designer eyewear and on-site eye exams — two studios in Calgary.</p>
           <a href={`mailto:${email}`} class="mt-4 inline-block font-data text-xs uppercase tracking-[0.15em] text-muted-foreground transition hover:text-primary">{email}</a>
+          <div class="mt-5 flex items-center gap-3">
+            <a href={socials.instagram} target="_blank" rel="noopener" aria-label="Eye Candy Optical on Instagram" class="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition hover:border-primary hover:text-primary">
+              <Icon name="instagram" class="h-5 w-5" />
+            </a>
+            <a href={socials.facebook} target="_blank" rel="noopener" aria-label="Eye Candy Optical on Facebook" class="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition hover:border-primary hover:text-primary">
+              <Icon name="facebook" class="h-5 w-5" />
+            </a>
+          </div>
         </div>
         {locations.map((loc) => (
           <div>
@@ -377,7 +424,10 @@ const jsonLd = {
         ))}
       </div>
       <div class="border-t border-border">
-        <p class="mx-auto max-w-6xl px-6 py-5 font-data text-[0.7rem] uppercase tracking-[0.15em] text-muted-foreground">© 2026 Eye Candy Optical · Calgary, Alberta</p>
+        <div class="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-5 font-data text-[0.7rem] uppercase tracking-[0.15em] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 Eye Candy Optical · Calgary, Alberta</p>
+          <a href="/privacy" class="transition hover:text-primary">Privacy</a>
+        </div>
       </div>
     </footer>
 

@@ -22,6 +22,15 @@ export const shop: ShopContent = {
 
 export const email = "info@eyecandyeyewear.com";
 
+// Real, owned social profiles — verified on the client's OWN contact page
+// (eyecandyeyewear.com/contact, June 2026). The old Wix site also rendered
+// Twitter/TikTok/LinkedIn/YouTube icons, but those were template placeholders
+// pointing at Wix's own accounts (twitter.com/wix, @wix…) → deliberately omitted.
+export const socials = {
+  facebook: "https://www.facebook.com/EyeCandyEyewearCalgary",
+  instagram: "https://www.instagram.com/eyecandyoptical17th/",
+};
+
 // Web3Forms access key — host-agnostic form backend (works on any static deploy;
 // Netlify Forms does NOT register on file-digest/drag-drop deploys). This default
 // key delivers to the Studio0rbit operator inbox so the form is live at launch.
@@ -76,6 +85,36 @@ export const locations: Location[] = [
       { day: "Saturday", time: "10am – 2pm" },
       { day: "Sun – Mon", time: "Closed", closed: true },
     ],
+  },
+];
+
+export interface Review {
+  quote: string;
+  name: string;
+}
+
+// Real Google reviews — verbatim, pulled from the public Google/Birdeye listings
+// for both studios (June 2026). NEVER fabricated. Combined, the two studios rate
+// 4.9★ across 100+ reviews. To feature different quotes, swap the text here.
+export const reviewSummary = {
+  rating: "4.9",
+  count: "100+",
+  url: "https://www.google.com/maps/search/?api=1&query=Eye%20Candy%20Optical%20Calgary",
+};
+
+export const reviews: Review[] = [
+  {
+    quote:
+      "Got my glasses from another business but they couldn't get them to fit properly. I went back 4 times to have them adjusted to no avail. I show up here, I didn't purchase them from them but she happily helped me to make sure my glasses fit properly. Always great service here.",
+    name: "Nathan Vienneau",
+  },
+  {
+    quote: "High quality glasses and very good price.",
+    name: "Hugo Clemente",
+  },
+  {
+    quote: "Great selection, staff and quality!!",
+    name: "Lore Redes",
   },
 ];
 
