@@ -1,0 +1,49 @@
+# Audit diff — www.gallerytstudio.com → studio0rbit-gallery-t.netlify.app
+
+**Before:** https://www.gallerytstudio.com/ · graded 2026-06-22 (rubric 1.1.0)
+**After:** https://studio0rbit-gallery-t.netlify.app · graded 2026-06-22 (rubric 1.1.0)
+
+## Grade
+
+| | Before | After |
+|---|---|---|
+| **Overall** | C | A |
+| Tier | tune-up | care-or-decline |
+| performance | D | B |
+| seo | A | A |
+| accessibility | A | A |
+| conversion | B | B |
+
+## Measured (Google PageSpeed / Lighthouse + seomator)
+
+| Metric | Before | After | Δ |
+|---|---|---|---|
+| Mobile performance | 51 | 87 | ▲ +36 |
+| Desktop performance | 76 | 99 | ▲ +23 |
+| Mobile accessibility | 93 | 94 | ▲ +1 |
+| Mobile SEO (Lighthouse) | 100 | 100 | — |
+| Best practices | 96 | 100 | ▲ +4 |
+| Lab LCP (ms, lower better) | 7202 | 3031 | ▲ +4171 |
+| seomator score | — | 93 | — |
+
+> Speed numbers are PageSpeed **lab** scores (fresh diffs median 3 runs to dampen run-to-run variance), not real-user (CrUX) field data — quote the score + architecture, not a "seconds faster" claim.
+
+## Conversion features
+
+### Gained
+- ✅ **Click-to-call** — added
+- ✅ **Contact form** — added
+
+### Dropped (confirm)
+- 🔴 **Open Graph tags** — DROPPED — likely a regression, check
+- 🔴 **Favicon** — DROPPED — likely a regression, check
+
+_🟡 = usually an intentional/honest choice · 🔴 = check for a regression_
+
+### Unchanged
+Mobile-responsive · Booking/appointment link · Opening hours · Address / map · Reviews / social proof · LocalBusiness schema · Menu schema · HTTPS
+
+_Vertical: salon — vertical-irrelevant features (e.g. Menu schema off a non-cafe) don't count against the conversion grade._
+
+
+✔ C → A  ·  written to audit-diff-www.gallerytstudio.com-vs-studio0rbit-gallery-t.netlify.app.md

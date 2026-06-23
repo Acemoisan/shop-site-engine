@@ -1,0 +1,49 @@
+# Audit diff — www.ilovelavish.com → studio0rbit-lavish-salon.netlify.app
+
+**Before:** http://www.ilovelavish.com/ · graded 2026-06-22 (rubric 1.1.0)
+**After:** https://studio0rbit-lavish-salon.netlify.app · graded 2026-06-22 (rubric 1.1.0)
+
+## Grade
+
+| | Before | After |
+|---|---|---|
+| **Overall** | C | A |
+| Tier | tune-up | care-or-decline |
+| performance | F | B |
+| seo | B | A |
+| accessibility | A | A |
+| conversion | B | B |
+
+## Measured (Google PageSpeed / Lighthouse + seomator)
+
+| Metric | Before | After | Δ |
+|---|---|---|---|
+| Mobile performance | 49 | 86 | ▲ +37 |
+| Desktop performance | 0 | 96 | ▲ +96 |
+| Mobile accessibility | 92 | 95 | ▲ +3 |
+| Mobile SEO (Lighthouse) | 85 | 100 | ▲ +15 |
+| Best practices | 81 | 100 | ▲ +19 |
+| Lab LCP (ms, lower better) | 15488 | 3123 | ▲ +12365 |
+| seomator score | — | 94 | — |
+
+> Speed numbers are PageSpeed **lab** scores (fresh diffs median 3 runs to dampen run-to-run variance), not real-user (CrUX) field data — quote the score + architecture, not a "seconds faster" claim.
+
+## Conversion features
+
+### Gained
+- ✅ **Address / map** — added
+- ✅ **LocalBusiness schema** — added
+
+### Dropped (confirm)
+- 🔴 **Open Graph tags** — DROPPED — likely a regression, check
+- 🔴 **Favicon** — DROPPED — likely a regression, check
+
+_🟡 = usually an intentional/honest choice · 🔴 = check for a regression_
+
+### Unchanged
+Mobile-responsive · Click-to-call · Booking/appointment link · Opening hours · Reviews / social proof · Menu schema · HTTPS · Contact form
+
+_Vertical: salon — vertical-irrelevant features (e.g. Menu schema off a non-cafe) don't count against the conversion grade._
+
+
+✔ C → A  ·  written to audit-diff-www.ilovelavish.com-vs-studio0rbit-lavish-salon.netlify.app.md

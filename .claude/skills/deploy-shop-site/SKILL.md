@@ -36,6 +36,19 @@ The `sites/*` monorepo is our **development** capability. For a client **launch*
 ## Domain cutover (pointing a client's existing domain at the new site)
 Most real clients already have a domain (often with an old Wix/WordPress/Squarespace site on it). **You don't transfer the domain or migrate the old site — you just re-point the domain's DNS at the new host.** A domain is a pointer separate from the host. **The client keeps their exact web address and their registrar account** — we never do a registrar-to-registrar transfer (that's the slow, scary 5–7-day process; avoid it entirely).
 
+**You do the DNS swap yourself** — the client never has to learn DNS. You need either their **registrar login**, or a few minutes of **screen-share** where they're logged in and you drive. Either way the technical work is ours; that's a selling point ("you touch nothing, we flip it").
+
+### Pre-visit recon (so "I don't know where my domain is" is never a blocker)
+The client almost never knows where their domain/email lives — **you don't need them to.** Given only the domain name, look it up *before* the visit. This surfaces the two things that decide the cutover method (registrar + whether email is on the domain) and catches the 60-day transfer lock early.
+```sh
+whois theirshop.ca         # registrar + creation date (creation <60d ago → ICANN transfer lock, can't move yet)
+dig NS theirshop.ca +short # current nameservers — where DNS is actually managed (may differ from registrar)
+dig MX theirshop.ca +short # ⚠️ any result = email runs on this domain → preserve MX, use Method B below
+```
+Walk in already knowing "your domain's at GoDaddy, email's on Google Workspace" — then it's just "do you have that login, or want to screen-share?" Capture results in the intake's *Domain & email* block.
+
+> ⏱️ **The one-hour close has two limits outside your control:** (1) **DNS propagation** — usually minutes, but up to 48h for some resolvers, plus a few minutes for the HTTPS cert. You can *initiate* cutover in the room but may only *confirm fully live* later that day. (2) **Email** — see the MX warning below. Everything else (demo, approval, flip, login handover, contact form) is genuinely same-visit. Zero downtime throughout: the old site serves until DNS flips.
+
 **The sales framing (for the reluctant client who "doesn't want the hassle"):**
 - *Same web address* — no lost customers, no reprinted cards.
 - *Zero downtime* — old site stays live until we flip; we verify the new one on the host link (`*.netlify.app` / `*.pages.dev`) and they approve **before** cutover.

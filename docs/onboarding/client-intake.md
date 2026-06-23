@@ -44,9 +44,15 @@
 
 ### Domain & email — needed for a clean cutover (see `deploy-shop-site` → "Domain cutover")
 *Capture these at intake so launch day is frictionless — they decide the DNS method and surface lock-in/email risks early.*
+> **Don't depend on the client knowing — look it up yourself.** Given only the domain name, run the recon below *before* the visit so you walk in already knowing the registrar and whether email is on the domain (the two things that decide the cutover method). "I don't know where my domain is" is then a non-issue.
+> ```sh
+> whois theirshop.ca        # registrar + creation date (creation <60d ago → ICANN transfer lock)
+> dig NS theirshop.ca +short # current nameservers (where DNS is managed)
+> dig MX theirshop.ca +short # ⚠️ any result = email runs on this domain → preserve MX, use Method B
+> ```
 - **Do they own a domain?** ____ (domain name, or "needs to buy one")
-- **Where is the domain registered?** ____ (registrar — GoDaddy / Namecheap / etc., **or** "bought through Wix/Squarespace/their old site platform" ⚠️ may be platform-locked / 60-day transfer lock)
-- **Where is their email hosted?** ____ (e.g. Google Workspace, the old host's mailbox, none) — ⚠️ if email is on the same domain via the old host, **preserve MX**; prefer the keep-current-DNS cutover method.
+- **Where is the domain registered?** ____ (registrar — GoDaddy / Namecheap / etc., **or** "bought through Wix/Squarespace/their old site platform" ⚠️ may be platform-locked / 60-day transfer lock) — *from `whois`.*
+- **Where is their email hosted?** ____ (e.g. Google Workspace, the old host's mailbox, none) — *from `dig MX`.* ⚠️ if email is on the same domain via the old host, **preserve MX**; prefer the keep-current-DNS cutover method.
 - **Replacing an existing live site?** ____ (yes/no) — if yes, plan zero-downtime cutover: build → approve on `*.netlify.app` → re-point DNS → verify → client cancels old subscription.
 
 ## Decision log (agency defaults — documented, not approved)

@@ -1,0 +1,114 @@
+---
+import "@studio0rbit/shared/styles/base.css";
+import "../theme.css";
+import { shop } from "../content/shop";
+import SiteNav from "@studio0rbit/shared/components/SiteNav.astro";
+import SiteFooter from "@studio0rbit/shared/components/SiteFooter.astro";
+import Icon from "@studio0rbit/shared/components/Icon.astro";
+import SeoHead from "@studio0rbit/shared/seo/SeoHead.astro";
+
+const tel = `tel:${shop.phone}`;
+const waiverPdf = "/waiver-artistic-salon.pdf";
+
+const pageTitle = "Salon Policies & Chemical Waiver — Artistic Salon, Calgary";
+const metaDescription =
+  "Artistic Salon's cancellation policy and chemical-service waiver. 48-hour notice for changes or cancellations. Download our Chemical Waiver Form before colour, lightening or perm services.";
+
+const policies = [
+  {
+    title: "Cancellation & no-shows",
+    body: "We kindly ask for at least 48 hours' notice to change or cancel an appointment, so we can offer your time to another guest. If we don't receive notice for a missed or modified appointment, a cancellation fee may be applied before your next visit. The easiest way to reach us is by phone — call 403-240-4014 and we'll be happy to help.",
+  },
+  {
+    title: "Arrivals & consultations",
+    body: "Please arrive a few minutes early so we can start on time and give your service the attention it deserves. For colour, lightening or any major change, we recommend a free consultation first — it's a relaxed, no-pressure chat to talk through your goals and get a clear quote before anything begins.",
+  },
+  {
+    title: "Pricing",
+    body: "Service prices start from the amounts shown on our menu and may vary with hair length, density and the time involved. Your stylist will always confirm pricing with you before starting, so there are no surprises.",
+  },
+];
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SeoHead
+      title={pageTitle}
+      description={metaDescription}
+      canonicalPath="/policy"
+      image="/img/hero.webp"
+      siteName="Artistic Salon"
+      type="website"
+      themeColor="#b05c3a"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-background text-foreground font-sans antialiased">
+    <SiteNav
+      name={shop.name}
+      bookingUrl={shop.bookingUrl}
+      bookLabel="Book"
+      links={[
+        { label: "Home", href: "/" },
+        { label: "Services", href: "/#services" },
+        { label: "Team", href: "/#team" },
+        { label: "Visit", href: "/#visit" },
+      ]}
+    />
+
+    <!-- ── Header ───────────────────────────────────────────────────────── -->
+    <section class="border-b border-border bg-muted">
+      <div class="mx-auto max-w-4xl px-6 py-20 sm:py-24">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Good to know</p>
+        <h1 class="mt-3 font-display text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">Salon policies</h1>
+        <p class="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          A few simple things that help every visit run smoothly — and the chemical-service waiver we'll ask you to sign before colour or perm work.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Policies ─────────────────────────────────────────────────────── -->
+    <section class="mx-auto max-w-4xl px-6 py-16 sm:py-20">
+      <div class="grid gap-8">
+        {policies.map((p) => (
+          <div class="rounded-[var(--radius)] border border-border bg-card p-7 shadow-sm sm:p-8">
+            <h2 class="font-display text-2xl font-semibold tracking-tight text-foreground">{p.title}</h2>
+            <p class="mt-3 text-base leading-relaxed text-muted-foreground">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ── Chemical waiver ──────────────────────────────────────────────── -->
+    <section class="border-t border-border bg-muted">
+      <div class="mx-auto grid max-w-4xl items-center gap-8 px-6 py-16 sm:py-20 lg:grid-cols-[1.4fr_1fr]">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Before chemical services</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Chemical Waiver Form</h2>
+          <p class="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
+            For colour, lightening, perms and other chemical services, we ask guests to read and sign our Chemical Waiver Form. It covers the realities of chemical work — condition history, sensitivities and expectations — so we can give you the safest, best possible result. You're welcome to review it ahead of time and bring it in, or sign it at the salon.
+          </p>
+          <a href={waiverPdf} target="_blank" rel="noopener" class="mt-7 inline-flex items-center gap-2.5 rounded-[var(--radius)] bg-primary px-7 py-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition hover:opacity-90">
+            <Icon name="arrow" class="h-4 w-4" /> Download the waiver (PDF)
+          </a>
+          <p class="mt-4 text-sm text-muted-foreground">
+            Questions first? Call us at <a href={tel} class="font-semibold text-primary underline-offset-2 hover:underline">403-240-4014</a>.
+          </p>
+        </div>
+        <div class="rounded-[var(--radius)] border border-border bg-card p-8 text-center shadow-sm">
+          <Icon name="shield" class="mx-auto h-10 w-10 text-primary" />
+          <p class="mt-4 font-display text-xl font-semibold text-foreground">Signed once, on paper</p>
+          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">No online forms — your waiver is signed in-salon and kept on file. We never collect health details through the website.</p>
+        </div>
+      </div>
+    </section>
+
+    <SiteFooter name={shop.name} address={shop.address} phone={shop.phone} />
+  </body>
+</html>

@@ -57,6 +57,26 @@ Icons: `Icon.astro` is a fixed inline-SVG set (scissors, star, clock, calendar, 
 
 Per-vertical identity comes from tokens (color/radius/font) + imagery + which sections you compose + hero choice — not from restyling components.
 
+## Elaborate / cinematic templates (the motion tier)
+
+The default templates are sleek but quiet. **Expressive verticals (game studios, music, nightlife, fashion, agencies) get a motion tier** — cinematic hero, particle/flare ambience, scroll-reveal, hover micro-interactions. Reference build: **`sites/maw`** (MAW Interactive game studio, branch `feat/maw-alcurio-sites`, live `maw-cnt.pages.dev`) — rebuilt from a plain centered-text hero into a cinematic page. Use it as the copy-from source.
+
+**The one rule that keeps the engine intact:** all motion/effects live in the **site's own `index.astro`** — a scoped `<style>` block (keyframes, effects) + one `<script is:inline>` (canvas, observers, parallax). **Never** put per-site motion in `packages/shared` components, and **never** restyle a component. Tokens stay the brand layer.
+
+**Recipe (each piece is optional — compose to taste):**
+1. **Optimize the hero art first.** Big PNGs (a 10MB key-art splash) must become WebP, desktop + mobile, into `sites/<slug>/public/`. Use `sharp` (`.resize({width})` → `.webp({quality:80})`); ~2560w desktop lands ~170KB, 1280w mobile ~70KB. ⚠️ In a pnpm worktree `sharp` is often **not hoisted to root** — `require()` it via the absolute `node_modules/.pnpm/sharp@<v>/node_modules/sharp` path from a `.cjs` throwaway, not a bare `import "sharp"`.
+2. **Full-bleed parallax hero.** Art in an absolutely-positioned layer behind a **dark scrim gradient** (`linear-gradient(to top, var(--background) …)`) so text stays legible over bright art. Add slow `ken-burns` scale keyframe + JS mouse/scroll parallax (`translate3d`) + an optional cursor-follow radial **flare** div (`mix-blend-mode: screen`). Place hero content in the scrim zone (lower third).
+3. **Signature ambience tied to the brand.** A `<canvas>` **particle field** ("motes") drifting upward, colored from the brand — for maw, the game's own Arcana-violet, so the motion *means* the "gather Arcana" mechanic. Cap DPR at 2, ~30 particles, pause via `IntersectionObserver` + `visibilitychange`.
+4. **Extra tokens go in shared `base.css` with fallbacks.** Need a third accent or a mono "devkit" register? Add `--color-arcana: var(--arcana, var(--accent))` and `--font-mono: var(--font-mono, var(--font-sans))` to `@theme inline`, then define the real values in the site's `theme.css`. The `var(--x, fallback)` makes every other site **unaffected**. (This is the sanctioned way to extend the token set per CLAUDE.md.)
+5. **Energy devices:** a mono **marquee ticker** (two duplicated groups, `translateX(-50%)` keyframe), **scroll-reveal** (`.reveal{opacity:0}` → IntersectionObserver adds `.in`), hover **lift + glow** on cards, a **tilt** spotlight card (pointermove → `rotateX/Y`), and a button **shine sweep** (`::after` gradient on hover).
+6. **Real brand art beats text.** A game/product **wordmark** (trimmed WebP) in the spotlight reads far stronger than a styled `<h2>` — keep the name as `alt`.
+
+**Non-negotiable floor (or it reads as AI slop / breaks a11y):**
+- `@media (prefers-reduced-motion: reduce)` must disable **every** animation (ken-burns, motes, parallax, marquee, reveals) and the JS must early-return on it. The `.reveal` elements also need a **non-JS fallback** (`if (!IntersectionObserver || reduce) add .in`) or content stays invisible.
+- Clamp the hero title (`clamp(2.4rem, 8vw, 6.5rem)`) so long words don't clip on mobile; check `scrollWidth === clientWidth`.
+- Keep it **static Astro** (no framework) so CWV survive; dual type pairing + Google Fonts `<link>` as usual.
+- **Screenshot-verify per section, not just full-page** — `.reveal` elements are `opacity:0` until scrolled, so a full-page capture shows them blank. Scroll each section into view (`el.scrollIntoView()`) then shoot, at mobile + desktop.
+
 ## Content + CMS layering
 `index.astro` declares local fallbacks (the `shop` object from `content/shop.ts`, plus inline `let` arrays for stats/features/testimonials/faqs and an `h` headings object), then **fetches the published Storyblok story at build time and overrides field-by-field**: core `shop` fields map directly, while optional arrays guard with `if (c.x?.length) …` and headings with `c.field || h.field`. The build never breaks if Storyblok is down. Full CMS model + wiring: **see the `storyblok-shop-cms` skill** (it owns the content model, Management API, and client editing). Every editable string/array in a template must map to a Storyblok field.
 
@@ -75,3 +95,5 @@ Need a *brand-new* section type? Add it to `packages/shared/src/components`, ens
 - Adding a shared component dir without an `@source` → utilities silently missing.
 - Hardcoding hero/section text in a custom hero → not client-editable.
 - Declaring "done" on a green build without a screenshot → unstyled pages still build green.
+- (Motion tier) Scroll-reveal `.reveal{opacity:0}` with no non-JS/reduced-motion fallback → content invisible if JS fails or motion is reduced. Always `add .in` in those cases.
+- (Motion tier) Judging a motion build from a full-page screenshot → `.reveal` sections read blank; scroll each into view before shooting. And put motion in the site's `index.astro`, never in a shared component.

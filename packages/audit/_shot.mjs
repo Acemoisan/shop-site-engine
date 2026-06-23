@@ -1,0 +1,11 @@
+import { chromium } from "playwright";
+const b = await chromium.launch();
+const p = await b.newPage();
+await p.setViewportSize({width:1280,height:900});
+await p.goto("http://localhost:4325/", {waitUntil:"networkidle"});
+await p.screenshot({path:"_astro-desk2.png", fullPage:true});
+await p.setViewportSize({width:390,height:844});
+await p.goto("http://localhost:4325/", {waitUntil:"networkidle"});
+await p.screenshot({path:"_astro-mob2.png", fullPage:true});
+await b.close();
+console.log("shots done");
