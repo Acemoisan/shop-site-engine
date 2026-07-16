@@ -20,6 +20,7 @@ import {
   type EntryType,
 } from "../lib/budget-store";
 import { downloadBackup } from "../lib/backup";
+import { parseExpenseCsv, type ParsedExpense, type ImportResult } from "../lib/budget-import";
 
 if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
   let state: BudgetState = loadBudget();
@@ -214,7 +215,7 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
   // ---------- Modals ----------
   function openModal(id: string) { $(id)?.classList.remove("hidden"); document.body.style.overflow = "hidden"; }
   function closeModal(id: string) { $(id)?.classList.add("hidden"); if (!document.querySelector('[role="dialog"]:not(.hidden)')) document.body.style.overflow = ""; }
-  function closeTop() { for (const id of ["modal-entry", "modal-budgets"]) if (!$(id)?.classList.contains("hidden")) { closeModal(id); return; } }
+  function closeTop() { for (const id of ["modal-import", "modal-entry", "modal-budgets"]) if (!$(id)?.classList.contains("hidden")) { closeModal(id); return; } }
 
   // ---------- Entry form ----------
   const NEW_CAT = "__new__";
@@ -349,6 +350,69 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
     closeModal("modal-budgets");
     renderAll();
     toast("Budgets saved");
+  });
+
+  // ---------- CSV import (expenses) ----------
+  let pendingImport: ParsedExpense[] = [];
+  const sig = (e: { date: string; amount: number; category: string; label?: string; note?: string }) =>
+    `${e.date}|${e.amount}|${e.category}|${e.label ?? ""}|${e.note ?? ""}`;
+
+  $<HTMLInputElement>("csv-import")?.addEventListener("change", async (ev) => {
+    const input = ev.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) return;
+    try {
+      const res: ImportResult = parseExpenseCsv(await file.text(), state.categories.expense);
+      if (!res.rows.length) { toast("No expenses found in that CSV"); input.value = ""; return; }
+      // de-dupe against what's already logged
+      const existing = new Set(state.entries.filter((e) => e.type === "expense").map(sig));
+      pendingImport = res.rows.filter((r) => !existing.has(sig(r)));
+      const dupes = res.rows.length - pendingImport.length;
+
+      $("import-summary")!.innerHTML =
+        `<div class="font-semibold">${pendingImport.length} new expense${pendingImport.length === 1 ? "" : "s"} · ${money(pendingImport.reduce((a, b) => a + b.amount, 0))}</div>` +
+        `<div class="mt-1 font-mono text-xs text-muted-foreground">${res.minDate ?? "—"} → ${res.maxDate ?? "—"}${dupes ? ` · ${dupes} already imported` : ""}${res.skipped ? ` · ${res.skipped} skipped` : ""}</div>`;
+
+      $("import-preview")!.innerHTML = pendingImport
+        .slice(0, 40)
+        .map(
+          (r) => `<div class="flex items-center justify-between gap-2 rounded-lg border border-border bg-background/30 px-2.5 py-1.5 font-mono text-[11px]">
+            <span class="min-w-0 truncate text-foreground">${r.date} · ${escapeHtml(r.label || r.category)}</span>
+            <span class="shrink-0 text-muted-foreground">${escapeHtml(r.category)}</span>
+            <span class="shrink-0 tabular-nums" style="color:var(--protein)">−${money(r.amount)}</span>
+          </div>`
+        )
+        .join("") + (pendingImport.length > 40 ? `<p class="py-1 text-center font-mono text-[11px] text-muted-foreground">…and ${pendingImport.length - 40} more</p>` : "");
+
+      $("import-note")!.textContent = res.fromNote
+        ? `${res.fromNote} had the amount written in the note; any without a category are filed under “Other 🛠”.`
+        : "";
+      $("import-confirm-label")!.textContent = pendingImport.length ? `Import ${pendingImport.length}` : "Nothing new to import";
+      ($("import-confirm") as HTMLButtonElement).disabled = !pendingImport.length;
+      openModal("modal-import");
+    } catch {
+      toast("Couldn't read that CSV");
+    } finally {
+      input.value = ""; // allow re-selecting the same file
+    }
+  });
+
+  $("import-confirm")?.addEventListener("click", () => {
+    if (!pendingImport.length) return;
+    // union any new categories so they show in the breakdown/filters
+    for (const r of pendingImport) if (!state.categories.expense.includes(r.category)) state.categories.expense.push(r.category);
+    for (const r of pendingImport) {
+      state.entries.push({ id: uid(), date: r.date, type: "expense", amount: r.amount, category: r.category, label: r.label, note: r.note, ts: Date.now() });
+    }
+    commit();
+    const n = pendingImport.length;
+    pendingImport = [];
+    closeModal("modal-import");
+    // jump to the latest imported month
+    const latest = [...state.entries].sort((a, b) => (a.date < b.date ? 1 : -1))[0];
+    if (latest) { const d = parseKey(latest.date); calYear = d.getFullYear(); calMonth = d.getMonth(); selected = latest.date; }
+    renderAll();
+    toast(`Imported ${n} expense${n === 1 ? "" : "s"}`);
   });
 
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeTop(); });

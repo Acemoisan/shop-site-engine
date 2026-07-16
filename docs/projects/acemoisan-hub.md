@@ -44,8 +44,14 @@ A calendar-driven budget tracker (`src/lib/budget-store.ts`, `budget.astro`,
 - One-tap **Backup** (shared `backup.ts`, covers all apps). Migration upgrades an
   untouched v1 state to these categories/targets without wiping entries.
 
-The user's actual transaction history is **not** committed to the repo (privacy — it
-stays on-device). A CSV import to load it is the natural next step (see roadmap).
+**CSV import** (`src/lib/budget-import.ts`): loads the user's real expense history from
+their sheet's Expenses tab, **client-side** (never through the repo — privacy). Handles
+both structured rows and informal ones where the amount is written into the note
+("Airbnb - $508.38"), skips the tool's example / "[Placeholder data]" rows, normalizes
+categories to the app's canonical strings, and **de-dupes** (re-importing is idempotent).
+Verified on the real file: 221 expenses, $16,134, Feb→Jul 2026. Income import is
+deliberately deferred. The user's actual transaction data is **not** committed to the
+repo — it lives only in their browser.
 
 ## Ace-Macros (v1 + catalogs/icons)
 Mimics MacroFactor's basics (renamed from "MacroFactor" → "Ace-Macros"; route
@@ -137,8 +143,8 @@ Cloudflare Tunnel, and add read-only widgets → then a couple of control button
 ## Roadmap
 - More apps (Habit Grid, Command Deck are stubbed in the registry).
 - Ace-Macros: barcode/nutrition-label entry, weight-trend widget.
-- Ace-Budget: **CSV import** to load the user's real transaction history from the sheet
-  (client-side, stays on-device); recurring entries; historical/period comparison view.
+- Ace-Budget: income CSV import (expenses done); recurring entries; historical/period
+  comparison view (the sheet's Dashboard "monthly average" over a selectable range).
 - **Reminders / alerts — deferred by choice** (2026‑07‑16). Web push was judged too
   heavy (needs a PWA install + service worker + a Worker cron sender; iOS requires
   Home‑Screen install). When wanted, the recommended *easy* path is **calendar `.ics`
