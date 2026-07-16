@@ -42,6 +42,9 @@ const description =
               <Icon name="chevronRight" class="h-4 w-4" />
             </button>
           </div>
+          <button data-open="data" class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition hover:border-border-strong" title="Back up or restore your data">
+            <Icon name="scale" class="h-4 w-4 text-good" /> Data
+          </button>
           <button data-open="goals" class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition hover:border-border-strong">
             <Icon name="target" class="h-4 w-4 text-accent" /> Goals
           </button>
@@ -49,6 +52,15 @@ const description =
             <Icon name="plus" class="h-4 w-4" /> Add food
           </button>
         </div>
+      </div>
+
+      <!-- Backup nudge (shown by script when a backup is overdue / never made) -->
+      <div id="backup-nudge" class="mt-5 hidden items-center justify-between gap-3 rounded-xl border border-warn/30 bg-warn/10 px-4 py-3">
+        <div class="flex items-start gap-2.5">
+          <Icon name="info" class="mt-0.5 h-4 w-4 shrink-0 text-warn" />
+          <p class="text-sm text-foreground"><span id="backup-nudge-text">Your data lives only in this browser.</span> <span class="text-muted-foreground">Download a backup so it can't be lost.</span></p>
+        </div>
+        <button data-open="data" class="shrink-0 rounded-lg bg-warn/20 px-3 py-1.5 text-sm font-semibold text-warn transition hover:bg-warn/30">Back up</button>
       </div>
 
       <!-- Main grid -->
@@ -369,6 +381,59 @@ const description =
             </button>
           </div>
         </form>
+      </div>
+    </div>
+
+    <!-- ===================== Data / backup modal ===================== -->
+    <div id="modal-data" class="fixed inset-0 z-[75] hidden" role="dialog" aria-modal="true" aria-labelledby="data-title">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-close></div>
+      <div class="absolute inset-x-0 bottom-0 mx-auto w-full max-w-md rounded-t-2xl border border-border bg-card sm:inset-x-auto sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-2xl">
+        <div class="flex items-center justify-between border-b border-border px-5 py-4">
+          <h3 id="data-title" class="font-display text-base font-semibold text-foreground">Data &amp; backup</h3>
+          <button data-close class="grid h-8 w-8 place-items-center rounded-lg text-muted-foreground transition hover:bg-muted hover:text-foreground" aria-label="Close">
+            <Icon name="x" class="h-4 w-4" />
+          </button>
+        </div>
+        <div class="px-5 py-5">
+          <p class="text-sm leading-relaxed text-muted-foreground">
+            Your data is stored <span class="text-foreground">only in this browser</span> — no account, nothing on a server. That keeps it private, but a browser can clear it (clearing site data, iOS's 7‑day rule). Keep a backup file so you can restore anytime, on any device.
+          </p>
+
+          <div class="mt-4 flex items-center justify-between rounded-xl border border-border bg-background/40 px-3.5 py-3">
+            <div>
+              <p class="font-mono text-xs text-muted-foreground">Last backup</p>
+              <p id="data-last-backup" class="font-mono text-sm text-foreground">never</p>
+            </div>
+            <div class="text-right">
+              <p class="font-mono text-xs text-muted-foreground">Device storage</p>
+              <p id="data-persist" class="font-mono text-sm text-foreground">—</p>
+            </div>
+          </div>
+
+          <div class="mt-4 grid grid-cols-1 gap-2.5">
+            <button id="data-export" class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110">
+              <Icon name="arrowUpRight" class="h-4 w-4" /> Download backup (.json)
+            </button>
+            <label class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium text-foreground transition hover:border-border-strong">
+              <Icon name="copy" class="h-4 w-4" /> Restore from a backup file…
+              <input id="data-import" type="file" accept="application/json,.json" class="sr-only" />
+            </label>
+          </div>
+
+          <!-- restore confirm -->
+          <div id="data-restore-confirm" class="mt-3 hidden rounded-xl border border-warn/40 bg-warn/10 p-3">
+            <p id="data-restore-summary" class="text-sm text-foreground">—</p>
+            <p class="mt-1 text-xs text-muted-foreground">This replaces your current data in this browser.</p>
+            <div class="mt-3 flex gap-2">
+              <button id="data-restore-go" class="flex-1 rounded-lg bg-warn/20 px-3 py-2 text-sm font-semibold text-warn transition hover:bg-warn/30">Restore &amp; reload</button>
+              <button id="data-restore-cancel" class="rounded-lg border border-border px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground">Cancel</button>
+            </div>
+          </div>
+
+          <p class="mt-4 font-mono text-[11px] leading-relaxed text-muted-foreground/70">
+            Tip: on iPhone, add this site to your Home Screen and open it at least weekly, or keep a recent backup — Safari deletes unused sites' data after 7 days.
+          </p>
+        </div>
       </div>
     </div>
 

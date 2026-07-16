@@ -18,6 +18,7 @@ import {
   type Entry,
 } from "../lib/macro-store";
 import { searchEmoji } from "../lib/emoji";
+import { downloadBackup, parseBackup, restore, lastBackup, daysSinceBackup, requestPersistence, isPersisted, type Backup } from "../lib/backup";
 
 // Only run on the app page.
 if (document.getElementById("cal-ring")) {
@@ -405,7 +406,7 @@ if (document.getElementById("cal-ring")) {
     if (!document.querySelector('[role="dialog"]:not(.hidden)')) document.body.style.overflow = "";
   }
   function closeTopModal() {
-    for (const id of ["modal-emoji", "modal-catalogs", "modal-qty", "modal-goals", "modal-add"]) {
+    for (const id of ["modal-emoji", "modal-catalogs", "modal-data", "modal-qty", "modal-goals", "modal-add"]) {
       if (!$(id)?.classList.contains("hidden")) {
         closeModal(id);
         return;
@@ -532,6 +533,31 @@ if (document.getElementById("cal-ring")) {
     $("goals-hint")!.textContent = `Macros add up to ~${round(p * 4 + c * 4 + f * 9)} kcal (4/4/9).`;
   }
 
+  // ---------- Backup / data durability ----------
+  let pendingRestore: Backup | null = null;
+
+  function fmtBackupDate(d: Date) {
+    return d.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+  }
+  function updateBackupNudge() {
+    const nudge = $("backup-nudge");
+    if (!nudge) return;
+    const days = daysSinceBackup();
+    const overdue = days === null || days >= 7;
+    nudge.classList.toggle("hidden", !overdue);
+    nudge.classList.toggle("flex", overdue);
+    const txt = $("backup-nudge-text");
+    if (txt) txt.textContent = days === null ? "You haven't backed up yet." : `Last backup was ${days} days ago.`;
+  }
+  async function renderDataModal() {
+    const last = lastBackup();
+    $("data-last-backup")!.textContent = last ? fmtBackupDate(last) : "never";
+    const persisted = await isPersisted();
+    $("data-persist")!.textContent = persisted ? "persistent ✓" : "best-effort";
+    $("data-restore-confirm")!.classList.add("hidden");
+    pendingRestore = null;
+  }
+
   // ---------- Render all ----------
   function renderDateLabel() {
     $("date-label")!.textContent = selected === todayKey() ? "Today" : fmtDayShort(selected);
@@ -543,6 +569,7 @@ if (document.getElementById("cal-ring")) {
     renderLog();
     renderCalendar();
     renderMonthly();
+    updateBackupNudge();
   }
 
   function shiftDay(delta: number) {
@@ -576,6 +603,7 @@ if (document.getElementById("cal-ring")) {
       else if (which === "goals") { fillGoalsForm(); openModal("modal-goals"); }
       else if (which === "emoji") openEmoji();
       else if (which === "catalogs") { renderCatalogManage(); openModal("modal-catalogs"); }
+      else if (which === "data") { void renderDataModal(); openModal("modal-data"); }
       return;
     }
     if (el.hasAttribute("data-close")) { closeTopModal(); return; }
@@ -742,12 +770,50 @@ if (document.getElementById("cal-ring")) {
     toast("Goals updated");
   });
 
+  // backup: export
+  $("data-export")?.addEventListener("click", () => {
+    downloadBackup();
+    void renderDataModal();
+    updateBackupNudge();
+    toast("Backup downloaded");
+  });
+  // backup: import → parse → show confirm
+  $<HTMLInputElement>("data-import")?.addEventListener("change", async (e) => {
+    const input = e.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) return;
+    try {
+      const parsed = parseBackup(await file.text());
+      pendingRestore = parsed.backup;
+      const when = parsed.exportedAt ? fmtBackupDate(parsed.exportedAt) : "unknown date";
+      $("data-restore-summary")!.textContent = `Restore backup from ${when} (${parsed.keys} item${parsed.keys === 1 ? "" : "s"})?`;
+      $("data-restore-confirm")!.classList.remove("hidden");
+    } catch (err) {
+      toast("Not a valid backup file");
+    } finally {
+      input.value = ""; // allow re-selecting the same file
+    }
+  });
+  $("data-restore-cancel")?.addEventListener("click", () => {
+    pendingRestore = null;
+    $("data-restore-confirm")!.classList.add("hidden");
+  });
+  $("data-restore-go")?.addEventListener("click", () => {
+    if (!pendingRestore) return;
+    restore(pendingRestore);
+    toast("Data restored — reloading…");
+    setTimeout(() => location.reload(), 500);
+  });
+
   // esc closes top-most modal
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeTopModal(); });
 
   // responsive chart
   let rt: number | undefined;
   window.addEventListener("resize", () => { window.clearTimeout(rt); rt = window.setTimeout(renderMonthly, 150); });
+
+  // Ask the browser to keep our data (exempt from auto-eviction where supported).
+  void requestPersistence();
 
   renderAll();
 }

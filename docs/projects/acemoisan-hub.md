@@ -35,6 +35,11 @@ Mimics MacroFactor's basics:
   avg/day, days-logged, avg-protein stats.
 - **Goal editor** (calories + P/C/F). Everything persists in `localStorage`
   (`acemf:v1`); no account, works offline.
+- **Data durability** — a **Data & backup** panel exports *all* hub data to a JSON
+  file and restores it on any device/browser, with a "last backup / back up now"
+  nudge (fires when overdue or never), and a best-effort `navigator.storage.persist()`
+  request. This is the safety net for a local-first app until cloud sync lands
+  (`src/lib/backup.ts`).
 
 Architecture: data model in `src/lib/macro-store.ts` (schema + safe, additive
 migrations), controller in `src/scripts/macrofactor.ts` (plain DOM, delegated
@@ -65,8 +70,18 @@ See `sites/acemoisan/DEPLOY.md`. Summary: Cloudflare Pages, project `acemoisan`,
 build `pnpm install --filter acemoisan... && pnpm --filter acemoisan build`, output
 `sites/acemoisan/dist`, `NODE_VERSION=22`. Pushing the production branch redeploys.
 
+## Data safety (important)
+On-device localStorage is **not** a durability guarantee — the browser can clear it
+(clearing site data, iOS's 7‑day unused-site rule, storage-pressure eviction), and
+it's per-browser/per-device. Our code never scrubs it (only read/write under a stable
+key, additive migrations), but the browser can. Mitigations shipped: the **Data &
+backup** export/import + persistence request + overdue-backup nudge. The full "never
+lost, synced everywhere" answer is cloud sync (below). Tell users to keep a backup.
+
 ## Roadmap
 - More apps (Habit Grid, Command Deck are stubbed in the registry).
-- MacroFactor: barcode/nutrition-label entry, weight-trend widget, export/import.
+- MacroFactor: barcode/nutrition-label entry, weight-trend widget.
+- **Push reminders** (macro reminders to phone) — needs PWA install + Web Push +
+  a Cloudflare Worker cron sender (see below).
 - **Cloud sync** (Cloudflare D1 + auth) as the "self-hosting my data" milestone —
   kept swappable behind the store module so the localStorage app doesn't need a rewrite.
