@@ -25,14 +25,27 @@ It's **one Cloudflare Pages project**, Git-connected, so **every push to the
 production branch auto-builds and deploys**. Standalone static Astro — no
 `@studio0rbit/shared`, no Storyblok, no backend. Dark-only. All data is client-side.
 
-## Ace-Budget (v1)
+## Ace-Budget (v2 — mirrors the user's spreadsheet)
 A calendar-driven budget tracker (`src/lib/budget-store.ts`, `budget.astro`,
-`scripts/budget.ts`; key `acebudget:v1`): add/edit income & expense **entries per day**
-on a month **calendar** (days tinted by net +/−), a **month summary** (income / expense /
-net + optional monthly-budget bar), a **category breakdown** of the month's spend, custom
-categories + currency in Settings, and a one-tap **Backup** (shares the hub's backup —
-`backup.ts` exports every localStorage key, so Ace-Budget data is in the same file).
-Future v2: mirror the user's existing spreadsheet (formulas/notes) once shared via Drive.
+`scripts/budget.ts`; key `acebudget:v1`). v2 was built from the user's actual
+**"The Measure of a Plan"** Google Sheet (shared as `.xlsx`, parsed with the repo's
+`xlsx` lib):
+- **Their exact categories** — expense (Dates & Entertainment 🎞📅, Groceries 🛒,
+  Kitties 😸, Gas ⛽️, Home maintenance 🏡, Individual Spending 💰, Debt 🪙, Jaidens/
+  Aidans Money 💰, Fast Food 🍔, Liquor 🍷, Parking, Other 🛠) and income (Job, Side
+  project, Other) as defaults.
+- **Per-category monthly budget targets** seeded from their Budget Targets tab
+  (`DEFAULT_TARGETS`; total $1,920/mo), editable in a **Budgets** modal.
+- **Per-transaction entries** (date, **vendor/source**, amount, category, **note**) —
+  matching their Expenses/Income tabs.
+- **Target-vs-actual variance** in the "Where it went" breakdown (over/under per
+  category, color-coded), plus month **income / expense / net (=savings)** and a
+  calendar tinted by daily net.
+- One-tap **Backup** (shared `backup.ts`, covers all apps). Migration upgrades an
+  untouched v1 state to these categories/targets without wiping entries.
+
+The user's actual transaction history is **not** committed to the repo (privacy — it
+stays on-device). A CSV import to load it is the natural next step (see roadmap).
 
 ## Ace-Macros (v1 + catalogs/icons)
 Mimics MacroFactor's basics (renamed from "MacroFactor" → "Ace-Macros"; route
@@ -124,8 +137,8 @@ Cloudflare Tunnel, and add read-only widgets → then a couple of control button
 ## Roadmap
 - More apps (Habit Grid, Command Deck are stubbed in the registry).
 - Ace-Macros: barcode/nutrition-label entry, weight-trend widget.
-- Ace-Budget v2: mirror the user's existing spreadsheet (exact formulas + notes) once
-  shared via Google Drive; recurring entries, per-category budgets, CSV import/export.
+- Ace-Budget: **CSV import** to load the user's real transaction history from the sheet
+  (client-side, stays on-device); recurring entries; historical/period comparison view.
 - **Reminders / alerts — deferred by choice** (2026‑07‑16). Web push was judged too
   heavy (needs a PWA install + service worker + a Worker cron sender; iOS requires
   Home‑Screen install). When wanted, the recommended *easy* path is **calendar `.ics`

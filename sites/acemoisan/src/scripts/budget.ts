@@ -1,6 +1,7 @@
-// Ace-Budget — client controller. Calendar-driven income/expense tracking.
-// Local-first via budget-store.ts. Plain DOM + delegated events. Shares the
-// hub's backup module (exports all localStorage keys, budget included).
+// Ace-Budget — client controller (v2). Calendar-driven income/expense tracking
+// mirroring the user's "Measure of a Plan" sheet: their categories, per-category
+// monthly targets, vendor/note per entry, and target-vs-actual variance.
+// Local-first via budget-store.ts. Plain DOM + delegated events.
 
 import {
   loadBudget,
@@ -11,6 +12,7 @@ import {
   sumEntries,
   entriesForDay,
   entriesForMonth,
+  totalTarget,
   round2,
   uid,
   type BudgetState,
@@ -43,10 +45,9 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
     return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c] as string));
   }
   const money = (n: number) => `${state.currency}${Math.abs(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  const money0 = (n: number) => `${state.currency}${Math.round(Math.abs(n)).toLocaleString()}`;
   const signed = (n: number) => `${n < 0 ? "−" : n > 0 ? "+" : ""}${money(n)}`;
-  function fmtDayShort(key: string) {
-    return parseKey(key).toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" });
-  }
+  const fmtDayShort = (key: string) => parseKey(key).toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" });
 
   // ---------- Summary ----------
   function renderMonthLabel() {
@@ -62,14 +63,15 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
     net.style.color = s.net < 0 ? "var(--protein)" : "var(--good)";
     $("summary-count")!.textContent = `${monthEntries.length} ${monthEntries.length === 1 ? "entry" : "entries"}`;
 
+    const budget = totalTarget(state);
     const wrap = $("budget-bar-wrap")!;
-    if (state.monthlyBudget > 0) {
+    if (budget > 0) {
       wrap.classList.remove("hidden");
-      const pct = Math.min(100, (s.expense / state.monthlyBudget) * 100);
-      const over = s.expense > state.monthlyBudget;
+      const pct = Math.min(100, (s.expense / budget) * 100);
+      const over = s.expense > budget;
       $("budget-bar")!.style.width = `${pct}%`;
-      $("budget-bar")!.style.background = over ? "var(--protein)" : s.expense / state.monthlyBudget > 0.85 ? "var(--warn)" : "var(--good)";
-      $("budget-bar-text")!.textContent = `${money(s.expense)} / ${money(state.monthlyBudget)}`;
+      $("budget-bar")!.style.background = over ? "var(--protein)" : s.expense / budget > 0.85 ? "var(--warn)" : "var(--good)";
+      $("budget-bar-text")!.textContent = `${money(s.expense)} / ${money(budget)}`;
     } else {
       wrap.classList.add("hidden");
     }
@@ -96,13 +98,14 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
       .map((e) => {
         const income = e.type === "income";
         const col = income ? "var(--good)" : "var(--protein)";
+        const sub = [e.category, e.note].filter(Boolean).join(" · ");
         return `<div class="group flex items-center gap-3 rounded-xl border border-border bg-background/40 px-3.5 py-2.5">
           <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg" style="background:color-mix(in oklab, ${col} 15%, transparent); color:${col}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">${income ? '<path d="M12 5v14M6 13l6 6 6-6"/>' : '<path d="M12 19V5M6 11l6-6 6 6"/>'}</svg>
           </span>
           <button data-edit-entry="${e.id}" class="min-w-0 flex-1 text-left">
             <p class="truncate text-sm font-medium text-foreground">${escapeHtml(e.label || e.category)}</p>
-            <p class="font-mono text-[11px] text-muted-foreground">${escapeHtml(e.category)}</p>
+            <p class="truncate font-mono text-[11px] text-muted-foreground">${escapeHtml(sub)}</p>
           </button>
           <span class="font-mono text-sm font-semibold tabular-nums" style="color:${col}">${income ? "+" : "−"}${money(e.amount)}</span>
           <button data-del-entry="${e.id}" class="grid h-8 w-8 shrink-0 place-items-center rounded-lg text-muted-foreground transition hover:bg-warn/15 hover:text-warn" aria-label="Delete entry">
@@ -119,8 +122,6 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
     const startDow = first.getDay();
     const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
     const tk = todayKey();
-
-    // per-day net + scale for tint strength
     const nets: Record<string, number> = {};
     let maxAbs = 1;
     for (let d = 1; d <= daysInMonth; d++) {
@@ -129,7 +130,6 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
       nets[key] = n;
       maxAbs = Math.max(maxAbs, Math.abs(n));
     }
-
     const cells: string[] = [];
     for (let i = 0; i < startDow; i++) cells.push(`<span></span>`);
     for (let d = 1; d <= daysInMonth; d++) {
@@ -156,29 +156,48 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
     $("cal-grid")!.innerHTML = cells.join("");
   }
 
-  // ---------- Category breakdown ----------
+  // ---------- Category breakdown vs target ----------
   function renderBreakdown() {
     const box = $("cat-breakdown")!;
     const expenses = entriesForMonth(state, calYear, calMonth).filter((e) => e.type === "expense");
-    if (!expenses.length) {
-      box.innerHTML = `<p class="py-4 text-center font-mono text-xs text-muted-foreground">No expenses yet this month.</p>`;
+    const spend: Record<string, number> = {};
+    for (const e of expenses) spend[e.category] = (spend[e.category] || 0) + e.amount;
+
+    // categories with any spend OR a set target
+    const cats = new Set<string>([...Object.keys(spend), ...Object.keys(state.targets).filter((c) => state.targets[c] > 0)]);
+    if (!cats.size) {
+      box.innerHTML = `<p class="py-4 text-center font-mono text-xs text-muted-foreground">No expenses or budgets yet this month.</p>`;
       return;
     }
-    const byCat: Record<string, number> = {};
-    for (const e of expenses) byCat[e.category] = (byCat[e.category] || 0) + e.amount;
-    const rows = Object.entries(byCat).sort((a, b) => b[1] - a[1]);
-    const max = rows[0][1] || 1;
+    const rows = [...cats].map((c) => ({ cat: c, actual: spend[c] || 0, target: state.targets[c] || 0 }));
+    rows.sort((a, b) => b.actual - a.actual || b.target - a.target);
+
     box.innerHTML = rows
-      .map(([cat, amt]) => {
-        const pct = Math.round((amt / max) * 100);
+      .map(({ cat, actual, target }) => {
+        let barPct: number, barCol: string, right: string, variance: string;
+        if (target > 0) {
+          barPct = Math.min(100, (actual / target) * 100);
+          const over = actual > target;
+          barCol = over ? "var(--protein)" : actual / target > 0.85 ? "var(--warn)" : "var(--good)";
+          right = `${money0(actual)} <span class="text-muted-foreground/70">/ ${money0(target)}</span>`;
+          const diff = target - actual;
+          variance = diff >= 0 ? `${money0(diff)} left` : `${money0(-diff)} over`;
+        } else {
+          barPct = actual > 0 ? 100 : 0;
+          barCol = "var(--muted-foreground)";
+          right = money0(actual);
+          variance = "no budget";
+        }
+        const varCol = target > 0 && actual > target ? "var(--protein)" : "var(--muted-foreground)";
         return `<div>
-          <div class="flex items-baseline justify-between font-mono text-[11px]">
-            <span class="text-foreground">${escapeHtml(cat)}</span>
-            <span class="tabular-nums text-muted-foreground">${money(amt)}</span>
+          <div class="flex items-baseline justify-between gap-2 font-mono text-[11px]">
+            <span class="truncate text-foreground">${escapeHtml(cat)}</span>
+            <span class="shrink-0 tabular-nums text-foreground">${right}</span>
           </div>
           <div class="mt-1 h-2 overflow-hidden rounded-full bg-border">
-            <div class="h-full rounded-full" style="width:${pct}%;background:var(--protein)"></div>
+            <div class="h-full rounded-full transition-[width] duration-500" style="width:${barPct}%;background:${barCol}"></div>
           </div>
+          <p class="mt-0.5 text-right font-mono text-[10px]" style="color:${varCol}">${variance}</p>
         </div>`;
       })
       .join("");
@@ -195,7 +214,7 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
   // ---------- Modals ----------
   function openModal(id: string) { $(id)?.classList.remove("hidden"); document.body.style.overflow = "hidden"; }
   function closeModal(id: string) { $(id)?.classList.add("hidden"); if (!document.querySelector('[role="dialog"]:not(.hidden)')) document.body.style.overflow = ""; }
-  function closeTop() { for (const id of ["modal-entry", "modal-settings"]) if (!$(id)?.classList.contains("hidden")) { closeModal(id); return; } }
+  function closeTop() { for (const id of ["modal-entry", "modal-budgets"]) if (!$(id)?.classList.contains("hidden")) { closeModal(id); return; } }
 
   // ---------- Entry form ----------
   const NEW_CAT = "__new__";
@@ -208,6 +227,7 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
   function setEntryType(type: EntryType, keepCat?: string) {
     entryType = type;
     document.querySelectorAll<HTMLElement>(".etype-btn").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.etype === type)));
+    $("e-label-name")!.textContent = type === "income" ? "Source" : "Vendor";
     renderCategoryOptions(type, keepCat);
   }
   function openEntry(entry: BudgetEntry | null) {
@@ -218,6 +238,7 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
     ($<HTMLInputElement>("e-amount")!).value = entry ? String(entry.amount) : "";
     ($<HTMLInputElement>("e-date")!).value = entry?.date ?? selected;
     ($<HTMLInputElement>("e-label")!).value = entry?.label ?? "";
+    ($<HTMLInputElement>("e-note")!).value = entry?.note ?? "";
     setEntryType(entry?.type ?? "expense", entry?.category);
     const del = $("e-delete")!;
     del.classList.toggle("hidden", !entry);
@@ -226,18 +247,34 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
     if (!entry) setTimeout(() => $<HTMLInputElement>("e-amount")!.focus(), 30);
   }
 
-  // ---------- Settings ----------
-  function openSettings() {
+  // ---------- Budgets modal ----------
+  function updateTargetsTotal() {
+    let total = 0;
+    document.querySelectorAll<HTMLInputElement>("[data-target]").forEach((i) => (total += Number(i.value) || 0));
+    $("targets-total")!.textContent = money0(total);
+  }
+  function openBudgets() {
     ($<HTMLInputElement>("s-currency")!).value = state.currency;
-    ($<HTMLInputElement>("s-budget")!).value = state.monthlyBudget ? String(state.monthlyBudget) : "";
-    openModal("modal-settings");
+    $("targets-list")!.innerHTML = state.categories.expense
+      .map(
+        (c) => `<div class="flex items-center gap-2">
+          <label class="min-w-0 flex-1 truncate text-sm text-foreground" title="${escapeHtml(c)}">${escapeHtml(c)}</label>
+          <div class="flex items-center rounded-lg border border-border bg-background focus-within:border-primary">
+            <span class="pl-2.5 pr-1 font-mono text-xs text-muted-foreground">${state.currency}</span>
+            <input data-target="${escapeHtml(c)}" type="number" min="0" step="1" value="${state.targets[c] || 0}"
+              class="w-20 rounded-r-lg bg-transparent py-2 pr-2 text-right font-mono text-sm text-foreground focus:outline-none" />
+          </div>
+        </div>`
+      )
+      .join("");
+    updateTargetsTotal();
+    openModal("modal-budgets");
   }
 
   // ---------- Events ----------
   document.addEventListener("click", (ev) => {
     const el = (ev.target as HTMLElement).closest<HTMLElement>("[data-nav],[data-open],[data-close],[data-day],[data-action],[data-etype],[data-edit-entry],[data-del-entry]");
     if (!el) return;
-
     if (el.dataset.nav) {
       const n = el.dataset.nav;
       if (n === "prev-month") { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } }
@@ -246,17 +283,13 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
       renderAll();
       return;
     }
-    if (el.dataset.open) { if (el.dataset.open === "entry") openEntry(null); else if (el.dataset.open === "settings") openSettings(); return; }
+    if (el.dataset.open) { if (el.dataset.open === "entry") openEntry(null); else if (el.dataset.open === "budgets") openBudgets(); return; }
     if (el.hasAttribute("data-close")) { closeTop(); return; }
     if (el.dataset.day) { selected = el.dataset.day; renderDay(); renderCalendar(); return; }
     if (el.dataset.action === "backup") { downloadBackup(); toast("Backup downloaded"); return; }
     if (el.dataset.etype) { setEntryType(el.dataset.etype as EntryType); return; }
     if (el.dataset.editEntry) { const e = state.entries.find((x) => x.id === el.dataset.editEntry); if (e) openEntry(e); return; }
-    if (el.dataset.delEntry) {
-      state.entries = state.entries.filter((x) => x.id !== el.dataset.delEntry);
-      commit(); renderAll(); toast("Entry deleted");
-      return;
-    }
+    if (el.dataset.delEntry) { state.entries = state.entries.filter((x) => x.id !== el.dataset.delEntry); commit(); renderAll(); toast("Entry deleted"); return; }
   });
 
   // new-category via the select
@@ -267,9 +300,7 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
     if (name) {
       if (!state.categories[entryType].includes(name)) { state.categories[entryType].push(name); commit(); }
       renderCategoryOptions(entryType, name);
-    } else {
-      renderCategoryOptions(entryType, state.categories[entryType][0]);
-    }
+    } else renderCategoryOptions(entryType, state.categories[entryType][0]);
   });
 
   // entry submit
@@ -281,45 +312,43 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
     let category = $<HTMLSelectElement>("e-category")!.value;
     if (category === NEW_CAT) category = state.categories[entryType][0] || "Other";
     const label = $<HTMLInputElement>("e-label")!.value.trim();
+    const note = $<HTMLInputElement>("e-note")!.value.trim();
 
     if (editingId) {
       const en = state.entries.find((x) => x.id === editingId);
-      if (en) { en.type = entryType; en.amount = amount; en.date = date; en.category = category; en.label = label || undefined; }
+      if (en) { en.type = entryType; en.amount = amount; en.date = date; en.category = category; en.label = label || undefined; en.note = note || undefined; }
       toast("Entry updated");
     } else {
-      state.entries.push({ id: uid(), date, type: entryType, amount, category, label: label || undefined, ts: Date.now() });
+      state.entries.push({ id: uid(), date, type: entryType, amount, category, label: label || undefined, note: note || undefined, ts: Date.now() });
       toast("Entry added");
     }
     commit();
-    selected = date; // jump to the day we just touched
+    selected = date;
     const dd = parseKey(date); calYear = dd.getFullYear(); calMonth = dd.getMonth();
     editingId = null;
     closeModal("modal-entry");
     renderAll();
   });
 
-  // delete from edit modal
   $("e-delete")?.addEventListener("click", () => {
     if (!editingId) return;
     state.entries = state.entries.filter((x) => x.id !== editingId);
-    editingId = null;
-    commit();
-    closeModal("modal-entry");
-    renderAll();
-    toast("Entry deleted");
+    editingId = null; commit(); closeModal("modal-entry"); renderAll(); toast("Entry deleted");
   });
 
-  // settings submit
-  $<HTMLFormElement>("settings-form")?.addEventListener("submit", (e) => {
+  // budgets form: live total + save
+  document.addEventListener("input", (e) => { if ((e.target as HTMLElement).matches?.("[data-target]")) updateTargetsTotal(); });
+  $<HTMLFormElement>("budgets-form")?.addEventListener("submit", (e) => {
     e.preventDefault();
-    const cur = $<HTMLInputElement>("s-currency")!.value.trim() || "$";
-    const budget = Math.max(0, Number($<HTMLInputElement>("s-budget")!.value) || 0);
-    state.currency = cur.slice(0, 3);
-    state.monthlyBudget = round2(budget);
+    state.currency = ($<HTMLInputElement>("s-currency")!.value.trim() || "$").slice(0, 3);
+    document.querySelectorAll<HTMLInputElement>("[data-target]").forEach((i) => {
+      const cat = i.dataset.target!;
+      state.targets[cat] = round2(Math.max(0, Number(i.value) || 0));
+    });
     commit();
-    closeModal("modal-settings");
+    closeModal("modal-budgets");
     renderAll();
-    toast("Settings saved");
+    toast("Budgets saved");
   });
 
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeTop(); });

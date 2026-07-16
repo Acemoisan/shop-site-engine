@@ -1,6 +1,8 @@
 // Ace-Budget — local-first budget tracker.
-// Same local-first model as Ace-Macros: everything in localStorage under one
-// key, no backend. Covered by the hub's shared backup (backup.ts exports all keys).
+// v2 mirrors the user's "The Measure of a Plan" spreadsheet: their exact expense
+// + income categories, per-category monthly budget targets, per-transaction
+// entries (date / vendor / amount / category / note), and target-vs-actual
+// variance. Savings = income − expenses. Everything in localStorage, no backend.
 
 export type EntryType = "income" | "expense";
 
@@ -10,32 +12,75 @@ export interface BudgetEntry {
   type: EntryType;
   amount: number; // always positive; `type` gives the sign
   category: string;
-  label?: string;
+  label?: string; // vendor / source
   note?: string;
   ts: number;
 }
 
 export interface BudgetState {
   currency: string; // symbol, e.g. "$"
-  monthlyBudget: number; // 0 = no target
+  monthlyBudget: number; // legacy overall target (0 = derive from category targets)
   categories: { income: string[]; expense: string[] };
+  targets: Record<string, number>; // category -> monthly $ target
   entries: BudgetEntry[];
 }
 
 export const BUDGET_KEY = "acebudget:v1";
 
+// The user's categories, straight from their spreadsheet's Category Setup tab.
 export const DEFAULT_CATEGORIES = {
-  income: ["Paycheck", "Freelance", "Gift", "Refund", "Other"],
-  expense: ["Groceries", "Rent", "Dining", "Transport", "Bills", "Shopping", "Health", "Fun", "Other"],
+  expense: [
+    "Dates & Entertainment 🎞📅",
+    "Groceries 🛒",
+    "Kitties 😸",
+    "Gas ⛽️",
+    "Home maintenance 🏡",
+    "Individual Spending 💰",
+    "Debt 🪙",
+    "Jaidens Money 💰",
+    "Aidans Money 💰",
+    "Fast Food 🍔",
+    "Liquor 🍷",
+    "Parking",
+    "Other 🛠",
+  ],
+  income: ["Job", "Side project", "Other"],
 };
+
+// The user's monthly budget targets (Budget Targets tab, column G).
+export const DEFAULT_TARGETS: Record<string, number> = {
+  "Dates & Entertainment 🎞📅": 600,
+  "Groceries 🛒": 600,
+  "Kitties 😸": 140,
+  "Gas ⛽️": 150,
+  "Home maintenance 🏡": 50,
+  "Individual Spending 💰": 0,
+  "Debt 🪙": 0,
+  "Jaidens Money 💰": 100,
+  "Aidans Money 💰": 100,
+  "Fast Food 🍔": 80,
+  "Liquor 🍷": 100,
+  "Parking": 0,
+  "Other 🛠": 0,
+};
+
+// The pre-v2 default expense set — used to detect an untouched v1 state so we can
+// upgrade it to the user's real categories without clobbering a customised one.
+const V1_DEFAULT_EXPENSE = ["Groceries", "Rent", "Dining", "Transport", "Bills", "Shopping", "Health", "Fun", "Other"];
 
 export function defaultBudgetState(): BudgetState {
   return {
     currency: "$",
     monthlyBudget: 0,
     categories: { income: [...DEFAULT_CATEGORIES.income], expense: [...DEFAULT_CATEGORIES.expense] },
+    targets: { ...DEFAULT_TARGETS },
     entries: [],
   };
+}
+
+function sameSet(a: string[] | undefined, b: string[]): boolean {
+  if (!a || a.length !== b.length) return false;
+  return a.every((x, i) => x === b[i]);
 }
 
 export function loadBudget(): BudgetState {
@@ -45,13 +90,23 @@ export function loadBudget(): BudgetState {
     if (!raw) return defaultBudgetState();
     const p = JSON.parse(raw) as Partial<BudgetState>;
     const d = defaultBudgetState();
+
+    // Upgrade an untouched v1 state (my old placeholder categories) to the
+    // user's real spreadsheet categories + targets.
+    const untouched = sameSet(p.categories?.expense, V1_DEFAULT_EXPENSE);
+    const categories = !p.categories || untouched
+      ? d.categories
+      : {
+          income: p.categories.income?.length ? p.categories.income : d.categories.income,
+          expense: p.categories.expense?.length ? p.categories.expense : d.categories.expense,
+        };
+    const targets = !p.targets || untouched ? { ...DEFAULT_TARGETS, ...(p.targets ?? {}) } : p.targets;
+
     return {
       currency: p.currency || d.currency,
       monthlyBudget: typeof p.monthlyBudget === "number" ? p.monthlyBudget : 0,
-      categories: {
-        income: p.categories?.income?.length ? p.categories.income : d.categories.income,
-        expense: p.categories?.expense?.length ? p.categories.expense : d.categories.expense,
-      },
+      categories,
+      targets,
       entries: Array.isArray(p.entries) ? p.entries : [],
     };
   } catch {
@@ -99,6 +154,11 @@ export function entriesForDay(state: BudgetState, key: string): BudgetEntry[] {
 export function entriesForMonth(state: BudgetState, year: number, month0: number): BudgetEntry[] {
   const prefix = `${year}-${pad(month0 + 1)}`;
   return state.entries.filter((e) => e.date.startsWith(prefix));
+}
+
+/** Sum of all per-category monthly targets (the overall monthly budget). */
+export function totalTarget(state: BudgetState): number {
+  return Object.values(state.targets).reduce((a, b) => a + (b || 0), 0);
 }
 
 export function round2(n: number): number {
