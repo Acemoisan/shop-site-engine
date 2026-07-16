@@ -52,6 +52,18 @@ export const profile = {
       tags: ["Nutrition", "Local-first", "Calendar"],
     },
     {
+      slug: "homebase",
+      name: "Homebase",
+      tagline: "Household utilities & smart devices",
+      description:
+        "A control panel for the home — lights, plugs, sensors, and an Alexa nudge — bridged through a self-hosted hub (Home Assistant) or a small proxy. Exploring the options now.",
+      icon: "home",
+      href: "#",
+      status: "planned",
+      accent: "var(--warn)",
+      tags: ["Smart home", "Self-hosted"],
+    },
+    {
       slug: "habits",
       name: "Habit Grid",
       tagline: "Daily streaks & routines",

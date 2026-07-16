@@ -78,6 +78,33 @@ key, additive migrations), but the browser can. Mitigations shipped: the **Data 
 backup** export/import + persistence request + overdue-backup nudge. The full "never
 lost, synced everywhere" answer is cloud sync (below). Tell users to keep a backup.
 
+## Household utilities — options being explored (not built yet)
+Surfaced as the **Homebase** "coming soon" app. The recurring constraint: a static
+page **can't safely hold device secrets** (anything in client JS is public), and an
+HTTPS page can't call an HTTP LAN device (mixed content). So most *control* paths need
+either same-WiFi local access or a **tiny proxy that holds the token** (a Cloudflare
+Worker — the same small-backend pattern as the email idea). Simple → involved:
+
+- **Home Assistant (recommended for a self-hoster).** Self-hosted hub (Pi/mini-PC/
+  Docker) that speaks to nearly everything (Zigbee/Z-Wave/WiFi/Hue/Alexa). Exposes a
+  REST + WebSocket API with long-lived tokens. Expose it via **Cloudflare Tunnel** and
+  the hub can read state / toggle devices (token in a Worker secret). One integration
+  point for *everything*, incl. Alexa. Best fit for the "self-host my tools" goal.
+  Lightest start: just **link/embed the HA dashboard** (already a great mobile UI).
+- **No-code webhook glue** (IFTTT / Make / **Voice Monkey**). Hub button → Worker →
+  webhook → "turn on lights" or **Alexa announces** something. Broadest reach, least
+  code; Voice Monkey is the easy way to make Alexa *say* things (e.g. a macro nudge).
+- **Single-vendor cloud API** for an MVP: **LIFX** (Bearer-token HTTP API) or **Hue**
+  (local bridge token, or cloud OAuth). One button toggles one light via a Worker proxy.
+- **Read-only first** (lowest risk): show home state (temp, which lights are on, energy)
+  as a dashboard widget by reading HA's API — no control, no risk.
+
+On **Alexa specifically**: you don't call Alexa from a webpage — it's a voice front-end.
+The simple paths are *through* Home Assistant, or **Voice Monkey / routine webhooks** to
+trigger routines / announcements. A full custom Alexa Skill (AWS Lambda + cert) is heavy —
+not "simple." Likely first step for Homebase: stand up Home Assistant, expose via
+Cloudflare Tunnel, and add read-only widgets → then a couple of control buttons via a Worker.
+
 ## Roadmap
 - More apps (Habit Grid, Command Deck are stubbed in the registry).
 - MacroFactor: barcode/nutrition-label entry, weight-trend widget.
