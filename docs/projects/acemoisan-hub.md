@@ -81,7 +81,12 @@ lost, synced everywhere" answer is cloud sync (below). Tell users to keep a back
 ## Roadmap
 - More apps (Habit Grid, Command Deck are stubbed in the registry).
 - MacroFactor: barcode/nutrition-label entry, weight-trend widget.
-- **Push reminders** (macro reminders to phone) — needs PWA install + Web Push +
-  a Cloudflare Worker cron sender (see below).
+- **Reminders / alerts — deferred by choice** (2026‑07‑16). Web push was judged too
+  heavy (needs a PWA install + service worker + a Worker cron sender; iOS requires
+  Home‑Screen install). When wanted, the recommended *easy* path is **calendar `.ics`
+  export** from the hub (no backend, no install: user opens the file once and their
+  phone's calendar fires native reminders). **Email reminders** (Cloudflare Worker on
+  a cron + Resend) are the richer option but need a small backend + one‑time setup.
+  For now the user uses their phone's own calendar/reminders app.
 - **Cloud sync** (Cloudflare D1 + auth) as the "self-hosting my data" milestone —
   kept swappable behind the store module so the localStorage app doesn't need a rewrite.
