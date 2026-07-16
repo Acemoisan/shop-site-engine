@@ -44,6 +44,18 @@ A calendar-driven budget tracker (`src/lib/budget-store.ts`, `budget.astro`,
 - One-tap **Backup** (shared `backup.ts`, covers all apps). Migration upgrades an
   untouched v1 state to these categories/targets without wiping entries.
 
+**UX (mobile-first):** single-column layout of section cards (This month, Daily Entries,
+Calendar, Where it went) that are each **collapsible** (tap the title) and
+**drag-reorderable** (grip handle, pointer events — works on touch); order + collapsed
+state persist (`state.ui`). Header actions (Import / Export / Budgets / Add) stack in a
+2-col grid on mobile. Daily Entries caps at 5 with a "show all" toggle. A **month ledger**
+modal (opened from This month / Where it went) lists every entry spreadsheet-style; rows
+tap through to edit. The Budgets modal can **add categories**.
+
+**CSV export** (`expensesToCsv`, `src/lib/budget-import.ts`): the "Export" button (was
+"Backup") writes a CSV in the exact importer format, so it round-trips — a friend imports
+it and gets the same data, and re-importing an export de-dupes to 0 new (verified).
+
 **CSV import** (`src/lib/budget-import.ts`): loads the user's real expense history from
 their sheet's Expenses tab, **client-side** (never through the repo — privacy). Handles
 both structured rows and informal ones where the amount is written into the note

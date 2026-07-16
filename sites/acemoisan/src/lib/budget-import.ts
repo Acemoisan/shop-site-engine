@@ -25,6 +25,45 @@ export interface ImportResult {
   fromNote: number;
 }
 
+// ---- Export (expenses) — same shape the importer reads, so it round-trips ----
+export interface ExportableEntry {
+  date: string; // YYYY-MM-DD
+  type: "income" | "expense";
+  amount: number;
+  category: string;
+  label?: string;
+  note?: string;
+}
+
+function csvCell(s: string): string {
+  return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+}
+function isoToMdY(iso: string): string {
+  const m = iso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  return m ? `${m[2]}-${m[3]}-${m[1]}` : iso;
+}
+
+/** Expenses → CSV matching the "Measure of a Plan" Expenses columns. */
+export function expensesToCsv(entries: ExportableEntry[], currency = "$"): string {
+  const header = ["Date (MM-DD-YYYY)", "Store / Vendor", "$ Amount", "Expense Category", "Notes (Optional)"];
+  const lines = [header.join(",")];
+  for (const e of entries) {
+    if (e.type !== "expense") continue;
+    lines.push(
+      [
+        isoToMdY(e.date),
+        e.label ?? "",
+        `${currency}${e.amount.toFixed(2)}`,
+        e.category,
+        e.note ?? "",
+      ]
+        .map((c) => csvCell(String(c)))
+        .join(",")
+    );
+  }
+  return lines.join("\n");
+}
+
 // RFC-ish CSV parse (handles quoted fields, embedded commas/quotes/newlines).
 export function parseCsv(text: string): string[][] {
   const rows: string[][] = [];

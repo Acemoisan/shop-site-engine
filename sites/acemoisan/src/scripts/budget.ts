@@ -19,8 +19,7 @@ import {
   type BudgetEntry,
   type EntryType,
 } from "../lib/budget-store";
-import { downloadBackup } from "../lib/backup";
-import { parseExpenseCsv, type ParsedExpense, type ImportResult } from "../lib/budget-import";
+import { parseExpenseCsv, expensesToCsv, type ParsedExpense, type ImportResult } from "../lib/budget-import";
 
 if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
   let state: BudgetState = loadBudget();
@@ -30,6 +29,8 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
   let calMonth = t0.getMonth();
   let editingId: string | null = null;
   let entryType: EntryType = "expense";
+  let dayExpanded = false;
+  const DAY_CAP = 5;
 
   const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T | null;
   const commit = () => saveBudget(state);
@@ -95,7 +96,9 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
       </div>`;
       return;
     }
-    list.innerHTML = entries
+    const shown = dayExpanded ? entries : entries.slice(0, DAY_CAP);
+    const hidden = entries.length - shown.length;
+    list.innerHTML = shown
       .map((e) => {
         const income = e.type === "income";
         const col = income ? "var(--good)" : "var(--protein)";
@@ -115,6 +118,12 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
         </div>`;
       })
       .join("");
+    if (entries.length > DAY_CAP) {
+      list.innerHTML += `<button data-action="toggle-day" class="mt-1 flex w-full items-center justify-center gap-1.5 rounded-lg border border-border/70 py-2 font-mono text-xs text-muted-foreground transition hover:text-foreground">
+        ${dayExpanded ? "Show less" : `Show all ${entries.length}`}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 ${dayExpanded ? "rotate-180" : ""}"><path d="M6 9l6 6 6-6"/></svg>
+      </button>`;
+    }
   }
 
   // ---------- Calendar ----------
@@ -215,7 +224,7 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
   // ---------- Modals ----------
   function openModal(id: string) { $(id)?.classList.remove("hidden"); document.body.style.overflow = "hidden"; }
   function closeModal(id: string) { $(id)?.classList.add("hidden"); if (!document.querySelector('[role="dialog"]:not(.hidden)')) document.body.style.overflow = ""; }
-  function closeTop() { for (const id of ["modal-import", "modal-entry", "modal-budgets"]) if (!$(id)?.classList.contains("hidden")) { closeModal(id); return; } }
+  function closeTop() { for (const id of ["modal-import", "modal-ledger", "modal-entry", "modal-budgets"]) if (!$(id)?.classList.contains("hidden")) { closeModal(id); return; } }
 
   // ---------- Entry form ----------
   const NEW_CAT = "__new__";
@@ -274,20 +283,22 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
 
   // ---------- Events ----------
   document.addEventListener("click", (ev) => {
-    const el = (ev.target as HTMLElement).closest<HTMLElement>("[data-nav],[data-open],[data-close],[data-day],[data-action],[data-etype],[data-edit-entry],[data-del-entry]");
+    const el = (ev.target as HTMLElement).closest<HTMLElement>("[data-nav],[data-open],[data-close],[data-day],[data-action],[data-etype],[data-edit-entry],[data-del-entry],[data-collapse]");
     if (!el) return;
     if (el.dataset.nav) {
       const n = el.dataset.nav;
       if (n === "prev-month") { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } }
       else if (n === "next-month") { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } }
-      else if (n === "this-month") { const t = new Date(); calYear = t.getFullYear(); calMonth = t.getMonth(); selected = todayKey(); }
+      else if (n === "this-month") { const t = new Date(); calYear = t.getFullYear(); calMonth = t.getMonth(); selected = todayKey(); dayExpanded = false; }
       renderAll();
       return;
     }
-    if (el.dataset.open) { if (el.dataset.open === "entry") openEntry(null); else if (el.dataset.open === "budgets") openBudgets(); return; }
+    if (el.dataset.open) { if (el.dataset.open === "entry") openEntry(null); else if (el.dataset.open === "budgets") openBudgets(); else if (el.dataset.open === "ledger") openLedger(); return; }
+    if (el.dataset.collapse) { toggleCollapse(el.dataset.collapse); return; }
     if (el.hasAttribute("data-close")) { closeTop(); return; }
-    if (el.dataset.day) { selected = el.dataset.day; renderDay(); renderCalendar(); return; }
-    if (el.dataset.action === "backup") { downloadBackup(); toast("Backup downloaded"); return; }
+    if (el.dataset.day) { selected = el.dataset.day; dayExpanded = false; renderDay(); renderCalendar(); return; }
+    if (el.dataset.action === "export") { exportCsv(); return; }
+    if (el.dataset.action === "toggle-day") { dayExpanded = !dayExpanded; renderDay(); return; }
     if (el.dataset.etype) { setEntryType(el.dataset.etype as EntryType); return; }
     if (el.dataset.editEntry) { const e = state.entries.find((x) => x.id === el.dataset.editEntry); if (e) openEntry(e); return; }
     if (el.dataset.delEntry) { state.entries = state.entries.filter((x) => x.id !== el.dataset.delEntry); commit(); renderAll(); toast("Entry deleted"); return; }
@@ -415,7 +426,152 @@ if (document.getElementById("cal-grid") && document.getElementById("sum-net")) {
     toast(`Imported ${n} expense${n === 1 ? "" : "s"}`);
   });
 
+  // ---------- Export CSV ----------
+  function exportCsv() {
+    const expenses = state.entries.filter((e) => e.type === "expense");
+    if (!expenses.length) { toast("No expenses to export yet"); return; }
+    const csv = expensesToCsv(expenses, state.currency);
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    const d = new Date();
+    const pad2 = (n: number) => String(n).padStart(2, "0");
+    a.href = url;
+    a.download = `ace-budget-${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    toast(`Exported ${expenses.length} expenses`);
+  }
+
+  // ---------- Add category (Budgets modal) ----------
+  function addCategory() {
+    const input = $<HTMLInputElement>("new-cat-name")!;
+    const name = input.value.trim();
+    if (!name) return;
+    if (!state.categories.expense.includes(name)) state.categories.expense.push(name);
+    if (state.targets[name] == null) state.targets[name] = 0;
+    commit();
+    input.value = "";
+    openBudgets(); // re-render the list with the new row
+    setTimeout(() => { const list = $("targets-list"); if (list) list.scrollTop = list.scrollHeight; }, 20);
+  }
+  $("add-cat-btn")?.addEventListener("click", addCategory);
+  $("new-cat-name")?.addEventListener("keydown", (e) => { if ((e as KeyboardEvent).key === "Enter") { e.preventDefault(); addCategory(); } });
+
+  // ---------- Ledger (all entries this month) ----------
+  function openLedger() {
+    $("ledger-month")!.textContent = new Date(calYear, calMonth, 1).toLocaleDateString(undefined, { month: "long", year: "numeric" });
+    const rows = entriesForMonth(state, calYear, calMonth).slice().sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : b.ts - a.ts));
+    const s = sumEntries(rows);
+    $("ledger-count")!.textContent = String(rows.length);
+    const lt = $("ledger-total")!;
+    lt.textContent = `net ${signed(round2(s.net))}`;
+    lt.style.color = s.net < 0 ? "var(--protein)" : "var(--good)";
+
+    if (!rows.length) {
+      $("ledger-body")!.innerHTML = `<p class="px-5 py-10 text-center font-mono text-sm text-muted-foreground">No entries this month.</p>`;
+      openModal("modal-ledger");
+      return;
+    }
+    const head = `<div class="sticky top-0 z-10 grid grid-cols-[4.5rem_1fr_5rem] gap-2 border-b border-border bg-card px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+      <span>Date</span><span>Category / detail</span><span class="text-right">Amount</span></div>`;
+    const body = rows
+      .map((e) => {
+        const income = e.type === "income";
+        const col = income ? "var(--good)" : "var(--protein)";
+        const detail = [e.label, e.note].filter(Boolean).join(" · ");
+        return `<button data-edit-entry="${e.id}" data-from-ledger class="grid w-full grid-cols-[4.5rem_1fr_5rem] items-center gap-2 border-b border-border/50 px-4 py-2 text-left transition hover:bg-muted/40">
+          <span class="font-mono text-[11px] text-muted-foreground">${e.date.slice(5)}</span>
+          <span class="min-w-0"><span class="block truncate text-sm text-foreground">${escapeHtml(e.category)}</span>${detail ? `<span class="block truncate font-mono text-[10px] text-muted-foreground">${escapeHtml(detail)}</span>` : ""}</span>
+          <span class="text-right font-mono text-sm font-semibold tabular-nums" style="color:${col}">${income ? "+" : "−"}${money(e.amount)}</span>
+        </button>`;
+      })
+      .join("");
+    $("ledger-body")!.innerHTML = head + body;
+    openModal("modal-ledger");
+  }
+
+  // ---------- Collapse ----------
+  function applyCollapsed() {
+    document.querySelectorAll<HTMLElement>("[data-section]").forEach((sec) => {
+      const key = sec.dataset.section!;
+      const on = state.ui.collapsed.includes(key);
+      sec.classList.toggle("collapsed", on);
+      const body = sec.querySelector<HTMLElement>(".bbody");
+      if (body) body.classList.toggle("hidden", on);
+    });
+  }
+  function toggleCollapse(key: string) {
+    const i = state.ui.collapsed.indexOf(key);
+    if (i >= 0) state.ui.collapsed.splice(i, 1);
+    else state.ui.collapsed.push(key);
+    commit();
+    applyCollapsed();
+  }
+
+  // ---------- Reorder (pointer-drag, touch-friendly) ----------
+  function applyOrder() {
+    const container = $("sections");
+    if (!container) return;
+    const map = new Map<string, HTMLElement>();
+    container.querySelectorAll<HTMLElement>("[data-section]").forEach((s) => map.set(s.dataset.section!, s));
+    for (const key of state.ui.order) { const el = map.get(key); if (el) container.appendChild(el); }
+  }
+  function persistOrder() {
+    const container = $("sections");
+    if (!container) return;
+    state.ui.order = [...container.querySelectorAll<HTMLElement>("[data-section]")].map((s) => s.dataset.section!);
+    commit();
+  }
+  function setupDrag() {
+    const container = $("sections")!;
+    let dragEl: HTMLElement | null = null;
+    container.querySelectorAll<HTMLElement>("[data-drag]").forEach((handle) => {
+      handle.addEventListener("pointerdown", (ev) => {
+        const pe = ev as PointerEvent;
+        ev.preventDefault();
+        dragEl = handle.closest<HTMLElement>("[data-section]");
+        if (!dragEl) return;
+        dragEl.classList.add("dragging");
+        const move = (m: PointerEvent) => {
+          if (!dragEl) return;
+          const y = m.clientY;
+          const sibs = [...container.querySelectorAll<HTMLElement>("[data-section]")].filter((s) => s !== dragEl);
+          let target: HTMLElement | null = null;
+          for (const s of sibs) {
+            const r = s.getBoundingClientRect();
+            if (y < r.top + r.height / 2) { target = s; break; }
+          }
+          sibs.forEach((s) => s.classList.remove("drag-over"));
+          if (target) { target.classList.add("drag-over"); container.insertBefore(dragEl, target); }
+          else { container.appendChild(dragEl); }
+        };
+        const up = () => {
+          document.removeEventListener("pointermove", move);
+          document.removeEventListener("pointerup", up);
+          if (dragEl) dragEl.classList.remove("dragging");
+          container.querySelectorAll<HTMLElement>(".drag-over").forEach((s) => s.classList.remove("drag-over"));
+          dragEl = null;
+          persistOrder();
+        };
+        document.addEventListener("pointermove", move);
+        document.addEventListener("pointerup", up);
+      });
+    });
+  }
+
+  // when editing from the ledger, close the ledger first so the entry modal is on top
+  document.addEventListener("click", (ev) => {
+    const el = (ev.target as HTMLElement).closest<HTMLElement>("[data-from-ledger]");
+    if (el) closeModal("modal-ledger");
+  });
+
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeTop(); });
 
+  applyOrder();
+  applyCollapsed();
+  setupDrag();
   renderAll();
 }

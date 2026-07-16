@@ -17,13 +17,21 @@ export interface BudgetEntry {
   ts: number;
 }
 
+export interface BudgetUi {
+  order: string[]; // section keys, top-to-bottom
+  collapsed: string[]; // collapsed section keys
+}
+
 export interface BudgetState {
   currency: string; // symbol, e.g. "$"
   monthlyBudget: number; // legacy overall target (0 = derive from category targets)
   categories: { income: string[]; expense: string[] };
   targets: Record<string, number>; // category -> monthly $ target
   entries: BudgetEntry[];
+  ui: BudgetUi;
 }
+
+export const SECTION_KEYS = ["thismonth", "entries", "calendar", "whereitwent"] as const;
 
 export const BUDGET_KEY = "acebudget:v1";
 
@@ -68,6 +76,10 @@ export const DEFAULT_TARGETS: Record<string, number> = {
 // upgrade it to the user's real categories without clobbering a customised one.
 const V1_DEFAULT_EXPENSE = ["Groceries", "Rent", "Dining", "Transport", "Bills", "Shopping", "Health", "Fun", "Other"];
 
+export function defaultUi(): BudgetUi {
+  return { order: [...SECTION_KEYS], collapsed: [] };
+}
+
 export function defaultBudgetState(): BudgetState {
   return {
     currency: "$",
@@ -75,7 +87,18 @@ export function defaultBudgetState(): BudgetState {
     categories: { income: [...DEFAULT_CATEGORIES.income], expense: [...DEFAULT_CATEGORIES.expense] },
     targets: { ...DEFAULT_TARGETS },
     entries: [],
+    ui: defaultUi(),
   };
+}
+
+/** Normalise a saved order: keep known keys in saved order, append any missing. */
+export function normalizeOrder(order: string[] | undefined): string[] {
+  const known = new Set<string>(SECTION_KEYS);
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const k of order ?? []) if (known.has(k) && !seen.has(k)) { out.push(k); seen.add(k); }
+  for (const k of SECTION_KEYS) if (!seen.has(k)) out.push(k);
+  return out;
 }
 
 function sameSet(a: string[] | undefined, b: string[]): boolean {
@@ -108,6 +131,7 @@ export function loadBudget(): BudgetState {
       categories,
       targets,
       entries: Array.isArray(p.entries) ? p.entries : [],
+      ui: { order: normalizeOrder(p.ui?.order), collapsed: Array.isArray(p.ui?.collapsed) ? p.ui!.collapsed : [] },
     };
   } catch {
     return defaultBudgetState();
