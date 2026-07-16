@@ -1,0 +1,238 @@
+---
+import "../../styles/base.css";
+import "../../theme.css";
+import Head from "../../components/Head.astro";
+import Nav from "../../components/Nav.astro";
+import Icon from "../../components/Icon.astro";
+
+const title = "Ace-Budget — money in & out, by day · acemoisan";
+const description =
+  "A local-first budget tracker: log income and expenses on a live calendar, tag by category, and watch monthly totals and your net update in real time. Data stays on your device.";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <Head title={title} description={description} path="/apps/budget" />
+  </head>
+  <body class="app-bg min-h-screen font-sans text-foreground antialiased">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Nav current="app" appName="Ace-Budget" />
+
+    <main id="main" class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <!-- Title + controls -->
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div class="flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center rounded-xl ring-1 ring-inset ring-border" style="background:color-mix(in oklab, var(--good) 16%, transparent); color:var(--good)">
+            <Icon name="wallet" class="h-6 w-6" />
+          </span>
+          <div>
+            <h1 class="font-display text-2xl font-bold tracking-tight text-foreground">Ace-Budget</h1>
+            <p class="font-mono text-xs text-muted-foreground">money in &amp; out, by day · <span class="text-good">on-device</span></p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="flex items-center rounded-lg border border-border bg-card">
+            <button data-nav="prev-month" class="grid h-9 w-9 place-items-center rounded-l-lg text-muted-foreground transition hover:bg-muted hover:text-foreground" aria-label="Previous month">
+              <Icon name="chevronLeft" class="h-4 w-4" />
+            </button>
+            <button data-nav="this-month" id="month-label" class="min-w-[8.5rem] px-2 text-center font-mono text-xs font-medium text-foreground transition hover:text-primary">—</button>
+            <button data-nav="next-month" class="grid h-9 w-9 place-items-center rounded-r-lg text-muted-foreground transition hover:bg-muted hover:text-foreground" aria-label="Next month">
+              <Icon name="chevronRight" class="h-4 w-4" />
+            </button>
+          </div>
+          <button data-action="backup" class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition hover:border-border-strong" title="Download a backup of all hub data">
+            <Icon name="arrowUpRight" class="h-4 w-4 text-accent" /> Backup
+          </button>
+          <button data-open="settings" class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition hover:border-border-strong">
+            <Icon name="target" class="h-4 w-4 text-accent" /> Settings
+          </button>
+          <button data-open="entry" class="inline-flex items-center gap-2 rounded-lg bg-primary px-3.5 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition hover:brightness-110">
+            <Icon name="plus" class="h-4 w-4" /> Add entry
+          </button>
+        </div>
+      </div>
+
+      <!-- Main grid -->
+      <div class="mt-6 grid gap-5 lg:grid-cols-[1.35fr_1fr]">
+        <!-- LEFT -->
+        <div class="flex flex-col gap-5">
+          <!-- Month summary -->
+          <section class="rounded-2xl border border-border bg-card p-5 sm:p-6" aria-label="Month summary">
+            <div class="flex items-center justify-between">
+              <h2 class="font-display text-sm font-semibold text-foreground">This month</h2>
+              <span id="summary-count" class="font-mono text-xs text-muted-foreground">—</span>
+            </div>
+            <div class="mt-4 grid grid-cols-3 gap-3">
+              <div class="rounded-xl border border-border bg-background/40 p-3">
+                <p class="flex items-center gap-1 font-mono text-[10px] uppercase tracking-wider text-muted-foreground"><Icon name="arrowDown" class="h-3 w-3 text-good" /> Income</p>
+                <p id="sum-income" class="mt-1 font-mono text-xl font-bold tabular-nums text-good">—</p>
+              </div>
+              <div class="rounded-xl border border-border bg-background/40 p-3">
+                <p class="flex items-center gap-1 font-mono text-[10px] uppercase tracking-wider text-muted-foreground"><Icon name="arrowUp" class="h-3 w-3" style="color:var(--protein)" /> Expenses</p>
+                <p id="sum-expense" class="mt-1 font-mono text-xl font-bold tabular-nums" style="color:var(--protein)">—</p>
+              </div>
+              <div class="rounded-xl border border-border bg-background/40 p-3">
+                <p class="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Net</p>
+                <p id="sum-net" class="mt-1 font-mono text-xl font-bold tabular-nums text-foreground">—</p>
+              </div>
+            </div>
+            <!-- monthly budget progress (shown when a budget is set) -->
+            <div id="budget-bar-wrap" class="mt-4 hidden">
+              <div class="flex items-center justify-between font-mono text-[11px]">
+                <span class="text-muted-foreground">Spent vs budget</span>
+                <span id="budget-bar-text" class="tabular-nums text-foreground">—</span>
+              </div>
+              <div class="mt-1.5 h-2 overflow-hidden rounded-full bg-border">
+                <div id="budget-bar" class="h-full rounded-full transition-[width] duration-500" style="width:0%;background:var(--good)"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Selected day -->
+          <section class="rounded-2xl border border-border bg-card p-5 sm:p-6" aria-label="Day entries">
+            <div class="flex items-center justify-between">
+              <h2 class="font-display text-sm font-semibold text-foreground">Entries · <span id="day-label">today</span></h2>
+              <div class="flex items-center gap-3">
+                <span id="day-total" class="font-mono text-xs tabular-nums text-muted-foreground">—</span>
+                <button data-open="entry" class="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition hover:border-border-strong hover:text-foreground">
+                  <Icon name="plus" class="h-3.5 w-3.5" /> Add
+                </button>
+              </div>
+            </div>
+            <div id="day-list" class="mt-4 space-y-2"></div>
+          </section>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="flex flex-col gap-5">
+          <!-- Calendar -->
+          <section class="rounded-2xl border border-border bg-card p-5 sm:p-6" aria-label="Calendar">
+            <h2 class="font-display text-sm font-semibold text-foreground">Calendar</h2>
+            <div class="mt-4 grid grid-cols-7 gap-1 text-center font-mono text-[10px] text-muted-foreground">
+              <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+            </div>
+            <div id="cal-grid" class="mt-1 grid grid-cols-7 gap-1"></div>
+            <div class="mt-3 flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+              <span class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-sm" style="background:color-mix(in oklab, var(--good) 55%, var(--card))"></span> net +</span>
+              <span class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-sm" style="background:color-mix(in oklab, var(--protein) 55%, var(--card))"></span> net −</span>
+              <span class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-sm ring-1 ring-inset ring-primary"></span> today</span>
+            </div>
+          </section>
+
+          <!-- Category breakdown -->
+          <section class="rounded-2xl border border-border bg-card p-5 sm:p-6" aria-label="Spending by category">
+            <div class="flex items-center justify-between">
+              <h2 class="font-display text-sm font-semibold text-foreground">Where it went</h2>
+              <span class="font-mono text-[11px] text-muted-foreground">this month</span>
+            </div>
+            <div id="cat-breakdown" class="mt-4 space-y-2.5"></div>
+          </section>
+        </div>
+      </div>
+
+      <p class="mt-8 text-center font-mono text-[11px] text-muted-foreground/70">
+        On-device only, no bank connection. Use <span class="text-foreground">Backup</span> (or Ace-Macros → Data) to save a copy.
+      </p>
+    </main>
+
+    <!-- ===================== Entry modal ===================== -->
+    <div id="modal-entry" class="fixed inset-0 z-[70] hidden" role="dialog" aria-modal="true" aria-labelledby="entry-title">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-close></div>
+      <div class="absolute inset-x-0 bottom-0 mx-auto max-h-[92vh] w-full max-w-md overflow-y-auto rounded-t-2xl border border-border bg-card sm:inset-x-auto sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-2xl">
+        <div class="flex items-center justify-between border-b border-border px-5 py-4">
+          <h3 id="entry-title" class="font-display text-base font-semibold text-foreground">Add entry</h3>
+          <button data-close class="grid h-8 w-8 place-items-center rounded-lg text-muted-foreground transition hover:bg-muted hover:text-foreground" aria-label="Close">
+            <Icon name="x" class="h-4 w-4" />
+          </button>
+        </div>
+        <form id="entry-form" class="px-5 py-5">
+          <input type="hidden" id="e-id" />
+          <!-- type toggle -->
+          <div class="grid grid-cols-2 gap-2 rounded-lg border border-border bg-background/40 p-1">
+            <button type="button" data-etype="expense" class="etype-btn rounded-md py-2 text-sm font-semibold transition">Expense</button>
+            <button type="button" data-etype="income" class="etype-btn rounded-md py-2 text-sm font-semibold transition">Income</button>
+          </div>
+
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <div>
+              <label class="font-mono text-xs text-muted-foreground" for="e-amount">Amount</label>
+              <div class="mt-1 flex items-center rounded-lg border border-border bg-background focus-within:border-primary">
+                <span id="e-currency" class="pl-3 pr-1 font-mono text-sm text-muted-foreground">$</span>
+                <input id="e-amount" name="amount" type="number" min="0" step="0.01" required placeholder="0.00"
+                  class="w-full rounded-r-lg bg-transparent px-1 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none" />
+              </div>
+            </div>
+            <div>
+              <label class="font-mono text-xs text-muted-foreground" for="e-date">Date</label>
+              <input id="e-date" name="date" type="date" required
+                class="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none" />
+            </div>
+          </div>
+
+          <div class="mt-3">
+            <label class="font-mono text-xs text-muted-foreground" for="e-category">Category</label>
+            <select id="e-category" name="category"
+              class="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none"></select>
+          </div>
+
+          <div class="mt-3">
+            <label class="font-mono text-xs text-muted-foreground" for="e-label">Label <span class="text-muted-foreground/60">(optional)</span></label>
+            <input id="e-label" name="label" placeholder="e.g. Costco run"
+              class="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none" />
+          </div>
+
+          <button type="submit" id="e-submit" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110">
+            <Icon name="check" class="h-4 w-4" /> <span id="e-submit-label">Add entry</span>
+          </button>
+          <button type="button" id="e-delete" class="mt-2 hidden w-full items-center justify-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-muted-foreground transition hover:border-warn/50 hover:bg-warn/10 hover:text-warn">
+            <Icon name="trash" class="h-4 w-4" /> Delete entry
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===================== Settings modal ===================== -->
+    <div id="modal-settings" class="fixed inset-0 z-[70] hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-close></div>
+      <div class="absolute inset-x-0 bottom-0 mx-auto w-full max-w-sm rounded-t-2xl border border-border bg-card sm:inset-x-auto sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-2xl">
+        <div class="flex items-center justify-between border-b border-border px-5 py-4">
+          <h3 id="settings-title" class="font-display text-base font-semibold text-foreground">Settings</h3>
+          <button data-close class="grid h-8 w-8 place-items-center rounded-lg text-muted-foreground transition hover:bg-muted hover:text-foreground" aria-label="Close">
+            <Icon name="x" class="h-4 w-4" />
+          </button>
+        </div>
+        <form id="settings-form" class="px-5 py-5">
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="font-mono text-xs text-muted-foreground" for="s-currency">Currency symbol</label>
+              <input id="s-currency" name="currency" maxlength="3" placeholder="$"
+                class="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2.5 text-center text-sm text-foreground focus:border-primary focus:outline-none" />
+            </div>
+            <div>
+              <label class="font-mono text-xs text-muted-foreground" for="s-budget">Monthly budget</label>
+              <input id="s-budget" name="monthlyBudget" type="number" min="0" step="1" placeholder="0 = none"
+                class="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none" />
+            </div>
+          </div>
+          <p class="mt-2 font-mono text-[11px] text-muted-foreground">A monthly budget shows a spend-vs-budget bar. Set 0 to hide it.</p>
+          <button type="submit" class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110">
+            <Icon name="check" class="h-4 w-4" /> Save settings
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- toast -->
+    <div id="toast" class="pointer-events-none fixed bottom-5 left-1/2 z-[80] -translate-x-1/2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium text-foreground opacity-0 shadow-xl transition-opacity"></div>
+
+    <style>
+      .etype-btn { color: var(--muted-foreground); }
+      .etype-btn[aria-selected="true"] { background: var(--card); color: var(--foreground); box-shadow: 0 1px 2px rgba(0,0,0,.3); }
+    </style>
+
+    <script>
+      import "../../scripts/budget";
+    </script>
+  </body>
+</html>

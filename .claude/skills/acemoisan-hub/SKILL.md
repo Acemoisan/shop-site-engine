@@ -27,13 +27,24 @@ sites/acemoisan/
     content/profile.ts    # bio, socials, and the APP REGISTRY (add apps here)
     components/            # Nav (Apps button), Hero-less pages, AppCard, Footer, Icon, Head
     lib/
-      macro-store.ts       # MacroFactor data model + localStorage load/save/migrate
+      macro-store.ts       # Ace-Macros data model + localStorage (key acemf:v1)
+      budget-store.ts      # Ace-Budget data model + localStorage (key acebudget:v1)
       emoji.ts             # the icon pool (emoji) for food entries
-    scripts/macrofactor.ts # MacroFactor controller (all rendering + events)
+      backup.ts            # hub-wide export/import + persistence (covers ALL apps)
+    scripts/
+      macrofactor.ts       # Ace-Macros controller (filename kept; product renamed)
+      budget.ts            # Ace-Budget controller
     pages/
       index.astro          # landing home (+ live "today's macros" widget)
       apps/index.astro     # the Apps hub (renders the registry)
-      apps/macrofactor.astro # the MacroFactor app shell (markup; logic is scripts/macrofactor.ts)
+      apps/ace-macros.astro # Ace-Macros shell (imports scripts/macrofactor)
+      apps/budget.astro    # Ace-Budget shell (imports scripts/budget)
+      apps/[slug].astro    # plan/detail page for each PLANNED app (from registry.plan)
+
+# Naming: the product "MacroFactor" was renamed to "Ace-Macros" (route
+# /apps/ace-macros; old /apps/macrofactor redirects via astro.config redirects).
+# Internal files (macrofactor.ts, macro-store.ts) and the storage key acemf:v1
+# were intentionally NOT renamed — the key must stay stable so no data is lost.
 ```
 
 ## Build / preview / verify (do this for every change)

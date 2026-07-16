@@ -4,24 +4,40 @@
 
 A personal project built on the same engine tooling as the Studio0rbit shop sites,
 but deliberately separate from the shop business: **Aidan's own hub for self-hosted
-day-to-day tools.** The first app is **MacroFactor**, a local-first macro/nutrition
-tracker. This doc is the record of what exists and how it was built; the
-**`acemoisan-hub` skill** is the operational runbook for changing it.
+day-to-day tools.** Live apps: **Ace-Macros** (macro/nutrition) and **Ace-Budget**
+(money), both local-first. This doc is the record of what exists and how it was built;
+the **`acemoisan-hub` skill** is the operational runbook for changing it.
 
 ## What it is
 - **`/`** — landing home: intro + socials (mirrored from acemoisan.github.io), and a
   live on-device dashboard panel (clock + today's macro snapshot read from the same
   `localStorage` the app writes).
 - **`/apps`** — the Apps hub. An **"Apps" button in the header** opens it. Renders an
-  app registry (`src/content/profile.ts`); apps are marked `live` or `planned`.
-- **`/apps/macrofactor`** — the MacroFactor clone.
+  app registry (`src/content/profile.ts`); apps are `live` or `planned`.
+- **`/apps/ace-macros`** — the Ace-Macros tracker (a MacroFactor-style clone; the old
+  `/apps/macrofactor` URL redirects here).
+- **`/apps/budget`** — Ace-Budget (see below).
+- **Planned apps** (Homebase, Habit Grid, Command Deck) each open a **plan/detail page**
+  at `/apps/<slug>` (dynamic `[slug].astro`, content in the registry's `plan` field) —
+  cards are clickable "View plan", not dead links.
 
 It's **one Cloudflare Pages project**, Git-connected, so **every push to the
 production branch auto-builds and deploys**. Standalone static Astro — no
 `@studio0rbit/shared`, no Storyblok, no backend. Dark-only. All data is client-side.
 
-## MacroFactor (v1 + catalogs/icons)
-Mimics MacroFactor's basics:
+## Ace-Budget (v1)
+A calendar-driven budget tracker (`src/lib/budget-store.ts`, `budget.astro`,
+`scripts/budget.ts`; key `acebudget:v1`): add/edit income & expense **entries per day**
+on a month **calendar** (days tinted by net +/−), a **month summary** (income / expense /
+net + optional monthly-budget bar), a **category breakdown** of the month's spend, custom
+categories + currency in Settings, and a one-tap **Backup** (shares the hub's backup —
+`backup.ts` exports every localStorage key, so Ace-Budget data is in the same file).
+Future v2: mirror the user's existing spreadsheet (formulas/notes) once shared via Drive.
+
+## Ace-Macros (v1 + catalogs/icons)
+Mimics MacroFactor's basics (renamed from "MacroFactor" → "Ace-Macros"; route
+`/apps/ace-macros`, internal files still `macrofactor.ts` / `macro-store.ts`, storage key
+`acemf:v1` unchanged so no data is lost):
 - **Food catalogue** with a starter set + user-created custom foods, organised into
   **named catalogs** (Basics, My Foods, and any you add). Filter by catalog chips,
   create/rename/delete catalogs, and **move a food between catalogs** from its editor.
@@ -107,7 +123,9 @@ Cloudflare Tunnel, and add read-only widgets → then a couple of control button
 
 ## Roadmap
 - More apps (Habit Grid, Command Deck are stubbed in the registry).
-- MacroFactor: barcode/nutrition-label entry, weight-trend widget.
+- Ace-Macros: barcode/nutrition-label entry, weight-trend widget.
+- Ace-Budget v2: mirror the user's existing spreadsheet (exact formulas + notes) once
+  shared via Google Drive; recurring entries, per-category budgets, CSV import/export.
 - **Reminders / alerts — deferred by choice** (2026‑07‑16). Web push was judged too
   heavy (needs a PWA install + service worker + a Worker cron sender; iOS requires
   Home‑Screen install). When wanted, the recommended *easy* path is **calendar `.ics`

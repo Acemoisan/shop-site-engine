@@ -8,5 +8,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://acemoisan.pages.dev",
   integrations: [sitemap()],
+  // Keep the old URL working after the MacroFactor → Ace-Macros rename.
+  redirects: { "/apps/macrofactor": "/apps/ace-macros" },
   vite: { plugins: [tailwindcss()] },
 });

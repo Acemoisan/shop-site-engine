@@ -4,16 +4,12 @@ import type { AppEntry } from "../content/profile";
 interface Props { app: AppEntry }
 const { app } = Astro.props;
 const live = app.status === "live";
-const Tag = live ? "a" : "div";
 ---
-<Tag
-  href={live ? app.href : undefined}
-  data-live={live ? "" : undefined}
+<a
+  href={app.href}
   class:list={[
-    "group relative flex flex-col overflow-hidden rounded-2xl border p-6 transition",
-    live
-      ? "border-border bg-card hover:-translate-y-0.5 hover:border-border-strong hover:shadow-lg hover:shadow-black/20"
-      : "border-dashed border-border/70 bg-card/40",
+    "group relative flex flex-col overflow-hidden rounded-2xl border p-6 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20",
+    live ? "border-border bg-card hover:border-border-strong" : "border-dashed border-border/70 bg-card/40 hover:border-border",
   ]}
 >
   <!-- accent wash -->
@@ -48,10 +44,8 @@ const Tag = live ? "a" : "div";
         <span class="rounded-md bg-muted px-2 py-0.5 font-mono text-[10px] text-muted-foreground ring-1 ring-inset ring-border">{t}</span>
       ))}
     </div>
-    {live && (
-      <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary">
-        Open <Icon name="arrowRight" class="h-4 w-4 transition group-hover:translate-x-0.5" />
-      </span>
-    )}
+    <span class:list={["inline-flex items-center gap-1 text-sm font-semibold", live ? "text-primary" : "text-muted-foreground"]}>
+      {live ? "Open" : "View plan"} <Icon name="arrowRight" class="h-4 w-4 transition group-hover:translate-x-0.5" />
+    </span>
   </div>
-</Tag>
+</a>
