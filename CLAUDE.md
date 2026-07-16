@@ -32,6 +32,7 @@ This project is a **production capability**, not a pile of one-off sites. The pi
   - `deploy-shop-site` — the auto-deploy runbook (per-client standalone repo + host build hook + Storyblok publish webhook; clients need no GitHub).
   - `site-audit` — given a prospect URL, run the deterministic collector + visual review → branded 1-page audit + scoping note.
   - `triage-prospects` — turn an Outscraper Google Maps export into a deduped, ranked, consistent audit queue (deterministic `scripts/triage-prospects.mjs`); the step between the scrape and `site-audit`.
+  - `acemoisan-hub` — **personal (non-shop) project.** Aidan's own self-hosted-tools site (`sites/acemoisan/` → acemoisan.pages.dev): the landing hub, the Apps page, and the MacroFactor tracker. Standalone static Astro, dark-only, no Storyblok/shared engine. Use it to iterate that site or its apps. Record: `docs/projects/acemoisan-hub.md`.
 - Keep skills grounded in verified, working implementations (point at the real files), and update them when the pattern evolves.
 
 ## The token system (how theming works)
