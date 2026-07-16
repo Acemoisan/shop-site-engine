@@ -1,0 +1,45 @@
+/* acemoisan.pages.dev — personal utility hub tokens (OKLCH).
+   Direction: clean modern dashboard, dark-only, with a subtle dev/arcade
+   accent. Deep slate-navy surfaces + an azure "brand" primary (from
+   acemoisan.github.io's #149ddd) + a mono type voice for numbers/labels.
+
+   Single dark theme by design: it's a personal dashboard, it reads best dark,
+   and it keeps the whole hub cohesive. Every component uses the semantic token
+   utilities mapped in base.css, so this file re-themes the whole site.
+
+   The four macro-data hues (--cal/--protein/--carbs/--fat) are NOT decorative:
+   they're a validated categorical palette (colorblind-safe adjacent separation,
+   ≥3:1 on the card surface). Do not swap them casually — re-run the dataviz
+   validator (scripts/validate_palette.js) against #1b2431 if you do. */
+:root {
+  color-scheme: dark;
+
+  --background: oklch(0.17 0.018 250);        /* deep slate-navy page */
+  --foreground: oklch(0.95 0.008 250);        /* near-white ink */
+  --card: oklch(0.21 0.02 250);               /* raised surface (#1b2431-ish) */
+  --card-2: oklch(0.245 0.022 250);           /* elevated surface (rows, chips) */
+  --muted: oklch(0.235 0.018 250);
+  --muted-foreground: oklch(0.71 0.016 250);  /* secondary ink */
+  --border: oklch(0.31 0.02 255);
+  --border-strong: oklch(0.40 0.022 255);
+
+  --primary: oklch(0.66 0.14 236);            /* azure brand (#149ddd family) */
+  --primary-foreground: oklch(0.16 0.02 250); /* dark ink on the bright azure */
+  --accent: oklch(0.80 0.115 200);            /* cyan pop for the gamer accent */
+  --accent-foreground: oklch(0.18 0.03 240);
+
+  /* Categorical macro-data palette — validated for the --card surface. */
+  --cal: #4aa6ec;      /* calories / energy */
+  --protein: #ec5a72;  /* protein */
+  --carbs: #c69b2b;    /* carbohydrate */
+  --fat: #2abd94;      /* fat */
+
+  --good: oklch(0.74 0.15 155);
+  --warn: oklch(0.80 0.14 80);
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius: 0.85rem;
+}

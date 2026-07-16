@@ -1,0 +1,35 @@
+---
+import Icon from "./Icon.astro";
+import { profile } from "../content/profile";
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-border/70 bg-background/60">
+  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 py-10 sm:flex-row sm:px-6">
+    <div class="flex items-center gap-2.5">
+      <span class="grid h-8 w-8 place-items-center rounded-lg bg-primary/15 font-display text-lg font-bold text-primary ring-1 ring-inset ring-primary/30">A</span>
+      <div class="leading-tight">
+        <p class="font-display text-sm font-semibold text-foreground">{profile.name}</p>
+        <p class="font-mono text-xs text-muted-foreground">{profile.location}</p>
+      </div>
+    </div>
+
+    <nav class="flex items-center gap-1.5" aria-label="Social links">
+      {profile.socials.map((s) => (
+        <a
+          href={s.href}
+          target={s.href.startsWith("http") ? "_blank" : undefined}
+          rel={s.href.startsWith("http") ? "noopener" : undefined}
+          class="grid h-9 w-9 place-items-center rounded-lg border border-border text-muted-foreground transition hover:border-border-strong hover:text-foreground"
+          aria-label={s.label}
+        >
+          <Icon name={s.icon} class="h-[18px] w-[18px]" />
+        </a>
+      ))}
+    </nav>
+  </div>
+  <div class="mx-auto max-w-6xl px-4 pb-8 sm:px-6">
+    <p class="font-mono text-xs text-muted-foreground/70">
+      © {year} {profile.name} · self-hosted utilities · built with Astro, hosted on Cloudflare Pages
+    </p>
+  </div>
+</footer>

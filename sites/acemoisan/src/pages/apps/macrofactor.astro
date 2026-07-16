@@ -1,0 +1,316 @@
+---
+import "../../styles/base.css";
+import "../../theme.css";
+import Head from "../../components/Head.astro";
+import Nav from "../../components/Nav.astro";
+import Icon from "../../components/Icon.astro";
+
+const title = "MacroFactor — macro & nutrition tracker · acemoisan";
+const description =
+  "A local-first macro tracker: catalogue foods, quick-log your day on a timeline, and track daily totals against your goals with a live calendar and monthly progress charts. Data stays on your device.";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <Head title={title} description={description} path="/apps/macrofactor" />
+  </head>
+  <body class="app-bg min-h-screen font-sans text-foreground antialiased">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Nav current="app" appName="MacroFactor" />
+
+    <main id="main" class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <!-- Title + controls -->
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div class="flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center rounded-xl ring-1 ring-inset ring-border" style="background:color-mix(in oklab, var(--cal) 16%, transparent); color:var(--cal)">
+            <Icon name="flame" class="h-6 w-6" />
+          </span>
+          <div>
+            <h1 class="font-display text-2xl font-bold tracking-tight text-foreground">MacroFactor</h1>
+            <p class="font-mono text-xs text-muted-foreground">local-first macro tracker · <span class="text-good">on-device</span></p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- date navigator -->
+          <div class="flex items-center rounded-lg border border-border bg-card">
+            <button data-nav="prev-day" class="grid h-9 w-9 place-items-center rounded-l-lg text-muted-foreground transition hover:bg-muted hover:text-foreground" aria-label="Previous day">
+              <Icon name="chevronLeft" class="h-4 w-4" />
+            </button>
+            <button data-nav="today" id="date-label" class="min-w-[7.5rem] px-2 text-center font-mono text-xs font-medium text-foreground transition hover:text-primary">Today</button>
+            <button data-nav="next-day" class="grid h-9 w-9 place-items-center rounded-r-lg text-muted-foreground transition hover:bg-muted hover:text-foreground" aria-label="Next day">
+              <Icon name="chevronRight" class="h-4 w-4" />
+            </button>
+          </div>
+          <button data-open="goals" class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition hover:border-border-strong">
+            <Icon name="target" class="h-4 w-4 text-accent" /> Goals
+          </button>
+          <button data-open="add" class="inline-flex items-center gap-2 rounded-lg bg-primary px-3.5 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition hover:brightness-110">
+            <Icon name="plus" class="h-4 w-4" /> Add food
+          </button>
+        </div>
+      </div>
+
+      <!-- Main grid -->
+      <div class="mt-6 grid gap-5 lg:grid-cols-[1.35fr_1fr]">
+        <!-- LEFT -->
+        <div class="flex flex-col gap-5">
+          <!-- Summary -->
+          <section class="rounded-2xl border border-border bg-card p-5 sm:p-6" aria-label="Daily totals versus goals">
+            <div class="flex items-center justify-between">
+              <h2 class="font-display text-sm font-semibold text-foreground">Today's totals</h2>
+              <span id="summary-status" class="font-mono text-xs text-muted-foreground">—</span>
+            </div>
+
+            <div class="mt-5 grid grid-cols-1 items-center gap-6 sm:grid-cols-[auto_1fr]">
+              <!-- calorie ring -->
+              <div class="mx-auto">
+                <div class="relative h-40 w-40">
+                  <svg viewBox="0 0 120 120" class="h-40 w-40 -rotate-90">
+                    <circle cx="60" cy="60" r="52" fill="none" stroke="var(--border)" stroke-width="12" />
+                    <circle id="cal-ring" cx="60" cy="60" r="52" fill="none" stroke="var(--cal)" stroke-width="12" stroke-linecap="round" stroke-dasharray="326.726" stroke-dashoffset="326.726" style="transition:stroke-dashoffset .5s ease" />
+                  </svg>
+                  <div class="absolute inset-0 grid place-content-center text-center">
+                    <span id="cal-value" class="font-mono text-3xl font-bold tabular-nums text-foreground">0</span>
+                    <span class="font-mono text-[11px] text-muted-foreground">/ <span id="cal-goal">0</span> kcal</span>
+                    <span id="cal-remaining" class="mt-1 font-mono text-[11px] text-cal">—</span>
+                  </div>
+                </div>
+              </div>
+              <!-- macro bars -->
+              <div id="macro-bars" class="space-y-4"></div>
+            </div>
+          </section>
+
+          <!-- Food log -->
+          <section class="rounded-2xl border border-border bg-card p-5 sm:p-6" aria-label="Food log">
+            <div class="flex items-center justify-between">
+              <h2 class="font-display text-sm font-semibold text-foreground">Food log</h2>
+              <button data-open="add" class="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition hover:border-border-strong hover:text-foreground">
+                <Icon name="plus" class="h-3.5 w-3.5" /> Add
+              </button>
+            </div>
+
+            <!-- quick add -->
+            <div id="quick-add-wrap" class="mt-4 hidden">
+              <p class="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">Quick add</p>
+              <div id="quick-add" class="mt-2 flex flex-wrap gap-2"></div>
+            </div>
+
+            <div id="log-list" class="mt-4 space-y-2"></div>
+          </section>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="flex flex-col gap-5">
+          <!-- Calendar -->
+          <section class="rounded-2xl border border-border bg-card p-5 sm:p-6" aria-label="Calendar">
+            <div class="flex items-center justify-between">
+              <h2 class="font-display text-sm font-semibold text-foreground">Calendar</h2>
+              <div class="flex items-center gap-1">
+                <button data-nav="prev-month" class="grid h-7 w-7 place-items-center rounded-md text-muted-foreground transition hover:bg-muted hover:text-foreground" aria-label="Previous month">
+                  <Icon name="chevronLeft" class="h-4 w-4" />
+                </button>
+                <span id="cal-month" class="min-w-[8rem] text-center font-mono text-xs font-medium text-foreground">—</span>
+                <button data-nav="next-month" class="grid h-7 w-7 place-items-center rounded-md text-muted-foreground transition hover:bg-muted hover:text-foreground" aria-label="Next month">
+                  <Icon name="chevronRight" class="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+            <div class="mt-4 grid grid-cols-7 gap-1 text-center font-mono text-[10px] text-muted-foreground">
+              <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+            </div>
+            <div id="cal-grid" class="mt-1 grid grid-cols-7 gap-1"></div>
+            <div class="mt-3 flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+              <span class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-sm" style="background:color-mix(in oklab, var(--cal) 55%, var(--card))"></span> logged</span>
+              <span class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-sm ring-1 ring-inset ring-primary"></span> today</span>
+              <span class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-sm" style="background:color-mix(in oklab, var(--warn) 55%, var(--card))"></span> over goal</span>
+            </div>
+          </section>
+
+          <!-- Monthly progress -->
+          <section class="rounded-2xl border border-border bg-card p-5 sm:p-6" aria-label="Monthly progress">
+            <div class="flex items-center justify-between">
+              <h2 class="font-display text-sm font-semibold text-foreground">Monthly progress</h2>
+              <span class="flex items-center gap-1.5 font-mono text-[11px] text-muted-foreground"><span class="inline-block h-2 w-2 rounded-full" style="background:var(--cal)"></span> calories</span>
+            </div>
+            <div class="relative mt-4">
+              <div id="chart" class="w-full"></div>
+              <div id="chart-tip" class="pointer-events-none absolute z-10 hidden rounded-md border border-border bg-background px-2 py-1 font-mono text-[11px] text-foreground shadow-lg"></div>
+            </div>
+            <div id="month-stats" class="mt-4 grid grid-cols-3 gap-3"></div>
+          </section>
+        </div>
+      </div>
+
+      <p class="mt-8 text-center font-mono text-[11px] text-muted-foreground/70">
+        All data is stored in this browser only. Clearing site data resets the app.
+      </p>
+    </main>
+
+    <!-- ===================== Add-food modal ===================== -->
+    <div id="modal-add" class="fixed inset-0 z-[60] hidden" role="dialog" aria-modal="true" aria-labelledby="add-title">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-close></div>
+      <div class="absolute inset-x-0 bottom-0 mx-auto max-h-[90vh] w-full max-w-lg overflow-hidden rounded-t-2xl border border-border bg-card sm:inset-x-auto sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-2xl">
+        <div class="flex items-center justify-between border-b border-border px-5 py-4">
+          <h3 id="add-title" class="font-display text-base font-semibold text-foreground">Add food</h3>
+          <button data-close class="grid h-8 w-8 place-items-center rounded-lg text-muted-foreground transition hover:bg-muted hover:text-foreground" aria-label="Close">
+            <Icon name="x" class="h-4 w-4" />
+          </button>
+        </div>
+        <!-- tabs -->
+        <div class="flex gap-1 px-5 pt-4">
+          <button data-tab="catalog" class="tab-btn rounded-lg px-3 py-1.5 font-mono text-xs font-medium transition" aria-selected="true">Catalog</button>
+          <button data-tab="new" class="tab-btn rounded-lg px-3 py-1.5 font-mono text-xs font-medium transition" aria-selected="false">New food</button>
+        </div>
+
+        <!-- catalog tab -->
+        <div data-panel="catalog" class="px-5 pb-5">
+          <label class="relative mt-3 block">
+            <span class="sr-only">Search foods</span>
+            <Icon name="search" class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <input id="food-search" type="search" placeholder="Search your catalogue…" autocomplete="off"
+              class="w-full rounded-lg border border-border bg-background py-2.5 pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none" />
+          </label>
+          <div id="catalog-list" class="mt-3 max-h-[46vh] space-y-1.5 overflow-y-auto pr-1"></div>
+        </div>
+
+        <!-- new food tab -->
+        <form data-panel="new" class="hidden px-5 pb-5" id="new-food-form">
+          <div class="mt-3 space-y-3">
+            <div>
+              <label class="font-mono text-xs text-muted-foreground" for="nf-name">Name</label>
+              <input id="nf-name" name="name" required placeholder="e.g. Protein bar"
+                class="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none" />
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="font-mono text-xs text-muted-foreground" for="nf-serving">Serving size</label>
+                <input id="nf-serving" name="serving" type="number" min="0" step="any" value="1" required
+                  class="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none" />
+              </div>
+              <div>
+                <label class="font-mono text-xs text-muted-foreground" for="nf-unit">Unit</label>
+                <input id="nf-unit" name="unit" placeholder="g, item, scoop…" value="g" required
+                  class="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none" />
+              </div>
+            </div>
+            <div class="grid grid-cols-4 gap-2">
+              <div>
+                <label class="font-mono text-xs text-cal" for="nf-kcal">kcal</label>
+                <input id="nf-kcal" name="kcal" type="number" min="0" step="any" required
+                  class="mt-1 w-full rounded-lg border border-border bg-background px-2 py-2.5 text-center text-sm text-foreground focus:border-primary focus:outline-none" />
+              </div>
+              <div>
+                <label class="font-mono text-xs" style="color:var(--protein)" for="nf-protein">P</label>
+                <input id="nf-protein" name="protein" type="number" min="0" step="any" value="0" required
+                  class="mt-1 w-full rounded-lg border border-border bg-background px-2 py-2.5 text-center text-sm text-foreground focus:border-primary focus:outline-none" />
+              </div>
+              <div>
+                <label class="font-mono text-xs" style="color:var(--carbs)" for="nf-carbs">C</label>
+                <input id="nf-carbs" name="carbs" type="number" min="0" step="any" value="0" required
+                  class="mt-1 w-full rounded-lg border border-border bg-background px-2 py-2.5 text-center text-sm text-foreground focus:border-primary focus:outline-none" />
+              </div>
+              <div>
+                <label class="font-mono text-xs" style="color:var(--fat)" for="nf-fat">F</label>
+                <input id="nf-fat" name="fat" type="number" min="0" step="any" value="0" required
+                  class="mt-1 w-full rounded-lg border border-border bg-background px-2 py-2.5 text-center text-sm text-foreground focus:border-primary focus:outline-none" />
+              </div>
+            </div>
+            <p class="font-mono text-[11px] text-muted-foreground">Macros are per one serving. <span id="nf-kcal-hint" class="text-muted-foreground/80"></span></p>
+            <button type="submit" class="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110">
+              <Icon name="plus" class="h-4 w-4" /> Save to catalogue &amp; log
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===================== Qty modal ===================== -->
+    <div id="modal-qty" class="fixed inset-0 z-[70] hidden" role="dialog" aria-modal="true" aria-labelledby="qty-title">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-close></div>
+      <div class="absolute inset-x-0 bottom-0 mx-auto w-full max-w-sm rounded-t-2xl border border-border bg-card sm:inset-x-auto sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-2xl">
+        <div class="flex items-center justify-between border-b border-border px-5 py-4">
+          <h3 id="qty-title" class="font-display text-base font-semibold text-foreground">Log food</h3>
+          <button data-close class="grid h-8 w-8 place-items-center rounded-lg text-muted-foreground transition hover:bg-muted hover:text-foreground" aria-label="Close">
+            <Icon name="x" class="h-4 w-4" />
+          </button>
+        </div>
+        <div class="px-5 py-5">
+          <p id="qty-food" class="font-display text-sm font-semibold text-foreground">—</p>
+          <p id="qty-per" class="mt-0.5 font-mono text-xs text-muted-foreground">—</p>
+          <label class="mt-4 block font-mono text-xs text-muted-foreground" for="qty-input">Servings</label>
+          <div class="mt-1 flex items-center gap-2">
+            <button data-qty-step="-1" class="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-border text-foreground transition hover:bg-muted" aria-label="Fewer">
+              <Icon name="minus" class="h-4 w-4" />
+            </button>
+            <input id="qty-input" type="number" min="0" step="any" value="1"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2.5 text-center text-lg font-semibold text-foreground focus:border-primary focus:outline-none" />
+            <button data-qty-step="1" class="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-border text-foreground transition hover:bg-muted" aria-label="More">
+              <Icon name="plus" class="h-4 w-4" />
+            </button>
+          </div>
+          <div id="qty-preview" class="mt-4 grid grid-cols-4 gap-2 text-center"></div>
+          <button id="qty-confirm" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110">
+            <Icon name="check" class="h-4 w-4" /> Add to <span id="qty-day">today</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Goals modal ===================== -->
+    <div id="modal-goals" class="fixed inset-0 z-[60] hidden" role="dialog" aria-modal="true" aria-labelledby="goals-title">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-close></div>
+      <div class="absolute inset-x-0 bottom-0 mx-auto w-full max-w-sm rounded-t-2xl border border-border bg-card sm:inset-x-auto sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-2xl">
+        <div class="flex items-center justify-between border-b border-border px-5 py-4">
+          <h3 id="goals-title" class="font-display text-base font-semibold text-foreground">Daily goals</h3>
+          <button data-close class="grid h-8 w-8 place-items-center rounded-lg text-muted-foreground transition hover:bg-muted hover:text-foreground" aria-label="Close">
+            <Icon name="x" class="h-4 w-4" />
+          </button>
+        </div>
+        <form id="goals-form" class="px-5 py-5">
+          <div class="space-y-3">
+            <div>
+              <label class="font-mono text-xs text-cal" for="g-cal">Calories (kcal)</label>
+              <input id="g-cal" name="calories" type="number" min="0" step="any" required
+                class="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none" />
+            </div>
+            <div class="grid grid-cols-3 gap-2">
+              <div>
+                <label class="font-mono text-xs" style="color:var(--protein)" for="g-protein">Protein (g)</label>
+                <input id="g-protein" name="protein" type="number" min="0" step="any" required
+                  class="mt-1 w-full rounded-lg border border-border bg-background px-2 py-2.5 text-center text-sm text-foreground focus:border-primary focus:outline-none" />
+              </div>
+              <div>
+                <label class="font-mono text-xs" style="color:var(--carbs)" for="g-carbs">Carbs (g)</label>
+                <input id="g-carbs" name="carbs" type="number" min="0" step="any" required
+                  class="mt-1 w-full rounded-lg border border-border bg-background px-2 py-2.5 text-center text-sm text-foreground focus:border-primary focus:outline-none" />
+              </div>
+              <div>
+                <label class="font-mono text-xs" style="color:var(--fat)" for="g-fat">Fat (g)</label>
+                <input id="g-fat" name="fat" type="number" min="0" step="any" required
+                  class="mt-1 w-full rounded-lg border border-border bg-background px-2 py-2.5 text-center text-sm text-foreground focus:border-primary focus:outline-none" />
+              </div>
+            </div>
+            <p id="goals-hint" class="font-mono text-[11px] text-muted-foreground"></p>
+            <button type="submit" class="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110">
+              <Icon name="check" class="h-4 w-4" /> Save goals
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- toast -->
+    <div id="toast" class="pointer-events-none fixed bottom-5 left-1/2 z-[80] -translate-x-1/2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium text-foreground opacity-0 shadow-xl transition-opacity"></div>
+
+    <style>
+      .tab-btn { color: var(--muted-foreground); }
+      .tab-btn[aria-selected="true"] { background: var(--muted); color: var(--foreground); }
+    </style>
+
+    <script>
+      import "../../scripts/macrofactor";
+    </script>
+  </body>
+</html>

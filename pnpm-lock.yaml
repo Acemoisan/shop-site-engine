@@ -44,7 +44,22 @@ importers:
     dependencies:
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+
+  sites/acemoisan:
+    dependencies:
+      '@astrojs/sitemap':
+        specifier: ^3.7.3
+        version: 3.7.3
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
+      astro:
+        specifier: ^5.0.0
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
 
   sites/artistic-salon:
     dependencies:
@@ -59,7 +74,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -77,7 +92,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -92,7 +107,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -104,7 +119,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -119,7 +134,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -137,7 +152,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -152,7 +167,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -167,7 +182,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -182,7 +197,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -200,7 +215,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -215,7 +230,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -230,7 +245,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -245,7 +260,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -260,7 +275,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -272,7 +287,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -284,7 +299,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -296,7 +311,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -308,7 +323,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -320,7 +335,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -332,7 +347,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -344,7 +359,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -356,7 +371,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -368,7 +383,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -380,7 +395,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -392,7 +407,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -404,7 +419,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -416,7 +431,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -428,7 +443,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -440,7 +455,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -452,7 +467,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -464,7 +479,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -476,7 +491,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -488,7 +503,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -500,7 +515,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -512,7 +527,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -524,7 +539,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -536,7 +551,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -548,7 +563,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -560,7 +575,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -572,7 +587,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -584,7 +599,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -596,7 +611,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -608,7 +623,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -620,7 +635,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -632,7 +647,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -644,7 +659,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -656,7 +671,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -668,7 +683,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -680,7 +695,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -692,7 +707,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -704,7 +719,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -716,7 +731,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -728,7 +743,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -740,7 +755,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -752,7 +767,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -764,7 +779,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -776,7 +791,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -788,7 +803,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -800,7 +815,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -812,7 +827,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -824,7 +839,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -836,7 +851,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -848,7 +863,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -860,7 +875,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -872,7 +887,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -884,7 +899,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -896,7 +911,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -908,7 +923,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -920,7 +935,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -932,7 +947,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -944,7 +959,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -956,7 +971,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -968,7 +983,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -980,7 +995,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -995,7 +1010,7 @@ importers:
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
       astro:
         specifier: ^5.0.0
-        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+        version: 5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.1
@@ -7360,7 +7375,7 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 4.4.3
 
-  '@astrojs/telemetry@3.3.0(supports-color@10.2.2)':
+  '@astrojs/telemetry@3.3.0':
     dependencies:
       ci-info: 4.4.0
       debug: 4.4.3(supports-color@10.2.2)
@@ -9423,12 +9438,12 @@ snapshots:
 
   ast-module-types@6.0.2: {}
 
-  astro@5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(supports-color@10.2.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0):
+  astro@5.18.2(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0):
     dependencies:
       '@astrojs/compiler': 2.13.1
       '@astrojs/internal-helpers': 0.7.6
       '@astrojs/markdown-remark': 6.3.11
-      '@astrojs/telemetry': 3.3.0(supports-color@10.2.2)
+      '@astrojs/telemetry': 3.3.0
       '@capsizecss/unpack': 4.0.1
       '@oslojs/encoding': 1.1.0
       '@rollup/pluginutils': 5.4.0(rollup@4.62.0)

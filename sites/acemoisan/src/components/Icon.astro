@@ -1,0 +1,52 @@
+---
+// Inline-SVG icon set — no icon-font/library dependency. Two styles:
+//  - "stroke" icons (lucide-like): fill=none, stroke=currentColor
+//  - "brand"/"solid" icons: filled paths with fill=currentColor
+interface Props { name: string; class?: string }
+const { name, class: cls = "" } = Astro.props;
+
+// Stroke icons (24x24, stroke=currentColor)
+const stroke: Record<string, string> = {
+  mail: '<path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/>',
+  flame: '<path d="M12 3c1 3-1.5 4-1.5 6.5A2.5 2.5 0 0 0 13 12c.5-1 .3-2 0-2.5 2 1 3.5 3 3.5 5.5a4.5 4.5 0 1 1-9 0C7.5 12 10 9.5 12 3Z"/>',
+  grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+  layout: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>',
+  apps: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+  arrowRight: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  arrowUpRight: '<path d="M7 17 17 7M8 7h9v9"/>',
+  calendar: '<rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v3M16 3v3"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  minus: '<path d="M5 12h14"/>',
+  trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>',
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/>',
+  chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+  chevronLeft: '<path d="M15 6l-6 6 6 6"/>',
+  chevronRight: '<path d="M9 6l6 6-6 6"/>',
+  x: '<path d="M6 6l12 12M18 6 6 18"/>',
+  check: '<path d="M5 12.5 10 17l9-10"/>',
+  edit: '<path d="M4 20h4L18.5 9.5a2.1 2.1 0 0 0-3-3L5 17v3Z"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+  scale: '<path d="M12 3v18M7 21h10M6 7h12l-2.5 6a3.5 3.5 0 0 1-7 0L6 7ZM12 3l6 4M12 3 6 7"/>',
+  bolt: '<path d="M13 2 4 14h7l-2 8 9-12h-7l2-8Z"/>',
+  orbit: '<circle cx="12" cy="12" r="3"/><path d="M20.5 12a8.5 8.5 0 1 1-4-7.2"/><circle cx="18.5" cy="5.5" r="1.6"/>',
+  utensils: '<path d="M4 3v7a2 2 0 0 0 2 2v9M8 3v9M6 3v4M16 3c-1.5 0-2.5 2-2.5 5s1 4 2.5 4v9"/>',
+  copy: '<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/>',
+  info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
+};
+
+// Brand / solid icons (filled)
+const solid: Record<string, string> = {
+  github: '<path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/>',
+  linkedin: '<path fill="currentColor" d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0ZM3.5 8.5h3.3V21H3.5V8.5Zm5.6 0h3.16v1.7h.05c.44-.83 1.5-1.7 3.1-1.7 3.32 0 3.93 2.18 3.93 5.02V21h-3.3v-5.55c0-1.32-.02-3.02-1.84-3.02-1.84 0-2.12 1.44-2.12 2.92V21H9.1V8.5Z"/>',
+  itch: '<path fill="currentColor" d="M3.5 4.2C2.6 4.75 1 6.6 1 7.1v.83c0 1.06.98 1.98 1.87 1.98.7 0 1.42-.6 1.42-1.42 0 .82.67 1.42 1.4 1.42.72 0 1.32-.6 1.32-1.42 0 .82.71 1.42 1.5 1.42h.02c.79 0 1.5-.6 1.5-1.42 0 .82.6 1.42 1.32 1.42.73 0 1.4-.6 1.4-1.42 0 .82.72 1.42 1.42 1.42.89 0 1.87-.92 1.87-1.98V7.1c0-.5-1.6-2.35-2.5-2.9C13.5 4.07 12 4 12 4s-6.7 0-8.5.2Zm4.9 6.35c-.6.72-1.5.72-2.1 0-.6.72-1.94.6-2.3-.1-.12 1.2-.2 2.86-.2 4.05 0 1.9.12 4 .5 4.9.5 1.2 6.7 1.2 7.2 0 .38-.9.5-3 .5-4.9 0-1.19-.08-2.85-.2-4.05-.36.7-1.7.82-2.3.1-.6.72-1.5.72-2.1 0-.3.36-.7.55-.7.55s-.4-.19-.7-.55Zm-2 3.2c1.34 0 2.53 0 3.85.15.3.45.15 2.4-.15 2.7-.3.3-3.7.3-4 0-.3-.3-.45-2.25-.15-2.7.6-.15.94-.15.45-.15Z"/>',
+  artstation: '<path fill="currentColor" d="M2 17.9 3.2 20a1.6 1.6 0 0 0 1.4.8h11.1l-1.7-2.9H2Zm19.9-1-5-8.7c-.3-.5-.8-.9-1.5-.9H10l7.5 13 1.9-3.3c.6-.03.5-.06.5-.1Zm-9.1 0L7.2 8.2 2.5 16.9h10.3Z"/>',
+};
+
+const inner = stroke[name] ?? solid[name] ?? "";
+const isStroke = name in stroke;
+---
+{isStroke ? (
+  <svg class={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={inner} />
+) : (
+  <svg class={cls} viewBox="0 0 24 24" fill="none" aria-hidden="true" set:html={inner} />
+)}
