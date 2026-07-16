@@ -17,13 +17,20 @@ Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to G
 | Framework preset | None |
 | Build command | `pnpm install --filter acemoisan... && pnpm --filter acemoisan build` |
 | Build output directory | `sites/acemoisan/dist` |
-| Env var | `NODE_VERSION` = `20` |
+| Env var | `NODE_VERSION` = `22` |
 
+> **`NODE_VERSION` must be ≥ 22.13** — the repo pins `pnpm@11.7.0`
+> (`packageManager`), which requires Node 22.13+ (it uses the `node:sqlite`
+> built-in). Node 20 fails at pnpm activation before any install runs.
+>
 > **Why the filtered install** (`--filter acemoisan...`): it installs only this
-> site's dependency graph and skips the monorepo root's dev tooling (netlify-cli's
-> native `better-sqlite3` build). A plain root `pnpm install` exits non-zero on
-> `ERR_PNPM_IGNORED_BUILDS` and fails the Cloudflare build. No `STORYBLOK_TOKEN`
-> is needed — this site has no CMS.
+> site's dependency graph and skips the monorepo root's dev tooling (netlify-cli
+> and its native deps). No `STORYBLOK_TOKEN` is needed — this site has no CMS.
+>
+> **Build-script decisions** live in `pnpm-workspace.yaml` (`allowBuilds` +
+> `onlyBuiltDependencies`); every package with a build script has an explicit
+> `true`/`false` there, so `pnpm install` never stops on
+> `ERR_PNPM_IGNORED_BUILDS`.
 
 ## Alternative: headless deploy with Wrangler (from a machine that can reach `api.cloudflare.com`)
 
